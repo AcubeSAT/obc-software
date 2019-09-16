@@ -52,7 +52,7 @@ UART_HandleTypeDef huart2;
 SRAM_HandleTypeDef hsram1;
 
 /* USER CODE BEGIN PV */
-
+volatile __attribute__((section (".mram"))) char mramData[150];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -69,8 +69,6 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
 /* USER CODE END 0 */
 
 /**
@@ -113,13 +111,11 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-    while (1) {
-        HAL_UART_Transmit(&huart1, "Hello world\r\n", strlen("Hello world\r\n"), HAL_MAX_DELAY);
-
+  main_cpp();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    }
+
   /* USER CODE END 3 */
 }
 
@@ -436,7 +432,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOG, MRAM_UB_Pin|MRAM_LB_Pin|GPIO1_Pin, GPIO_PIN_RESET);
@@ -444,12 +440,12 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, GPIO2_Pin|GPIO3_Pin|GPIO4_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : PC13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_13;
+  /*Configure GPIO pin : LED1_Pin */
+  GPIO_InitStruct.Pin = LED1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  HAL_GPIO_Init(LED1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : MRAM_UB_Pin MRAM_LB_Pin GPIO1_Pin */
   GPIO_InitStruct.Pin = MRAM_UB_Pin|MRAM_LB_Pin|GPIO1_Pin;
@@ -468,7 +464,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-#pragma clang diagnostic pop
+
 /* USER CODE END 4 */
 
 /**
