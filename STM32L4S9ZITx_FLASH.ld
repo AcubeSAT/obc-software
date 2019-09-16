@@ -63,6 +63,7 @@ MEMORY
 {
 RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 640K
 FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 2048K
+MRAM (xrw)     : ORIGIN = 0x60000000, LENGTH = 65535
 }
 
 /* Define output sections */
@@ -187,7 +188,11 @@ SECTIONS
     . = ALIGN(8);
   } >RAM
 
-  
+  /* External MRAM section */
+  .mram :
+  {
+    . = ALIGN(16);
+  } >MRAM
 
   /* Remove information from the standard libraries */
   /DISCARD/ :
