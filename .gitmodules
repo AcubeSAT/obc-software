@@ -1,0 +1,3 @@
+[submodule "Lib/ecss-services"]
+	path = Lib/ecss-services
+	url = https://gitlab.com/acubesat/obc/ecss-services.git

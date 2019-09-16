@@ -32,7 +32,7 @@ SET(CMAKE_C_FLAGS_INIT "$${COMMON_FLAGS} -std=gnu99")
 SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T $${LINKER_SCRIPT}")
 
 PROJECT(${projectName} C CXX ASM)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
 #add_definitions(-DARM_MATH_CM4 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1)
 add_definitions(${defines})
@@ -54,3 +54,14 @@ add_custom_command(TARGET $${PROJECT_NAME}.elf POST_BUILD
         COMMAND $${CMAKE_OBJCOPY} -Obinary $<TARGET_FILE:$${PROJECT_NAME}.elf> $${BIN_FILE}
         COMMENT "Building $${HEX_FILE}
 Building $${BIN_FILE}")
+
+# Support for ECSS services
+add_subdirectory(Lib/ecss-services EXCLUDE_FROM_ALL)
+target_link_libraries(${PROJECT_NAME}.elf common)
+include_directories(
+        "${PROJECT_SOURCE_DIR}/Lib/ecss-services/inc"
+        "${PROJECT_SOURCE_DIR}/Lib/ecss-services/lib/etl/include"
+        "${PROJECT_SOURCE_DIR}/Lib/freertos/include"
+        "${PROJECT_SOURCE_DIR}/Lib/freertos/portable/GCC/ARM_CM4F"
+)
+add_definitions(-DLOGLEVEL_TRACE)
