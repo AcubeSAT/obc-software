@@ -64,4 +64,3 @@ include_directories(
         "${PROJECT_SOURCE_DIR}/Lib/freertos/include"
         "${PROJECT_SOURCE_DIR}/Lib/freertos/portable/GCC/ARM_CM4F"
 )
-add_definitions(-DLOGLEVEL_TRACE)

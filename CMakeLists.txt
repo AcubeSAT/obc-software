@@ -56,7 +56,7 @@ add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
 Building ${BIN_FILE}")
 
 # Support for ECSS services
-add_subdirectory(Lib/ecss-services EXCLUDE_FROM_ALL)
+add_subdirectory(Lib/ecss-services)
 target_link_libraries(${PROJECT_NAME}.elf common)
 include_directories(
         "${PROJECT_SOURCE_DIR}/Lib/ecss-services/inc"
@@ -64,4 +64,3 @@ include_directories(
         "${PROJECT_SOURCE_DIR}/Lib/freertos/include"
         "${PROJECT_SOURCE_DIR}/Lib/freertos/portable/GCC/ARM_CM4F"
 )
-add_definitions(-DLOGLEVEL_TRACE)
