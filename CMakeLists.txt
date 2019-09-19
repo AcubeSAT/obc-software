@@ -56,7 +56,7 @@ add_custom_command(TARGET ${PROJECT_NAME}.elf POST_BUILD
 Building ${BIN_FILE}")
 
 # Support for ECSS services
-add_subdirectory(Lib/ecss-services)
+add_subdirectory(Lib/ecss-services EXCLUDE_FROM_ALL)
 target_link_libraries(${PROJECT_NAME}.elf common)
 include_directories(
         "${PROJECT_SOURCE_DIR}/Lib/ecss-services/inc"
