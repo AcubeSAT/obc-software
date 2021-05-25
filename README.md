@@ -1,3 +1,3 @@
 # OBC Software Repository
 
-In this repository is where all of the OBC Software is housed. This Software is the code that will end up on the satelite.
+In this repository is where all of the OBC Software is housed. This is the final version that will be used on the satelite.
