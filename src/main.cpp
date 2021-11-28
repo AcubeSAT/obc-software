@@ -30,7 +30,7 @@
 #include "task.h"
 #include "queue.h"
 #include "list.h"
-
+#include "Services/EventReportService.hpp"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -42,7 +42,8 @@ volatile uint8_t pinval = 0;
 volatile int xTask1 = 1;
 
 void xTask1Code(void *pvParameters){
-
+    EventReportService *ers = new EventReportService();
+    ers->getStateOfEvents();
     for(;;){
         PIO_PinToggle(PIO_PIN_PA23);
         //pinval = PIO_PinRead(PIO_PIN_PA23);
