@@ -58,7 +58,7 @@
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
 #include "system/time/sys_time.h"
-#include "app.h"
+#include "inc/app.h"
 
 
 
