@@ -42,8 +42,6 @@ volatile uint8_t pinval = 0;
 volatile int xTask1 = 1;
 
 
-void main_cpp();
-
 void xTask1Code(void *pvParameters) {
     for (;;) {
         PIO_PinToggle(PIO_PIN_PA23);
