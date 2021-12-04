@@ -16,11 +16,11 @@ template void ErrorHandler::logError(ErrorHandler::InternalErrorType);
 
 template<typename ErrorType>
 void ErrorHandler::logError(const Message &message, ErrorType errorType) {
-    LOG_ERROR << "Error " << (int) errorType << " on " << "[" << message.serviceType << "," << message.messageType
+    LOG_ERROR << "Error " << static_cast<int>(errorType) << " on " << "[" << message.serviceType << "," << message.messageType
               << "]";
 }
 
 template<typename ErrorType>
 void ErrorHandler::logError(ErrorType errorType) {
-    LOG_ERROR << "Error " << (int) errorType;
+    LOG_ERROR << "Error " <<  static_cast<int>(errorType);
 }
