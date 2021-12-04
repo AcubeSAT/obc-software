@@ -12,7 +12,7 @@ volatile uint8_t pinval = 0;
 volatile int xTask1 = 1;
 
 void xTask1Code(void *pvParameters) {
-    for (;;) {
+    while (true) {
         PIO_PinToggle(PIO_PIN_PA23);
         vTaskDelay(pdMS_TO_TICKS(500));
     }
