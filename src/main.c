@@ -25,12 +25,8 @@
 #include <stddef.h>                     // Defines NULL
 #include <stdbool.h>                    // Defines true
 #include <stdlib.h>                     // Defines EXIT_FAILURE
-#include "definitions.h"                // SYS function prototypes
-#include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
-#include "list.h"
-
+#include "definitions.h"
+#include "main.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -38,51 +34,23 @@
 // *****************************************************************************
 // *****************************************************************************
 
-volatile uint8_t pinval = 0;
-volatile int xTask1 = 1;
 
-void xTask1Code(void *pvParameters){
-
-    for(;;){
-        PIO_PinToggle(PIO_PIN_PA23);
-        //pinval = PIO_PinRead(PIO_PIN_PA23);
-        //vTaskDelay(pdMS_TO_TICKS(500));
-    }
-
-};
-
-void xTask2Code(void *pvParameters){
-
-    for(;;){
-        //PIO_PinToggle(PIO_PIN_PA23);
-        pinval = PIO_PinRead(PIO_PIN_PA23);
-        vTaskDelay(pdMS_TO_TICKS(500));
-    }
-
-};
-
-
-int main ( void )
-{
+int main(void) {
     /* Initialize all modules */
-    SYS_Initialize ( NULL );
+    SYS_Initialize(NULL);
 
+    main_cpp();
 
-    xTaskCreate(xTask1Code, "Task1",100, NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(xTask2Code, "Task2",100, NULL, tskIDLE_PRIORITY + 1, NULL);
-
-    vTaskStartScheduler();
-    while ( true )
-    {
+    while (true) {
 
 
         /* Maintain state machines of all polled MPLAB Harmony modules. */
-        SYS_Tasks ( );
+        SYS_Tasks();
     }
 
     /* Execution should not come here during normal operation */
 
-    return ( EXIT_FAILURE );
+    return (EXIT_FAILURE);
 }
 
 
