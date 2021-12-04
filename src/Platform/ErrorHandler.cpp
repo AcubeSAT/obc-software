@@ -22,5 +22,5 @@ void ErrorHandler::logError(const Message &message, ErrorType errorType) {
 
 template<typename ErrorType>
 void ErrorHandler::logError(ErrorType errorType) {
-    LOG_ERROR << "Error " << (int) errorType;
+    LOG_ERROR << "Error " <<  static_cast<int>(errorType);
 }
