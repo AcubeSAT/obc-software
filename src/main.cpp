@@ -1,3 +1,4 @@
+#include <Logger.hpp>
 #include "main.h"
 #include "SEGGER_RTT.h"
 #include "ServicePool.hpp"
@@ -27,11 +28,12 @@ void xTask2Code(void *pvParameters) {
 
 extern "C" void main_cpp() {
     SEGGER_RTT_Init();
-    SEGGER_RTT_printf(0, "test");
     EventReportService &eventReportService = Services.eventReport;
     eventReportService.lowSeverityAnomalyReport(EventReportService::LowSeverityUnknownEvent, "data");
-    SEGGER_RTT_printf(0, "%i", eventReportService.lowSeverityEventCount);
+    uint8_t lowSeverityEvents = eventReportService.lowSeverityEventCount; //Variable to check in ozone timeline
 
+    etl::string<3> logData = "log";
+    Logger::log(Logger::notice, logData);
     xTaskCreate(xTask1Code, "Task1", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(xTask2Code, "Task2", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
 

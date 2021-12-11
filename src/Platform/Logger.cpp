@@ -1,23 +1,23 @@
-//TODO: Add date, UART to the project, clean up
-#include <Logger.hpp>
-#include "FreeRTOS.h"
+//TODO: add UART to the project
 #include <etl/String.hpp>
-#include <iostream>
 #include <ECSS_Definitions.hpp>
-#include "SEGGER_RTT.h"
-#include <chrono>
-#include <string>
+#include <Logger.hpp>
 #include <iomanip>
-#include <peripheral/uart/plib_uart0.h>
+#include <iostream>
+#include <string>
+#include "FreeRTOS.h"
 #include "task.h"
+#include "queue.h"
 
-#define PREFERRTT 0 //Prefer RTT communication instead of UART
+#define PREFERRTT 1 //Prefer RTT communication instead of UART
+
+#if PREFERRTT
+    #include "SEGGER_RTT.h"
+#else
+    #include <peripheral/uart/plib_uart0.h>
+#endif
 
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
-    // Get the current time & date
-//    std::time_t t = std::time(nullptr);
-//    std::tm tm = *std::localtime(&t);
-    // Get the log level and its colour
     std::string name;
 
     if (level <= Logger::trace) {
@@ -37,7 +37,7 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
     }
 
     std::ostringstream ss; // A string stream to create the log message
-// ss << ; // The date
+    ss << xTaskGetTickCount(); // The date
     ss << "[" << name << "] "; // The log level
     ss << message.c_str(); // The message itself
     ss << "\n";
