@@ -1,6 +1,6 @@
 // DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2020 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -24,10 +24,10 @@
 // DOM-IGNORE-END
 
 #include <stdio.h>
-#include <stdarg.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <device.h> /* for ARM CMSIS __BKPT() */
+#include <stdbool.h>
+#include "device.h" /* for ARM CMSIS __BKPT() */
 
 #ifdef __cplusplus
 extern "C" {
@@ -36,42 +36,19 @@ extern "C" {
 /* Harmony specific
  * We implement only the syscalls we want over the stubs provided by libpic32c
  */
-    
-extern int _end;
-    
 extern void _exit(int status);
-extern caddr_t _sbrk(int incr);
 
-extern void _exit(int status)
+void _exit(int status)
 {
     /* Software breakpoint */
-#ifdef DEBUG
-//    asm("bkpt #0");
+#ifdef __DEBUG
     __BKPT(0);
 #endif
 
     /* halt CPU */
-    while (1)
+    while (true)
     {
     }
-}
-
-/**
- * \brief Replacement of C library of _sbrk
- */
-extern caddr_t _sbrk(int incr)
-{
-	static unsigned char *heap = NULL;
-	unsigned char *       prev_heap;
-
-	if (heap == NULL) {
-		heap = (unsigned char *)&_end;
-	}
-	prev_heap = heap;
-
-	heap += incr;
-
-	return (caddr_t)prev_heap;
 }
 
 #ifdef __cplusplus

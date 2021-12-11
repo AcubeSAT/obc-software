@@ -1,0 +1,1 @@
+ $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) /home/antonis/HarmonyProjects/obc-software/firmware/src/config/default/stdio/gcc_monitor.c
