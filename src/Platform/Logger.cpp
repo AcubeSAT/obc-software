@@ -1,4 +1,3 @@
-//TODO: add UART to the project
 #include <etl/String.hpp>
 #include <ECSS_Definitions.hpp>
 #include <Logger.hpp>
@@ -13,8 +12,11 @@
 
 #if PREFERRTT
     #include "SEGGER_RTT.h"
+    void UART0_Initialize();
+    void UART0_Write(const char **pString, unsigned int i);
 #else
     #include <peripheral/uart/plib_uart0.h>
+    void SEGGER_RTT_printf();
 #endif
 
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
@@ -45,7 +47,7 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
     const std::string tmp = ss.str();
     const char *string = tmp.c_str();
     if (PREFERRTT) {
-        SEGGER_RTT_WriteString(0, string);
+        SEGGER_RTT_printf(0, string);
     } else {
         UART0_Initialize();
         UART0_Write(&string, sizeof(&string));
