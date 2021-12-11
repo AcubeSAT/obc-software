@@ -27,6 +27,8 @@ void xTask2Code(void *pvParameters) {
 };
 
 extern "C" void main_cpp() {
+    SYS_Initialize(NULL);
+
     SEGGER_RTT_Init();
     EventReportService &eventReportService = Services.eventReport;
     eventReportService.lowSeverityAnomalyReport(EventReportService::LowSeverityUnknownEvent, "data");
@@ -38,4 +40,13 @@ extern "C" void main_cpp() {
     xTaskCreate(xTask2Code, "Task2", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
 
     vTaskStartScheduler();
+
+    while (true) {
+
+
+        /* Maintain state machines of all polled MPLAB Harmony modules. */
+        SYS_Tasks();
+    }
+
+    return;
 }
