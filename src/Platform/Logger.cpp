@@ -1,4 +1,6 @@
+//TODO: Add date, UART to the project, clean up
 #include <Logger.hpp>
+#include "FreeRTOS.h"
 #include <etl/String.hpp>
 #include <iostream>
 #include <ECSS_Definitions.hpp>
@@ -6,8 +8,10 @@
 #include <chrono>
 #include <string>
 #include <iomanip>
+#include <peripheral/uart/plib_uart0.h>
+#include "task.h"
 
-#define PREFERRTT 1 //Prefer RTT communication instead of UART
+#define PREFERRTT 0 //Prefer RTT communication instead of UART
 
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
     // Get the current time & date
@@ -40,11 +44,13 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
 
     const std::string tmp = ss.str();
     const char *string = tmp.c_str();
-    SEGGER_RTT_WriteString(0, string);
-
-
+    if (PREFERRTT) {
+        SEGGER_RTT_WriteString(0, string);
+    } else {
+        UART0_Initialize();
+        UART0_Write(&string, sizeof(&string));
+    }
 }
-
 // Reimplementation of the log function for C++ strings
 // This is kept in the Platform files, since we don't want to mess with std::strings in the microcontroller
 Logger::LogEntry &Logger::LogEntry::operator<<(const std::string &value) {
