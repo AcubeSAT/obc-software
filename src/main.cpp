@@ -19,7 +19,7 @@ void xTask1Code(void *pvParameters) {
 };
 
 void xTask2Code(void *pvParameters) {
-    while(true) {
+    while (true) {
         pinval = PIO_PinRead(PIO_PIN_PA23);
         vTaskDelay(pdMS_TO_TICKS(500));
     }
