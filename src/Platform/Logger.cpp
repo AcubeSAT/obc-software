@@ -39,7 +39,7 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
 
     const std::string tmp = ss.str();
     const char *string = tmp.c_str();
-    if (PREFERRTT) {
+    if (PreferRTT) {
         SEGGER_RTT_printf(0, string);
     } else {
         UART0_Initialize();
