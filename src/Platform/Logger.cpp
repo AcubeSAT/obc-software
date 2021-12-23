@@ -2,7 +2,6 @@
 #include <ECSS_Definitions.hpp>
 #include <Logger.hpp>
 #include <iomanip>
-#include <iostream>
 #include <string>
 #include "FreeRTOS.h"
 #include "task.h"
