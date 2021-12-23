@@ -13,7 +13,8 @@
 
 
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
-    std::string name;
+    etl::string<9> name;
+    etl::string<10> time;
 
     if (level <= Logger::trace) {
         name = "trace";
@@ -31,19 +32,17 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
         name = "emergency";
     }
 
-    std::ostringstream ss; // A string stream to create the log message
-    ss << xTaskGetTickCount(); // The date
-    ss << "[" << name << "] "; // The log level
-    ss << message.c_str(); // The message itself
-    ss << "\n";
+    etl::to_string(xTaskGetTickCount(), time, format.width(10), 0);
 
-    const std::string tmp = ss.str();
-    const char *string = tmp.c_str();
+    char tmp[LOGGER_MAX_MESSAGE_SIZE];
+    snprintf(tmp, LOGGER_MAX_MESSAGE_SIZE, "%s [%9s] %s\n", time.c_str(), name.c_str(), message.c_str());
+
+
     if (PreferRTT) {
-        SEGGER_RTT_printf(0, string);
+        SEGGER_RTT_printf(0, tmp);
     } else {
         UART0_Initialize();
-        UART0_Write(&string, sizeof(&string));
+        UART0_Write(&tmp, sizeof(&tmp));
     }
 }
 
