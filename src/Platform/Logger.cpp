@@ -34,8 +34,7 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
     etl::to_string(xTaskGetTickCount(), time, format.width(MaxTickCountStringSize), 0);
 
     char output[LOGGER_MAX_MESSAGE_SIZE];
-    snprintf(output, LOGGER_MAX_MESSAGE_SIZE, "%s [%9s] %s\n", time.c_str(), name.c_str(),
-             message.c_str()); //[%9s] adds padding to reach a MaxLogNameSize=9 width
+    snprintf(output, LOGGER_MAX_MESSAGE_SIZE, "%s [%9s] %s\n", time.c_str(), name.c_str(), message.c_str());
 
 
     if (PreferRTT) {
