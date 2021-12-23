@@ -13,8 +13,8 @@
 
 
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
-    etl::string<9> name;
-    etl::string<10> time;
+    etl::string<MaxLogNameSize> name;
+    etl::string<MaxTickCountStringSize> time;
 
     if (level <= Logger::trace) {
         name = "trace";
@@ -32,17 +32,18 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
         name = "emergency";
     }
 
-    etl::to_string(xTaskGetTickCount(), time, format.width(10), 0);
+    etl::to_string(xTaskGetTickCount(), time, format.width(MaxTickCountStringSize), 0);
 
-    char tmp[LOGGER_MAX_MESSAGE_SIZE];
-    snprintf(tmp, LOGGER_MAX_MESSAGE_SIZE, "%s [%9s] %s\n", time.c_str(), name.c_str(), message.c_str());
+    char output[LOGGER_MAX_MESSAGE_SIZE];
+    snprintf(output, LOGGER_MAX_MESSAGE_SIZE, "%s [%9s] %s\n", time.c_str(), name.c_str(),
+             message.c_str()); //[%9s] adds padding to reach a MaxLogNameSize=9 width
 
 
     if (PreferRTT) {
-        SEGGER_RTT_printf(0, tmp);
+        SEGGER_RTT_printf(0, output);
     } else {
         UART0_Initialize();
-        UART0_Write(&tmp, sizeof(&tmp));
+        UART0_Write(&output, LOGGER_MAX_MESSAGE_SIZE);
     }
 }
 
