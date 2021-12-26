@@ -12,33 +12,41 @@
 
 
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
-    etl::string<MaxLogNameSize> name;
+    etl::string<MaxLogNameSize> levelString;
     etl::string<MaxTickCountStringSize> time;
 
     if (level <= Logger::trace) {
-        name = "trace";
+        levelString.append("trace");
     } else if (level <= Logger::debug) {
-        name = "debug";
+        levelString.append("debug");
     } else if (level <= Logger::info) {
-        name = "info";
+        levelString.append("info");
     } else if (level <= Logger::notice) {
-        name = "notice";
+        levelString.append("notice");
     } else if (level <= Logger::warning) {
-        name = "warning";
+        levelString.append("warning");
     } else if (level <= Logger::error) {
-        name = "error";
+        levelString.append("error");
     } else {
-        name = "emergency";
+        levelString = "emergency";
+    }
+
+    while (levelString.available()) {
+        levelString.append(" ");
     }
 
     etl::to_string(xTaskGetTickCount(), time, format.width(MaxTickCountStringSize), 0);
 
-    char output[LOGGER_MAX_MESSAGE_SIZE];
-    snprintf(output, LOGGER_MAX_MESSAGE_SIZE, "%s [%9s] %s\n", time.c_str(), name.c_str(), message.c_str());
-
+    etl::string<LOGGER_MAX_MESSAGE_SIZE> output;
+    output.append(time.c_str());
+    output.append(" [");
+    output.append(levelString.c_str());
+    output.append("] ");
+    output.append(message.c_str());
+    output.append("\n");
 
     if (PreferRTT) {
-        SEGGER_RTT_printf(0, output);
+        SEGGER_RTT_printf(0, output.c_str());
     } else {
         UART0_Initialize();
         UART0_Write(&output, LOGGER_MAX_MESSAGE_SIZE);

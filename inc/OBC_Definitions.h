@@ -18,9 +18,7 @@ inline const bool PreferRTT = 1;
 
 /**
  * @brief Maximum string size for a LogLevel is 9 characters long
- *
- * The value of this variable is also hardcoded in line 37 of Platform/Logger.cpp.
- */
+ * */
 inline const uint8_t MaxLogNameSize = 9;
 
 /**
