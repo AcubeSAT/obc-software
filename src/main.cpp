@@ -42,8 +42,6 @@ extern "C" void main_cpp() {
     vTaskStartScheduler();
 
     while (true) {
-
-
         /* Maintain state machines of all polled MPLAB Harmony modules. */
         SYS_Tasks();
     }
