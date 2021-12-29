@@ -34,8 +34,6 @@ extern "C" void main_cpp() {
     eventReportService.lowSeverityAnomalyReport(EventReportService::LowSeverityUnknownEvent, "data");
     uint8_t lowSeverityEvents = eventReportService.lowSeverityEventCount; //Variable to check in ozone timeline
 
-    etl::string<3> logData = "log";
-    Logger::log(Logger::notice, logData);
     xTaskCreate(xTask1Code, "Task1", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(xTask2Code, "Task2", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
 

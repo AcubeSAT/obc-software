@@ -90,6 +90,6 @@ target_link_libraries(${PROJECT_NAME}.elf common)
 set(CMAKE_EXE_LINKER_FLAGS
         "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
 
-
+add_compile_definitions(LOGLEVEL_TRACE)
 
 
