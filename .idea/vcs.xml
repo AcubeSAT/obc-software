@@ -6,5 +6,7 @@
     <mapping directory="$PROJECT_DIR$/lib/ecss-services/ci/page_style/doxygen_dark_theme" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/ecss-services/lib/Catch2" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/ecss-services/lib/etl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/ecss-services/lib/logger" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/ecss-services/lib/logger/lib/etl" vcs="Git" />
   </component>
 </project>

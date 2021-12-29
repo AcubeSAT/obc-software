@@ -1,63 +1,56 @@
-//TODO: Implement a platform specific Logger function
-#include <Logger.hpp>
 #include <etl/String.hpp>
-#include <iostream>
 #include <ECSS_Definitions.hpp>
-
-#include <chrono>
+#include <Logger.hpp>
 #include <iomanip>
+#include <string>
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "OBC_Definitions.h"
+#include "SEGGER_RTT.h"
+#include <peripheral/uart/plib_uart0.h>
 
-// The implementation of this function appends ANSI codes that should add colours to a compatible terminal
+
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
-    // Get the current time & date
-//	std::time_t t = std::time(nullptr);
-//	std::tm tm = *std::localtime(&t);
-//
-//	// Get the log level and its colour
-//	std::string name;
-//	std::string colour;
-//	bool keepColour = false; // Whether to keep the colour in the rest of the message
-//
-//	if (level <= Logger::trace) {
-//		name = "trace";
-//		colour = "90"; // bright black
-//		keepColour = true;
-//	} else if (level <= Logger::debug) {
-//		name = "debug";
-//		colour = "90"; // bright black
-//	} else if (level <= Logger::info) {
-//		name = "info";
-//		colour = "32"; // green
-//	} else if (level <= Logger::notice) {
-//		name = "notice";
-//		colour = "36"; // cyan
-//	} else if (level <= Logger::warning) {
-//		name = "warning";
-//		colour = "33"; // yellow
-//	} else if (level <= Logger::error) {
-//		name = "error";
-//		colour = "31"; // red
-//	} else {
-//		name = "emergency";
-//		colour = "31"; // red
-//		keepColour = true;
-//	}
-//
-//	std::ostringstream ss; // A string stream to create the log message
-//	ss << "\033" "[0;90m" << std::put_time(&tm, "%FT%T%z") << "\033" "[0m "; // The date
-//	ss << "[\033" "[1;" << colour << "m" << std::setfill(' ') << std::setw(7) << std::right // Ignore-MISRA
-//		<< name << std::setw(0) << "\033" "[0m] "; // The log level // Ignore-MISRA
-//
-//	if (keepColour) {
-//		ss << "\033" "[0;" << colour << "m"; // Ignore-MISRA
-//	}
-//	ss << message.c_str(); // The message itself
-//	if (keepColour) {
-//		ss << "\033" "[0m";
-//	}
-//
-//	ss << "\n";
-//	std::cerr << ss.str();
+    etl::string<MaxLogNameSize> levelString;
+    etl::string<MaxTickCountStringSize> time;
+
+    if (level <= Logger::trace) {
+        levelString.append("trace");
+    } else if (level <= Logger::debug) {
+        levelString.append("debug");
+    } else if (level <= Logger::info) {
+        levelString.append("info");
+    } else if (level <= Logger::notice) {
+        levelString.append("notice");
+    } else if (level <= Logger::warning) {
+        levelString.append("warning");
+    } else if (level <= Logger::error) {
+        levelString.append("error");
+    } else {
+        levelString = "emergency";
+    }
+
+    while (levelString.available()) {
+        levelString.append(" ");
+    }
+
+    etl::to_string(xTaskGetTickCount(), time, format.width(MaxTickCountStringSize), 0);
+
+    etl::string<LOGGER_MAX_MESSAGE_SIZE> output;
+    output.append(time.c_str());
+    output.append(" [");
+    output.append(levelString.c_str());
+    output.append("] ");
+    output.append(message.c_str());
+    output.append("\n");
+
+    if (PreferRTT) {
+        SEGGER_RTT_printf(0, output.c_str());
+    } else {
+        UART0_Initialize();
+        UART0_Write(&output, LOGGER_MAX_MESSAGE_SIZE);
+    }
 }
 
 // Reimplementation of the log function for C++ strings

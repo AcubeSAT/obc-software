@@ -1,3 +1,4 @@
+#include <Logger.hpp>
 #include "main.h"
 #include "SEGGER_RTT.h"
 #include "ServicePool.hpp"
@@ -18,7 +19,7 @@ void xTask1Code(void *pvParameters) {
 };
 
 void xTask2Code(void *pvParameters) {
-    while(true) {
+    while (true) {
         pinval = PIO_PinRead(PIO_PIN_PA23);
         vTaskDelay(pdMS_TO_TICKS(500));
     }
@@ -26,14 +27,22 @@ void xTask2Code(void *pvParameters) {
 };
 
 extern "C" void main_cpp() {
+    SYS_Initialize(NULL);
+
     SEGGER_RTT_Init();
-    SEGGER_RTT_printf(0, "test");
     EventReportService &eventReportService = Services.eventReport;
     eventReportService.lowSeverityAnomalyReport(EventReportService::LowSeverityUnknownEvent, "data");
-    SEGGER_RTT_printf(0, "%i", eventReportService.lowSeverityEventCount);
+    uint8_t lowSeverityEvents = eventReportService.lowSeverityEventCount; //Variable to check in ozone timeline
 
     xTaskCreate(xTask1Code, "Task1", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(xTask2Code, "Task2", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
 
     vTaskStartScheduler();
+
+    while (true) {
+        /* Maintain state machines of all polled MPLAB Harmony modules. */
+        SYS_Tasks();
+    }
+
+    return;
 }

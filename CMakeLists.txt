@@ -77,6 +77,7 @@ include_directories(/opt/microchip/mplabx/v5.45/packs/arm/CMSIS/5.4.0/CMSIS/Core
 include_directories(lib/ecss-services/inc)
 include_directories(lib/ecss-services/inc/Platform/x86)
 include_directories(lib/ecss-services/lib/etl/include)
+include_directories(lib/ecss-services/lib/logger/inc)
 include_directories(lib/SEGGER/RTT)
 include_directories(lib/SEGGER/Config)
 
@@ -89,6 +90,6 @@ target_link_libraries(${PROJECT_NAME}.elf common)
 set(CMAKE_EXE_LINKER_FLAGS
         "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
 
-
+add_compile_definitions(LOGLEVEL_TRACE)
 
 
