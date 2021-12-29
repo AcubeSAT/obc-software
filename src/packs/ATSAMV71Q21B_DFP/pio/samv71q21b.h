@@ -1,5 +1,5 @@
-/**
- * \brief Peripheral I/O description for SAMV71Q21B
+/*
+ * Peripheral I/O description for SAMV71Q21B
  *
  * Copyright (c) 2021 Microchip Technology Inc. and its subsidiaries.
  *
