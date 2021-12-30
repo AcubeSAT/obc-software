@@ -54,6 +54,9 @@
 // Section: Configuration Bits
 // ****************************************************************************
 // ****************************************************************************
+#pragma config TCM_CONFIGURATION = 0
+#pragma config SECURITY_BIT = CLEAR
+#pragma config BOOT_MODE = SET
 
 
 
@@ -135,6 +138,8 @@ void SYS_Initialize ( void* data )
 	PIO_Initialize();
 
 
+
+	UART0_Initialize();
 
 	SYSTICK_TimerInitialize();
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
