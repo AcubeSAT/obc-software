@@ -3,6 +3,7 @@
 
 #include "Helpers/Parameter.hpp"
 #include "Helpers/TimeAndDate.hpp"
+#include "OBC_Definitions.h"
 
 namespace PlatformParameters {
     /**
@@ -15,8 +16,8 @@ namespace PlatformParameters {
         OnBoardHour = 3,
         OnBoardMinute = 4,
         OnBoardSecond = 5,
-        StackUsage1 = 6,
-        StackUsage2 = 7
+        AvailableStack = 6,
+        AvailableHeap = 7
     };
 
     /**
@@ -28,8 +29,8 @@ namespace PlatformParameters {
     inline Parameter<uint8_t> currentHour(6);
     inline Parameter<uint8_t> currentMinute(48);
     inline Parameter<uint8_t> currentSecond(32);
-    inline Parameter<uint16_t> taskStackUsage1(0);
-    inline Parameter<uint16_t> taskStackUsage2(0);
+    inline Parameter<uint16_t> parameterReportingAvailableStackInWords(FreeRTOSTaskStackDepth);
+    inline Parameter<uint16_t> availableHeapInWords(0);
 }
 
 #endif

@@ -5,14 +5,14 @@
 #include "Parameters/PlatformParameters.hpp"
 
 void ParameterService::initializeParameterMap() {
-    parameters = {{PlatformParameters::OnBoardYear,  PlatformParameters::currentYear},
-                  {PlatformParameters::OnBoardMonth,  PlatformParameters::currentMonth},
-                  {PlatformParameters::OnBoardDay,  PlatformParameters::currentDay},
-                  {PlatformParameters::OnBoardHour,  PlatformParameters::currentHour},
+    parameters = {{PlatformParameters::OnBoardYear,    PlatformParameters::currentYear},
+                  {PlatformParameters::OnBoardMonth,   PlatformParameters::currentMonth},
+                  {PlatformParameters::OnBoardDay,     PlatformParameters::currentDay},
+                  {PlatformParameters::OnBoardHour,    PlatformParameters::currentHour},
                   {PlatformParameters::OnBoardMinute,  PlatformParameters::currentMinute},
                   {PlatformParameters::OnBoardSecond,  PlatformParameters::currentSecond},
-                  {PlatformParameters::StackUsage1,  PlatformParameters::taskStackUsage1},
-                  {PlatformParameters::StackUsage2,  PlatformParameters::taskStackUsage2}};
+                  {PlatformParameters::AvailableStack, PlatformParameters::parameterReportingAvailableStackInWords},
+                  {PlatformParameters::AvailableHeap,  PlatformParameters::availableHeapInWords}};
 }
 
 #endif
