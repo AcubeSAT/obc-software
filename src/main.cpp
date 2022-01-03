@@ -1,4 +1,3 @@
-#include <Logger.hpp>
 #include "main.h"
 #include "SEGGER_RTT.h"
 #include "ServicePool.hpp"
@@ -7,49 +6,65 @@
 #include "list.h"
 #include "task.h"
 #include "definitions.h"
-#include <Logger.hpp>
+#include "OBC_Definitions.h"
+#include "Parameters/PlatformParameters.hpp"
 
+void dateParameterReportingTask(void *pvParameters) {
+    const uint16_t numberOfParametersToReport = 6;
 
-void xTask1Code(void *pvParameters) {
-    ParameterService &parameterService = Services.parameterManagement;
-    float a = Services.parameterManagement.parametersArray[2].get().getValueAsDouble();
-    int g = (int) a;
-    SEGGER_RTT_printf(0, "%d\n", g);
-    Message msg1(ParameterService::ServiceType, ParameterService::ParameterValuesReport, Message::TC, 1);
-    msg1.appendHalfword((uint16_t) 2);
-    msg1.appendHalfword((uint16_t) 2);
-    msg1.appendHalfword((uint16_t) 3);
-    Message msg2(ParameterService::ServiceType, ParameterService::SetParameterValues , Message::TC, 1);
-    msg2.appendHalfword((uint16_t) 2);
-    msg2.appendHalfword((uint16_t) 2);
-    msg2.appendHalfword((uint16_t) 3);
     while (true) {
-//        Services.parameterManagement.setParameters(msg2);
-//        a = Services.parameterManagement.parametersArray[0].get().getValueAsDouble();
-//        g = (int) a;
-//        SEGGER_RTT_printf(0, "%d\n", g);
-//        a = Services.parameterManagement.parametersArray[1].get().getValueAsDouble();
-//        g = (int) a;
-//        SEGGER_RTT_printf(0, "%d\n", g);
-//        a = Services.parameterManagement.parametersArray[2].get().getValueAsDouble();
-//        g = (int) a;
-//        SEGGER_RTT_printf(0, "%d\n", g);
-//        a = Services.parameterManagement.parametersArray[3].get().getValueAsDouble();
-//        g = (int) a;
-//        SEGGER_RTT_printf(0, "%d\n", g);
+        Message request = Message(ParameterService::ServiceType, ParameterService::MessageType::ReportParameterValues,
+                                  Message::TC, 1);
+        request.appendUint16(numberOfParametersToReport);
+        request.appendUint16(PlatformParameters::OnBoardYear);
+        request.appendUint16(PlatformParameters::OnBoardMonth);
+        request.appendUint16(PlatformParameters::OnBoardDay);
+        request.appendUint16(PlatformParameters::OnBoardHour);
+        request.appendUint16(PlatformParameters::OnBoardMinute);
+        request.appendUint16(PlatformParameters::OnBoardSecond);
+        MessageParser::execute(request);
     }
-};
+}
 
+void stackUsageParameterReportingTask(void *pvParameters) {
+    const uint16_t numberOfParametersToReport = 2;
+
+    while (true) {
+        Message request = Message(ParameterService::ServiceType, ParameterService::MessageType::ReportParameterValues,
+                                  Message::TC, 1);
+        request.appendUint16(numberOfParametersToReport);
+        request.appendUint16(PlatformParameters::StackUsage1);
+        request.appendUint16(PlatformParameters::StackUsage2);
+        MessageParser::execute(request);
+    }
+}
+
+void stackUsageParameterUpdatingTask(void *pvParameters) {
+
+    TaskHandle_t dateParameterReportingTaskHandler = xTaskGetHandle("Task1"),
+            stackUsageParameterReportingTaskHandler = xTaskGetHandle("Task2");
+    const uint16_t numberOfParametersToSet = 2;
+
+    while (true) {
+        Message request = Message(ParameterService::ServiceType, ParameterService::MessageType::SetParameterValues,
+                                  Message::TC, 1);
+        request.appendUint16(numberOfParametersToSet);
+        request.appendUint16(PlatformParameters::StackUsage1);
+        request.appendUint16(FreeRTOSTaskStackDepth -
+                             static_cast<uint16_t>(uxTaskGetStackHighWaterMark(dateParameterReportingTaskHandler)));
+        request.appendUint16(PlatformParameters::StackUsage2);
+        request.appendUint16(FreeRTOSTaskStackDepth - static_cast<uint16_t>(uxTaskGetStackHighWaterMark(
+                stackUsageParameterReportingTaskHandler)));
+        MessageParser::execute(request);
+    }
+}
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 
-    SEGGER_RTT_Init();
-    EventReportService &eventReportService = Services.eventReport;
-    eventReportService.lowSeverityAnomalyReport(EventReportService::LowSeverityUnknownEvent, "data");
-    uint8_t lowSeverityEvents = eventReportService.lowSeverityEventCount; //Variable to check in ozone timeline
-
-    xTaskCreate(xTask1Code, "Task1", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(dateParameterReportingTask, "Task1", FreeRTOSTaskStackDepth, NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(stackUsageParameterReportingTask, "Task2", FreeRTOSTaskStackDepth, NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(stackUsageParameterUpdatingTask, "Task3", FreeRTOSTaskStackDepth, NULL, tskIDLE_PRIORITY + 1, NULL);
 
     vTaskStartScheduler();
 
