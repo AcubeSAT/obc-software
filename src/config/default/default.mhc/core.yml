@@ -72,6 +72,27 @@ children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
   - type: Boolean
+    attributes: {id: NVIC_14_0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: NVIC_14_0_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: USART1_InterruptHandler}
+  - type: Boolean
+    attributes: {id: NVIC_14_0_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: Boolean
     attributes: {id: NVIC_4_0_ENABLE}
     children:
     - type: Values
@@ -119,21 +140,21 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: 'true'}
+        attributes: {id: core, value: 'false'}
   - type: String
     attributes: {id: NVIC_7_0_HANDLER}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: UART0_InterruptHandler}
+        attributes: {id: core, value: UART0_Handler}
   - type: Boolean
     attributes: {id: NVIC_7_0_HANDLER_LOCK}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: 'true'}
+        attributes: {id: core, value: 'false'}
   - type: String
     attributes: {id: PIN_46_DIR}
     children:
@@ -231,7 +252,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '203904'}
+        attributes: {id: core, value: '220160'}
   - type: KeyValueSet
     attributes: {id: PMC_PCR_GCLK0CSS}
     children:
@@ -409,13 +430,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 0 KB}
-  - type: Boolean
-    attributes: {id: UART0_CLOCK_ENABLE}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: uart0, value: 'true'}
   - type: Integer
     attributes: {id: UART0_CLOCK_FREQUENCY}
     children:
@@ -424,33 +438,47 @@ children:
       - type: Dynamic
         attributes: {id: core, value: '150000000'}
   - type: Boolean
-    attributes: {id: UART0_INTERRUPT_ENABLE}
+    attributes: {id: UART0_INTERRUPT_ENABLE_UPDATE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: uart0, value: 'true'}
+        attributes: {id: core, value: 'true'}
   - type: Boolean
-    attributes: {id: UART0_INTERRUPT_ENABLE_UPDATE}
+    attributes: {id: USART1_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: usart1, value: 'true'}
+  - type: Boolean
+    attributes: {id: USART1_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: usart1, value: 'true'}
+  - type: Boolean
+    attributes: {id: USART1_INTERRUPT_ENABLE_UPDATE}
     children:
     - type: Values
       children:
       - type: Dynamic
         attributes: {id: core, value: 'false'}
   - type: String
-    attributes: {id: UART0_INTERRUPT_HANDLER}
+    attributes: {id: USART1_INTERRUPT_HANDLER}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: uart0, value: UART0_InterruptHandler}
+        attributes: {id: usart1, value: USART1_InterruptHandler}
   - type: Boolean
-    attributes: {id: UART0_INTERRUPT_HANDLER_LOCK}
+    attributes: {id: USART1_INTERRUPT_HANDLER_LOCK}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: uart0, value: 'true'}
+        attributes: {id: usart1, value: 'true'}
   - type: Boolean
     attributes: {id: USE_SYSTICK_INTERRUPT}
     children:
