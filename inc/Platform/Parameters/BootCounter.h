@@ -1,5 +1,5 @@
 /*************************************************************************
- * GPBROps files contain the functionality for the Boot Counter parameter
+ * BootCounter files contain the functionality for the Boot Counter parameter
  * using ATSAMV71Q21's General Purpose Backup Registers (GPBR).
  * GPBR were chosen because the contents are saved after a software MCU
  * reset which is needed for testing purposes.
