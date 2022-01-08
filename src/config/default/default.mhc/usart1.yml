@@ -5,6 +5,20 @@ children:
 - type: Symbols
   children:
   - type: Integer
+    attributes: {id: BRG_VALUE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: usart1, value: '81'}
+  - type: Integer
+    attributes: {id: USART_CLOCK_FREQ}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: usart1, value: '150000000'}
+  - type: Integer
     attributes: {id: USART_SPI_BRG_VALUE}
     children:
     - type: Values
