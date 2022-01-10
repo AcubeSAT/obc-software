@@ -48,8 +48,7 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
     if (PreferRTT) {
         SEGGER_RTT_printf(0, output.c_str());
     } else {
-        USART1_Initialize();
-        USART1_Write(&output, LOGGER_MAX_MESSAGE_SIZE);
+        XDMAC_ChannelTransfer(XDMAC_CHANNEL_0, output.data(), (const void*)&USART1_REGS->US_THR, output.size());
     }
 }
 

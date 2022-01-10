@@ -28,7 +28,7 @@ void xTask2Code(void *pvParameters) {
 
 void xUartDMA(void *pvParameters) {
     while (true) {
-        USART1_Write(usartData.data(), usartData.size());
+        XDMAC_ChannelTransfer(XDMAC_CHANNEL_0, usartData.data(), (const void*)&USART1_REGS->US_THR, usartData.size());
         vTaskDelay(pdMS_TO_TICKS(3000));
     }
 };
