@@ -205,6 +205,62 @@ children:
       - type: Dynamic
         attributes: {id: core, value: 'false'}
   - type: String
+    attributes: {id: PIN_105_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: USART1_TXD1}
+  - type: String
+    attributes: {id: PIN_105_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: D}
+  - type: String
+    attributes: {id: PIN_112_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: USART1_DSR1}
+  - type: String
+    attributes: {id: PIN_112_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_129_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: USART1_RI1}
+  - type: String
+    attributes: {id: PIN_129_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_32_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: USART1_RXD1}
+  - type: String
+    attributes: {id: PIN_32_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
     attributes: {id: PIN_46_DIR}
     children:
     - type: Values
@@ -232,13 +288,83 @@ children:
       children:
       - type: User
         attributes: {value: GPIO}
+  - type: String
+    attributes: {id: PIN_56_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: USART1_RTS1}
+  - type: String
+    attributes: {id: PIN_56_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_59_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: USART1_CTS1}
+  - type: String
+    attributes: {id: PIN_59_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_62_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: USART1_DCD1}
+  - type: String
+    attributes: {id: PIN_62_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_70_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: USART1_DTR1}
+  - type: String
+    attributes: {id: PIN_70_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_91_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: USART1_LONCOL1}
+  - type: String
+    attributes: {id: PIN_91_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: B}
   - type: Hex
     attributes: {id: PIOA_ABCDSR1_VALUE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '0'}
+        attributes: {id: core, value: '8'}
   - type: Hex
     attributes: {id: PIOA_ABCDSR2_VALUE}
     children:
@@ -266,7 +392,21 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '0'}
+        attributes: {id: core, value: '1059061768'}
+  - type: Hex
+    attributes: {id: PIOB_ABCDSR1_VALUE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '16'}
+  - type: Hex
+    attributes: {id: PIOB_ABCDSR2_VALUE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '16'}
   - type: Boolean
     attributes: {id: PIOB_CLOCK_ENABLE}
     children:
@@ -274,6 +414,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
+  - type: Hex
+    attributes: {id: PIOB_PDR_VALUE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '16'}
   - type: Boolean
     attributes: {id: PIOC_CLOCK_ENABLE}
     children:
@@ -295,6 +442,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
+  - type: Hex
+    attributes: {id: PIO_CCFG_SYSIO_VALUE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '16'}
   - type: Hex
     attributes: {id: PMC_PCER0}
     children:
