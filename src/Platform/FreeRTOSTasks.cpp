@@ -3,9 +3,10 @@
 #include "task.h"
 #include "PlatformParameters.hpp"
 #include "ServicePool.hpp"
+#include "BootCounter.hpp"
 
 namespace FreeRTOSTasks {
-    void parameterReporting(void *) {
+    void reportParameters(void *) {
         Message request = Message(ParameterService::ServiceType,
                                   ParameterService::MessageType::ReportParameterValues,
                                   Message::TC, 1);
@@ -23,32 +24,20 @@ namespace FreeRTOSTasks {
         request.appendUint16(PlatformParameters::OBCSystick);
 
         while (true) {
-            request.readPosition = 0;
             MessageParser::execute(request);
-            vTaskDelay(pdMS_TO_TICKS(300));
+            request.resetRead();
+            vTaskDelay(pdMS_TO_TICKS(1000));
         }
     }
 
-    void parameterUpdating(void *taskName) {
+    void updateParameters(void *taskName) {
         TaskHandle_t parameterReportingHandle = xTaskGetHandle(*static_cast<const char **>(taskName));
-        Message request = Message(ParameterService::ServiceType,
-                                  ParameterService::MessageType::SetParameterValues,
-                                  Message::TC, 1);
-        const uint16_t numberOfIDs = 4;
 
         while (true) {
-            request.readPosition = 0;
-            request.dataSize = 0;
-            request.appendUint16(numberOfIDs);
-            request.appendUint16(PlatformParameters::AvailableStack);
-            request.appendUint16(static_cast<uint16_t>(uxTaskGetStackHighWaterMark(parameterReportingHandle)));
-            request.appendUint16(PlatformParameters::AvailableHeap);
-            request.appendUint16(static_cast<uint16_t>(xPortGetFreeHeapSize()));
-            request.appendUint16(PlatformParameters::OBCBootCounter);
-            request.appendUint16(static_cast<uint16_t>(GPBRRead(bootCounterRegister)));
-            request.appendUint16(PlatformParameters::OBCSystick);
-            request.appendUint16(static_cast<uint16_t>(xTaskGetTickCount()));
-            MessageParser::execute(request);
+            PlatformParameters::reportParametersAvailableStack.setValue(uxTaskGetStackHighWaterMark(parameterReportingHandle));
+            PlatformParameters::availableHeap.setValue(static_cast<uint16_t>(xPortGetFreeHeapSize()));
+            PlatformParameters::obcBootCounter.setValue(BootCounter::GPBRRead(BootCounterRegister));
+            PlatformParameters::obcSysTick.setValue(static_cast<uint64_t>(xTaskGetTickCount()));
             vTaskDelay(pdMS_TO_TICKS(300));
         }
     }

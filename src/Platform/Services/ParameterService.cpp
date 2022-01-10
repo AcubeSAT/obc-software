@@ -11,10 +11,10 @@ void ParameterService::initializeParameterMap() {
                   {PlatformParameters::OnBoardHour,    PlatformParameters::currentHour},
                   {PlatformParameters::OnBoardMinute,  PlatformParameters::currentMinute},
                   {PlatformParameters::OnBoardSecond,  PlatformParameters::currentSecond},
-                  {PlatformParameters::AvailableStack, PlatformParameters::parameterReportingAvailableStack},
+                  {PlatformParameters::AvailableStack, PlatformParameters::reportParametersAvailableStack},
                   {PlatformParameters::AvailableHeap,  PlatformParameters::availableHeap},
-                  {PlatformParameters::OBCBootCounter, PlatformParameters::O_OBOOTCOUNT},
-                  {PlatformParameters::OBCSystick,  PlatformParameters::O_OSYST}};
+                  {PlatformParameters::OBCBootCounter, PlatformParameters::obcBootCounter},
+                  {PlatformParameters::OBCSystick,     PlatformParameters::obcSysTick}};
 }
 
 #endif
