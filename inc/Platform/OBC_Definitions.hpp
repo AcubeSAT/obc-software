@@ -33,35 +33,40 @@ inline const uint8_t MaxTickCountStringSize = 10;
 inline const uint16_t FreeRTOSTaskStackDepth = 2000;
 
 /**
- * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter implementation.
+ * Namespace containing \ref BootCounter parameter needed functionality.
  */
-enum BackupRegisters : uint8_t {
+namespace BootCounter {
     /**
-     * Defines which one of the eight backup registers will be used to distinguish
-     * software from hardware resets.
+     * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter implementation.
      */
-    UnexpectedResetRegister = 0,
+    enum BackupRegisters : uint8_t {
+        /**
+         * Defines which one of the eight backup registers will be used to distinguish
+         * software from hardware resets.
+         */
+        UnexpectedResetRegister = 0,
+        /**
+         * Defines which one of the eight backup registers will be used to save the boot counter.
+         */
+        BootCounterRegister = 1
+    };
+
     /**
-     * Defines which one of the eight backup registers will be used to save the boot counter.
+     * When this value is detected inside the \ref UnexpectedResetRegister a software reset is acknowledged,
+     * otherwise an unexpected reset has occurred.
      */
-    BootCounterRegister = 1
-};
+    inline const uint8_t SoftwareResetValue = 1;
 
-/**
- * When this value is detected inside the \ref UnexpectedResetRegister a software reset is acknowledged,
- * otherwise an unexpected reset has occurred.
- */
-inline const uint8_t softwareResetValue = 1;
+    /**
+     * Defines the backup register's value after it is cleared.
+     */
+    inline const uint8_t ClearRegisterValue = 0;
 
-/**
- * Defines the backup register's value after it is cleared.
- */
-inline const uint8_t clearRegisterValue = 0;
-
-/**
- * A counter limit for hardware reset simulation.
- * @see incrementBootCounter
- */
-inline const uint16_t bootCounterLimit = 1000;
+    /**
+     * A counter limit for hardware reset simulation.
+     * @see incrementBootCounter
+     */
+    inline const uint16_t BootCounterLimit = 1000;
+}
 
 #endif //OBC_SOFTWARE_OBC_DEFINITIONS_HPP

@@ -3,21 +3,21 @@
 
 namespace BootCounter {
     void clearRegisters() {
-        GPBRWrite(UnexpectedResetRegister, clearRegisterValue);
-        GPBRWrite(BootCounterRegister, clearRegisterValue);
+        GPBRWrite(UnexpectedResetRegister, ClearRegisterValue);
+        GPBRWrite(BootCounterRegister, ClearRegisterValue);
     }
 
     void setRegisters() {
-        if (GPBRRead(UnexpectedResetRegister) == softwareResetValue) {
+        if (GPBRRead(UnexpectedResetRegister) == SoftwareResetValue) {
             return;
         }
 
-        GPBRWrite(UnexpectedResetRegister, softwareResetValue);
-        GPBRWrite(BootCounterRegister, clearRegisterValue);
+        GPBRWrite(UnexpectedResetRegister, SoftwareResetValue);
+        GPBRWrite(BootCounterRegister, ClearRegisterValue);
     }
 
     void incrementBootCounter() {
-        if (GPBRRead(BootCounterRegister) > bootCounterLimit) {
+        if (GPBRRead(BootCounterRegister) > BootCounterLimit) {
             clearRegisters();
         }
         setRegisters();

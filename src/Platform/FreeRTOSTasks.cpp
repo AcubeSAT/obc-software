@@ -18,7 +18,7 @@ namespace FreeRTOSTasks {
         request.appendUint16(PlatformParameters::OnBoardHour);
         request.appendUint16(PlatformParameters::OnBoardMinute);
         request.appendUint16(PlatformParameters::OnBoardSecond);
-        request.appendUint16(PlatformParameters::AvailableStack);
+        request.appendUint16(PlatformParameters::ReportParametersUnusedStack);
         request.appendUint16(PlatformParameters::AvailableHeap);
         request.appendUint16(PlatformParameters::OBCBootCounter);
         request.appendUint16(PlatformParameters::OBCSystick);
@@ -31,12 +31,16 @@ namespace FreeRTOSTasks {
     }
 
     void updateParameters(void *taskName) {
-        TaskHandle_t parameterReportingHandle = xTaskGetHandle(*static_cast<const char **>(taskName));
+        TaskHandle_t parameterReportingHandle = xTaskGetHandle(
+                *static_cast<const char **>(taskName));
 
         while (true) {
-            PlatformParameters::reportParametersAvailableStack.setValue(uxTaskGetStackHighWaterMark(parameterReportingHandle));
-            PlatformParameters::availableHeap.setValue(static_cast<uint16_t>(xPortGetFreeHeapSize()));
-            PlatformParameters::obcBootCounter.setValue(BootCounter::GPBRRead(BootCounterRegister));
+            PlatformParameters::reportParametersUnusedStack.setValue(
+                    uxTaskGetStackHighWaterMark(parameterReportingHandle));
+            PlatformParameters::availableHeap.setValue(
+                    static_cast<uint16_t>(xPortGetFreeHeapSize()));
+            PlatformParameters::obcBootCounter.setValue(
+                    BootCounter::GPBRRead(BootCounter::BootCounterRegister));
             PlatformParameters::obcSysTick.setValue(static_cast<uint64_t>(xTaskGetTickCount()));
             vTaskDelay(pdMS_TO_TICKS(300));
         }

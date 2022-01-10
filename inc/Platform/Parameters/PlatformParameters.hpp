@@ -15,20 +15,20 @@ namespace PlatformParameters {
         OnBoardHour = 3,
         OnBoardMinute = 4,
         OnBoardSecond = 5,
-        AvailableStack = 6,
+        ReportParametersUnusedStack = 6,
         AvailableHeap = 7,
         OBCBootCounter = 301,
         OBCSystick = 329
     };
 
      // Parameters used for testing //
-    inline Parameter<uint16_t> currentYear(2022);
-    inline Parameter<uint8_t> currentMonth(2);
-    inline Parameter<uint8_t> currentDay(19);
-    inline Parameter<uint8_t> currentHour(6);
-    inline Parameter<uint8_t> currentMinute(48);
-    inline Parameter<uint8_t> currentSecond(32);
-    inline Parameter<uint16_t> reportParametersAvailableStack(FreeRTOSTaskStackDepth);
+    inline Parameter<uint16_t> onBoardYear(2022);
+    inline Parameter<uint8_t> onBoardMonth(2);
+    inline Parameter<uint8_t> onBoardDay(19);
+    inline Parameter<uint8_t> onBoardHour(6);
+    inline Parameter<uint8_t> onBoardMinute(48);
+    inline Parameter<uint8_t> onBoardSecond(32);
+    inline Parameter<uint16_t> reportParametersUnusedStack(FreeRTOSTaskStackDepth);
     inline Parameter<uint16_t> availableHeap(0);
 
     // OBDH parameters //
