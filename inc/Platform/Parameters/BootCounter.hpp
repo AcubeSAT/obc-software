@@ -10,6 +10,9 @@
 
 #include "device.h"
 
+/**
+ * Namespace containing functionality for the \ref bootCounter parameter.
+ */
 namespace BootCounter {
     /**
      * This function is used to read from a GPBR.

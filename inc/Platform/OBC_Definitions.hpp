@@ -32,9 +32,6 @@ inline const uint8_t MaxTickCountStringSize = 10;
  */
 inline const uint16_t FreeRTOSTaskStackDepth = 2000;
 
-/**
- * Namespace containing \ref BootCounter parameter needed functionality.
- */
 namespace BootCounter {
     /**
      * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter implementation.
