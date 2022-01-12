@@ -17,7 +17,8 @@
 namespace BootCounter {
     /**
      * This function is used to read from a GPBR.
-     * @param registerIndex : which one of the eight registers to read from. Values can be 0-7.
+     * @param registerIndex : which one of the eight registers to read from. Only values inside the
+     *        \ref BackupRegisters enumeration can be used, to avoid out of range errors.
      * @return the 32-bit data inside the register.
      */
     inline uint32_t GPBRRead(BackupRegisters registerIndex) {
@@ -26,7 +27,8 @@ namespace BootCounter {
 
     /**
      * This function is used to write inside a GPBR.
-     * @param registerIndex : which one of the eight registers to write to. Values can be 0-7.
+     * @param registerIndex : which one of the eight registers to write to. Only values inside the
+     *        \ref BackupRegisters enumeration can be used, to avoid out of range errors.
      * @param data : the 32-bit data to store inside the register.
      */
     inline void GPBRWrite(BackupRegisters registerIndex, uint32_t data) {

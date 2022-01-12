@@ -43,7 +43,7 @@ namespace BootCounter {
          */
         UnexpectedResetRegister = 0,
         /**
-         * Defines which one of the eight backup registers will be used to save the boot counter.
+         * Defines which one of the eight backup registers will be used to save the boot counter variable.
          */
         BootCounterRegister = 1
     };
