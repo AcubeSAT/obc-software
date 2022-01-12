@@ -9,6 +9,7 @@
  **********************************************************************************************************/
 
 #include "device.h"
+#include "OBC_Definitions.hpp"
 
 /**
  * Namespace containing functionality for the \ref bootCounter parameter.
@@ -19,7 +20,7 @@ namespace BootCounter {
      * @param registerIndex : which one of the eight registers to read from. Values can be 0-7.
      * @return the 32-bit data inside the register.
      */
-    inline uint32_t GPBRRead(uint8_t registerIndex) {
+    inline uint32_t GPBRRead(BackupRegisters registerIndex) {
         return GPBR_REGS->SYS_GPBR[registerIndex];
     }
 
@@ -28,7 +29,7 @@ namespace BootCounter {
      * @param registerIndex : which one of the eight registers to write to. Values can be 0-7.
      * @param data : the 32-bit data to store inside the register.
      */
-    inline void GPBRWrite(uint8_t registerIndex, uint32_t data) {
+    inline void GPBRWrite(BackupRegisters registerIndex, uint32_t data) {
         GPBR_REGS->SYS_GPBR[registerIndex] = data;
     }
 

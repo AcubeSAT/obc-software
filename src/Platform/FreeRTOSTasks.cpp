@@ -31,12 +31,12 @@ namespace FreeRTOSTasks {
     }
 
     void updateParameters(void *taskName) {
-        TaskHandle_t parameterReportingHandle = xTaskGetHandle(
+        TaskHandle_t reportParametersHandle = xTaskGetHandle(
                 *static_cast<const char **>(taskName));
 
         while (true) {
             PlatformParameters::reportParametersUnusedStack.setValue(
-                    uxTaskGetStackHighWaterMark(parameterReportingHandle));
+                    uxTaskGetStackHighWaterMark(reportParametersHandle));
             PlatformParameters::availableHeap.setValue(
                     static_cast<uint16_t>(xPortGetFreeHeapSize()));
             PlatformParameters::obcBootCounter.setValue(
