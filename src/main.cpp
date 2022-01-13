@@ -7,10 +7,12 @@
 #include "OBC_Definitions.hpp"
 #include "FreeRTOSTasks.hpp"
 #include "BootCounter.hpp"
+#include "SEGGER_RTT.h"
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 
+    SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
     const char * taskName = "Task1";

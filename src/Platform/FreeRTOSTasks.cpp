@@ -31,8 +31,7 @@ namespace FreeRTOSTasks {
     }
 
     void updateParameters(void *taskName) {
-        TaskHandle_t reportParametersHandle = xTaskGetHandle(
-                *static_cast<const char **>(taskName));
+        TaskHandle_t reportParametersHandle = xTaskGetHandle(*static_cast<const char **>(taskName));
 
         while (true) {
             PlatformParameters::reportParametersUnusedStack.setValue(
@@ -40,7 +39,7 @@ namespace FreeRTOSTasks {
             PlatformParameters::availableHeap.setValue(
                     static_cast<uint16_t>(xPortGetFreeHeapSize()));
             PlatformParameters::obcBootCounter.setValue(
-                    BootCounter::GPBRRead(BootCounter::BootCounterRegister));
+                    static_cast<uint16_t>(BootCounter::GPBRRead(BootCounter::BootCounterRegister)));
             PlatformParameters::obcSysTick.setValue(static_cast<uint64_t>(xTaskGetTickCount()));
             vTaskDelay(pdMS_TO_TICKS(300));
         }
