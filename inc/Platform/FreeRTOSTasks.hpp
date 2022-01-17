@@ -15,6 +15,13 @@ namespace FreeRTOSTasks {
      *        to keep track of the minimum available stack of \ref reportParameters.
      */
     void updateParameters(void *taskName);
+
+    /**
+     * FreeRTOS for periodically printing "testing" using Direct Memory Access in tandem with USART1.
+     * Intended for demonstration purposes
+     * @param pvParameters used for passing parameters inside FreeRTOS tasks.
+     */
+     void xUartDMA(void *pvParameters);
 }
 
 #endif //OBC_SOFTWARE_FREERTOSTASKS_HPP

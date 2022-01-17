@@ -4,6 +4,7 @@
 #include "PlatformParameters.hpp"
 #include "ServicePool.hpp"
 #include "BootCounter.hpp"
+#include "definitions.h"
 
 namespace FreeRTOSTasks {
     void reportParameters(void *) {
@@ -44,4 +45,13 @@ namespace FreeRTOSTasks {
             vTaskDelay(pdMS_TO_TICKS(300));
         }
     }
+
+    void xUartDMA(void *pvParameters) {
+        etl::string<17> usartData = "\r\n testing \r\n";
+        while (true) {
+            XDMAC_ChannelTransfer(XDMAC_CHANNEL_0, usartData.data(),
+                                  (const void*)&USART1_REGS->US_THR, usartData.size());
+            vTaskDelay(pdMS_TO_TICKS(3000));
+        }
+    };
 }

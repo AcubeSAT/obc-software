@@ -20,7 +20,8 @@ extern "C" void main_cpp() {
                 NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(FreeRTOSTasks::updateParameters, "Task2", FreeRTOSTaskStackDepth,
                 &taskName, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(xUartDMA, "UartDMA", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(FreeRTOSTasks::xUartDMA, "UartDMA", FreeRTOSTaskStackDepth,
+                NULL,tskIDLE_PRIORITY + 1, NULL);
 
     vTaskStartScheduler();
 
