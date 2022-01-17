@@ -6,7 +6,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
-#include "OBC_Definitions.h"
+#include "OBC_Definitions.hpp"
 #include "SEGGER_RTT.h"
 #include "definitions.h"
 
