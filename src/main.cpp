@@ -1,41 +1,25 @@
-#include <Logger.hpp>
 #include "main.h"
-#include "SEGGER_RTT.h"
-#include "ServicePool.hpp"
 #include "FreeRTOS.h"
 #include "queue.h"
 #include "list.h"
 #include "task.h"
 #include "definitions.h"
-
-
-volatile uint8_t pinval = 0;
-
-void xTask1Code(void *pvParameters) {
-    while (true) {
-        PIO_PinToggle(PIO_PIN_PA23);
-        vTaskDelay(pdMS_TO_TICKS(500));
-    }
-};
-
-void xTask2Code(void *pvParameters) {
-    while (true) {
-        pinval = PIO_PinRead(PIO_PIN_PA23);
-        vTaskDelay(pdMS_TO_TICKS(500));
-    }
-
-};
+#include "OBC_Definitions.hpp"
+#include "FreeRTOSTasks.hpp"
+#include "BootCounter.hpp"
+#include "SEGGER_RTT.h"
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 
     SEGGER_RTT_Init();
-    EventReportService &eventReportService = Services.eventReport;
-    eventReportService.lowSeverityAnomalyReport(EventReportService::LowSeverityUnknownEvent, "data");
-    uint8_t lowSeverityEvents = eventReportService.lowSeverityEventCount; //Variable to check in ozone timeline
+    BootCounter::incrementBootCounter();
 
-    xTaskCreate(xTask1Code, "Task1", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(xTask2Code, "Task2", 100, NULL, tskIDLE_PRIORITY + 1, NULL);
+    const char * taskName = "Task1";
+    xTaskCreate(FreeRTOSTasks::reportParameters, taskName, FreeRTOSTaskStackDepth,
+                NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(FreeRTOSTasks::updateParameters, "Task2", FreeRTOSTaskStackDepth,
+                &taskName, tskIDLE_PRIORITY + 1, NULL);
 
     vTaskStartScheduler();
 
