@@ -12,9 +12,9 @@
 
 /**
  * A switch to control whether the Logger sends its messages over RTT or over UART0
- * 1 is set for RTT, 0 for UART0
+ * 1 is set for RTT, 0 for USART1
  */
-inline const bool PreferRTT = 1;
+inline const bool PreferRTT = 0;
 
 /**
  * Maximum string size for a LogLevel is 9 characters long

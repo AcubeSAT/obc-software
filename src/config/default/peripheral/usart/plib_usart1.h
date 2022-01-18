@@ -1,20 +1,20 @@
 /*******************************************************************************
- System Interrupts File
+  USART1 PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    interrupt.h
+    plib_usart1.h
 
   Summary:
-    Interrupt vectors mapping
+    USART1 PLIB Header File
 
   Description:
-    This file contains declarations of device vectors used by Harmony 3
- *******************************************************************************/
+    None
 
-// DOM-IGNORE-BEGIN
+*******************************************************************************/
+
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -36,34 +36,62 @@
 * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *******************************************************************************/
+*******************************************************************************/
+
+#ifndef PLIB_USART1_H
+#define PLIB_USART1_H
+
+#include "plib_usart_common.h"
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
 // DOM-IGNORE-END
 
-#ifndef INTERRUPTS_H
-#define INTERRUPTS_H
-
 // *****************************************************************************
 // *****************************************************************************
-// Section: Included Files
-// *****************************************************************************
-// *****************************************************************************
-#include <stdint.h>
-
-
-
-// *****************************************************************************
-// *****************************************************************************
-// Section: Handler Routines
+// Section: Interface
 // *****************************************************************************
 // *****************************************************************************
 
-void Reset_Handler (void);
-void NonMaskableInt_Handler (void);
-void HardFault_Handler (void);
-void SysTick_Handler (void);
-void USART1_InterruptHandler (void);
-void XDMAC_InterruptHandler (void);
+#define USART1_FrequencyGet()    (uint32_t)(150000000UL)
+
+/****************************** USART1 API *********************************/
+
+void USART1_Initialize( void );
+
+USART_ERROR USART1_ErrorGet( void );
+
+bool USART1_SerialSetup( USART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
+
+bool USART1_Write( void *buffer, const size_t size );
+
+bool USART1_Read( void *buffer, const size_t size );
+
+bool USART1_WriteIsBusy( void );
+
+bool USART1_ReadIsBusy( void );
+
+size_t USART1_WriteCountGet( void );
+
+size_t USART1_ReadCountGet( void );
+
+bool USART1_ReadAbort(void);
+
+void USART1_WriteCallbackRegister( USART_CALLBACK callback, uintptr_t context );
+
+void USART1_ReadCallbackRegister( USART_CALLBACK callback, uintptr_t context );
 
 
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
 
-#endif // INTERRUPTS_H
+    }
+
+#endif
+
+// DOM-IGNORE-END
+#endif // PLIB_USART1_H
