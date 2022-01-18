@@ -90,12 +90,12 @@ extern void RTT_Handler                ( void ) __attribute__((weak, alias("Dumm
 extern void WDT_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PMC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void EFC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void UART0_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void UART1_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOA_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOB_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOC_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void USART0_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void USART1_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void USART2_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOD_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOE_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -137,7 +137,6 @@ extern void TC3_CH2_Handler            ( void ) __attribute__((weak, alias("Dumm
 extern void MLB_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void AES_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void TRNG_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void XDMAC_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void ISI_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PWM1_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void FPU_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -183,13 +182,13 @@ const H3DeviceVectors exception_table=
     .pfnWDT_Handler                = WDT_Handler,
     .pfnPMC_Handler                = PMC_Handler,
     .pfnEFC_Handler                = EFC_Handler,
-    .pfnUART0_Handler              = UART0_InterruptHandler,
+    .pfnUART0_Handler              = UART0_Handler,
     .pfnUART1_Handler              = UART1_Handler,
     .pfnPIOA_Handler               = PIOA_Handler,
     .pfnPIOB_Handler               = PIOB_Handler,
     .pfnPIOC_Handler               = PIOC_Handler,
     .pfnUSART0_Handler             = USART0_Handler,
-    .pfnUSART1_Handler             = USART1_Handler,
+    .pfnUSART1_Handler             = USART1_InterruptHandler,
     .pfnUSART2_Handler             = USART2_Handler,
     .pfnPIOD_Handler               = PIOD_Handler,
     .pfnPIOE_Handler               = PIOE_Handler,
@@ -231,7 +230,7 @@ const H3DeviceVectors exception_table=
     .pfnMLB_Handler                = MLB_Handler,
     .pfnAES_Handler                = AES_Handler,
     .pfnTRNG_Handler               = TRNG_Handler,
-    .pfnXDMAC_Handler              = XDMAC_Handler,
+    .pfnXDMAC_Handler              = XDMAC_InterruptHandler,
     .pfnISI_Handler                = ISI_Handler,
     .pfnPWM1_Handler               = PWM1_Handler,
     .pfnFPU_Handler                = FPU_Handler,

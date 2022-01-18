@@ -8,7 +8,7 @@
 #include "queue.h"
 #include "OBC_Definitions.hpp"
 #include "SEGGER_RTT.h"
-#include <peripheral/uart/plib_uart0.h>
+#include "definitions.h"
 
 
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
@@ -48,8 +48,8 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
     if (PreferRTT) {
         SEGGER_RTT_printf(0, output.c_str());
     } else {
-        UART0_Initialize();
-        UART0_Write(&output, LOGGER_MAX_MESSAGE_SIZE);
+        const void *txRegisterAddress = const_cast<void *>(reinterpret_cast<volatile void *>(&USART1_REGS->US_THR));
+        XDMAC_ChannelTransfer(XDMAC_CHANNEL_0, output.data(), txRegisterAddress, output.size());
     }
 }
 

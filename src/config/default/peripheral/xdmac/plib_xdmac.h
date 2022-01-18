@@ -1,20 +1,20 @@
 /*******************************************************************************
- System Interrupts File
+  XDMAC PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    interrupt.h
+    plib_xdmac.h
 
   Summary:
-    Interrupt vectors mapping
+    XDMAC PLIB Header File
 
   Description:
-    This file contains declarations of device vectors used by Harmony 3
- *******************************************************************************/
+    None
 
-// DOM-IGNORE-BEGIN
+*******************************************************************************/
+
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -36,34 +36,66 @@
 * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *******************************************************************************/
+*******************************************************************************/
+
+#ifndef PLIB_XDMAC_H
+#define PLIB_XDMAC_H
+
+#include <stddef.h>
+#include <stdbool.h>
+#include "plib_xdmac_common.h"
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
 // DOM-IGNORE-END
 
-#ifndef INTERRUPTS_H
-#define INTERRUPTS_H
-
 // *****************************************************************************
 // *****************************************************************************
-// Section: Included Files
-// *****************************************************************************
-// *****************************************************************************
-#include <stdint.h>
-
-
-
-// *****************************************************************************
-// *****************************************************************************
-// Section: Handler Routines
+// Section: Interface
 // *****************************************************************************
 // *****************************************************************************
 
-void Reset_Handler (void);
-void NonMaskableInt_Handler (void);
-void HardFault_Handler (void);
-void SysTick_Handler (void);
-void USART1_InterruptHandler (void);
-void XDMAC_InterruptHandler (void);
+/****************************** XDMAC Data Types ******************************/
+/* XDMAC Channels */
+typedef enum {
+    XDMAC_CHANNEL_0 = 0,
+    XDMAC_CHANNEL_1 = 1,
+} XDMAC_CHANNEL;
 
 
+/****************************** XDMAC API *********************************/
 
-#endif // INTERRUPTS_H
+void XDMAC_Initialize( void );
+
+void XDMAC_ChannelCallbackRegister( XDMAC_CHANNEL channel, const XDMAC_CHANNEL_CALLBACK eventHandler, const uintptr_t contextHandle );
+
+bool XDMAC_ChannelTransfer( XDMAC_CHANNEL channel, const void *srcAddr, const void *destAddr, size_t blockSize );
+
+bool XDMAC_ChannelIsBusy (XDMAC_CHANNEL channel);
+
+void XDMAC_ChannelDisable (XDMAC_CHANNEL channel);
+
+XDMAC_CHANNEL_CONFIG XDMAC_ChannelSettingsGet (XDMAC_CHANNEL channel);
+
+bool XDMAC_ChannelSettingsSet (XDMAC_CHANNEL channel, XDMAC_CHANNEL_CONFIG setting);
+
+void XDMAC_ChannelBlockLengthSet (XDMAC_CHANNEL channel, uint16_t length);
+
+void XDMAC_ChannelSuspend (XDMAC_CHANNEL channel);
+
+void XDMAC_ChannelResume (XDMAC_CHANNEL channel);
+
+XDMAC_TRANSFER_EVENT XDMAC_ChannelTransferStatusGet(XDMAC_CHANNEL channel);
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    }
+
+#endif
+// DOM-IGNORE-END
+#endif // PLIB_XDMAC_H
