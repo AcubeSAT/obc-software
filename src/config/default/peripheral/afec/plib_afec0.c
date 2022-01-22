@@ -183,13 +183,8 @@ void AFEC0_InterruptHandler(void)
     uint32_t status;
     status = AFEC0_REGS->AFEC_ISR;
 
-    uint8_t channel = 0;        //the channel that triggered the interrupt + 1
-    for(uint32_t i=AFEC_INTERRUPT_EOC_0_MASK; i<=AFEC_INTERRUPT_EOC_11_MASK; i<<=1){
-        if(i && status)
-            channel++;
-    }
-    uint16_t clearISR = AFEC0_ChannelResultGet(--channel);
-
+    uint16_t clearISR = AFEC0_REGS->AFEC_CDR;   //clears the interrupt bit of the selected channel,
+                                                // which is indicated in AFEC0_REGS->AFEC_CSELR
     if (AFEC0_CallbackObj.callback_fn != NULL)
     {
         AFEC0_CallbackObj.callback_fn(status, AFEC0_CallbackObj.context);
