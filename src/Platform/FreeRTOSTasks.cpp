@@ -7,6 +7,7 @@
 #include "definitions.h"
 #include "Logger.hpp"
 
+
 namespace FreeRTOSTasks {
     void reportParameters(void *) {
         Message request = Message(ParameterService::ServiceType,
@@ -54,4 +55,25 @@ namespace FreeRTOSTasks {
             vTaskDelay(pdMS_TO_TICKS(3000));
         }
     };
-}
+
+    void Temperature(void *pvParameters){
+        uint16_t vrefp = 3300;  // positive voltage reference in mV
+        uint16_t slope = 233;   // typical slope in V*10^(-5)/Celsius
+        uint16_t volt25 = 720;  // typical voltage value in mV at T = 25C
+
+        AFEC0_ConversionStart();
+        while(true){
+            if(AFEC0_ChannelResultGet(AFEC_CH11)){
+                uint16_t code = AFEC0_ChannelResultGet(AFEC_CH11);  // result of the ADC conversion
+                uint16_t voltage = code * vrefp / 4095;
+                int16_t temperature = (voltage - volt25) * 100 / 233 + 25;
+                LOG_DEBUG << "The temperature of the MCU is: " << temperature;
+
+                AFEC0_ConversionStart();
+                vTaskDelay(pdMS_TO_TICKS(10000));
+                }
+            }
+        }
+    };
+
+

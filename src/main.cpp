@@ -11,7 +11,6 @@
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
-    USART1_Initialize();
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
@@ -22,7 +21,8 @@ extern "C" void main_cpp() {
                 &taskName, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(FreeRTOSTasks::xUartDMA, "UartDMA", FreeRTOSTaskStackDepth,
                 NULL,tskIDLE_PRIORITY + 1, NULL);
-
+    xTaskCreate(FreeRTOSTasks::Temperature, "Temperature", FreeRTOSTaskStackDepth,
+                NULL,tskIDLE_PRIORITY + 2, NULL);
     vTaskStartScheduler();
 
     while (true) {
