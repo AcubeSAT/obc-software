@@ -17,11 +17,18 @@ namespace FreeRTOSTasks {
     void updateParameters(void *taskName);
 
     /**
-     * FreeRTOS for periodically printing "testing" using Direct Memory Access in tandem with USART1.
+     * FreeRTOS task for periodically printing "testing" using Direct Memory Access in tandem with USART1.
      * Intended for demonstration purposes
      * @param pvParameters used for passing parameters inside FreeRTOS tasks.
      */
      void xUartDMA(void *pvParameters);
+
+     /**
+      * Task implementing the ST[03] Housekeeping Service.
+      * @param pvParameters used for passing parameters inside FreeRTOS tasks.
+      * @see HousekeepingService
+      */
+      void Housekeeping(void *pvParameters);
 }
 
 #endif //OBC_SOFTWARE_FREERTOSTASKS_HPP

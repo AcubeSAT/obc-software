@@ -53,5 +53,12 @@ namespace FreeRTOSTasks {
             LOG_DEBUG << usartData.data();
             vTaskDelay(pdMS_TO_TICKS(3000));
         }
-    };
+    }
+
+    void Housekeeping(void *pvParameters){
+        HousekeepingService &housekeepingService = Services.housekeeping;
+        while(true){
+
+        }
+    }
 }
