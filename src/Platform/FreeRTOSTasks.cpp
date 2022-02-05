@@ -57,8 +57,42 @@ namespace FreeRTOSTasks {
 
     void Housekeeping(void *pvParameters){
         HousekeepingService &housekeepingService = Services.housekeeping;
-        while(true){
+        Message createStructure = Message(HousekeepingService::ServiceType,
+                                          HousekeepingService::MessageType::CreateHousekeepingReportStructure,
+                                          Message::TC, 1);
+        uint8_t idToCreate = 1;
+        createStructure.appendUint8(idToCreate);
+        uint32_t collectionInterval = 500;
+        createStructure.appendUint32(collectionInterval);
+        uint16_t numOfSimplyCommutatedParams = 0;
+        createStructure.appendUint16(numOfSimplyCommutatedParams);
+//        createStructure.appendUint16();
+//        createStructure.appendUint16();
+        LOG_DEBUG << "createStructure";
+        MessageParser::execute(createStructure);
 
+        Message enablePeriodicReports = Message(HousekeepingService::ServiceType,
+                                                HousekeepingService::EnablePeriodicHousekeepingParametersReport,
+                                                Message::TC, 1);
+        uint8_t numOfStructIds = 1;
+        enablePeriodicReports.appendUint8(numOfStructIds);
+        uint8_t structIdToEnable = 1;
+        enablePeriodicReports.appendUint8(structIdToEnable);
+        housekeepingService.enablePeriodicHousekeepingParametersReport(enablePeriodicReports);
+        MessageParser::execute(enablePeriodicReports);
+
+        Message reportStructures = Message(HousekeepingService::ServiceType,
+                                           HousekeepingService::GenerateOneShotHousekeepingReport,
+                                           Message::TC, 1);
+        uint8_t numOfStructsToReport = 1;
+        reportStructures.appendUint8(numOfStructsToReport);
+        uint8_t structureId = 1;
+        reportStructures.appendUint8(structureId);
+        LOG_DEBUG << "reportStructures";
+        MessageParser::execute(reportStructures);
+
+        while(true){
+            vTaskDelay(pdMS_TO_TICKS(1000));
         }
     }
 }
