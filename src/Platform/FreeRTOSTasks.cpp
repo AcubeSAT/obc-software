@@ -43,6 +43,7 @@ namespace FreeRTOSTasks {
             PlatformParameters::obcBootCounter.setValue(
                     static_cast<uint16_t>(BootCounter::GPBRRead(BootCounter::BootCounterRegister)));
             PlatformParameters::obcSysTick.setValue(static_cast<uint64_t>(xTaskGetTickCount()));
+            PlatformParameters::onBoardSecond.setValue(static_cast<uint64_t>(xTaskGetTickCount() / 1000));
             vTaskDelay(pdMS_TO_TICKS(300));
         }
     }
@@ -85,9 +86,10 @@ namespace FreeRTOSTasks {
         reportStructures.appendUint8(numOfStructsToReport);
         uint8_t structureId = 1;
         reportStructures.appendUint8(structureId);
-        MessageParser::execute(reportStructures);
 
         while(true){
+            MessageParser::execute(reportStructures);
+            reportStructures.resetRead();
             vTaskDelay(pdMS_TO_TICKS(1000));
         }
     }
