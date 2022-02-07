@@ -27,6 +27,10 @@ inline const uint8_t MaxLogNameSize = 9;
 inline const uint8_t MaxTickCountStringSize = 10;
 
 /**
+ * Maximum size for a string representation of a service type identifier
+ */
+inline const uint8_t MaxTypeIDStringSize = 2;
+/**
  * The number of words to allocate for use as the task's stack.
  * @todo in the future after detailed analysis, optimized task stack depths will be evaluated for each task.
  */
