@@ -8,12 +8,12 @@ void Service::storeMessage(Message &message) {
     message.finalize();
 
     etl::format_spec formatSpec;
-    etl::string<MaxTypeIDStringSize> serviceType;
-    etl::string<MaxTypeIDStringSize> messageType;
+    String<MaxTypeIDStringSize> serviceType = "";
+    String<MaxTypeIDStringSize> messageType = "";
     etl::to_string(message.serviceType, serviceType, formatSpec, false);
     etl::to_string(message.messageType, messageType, formatSpec, false);
 
-    etl::string<ECSSMaxMessageSize> output = "New ";
+    String<ECSSMaxMessageSize> output = "New ";
     (message.packetType == Message::TM) ? output.append("TM[") : output.append("TC[");
     output.append(serviceType.c_str());
     output.append(",");
