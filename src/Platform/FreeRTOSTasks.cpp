@@ -56,7 +56,7 @@ namespace FreeRTOSTasks {
         }
     };
 
-    void Temperature(void *pvParameters){
+    void temperatureTask(void *pvParameters){
         uint16_t PositiveVoltageReference = 3300;
         uint16_t Slope = 233;
         uint16_t TypicalVoltageAt25 = 720;
