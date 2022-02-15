@@ -32,6 +32,11 @@ inline const uint8_t MaxTickCountStringSize = 10;
  */
 inline const uint16_t FreeRTOSTaskStackDepth = 2000;
 
+/**
+ * The maximum code number an analog signal can be converted into by the ADC of the AFEC peripheral
+ */
+inline const uint16_t MaxNumberOfADC = 4095;
+
 namespace BootCounter {
     /**
      * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter

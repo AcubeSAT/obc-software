@@ -13,7 +13,7 @@ namespace FreeRTOSTasks {
         Message request = Message(ParameterService::ServiceType,
                                   ParameterService::MessageType::ReportParameterValues,
                                   Message::TC, 1);
-        const uint16_t numberOfIDs = 10;
+        const uint16_t numberOfIDs = 11;
         request.appendUint16(numberOfIDs);
         request.appendUint16(PlatformParameters::OnBoardYear);
         request.appendUint16(PlatformParameters::OnBoardMonth);
@@ -25,6 +25,7 @@ namespace FreeRTOSTasks {
         request.appendUint16(PlatformParameters::AvailableHeap);
         request.appendUint16(PlatformParameters::OBCBootCounter);
         request.appendUint16(PlatformParameters::OBCSystick);
+        request.appendUint16(PlatformParameters::MCUTemperature);
 
         while (true) {
             MessageParser::execute(request);
@@ -58,16 +59,18 @@ namespace FreeRTOSTasks {
 
     void temperatureTask(void *pvParameters){
         uint16_t PositiveVoltageReference = 3300;
-        uint16_t Slope = 233;
+        uint16_t Slope = 233 / 100;
         uint16_t TypicalVoltageAt25 = 720;
+        uint8_t ReferenceTemperature = 25;
 
         AFEC0_ConversionStart();
         while(true){
             if(AFEC0_ChannelResultGet(AFEC_CH11)){
                 uint16_t ADCconversion = AFEC0_ChannelResultGet(AFEC_CH11);
-                uint16_t DACconversion = ADCconversion * PositiveVoltageReference / 4095;
-                int16_t MCUtemperature = (DACconversion - TypicalVoltageAt25) * 100 / 233 + 25;
+                uint16_t DACconversion = ADCconversion * PositiveVoltageReference / MaxNumberOfADC;
+                int16_t MCUtemperature = (DACconversion - TypicalVoltageAt25) / Slope + ReferenceTemperature;
                 LOG_DEBUG << "The temperature of the MCU is: " << MCUtemperature;
+                PlatformParameters::mcuTemperature.setValue(MCUtemperature);
 
                 AFEC0_ConversionStart();
                 vTaskDelay(pdMS_TO_TICKS(10000));
