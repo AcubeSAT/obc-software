@@ -14,15 +14,15 @@ extern "C" void main_cpp() {
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
-    const char * taskName = "Task1";
+    const char *taskName = "Task1";
     xTaskCreate(FreeRTOSTasks::reportParameters, taskName, FreeRTOSTaskStackDepth,
                 NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(FreeRTOSTasks::updateParameters, "Task2", FreeRTOSTaskStackDepth,
                 &taskName, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(FreeRTOSTasks::xUartDMA, "UartDMA", FreeRTOSTaskStackDepth,
-                NULL,tskIDLE_PRIORITY + 1, NULL);
+                NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(FreeRTOSTasks::temperatureTask, "Temperature", FreeRTOSTaskStackDepth,
-                NULL,tskIDLE_PRIORITY + 2, NULL);
+                NULL, tskIDLE_PRIORITY + 2, NULL);
     vTaskStartScheduler();
 
     while (true) {

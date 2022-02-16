@@ -37,6 +37,26 @@ inline const uint16_t FreeRTOSTaskStackDepth = 2000;
  */
 inline const uint16_t MaxNumberOfADC = 4095;
 
+/**
+ * The positive voltage reference of the MCU
+ */
+inline const uint16_t PositiveVoltageReference = 3300;
+
+/**
+ * The typical slope of voltage versus temperature
+ */
+inline const float TemperatureSensitivity = 233 / 100;
+
+/**
+ * The reference temperature for the voltage-to-temperature conversion
+ */
+inline const uint8_t ReferenceTemperature = 25;
+
+/**
+ * The typical voltage output of the DAC of the AFEC channel at 25 Celsius
+ */
+inline const uint16_t TypicalVoltageAt25 = 720;
+
 namespace BootCounter {
     /**
      * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter
