@@ -88,3 +88,6 @@ cmake-build-*/
 *.bck
 *.sch-bak
 fp-info-cache
+
+# Atmel SAMV71 cfg
+atmel_samv71_xplained_ultra.cfg

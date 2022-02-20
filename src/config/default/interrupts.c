@@ -85,7 +85,6 @@ extern void DebugMonitor_Handler       ( void ) __attribute__((weak, alias("Dumm
 extern void PendSV_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void SUPC_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void RSTC_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void RTC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void RTT_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void WDT_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PMC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -177,7 +176,7 @@ const H3DeviceVectors exception_table=
     .pfnSysTick_Handler            = SysTick_Handler,
     .pfnSUPC_Handler               = SUPC_Handler,
     .pfnRSTC_Handler               = RSTC_Handler,
-    .pfnRTC_Handler                = RTC_Handler,
+    .pfnRTC_Handler                = RTC_InterruptHandler,
     .pfnRTT_Handler                = RTT_Handler,
     .pfnWDT_Handler                = WDT_Handler,
     .pfnPMC_Handler                = PMC_Handler,

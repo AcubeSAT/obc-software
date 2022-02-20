@@ -1,20 +1,20 @@
 /*******************************************************************************
- System Interrupts File
+  Interface definition of RTC PLIB.
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    interrupt.h
+    plib_rtc.h
 
   Summary:
-    Interrupt vectors mapping
+    Interface definition of the Real Time Counter Plib (RTC).
 
   Description:
-    This file contains declarations of device vectors used by Harmony 3
- *******************************************************************************/
+    This file defines the interface for the RTC Plib.
+    It allows user to setup alarm duration and access current date and time.
+*******************************************************************************/
 
-// DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -36,35 +36,39 @@
 * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *******************************************************************************/
-// DOM-IGNORE-END
+*******************************************************************************/
 
-#ifndef INTERRUPTS_H
-#define INTERRUPTS_H
+#ifndef RTC_H    // Guards against multiple inclusion
+#define RTC_H
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: Included Files
-// *****************************************************************************
-// *****************************************************************************
 #include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <time.h>
+#include "plib_rtc_common.h"
 
+#ifdef __cplusplus // Provide C++ Compatibility
+ extern "C" {
+#endif
 
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Handler Routines
+// Section: Interface
 // *****************************************************************************
 // *****************************************************************************
 
-void Reset_Handler (void);
-void NonMaskableInt_Handler (void);
-void HardFault_Handler (void);
-void SysTick_Handler (void);
-void RTC_InterruptHandler (void);
-void USART1_InterruptHandler (void);
-void XDMAC_InterruptHandler (void);
+/***************************** RTC API *******************************/
+void RTC_Initialize( void );
+bool RTC_TimeSet( struct tm *Time );
+void RTC_TimeGet( struct tm *Time );
+bool RTC_AlarmSet( struct tm *alarmTime, RTC_ALARM_MASK mask );
+void RTC_CallbackRegister( RTC_CALLBACK callback, uintptr_t context );
+void RTC_InterruptDisable(RTC_INT_MASK interrupt);
+void RTC_InterruptEnable(RTC_INT_MASK interrupt);
+	
+#ifdef __cplusplus // Provide C++ Compatibility
+ }
+#endif
 
-
-
-#endif // INTERRUPTS_H
+#endif

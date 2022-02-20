@@ -22,6 +22,9 @@ namespace FreeRTOSTasks {
      * @param pvParameters used for passing parameters inside FreeRTOS tasks.
      */
      void xUartDMA(void *pvParameters);
+
+
+    void xTimeKeeping(void *pvParameters);
 }
 
 #endif //OBC_SOFTWARE_FREERTOSTASKS_HPP

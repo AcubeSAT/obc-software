@@ -54,4 +54,29 @@ namespace FreeRTOSTasks {
             vTaskDelay(pdMS_TO_TICKS(3000));
         }
     };
+
+    void xTimeKeeping(void *pvParameters) {
+        struct tm dateTime;
+
+        dateTime.tm_sec = PlatformParameters::onBoardSecond.getValue();
+        dateTime.tm_min = PlatformParameters::onBoardMinute.getValue();
+        dateTime.tm_hour = PlatformParameters::onBoardHour.getValue();
+        dateTime.tm_mon = PlatformParameters::onBoardMonth.getValue();
+        dateTime.tm_mday = PlatformParameters::onBoardDay.getValue();
+        dateTime.tm_year = 100*(PlatformParameters::onBoardYear.getValue()/100)+PlatformParameters::onBoardYear.getValue()%100;
+        //dateTime.tm_wday = 1;
+        RTC_TimeSet( &dateTime );
+        while ( true ) {
+            RTC_TimeGet(&dateTime);
+            PlatformParameters::onBoardSecond.setValue(dateTime.tm_sec);
+            PlatformParameters::onBoardMinute.setValue(dateTime.tm_min);
+            PlatformParameters::onBoardHour.setValue(dateTime.tm_hour);
+            PlatformParameters::onBoardDay.setValue(dateTime.tm_mday);
+            PlatformParameters::onBoardMonth.setValue(dateTime.tm_mon+1);
+            PlatformParameters::onBoardYear.setValue(1900+100*(dateTime.tm_year/100)+dateTime.tm_year%100);
+            LOG_DEBUG << "\n\rYear:" << PlatformParameters::onBoardYear.getValue()<< "\n\r";
+            //LOG_DEBUG << "The time is: /" + dateTime.tm_hour<< "/" + dateTime.tm_min << "/" + dateTime.tm_sec << "\n\r";
+            vTaskDelay(pdMS_TO_TICKS(50));
+        }
+    };
 }

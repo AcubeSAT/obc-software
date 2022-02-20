@@ -59,6 +59,8 @@ void NVIC_Initialize( void )
 
     /* Enable the interrupt sources and configure the priorities as configured
      * from within the "Interrupt Manager" of MHC. */
+    NVIC_SetPriority(RTC_IRQn, 7);
+    NVIC_EnableIRQ(RTC_IRQn);
     NVIC_SetPriority(USART1_IRQn, 7);
     NVIC_EnableIRQ(USART1_IRQn);
     NVIC_SetPriority(XDMAC_IRQn, 7);
