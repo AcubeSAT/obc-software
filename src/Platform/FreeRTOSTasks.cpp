@@ -56,40 +56,42 @@ namespace FreeRTOSTasks {
         }
     }
 
-    void Housekeeping(void *pvParameters){
-        Message createStructure = Message(HousekeepingService::ServiceType,
-                                          HousekeepingService::MessageType::CreateHousekeepingReportStructure,
-                                          Message::TC, 1);
-        uint8_t idToCreate = 1;
-        createStructure.appendUint8(idToCreate);
-        uint32_t collectionInterval = 500;
-        createStructure.appendUint32(collectionInterval);
-        uint16_t numOfSimplyCommutatedParams = 2;
-        createStructure.appendUint16(numOfSimplyCommutatedParams);
-        createStructure.appendUint16(PlatformParameters::OnBoardSecond);
-        createStructure.appendUint16(PlatformParameters::AvailableHeap);
-        MessageParser::execute(createStructure);
+    void Housekeeping(void *pvParameters) {
+        auto &housekeeping = Services.housekeeping;
 
-        Message enablePeriodicReports = Message(HousekeepingService::ServiceType,
-                                                HousekeepingService::EnablePeriodicHousekeepingParametersReport,
-                                                Message::TC, 1);
         uint8_t numOfStructIds = 1;
-        enablePeriodicReports.appendUint8(numOfStructIds);
-        uint8_t structIdToEnable = 1;
-        enablePeriodicReports.appendUint8(structIdToEnable);
-        MessageParser::execute(enablePeriodicReports);
+        uint8_t structId = 0;
+        for (int i = 0; i < numOfStructIds; i++) {
+            structId = i;
 
-        Message reportStructures = Message(HousekeepingService::ServiceType,
-                                           HousekeepingService::GenerateOneShotHousekeepingReport,
-                                           Message::TC, 1);
-        uint8_t numOfStructsToReport = 1;
-        reportStructures.appendUint8(numOfStructsToReport);
-        uint8_t structureId = 1;
-        reportStructures.appendUint8(structureId);
+            Message createStructure = Message(HousekeepingService::ServiceType,
+                                              HousekeepingService::MessageType::CreateHousekeepingReportStructure,
+                                              Message::TC, 1);
+            createStructure.appendUint8(structId);
+            uint32_t collectionInterval = 500;
+            createStructure.appendUint32(collectionInterval);
+            uint16_t numOfSimplyCommutatedParams = 2;
+            createStructure.appendUint16(numOfSimplyCommutatedParams);
+            createStructure.appendUint16(PlatformParameters::OnBoardSecond);
+            createStructure.appendUint16(PlatformParameters::AvailableHeap);
+            MessageParser::execute(createStructure);
+            createStructure.resetRead();
 
-        while(true){
-            MessageParser::execute(reportStructures);
-            reportStructures.resetRead();
+            Message enablePeriodicReports = Message(HousekeepingService::ServiceType,
+                                                    HousekeepingService::EnablePeriodicHousekeepingParametersReport,
+                                                    Message::TC, 1);
+            enablePeriodicReports.appendUint8(numOfStructIds);
+            enablePeriodicReports.appendUint8(structId);
+            MessageParser::execute(enablePeriodicReports);
+            enablePeriodicReports.resetRead();
+        }
+
+
+        while (true) {
+            for (int i = 0; i < numOfStructIds; i++) {
+                structId = i;
+                housekeeping.housekeepingParametersReport(structId);
+            }
             vTaskDelay(pdMS_TO_TICKS(1000));
         }
     }
