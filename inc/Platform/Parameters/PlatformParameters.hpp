@@ -19,7 +19,7 @@ namespace PlatformParameters {
         AvailableHeap = 7,
         OBCBootCounter = 301,
         OBCSystick = 329,
-        MCUTemperature = 22
+        O_OMCUTEMP = 22
     };
 
      // Parameters used for testing
