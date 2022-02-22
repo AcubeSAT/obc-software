@@ -25,7 +25,7 @@ namespace FreeRTOSTasks {
         request.appendUint16(PlatformParameters::AvailableHeap);
         request.appendUint16(PlatformParameters::OBCBootCounter);
         request.appendUint16(PlatformParameters::OBCSystick);
-        request.appendUint16(PlatformParameters::O_OMCUTEMP);
+        request.appendUint16(PlatformParameters::OBCMCUTemperature);
 
         while (true) {
             MessageParser::execute(request);
@@ -63,7 +63,7 @@ namespace FreeRTOSTasks {
             if (AFEC0_ChannelResultGet(AFEC_CH11)) {
                 uint16_t ADCconversion = AFEC0_ChannelResultGet(AFEC_CH11);
                 uint16_t DACconversion = ADCconversion * PositiveVoltageReference / MaxNumberOfADC;
-                int16_t MCUtemperature =
+                float MCUtemperature =
                         (DACconversion - TypicalVoltageAt25) / TemperatureSensitivity + ReferenceTemperature;
                 LOG_DEBUG << "The temperature of the MCU is: " << MCUtemperature;
                 PlatformParameters::mcuTemperature.setValue(MCUtemperature);

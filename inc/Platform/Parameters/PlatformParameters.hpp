@@ -19,7 +19,7 @@ namespace PlatformParameters {
         AvailableHeap = 7,
         OBCBootCounter = 301,
         OBCSystick = 329,
-        O_OMCUTEMP = 22
+        OBCMCUTemperature = 293
     };
 
      // Parameters used for testing
@@ -35,7 +35,7 @@ namespace PlatformParameters {
     // OBDH parameters
     inline Parameter<uint16_t> obcBootCounter(0);
     inline Parameter<uint64_t> obcSysTick(0);
-    inline Parameter<int8_t> mcuTemperature(0);
+    inline Parameter<float> mcuTemperature(0);
 }
 
 #endif

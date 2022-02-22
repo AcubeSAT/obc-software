@@ -16,7 +16,7 @@ void ParameterService::initializeParameterMap() {
                   {PlatformParameters::AvailableHeap,               PlatformParameters::availableHeap},
                   {PlatformParameters::OBCBootCounter,              PlatformParameters::obcBootCounter},
                   {PlatformParameters::OBCSystick,                  PlatformParameters::obcSysTick},
-                  {PlatformParameters::O_OMCUTEMP,                  PlatformParameters::mcuTemperature}};
+                  {PlatformParameters::OBCMCUTemperature,           PlatformParameters::mcuTemperature}};
 }
 
 #endif
