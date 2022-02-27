@@ -6,6 +6,7 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
+#include "Parameters/HousekeepingService.hpp"
 
 namespace FreeRTOSTasks {
     void reportParameters(void *) {
@@ -58,45 +59,12 @@ namespace FreeRTOSTasks {
 
     void Housekeeping(void *pvParameters) {
         auto &housekeeping = Services.housekeeping;
-        uint8_t structureParameterStart = 0;
 
-        uint32_t collectionIntervals[] = {500, 500};
-        uint16_t numsOfSimplyCommutatedParams[] = {2, 3};
-        uint16_t structureParameters[] = {PlatformParameters::OnBoardSecond, PlatformParameters::AvailableHeap,
-                                          PlatformParameters::OnBoardDay, PlatformParameters::OnBoardHour,
-                                          PlatformParameters::OnBoardMinute};
-        uint8_t numOfStructs = 2;
-
-        for (uint8_t structId = 0; structId < numOfStructs; structId++) {
-            Message createStructure = Message(HousekeepingService::ServiceType,
-                                              HousekeepingService::MessageType::CreateHousekeepingReportStructure,
-                                              Message::TC, 1);
-            createStructure.appendUint8(structId);
-            createStructure.appendUint32(collectionIntervals[structId]);
-            createStructure.appendUint16(numsOfSimplyCommutatedParams[structId]);
-            for (int i = 0; i < numsOfSimplyCommutatedParams[structId]; i++) {
-                createStructure.appendUint16(structureParameters[structureParameterStart + i]);
-            }
-            structureParameterStart += numsOfSimplyCommutatedParams[structId];
-            MessageParser::execute(createStructure);
-            createStructure.resetRead();
-
-        }
-
-        Message enablePeriodicReports = Message(HousekeepingService::ServiceType,
-                                                HousekeepingService::EnablePeriodicHousekeepingParametersReport,
-                                                Message::TC, 1);
-        enablePeriodicReports.appendUint8(numOfStructs);
-        for (uint8_t structId = 0; structId < numOfStructs; structId++) {
-            enablePeriodicReports.appendUint8(structId);
-        }
-        MessageParser::execute(enablePeriodicReports);
-        enablePeriodicReports.resetRead();
-
+        housekeepingStructureParameters p;
 
         while (true) {
-            for (int structId = 0; structId < numOfStructs; structId++) {
-                housekeeping.housekeepingParametersReport(structId);
+            for (uint8_t i = 0; i < p.structIds.size(); i++) {
+                housekeeping.housekeepingParametersReport(p.structIds[i]);
             }
             vTaskDelay(pdMS_TO_TICKS(1000));
         }
