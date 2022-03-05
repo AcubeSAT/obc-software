@@ -22,7 +22,7 @@ extern "C" void main_cpp() {
                 &taskName, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(FreeRTOSTasks::xUartDMA, "UartDMA", FreeRTOSTaskStackDepth,
                 NULL,tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(FreeRTOSTasks::xTimeKeeping, "timeKepping", FreeRTOSTaskStackDepth,
+    xTaskCreate(FreeRTOSTasks::xTimeKeeping, "timeKeeping", FreeRTOSTaskStackDepth,
                 NULL,tskIDLE_PRIORITY + 1, NULL);
     vTaskStartScheduler();
 

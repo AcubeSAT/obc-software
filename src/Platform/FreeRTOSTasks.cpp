@@ -6,6 +6,8 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
+#include "Helpers/TimeFormats.hpp"
+#include <iostream>
 
 namespace FreeRTOSTasks {
     void reportParameters(void *) {
@@ -61,10 +63,14 @@ namespace FreeRTOSTasks {
         dateTime.tm_sec = PlatformParameters::onBoardSecond.getValue();
         dateTime.tm_min = PlatformParameters::onBoardMinute.getValue();
         dateTime.tm_hour = PlatformParameters::onBoardHour.getValue();
-        dateTime.tm_mon = PlatformParameters::onBoardMonth.getValue();
+        dateTime.tm_mon = PlatformParameters::onBoardMonth.getValue()-1;
         dateTime.tm_mday = PlatformParameters::onBoardDay.getValue();
-        dateTime.tm_year = 100*(PlatformParameters::onBoardYear.getValue()/100)+PlatformParameters::onBoardYear.getValue()%100;
-        //dateTime.tm_wday = 1;
+        dateTime.tm_year = PlatformParameters::onBoardYear.getValue()-1900;
+        dateTime.tm_wday = 6;
+
+        UTC_Timestamp timestamp = UTC_Timestamp(PlatformParameters::onBoardYear.getValue(), PlatformParameters::onBoardMonth.getValue(),
+                                                PlatformParameters::onBoardDay.getValue(), PlatformParameters::onBoardHour.getValue(),
+                                                PlatformParameters::onBoardMinute.getValue(), PlatformParameters::onBoardSecond.getValue());
         RTC_TimeSet( &dateTime );
         while ( true ) {
             RTC_TimeGet(&dateTime);
@@ -73,10 +79,15 @@ namespace FreeRTOSTasks {
             PlatformParameters::onBoardHour.setValue(dateTime.tm_hour);
             PlatformParameters::onBoardDay.setValue(dateTime.tm_mday);
             PlatformParameters::onBoardMonth.setValue(dateTime.tm_mon+1);
-            PlatformParameters::onBoardYear.setValue(1900+100*(dateTime.tm_year/100)+dateTime.tm_year%100);
-            LOG_DEBUG << "\n\rYear:" << PlatformParameters::onBoardYear.getValue()<< "\n\r";
-            //LOG_DEBUG << "The time is: /" + dateTime.tm_hour<< "/" + dateTime.tm_min << "/" + dateTime.tm_sec << "\n\r";
-            vTaskDelay(pdMS_TO_TICKS(50));
+            PlatformParameters::onBoardYear.setValue(1900 + dateTime.tm_year);
+            UTC_Timestamp timestamp = UTC_Timestamp(PlatformParameters::onBoardYear.getValue(), PlatformParameters::onBoardMonth.getValue(),
+                                                    PlatformParameters::onBoardDay.getValue(), PlatformParameters::onBoardHour.getValue(),
+                                                    PlatformParameters::onBoardMinute.getValue(), PlatformParameters::onBoardSecond.getValue());
+            //LOG_DEBUG <<timestamp; //not working
+            LOG_DEBUG
+            << "\rTime:" + std::to_string(dateTime.tm_hour) + "-" + std::to_string(dateTime.tm_min) + "-" + std::to_string(dateTime.tm_sec)
+            + " -- " + std::to_string(PlatformParameters::onBoardDay.getValue()) + "/" +std::to_string(PlatformParameters::onBoardMonth.getValue()) + "/" + std::to_string(PlatformParameters::onBoardYear.getValue())<< "\n";
+            vTaskDelay(pdMS_TO_TICKS(1000));
         }
     };
 }
