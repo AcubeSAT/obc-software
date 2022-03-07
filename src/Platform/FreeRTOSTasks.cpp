@@ -63,8 +63,8 @@ namespace FreeRTOSTasks {
         housekeepingStructureParameters p;
 
         while (true) {
-            for (uint8_t i = 0; i < p.structIds.size(); i++) {
-                housekeeping.housekeepingParametersReport(p.structIds[i]);
+            for(auto& HousekeepingStructure : housekeeping.housekeepingStructures){
+                housekeeping.housekeepingParametersReport(HousekeepingStructure.second.structureId);
             }
             vTaskDelay(pdMS_TO_TICKS(1000));
         }

@@ -1,12 +1,18 @@
-#include "Parameters/HousekeepingService.hpp"
+#include "ECSS_Configuration.hpp"
+
+#ifdef SERVICE_HOUSEKEEPING
+
+#include "Services/HousekeepingService.hpp"
+#include "Parameters/PlatformParameters.hpp"
 
 void HousekeepingService::initializeHousekeepingStructures() {
-    ::housekeepingStructureParameters p;
-
-    for (uint8_t i = 0; i < p.structIds.size(); i++) {
-        createHousekeepingReportStructure(p.structIds[i], p.collectionIntervals[p.structIds[i]],
-                                          p.numsOfSimplyCommutatedParams[p.structIds[i]],
-                                          p.structureParameters[p.structIds[i]]);
-        enablePeriodicHousekeepingParametersReport(p.structIds.size(), p.structIds);
-    }
+    HousekeepingStructure structure;
+    structure.structureId = 1;
+    structure.periodicGenerationActionStatus = true;
+    structure.collectionInterval = 500;
+    structure.simplyCommutatedParameterIds = etl::vector<uint16_t, ECSSMaxSimplyCommutatedParameters>{
+            PlatformParameters::OnBoardSecond};
+    housekeepingStructures.insert({structure.structureId, structure});
 }
+
+#endif
