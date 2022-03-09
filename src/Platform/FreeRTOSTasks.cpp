@@ -57,8 +57,8 @@ namespace FreeRTOSTasks {
         }
     };
 
+    struct tm dateTime;
     void xTimeKeeping(void *pvParameters) {
-        struct tm dateTime;
 
         dateTime.tm_sec = PlatformParameters::onBoardSecond.getValue();
         dateTime.tm_min = PlatformParameters::onBoardMinute.getValue();
@@ -66,7 +66,7 @@ namespace FreeRTOSTasks {
         dateTime.tm_mon = PlatformParameters::onBoardMonth.getValue()-1;
         dateTime.tm_mday = PlatformParameters::onBoardDay.getValue();
         dateTime.tm_year = PlatformParameters::onBoardYear.getValue()-1900;
-        dateTime.tm_wday = 6;
+        //dateTime.tm_wday = 6;
 
         UTC_Timestamp timestamp = UTC_Timestamp(PlatformParameters::onBoardYear.getValue(), PlatformParameters::onBoardMonth.getValue(),
                                                 PlatformParameters::onBoardDay.getValue(), PlatformParameters::onBoardHour.getValue(),
@@ -80,10 +80,12 @@ namespace FreeRTOSTasks {
             PlatformParameters::onBoardDay.setValue(dateTime.tm_mday);
             PlatformParameters::onBoardMonth.setValue(dateTime.tm_mon+1);
             PlatformParameters::onBoardYear.setValue(1900 + dateTime.tm_year);
-            UTC_Timestamp timestamp = UTC_Timestamp(PlatformParameters::onBoardYear.getValue(), PlatformParameters::onBoardMonth.getValue(),
-                                                    PlatformParameters::onBoardDay.getValue(), PlatformParameters::onBoardHour.getValue(),
-                                                    PlatformParameters::onBoardMinute.getValue(), PlatformParameters::onBoardSecond.getValue());
-            //LOG_DEBUG <<timestamp; //not working
+            timestamp = UTC_Timestamp(PlatformParameters::onBoardYear.getValue(), PlatformParameters::onBoardMonth.getValue(),
+                                      PlatformParameters::onBoardDay.getValue(), PlatformParameters::onBoardHour.getValue(),
+                                      PlatformParameters::onBoardMinute.getValue(), PlatformParameters::onBoardSecond.getValue());
+
+            //LOG_DEBUG <<timestamp; //not working yet
+            //this will be replaced since the timestamp code is merged
             LOG_DEBUG
             << "\rTime:" + std::to_string(dateTime.tm_hour) + "-" + std::to_string(dateTime.tm_min) + "-" + std::to_string(dateTime.tm_sec)
             + " -- " + std::to_string(PlatformParameters::onBoardDay.getValue()) + "/" +std::to_string(PlatformParameters::onBoardMonth.getValue()) + "/" + std::to_string(PlatformParameters::onBoardYear.getValue())<< "\n";
