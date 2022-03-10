@@ -9,7 +9,7 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
-#include "Helper.hpp"
+#include "Task.hpp"
 
 /**
  * FreeRTOS task for periodically printing "testing" using Direct Memory Access in tandem with USART1.

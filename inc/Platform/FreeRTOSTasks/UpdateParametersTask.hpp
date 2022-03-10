@@ -9,7 +9,7 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
-#include "Helper.hpp"
+#include "Task.hpp"
 
 /**
  * FreeRTOS task for periodically updating specific parameters using ParameterService functionality.
