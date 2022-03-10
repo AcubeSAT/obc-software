@@ -3,16 +3,20 @@
 #ifdef SERVICE_HOUSEKEEPING
 
 #include "Services/HousekeepingService.hpp"
-#include "Parameters/PlatformParameters.hpp"
+#include "Parameters/HousekeepingService.hpp"
 
 void HousekeepingService::initializeHousekeepingStructures() {
     HousekeepingStructure structure;
-    structure.structureId = 1;
-    structure.periodicGenerationActionStatus = true;
-    structure.collectionInterval = 500;
-    structure.simplyCommutatedParameterIds = etl::vector<uint16_t, ECSSMaxSimplyCommutatedParameters>{
-            PlatformParameters::OnBoardSecond};
-    housekeepingStructures.insert({structure.structureId, structure});
+    HousekeepingStructureParameters parameters;
+    
+    for (uint8_t idx = 0; idx < parameters.structIds.size(); idx++) {
+        structure.structureId = parameters.structIds.at(idx);
+        structure.periodicGenerationActionStatus = parameters.periodicGenerationStatuses.at(idx);
+        structure.timeToNextReport = parameters.collectionIntervals.at(idx);
+        structure.collectionInterval = parameters.collectionIntervals.at(idx);
+        structure.simplyCommutatedParameterIds = parameters.structureParameters.at(idx);
+        housekeepingStructures.insert({structure.structureId, structure});
+    }
 }
 
 #endif
