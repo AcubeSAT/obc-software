@@ -27,7 +27,7 @@ inline const uint8_t MaxLogNameSize = 9;
 inline const uint8_t MaxTickCountStringSize = 10;
 
 /**
- * Maximum size for a string representation of a service type identifier
+ * Maximum size for a string representation of a service or message type identifier
  */
 inline const uint8_t MaxTypeIDStringSize = 2;
 /**
