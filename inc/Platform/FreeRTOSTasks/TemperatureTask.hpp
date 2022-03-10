@@ -9,13 +9,12 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
+#include "Helper.hpp"
 
 /**
  * FreeRTOS task for periodically printing the value of the internal temperature sensor.
  */
-class TemperatureTask {
-public:
-    TaskHandle_t temperatureHandle;
+class TemperatureTask : public Task {
 private:
     const uint16_t delayMs = 10000;
 public:
@@ -23,7 +22,7 @@ public:
      * Temperature reading from the temperature sensor.
      * @param pvParameters used for passing parameters inside FreeRTOS tasks.
      */
-    void temperatureTask(void *pvParameters);
+    void execute() override;
 
     TemperatureTask() = default;
 };

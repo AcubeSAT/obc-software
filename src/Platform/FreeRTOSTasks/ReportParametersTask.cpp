@@ -1,6 +1,6 @@
 #include "FreeRTOSTasks/ReportParametersTask.hpp"
 
-void ReportParametersTask::reportParameters(void *pvParameters) {
+void ReportParametersTask::execute() {
     Message request = Message(ParameterService::ServiceType,
                               ParameterService::MessageType::ReportParameterValues,
                               Message::TC, 1);

@@ -1,6 +1,15 @@
 #ifndef OBC_SOFTWARE_FREERTOSTASKS_HPP
 #define OBC_SOFTWARE_FREERTOSTASKS_HPP
 
+#include "FreeRTOSTasks.hpp"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "PlatformParameters.hpp"
+#include "ServicePool.hpp"
+#include "BootCounter.hpp"
+#include "definitions.h"
+#include "Logger.hpp"
+
 namespace FreeRTOSTasks {
     /**
      * FreeRTOS task for periodically reporting specific parameters using ParameterService functionality.

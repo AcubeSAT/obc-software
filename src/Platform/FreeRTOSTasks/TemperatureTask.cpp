@@ -1,6 +1,6 @@
 #include "FreeRTOSTasks/TemperatureTask.hpp"
 
-void TemperatureTask::temperatureTask(void *pvParameters) {
+void TemperatureTask::execute() {
     AFEC0_ConversionStart();
     while (true) {
         if (AFEC0_ChannelResultGet(AFEC_CH11)) {

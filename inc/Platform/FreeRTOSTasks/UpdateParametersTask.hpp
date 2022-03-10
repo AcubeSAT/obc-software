@@ -9,13 +9,12 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
+#include "Helper.hpp"
 
 /**
  * FreeRTOS task for periodically updating specific parameters using ParameterService functionality.
  */
-class UpdateParametersTask {
-public:
-    TaskHandle_t updateParametersHandle;
+class UpdateParametersTask : public Task {
 private:
     const uint16_t delayMs = 300;
 public:
@@ -24,7 +23,7 @@ public:
      * @param taskName pointer to a const char pointer necessary to create a FreeRTOS TaskHandle_t variable to keep
      * track of the minimum available stack of \ref reportParameters.
      */
-    void updateParameters(void *taskName);
+    void execute() override;
 
     UpdateParametersTask() = default;
 };

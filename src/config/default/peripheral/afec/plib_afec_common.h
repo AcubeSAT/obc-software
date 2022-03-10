@@ -74,8 +74,7 @@ extern "C" {
 // *****************************************************************************
 // *****************************************************************************
 
-typedef enum
-{
+typedef enum {
     AFEC_CH0_MASK = (1U << 0U),
     AFEC_CH1_MASK = (1U << 1U),
     AFEC_CH2_MASK = (1U << 2U),
@@ -88,11 +87,10 @@ typedef enum
     AFEC_CH9_MASK = (1U << 9U),
     AFEC_CH10_MASK = (1U << 10U),
     AFEC_CH11_MASK = (1U << 11U)
-}AFEC_CHANNEL_MASK;
+} AFEC_CHANNEL_MASK;
 // *****************************************************************************
 
-typedef enum
-{
+typedef enum {
     AFEC_CH0 = 0U,
     AFEC_CH1,
     AFEC_CH2,
@@ -105,19 +103,17 @@ typedef enum
     AFEC_CH9,
     AFEC_CH10,
     AFEC_CH11
-}AFEC_CHANNEL_NUM;
+} AFEC_CHANNEL_NUM;
 // *****************************************************************************
 
-typedef enum
-{
+typedef enum {
     AFEC_CHANNEL_GAIN_X1,
     AFEC_CHANNEL_GAIN_X2,
     AFEC_CHANNEL_GAIN_X4
-}AFEC_CHANNEL_GAIN;
+} AFEC_CHANNEL_GAIN;
 // *****************************************************************************
 
-typedef enum
-{
+typedef enum {
     AFEC_INTERRUPT_EOC_0_MASK = (1U << 0U),
     AFEC_INTERRUPT_EOC_1_MASK = (1U << 1U),
     AFEC_INTERRUPT_EOC_2_MASK = (1U << 2U),
@@ -130,18 +126,17 @@ typedef enum
     AFEC_INTERRUPT_EOC_9_MASK = (1U << 9U),
     AFEC_INTERRUPT_EOC_10_MASK = (1U << 10U),
     AFEC_INTERRUPT_EOC_11_MASK = (1U << 11U)
-}AFEC_INTERRUPT_MASK;
+} AFEC_INTERRUPT_MASK;
 
 // *****************************************************************************
 
 typedef void (*AFEC_CALLBACK)(uint32_t status, uintptr_t context);
 // *****************************************************************************
 
-typedef struct
-{
+typedef struct {
     AFEC_CALLBACK callback_fn;
     uintptr_t context;
-}AFEC_CALLBACK_OBJECT;
+} AFEC_CALLBACK_OBJECT;
 
 
 

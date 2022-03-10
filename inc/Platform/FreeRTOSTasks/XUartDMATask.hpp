@@ -9,12 +9,13 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
+#include "Helper.hpp"
 
 /**
  * FreeRTOS task for periodically printing "testing" using Direct Memory Access in tandem with USART1.
  * Intended for demonstration purposes.
  */
-class XUartDMATask {
+class XUartDMATask : public Task {
 private:
     const uint16_t delayMs = 3000;
 public:
@@ -22,7 +23,7 @@ public:
      * Periodic printing of message, for testing purposes.
      * @param pvParameters used for passing parameters inside FreeRTOS tasks.
      */
-    void xUartDMA(void *pvParameters);
+    void execute() override;
 
     XUartDMATask() = default;
 };

@@ -1,7 +1,7 @@
 #include "FreeRTOSTasks/UpdateParametersTask.hpp"
 
-void UpdateParametersTask::updateParameters(void *taskName) {
-    TaskHandle_t reportParametersHandle = xTaskGetHandle(*static_cast<const char **>(taskName));
+void UpdateParametersTask::execute() {
+    TaskHandle_t reportParametersHandle = xTaskGetHandle(taskName);
 
     while (true) {
         PlatformParameters::reportParametersUnusedStack.setValue(
