@@ -6,7 +6,7 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
-#include "Helpers/TimeFormats.hpp"
+#include "Time/UTCTimestamp.hpp"
 #include <iostream>
 
 namespace FreeRTOSTasks {
@@ -68,7 +68,7 @@ namespace FreeRTOSTasks {
         dateTime.tm_year = PlatformParameters::onBoardYear.getValue()-1900;
         //dateTime.tm_wday = 6;
 
-        UTC_Timestamp timestamp = UTC_Timestamp(PlatformParameters::onBoardYear.getValue(), PlatformParameters::onBoardMonth.getValue(),
+        UTCTimestamp timestamp = UTCTimestamp(PlatformParameters::onBoardYear.getValue(), PlatformParameters::onBoardMonth.getValue(),
                                                 PlatformParameters::onBoardDay.getValue(), PlatformParameters::onBoardHour.getValue(),
                                                 PlatformParameters::onBoardMinute.getValue(), PlatformParameters::onBoardSecond.getValue());
         RTC_TimeSet( &dateTime );
@@ -80,11 +80,11 @@ namespace FreeRTOSTasks {
             PlatformParameters::onBoardDay.setValue(dateTime.tm_mday);
             PlatformParameters::onBoardMonth.setValue(dateTime.tm_mon+1);
             PlatformParameters::onBoardYear.setValue(1900 + dateTime.tm_year);
-            timestamp = UTC_Timestamp(PlatformParameters::onBoardYear.getValue(), PlatformParameters::onBoardMonth.getValue(),
+            timestamp = UTCTimestamp(PlatformParameters::onBoardYear.getValue(), PlatformParameters::onBoardMonth.getValue(),
                                       PlatformParameters::onBoardDay.getValue(), PlatformParameters::onBoardHour.getValue(),
                                       PlatformParameters::onBoardMinute.getValue(), PlatformParameters::onBoardSecond.getValue());
 
-            //LOG_DEBUG <<timestamp; //not working yet
+            //LOG_DEBUG <<timestamp; //the operator dose not working yet
             //this will be replaced since the timestamp code is merged
             LOG_DEBUG
             << "\rTime:" + std::to_string(dateTime.tm_hour) + "-" + std::to_string(dateTime.tm_min) + "-" + std::to_string(dateTime.tm_sec)
