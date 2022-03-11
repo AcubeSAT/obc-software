@@ -58,19 +58,16 @@ namespace FreeRTOSTasks {
     };
 
     void temperatureTask(void *pvParameters) {
-        AFEC0_ConversionStart();
         while (true) {
-            if (AFEC0_ChannelResultGet(AFEC_CH11)) {
-                uint16_t ADCconversion = AFEC0_ChannelResultGet(AFEC_CH11);
-                uint16_t DACconversion = ADCconversion * PositiveVoltageReference / MaxNumberOfADC;
-                float MCUtemperature =
-                        (DACconversion - TypicalVoltageAt25) / TemperatureSensitivity + ReferenceTemperature;
-                LOG_DEBUG << "The temperature of the MCU is: " << MCUtemperature;
-                PlatformParameters::mcuTemperature.setValue(MCUtemperature);
-
-                AFEC0_ConversionStart();
-                vTaskDelay(pdMS_TO_TICKS(10000));
-            }
+            AFEC0_ConversionStart();
+            vTaskDelay(pdMS_TO_TICKS(1));
+            uint16_t ADCconversion = AFEC0_ChannelResultGet(AFEC_CH11);
+            uint16_t DACconversion = ADCconversion * PositiveVoltageReference / MaxADCValue;
+            float MCUtemperature =
+                    (DACconversion - TypicalVoltageAt25) / TemperatureSensitivity + ReferenceTemperature;
+            LOG_DEBUG << "The temperature of the MCU is: " << MCUtemperature << " °C";
+            PlatformParameters::mcuTemperature.setValue(MCUtemperature);
+            vTaskDelay(pdMS_TO_TICKS(10000));
         }
     }
 

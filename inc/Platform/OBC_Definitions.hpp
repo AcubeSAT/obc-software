@@ -35,7 +35,7 @@ inline const uint16_t FreeRTOSTaskStackDepth = 2000;
 /**
  * The maximum code number an analog signal can be converted into by the ADC of the AFEC peripheral
  */
-inline const uint16_t MaxNumberOfADC = 4095;
+inline const uint16_t MaxADCValue = 4095;
 
 /**
  * The positive voltage reference of the MCU
@@ -45,7 +45,7 @@ inline const uint16_t PositiveVoltageReference = 3300;
 /**
  * The typical slope of voltage versus temperature
  */
-inline const float TemperatureSensitivity = 233 / 100;
+inline const float TemperatureSensitivity = 2.33;
 
 /**
  * The reference temperature for the voltage-to-temperature conversion

@@ -80,7 +80,7 @@ void AFEC0_Initialize()
 
     /* Offset */
     AFEC0_REGS->AFEC_CSELR = AFEC_CH11;
-    AFEC0_REGS->AFEC_COCR = 525U;
+    AFEC0_REGS->AFEC_COCR = 516U;
 
 
     /* Enable interrupt */
