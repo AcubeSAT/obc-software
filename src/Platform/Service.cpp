@@ -1,25 +1,32 @@
-#include <iostream>
-#include <iomanip>
+#include <etl/String.hpp>
 #include <Logger.hpp>
+#include "OBC_Definitions.hpp"
 #include "Service.hpp"
 
 void Service::storeMessage(Message &message) {
     // appends the remaining bits to complete a byte
     message.finalize();
 
-    // Create a new stream to display the packet
-    std::ostringstream ss;
+    etl::format_spec formatSpec;
+    auto serviceType = String<MaxTypeIDStringSize>("");
+    auto messageType = String<MaxTypeIDStringSize>("");
 
-    // Just print it to the screen
-    ss << "New " << ((message.packetType == Message::TM) ? "TM" : "TC") << "["
-       << std::hex
-       << static_cast<int>(message.serviceType) << "," // Ignore-MISRA
-       << static_cast<int>(message.messageType) // Ignore-MISRA
-       << "] message! ";
+    etl::to_string(message.serviceType, serviceType, formatSpec, false);
+    etl::to_string(message.messageType, messageType, formatSpec, false);
 
+    auto output = String<ECSSMaxMessageSize>("New ");
+    (message.packetType == Message::TM) ? output.append("TM[") : output.append("TC[");
+    output.append(serviceType);
+    output.append(",");
+    output.append(messageType);
+    output.append("] message! ");
+
+    auto data = String<ECSSMaxStringSize>("");
     for (unsigned int i = 0; i < message.dataSize; i++) {
-        ss << static_cast<int>(message.data[i]) << " "; // Ignore-MISRA
+        etl::to_string(static_cast<int>(message.data[i]), data, formatSpec, true);
+        data.append(" ");
     }
+    output.append(data.c_str());
 
-    LOG_DEBUG << ss.str();
+    LOG_DEBUG << output.c_str();
 }
