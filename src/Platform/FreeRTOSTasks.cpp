@@ -57,7 +57,7 @@ namespace FreeRTOSTasks {
         }
     }
 
-    void Housekeeping(void *pvParameters) {
+    void housekeeping(void *pvParameters) {
         auto &housekeeping = Services.housekeeping;
         uint32_t nextCollection = 0xFFFFFFFF;
         uint32_t timePassed = 0;
@@ -66,16 +66,16 @@ namespace FreeRTOSTasks {
         while (true) {
             timePassed = nextCollection;
             nextCollection = 0xFFFFFFFF;
-            for(auto& HousekeepingStructure : housekeeping.housekeepingStructures){
-                if(HousekeepingStructure.second.timeToNextReport <= timePassed){
-                    housekeeping.housekeepingParametersReport(HousekeepingStructure.second.structureId);
-                    HousekeepingStructure.second.timeToNextReport = HousekeepingStructure.second.collectionInterval;
+            for(auto& housekeepingStructure : housekeeping.housekeepingStructures){
+                if(housekeepingStructure.second.timeToNextReport <= timePassed){
+                    housekeeping.housekeepingParametersReport(housekeepingStructure.second.structureId);
+                    housekeepingStructure.second.timeToNextReport = housekeepingStructure.second.collectionInterval;
                 }
                 else{
-                    HousekeepingStructure.second.timeToNextReport = HousekeepingStructure.second.timeToNextReport - timePassed;
+                    housekeepingStructure.second.timeToNextReport = housekeepingStructure.second.timeToNextReport - timePassed;
                 }
-                if(HousekeepingStructure.second.timeToNextReport < nextCollection){
-                    nextCollection = HousekeepingStructure.second.timeToNextReport;
+                if(housekeepingStructure.second.timeToNextReport < nextCollection){
+                    nextCollection = housekeepingStructure.second.timeToNextReport;
                 }
             }
             vTaskDelayUntil( &xLastWakeTime, pdMS_TO_TICKS(nextCollection));

@@ -25,10 +25,12 @@ namespace FreeRTOSTasks {
 
      /**
       * Task implementing the ST[03] Housekeeping Service.
+      * The task retrieves all Housekeeping Structures and reports their parameters 
+      * at the appropriate intervals through ST[03]s built in functions.
       * @param pvParameters used for passing parameters inside FreeRTOS tasks.
       * @see HousekeepingService
       */
-      void Housekeeping(void *pvParameters);
+      void housekeeping(void *pvParameters);
 }
 
 #endif //OBC_SOFTWARE_FREERTOSTASKS_HPP
