@@ -59,25 +59,13 @@ namespace FreeRTOSTasks {
 
     void housekeeping(void *pvParameters) {
         auto &housekeeping = Services.housekeeping;
-        uint32_t nextCollection = 0xFFFFFFFF;
         uint32_t timePassed = 0;
+        uint32_t nextCollection = 0;
         TickType_t xLastWakeTime = xTaskGetTickCount();
 
         while (true) {
             timePassed = nextCollection;
-            nextCollection = 0xFFFFFFFF;
-            for(auto& housekeepingStructure : housekeeping.housekeepingStructures){
-                if(housekeepingStructure.second.timeToNextReport <= timePassed){
-                    housekeeping.housekeepingParametersReport(housekeepingStructure.second.structureId);
-                    housekeepingStructure.second.timeToNextReport = housekeepingStructure.second.collectionInterval;
-                }
-                else{
-                    housekeepingStructure.second.timeToNextReport = housekeepingStructure.second.timeToNextReport - timePassed;
-                }
-                if(housekeepingStructure.second.timeToNextReport < nextCollection){
-                    nextCollection = housekeepingStructure.second.timeToNextReport;
-                }
-            }
+            nextCollection = housekeeping.findNextCollection(timePassed);
             vTaskDelayUntil( &xLastWakeTime, pdMS_TO_TICKS(nextCollection));
         }
     }
