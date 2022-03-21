@@ -65,7 +65,7 @@ namespace FreeRTOSTasks {
 
         while (true) {
             timePassed = nextCollection;
-            nextCollection = housekeeping.findNextCollection(timePassed);
+            nextCollection = housekeeping.reportPendingStructures(timePassed);
             vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(nextCollection));
         }
     }
