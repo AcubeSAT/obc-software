@@ -66,7 +66,6 @@ namespace FreeRTOSTasks {
         dateTime.tm_mon = PlatformParameters::onBoardMonth.getValue()-1;
         dateTime.tm_mday = PlatformParameters::onBoardDay.getValue();
         dateTime.tm_year = PlatformParameters::onBoardYear.getValue()-1900;
-        //dateTime.tm_wday = 6;
 
         UTCTimestamp timestamp = UTCTimestamp(PlatformParameters::onBoardYear.getValue(), PlatformParameters::onBoardMonth.getValue(),
                                                 PlatformParameters::onBoardDay.getValue(), PlatformParameters::onBoardHour.getValue(),
