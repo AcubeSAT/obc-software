@@ -21,9 +21,12 @@ namespace FreeRTOSTasks {
      * Intended for demonstration purposes
      * @param pvParameters used for passing parameters inside FreeRTOS tasks.
      */
-     void xUartDMA(void *pvParameters);
+    void xUartDMA(void *pvParameters);
 
-
+    /**
+     * FreeRTOS for periodically getting the RTC time from the microcontroller and storing it to parameters.
+     * @param pvParameters used for passing parameters inside FreeRTOS tasks.
+     */
     void xTimeKeeping(void *pvParameters);
 }
 
