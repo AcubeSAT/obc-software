@@ -6,8 +6,8 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
-#include "Time/UTCTimestamp.hpp"
-#include <iostream>
+#include "RTCHelper.hpp"
+
 
 namespace FreeRTOSTasks {
     void reportParameters(void *) {
@@ -58,34 +58,20 @@ namespace FreeRTOSTasks {
     };
 
     tm dateTime;
-
     void xTimeKeeping(void *pvParameters) {
 
-        uint16_t yearBase = 1900;
-        dateTime.tm_sec = PlatformParameters::onBoardSecond.getValue();
-        dateTime.tm_min = PlatformParameters::onBoardMinute.getValue();
-        dateTime.tm_hour = PlatformParameters::onBoardHour.getValue();
-        dateTime.tm_mon = PlatformParameters::onBoardMonth.getValue() - 1;
-        dateTime.tm_mday = PlatformParameters::onBoardDay.getValue();
-        dateTime.tm_year = PlatformParameters::onBoardYear.getValue() - yearBase;
-
+        setEpoch(dateTime);
         RTC_TimeSet(&dateTime);
-        while (true) {
-            RTC_TimeGet(&dateTime);
-            PlatformParameters::onBoardSecond.setValue(dateTime.tm_sec);
-            PlatformParameters::onBoardMinute.setValue(dateTime.tm_min);
-            PlatformParameters::onBoardHour.setValue(dateTime.tm_hour);
-            PlatformParameters::onBoardDay.setValue(dateTime.tm_mday);
-            PlatformParameters::onBoardMonth.setValue(dateTime.tm_mon + 1);
-            PlatformParameters::onBoardYear.setValue(dateTime.tm_year + yearBase);
 
-            LOG_DEBUG
-                    << "\rTime:" + std::to_string(dateTime.tm_hour) + "-" + std::to_string(dateTime.tm_min) + "-" +
-                       std::to_string(dateTime.tm_sec)
-                       + " -- " + std::to_string(PlatformParameters::onBoardDay.getValue()) + "/" +
-                       std::to_string(PlatformParameters::onBoardMonth.getValue()) + "/" +
-                       std::to_string(PlatformParameters::onBoardYear.getValue()) << "\n";
+        while (true) {
+
+            RTC_TimeGet(&dateTime);
+            setTimePlatformParameters(dateTime);
+
+            printOnBoardTime();
             vTaskDelay(pdMS_TO_TICKS(1000));
+
         }
+
     };
 }
