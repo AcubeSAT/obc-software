@@ -23,5 +23,16 @@ void setTimePlatformParameters(struct tm &dateTime) {
     PlatformParameters::onBoardYear.setValue(dateTime.tm_year + yearBase);
 }
 
+void printOnBoardTime() {
+    LOG_DEBUG << "\rTime:"
+              << PlatformParameters::onBoardHour.getValue() << "-"
+              << PlatformParameters::onBoardMinute.getValue() << "-"
+              << PlatformParameters::onBoardSecond.getValue() << " -- "
+              << PlatformParameters::onBoardDay.getValue() << "/"
+              << PlatformParameters::onBoardMonth.getValue() << "/"
+              << PlatformParameters::onBoardYear.getValue()
+              << "\n";
+}
+
 
 #endif //OBC_SOFTWARE_RTCHELPER_HPP
