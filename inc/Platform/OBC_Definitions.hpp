@@ -33,7 +33,7 @@ inline const uint8_t MaxTickCountStringSize = 10;
 inline const uint16_t FreeRTOSTaskStackDepth = 2000;
 
 /**
- * The maximum code number an analog signal can be converted into by the ADC of the AFEC peripheral
+ * The maximum code number an analog signal can be converted into by the ADC of the AFEC peripheral with 12-bit resolution
  */
 inline const uint16_t MaxADCValue = 4095;
 
@@ -43,12 +43,12 @@ inline const uint16_t MaxADCValue = 4095;
 inline const uint16_t PositiveVoltageReference = 3300;
 
 /**
- * The typical slope of voltage versus temperature
+ * The typical slope of voltage versus temperature of the internal temperature sensor
  */
 inline const float TemperatureSensitivity = 2.33;
 
 /**
- * The reference temperature for the voltage-to-temperature conversion
+ * The reference temperature of the internal temperature sensor for the voltage-to-temperature conversion
  */
 inline const uint8_t ReferenceTemperature = 25;
 
