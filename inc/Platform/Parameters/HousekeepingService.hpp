@@ -6,9 +6,9 @@
 
 namespace HousekeepingStructures {
    static etl::array<HousekeepingStructure, ECSSMaxHousekeepingStructures> structures = {
-           {0, 900, 900, true,
+           {0, 900, true,
             {PlatformParameters::OnBoardSecond, PlatformParameters::AvailableHeap},
-            1, 1000, 1000, true,
+            1, 1000, true,
             {PlatformParameters::OnBoardDay, PlatformParameters::OnBoardHour, PlatformParameters::OnBoardMinute}
            },
    };
