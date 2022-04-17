@@ -23,11 +23,21 @@ namespace FreeRTOSTasks {
      */
      void xUartDMA(void *pvParameters);
 
+     /**
+      * Task implementing the ST[03] Housekeeping Service.
+      * The task retrieves all Housekeeping Structures and reports their parameters 
+      * at the appropriate intervals through ST[03]s built in functions.
+      * @param pvParameters used for passing parameters inside FreeRTOS tasks.
+      * @see HousekeepingService
+      */
+      void housekeeping(void *pvParameters);
+
     /**
     * FreeRTOS task for periodically printing the value of the internal temperature sensor.
     * @param pvParameters used for passing parameters inside FreeRTOS tasks.
     */
      void temperatureTask(void *pvParameters);
+
 }
 
 #endif //OBC_SOFTWARE_FREERTOSTASKS_HPP
