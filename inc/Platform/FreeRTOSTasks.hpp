@@ -31,6 +31,13 @@ namespace FreeRTOSTasks {
       * @see HousekeepingService
       */
       void housekeeping(void *pvParameters);
+
+    /**
+    * FreeRTOS task for periodically printing the value of the internal temperature sensor.
+    * @param pvParameters used for passing parameters inside FreeRTOS tasks.
+    */
+     void temperatureTask(void *pvParameters);
+
 }
 
 #endif //OBC_SOFTWARE_FREERTOSTASKS_HPP

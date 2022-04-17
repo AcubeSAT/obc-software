@@ -139,6 +139,8 @@ void SYS_Initialize ( void* data )
 
 
 
+    AFEC0_Initialize();
+
 	SYSTICK_TimerInitialize();
     XDMAC_Initialize();
 
