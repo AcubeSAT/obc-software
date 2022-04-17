@@ -6,6 +6,7 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
+#include "Parameters/HousekeepingService.hpp"
 
 
 namespace FreeRTOSTasks {
@@ -45,6 +46,7 @@ namespace FreeRTOSTasks {
             PlatformParameters::obcBootCounter.setValue(
                     static_cast<uint16_t>(BootCounter::GPBRRead(BootCounter::BootCounterRegister)));
             PlatformParameters::obcSysTick.setValue(static_cast<uint64_t>(xTaskGetTickCount()));
+            PlatformParameters::onBoardSecond.setValue(static_cast<uint64_t>(xTaskGetTickCount() / 1000));
             vTaskDelay(pdMS_TO_TICKS(300));
         }
     }
@@ -55,7 +57,20 @@ namespace FreeRTOSTasks {
             LOG_DEBUG << usartData.data();
             vTaskDelay(pdMS_TO_TICKS(3000));
         }
-    };
+    }
+
+    void housekeeping(void *pvParameters) {
+        auto &housekeeping = Services.housekeeping;
+        uint32_t nextCollection = 0;
+        uint32_t timeBeforeDelay = 0;
+        TickType_t xLastWakeTime = xTaskGetTickCount();
+
+        while (true) {
+            nextCollection = housekeeping.reportPendingStructures(xTaskGetTickCount(), timeBeforeDelay, nextCollection);
+            timeBeforeDelay = xTaskGetTickCount();
+            vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(nextCollection));
+        }
+    }
 
     void temperatureTask(void *pvParameters) {
         while (true) {
@@ -70,7 +85,5 @@ namespace FreeRTOSTasks {
             vTaskDelay(pdMS_TO_TICKS(10000));
         }
     }
-
+    
 };
-
-
