@@ -44,6 +44,22 @@ void __libc_init_array(void);
 /* Default empty handler */
 void Dummy_Handler(void);
 
+static inline void FPU_Enable(void)
+{
+    uint32_t prim;
+    prim = __get_PRIMASK();
+    __disable_irq();
+
+    SCB->CPACR |= (0xFu << 20);
+    __DSB();
+    __ISB();
+
+    if (!prim)
+    {
+        __enable_irq();
+    }
+}
+
 /**
  * \brief This is the code that gets called on processor reset.
  * To initialize the device, and call the main() routine.
@@ -67,6 +83,10 @@ void Reset_Handler(void)
                 *pDest++ = 0;
         }
 
+    /* Enable the floating point unit */
+#if (__ARM_FP==14) || (__ARM_FP==4)
+        FPU_Enable();
+#endif
         /* Set the vector table base address */
         pSrc = (uint32_t *) & _sfixed;
         SCB->VTOR = ((uint32_t) pSrc & SCB_VTOR_TBLOFF_Msk);

@@ -110,7 +110,6 @@ extern void TC0_CH2_Handler            ( void ) __attribute__((weak, alias("Dumm
 extern void TC1_CH0_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void TC1_CH1_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void TC1_CH2_Handler            ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void AFEC0_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void DACC_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PWM0_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void ICM_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -203,7 +202,7 @@ const H3DeviceVectors exception_table=
     .pfnTC1_CH0_Handler            = TC1_CH0_Handler,
     .pfnTC1_CH1_Handler            = TC1_CH1_Handler,
     .pfnTC1_CH2_Handler            = TC1_CH2_Handler,
-    .pfnAFEC0_Handler              = AFEC0_Handler,
+    .pfnAFEC0_Handler              = AFEC0_InterruptHandler,
     .pfnDACC_Handler               = DACC_Handler,
     .pfnPWM0_Handler               = PWM0_Handler,
     .pfnICM_Handler                = ICM_Handler,

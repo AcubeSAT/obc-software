@@ -17,6 +17,7 @@ namespace PlatformParameters {
         OnBoardSecond = 5,
         ReportParametersUnusedStack = 6,
         AvailableHeap = 7,
+        OBCMCUTemperature = 293,
         OBCBootCounter = 301,
         OBCSystick = 329
     };
@@ -34,6 +35,7 @@ namespace PlatformParameters {
     // OBDH parameters
     inline Parameter<uint16_t> obcBootCounter(0);
     inline Parameter<uint64_t> obcSysTick(0);
+    inline Parameter<float> mcuTemperature(0);
 }
 
 #endif
