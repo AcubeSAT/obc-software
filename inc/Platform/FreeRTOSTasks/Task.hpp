@@ -1,5 +1,5 @@
-#ifndef OBC_SOFTWARE_HELPER_HPP
-#define OBC_SOFTWARE_HELPER_HPP
+#ifndef OBC_SOFTWARE_TASK_HPP
+#define OBC_SOFTWARE_TASK_HPP
 
 #include "FreeRTOS.h"
 #include "task.h"
