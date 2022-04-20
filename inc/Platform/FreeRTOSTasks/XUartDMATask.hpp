@@ -20,7 +20,6 @@ private:
 public:
     /**
      * Periodic printing of message, for testing purposes.
-     * @param pvParameters used for passing parameters inside FreeRTOS tasks.
      */
     void execute() override;
 

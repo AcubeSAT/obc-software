@@ -19,7 +19,6 @@ private:
 public:
     /**
      * Temperature reading from the temperature sensor.
-     * @param pvParameters used for passing parameters inside FreeRTOS tasks.
      */
     void execute() override;
 

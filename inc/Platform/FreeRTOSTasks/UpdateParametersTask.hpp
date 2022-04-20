@@ -19,8 +19,6 @@ private:
 public:
     /**
      * Periodic parameter updating.
-     * @param taskName pointer to a const char pointer necessary to create a FreeRTOS TaskHandle_t variable to keep
-     * track of the minimum available stack of \ref reportParameters.
      */
     void execute() override;
 
