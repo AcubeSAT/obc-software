@@ -27,15 +27,20 @@ inline const uint8_t MaxLogNameSize = 9;
 inline const uint8_t MaxTickCountStringSize = 10;
 
 /**
+ * Maximum size for a string representation of a service or message type identifier
+ */
+inline const uint8_t MaxTypeIDStringSize = 2;
+/**
  * The number of words to allocate for use as the task's stack.
  * @todo in the future after detailed analysis, optimized task stack depths will be evaluated for each task.
  */
 inline const uint16_t FreeRTOSTaskStackDepth = 2000;
 
 /**
- * The maximum code number an analog signal can be converted into by the ADC of the AFEC peripheral
+ * The maximum code number an analog signal can be converted into by the ADC of the AFEC peripheral with 12-bit resolution
  */
-inline const uint16_t MaxNumberOfADC = 4095;
+inline const uint16_t MaxADCValue = 4095;
+
 
 /**
  * The positive voltage reference of the MCU
@@ -43,12 +48,12 @@ inline const uint16_t MaxNumberOfADC = 4095;
 inline const uint16_t PositiveVoltageReference = 3300;
 
 /**
- * The typical slope of voltage versus temperature
+ * The typical slope of voltage versus temperature of the internal temperature sensor
  */
-inline const float TemperatureSensitivity = 233 / 100;
+inline const float TemperatureSensitivity = 2.33;
 
 /**
- * The reference temperature for the voltage-to-temperature conversion
+ * The reference temperature of the internal temperature sensor for the voltage-to-temperature conversion
  */
 inline const uint8_t ReferenceTemperature = 25;
 

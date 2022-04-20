@@ -34,6 +34,7 @@ extern "C" void main_cpp() {
                 &xUartDMATask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(Task::vClassTask, "Temperature", FreeRTOSTaskStackDepth,
                 &temperatureTask, tskIDLE_PRIORITY + 2, NULL);
+
     vTaskStartScheduler();
 
     while (true) {

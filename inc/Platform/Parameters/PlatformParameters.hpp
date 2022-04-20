@@ -17,9 +17,10 @@ namespace PlatformParameters {
         OnBoardSecond = 5,
         ReportParametersUnusedStack = 6,
         AvailableHeap = 7,
+        OBCMCUTemperature = 293,
         OBCBootCounter = 301,
         OBCSystick = 329,
-        OBCMCUTemperature = 293
+//        OBCMCUTemperature = 293
     };
 
      // Parameters used for testing
