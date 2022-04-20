@@ -6,8 +6,8 @@
 const uint16_t yearBase = 1900;
 
 /**
- * This function sets the AcubeSAT's time parameters using a tm struct.
- * @param dateTime is a tm Struct witch keeps the time
+ * This function sets the epoch time.
+ * @param dateTime is a tm struct witch keeps the time from MCU.
  */
 void setEpoch(struct tm &dateTime) {
     dateTime.tm_sec = PlatformParameters::onBoardSecond.getValue();
@@ -18,6 +18,10 @@ void setEpoch(struct tm &dateTime) {
     dateTime.tm_year = PlatformParameters::onBoardYear.getValue() - yearBase;
 }
 
+/**
+ * This function sets the AcubeSAT's time parameters using a tm struct.
+ * @param dateTime is a tm struct witch keeps the time from MCU.
+ */
 void setTimePlatformParameters(struct tm &dateTime) {
     PlatformParameters::onBoardSecond.setValue(dateTime.tm_sec);
     PlatformParameters::onBoardMinute.setValue(dateTime.tm_min);
@@ -27,6 +31,9 @@ void setTimePlatformParameters(struct tm &dateTime) {
     PlatformParameters::onBoardYear.setValue(dateTime.tm_year + yearBase);
 }
 
+/**
+ * This function prints the on-board time.
+ */
 void printOnBoardTime() {
     etl::string<29> printTime = "";
     printTime+="\rTime:";
