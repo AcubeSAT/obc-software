@@ -14,7 +14,7 @@
  * A switch to control whether the Logger sends its messages over RTT or over UART0
  * 1 is set for RTT, 0 for USART1
  */
-inline const bool PreferRTT = 0;
+inline const bool PreferRTT = 1;
 
 /**
  * Maximum string size for a LogLevel is 9 characters long
@@ -27,10 +27,39 @@ inline const uint8_t MaxLogNameSize = 9;
 inline const uint8_t MaxTickCountStringSize = 10;
 
 /**
+ * Maximum size for a string representation of a service or message type identifier
+ */
+inline const uint8_t MaxTypeIDStringSize = 2;
+/**
  * The number of words to allocate for use as the task's stack.
  * @todo in the future after detailed analysis, optimized task stack depths will be evaluated for each task.
  */
 inline const uint16_t FreeRTOSTaskStackDepth = 2000;
+
+/**
+ * The maximum code number an analog signal can be converted into by the ADC of the AFEC peripheral with 12-bit resolution
+ */
+inline const uint16_t MaxADCValue = 4095;
+
+/**
+ * The positive voltage reference of the MCU
+ */
+inline const uint16_t PositiveVoltageReference = 3300;
+
+/**
+ * The typical slope of voltage versus temperature of the internal temperature sensor
+ */
+inline const float TemperatureSensitivity = 2.33;
+
+/**
+ * The reference temperature of the internal temperature sensor for the voltage-to-temperature conversion
+ */
+inline const uint8_t ReferenceTemperature = 25;
+
+/**
+ * The typical voltage output of the DAC of the AFEC channel at 25 Celsius
+ */
+inline const uint16_t TypicalVoltageAt25 = 720;
 
 namespace BootCounter {
     /**

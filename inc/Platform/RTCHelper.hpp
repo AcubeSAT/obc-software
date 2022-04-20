@@ -5,6 +5,10 @@
 
 const uint16_t yearBase = 1900;
 
+/**
+ * This function sets the AcubeSAT's time parameters using a tm struct.
+ * @param dateTime is a tm Struct witch keeps the time
+ */
 void setEpoch(struct tm &dateTime) {
     dateTime.tm_sec = PlatformParameters::onBoardSecond.getValue();
     dateTime.tm_min = PlatformParameters::onBoardMinute.getValue();
@@ -40,6 +44,5 @@ void printOnBoardTime() {
     printTime+="\n";
     LOG_DEBUG << printTime.data();
 }
-
 
 #endif //OBC_SOFTWARE_RTCHELPER_HPP
