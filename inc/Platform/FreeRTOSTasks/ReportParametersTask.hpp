@@ -1,7 +1,6 @@
 #ifndef OBC_SOFTWARE_REPORTPARAMETERSTASK_HPP
 #define OBC_SOFTWARE_REPORTPARAMETERSTASK_HPP
 
-#include "FreeRTOSTasks.hpp"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "PlatformParameters.hpp"
@@ -9,7 +8,7 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
-#include "Helper.hpp"
+#include "Task.hpp"
 
 /**
  * FreeRTOS task for periodically reporting specific parameters using ParameterService functionality.
@@ -22,7 +21,6 @@ private:
 public:
     /**
      * Periodic parameter reporting.
-     * @param pvParameters used for passing parameters inside FreeRTOS tasks.
      */
     void execute() override;
 

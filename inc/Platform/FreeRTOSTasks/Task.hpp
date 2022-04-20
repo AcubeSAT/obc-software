@@ -1,7 +1,6 @@
 #ifndef OBC_SOFTWARE_HELPER_HPP
 #define OBC_SOFTWARE_HELPER_HPP
 
-#include "FreeRTOSTasks.hpp"
 #include "FreeRTOS.h"
 #include "task.h"
 #include "PlatformParameters.hpp"
@@ -9,7 +8,6 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
-#include "Helper.hpp"
 
 /**
  * Base class, whose method 'execute' is meant to be inherited by each and every individual FreeRTOS task.

@@ -5,14 +5,14 @@
 #include "task.h"
 #include "definitions.h"
 #include "OBC_Definitions.hpp"
-#include "FreeRTOSTasks.hpp"
 #include "BootCounter.hpp"
 #include "SEGGER_RTT.h"
 #include "FreeRTOSTasks/ReportParametersTask.hpp"
 #include "FreeRTOSTasks/XUartDMATask.hpp"
 #include "FreeRTOSTasks/UpdateParametersTask.hpp"
 #include "FreeRTOSTasks/TemperatureTask.hpp"
-#include "FreeRTOSTasks/Helper.hpp"
+#include "FreeRTOSTasks/HousekeepingTask.hpp"
+#include "FreeRTOSTasks/Task.hpp"
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
@@ -25,6 +25,7 @@ extern "C" void main_cpp() {
     UpdateParametersTask updateParametersTask;
     TemperatureTask temperatureTask;
     XUartDMATask xUartDMATask;
+    HousekeepingTask housekeepingTask;
 
     xTaskCreate(Task::vClassTask, taskName, FreeRTOSTaskStackDepth,
                 &reportParametersTask, tskIDLE_PRIORITY + 1, NULL);
@@ -34,6 +35,8 @@ extern "C" void main_cpp() {
                 &xUartDMATask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(Task::vClassTask, "Temperature", FreeRTOSTaskStackDepth,
                 &temperatureTask, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(Task::vClassTask, "Housekeeping", FreeRTOSTaskStackDepth,
+                &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
 
     vTaskStartScheduler();
 
