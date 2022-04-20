@@ -60,10 +60,11 @@ namespace FreeRTOSTasks {
         }
     };
 
-    tm dateTime;
+
 
     void xTimeKeeping(void *pvParameters) {
 
+        static tm dateTime;
         setEpoch(dateTime);
         RTC_TimeSet(&dateTime);
 
@@ -72,7 +73,7 @@ namespace FreeRTOSTasks {
             RTC_TimeGet(&dateTime);
             setTimePlatformParameters(dateTime);
 
-            printOnBoardTime();
+            //LOG_DEBUG <<;
             vTaskDelay(pdMS_TO_TICKS(1000));
 
         }

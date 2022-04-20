@@ -34,22 +34,21 @@ void setTimePlatformParameters(struct tm &dateTime) {
 /**
  * This function prints the on-board time.
  */
-void printOnBoardTime() {
-    etl::string<29> printTime = "";
-    printTime+="\rTime:";
-    etl::to_string(PlatformParameters::onBoardHour.getValue(),printTime,true);
-    printTime+="-";
-    etl::to_string(PlatformParameters::onBoardMinute.getValue(),printTime,true);
-    printTime+="-";
-    etl::to_string(PlatformParameters::onBoardSecond.getValue(),printTime,true);
-    printTime+=" -- ";
-    etl::to_string(PlatformParameters::onBoardDay.getValue(),printTime,true);
-    printTime+="/";
-    etl::to_string(PlatformParameters::onBoardMonth.getValue(),printTime,true);
-    printTime+="/";
-    etl::to_string(PlatformParameters::onBoardYear.getValue(),printTime,true);
-    printTime+="\n";
-    LOG_DEBUG << printTime.data();
+Logger::LogEntry &operator<<(Logger::LogEntry &entry, const std::string &value) {
+    entry.message.append("\rTime:");
+    etl::to_string(PlatformParameters::onBoardHour.getValue(), entry.message, true);
+    entry.message.append("-");
+    etl::to_string(PlatformParameters::onBoardMinute.getValue(), entry.message, true);
+    entry.message.append("-");
+    etl::to_string(PlatformParameters::onBoardSecond.getValue(), entry.message, true);
+    entry.message.append(" -- ");
+    etl::to_string(PlatformParameters::onBoardDay.getValue(), entry.message, true);
+    entry.message.append("/");
+    etl::to_string(PlatformParameters::onBoardMonth.getValue(), entry.message, true);
+    entry.message.append("/");
+    etl::to_string(PlatformParameters::onBoardYear.getValue(), entry.message, true);
+
+    return entry;
 }
 
 #endif //OBC_SOFTWARE_RTCHELPER_HPP
