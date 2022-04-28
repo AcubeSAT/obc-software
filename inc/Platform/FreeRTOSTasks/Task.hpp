@@ -19,7 +19,7 @@ public:
      */
     char *taskName;
     /**
-     * Handle of each FreeRTOS task. Maybe required for inter-task communication in future implementations.
+     * Handle of each FreeRTOS task.
      */
     TaskHandle_t taskHandle;
     /**
