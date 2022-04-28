@@ -22,6 +22,10 @@ public:
      * Handle of each FreeRTOS task. Maybe required for inter-task communication in future implementations.
      */
     TaskHandle_t taskHandle;
+    /**
+     * The stack depth of each FreeRTOS task.
+     */
+    uint16_t taskStackDepth = 2000;
 
     /**
      * Implemented by each child-task, in order to perform its individual, different job.

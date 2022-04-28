@@ -27,15 +27,15 @@ extern "C" void main_cpp() {
     XUartDMATask xUartDMATask;
     HousekeepingTask housekeepingTask;
 
-    xTaskCreate(Task::vClassTask, taskName, FreeRTOSTaskStackDepth,
+    xTaskCreate(Task::vClassTask, taskName, reportParametersTask.taskStackDepth,
                 &reportParametersTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, "Task2", FreeRTOSTaskStackDepth,
+    xTaskCreate(Task::vClassTask, "Task2", updateParametersTask.taskStackDepth,
                 &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, "UartDMA", FreeRTOSTaskStackDepth,
+    xTaskCreate(Task::vClassTask, "UartDMA", xUartDMATask.taskStackDepth,
                 &xUartDMATask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, "Temperature", FreeRTOSTaskStackDepth,
+    xTaskCreate(Task::vClassTask, "Temperature", temperatureTask.taskStackDepth,
                 &temperatureTask, tskIDLE_PRIORITY + 2, NULL);
-    xTaskCreate(Task::vClassTask, "Housekeeping", FreeRTOSTaskStackDepth,
+    xTaskCreate(Task::vClassTask, "Housekeeping", housekeepingTask.taskStackDepth,
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
 
     vTaskStartScheduler();

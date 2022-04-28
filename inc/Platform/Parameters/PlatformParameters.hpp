@@ -3,6 +3,7 @@
 
 #include "Helpers/Parameter.hpp"
 #include "OBC_Definitions.hpp"
+#include "inc/Platform/FreeRTOSTasks/Task.hpp"
 
 namespace PlatformParameters {
     /**
