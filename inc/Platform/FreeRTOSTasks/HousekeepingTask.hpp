@@ -1,13 +1,6 @@
 #ifndef OBC_SOFTWARE_HOUSEKEEPINGTASK_HPP
 #define OBC_SOFTWARE_HOUSEKEEPINGTASK_HPP
 
-#include "FreeRTOS.h"
-#include "task.h"
-#include "PlatformParameters.hpp"
-#include "ServicePool.hpp"
-#include "BootCounter.hpp"
-#include "definitions.h"
-#include "Logger.hpp"
 #include "Task.hpp"
 
 /**

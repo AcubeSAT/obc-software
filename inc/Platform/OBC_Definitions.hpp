@@ -41,7 +41,6 @@ inline const uint16_t FreeRTOSTaskStackDepth = 2000;
  */
 inline const uint16_t MaxADCValue = 4095;
 
-
 /**
  * The positive voltage reference of the MCU
  */

@@ -20,7 +20,6 @@ namespace PlatformParameters {
         OBCMCUTemperature = 293,
         OBCBootCounter = 301,
         OBCSystick = 329,
-//        OBCMCUTemperature = 293
     };
 
      // Parameters used for testing
