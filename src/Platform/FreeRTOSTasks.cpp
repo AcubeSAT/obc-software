@@ -73,7 +73,7 @@ namespace FreeRTOSTasks {
             RTC_TimeGet(&dateTime);
             setTimePlatformParameters(dateTime);
 
-            //LOG_DEBUG <<;
+            printOnBoardTime();
             vTaskDelay(pdMS_TO_TICKS(1000));
 
         }
