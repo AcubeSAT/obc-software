@@ -60,24 +60,18 @@ namespace FreeRTOSTasks {
         }
     };
 
-
-
     void xTimeKeeping(void *pvParameters) {
-
         static tm dateTime;
         setEpoch(dateTime);
         RTC_TimeSet(&dateTime);
 
         while (true) {
-
             RTC_TimeGet(&dateTime);
             setTimePlatformParameters(dateTime);
 
             printOnBoardTime();
             vTaskDelay(pdMS_TO_TICKS(1000));
-
         }
-
     };
 
     void housekeeping(void *pvParameters) {
