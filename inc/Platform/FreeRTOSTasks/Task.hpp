@@ -25,7 +25,7 @@ public:
     /**
      * The stack depth of each FreeRTOS task.
      */
-    uint16_t taskStackDepth = 2000;
+    const uint16_t taskStackDepth = 2000;
 
     /**
      * Implemented by each child-task, in order to perform its individual, different job.
