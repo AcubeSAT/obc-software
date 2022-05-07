@@ -135,35 +135,42 @@ children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
   - type: Boolean
-<<<<<<< HEAD
-    attributes: {id: NVIC_2_0_ENABLE}
-=======
     attributes: {id: NVIC_29_0_ENABLE}
->>>>>>> 26303a67d4a75d596251b973f1c478097a76c9f9
     children:
     - type: Values
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
   - type: String
-<<<<<<< HEAD
-    attributes: {id: NVIC_2_0_HANDLER}
-=======
     attributes: {id: NVIC_29_0_HANDLER}
->>>>>>> 26303a67d4a75d596251b973f1c478097a76c9f9
     children:
     - type: Values
       children:
       - type: Dynamic
-<<<<<<< HEAD
-        attributes: {id: core, value: RTC_InterruptHandler}
-  - type: Boolean
-    attributes: {id: NVIC_2_0_HANDLER_LOCK}
-=======
         attributes: {id: core, value: AFEC0_InterruptHandler}
   - type: Boolean
     attributes: {id: NVIC_29_0_HANDLER_LOCK}
->>>>>>> 26303a67d4a75d596251b973f1c478097a76c9f9
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: Boolean
+    attributes: {id: NVIC_2_0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: NVIC_2_0_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: RTC_InterruptHandler}
+  - type: Boolean
+    attributes: {id: NVIC_2_0_HANDLER_LOCK}
     children:
     - type: Values
       children:

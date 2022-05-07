@@ -36,19 +36,19 @@ void setTimePlatformParameters(struct tm &dateTime) {
  */
 void printOnBoardTime() {
     etl::string<29> printTime = "";
-    printTime+="\rTime:";
-    etl::to_string(PlatformParameters::onBoardHour.getValue(),printTime,true);
-    printTime+="-";
-    etl::to_string(PlatformParameters::onBoardMinute.getValue(),printTime,true);
-    printTime+="-";
-    etl::to_string(PlatformParameters::onBoardSecond.getValue(),printTime,true);
-    printTime+=" -- ";
-    etl::to_string(PlatformParameters::onBoardDay.getValue(),printTime,true);
-    printTime+="/";
-    etl::to_string(PlatformParameters::onBoardMonth.getValue(),printTime,true);
-    printTime+="/";
-    etl::to_string(PlatformParameters::onBoardYear.getValue(),printTime,true);
-    printTime+="\n";
+    printTime += "\rTime:";
+    etl::to_string(PlatformParameters::onBoardHour.getValue(), printTime, true);
+    printTime += "-";
+    etl::to_string(PlatformParameters::onBoardMinute.getValue(), printTime, true);
+    printTime += "-";
+    etl::to_string(PlatformParameters::onBoardSecond.getValue(), printTime, true);
+    printTime += " -- ";
+    etl::to_string(PlatformParameters::onBoardDay.getValue(), printTime, true);
+    printTime += "/";
+    etl::to_string(PlatformParameters::onBoardMonth.getValue(), printTime, true);
+    printTime += "/";
+    etl::to_string(PlatformParameters::onBoardYear.getValue(), printTime, true);
+    printTime += "\n";
     LOG_DEBUG << printTime.data();
 }
 

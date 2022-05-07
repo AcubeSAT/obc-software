@@ -34,10 +34,4 @@ MP_AS_DIR="/usr/bin"
 MP_LD_DIR="/usr/bin"
 MP_AR_DIR="/usr/bin"
 # MP_BC_DIR is not defined
-<<<<<<< HEAD
 CMSIS_DIR=/opt/microchip/mplabx/v6.00/packs/arm/CMSIS/5.4.0
-DFP_DIR=/home/julio/.mchp_packs/Microchip/SAMV71_DFP/4.4.78
-=======
-DFP_DIR=/opt/microchip/mplabx/v5.50/packs/Microchip/SAMV71_DFP/4.5.82
-CMSIS_DIR=/opt/microchip/mplabx/v5.50/packs/arm/CMSIS/5.4.0
->>>>>>> 26303a67d4a75d596251b973f1c478097a76c9f9
