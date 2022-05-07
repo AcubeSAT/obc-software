@@ -30,7 +30,7 @@ namespace PlatformParameters {
     inline Parameter<uint8_t> onBoardHour(6);
     inline Parameter<uint8_t> onBoardMinute(48);
     inline Parameter<uint8_t> onBoardSecond(32);
-    inline Parameter<uint16_t> reportParametersUnusedStack(FreeRTOSTaskStackDepth);
+    inline Parameter<uint16_t> reportParametersUnusedStack(0);
     inline Parameter<uint16_t> availableHeap(0);
 
     // OBDH parameters

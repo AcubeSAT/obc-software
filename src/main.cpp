@@ -19,23 +19,21 @@ extern "C" void main_cpp() {
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
-    const char *taskName = "Task1";
-
     ReportParametersTask reportParametersTask;
     UpdateParametersTask updateParametersTask;
     TemperatureTask temperatureTask;
     XUartDMATask xUartDMATask;
     HousekeepingTask housekeepingTask;
 
-    xTaskCreate(Task::vClassTask, taskName, reportParametersTask.taskStackDepth,
+    xTaskCreate(Task::vClassTask, reportParametersTask.taskName, reportParametersTask.taskStackDepth,
                 &reportParametersTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, "Task2", updateParametersTask.taskStackDepth,
+    xTaskCreate(Task::vClassTask, updateParametersTask.taskName, updateParametersTask.taskStackDepth,
                 &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, "UartDMA", xUartDMATask.taskStackDepth,
+    xTaskCreate(Task::vClassTask, xUartDMATask.taskName, xUartDMATask.taskStackDepth,
                 &xUartDMATask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, "Temperature", temperatureTask.taskStackDepth,
+    xTaskCreate(Task::vClassTask, temperatureTask.taskName, temperatureTask.taskStackDepth,
                 &temperatureTask, tskIDLE_PRIORITY + 2, NULL);
-    xTaskCreate(Task::vClassTask, "Housekeeping", housekeepingTask.taskStackDepth,
+    xTaskCreate(Task::vClassTask, housekeepingTask.taskName, housekeepingTask.taskStackDepth,
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
 
     vTaskStartScheduler();

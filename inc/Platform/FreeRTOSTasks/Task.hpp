@@ -17,7 +17,7 @@ public:
     /**
      * Name of each task.
      */
-    char *taskName;
+    const char *taskName;
     /**
      * Handle of each FreeRTOS task.
      */
