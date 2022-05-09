@@ -15,15 +15,17 @@ extern "C" void main_cpp() {
     BootCounter::incrementBootCounter();
 
     const char *taskName = "Task1";
-    xTaskCreate(FreeRTOSTasks::reportParameters, taskName, FreeRTOSTaskStackDepth,
+    xTaskCreate(FreeRTOSTasks::reportParameters, taskName, 2000,
                 NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(FreeRTOSTasks::updateParameters, "Task2", FreeRTOSTaskStackDepth,
+    xTaskCreate(FreeRTOSTasks::updateParameters, "Task2", 2000,
                 &taskName, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(FreeRTOSTasks::xUartDMA, "UartDMA", FreeRTOSTaskStackDepth,
+    xTaskCreate(FreeRTOSTasks::xUartDMA, "UartDMA", 10000,
                 NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(FreeRTOSTasks::housekeeping, "Housekeeping", FreeRTOSTaskStackDepth,
+    xTaskCreate(FreeRTOSTasks::xTimeKeeping, "timeKeeping", 1000,
                 NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(FreeRTOSTasks::temperatureTask, "Temperature", FreeRTOSTaskStackDepth,
+    xTaskCreate(FreeRTOSTasks::housekeeping, "Housekeeping", 2000,
+                NULL, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(FreeRTOSTasks::temperatureTask, "Temperature", 1000,
                 NULL, tskIDLE_PRIORITY + 2, NULL);
     vTaskStartScheduler();
 

@@ -1,18 +1,18 @@
 /*******************************************************************************
-  NVIC PLIB Implementation
+  Interface definition of RTC PLIB.
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_nvic.c
+    plib_rtc_common.h
 
   Summary:
-    NVIC PLIB Source File
+    Interface definition of the Real Time Counter Plib (RTC).
 
   Description:
-    None
-
+    This file defines the interface for the RTC Plib.
+    It allows user to setup alarm duration and access current date and time.
 *******************************************************************************/
 
 /*******************************************************************************
@@ -38,68 +38,59 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#include "device.h"
-#include "plib_nvic.h"
+#ifndef PLIB_RTC_COMMON_H    // Guards against multiple inclusion
+#define PLIB_RTC_COMMON_H
+
+#include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <time.h>
+
+#ifdef __cplusplus // Provide C++ Compatibility
+ extern "C" {
+#endif
 
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: NVIC Implementation
+// Section: Interface
 // *****************************************************************************
 // *****************************************************************************
 
-void NVIC_Initialize( void )
+typedef void (*RTC_CALLBACK)(uint32_t int_cause, uintptr_t context);
+
+
+typedef enum 
 {
-    /* Priority 0 to 7 and no sub-priority. 0 is the highest priority */
-    NVIC_SetPriorityGrouping( 0x00 );
+    RTC_ALARM_MASK_OFF = 0x00,         // NO Alarm
+    RTC_ALARM_MASK_SS = 0x01 ,          // Every minute, seconds alarm enable
+    RTC_ALARM_MASK_MI = 0x02,          // Minute alarm enable
+    RTC_ALARM_MASK_HH = 0x04,          // Hour alarm enable
+    RTC_ALARM_MASK_DD = 0x08,          // Date alarm enable
+    RTC_ALARM_MASK_MO = 0x10,          // Month alarm enable
+    RTC_ALARM_MASK_MISS = 0x03,        // Every hour
+    RTC_ALARM_MASK_HHMISS = 0x07,      // Every day
+    RTC_ALARM_MASK_DDHHMISS = 0x0f,    // Every month
+    RTC_ALARM_MASK_MODDHHMISS = 0x1f  // Every year
+} RTC_ALARM_MASK;
 
-    /* Enable NVIC Controller */
-    __DMB();
-    __enable_irq();
-
-    /* Enable the interrupt sources and configure the priorities as configured
-     * from within the "Interrupt Manager" of MHC. */
-    NVIC_SetPriority(RTC_IRQn, 7);
-    NVIC_EnableIRQ(RTC_IRQn);
-    NVIC_SetPriority(USART1_IRQn, 7);
-    NVIC_EnableIRQ(USART1_IRQn);
-    NVIC_SetPriority(AFEC0_IRQn, 7);
-    NVIC_EnableIRQ(AFEC0_IRQn);
-    NVIC_SetPriority(XDMAC_IRQn, 7);
-    NVIC_EnableIRQ(XDMAC_IRQn);
-
-
-
-}
-
-void NVIC_INT_Enable( void )
+typedef enum 
 {
-    __DMB();
-    __enable_irq();
-}
+    RTC_INT_ALARM = 0x02,          // Alarm Event
+    RTC_INT_TIME = 0x08 ,          // Time Event
+    RTC_INT_CALENDAR = 0x10,          // Calendar enable
+} RTC_INT_MASK;
 
-bool NVIC_INT_Disable( void )
+typedef struct
 {
-    bool processorStatus;
+    RTC_CALLBACK          callback; 
+    uintptr_t             context;
+} RTC_OBJECT ;
 
-    processorStatus = (bool) (__get_PRIMASK() == 0);
 
-    __disable_irq();
-    __DMB();
+	
+#ifdef __cplusplus // Provide C++ Compatibility
+ }
+#endif
 
-    return processorStatus;
-}
-
-void NVIC_INT_Restore( bool state )
-{
-    if( state == true )
-    {
-        __DMB();
-        __enable_irq();
-    }
-    else
-    {
-        __disable_irq();
-        __DMB();
-    }
-}
+#endif
