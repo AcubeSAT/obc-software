@@ -6,6 +6,7 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
+#include "RTCHelper.hpp"
 #include "Parameters/HousekeepingService.hpp"
 
 
@@ -57,7 +58,21 @@ namespace FreeRTOSTasks {
             LOG_DEBUG << usartData.data();
             vTaskDelay(pdMS_TO_TICKS(3000));
         }
-    }
+    };
+
+    void xTimeKeeping(void *pvParameters) {
+        static tm dateTime;
+        setEpoch(dateTime);
+        RTC_TimeSet(&dateTime);
+
+        while (true) {
+            RTC_TimeGet(&dateTime);
+            setTimePlatformParameters(dateTime);
+
+            printOnBoardTime();
+            vTaskDelay(pdMS_TO_TICKS(1000));
+        }
+    };
 
     void housekeeping(void *pvParameters) {
         auto &housekeeping = Services.housekeeping;
@@ -85,5 +100,5 @@ namespace FreeRTOSTasks {
             vTaskDelay(pdMS_TO_TICKS(10000));
         }
     }
-    
+
 };
