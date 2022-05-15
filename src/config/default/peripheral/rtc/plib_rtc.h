@@ -1,18 +1,18 @@
 /*******************************************************************************
-  NVIC PLIB Implementation
+  Interface definition of RTC PLIB.
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_nvic.c
+    plib_rtc.h
 
   Summary:
-    NVIC PLIB Source File
+    Interface definition of the Real Time Counter Plib (RTC).
 
   Description:
-    None
-
+    This file defines the interface for the RTC Plib.
+    It allows user to setup alarm duration and access current date and time.
 *******************************************************************************/
 
 /*******************************************************************************
@@ -38,68 +38,37 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#include "device.h"
-#include "plib_nvic.h"
+#ifndef RTC_H    // Guards against multiple inclusion
+#define RTC_H
+
+#include <stdint.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <time.h>
+#include "plib_rtc_common.h"
+
+#ifdef __cplusplus // Provide C++ Compatibility
+ extern "C" {
+#endif
 
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: NVIC Implementation
+// Section: Interface
 // *****************************************************************************
 // *****************************************************************************
 
-void NVIC_Initialize( void )
-{
-    /* Priority 0 to 7 and no sub-priority. 0 is the highest priority */
-    NVIC_SetPriorityGrouping( 0x00 );
+/***************************** RTC API *******************************/
+void RTC_Initialize( void );
+bool RTC_TimeSet( struct tm *Time );
+void RTC_TimeGet( struct tm *Time );
+bool RTC_AlarmSet( struct tm *alarmTime, RTC_ALARM_MASK mask );
+void RTC_CallbackRegister( RTC_CALLBACK callback, uintptr_t context );
+void RTC_InterruptDisable(RTC_INT_MASK interrupt);
+void RTC_InterruptEnable(RTC_INT_MASK interrupt);
+	
+#ifdef __cplusplus // Provide C++ Compatibility
+ }
+#endif
 
-    /* Enable NVIC Controller */
-    __DMB();
-    __enable_irq();
-
-    /* Enable the interrupt sources and configure the priorities as configured
-     * from within the "Interrupt Manager" of MHC. */
-    NVIC_SetPriority(RTC_IRQn, 7);
-    NVIC_EnableIRQ(RTC_IRQn);
-    NVIC_SetPriority(USART1_IRQn, 7);
-    NVIC_EnableIRQ(USART1_IRQn);
-    NVIC_SetPriority(AFEC0_IRQn, 7);
-    NVIC_EnableIRQ(AFEC0_IRQn);
-    NVIC_SetPriority(XDMAC_IRQn, 7);
-    NVIC_EnableIRQ(XDMAC_IRQn);
-
-
-
-}
-
-void NVIC_INT_Enable( void )
-{
-    __DMB();
-    __enable_irq();
-}
-
-bool NVIC_INT_Disable( void )
-{
-    bool processorStatus;
-
-    processorStatus = (bool) (__get_PRIMASK() == 0);
-
-    __disable_irq();
-    __DMB();
-
-    return processorStatus;
-}
-
-void NVIC_INT_Restore( bool state )
-{
-    if( state == true )
-    {
-        __DMB();
-        __enable_irq();
-    }
-    else
-    {
-        __disable_irq();
-        __DMB();
-    }
-}
+#endif

@@ -23,7 +23,7 @@ namespace PlatformParameters {
         OBCSystick = 329,
     };
 
-     // Parameters used for testing
+    // Parameters used for testing
     inline Parameter<uint16_t> onBoardYear(2022);
     inline Parameter<uint8_t> onBoardMonth(2);
     inline Parameter<uint8_t> onBoardDay(19);

@@ -15,7 +15,9 @@ public:
       */
     void execute() override;
 
-    HousekeepingTask() = default;
+    HousekeepingTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth) : Task(taskName,
+                                                                                                          taskHandle,
+                                                                                                          taskStackDepth) {}
 };
 
 #endif
