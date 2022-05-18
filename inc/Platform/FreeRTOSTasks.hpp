@@ -44,6 +44,13 @@ namespace FreeRTOSTasks {
     */
     void temperatureTask(void *pvParameters);
 
+    /**
+    * Task implementing the ST[11] TimeBaseScheduling Service.
+    * The task inserts the activities and reports them periodically.
+    * @param pvParameters used for passing parameters inside FreeRTOS tasks.
+    * @see TimeBaseSchedulingService
+    */
+void timeBasedScheduling(void *pvParameters);
 }
 
 #endif //OBC_SOFTWARE_FREERTOSTASKS_HPP
