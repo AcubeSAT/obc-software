@@ -40,7 +40,6 @@ public:
         (static_cast<Task *>(pvParameters))->execute();
     }
 
-//    Task() = default;
     Task(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth) : taskName(taskName),
                                                                                          taskHandle(taskHandle),
                                                                                          taskStackDepth(
