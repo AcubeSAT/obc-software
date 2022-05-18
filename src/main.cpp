@@ -19,8 +19,8 @@ extern "C" void main_cpp() {
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
-//    xTaskCreate(Task::vClassTask, xUartDMATask.taskName, 2000,
-//                &xUartDMATask, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(Task::vClassTask, xUartDMATask.taskName, 1000,
+                &xUartDMATask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(Task::vClassTask, xTimeKeepingTask.taskName, 1000,
                 &xTimeKeepingTask, tskIDLE_PRIORITY + 2, NULL);
 

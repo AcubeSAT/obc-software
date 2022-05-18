@@ -27,17 +27,12 @@ void XTimeKeepingTask::printOnBoardTime() {
     printTime += "/";
     etl::to_string(PlatformParameters::onBoardMonth.getValue(), printTime, true);
     printTime += "/";
-    uint32_t s =PlatformParameters::onBoardYear.getValue();
     etl::to_string(PlatformParameters::onBoardYear.getValue(), printTime, true);
     printTime += "\n";
     LOG_DEBUG << printTime.data();
 }
 
 void XTimeKeepingTask::setTimePlatformParameters(tm &dateTime) {
-    uint16_t b= dateTime.tm_year;
-    uint16_t c = yearBase;
-    uint16_t a = b + c;
-
     PlatformParameters::onBoardSecond.setValue(dateTime.tm_sec);
     PlatformParameters::onBoardMinute.setValue(dateTime.tm_min);
     PlatformParameters::onBoardHour.setValue(dateTime.tm_hour);

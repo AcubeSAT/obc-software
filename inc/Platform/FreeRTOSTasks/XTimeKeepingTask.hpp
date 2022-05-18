@@ -34,9 +34,9 @@ public:
 
 //    XTimeKeepingTask() = default;
 //    explicit XTimeKeepingTask(uint16_t yearBase) : yearBase(yearBase) {}
-    XTimeKeepingTask() = default;
-//    XTimeKeepingTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,
-//                     const uint16_t delayMs) : Task(taskName, taskHandle, taskStackDepth), delayMs(delayMs) {}
+//    XTimeKeepingTask() = default;
+    XTimeKeepingTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,
+                     const uint16_t delayMs) : Task(taskName, taskHandle, taskStackDepth), delayMs(delayMs) {}
 };
 
 #endif
