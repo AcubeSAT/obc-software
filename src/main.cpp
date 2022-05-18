@@ -10,18 +10,18 @@
 #include "SEGGER_RTT.h"
 #include "FreeRTOSTasks/XUartDMATask.hpp"
 #include "FreeRTOSTasks/XTimeKeepingTask.hpp"
+#include "FreeRTOSTasks/TaskList.hpp"
 
 extern "C" void main_cpp() {
+    using namespace TaskList;
+
     SYS_Initialize(NULL);
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
-    XUartDMATask xUartDMATask;
-    auto xTimeKeepingTask = new XTimeKeepingTask;
-
 //    xTaskCreate(Task::vClassTask, xUartDMATask.taskName, 2000,
 //                &xUartDMATask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, xTimeKeepingTask->taskName, 1000,
+    xTaskCreate(Task::vClassTask, xTimeKeepingTask.taskName, 1000,
                 &xTimeKeepingTask, tskIDLE_PRIORITY + 2, NULL);
 
 //    const char *taskName = "Task1";
