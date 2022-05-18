@@ -36,7 +36,7 @@ public:
      * Helps call the execute function through 'xTaskCreate' during the creation of the FreeRTOS tasks.
      * @param pvParameters used for passing parameters inside FreeRTOS tasks.
      */
-    inline static void vClassTask(void *pvParameters) {
+    static void vClassTask(void *pvParameters) {
         (static_cast<Task *>(pvParameters))->execute();
     }
 
