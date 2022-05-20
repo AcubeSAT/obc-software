@@ -3,7 +3,6 @@
 
 #include "Helpers/Parameter.hpp"
 #include "OBC_Definitions.hpp"
-#include "inc/Platform/FreeRTOSTasks/Task.hpp"
 
 namespace PlatformParameters {
     /**
@@ -20,16 +19,16 @@ namespace PlatformParameters {
         AvailableHeap = 7,
         OBCMCUTemperature = 293,
         OBCBootCounter = 301,
-        OBCSystick = 329,
+        OBCSystick = 329
     };
 
     // Parameters used for testing
     inline Parameter<uint16_t> onBoardYear(2022);
-    inline Parameter<uint8_t> onBoardMonth(2);
-    inline Parameter<uint8_t> onBoardDay(19);
-    inline Parameter<uint8_t> onBoardHour(6);
-    inline Parameter<uint8_t> onBoardMinute(48);
-    inline Parameter<uint8_t> onBoardSecond(32);
+    inline Parameter<uint8_t> onBoardMonth(1);
+    inline Parameter<uint8_t> onBoardDay(1);
+    inline Parameter<uint8_t> onBoardHour(0);
+    inline Parameter<uint8_t> onBoardMinute(0);
+    inline Parameter<uint8_t> onBoardSecond(0);
     inline Parameter<uint16_t> reportParametersUnusedStack(0);
     inline Parameter<uint16_t> availableHeap(0);
 
