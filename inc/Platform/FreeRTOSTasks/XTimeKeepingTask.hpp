@@ -7,11 +7,11 @@ class XTimeKeepingTask : public Task {
 private:
     const uint16_t delayMs = 1000;
 public:
-    /**
-     * Keeps track of time, updating the time-related parameters.
-     */
     void execute() override;
 
+    /**
+     * Sets the year base, used to acquire the current time from a tm structure.
+     */
     uint16_t yearBase = 1900;
 
     /**

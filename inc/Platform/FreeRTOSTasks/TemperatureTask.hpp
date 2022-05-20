@@ -10,9 +10,6 @@ class TemperatureTask : public Task {
 private:
     const uint16_t delayMs = 10000;
 public:
-    /**
-     * Temperature reading from the temperature sensor.
-     */
     void execute() override;
 
     TemperatureTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,

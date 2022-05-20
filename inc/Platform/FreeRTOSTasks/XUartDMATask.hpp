@@ -11,9 +11,6 @@ class XUartDMATask : public Task {
 private:
     const uint16_t delayMs = 3000;
 public:
-    /**
-     * Periodic printing of message, for testing purposes.
-     */
     void execute() override;
 
     XUartDMATask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,

@@ -12,9 +12,6 @@ private:
     const uint16_t numberOfIDs = 11;
     const uint16_t delayMs = 1000;
 public:
-    /**
-     * Periodic parameter reporting.
-     */
     void execute() override;
 
     ReportParametersTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,

@@ -10,9 +10,6 @@ class UpdateParametersTask : public Task {
 private:
     const uint16_t delayMs = 300;
 public:
-    /**
-     * Periodic parameter updating.
-     */
     void execute() override;
 
     UpdateParametersTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,

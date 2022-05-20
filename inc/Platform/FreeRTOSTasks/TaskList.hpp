@@ -9,8 +9,8 @@
 #include "UpdateParametersTask.hpp"
 
 namespace TaskList {
-    static XUartDMATask UartDMATask = XUartDMATask("XUartDMA", nullptr, 10000, 900);
-    static XTimeKeepingTask TimeKeepingTask = XTimeKeepingTask("TimeKeeping", nullptr, 1000, 1100);
+    static XUartDMATask xUartDMATask = XUartDMATask("XUartDMA", nullptr, 10000, 900);
+    static XTimeKeepingTask xTimeKeepingTask = XTimeKeepingTask("TimeKeeping", nullptr, 1000, 1100);
     static HousekeepingTask housekeepingTask = HousekeepingTask("Housekeeping", nullptr, 2000);
     static TemperatureTask temperatureTask = TemperatureTask("TemperatureSensor", nullptr, 1000, 10000);
     static ReportParametersTask reportParametersTask = ReportParametersTask("ParameterReporting", nullptr, 2000, 11, 1000);

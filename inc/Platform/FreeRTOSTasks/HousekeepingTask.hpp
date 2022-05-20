@@ -9,8 +9,6 @@
 class HousekeepingTask : public Task {
 public:
     /**
-      * The task retrieves all Housekeeping Structures and reports their parameters
-      * at the appropriate intervals through ST[03]s built in functions.
       * @see HousekeepingService
       */
     void execute() override;
