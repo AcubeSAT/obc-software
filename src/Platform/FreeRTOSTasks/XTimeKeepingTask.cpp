@@ -1,6 +1,6 @@
 #include "FreeRTOSTasks/XTimeKeepingTask.hpp"
 
-void XTimeKeepingTask::execute() {
+void TimeKeepingTask::execute() {
     static tm dateTime;
     setEpoch(dateTime);
     RTC_TimeSet(&dateTime);
@@ -16,7 +16,7 @@ void XTimeKeepingTask::execute() {
 /**
  * This function prints the on-board time.
  */
-void XTimeKeepingTask::printOnBoardTime() {
+void TimeKeepingTask::printOnBoardTime() {
     etl::string<29> printTime = "";
     printTime += "\rTime:";
     etl::to_string(PlatformParameters::onBoardHour.getValue(), printTime, true);
@@ -34,7 +34,7 @@ void XTimeKeepingTask::printOnBoardTime() {
     LOG_DEBUG << printTime.data();
 }
 
-void XTimeKeepingTask::setTimePlatformParameters(tm &dateTime) {
+void TimeKeepingTask::setTimePlatformParameters(tm &dateTime) {
     PlatformParameters::onBoardSecond.setValue(dateTime.tm_sec);
     PlatformParameters::onBoardMinute.setValue(dateTime.tm_min);
     PlatformParameters::onBoardHour.setValue(dateTime.tm_hour);
@@ -44,7 +44,7 @@ void XTimeKeepingTask::setTimePlatformParameters(tm &dateTime) {
 
 }
 
-void XTimeKeepingTask::setEpoch(tm &dateTime) {
+void TimeKeepingTask::setEpoch(tm &dateTime) {
     dateTime.tm_sec = PlatformParameters::onBoardSecond.getValue();
     dateTime.tm_min = PlatformParameters::onBoardMinute.getValue();
     dateTime.tm_hour = PlatformParameters::onBoardHour.getValue();

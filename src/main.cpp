@@ -17,10 +17,10 @@ extern "C" void main_cpp() {
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
-    xTaskCreate(Task::vClassTask, xUartDMATask.taskName, xUartDMATask.taskStackDepth,
-                &xUartDMATask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, xTimeKeepingTask.taskName, xTimeKeepingTask.taskStackDepth,
-                &xTimeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(Task::vClassTask, uartDMATask.taskName, uartDMATask.taskStackDepth,
+                &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(Task::vClassTask, timeKeepingTask.taskName, timeKeepingTask.taskStackDepth,
+                &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(Task::vClassTask, temperatureTask.taskName, temperatureTask.taskStackDepth,
                 &temperatureTask, tskIDLE_PRIORITY + 2, NULL);
     xTaskCreate(Task::vClassTask, reportParametersTask.taskName, reportParametersTask.taskStackDepth,
