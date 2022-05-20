@@ -1,12 +1,12 @@
 #ifndef OBC_SOFTWARE_TASKLIST_H
 #define OBC_SOFTWARE_TASKLIST_H
 
-#include "FreeRTOSTasks/XTimeKeepingTask.hpp"
-#include "FreeRTOSTasks/XUartDMATask.hpp"
-#include "FreeRTOSTasks/HousekeepingTask.hpp"
-#include "FreeRTOSTasks/TemperatureTask.hpp"
-#include "FreeRTOSTasks/ReportParametersTask.hpp"
-#include "FreeRTOSTasks/UpdateParametersTask.hpp"
+#include "XTimeKeepingTask.hpp"
+#include "XUartDMATask.hpp"
+#include "HousekeepingTask.hpp"
+#include "TemperatureTask.hpp"
+#include "ReportParametersTask.hpp"
+#include "UpdateParametersTask.hpp"
 
 namespace TaskList {
     static XUartDMATask xUartDMATask = XUartDMATask("XUartDMA", NULL, 10000, 900);
