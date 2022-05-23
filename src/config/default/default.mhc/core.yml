@@ -100,6 +100,13 @@ children:
       - type: Dynamic
         attributes: {id: core, value: '0x1200'}
   - type: Boolean
+    attributes: {id: MCAN1_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: 'true'}
+  - type: Boolean
     attributes: {id: NVIC_-1_0_ENABLE}
     children:
     - type: Values
@@ -539,7 +546,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '67108864'}
+        attributes: {id: core, value: '67108896'}
   - type: KeyValueSet
     attributes: {id: PMC_PCR_GCLK0CSS}
     children:
