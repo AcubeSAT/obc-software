@@ -148,6 +148,8 @@ void SYS_Initialize ( void* data )
 
 	WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk; 		// Disable WDT 
 
+	SPI0_Initialize();
+
 	RTC_Initialize();
 
     USART1_Initialize();

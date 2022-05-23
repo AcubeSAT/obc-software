@@ -62,6 +62,15 @@
 // *****************************************************************************
 
 
+/*** Macros for GPIO_PB2 pin ***/
+#define GPIO_PB2_Set()               (PIOB_REGS->PIO_SODR = (1<<2))
+#define GPIO_PB2_Clear()             (PIOB_REGS->PIO_CODR = (1<<2))
+#define GPIO_PB2_Toggle()            (PIOB_REGS->PIO_ODSR ^= (1<<2))
+#define GPIO_PB2_OutputEnable()      (PIOB_REGS->PIO_OER = (1<<2))
+#define GPIO_PB2_InputEnable()       (PIOB_REGS->PIO_ODR = (1<<2))
+#define GPIO_PB2_Get()               ((PIOB_REGS->PIO_PDSR >> 2) & 0x1)
+#define GPIO_PB2_PIN                  PIO_PIN_PB2
+
 /*** Macros for GPIO_PA23 pin ***/
 #define GPIO_PA23_Set()               (PIOA_REGS->PIO_SODR = (1<<23))
 #define GPIO_PA23_Clear()             (PIOA_REGS->PIO_CODR = (1<<23))

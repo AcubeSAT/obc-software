@@ -44,6 +44,12 @@ namespace FreeRTOSTasks {
     */
     void temperatureTask(void *pvParameters);
 
+    /**
+     * FreeRTOS for periodically reading the magnetic field from RM3100.
+     * @param pvParameters used for passing parameters inside FreeRTOS tasks.
+     */
+    void RM3100Magnetometer(void *pvParameters);
+
 }
 
 #endif //OBC_SOFTWARE_FREERTOSTASKS_HPP

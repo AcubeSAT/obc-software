@@ -8,6 +8,7 @@
 #include "Logger.hpp"
 #include "RTCHelper.hpp"
 #include "Parameters/HousekeepingService.hpp"
+#include "RM3100.hpp"
 
 
 namespace FreeRTOSTasks {
@@ -101,4 +102,27 @@ namespace FreeRTOSTasks {
         }
     }
 
+    void RM3100Magnetometer(void *pvParameters) {
+
+        RM3100 rm3100(1, 0b01111001, 200, PIO_PIN_PB2, PIO_PIN_PB3);
+        rm3100.checkREVID();
+
+        while (true) {
+            rm3100.readMeasurements();
+
+            etl::string<80> Data = "";
+            Data += "x=";
+            etl::to_string(rm3100.x / rm3100.gain, Data, etl::format_spec().precision(6), true);
+            Data += " y=";
+            etl::to_string(rm3100.y / rm3100.gain, Data, etl::format_spec().precision(6), true);
+            Data += " z=";
+            etl::to_string(rm3100.z / rm3100.gain, Data, etl::format_spec().precision(6), true);
+            Data += " magneticField=";
+            etl::to_string(rm3100.magneticField, Data, etl::format_spec().precision(9), true);
+            Data += "\r\n";
+
+            LOG_DEBUG << Data.data();
+            SYSTICK_DelayMs(100);
+        }
+    }
 };
