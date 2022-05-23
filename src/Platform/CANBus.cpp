@@ -56,7 +56,6 @@ namespace CANBus {
             memset(rxFiFo0, 0x00, (numberOfMessage * MCAN1_RX_FIFO0_ELEMENT_SIZE));
             if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessage, (MCAN_RX_BUFFER *) rxFiFo0))
                 LOG_INFO << "\r\nSuccessful CAN receipt\r\n";
-            printMessage(numberOfMessage, (MCAN_RX_BUFFER *) rxFiFo0, MCAN1_RX_FIFO0_ELEMENT_SIZE, 0);
         }
     }
 }
