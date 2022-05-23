@@ -76,13 +76,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: 76E27DF1AACB7F8582006B77D40138BE
-- generatedChecksum: 66FBF5F1D2E6FDCD0AF120E42E17B869
+- generatedChecksum: DA672E87786ADC7409C026FAD7EE189E
   logicalPath: config/default/peripheral/pio
   name: plib_pio.c
   physicalPath: peripheral/pio
   security: NON_SECURE
   type: SOURCE
-  userChecksum: 66FBF5F1D2E6FDCD0AF120E42E17B869
+  userChecksum: DA672E87786ADC7409C026FAD7EE189E
 - generatedChecksum: 68F6A46E5DB2303BD0B1DC03F3436C98
   logicalPath: config/default/peripheral/rtc
   name: plib_rtc.c
