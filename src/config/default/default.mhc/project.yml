@@ -62,13 +62,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: D23DF612DB8267EDD9F5F3A463A02DB2
-- generatedChecksum: EB47D584BF35766D5A6FC99E60667277
+- generatedChecksum: 8CA2D765C7B1EA652BEDBD1EAE96B520
   logicalPath: config/default/peripheral/mcan
   name: plib_mcan1.c
   physicalPath: peripheral/mcan
   security: NON_SECURE
   type: SOURCE
-  userChecksum: EB47D584BF35766D5A6FC99E60667277
+  userChecksum: 8CA2D765C7B1EA652BEDBD1EAE96B520
 - generatedChecksum: 76E27DF1AACB7F8582006B77D40138BE
   logicalPath: config/default/peripheral/nvic
   name: plib_nvic.c
