@@ -64,6 +64,7 @@ void SysTick_Handler (void);
 void RTC_InterruptHandler (void);
 void USART1_InterruptHandler (void);
 void AFEC0_InterruptHandler (void);
+void MCAN1_INT0_InterruptHandler (void);
 void XDMAC_InterruptHandler (void);
 
 

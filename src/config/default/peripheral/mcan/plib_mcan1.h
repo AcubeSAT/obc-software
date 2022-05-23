@@ -21,7 +21,7 @@
 *******************************************************************************/
 //DOM-IGNORE-BEGIN
 /*******************************************************************************
-* Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
+* Copyright (C) 2021 Microchip Technology Inc. and its subsidiaries.
 *
 * Subject to your compliance with these terms, you may use Microchip software
 * and any derivatives exclusively with Microchip products. It is your
@@ -96,16 +96,15 @@ bool MCAN1_MessageTransmitFifo(uint8_t numberOfMessage, MCAN_TX_BUFFER *txBuffer
 uint8_t MCAN1_TxFifoFreeLevelGet(void);
 bool MCAN1_TxBufferIsBusy(uint8_t bufferNumber);
 bool MCAN1_TxEventFifoRead(uint8_t numberOfTxEvent, MCAN_TX_EVENT_FIFO *txEventFifo);
-uint8_t MCAN1_TxEventFifoFillLevelGet(void);
 bool MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_NUM rxFifoNum, uint8_t numberOfMessage, MCAN_RX_BUFFER *rxBuffer);
-uint8_t MCAN1_RxFifoFillLevelGet(MCAN_RX_FIFO_NUM rxFifoNum);
 MCAN_ERROR MCAN1_ErrorGet(void);
 void MCAN1_ErrorCountGet(uint8_t *txErrorCount, uint8_t *rxErrorCount);
-bool MCAN1_InterruptGet(MCAN_INTERRUPT_MASK interruptMask);
-void MCAN1_InterruptClear(MCAN_INTERRUPT_MASK interruptMask);
 void MCAN1_MessageRAMConfigSet(uint8_t *msgRAMConfigBaseAddress);
 void MCAN1_SleepModeEnter(void);
 void MCAN1_SleepModeExit(void);
+void MCAN1_TxFifoCallbackRegister(MCAN_TX_FIFO_CALLBACK callback, uintptr_t contextHandle);
+void MCAN1_TxEventFifoCallbackRegister(MCAN_TX_EVENT_FIFO_CALLBACK callback, uintptr_t contextHandle);
+void MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_NUM rxFifoNum, MCAN_RX_FIFO_CALLBACK callback, uintptr_t contextHandle);
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
     }

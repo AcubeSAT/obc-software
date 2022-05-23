@@ -197,6 +197,34 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '80000000'}
+  - type: Boolean
+    attributes: {id: MCAN1_INT0_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: 'true'}
+  - type: Boolean
+    attributes: {id: MCAN1_INT0_INTERRUPT_ENABLE_UPDATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: String
+    attributes: {id: MCAN1_INT0_INTERRUPT_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: MCAN1_INT0_InterruptHandler}
+  - type: Boolean
+    attributes: {id: MCAN1_INT0_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: 'true'}
   - type: Integer
     attributes: {id: MLB_CLOCK_FREQUENCY}
     children:
@@ -276,6 +304,27 @@ children:
         attributes: {id: core, value: RTC_InterruptHandler}
   - type: Boolean
     attributes: {id: NVIC_2_0_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: Boolean
+    attributes: {id: NVIC_37_0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: NVIC_37_0_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: MCAN1_INT0_InterruptHandler}
+  - type: Boolean
+    attributes: {id: NVIC_37_0_HANDLER_LOCK}
     children:
     - type: Values
       children:
