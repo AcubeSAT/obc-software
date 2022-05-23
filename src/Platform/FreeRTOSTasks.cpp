@@ -8,6 +8,7 @@
 #include "Logger.hpp"
 #include "RTCHelper.hpp"
 #include "Parameters/HousekeepingService.hpp"
+#include "CANBus.hpp"
 
 
 namespace FreeRTOSTasks {
@@ -102,7 +103,19 @@ namespace FreeRTOSTasks {
     }
 
     void CANBusTransmit(void *pvParameters){
+        MCAN_TX_BUFFER* txBuffer = new MCAN_TX_BUFFER;
+
+        txBuffer->brs = 1;
+        txBuffer->fdf = 1;
+        txBuffer->id = CANBus::WRITE_ID(0x22);
+        txBuffer->dlc = CANBus::LengthToDlcGet(8);
+
+        for(uint8_t idx = 0; idx < 8; idx++){
+            txBuffer->data[idx] = idx;
+        }
+
         while(true){
+            MCAN1_MessageTransmitFifo(1, txBuffer);
             vTaskDelay(pdMS_TO_TICKS(1000));
         }
     }

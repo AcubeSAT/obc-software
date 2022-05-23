@@ -7,7 +7,6 @@
 namespace CANBus{
     static uint8_t MCAN1MessageRAM[MCAN1_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32)))__attribute__((section (".ram_nocache")));
 
-    static uint8_t txFiFo[MCAN1_TX_FIFO_BUFFER_SIZE];
     static uint8_t rxFiFo0[MCAN1_RX_FIFO0_SIZE];
 
     inline uint8_t READ_ID(uint32_t id) { return id >> 18; }
