@@ -95,15 +95,22 @@ void MCAN1_Initialize(void)
     /* Set CCE to unlock the configuration registers */
     MCAN1_REGS->MCAN_CCCR |= MCAN_CCCR_CCE_Msk;
 
+    /* Set Data Bit Timing and Prescaler Register */
+    MCAN1_REGS->MCAN_DBTP = MCAN_DBTP_DTSEG2(0) | MCAN_DBTP_DTSEG1(1) | MCAN_DBTP_DBRP(0) | MCAN_DBTP_DSJW(0);
+
     /* Set Nominal Bit timing and Prescaler Register */
     MCAN1_REGS->MCAN_NBTP  = MCAN_NBTP_NTSEG2(0) | MCAN_NBTP_NTSEG1(1) | MCAN_NBTP_NBRP(0) | MCAN_NBTP_NSJW(0);
 
+    /* Receive Buffer / FIFO Element Size Configuration Register */
+    MCAN1_REGS->MCAN_RXESC = 0UL  | MCAN_RXESC_F0DS(0UL) | MCAN_RXESC_F1DS(0UL);
+    /* Transmit Buffer/FIFO Element Size Configuration Register */
+    MCAN1_REGS->MCAN_TXESC = MCAN_TXESC_TBDS(0UL);
 
     /* Global Filter Configuration Register */
     MCAN1_REGS->MCAN_GFC = MCAN_GFC_ANFS(2) | MCAN_GFC_ANFE(2);
 
     /* Set the operation mode */
-    MCAN1_REGS->MCAN_CCCR = MCAN_CCCR_INIT_DISABLED;
+    MCAN1_REGS->MCAN_CCCR = MCAN_CCCR_INIT_DISABLED | MCAN_CCCR_FDOE_ENABLED | MCAN_CCCR_BRSE_ENABLED;
     while ((MCAN1_REGS->MCAN_CCCR & MCAN_CCCR_INIT_Msk) == MCAN_CCCR_INIT_Msk)
     {
         /* Wait for initialization complete */
@@ -438,7 +445,7 @@ MCAN_ERROR MCAN1_ErrorGet(void)
     if ((MCAN1_REGS->MCAN_CCCR & MCAN_CCCR_INIT_Msk) == MCAN_CCCR_INIT_Msk)
     {
         MCAN1_REGS->MCAN_CCCR |= MCAN_CCCR_CCE_Msk;
-        MCAN1_REGS->MCAN_CCCR = MCAN_CCCR_INIT_DISABLED;
+        MCAN1_REGS->MCAN_CCCR = MCAN_CCCR_INIT_DISABLED | MCAN_CCCR_FDOE_ENABLED | MCAN_CCCR_BRSE_ENABLED;
         while ((MCAN1_REGS->MCAN_CCCR & MCAN_CCCR_INIT_Msk) == MCAN_CCCR_INIT_Msk)
         {
             /* Wait for initialization complete */
@@ -581,7 +588,7 @@ void MCAN1_MessageRAMConfigSet(uint8_t *msgRAMConfigBaseAddress)
     (void)offset;
 
     /* Complete Message RAM Configuration by clearing MCAN CCCR Init */
-    MCAN1_REGS->MCAN_CCCR = MCAN_CCCR_INIT_DISABLED;
+    MCAN1_REGS->MCAN_CCCR = MCAN_CCCR_INIT_DISABLED | MCAN_CCCR_FDOE_ENABLED | MCAN_CCCR_BRSE_ENABLED;
     while ((MCAN1_REGS->MCAN_CCCR & MCAN_CCCR_INIT_Msk) == MCAN_CCCR_INIT_Msk)
     {
         /* Wait for configuration complete */

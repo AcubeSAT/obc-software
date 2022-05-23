@@ -4,6 +4,64 @@ attributes: {id: mcan1}
 children:
 - type: Symbols
   children:
+  - type: Integer
+    attributes: {id: CALCULATED_DATA_BITRATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: '0'}
+  - type: String
+    attributes: {id: CALCULATED_DATA_ERRORRATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: '-100.000'}
+  - type: Menu
+    attributes: {id: DATA_BIT_TIMING_CALCULATION}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: String
+    attributes: {id: DATA_TIME_QUANTA_PERIOD}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: '0.000'}
+  - type: Integer
+    attributes: {id: DBTP_DSJW}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: '0'}
+  - type: Integer
+    attributes: {id: DBTP_DTSEG1}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: '-1'}
+  - type: Integer
+    attributes: {id: DBTP_DTSEG2}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: '0'}
+  - type: Integer
+    attributes: {id: DBTP_TOTAL_TIME_QUANTA}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan1, value: '4'}
   - type: Boolean
     attributes: {id: MCAN_MATRIX_CAN_ENABLE}
     children:
@@ -11,5 +69,48 @@ children:
       children:
       - type: Dynamic
         attributes: {id: mcan1, value: 'true'}
+  - type: Combo
+    attributes: {id: MCAN_OPMODE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: CAN FD}
+  - type: KeyValueSet
+    attributes: {id: RXF0_BYTES_CFG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: RXF1_BYTES_CFG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: RX_BUFFER_BYTES_CFG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: TX_FIFO_BYTES_CFG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
 - type: ElementPosition
   attributes: {x: '598', y: '158', id: mcan1}
