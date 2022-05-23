@@ -27,6 +27,8 @@ extern "C" void main_cpp() {
                 NULL, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(FreeRTOSTasks::temperatureTask, "Temperature", 1000,
                 NULL, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(FreeRTOSTasks::CANBusTransmit, "CANBus", 2000,
+                NULL, tskIDLE_PRIORITY + 2, NULL);
     vTaskStartScheduler();
 
     while (true) {
