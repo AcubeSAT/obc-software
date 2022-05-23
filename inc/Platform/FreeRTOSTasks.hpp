@@ -44,6 +44,7 @@ namespace FreeRTOSTasks {
     */
     void temperatureTask(void *pvParameters);
 
+    void CANBusTransmit(void *pvParameters);
 }
 
 #endif //OBC_SOFTWARE_FREERTOSTASKS_HPP

@@ -101,4 +101,9 @@ namespace FreeRTOSTasks {
         }
     }
 
+    void CANBusTransmit(void *pvParameters){
+        while(true){
+            vTaskDelay(pdMS_TO_TICKS(1000));
+        }
+    }
 };
