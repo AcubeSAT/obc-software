@@ -32,7 +32,7 @@ namespace CANBus{
 
     uint8_t LengthToDlcGet(uint8_t length);
 
-    void TxFifoCallback(uintptr_t context);
+    void TxFifoCallback(uint8_t numberOfTxEvent, uintptr_t context);
 
     void RxFifo0Callback(uint8_t numberOfMessage, uintptr_t context);
 }
