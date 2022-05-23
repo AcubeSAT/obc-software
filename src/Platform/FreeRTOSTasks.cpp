@@ -103,6 +103,8 @@ namespace FreeRTOSTasks {
     }
 
     void CANBusTransmit(void *pvParameters){
+        CANBus::InitializeCANBus();
+
         MCAN_TX_BUFFER* txBuffer = new MCAN_TX_BUFFER;
 
         txBuffer->brs = 1;
