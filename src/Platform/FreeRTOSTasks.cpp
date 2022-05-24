@@ -104,7 +104,7 @@ namespace FreeRTOSTasks {
 
     void RM3100Magnetometer(void *pvParameters) {
 
-        RM3100 rm3100(1, 0b01111001, 200, PIO_PIN_PB2, PIO_PIN_PB3);
+        RM3100 rm3100(RM3100Mode, RM3100CMM, RM3100CycleCount, PIO_PIN_PB2, PIO_PIN_PB3);
         rm3100.checkREVID();
 
         while (true) {

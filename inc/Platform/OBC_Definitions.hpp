@@ -61,6 +61,12 @@ inline const uint8_t ReferenceTemperature = 25;
  */
 inline const uint16_t TypicalVoltageAt25 = 720;
 
+inline const uint8_t RM3100Mode = 1;
+
+inline const uint8_t RM3100CMM = 0b01111001;
+
+inline const uint16_t RM3100CycleCount= 200;
+
 namespace BootCounter {
     /**
      * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter
