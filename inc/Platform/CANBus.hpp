@@ -20,7 +20,7 @@ namespace CANBus{
     /**
      * Receipt Buffer for RX_FIFO0.
      */
-    volatile static uint8_t rxFiFo0[MCAN1_RX_FIFO0_SIZE];
+    static uint8_t rxFiFo0[MCAN1_RX_FIFO0_SIZE];
 
     /**
      * Conversion of an extended ID format to a standard ID.
