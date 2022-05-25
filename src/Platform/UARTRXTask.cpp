@@ -12,7 +12,7 @@ UARTRXTask::Message UARTRXTask::buffer1;
 UARTRXTask::UARTRXTask() {
     rxQueue = xQueueCreate(Capacity, sizeof(Message));
 
-    USART1_Read(&buff, 10);
+    USART1_Read(&rxBuffer, MaxMessageSize);
 
     USART1_ReadCallbackRegister([](uintptr_t object) {
         // This function is called whenever a single byte arrives
@@ -40,7 +40,6 @@ void UARTRXTask::operator()() {
             LOG_ERROR << "RX too large message";
         }
         LOG_INFO << "\r\nRECEIVED FUCKING SHITTY MESSAGE\n";
-        cobsBuffer = COBSdecode<MaxInputSize>(reinterpret_cast<uint8_t*>(buffer2.message), MaxInputSize);
 
         ECSSMessage ecss = MessageParser::parseECSSTC(reinterpret_cast<const uint8_t*>(cobsBuffer.c_str()));
 

@@ -6,41 +6,39 @@
 #include <atomic>
 #include "etl/String.hpp"
 
-
 class UARTRXTask {
 public:
-    static constexpr int MaxInputSize = 10;
+    static constexpr int MaxMessageSize = 10;
 
     void operator()();
 
     UARTRXTask();
 
     __attribute__ ((optimize("-Ofast")))
-    void ingress() {
+    void ingress() {    // todo: remove currentRXbyte
         if (currentRXbyte == 0) {
             xQueueSendToBackFromISR(rxQueue, static_cast<void *>(&buffer1), nullptr);
             currentReadLocation = 0;
             new(&(UARTRXTask::buffer1)) UARTRXTask::Message{};
         } else {
-            if (currentReadLocation == MaxInputSize) {
+            if (currentReadLocation == MaxMessageSize) {
                 overRun = true;
                 currentReadLocation = 0;
             } else {
-                memcpy(&buffer1.message, &buff, 10);
-//                buffer1.message[currentReadLocation++] = currentRXbyte;
+                memcpy(&buffer1.message, &rxBuffer, 10);
             }
         }
     }
 private:
     struct Message {
-        char message[MaxInputSize];
+        char message[MaxMessageSize];
     };
 
     static constexpr int Capacity = 10;
 
     char currentRXbyte;
     int currentReadLocation = 0;
-    uint8_t buff[10];
+    char rxBuffer[10];
 
     std::atomic<bool> overRun = false;
 
@@ -48,10 +46,9 @@ private:
 
     static Message buffer1;
     Message buffer2{};
-    etl::string<MaxInputSize> cobsBuffer;
+    etl::string<MaxMessageSize> cobsBuffer;
 };
 
 extern std::optional<UARTRXTask> uartRXtask;
-
 
 #endif //FDIR_DEMO_TEMPERATURETASK_HPP

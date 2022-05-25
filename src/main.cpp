@@ -27,22 +27,22 @@ extern "C" void main_cpp() {
     uartTask.emplace();
     uartRXtask.emplace();
 
-    xTaskCreate(vClassTask<UARTTask>, "UART_Tx", 3000, &*uartTask, tskIDLE_PRIORITY + 1, nullptr);
+//    xTaskCreate(vClassTask<UARTTask>, "UART_Tx", 3000, &*uartTask, tskIDLE_PRIORITY + 1, nullptr);
     xTaskCreate(vClassTask<UARTRXTask>, "UART_Rx", 6000, &*uartRXtask, tskIDLE_PRIORITY + 1, nullptr);
 
-    const char *taskName = "Task1";
-    xTaskCreate(FreeRTOSTasks::reportParameters, taskName, 2000,
-                NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(FreeRTOSTasks::updateParameters, "Task2", 2000,
-                &taskName, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(FreeRTOSTasks::xUartDMA, "UartDMA", 10000,
-                NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(FreeRTOSTasks::xTimeKeeping, "timeKeeping", 1000,
-                NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(FreeRTOSTasks::housekeeping, "Housekeeping", 2000,
-                NULL, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(FreeRTOSTasks::temperatureTask, "Temperature", 1000,
-                NULL, tskIDLE_PRIORITY + 2, NULL);
+//    const char *taskName = "Task1";
+//    xTaskCreate(FreeRTOSTasks::reportParameters, taskName, 2000,
+//                NULL, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreate(FreeRTOSTasks::updateParameters, "Task2", 2000,
+//                &taskName, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreate(FreeRTOSTasks::xUartDMA, "UartDMA", 10000,
+//                NULL, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreate(FreeRTOSTasks::xTimeKeeping, "timeKeeping", 1000,
+//                NULL, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreate(FreeRTOSTasks::housekeeping, "Housekeeping", 2000,
+//                NULL, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreate(FreeRTOSTasks::temperatureTask, "Temperature", 1000,
+//                NULL, tskIDLE_PRIORITY + 2, NULL);
     vTaskStartScheduler();
 
     while (true) {
