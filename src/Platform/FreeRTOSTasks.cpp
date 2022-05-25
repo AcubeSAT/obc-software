@@ -118,7 +118,7 @@ namespace FreeRTOSTasks {
             Data += " z=";
             etl::to_string(rm3100.z / rm3100.gain, Data, etl::format_spec().precision(6), true);
             Data += " magneticField=";
-            etl::to_string(rm3100.magneticField, Data, etl::format_spec().precision(9), true);
+            etl::to_string(rm3100.magneticFieldNorm, Data, etl::format_spec().precision(9), true);
             Data += "\r\n";
 
             LOG_DEBUG << Data.data();
