@@ -6,7 +6,7 @@ namespace CANBus {
     void InitializeCANBus() {
         MCAN1_MessageRAMConfigSet(MCAN1MessageRAM);
 
-        MCAN1_TxEventFifoCallbackRegister(TxFifoCallback, APP_STATE_MCAN_TRANSMIT);
+        MCAN1_TxFifoCallbackRegister(TxFifoCallback, APP_STATE_MCAN_TRANSMIT);
         MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, RxFifo0Callback, APP_STATE_MCAN_RECEIVE);
     }
 
@@ -38,7 +38,7 @@ namespace CANBus {
         return dlc;
     }
 
-    void TxFifoCallback(uint8_t numberOfTxEvent, uintptr_t context) {
+    void TxFifoCallback(uintptr_t context) {
         status = MCAN1_ErrorGet();
 
         if ((((status & MCAN_PSR_LEC_Msk) == MCAN_ERROR_NONE) ||
