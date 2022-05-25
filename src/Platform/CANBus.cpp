@@ -1,5 +1,6 @@
 #include "CANBus.hpp"
 #include "Logger.hpp"
+#include "ECSS_Definitions.hpp"
 
 namespace CANBus {
     void InitializeCANBus() {
@@ -43,7 +44,7 @@ namespace CANBus {
         if ((((status & MCAN_PSR_LEC_Msk) == MCAN_ERROR_NONE) ||
              ((status & MCAN_PSR_LEC_Msk) == MCAN_ERROR_LEC_NO_CHANGE)) &&
             static_cast<CANBus::APP_STATES>(context) == APP_STATE_MCAN_TRANSMIT) {
-            LOG_INFO << "\r\nSuccessful CAN transmission\r\n";
+            LOG_INFO << "Successful CAN transmission\r\n";
         }
     }
 
@@ -55,7 +56,28 @@ namespace CANBus {
             static_cast<CANBus::APP_STATES>(context) == APP_STATE_MCAN_RECEIVE) {
             memset(rxFiFo0, 0x00, (numberOfMessage * MCAN1_RX_FIFO0_ELEMENT_SIZE));
             if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessage, (MCAN_RX_BUFFER *) rxFiFo0))
-                LOG_INFO << "\r\nSuccessful CAN receipt\r\n";
+                printMessage(1, (MCAN_RX_BUFFER *) rxFiFo0, MCAN1_RX_FIFO0_SIZE, MCAN_RX_FIFO_0)   ;
         }
     }
+
+    void printMessage(uint8_t numberOfMessage, MCAN_RX_BUFFER *rxBuf, uint8_t rxBufLen, uint8_t rxFifoBuf) {
+        uint8_t length;
+        uint8_t msgLength;
+        uint32_t id;
+
+        auto message = String<ECSSMaxStringSize>("CAN Message: ");
+        id = rxBuf->xtd ? rxBuf->id : READ_ID(rxBuf->id);
+        msgLength = CANBus::DlcToLengthGet(rxBuf->dlc);
+        length = msgLength;
+        message.append("Message - ID : ");
+        etl::to_string(id, message, true);
+        message.append(" Length : ");
+        etl::to_string(msgLength, message, true);
+        message.append(" Message : ");
+        while (length) {
+            etl::to_string(rxBuf->data[msgLength - length--], message, true);
+        }
+        LOG_INFO << message.c_str();
+    }
+
 }
