@@ -10,7 +10,7 @@ class UpdateParametersTask : public Task {
 private:
     const uint16_t delayMs = 300;
 public:
-    void execute() override;
+    void execute();
 
     UpdateParametersTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,
                          const uint16_t delayMs) : Task(taskName, taskHandle, taskStackDepth), delayMs(delayMs) {}

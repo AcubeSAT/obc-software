@@ -10,6 +10,11 @@
 #include "FreeRTOSTasks/Task.hpp"
 #include "FreeRTOSTasks/TaskList.hpp"
 
+template<class T>
+static void vClassTask(void *pvParameters) {
+    (static_cast<T *>(pvParameters))->execute();
+}
+
 extern "C" void main_cpp() {
     using namespace TaskList;
 
@@ -17,17 +22,17 @@ extern "C" void main_cpp() {
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
-    xTaskCreate(Task::vClassTask, uartDMATask.taskName, uartDMATask.taskStackDepth,
+    xTaskCreate(vClassTask<UartDMATask>, uartDMATask.taskName, uartDMATask.taskStackDepth,
                 &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, timeKeepingTask.taskName, timeKeepingTask.taskStackDepth,
+    xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask.taskName, timeKeepingTask.taskStackDepth,
                 &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, temperatureTask.taskName, temperatureTask.taskStackDepth,
+    xTaskCreate(vClassTask<TemperatureTask>, temperatureTask.taskName, temperatureTask.taskStackDepth,
                 &temperatureTask, tskIDLE_PRIORITY + 2, NULL);
-    xTaskCreate(Task::vClassTask, reportParametersTask.taskName, reportParametersTask.taskStackDepth,
+    xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask.taskName, reportParametersTask.taskStackDepth,
                 &reportParametersTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, updateParametersTask.taskName, updateParametersTask.taskStackDepth,
+    xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask.taskName, updateParametersTask.taskStackDepth,
                 &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(Task::vClassTask, housekeepingTask.taskName, housekeepingTask.taskStackDepth,
+    xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask.taskName, housekeepingTask.taskStackDepth,
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
 
     vTaskStartScheduler();

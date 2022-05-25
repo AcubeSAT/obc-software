@@ -11,7 +11,7 @@ public:
     /**
       * @see HousekeepingService
       */
-    void execute() override;
+    void execute();
 
     HousekeepingTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth) : Task(taskName,
                                                                                                           taskHandle,

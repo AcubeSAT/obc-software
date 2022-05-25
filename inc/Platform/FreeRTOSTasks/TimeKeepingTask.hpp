@@ -7,7 +7,7 @@ class TimeKeepingTask : public Task {
 private:
     const uint16_t delayMs = 1000;
 public:
-    void execute() override;
+    void execute();
 
     /**
      * Sets the year base, used to acquire the current time from a tm structure.

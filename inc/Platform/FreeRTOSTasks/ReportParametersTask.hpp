@@ -12,7 +12,7 @@ private:
     const uint16_t numberOfIDs = 11;
     const uint16_t delayMs = 1000;
 public:
-    void execute() override;
+    void execute();
 
     ReportParametersTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,
                          const uint16_t numberOfIDs,
