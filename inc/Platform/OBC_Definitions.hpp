@@ -61,10 +61,19 @@ inline const uint8_t ReferenceTemperature = 25;
  */
 inline const uint16_t TypicalVoltageAt25 = 720;
 
+/**
+ * This variable is used to set the mode, 1 for Continuous Measurement Mode and 0 for Single Measurement Mode.
+ */
 inline const uint8_t RM3100Mode = 1;
 
+/**
+ * This variable is the byte which sets the Continuous Measurement Mode.
+ */
 inline const uint8_t RM3100CMM = 0b01111001;
 
+/**
+ * This is a two bytes variable which contain the cycleCount.
+ */
 inline const uint16_t RM3100CycleCount= 200;
 
 namespace BootCounter {
