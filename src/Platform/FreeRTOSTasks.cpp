@@ -109,7 +109,7 @@ namespace FreeRTOSTasks {
 
         txBuffer->brs = 1;
         txBuffer->fdf = 1;
-        txBuffer->id = CANBus::WRITE_ID(0x22);
+        txBuffer->id = CANBus::WRITE_ID(CANBus::obcID);
         txBuffer->dlc = CANBus::LengthToDlcGet(8);
 
         for(uint8_t idx = 0; idx < 8; idx++){

@@ -16,7 +16,7 @@ namespace CANBus {
     }
 
     uint8_t LengthToDlcGet(uint8_t length) {
-        uint8_t dlc = 0;
+        uint8_t dlc;
 
         if (length <= 8U) {
             dlc = length;
@@ -39,7 +39,7 @@ namespace CANBus {
     }
 
     void TxFifoCallback(uintptr_t context) {
-        status = MCAN1_ErrorGet();
+        uint32_t status = MCAN1_ErrorGet();
 
         if ((((status & MCAN_PSR_LEC_Msk) == MCAN_ERROR_NONE) ||
              ((status & MCAN_PSR_LEC_Msk) == MCAN_ERROR_LEC_NO_CHANGE)) &&
@@ -48,18 +48,18 @@ namespace CANBus {
         }
     }
 
-    void RxFifo0Callback(uint8_t numberOfMessage, uintptr_t context) {
-        status = MCAN1_ErrorGet();
+    void RxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
+        uint32_t status = MCAN1_ErrorGet();
 
         if ((((status & MCAN_PSR_LEC_Msk) == MCAN_ERROR_NONE) ||
              ((status & MCAN_PSR_LEC_Msk) == MCAN_ERROR_LEC_NO_CHANGE)) &&
             static_cast<CANBus::APP_STATES>(context) == APP_STATE_MCAN_RECEIVE) {
-            if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessage, (MCAN_RX_BUFFER *) rxFiFo0))
-                printMessage(1, (MCAN_RX_BUFFER *) rxFiFo0, MCAN1_RX_FIFO0_SIZE, MCAN_RX_FIFO_0)   ;
+            if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessages, (MCAN_RX_BUFFER *) rxFiFo0))
+                printMessage((MCAN_RX_BUFFER *) rxFiFo0);
         }
     }
 
-    void printMessage(uint8_t numberOfMessage, MCAN_RX_BUFFER *rxBuf, uint8_t rxBufLen, uint8_t rxFifoBuf) {
+    void printMessage(MCAN_RX_BUFFER *rxBuf) {
         uint8_t length;
         uint8_t msgLength;
         uint32_t id;
