@@ -54,7 +54,6 @@ namespace CANBus {
         if ((((status & MCAN_PSR_LEC_Msk) == MCAN_ERROR_NONE) ||
              ((status & MCAN_PSR_LEC_Msk) == MCAN_ERROR_LEC_NO_CHANGE)) &&
             static_cast<CANBus::APP_STATES>(context) == APP_STATE_MCAN_RECEIVE) {
-            memset(rxFiFo0, 0x00, (numberOfMessage * MCAN1_RX_FIFO0_ELEMENT_SIZE));
             if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessage, (MCAN_RX_BUFFER *) rxFiFo0))
                 printMessage(1, (MCAN_RX_BUFFER *) rxFiFo0, MCAN1_RX_FIFO0_SIZE, MCAN_RX_FIFO_0)   ;
         }

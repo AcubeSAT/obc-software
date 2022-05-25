@@ -105,7 +105,7 @@ namespace FreeRTOSTasks {
     void CANBusTransmit(void *pvParameters){
         CANBus::InitializeCANBus();
 
-        MCAN_TX_BUFFER* txBuffer = new MCAN_TX_BUFFER;
+        auto txBuffer = (MCAN_TX_BUFFER *) CANBus::txFiFo;
 
         txBuffer->brs = 1;
         txBuffer->fdf = 1;
