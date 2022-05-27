@@ -34,7 +34,8 @@ extern "C" void main_cpp() {
                 &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask.taskName, housekeepingTask.taskStackDepth,
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
-
+    xTaskCreate(vClassTask<TestServiceTask>, testServiceTask.taskName, testServiceTask.taskStackDepth,
+                &testServiceTask, tskIDLE_PRIORITY + 1, NULL);
     vTaskStartScheduler();
 
     while (true) {
