@@ -16,7 +16,7 @@ namespace TaskList {
     static TemperatureTask temperatureTask = TemperatureTask("TemperatureSensor", NULL, 1000, 7000);
     static ReportParametersTask reportParametersTask = ReportParametersTask("ParameterReporting", NULL, 1000, 11, 1000);
     static UpdateParametersTask updateParametersTask = UpdateParametersTask("ParameterUpdating", NULL, 2000, 3000);
-    static UARTRXTask uartRXTask = UARTRXTask();
+//    static UARTRXTask uartRXTask = UARTRXTask();
 }
 
 #endif //OBC_SOFTWARE_TASKLIST_H

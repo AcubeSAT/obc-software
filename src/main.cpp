@@ -22,7 +22,9 @@ extern "C" void main_cpp() {
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
-    xTaskCreate(vClassTask<UARTRXTask>, "UART_Rx", 6000, &uartRXTask, tskIDLE_PRIORITY + 1, nullptr);
+    uartRXtask.emplace();
+
+    xTaskCreate(vClassTask<UARTRXTask>, "UART_Rx", 6000, &*uartRXtask, tskIDLE_PRIORITY + 1, nullptr);
 
 //    xTaskCreate(vClassTask<UartDMATask>, uartDMATask.taskName, uartDMATask.taskStackDepth,
 //                &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
@@ -39,10 +41,13 @@ extern "C" void main_cpp() {
 
     vTaskStartScheduler();
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "EndlessLoop"
+
     while (true) {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
         SYS_Tasks();
     }
-
+#pragma clang diagnostic pop
     return;
 }
