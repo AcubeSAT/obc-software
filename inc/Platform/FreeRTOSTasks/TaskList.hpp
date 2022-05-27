@@ -10,13 +10,13 @@
 #include "UARTRXTask.hpp"
 
 namespace TaskList {
-    static UartDMATask uartDMATask = UartDMATask("XUartDMA", NULL, 15000, 500);
-    static TimeKeepingTask timeKeepingTask = TimeKeepingTask("TimeKeeping", NULL, 1000, 1100);
-    static HousekeepingTask housekeepingTask = HousekeepingTask("Housekeeping", NULL, 2000);
-    static TemperatureTask temperatureTask = TemperatureTask("TemperatureSensor", NULL, 1000, 7000);
-    static ReportParametersTask reportParametersTask = ReportParametersTask("ParameterReporting", NULL, 1000, 11, 1000);
-    static UpdateParametersTask updateParametersTask = UpdateParametersTask("ParameterUpdating", NULL, 2000, 3000);
-//    static UARTRXTask uartRXTask = UARTRXTask();
+    static std::optional<UartDMATask> uartDMATask;
+    static std::optional<TimeKeepingTask> timeKeepingTask;
+    static std::optional<HousekeepingTask> housekeepingTask;
+    static std::optional<TemperatureTask> temperatureTask;
+    static std::optional<ReportParametersTask> reportParametersTask;
+    static std::optional<UpdateParametersTask> updateParametersTask;
+    static std::optional<UARTRXTask> uartRXtask;
 }
 
 #endif //OBC_SOFTWARE_TASKLIST_H

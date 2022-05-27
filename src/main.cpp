@@ -7,12 +7,11 @@
 #include "OBC_Definitions.hpp"
 #include "BootCounter.hpp"
 #include "SEGGER_RTT.h"
-#include "FreeRTOSTasks/Task.hpp"
 #include "FreeRTOSTasks/TaskList.hpp"
 
 template<class T>
 static void vClassTask(void *pvParameters) {
-    (static_cast<T *>(pvParameters))->operator()();
+    (static_cast<T *>(pvParameters))->execute();
 }
 
 extern "C" void main_cpp() {
@@ -23,21 +22,27 @@ extern "C" void main_cpp() {
     BootCounter::incrementBootCounter();
 
     uartRXtask.emplace();
+    uartDMATask.emplace();
+    timeKeepingTask.emplace();
+    housekeepingTask.emplace();
+    temperatureTask.emplace();
+    reportParametersTask.emplace();
+    updateParametersTask.emplace();
 
-    xTaskCreate(vClassTask<UARTRXTask>, "UART_Rx", 6000, &*uartRXtask, tskIDLE_PRIORITY + 1, nullptr);
-
-//    xTaskCreate(vClassTask<UartDMATask>, uartDMATask.taskName, uartDMATask.taskStackDepth,
-//                &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
-//    xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask.taskName, timeKeepingTask.taskStackDepth,
-//                &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
-//    xTaskCreate(vClassTask<TemperatureTask>, temperatureTask.taskName, temperatureTask.taskStackDepth,
-//                &temperatureTask, tskIDLE_PRIORITY + 2, NULL);
-//    xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask.taskName, reportParametersTask.taskStackDepth,
-//                &reportParametersTask, tskIDLE_PRIORITY + 1, NULL);
-//    xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask.taskName, updateParametersTask.taskStackDepth,
-//                &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
-//    xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask.taskName, housekeepingTask.taskStackDepth,
-//                &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(vClassTask<UARTRXTask>, uartRXtask->taskName, uartRXtask->taskStackDepth, &uartRXtask,
+                tskIDLE_PRIORITY + 3, nullptr);
+    xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
+                &uartDMATask, tskIDLE_PRIORITY + 1, nullptr);
+    xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
+                &timeKeepingTask, tskIDLE_PRIORITY + 4, nullptr);
+    xTaskCreate(vClassTask<TemperatureTask>, temperatureTask->taskName, temperatureTask->taskStackDepth,
+                &temperatureTask, tskIDLE_PRIORITY + 1, nullptr);
+    xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask->taskName, reportParametersTask->taskStackDepth,
+                &reportParametersTask, tskIDLE_PRIORITY + 1, nullptr);
+    xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask->taskName, updateParametersTask->taskStackDepth,
+                &updateParametersTask, tskIDLE_PRIORITY + 1, nullptr);
+    xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
+                &housekeepingTask, tskIDLE_PRIORITY + 1, nullptr);
 
     vTaskStartScheduler();
 
@@ -49,5 +54,6 @@ extern "C" void main_cpp() {
         SYS_Tasks();
     }
 #pragma clang diagnostic pop
+
     return;
 }

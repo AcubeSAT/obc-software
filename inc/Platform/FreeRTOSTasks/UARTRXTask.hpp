@@ -8,9 +8,23 @@
 
 class UARTRXTask {
 public:
+    /**
+     * Name of each task.
+     */
+    const char *taskName = "UartRX";
+    /**
+     * Handle of each FreeRTOS task.
+     */
+    TaskHandle_t taskHandle = NULL;
+    /**
+     * The stack depth of each FreeRTOS task, defined as the number of words the stack can hold. For example, in an
+     * architecture with 4 byte stack, assigning 100 to the usStackDepth argument, will allocate 4x100=400 bytes.
+     */
+    const uint16_t taskStackDepth = 10000;
+
     static constexpr int MaxInputSize = 100;
 
-    void operator()();
+    void execute();
 
     UARTRXTask();
 
@@ -48,7 +62,7 @@ private:
     etl::string<MaxInputSize> cobsBuffer;
 };
 
-extern std::optional<UARTRXTask> uartRXtask;
+//extern std::optional<UARTRXTask> uartRXtask;
 
 
 #endif //FDIR_DEMO_TEMPERATURETASK_HPP

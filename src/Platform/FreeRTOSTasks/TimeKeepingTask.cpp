@@ -9,6 +9,7 @@ void TimeKeepingTask::execute() {
         RTC_TimeGet(&dateTime);
         setTimePlatformParameters(dateTime);
         printOnBoardTime();
+        LOG_DEBUG << "\n\rfefdsdwsedewe";
         vTaskDelay(pdMS_TO_TICKS(delayMs));
     }
 }
