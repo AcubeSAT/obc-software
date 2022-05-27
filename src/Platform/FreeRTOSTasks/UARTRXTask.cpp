@@ -1,8 +1,9 @@
 #include <optional>
-#include "UARTRXTask.hpp"
+#include "FreeRTOSTasks/UARTRXTask.hpp"
 #include <Logger.hpp>
 #include <definitions.h>
 #include <MessageParser.hpp>
+#include <Helpers/COBS.hpp>
 
 using ECSSMessage = Message;
 
@@ -12,7 +13,7 @@ UARTRXTask::Message UARTRXTask::buffer1;
 UARTRXTask::UARTRXTask() {
     rxQueue = xQueueCreate(Capacity, sizeof(Message));
 
-    USART1_Read(&rxBuffer, MaxMessageSize);
+    USART1_Read(&currentRXbyte, 1);
 
     USART1_ReadCallbackRegister([](uintptr_t object) {
         // This function is called whenever a single byte arrives
@@ -23,7 +24,6 @@ UARTRXTask::UARTRXTask() {
             // Some error occurred
         } else {
             rxTask->ingress();
-            USART1_Write(&buffer1, sizeof(buffer1));
         }
 
         // Initiate next read
@@ -39,7 +39,8 @@ void UARTRXTask::operator()() {
             overRun = false;
             LOG_ERROR << "RX too large message";
         }
-        LOG_INFO << "\r\nRECEIVED FUCKING SHITTY MESSAGE\n";
+
+        cobsBuffer = COBSdecode<MaxInputSize>(reinterpret_cast<uint8_t*>(buffer2.message), MaxInputSize);
 
         ECSSMessage ecss = MessageParser::parseECSSTC(reinterpret_cast<const uint8_t*>(cobsBuffer.c_str()));
 
@@ -48,5 +49,3 @@ void UARTRXTask::operator()() {
         MessageParser::execute(ecss);
     }
 }
-
-

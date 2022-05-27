@@ -8,37 +8,36 @@
 
 class UARTRXTask {
 public:
-    static constexpr int MaxMessageSize = 10;
+    static constexpr int MaxInputSize = 100;
 
     void operator()();
 
     UARTRXTask();
 
     __attribute__ ((optimize("-Ofast")))
-    void ingress() {    // todo: remove currentRXbyte
+    void ingress() {
         if (currentRXbyte == 0) {
             xQueueSendToBackFromISR(rxQueue, static_cast<void *>(&buffer1), nullptr);
             currentReadLocation = 0;
             new(&(UARTRXTask::buffer1)) UARTRXTask::Message{};
         } else {
-            if (currentReadLocation == MaxMessageSize) {
+            if (currentReadLocation == MaxInputSize) {
                 overRun = true;
                 currentReadLocation = 0;
             } else {
-                memcpy(&buffer1.message, &rxBuffer, 10);
+                buffer1.message[currentReadLocation++] = currentRXbyte;
             }
         }
     }
 private:
     struct Message {
-        char message[MaxMessageSize];
+        char message[MaxInputSize];
     };
 
     static constexpr int Capacity = 10;
 
     char currentRXbyte;
     int currentReadLocation = 0;
-    char rxBuffer[10];
 
     std::atomic<bool> overRun = false;
 
@@ -46,9 +45,10 @@ private:
 
     static Message buffer1;
     Message buffer2{};
-    etl::string<MaxMessageSize> cobsBuffer;
+    etl::string<MaxInputSize> cobsBuffer;
 };
 
 extern std::optional<UARTRXTask> uartRXtask;
+
 
 #endif //FDIR_DEMO_TEMPERATURETASK_HPP

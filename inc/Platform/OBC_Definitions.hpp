@@ -14,7 +14,7 @@
  * A switch to control whether the Logger sends its messages over RTT or over UART0
  * 1 is set for RTT, 0 for USART1
  */
-inline const bool PreferRTT = 1;
+inline const bool PreferRTT = 0;
 
 /**
  * Maximum string size for a LogLevel is 9 characters long
@@ -30,11 +30,6 @@ inline const uint8_t MaxTickCountStringSize = 10;
  * Maximum size for a string representation of a service or message type identifier
  */
 inline const uint8_t MaxTypeIDStringSize = 2;
-/**
- * The number of words to allocate for use as the task's stack.
- * @todo in the future after detailed analysis, optimized task stack depths will be evaluated for each task.
- */
-inline const uint16_t FreeRTOSTaskStackDepth = 2000;
 
 /**
  * The maximum code number an analog signal can be converted into by the ADC of the AFEC peripheral with 12-bit resolution
