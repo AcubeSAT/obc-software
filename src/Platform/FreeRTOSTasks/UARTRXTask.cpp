@@ -6,7 +6,7 @@
 #include <Helpers/COBS.hpp>
 
 using ECSSMessage = Message;
-UARTRXTask::Message UARTRXTask::buffer1;
+UARTRXTask::Buffer UARTRXTask::buffer1;
 
 UARTRXTask::UARTRXTask() {
     rxQueue = xQueueCreate(Capacity, sizeof(Message));
@@ -16,7 +16,7 @@ UARTRXTask::UARTRXTask() {
     USART1_ReadCallbackRegister([](uintptr_t object) {
         // This function is called whenever a single byte arrives
 
-        auto rxTask = reinterpret_cast<UARTRXTask*>(object); // Work-around through library API to pass object
+        auto rxTask = reinterpret_cast<UARTRXTask *>(object); // Work-around through library API to pass object
 
         if (USART1_ReadCountGet() == 0) {
             // Some error occurred
@@ -31,18 +31,22 @@ UARTRXTask::UARTRXTask() {
 
 void UARTRXTask::execute() {
     while (true) {
-        xQueueReceive(rxQueue, static_cast<void*>(&buffer2), portMAX_DELAY);
+        xQueueReceive(rxQueue, static_cast<void *>(&buffer2), portMAX_DELAY);
 
         if (overRun) {
             overRun = false;
             LOG_ERROR << "RX too large message";
         }
 
-        cobsBuffer = COBSdecode<MaxInputSize>(reinterpret_cast<uint8_t*>(buffer2.message), MaxInputSize);
+        // Create a TC message and execute it.
+        Message mess(buffer1.message[1], buffer1.message[2], Message::TC, 1);
+        MessageParser::execute(mess);
 
-        ECSSMessage ecss = MessageParser::parseECSSTC(reinterpret_cast<const uint8_t*>(cobsBuffer.c_str()));
+//        cobsBuffer = COBSdecode<MaxInputSize>(reinterpret_cast<uint8_t*>(buffer2.message), MaxInputSize);
 
-        LOG_INFO << "Received new [" << ecss.serviceType << "," << ecss.messageType << "] TC";
+//        ECSSMessage ecss = MessageParser::parseECSSTC(reinterpret_cast<const uint8_t*>(cobsBuffer.c_str()));
+//
+//        LOG_INFO << "Received new [" << ecss.serviceType << "," << ecss.messageType << "] TC";
 
 //        MessageParser::execute(ecss);
     }

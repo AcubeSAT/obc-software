@@ -737,7 +737,7 @@ static void prvInitialiseNewQueue( const UBaseType_t uxQueueLength, const UBaseT
 #endif /* ( ( configUSE_COUNTING_SEMAPHORES == 1 ) && ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) ) */
 /*-----------------------------------------------------------*/
 
-BaseType_t xQueueGenericSend( QueueHandle_t xQueue, const void * const pvItemToQueue, TickType_t xTicksToWait, const BaseType_t xCopyPosition )
+BaseType_t xQueueGenericSend(QueueHandle_t xQueue, const void * const pvItemToQueue, unsigned long xTicksToWait, const BaseType_t xCopyPosition )
 {
 BaseType_t xEntryTimeSet = pdFALSE, xYieldRequired;
 TimeOut_t xTimeOut;
