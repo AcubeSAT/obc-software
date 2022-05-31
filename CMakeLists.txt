@@ -16,7 +16,7 @@ set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
 set(CMAKE_OBJDUMP arm-none-eabi-objdump)
 set(SIZE arm-none-eabi-size)
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/lib/FreeRTOS/config/default/ATSAMV71Q21B.ld)
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld)
 
 SET(FPU_FLAGS "-mfloat-abi=hard -mfpu=fpv5-d16")
 add_definitions(-DARM_MATH_CM7 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1)
