@@ -5,12 +5,11 @@
 
 class CANApplication {
     enum BusID : uint8_t {
-        CAN_MAIN_BUS = 0,
-        CAN_REDUNDANT_BUS = 1
+        CAN_MAIN_BUS = 0, CAN_REDUNDANT_BUS = 1
     };
-
     static inline BusID currentBus = CAN_MAIN_BUS;
 
+public:
     static const uint8_t pingDataPacket = 0x30;
 
     static const uint8_t pongDataPacket = 0x31;
@@ -23,7 +22,7 @@ class CANApplication {
         return nodeID + 0x400;
     }
 
-    static inline uint8_t getBusSwitchoverData(){
+    static inline uint8_t getBusSwitchoverData() {
         return currentBus ? 1 : 0;
     }
 
@@ -31,7 +30,11 @@ class CANApplication {
         return nodeID + 0x200;
     }
 
+    static inline bool isTPMessage(const uint8_t data[8]) {
+        return (((data[0] >> 4) == 0b0111));
+    }
 
+    static void decodeTPMessage(const uint8_t data[8]);
 };
 
 
