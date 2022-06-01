@@ -34,7 +34,9 @@ public:
 
     UARTRXTask();
 
-    __attribute__ ((optimize("-Ofast")))
+    /**
+     * Stores the received bytes into the buffer and updates the queue when the whole message is received.
+     */
     void ingress() {
         if (currentRXbyte == 0) {
             xQueueSendToBackFromISR(rxQueue, static_cast<void *>(&UartQueueInBuffer), nullptr);
