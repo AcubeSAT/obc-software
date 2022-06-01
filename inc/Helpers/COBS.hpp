@@ -1,5 +1,5 @@
-#ifndef FDIR_DEMO_COBS_HPP
-#define FDIR_DEMO_COBS_HPP
+#ifndef OBC_SOFTWARE_COBS_HPP
+#define OBC_SOFTWARE_COBS_HPP
 
 #include <etl/cstring.h>
 #include "lib/cobs-c/cobs.h"

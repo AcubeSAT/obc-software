@@ -8,7 +8,12 @@
 #include "lib/ecss-services/lib/logger/inc/Logger.hpp"
 #include "Message.hpp"
 #include "MessageParser.hpp"
+#include "OBC_Definitions.hpp"
 
+/**
+ * This task is responsible for receiving incoming TC messages from UART, and executing them.
+ * @author <Kanavouras Konstantinos>
+ */
 class UARTRXTask {
 public:
     /**
@@ -25,8 +30,6 @@ public:
      */
     const uint16_t taskStackDepth = 1000;
 
-    static constexpr int MaxInputSize = 100;
-
     void execute();
 
     UARTRXTask();
@@ -34,36 +37,53 @@ public:
     __attribute__ ((optimize("-Ofast")))
     void ingress() {
         if (currentRXbyte == 0) {
-            xQueueSendToBackFromISR(rxQueue, static_cast<void *>(&buffer1), nullptr);
+            xQueueSendToBackFromISR(rxQueue, static_cast<void *>(&UartQueueInBuffer), nullptr);
             currentReadLocation = 0;
-            new(&(UARTRXTask::buffer1)) UARTRXTask::Buffer{};
+            new(&(UARTRXTask::UartQueueInBuffer)) UARTRXTask::Buffer{};
         } else {
-            if (currentReadLocation == MaxInputSize) {
-                overRun = true;
+            if (currentReadLocation == UartRXBufferSize) {
+                overrun = true;
                 currentReadLocation = 0;
             } else {
-                buffer1.message[currentReadLocation++] = currentRXbyte;
+                UartQueueInBuffer.message[currentReadLocation++] = currentRXbyte;
             }
         }
     }
 
 private:
     struct Buffer {
-        char message[MaxInputSize];
+        char message[UartRXBufferSize];
     };
 
-    static constexpr int Capacity = 10;
-
+    /**
+     * The byte currently being received.
+     */
     char currentRXbyte;
+    /**
+     * Pointer to the location of the buffer, to write the next byte, when received.
+     */
     int currentReadLocation = 0;
-
-    std::atomic<bool> overRun = false;
-
+    /**
+     * Returns true when the UartRXBuffer is full.
+     */
+    std::atomic<bool> overrun = false;
+    /**
+     * Used for storing the received data as soon as a full message has been received.
+     */
     QueueHandle_t rxQueue;
-
-    static Buffer buffer1;
-    Buffer buffer2{};
-    etl::string<MaxInputSize> cobsBuffer;
+    /**
+     * Stores the incoming bytes, directly after their reception. When full, the whole message is transferred into the
+     * queue.
+     */
+    static Buffer UartQueueInBuffer;
+    /**
+     * Gets the received data from the queue.
+     */
+    Buffer UartQueueOutBuffer{};
+    /**
+     *
+     */
+    etl::string<UartRXBufferSize> cobsDecodedMessage;
 };
 
 #endif //FDIR_DEMO_TEMPERATURETASK_HPP

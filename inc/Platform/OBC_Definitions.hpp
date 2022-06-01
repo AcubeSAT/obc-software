@@ -56,6 +56,18 @@ inline const uint8_t ReferenceTemperature = 25;
  */
 inline const uint16_t TypicalVoltageAt25 = 720;
 
+/**
+ * The size of the receiving task's buffer. Should be able to fit the maximum message size.
+ * @see UARTRXTask.hpp
+ */
+inline static constexpr uint16_t UartRXBufferSize = 100;
+
+/**
+ * The length of the queue, used by the uart receiver task to store the received message.
+ * @see UARTRXTask.hpp
+ */
+static constexpr uint16_t UartRXQueueLength = 10;
+
 namespace BootCounter {
     /**
      * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter
