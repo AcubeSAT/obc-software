@@ -22,14 +22,14 @@ namespace PlatformParameters {
         OBCSystick = 329
     };
 
-     // Parameters used for testing
+    // Parameters used for testing
     inline Parameter<uint16_t> onBoardYear(2022);
     inline Parameter<uint8_t> onBoardMonth(1);
     inline Parameter<uint8_t> onBoardDay(1);
     inline Parameter<uint8_t> onBoardHour(0);
     inline Parameter<uint8_t> onBoardMinute(0);
     inline Parameter<uint8_t> onBoardSecond(0);
-    inline Parameter<uint16_t> reportParametersUnusedStack(FreeRTOSTaskStackDepth);
+    inline Parameter<uint16_t> reportParametersUnusedStack(0);
     inline Parameter<uint16_t> availableHeap(0);
 
     // OBDH parameters
