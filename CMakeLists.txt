@@ -36,7 +36,7 @@ add_link_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu
 include_directories(.)
 include_directories(inc)
 include_directories(inc/Platform)
-include_directories(inc/Platform/FreeRTOSTasks)
+include_directories(inc/FreeRTOSTasks)
 include_directories(inc/Platform/Parameters)
 include_directories(src)
 include_directories(src/config)
