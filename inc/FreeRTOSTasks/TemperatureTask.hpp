@@ -12,7 +12,7 @@ private:
 public:
     void execute();
 
-    TemperatureTask() : Task("TemperatureSensor", nullptr, 1000){}
+    TemperatureTask() : Task("TemperatureSensor", nullptr, 1000) {}
 };
 
 #endif

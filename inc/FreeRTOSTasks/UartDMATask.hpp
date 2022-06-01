@@ -13,7 +13,7 @@ private:
 public:
     void execute();
 
-    UartDMATask() : Task("UartDMA", nullptr, 15000){}
+    UartDMATask() : Task("UartDMA", nullptr, 15000) {}
 };
 
 #endif
