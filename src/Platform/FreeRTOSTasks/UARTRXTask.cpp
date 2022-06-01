@@ -14,9 +14,7 @@ UARTRXTask::UARTRXTask() {
     USART1_Read(&currentRXbyte, 1);
 
     USART1_ReadCallbackRegister([](uintptr_t object) {
-        // This function is called whenever a single byte arrives
-
-        auto rxTask = reinterpret_cast<UARTRXTask *>(object); // Work-around through library API to pass object
+        auto rxTask = reinterpret_cast<UARTRXTask *>(object);
 
         if (USART1_ReadCountGet() == 0) {
             ErrorHandler::reportInternalError(ErrorHandler::InternalErrorType::UsartFailedRead);
@@ -38,12 +36,12 @@ void UARTRXTask::execute() {
         }
 
         // Create a TC message and execute it.
-        Message mess(UartQueueInBuffer.message[1], UartQueueInBuffer.message[2], Message::TC, 1);
-        MessageParser::execute(mess);
+//        Message mess(UartQueueInBuffer.message[1], UartQueueInBuffer.message[2], Message::TC, 1);
+//        MessageParser::execute(mess);
 
-//        cobsDecodedMessage = COBSdecode<MaxInputSize>(reinterpret_cast<uint8_t*>(buffer2.message), MaxInputSize);
+        cobsDecodedMessage = COBSdecode<MaxInputSize>(reinterpret_cast<uint8_t*>(UartQueueOutBuffer.message), MaxInputSize);
 
-        ECSSMessage ecss = MessageParser::parseECSSTC(reinterpret_cast<const uint8_t*>(cobsDecodedMessage.c_str()));
+//        ECSSMessage ecss = MessageParser::parseECSSTC(reinterpret_cast<const uint8_t*>(cobsDecodedMessage.c_str()));
 
 //        MessageParser::execute(ecss);
     }

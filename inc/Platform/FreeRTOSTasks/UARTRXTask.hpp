@@ -83,7 +83,7 @@ private:
      */
     Buffer UartQueueOutBuffer{};
     /**
-     *
+     * The buffer containing the decoded (COBS) message.
      */
     etl::string<UartRXBufferSize> cobsDecodedMessage;
 };
