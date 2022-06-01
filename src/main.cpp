@@ -32,18 +32,18 @@ extern "C" void main_cpp() {
 
     xTaskCreate(vClassTask<UARTRXTask>, uartRXtask->taskName, uartRXtask->taskStackDepth, &uartRXtask,
                 tskIDLE_PRIORITY + 1, nullptr);
-    xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
-                &uartDMATask, tskIDLE_PRIORITY + 1, nullptr);
-    xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
-                &timeKeepingTask, tskIDLE_PRIORITY + 2, nullptr);
-    xTaskCreate(vClassTask<TemperatureTask>, temperatureTask->taskName, temperatureTask->taskStackDepth,
-                &temperatureTask, tskIDLE_PRIORITY + 1, nullptr);
-    xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask->taskName, reportParametersTask->taskStackDepth,
-                &reportParametersTask, tskIDLE_PRIORITY + 1, nullptr);
-    xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask->taskName, updateParametersTask->taskStackDepth,
-                &updateParametersTask, tskIDLE_PRIORITY + 1, nullptr);
-    xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
-                &housekeepingTask, tskIDLE_PRIORITY + 1, nullptr);
+//    xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
+//                &uartDMATask, tskIDLE_PRIORITY + 1, nullptr);
+//    xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
+//                &timeKeepingTask, tskIDLE_PRIORITY + 2, nullptr);
+//    xTaskCreate(vClassTask<TemperatureTask>, temperatureTask->taskName, temperatureTask->taskStackDepth,
+//                &temperatureTask, tskIDLE_PRIORITY + 1, nullptr);
+//    xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask->taskName, reportParametersTask->taskStackDepth,
+//                &reportParametersTask, tskIDLE_PRIORITY + 1, nullptr);
+//    xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask->taskName, updateParametersTask->taskStackDepth,
+//                &updateParametersTask, tskIDLE_PRIORITY + 1, nullptr);
+//    xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
+//                &housekeepingTask, tskIDLE_PRIORITY + 1, nullptr);
 
     vTaskStartScheduler();
 
