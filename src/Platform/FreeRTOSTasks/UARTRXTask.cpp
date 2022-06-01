@@ -43,7 +43,7 @@ void UARTRXTask::execute() {
 
 //        cobsDecodedMessage = COBSdecode<MaxInputSize>(reinterpret_cast<uint8_t*>(buffer2.message), MaxInputSize);
 
-//        ECSSMessage ecss = MessageParser::parseECSSTC(reinterpret_cast<const uint8_t*>(cobsDecodedMessage.c_str()));
+        ECSSMessage ecss = MessageParser::parseECSSTC(reinterpret_cast<const uint8_t*>(cobsDecodedMessage.c_str()));
 
 //        MessageParser::execute(ecss);
     }

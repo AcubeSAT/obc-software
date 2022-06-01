@@ -19,7 +19,7 @@ public:
     /**
      * Name of each task.
      */
-    const char *taskName = "UartRX";
+    const char *taskName = "UARTRX";
     /**
      * Handle of each FreeRTOS task.
      */

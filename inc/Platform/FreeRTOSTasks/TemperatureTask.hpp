@@ -19,7 +19,7 @@ public:
     /**
      * Name of each task.
      */
-    const char *taskName = "TemperatureSensor";
+    const char *taskName = "TemperatureReading";
     /**
      * Handle of each FreeRTOS task.
      */
