@@ -22,8 +22,8 @@ extern "C" void main_cpp() {
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
-//    xTaskCreate(FreeRTOSTasks::timeBasedScheduling, "aaaaaaTemperature", 2000,
-//                NULL, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(vClassTask<TimeBasedSchedulingTask>, timeBasedSchedulingTask.taskName, timeBasedSchedulingTask.taskStackDepth,
+                NULL, tskIDLE_PRIORITY + 2, NULL);
     xTaskCreate(vClassTask<UartDMATask>, uartDMATask.taskName, uartDMATask.taskStackDepth,
                 &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask.taskName, timeKeepingTask.taskStackDepth,
