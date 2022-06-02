@@ -64,7 +64,7 @@ inline const uint8_t RM3100Mode = 1;
 /**
  * This variable is the byte which sets the Continuous Measurement Mode.
  */
-inline const uint8_t RM3100CMM = 0b01111001;
+inline const uint8_t RM3100triggerDRDY = 0b10;
 
 /**
  * This is a two bytes variable which contain the cycleCount.
