@@ -62,12 +62,12 @@ inline const uint16_t TypicalVoltageAt25 = 720;
 inline const uint8_t RM3100Mode = 1;
 
 /**
- * This variable is the byte which sets the Continuous Measurement Mode.
+ * This variable is used to trigger DRDY pin according to table 5-3 of RMM3100 datasheet.
  */
 inline const uint8_t RM3100triggerDRDY = 0b10;
 
 /**
- * This is a two bytes variable which contain the cycleCount.
+ * The number of sensor oscillation cycles that will be counted during a measurement sequence, where 200 is the default value.
  */
 inline const uint16_t RM3100CycleCount= 200;
 

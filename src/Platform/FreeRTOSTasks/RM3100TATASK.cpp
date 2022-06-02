@@ -22,7 +22,6 @@ void RM3100Task::printData(RM3100 rm3100) {
     etl::to_string(rm3100.getZ() / rm3100.getGain(), log, etl::format_spec().precision(6), true);
     log += " magneticField=";
     etl::to_string(rm3100.getMagneticFieldNorm(), log, etl::format_spec().precision(9), true);
-    log += "\r\n";
 
     LOG_DEBUG << log.data();
 }
