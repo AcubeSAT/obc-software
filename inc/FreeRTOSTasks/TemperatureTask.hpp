@@ -12,8 +12,7 @@ private:
 public:
     void execute();
 
-    TemperatureTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,
-                    const uint16_t delayMs) : Task(taskName, taskHandle, taskStackDepth), delayMs(delayMs) {}
+    TemperatureTask() : Task("TemperatureSensor", nullptr, 1000) {}
 };
 
 #endif
