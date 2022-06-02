@@ -1,11 +1,11 @@
-#ifndef ECSS_SERVICES_XTIMEKEEPINGTASK_HPP
-#define ECSS_SERVICES_XTIMEKEEPINGTASK_HPP
+#ifndef ECSS_SERVICES_TIMEKEEPINGTASK_HPP
+#define ECSS_SERVICES_TIMEKEEPINGTASK_HPP
 
 #include "Task.hpp"
 
 class TimeKeepingTask : public Task {
 private:
-    const uint16_t delayMs = 1000;
+    const uint16_t delayMs = 1100;
 public:
     void execute();
 
@@ -31,8 +31,7 @@ public:
      */
     void printOnBoardTime();
 
-    TimeKeepingTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,
-                    const uint16_t delayMs) : Task(taskName, taskHandle, taskStackDepth), delayMs(delayMs) {}
+    TimeKeepingTask() : Task("Timekeeping", nullptr, 1000) {}
 };
 
 #endif

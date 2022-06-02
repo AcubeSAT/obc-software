@@ -10,8 +10,7 @@ private:
 public:
     void execute();
 
-    TimeBasedSchedulingTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,
-                    const uint16_t delayMs) : Task(taskName, taskHandle, taskStackDepth), delayMs(delayMs) {}
+    TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask", nullptr, 2000) {}
 };
 
 #endif

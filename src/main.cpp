@@ -22,20 +22,30 @@ extern "C" void main_cpp() {
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
-    xTaskCreate(vClassTask<TimeBasedSchedulingTask>, timeBasedSchedulingTask.taskName, timeBasedSchedulingTask.taskStackDepth,
-                NULL, tskIDLE_PRIORITY + 2, NULL);
-    xTaskCreate(vClassTask<UartDMATask>, uartDMATask.taskName, uartDMATask.taskStackDepth,
+    uartDMATask.emplace();
+    temperatureTask.emplace();
+    timeKeepingTask.emplace();
+    housekeepingTask.emplace();
+    reportParametersTask.emplace();
+    updateParametersTask.emplace();
+    timeBasedSchedulingTask.emplace();
+
+
+    xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
                 &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask.taskName, timeKeepingTask.taskStackDepth,
+    xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
                 &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<TemperatureTask>, temperatureTask.taskName, temperatureTask.taskStackDepth,
+    xTaskCreate(vClassTask<TemperatureTask>, temperatureTask->taskName, temperatureTask->taskStackDepth,
                 &temperatureTask, tskIDLE_PRIORITY + 2, NULL);
-    xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask.taskName, reportParametersTask.taskStackDepth,
+    xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask->taskName, reportParametersTask->taskStackDepth,
                 &reportParametersTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask.taskName, updateParametersTask.taskStackDepth,
+    xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask->taskName, updateParametersTask->taskStackDepth,
                 &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask.taskName, housekeepingTask.taskStackDepth,
+    xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(vClassTask<TimeBasedSchedulingTask>, timeBasedSchedulingTask->taskName, timeBasedSchedulingTask->taskStackDepth,
+                NULL, tskIDLE_PRIORITY + 2, NULL);
+
 
     vTaskStartScheduler();
 
