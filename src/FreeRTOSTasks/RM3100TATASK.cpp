@@ -8,7 +8,7 @@ void RM3100Task::execute() {
     while (true) {
         rm3100.readMeasurements();
         printData(rm3100);
-        SYSTICK_DelayMs(100);
+        vTaskDelay(pdMS_TO_TICKS(delayMs));
     }
 }
 

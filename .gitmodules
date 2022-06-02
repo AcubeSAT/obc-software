@@ -4,3 +4,6 @@
 [submodule "lib/component-drivers"]
 	path = lib/component-drivers
 	url = https://gitlab.com/acubesat/adcs/component-drivers/
+[submodule "lib/cobs-c"]
+	path = lib/cobs-c
+	url = https://github.com/cmcqueen/cobs-c.git

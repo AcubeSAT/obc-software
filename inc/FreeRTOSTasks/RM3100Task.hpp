@@ -6,7 +6,7 @@
 
 class RM3100Task : public Task {
 private:
-    const uint16_t delayMs = 1000;
+    const uint16_t delayMs = 100;
 public:
     void execute();
 
@@ -15,8 +15,7 @@ public:
      */
     void printData(RM3100 rm3100);
 
-    RM3100Task(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,
-                    const uint16_t delayMs) : Task(taskName, taskHandle, taskStackDepth), delayMs(delayMs) {}
+    RM3100Task() : Task("RM3100Task", nullptr, 1000) {}
 };
 
 #endif
