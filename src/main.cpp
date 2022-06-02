@@ -22,6 +22,7 @@ extern "C" void main_cpp() {
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
+    uartDMATask.emplace();
     temperatureTask.emplace();
     timeKeepingTask.emplace();
     housekeepingTask.emplace();

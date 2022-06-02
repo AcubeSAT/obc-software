@@ -12,7 +12,7 @@
  * Storage of FreeRTOS task instances.
  */
 namespace TaskList {
-    inline UartDMATask uartDMATask;
+    inline std::optional<UartDMATask> uartDMATask;
     inline std::optional<TimeKeepingTask> timeKeepingTask;
     inline std::optional<TemperatureTask> temperatureTask;
     inline std::optional<HousekeepingTask> housekeepingTask;
