@@ -29,7 +29,7 @@ extern "C" void main_cpp() {
     reportParametersTask.emplace();
     updateParametersTask.emplace();
 
-    xTaskCreate(vClassTask<UartDMATask>, uartDMATask.taskName, uartDMATask.taskStackDepth,
+    xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
                 &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
                 &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
