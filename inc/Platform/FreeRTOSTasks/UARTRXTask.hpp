@@ -39,7 +39,7 @@ public:
      */
     void ingress() {
         if (currentRXbyte == 0) {
-            xQueueSendToBackFromISR(rxQueue, static_cast<void *>(&UartQueueInBuffer), nullptr);
+            xQueueSendToBackFromISR(rxQueue, static_cast<void *>(&UartQueueInBuffer.message), nullptr);
             currentReadLocation = 0;
             new(&(UARTRXTask::UartQueueInBuffer)) UARTRXTask::Buffer{};
         } else {
@@ -85,7 +85,7 @@ private:
     /**
      * The buffer containing the decoded (COBS) message.
      */
-    etl::string<UartRXBufferSize> cobsDecodedMessage;
+//    etl::string<UartRXBufferSize> cobsDecodedMessage = "";
 };
 
 #endif //FDIR_DEMO_TEMPERATURETASK_HPP

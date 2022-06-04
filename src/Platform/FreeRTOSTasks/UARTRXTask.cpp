@@ -29,7 +29,7 @@ UARTRXTask::UARTRXTask() {
 
 void UARTRXTask::execute() {
     while (true) {
-        xQueueReceive(rxQueue, static_cast<void *>(&UartQueueOutBuffer), portMAX_DELAY);
+        xQueueReceive(rxQueue, static_cast<void *>(&UartQueueOutBuffer.message), portMAX_DELAY);
 
         if (overrun) {
             overrun = false;
@@ -37,12 +37,17 @@ void UARTRXTask::execute() {
         }
 
         char test[UartRXBufferSize] = "";
-        if (!std::equal(std::begin(UartQueueOutBuffer.message), std::end(UartQueueOutBuffer.message), std::begin(test))) {
-            cobsDecodedMessage = COBSdecode<UartRXBufferSize>(reinterpret_cast<uint8_t *>(UartQueueOutBuffer.message),
-                                                              UartRXBufferSize);
-            const uint8_t *f = reinterpret_cast<const uint8_t *>(cobsDecodedMessage.c_str());
+        if (!std::equal(std::begin(UartQueueOutBuffer.message), std::end(UartQueueOutBuffer.message),
+                        std::begin(test))) {
+//            auto cobsDecodedMessage = COBSdecode<UartRXBufferSize>(
+//                    reinterpret_cast<uint8_t *>(UartQueueOutBuffer.message),
+//                    UartRXBufferSize);
+            uint8_t arr[64];
+            std::copy(std::begin(UartQueueOutBuffer.message), std::end(UartQueueOutBuffer.message), std::begin(arr));
 
-//            ECSSMessage ecss = MessageParser::parseECSSTC(f);
+            ECSSMessage ecss = MessageParser::parseECSSTC(arr);
+            MessageParser::execute(ecss);
+
         }
 
 

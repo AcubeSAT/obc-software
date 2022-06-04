@@ -23,12 +23,12 @@ extern "C" void main_cpp() {
     BootCounter::incrementBootCounter();
 
     uartRXtask.emplace();
-    uartDMATask.emplace();
-    timeKeepingTask.emplace();
-    housekeepingTask.emplace();
-    temperatureTask.emplace();
-    reportParametersTask.emplace();
-    updateParametersTask.emplace();
+//    uartDMATask.emplace();
+//    timeKeepingTask.emplace();
+//    housekeepingTask.emplace();
+//    temperatureTask.emplace();
+//    reportParametersTask.emplace();
+//    updateParametersTask.emplace();
 
     xTaskCreate(vClassTask<UARTRXTask>, uartRXtask->taskName, uartRXtask->taskStackDepth, &uartRXtask,
                 tskIDLE_PRIORITY + 1, nullptr);
