@@ -14,7 +14,7 @@ void Service::storeMessage(Message &message) {
     etl::to_string(message.serviceType, serviceType, formatSpec, false);
     etl::to_string(message.messageType, messageType, formatSpec, false);
 
-    auto output = String<ECSSMaxMessageSize>("New ");
+    auto output = String<ECSSMaxMessageSize>("\rNew ");
     (message.packetType == Message::TM) ? output.append("TM[") : output.append("TC[");
     output.append(serviceType);
     output.append(",");
