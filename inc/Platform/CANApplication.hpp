@@ -30,11 +30,11 @@ public:
         return nodeID + 0x200;
     }
 
-    static inline bool isTPMessage(const uint8_t data[8]) {
-        return (((data[0] >> 4) == 0b0111));
+    static inline bool isTPMessage(const uint16_t canID) {
+        return (((canID >> 7) == 0b0111));
     }
 
-    static void decodeTPMessage(const uint8_t data[8]);
+    static void decodeTPMessage(uint16_t canID);
 };
 
 
