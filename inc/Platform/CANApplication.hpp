@@ -23,7 +23,7 @@ public:
     }
 
     static inline uint8_t getBusSwitchoverData() {
-        return currentBus ? 1 : 0;
+        return currentBus ? 0 : 1;
     }
 
     static inline uint32_t getTimeID(const uint32_t nodeID) {
