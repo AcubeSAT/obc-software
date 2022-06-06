@@ -5,7 +5,7 @@
 
 namespace TimeBasedActivities {
     static etl::array<Message, ECSSMaxNumberOfTimeSchedActivities> Activities = {
-            {Message(), Message(), Message(), Message()}
+            {Message(), Message(), Message(), Message(), Message(), Message(), Message()}
     };
 }
 

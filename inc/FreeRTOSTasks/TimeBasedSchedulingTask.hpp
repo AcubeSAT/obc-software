@@ -10,7 +10,7 @@ private:
 public:
     void execute();
 
-    TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask", nullptr, 2000) {}
+    TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask", nullptr, 3000) {}
 };
 
 #endif
