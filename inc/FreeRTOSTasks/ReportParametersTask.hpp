@@ -14,10 +14,7 @@ private:
 public:
     void execute();
 
-    ReportParametersTask(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth,
-                         const uint16_t numberOfIDs,
-                         const uint16_t delayMs) : Task(taskName, taskHandle, taskStackDepth), numberOfIDs(numberOfIDs),
-                                                   delayMs(delayMs) {}
+    ReportParametersTask() : Task("ParameterReporting", nullptr, 1000) {}
 };
 
 #endif
