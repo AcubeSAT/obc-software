@@ -18,7 +18,7 @@ with serial.Serial("/dev/ttyACM0", baud_rate, timeout=1) as ser:
     message = b"\x20\x11\x01\x01\x01\x00"
     m = [32, 17, 1, 1, 1, 0]
     # encoded_message = cobs.encode(bytearray(m))
-
+    # encoded_message = cobs.encode(bytes(message))
     # data, addr = sock2.recvfrom(message)
     ser.write(message)
 
