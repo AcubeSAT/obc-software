@@ -6,17 +6,15 @@ void TimeBasedSchedulingTask::execute() {
                       TimeBasedSchedulingService::MessageType::InsertActivities, Message::TC, 1);
     TCMessage.appendUint16(7);
 
-    int i = 3;
     for (auto &message: TimeBasedActivities::Activities) {
         message.serviceType = 17;
         message.messageType = 1;
         message.packetType = Message::TC;
         Time::CustomCUC_t exe;
         Time::CustomCUC_t now = TimeGetter::getCurrentTimeCustomCUC();
-        exe = now + i;
+        exe = now + 80;
         TCMessage.append(exe);
         TCMessage.appendMessage(message, ECSSTCRequestStringSize);
-        i += 1;
     }
 
     MessageParser::execute(TCMessage);
