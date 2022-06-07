@@ -10,9 +10,6 @@ private:
 public:
     void execute();
 
-    /**
-     * This function prints the magnetometer measurements.
-     */
     void printData(RM3100 rm3100);
 
     RM3100Task() : Task("RM3100Task", nullptr, 1000) {}
