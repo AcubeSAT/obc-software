@@ -7,6 +7,7 @@
 #include "TemperatureTask.hpp"
 #include "ReportParametersTask.hpp"
 #include "UpdateParametersTask.hpp"
+#include "ExternalTemperatureTask.hpp"
 
 /**
  * Storage of FreeRTOS task instances.
@@ -18,6 +19,7 @@ namespace TaskList {
     inline std::optional<HousekeepingTask> housekeepingTask;
     inline std::optional<ReportParametersTask> reportParametersTask;
     inline std::optional<UpdateParametersTask> updateParametersTask;
+    inline std::optional<ExternalTemperatureTask> externalTemperatureTask;
 }
 
 #endif //OBC_SOFTWARE_TASKLIST_H
