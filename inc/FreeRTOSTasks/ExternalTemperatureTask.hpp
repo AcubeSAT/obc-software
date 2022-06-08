@@ -10,7 +10,15 @@
 class ExternalTemperatureTask : public Task {
 private:
     const uint16_t delayMs = 1000;
+
+    /**
+     * The driver for the MCP9808 temperature sensor
+     */
     MCP9808 sensor;
+
+    /**
+     * The value of the temperature, measured in Celsius
+     */
     float externalTemperature;
 public:
     void execute();
