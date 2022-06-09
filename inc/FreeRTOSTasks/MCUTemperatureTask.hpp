@@ -12,7 +12,7 @@ private:
 public:
     void execute();
 
-    MCUTemperatureTask() : Task("TemperatureSensor", nullptr, 1000) {}
+    MCUTemperatureTask() : Task("MCUTemperatureSensor", nullptr, 1000) {}
 };
 
 #endif

@@ -28,7 +28,7 @@ extern "C" void main_cpp() {
     housekeepingTask.emplace();
     reportParametersTask.emplace();
     updateParametersTask.emplace();
-    externalTemperatureTask.emplace();
+    ambientTemperatureTask.emplace();
 
     xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
                 &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
@@ -42,8 +42,8 @@ extern "C" void main_cpp() {
                 &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<ExternalTemperatureTask>, externalTemperatureTask->taskName, externalTemperatureTask->taskStackDepth,
-                &externalTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
+                &ambientTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
 
     vTaskStartScheduler();
 
