@@ -4,7 +4,7 @@
 #include "TimeKeepingTask.hpp"
 #include "UartDMATask.hpp"
 #include "HousekeepingTask.hpp"
-#include "TemperatureTask.hpp"
+#include "MCUTemperatureTask.hpp"
 #include "ReportParametersTask.hpp"
 #include "UpdateParametersTask.hpp"
 #include "ExternalTemperatureTask.hpp"
@@ -15,7 +15,7 @@
 namespace TaskList {
     inline std::optional<UartDMATask> uartDMATask;
     inline std::optional<TimeKeepingTask> timeKeepingTask;
-    inline std::optional<TemperatureTask> temperatureTask;
+    inline std::optional<MCUTemperatureTask> mcuTemperatureTask;
     inline std::optional<HousekeepingTask> housekeepingTask;
     inline std::optional<ReportParametersTask> reportParametersTask;
     inline std::optional<UpdateParametersTask> updateParametersTask;
