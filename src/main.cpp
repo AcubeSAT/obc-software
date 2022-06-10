@@ -23,24 +23,27 @@ extern "C" void main_cpp() {
     BootCounter::incrementBootCounter();
 
     uartDMATask.emplace();
-    temperatureTask.emplace();
+    mcuTemperatureTask.emplace();
     timeKeepingTask.emplace();
     housekeepingTask.emplace();
     reportParametersTask.emplace();
     updateParametersTask.emplace();
+    ambientTemperatureTask.emplace();
 
     xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
                 &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
                 &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<TemperatureTask>, temperatureTask->taskName, temperatureTask->taskStackDepth,
-                &temperatureTask, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
+                &mcuTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
     xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask->taskName, reportParametersTask->taskStackDepth,
                 &reportParametersTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask->taskName, updateParametersTask->taskStackDepth,
                 &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
+                &ambientTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
 
     vTaskStartScheduler();
 
