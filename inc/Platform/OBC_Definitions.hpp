@@ -2,7 +2,8 @@
 #define OBC_SOFTWARE_OBC_DEFINITIONS_HPP
 
 #include <cstdint>
-
+#include "FreeRTOS.h"
+#include "queue.h"
 /**
  * @defgroup Definitions of OBC_SOFTWARE Defined Constants
  *
@@ -14,7 +15,7 @@
  * A switch to control whether the Logger sends its messages over RTT or over UART0
  * 1 is set for RTT, 0 for USART1
  */
-inline const bool PreferRTT = 1;
+inline const bool PreferRTT = 0;
 
 /**
  * Maximum string size for a LogLevel is 9 characters long
@@ -50,6 +51,16 @@ inline const float TemperatureSensitivity = 2.33;
  * The reference temperature of the internal temperature sensor for the voltage-to-temperature conversion
  */
 inline const uint8_t ReferenceTemperature = 25;
+
+/**
+ * The size of the queue used to communicate with the UART Gatekeeper task
+ */
+inline const uint8_t UARTQueueSize = 5;
+
+/**
+ * The queue handle of the UART Queue, used by Logger and the Gatekeeper task
+ */
+inline QueueHandle_t xUartQueue;
 
 /**
  * The typical voltage output of the DAC of the AFEC channel at 25 Celsius

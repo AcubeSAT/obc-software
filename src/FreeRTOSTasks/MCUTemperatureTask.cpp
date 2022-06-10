@@ -1,6 +1,6 @@
-#include "FreeRTOSTasks/TemperatureTask.hpp"
+#include "FreeRTOSTasks/MCUTemperatureTask.hpp"
 
-void TemperatureTask::execute() {
+void MCUTemperatureTask::execute() {
     AFEC0_ConversionStart();
     while (true) {
         AFEC0_ConversionStart();
