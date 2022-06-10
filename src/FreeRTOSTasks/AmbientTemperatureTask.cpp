@@ -5,7 +5,7 @@ void AmbientTemperatureTask::execute() {
         ambientTemperature = sensor.getTemperature();
 
         LOG_DEBUG << "The ambient temperature is: " << ambientTemperature << " degrees Celsius";
-        PlatformParameters::ambientTemperature.setValue(ambientTemperature);
+        PlatformParameters::obcBoardTemperature1.setValue(ambientTemperature);
         vTaskDelay(pdMS_TO_TICKS(delayMs));
     }
 }
