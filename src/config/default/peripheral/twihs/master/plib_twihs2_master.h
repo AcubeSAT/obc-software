@@ -1,20 +1,25 @@
 /*******************************************************************************
-  NVIC PLIB Implementation
+  TWIHS Peripheral Library Interface Header File
 
-  Company:
+  Company
     Microchip Technology Inc.
 
-  File Name:
-    plib_nvic.c
+  File Name
+    plib_twihs2_master.h
 
-  Summary:
-    NVIC PLIB Source File
+  Summary
+    TWIHS Master peripheral library interface.
 
-  Description:
-    None
+  Description
+    This file defines the interface to the TWIHS peripheral library.  This
+    library provides access to and control of the associated peripheral
+    instance.
+
+  Remarks:
 
 *******************************************************************************/
 
+// DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -37,71 +42,55 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
+// DOM-IGNORE-END
 
-#include "device.h"
-#include "plib_nvic.h"
-
+#ifndef PLIB_TWIHS2_MASTER_H
+#define PLIB_TWIHS2_MASTER_H
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: NVIC Implementation
+// Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
 
-void NVIC_Initialize( void )
-{
-    /* Priority 0 to 7 and no sub-priority. 0 is the highest priority */
-    NVIC_SetPriorityGrouping( 0x00 );
+#include "plib_twihs_master_common.h"
 
-    /* Enable NVIC Controller */
-    __DMB();
-    __enable_irq();
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
 
-    /* Enable the interrupt sources and configure the priorities as configured
-     * from within the "Interrupt Manager" of MHC. */
-    NVIC_SetPriority(RTC_IRQn, 7);
-    NVIC_EnableIRQ(RTC_IRQn);
-    NVIC_SetPriority(USART1_IRQn, 7);
-    NVIC_EnableIRQ(USART1_IRQn);
-    NVIC_SetPriority(AFEC0_IRQn, 7);
-    NVIC_EnableIRQ(AFEC0_IRQn);
-    NVIC_SetPriority(TWIHS2_IRQn, 7);
-    NVIC_EnableIRQ(TWIHS2_IRQn);
-    NVIC_SetPriority(XDMAC_IRQn, 7);
-    NVIC_EnableIRQ(XDMAC_IRQn);
+    extern "C" {
 
+#endif
+// DOM-IGNORE-END
 
+// *****************************************************************************
+// *****************************************************************************
+// Section: Interface Routines
+// *****************************************************************************
+// *****************************************************************************
 
-}
+void TWIHS2_Initialize( void );
 
-void NVIC_INT_Enable( void )
-{
-    __DMB();
-    __enable_irq();
-}
+void TWIHS2_CallbackRegister( TWIHS_CALLBACK callback, uintptr_t contextHandle );
 
-bool NVIC_INT_Disable( void )
-{
-    bool processorStatus;
+bool TWIHS2_IsBusy( void );
 
-    processorStatus = (bool) (__get_PRIMASK() == 0);
+bool TWIHS2_Read( uint16_t address, uint8_t *pdata, size_t length );
 
-    __disable_irq();
-    __DMB();
+bool TWIHS2_Write( uint16_t address, uint8_t *pdata, size_t length );
 
-    return processorStatus;
-}
+bool TWIHS2_WriteRead( uint16_t address, uint8_t *wdata, size_t wlength, uint8_t *rdata, size_t rlength );
 
-void NVIC_INT_Restore( bool state )
-{
-    if( state == true )
-    {
-        __DMB();
-        __enable_irq();
+TWIHS_ERROR TWIHS2_ErrorGet( void );
+
+bool TWIHS2_TransferSetup( TWIHS_TRANSFER_SETUP* setup, uint32_t srcClkFreq );
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
     }
-    else
-    {
-        __disable_irq();
-        __DMB();
-    }
-}
+
+#endif
+// DOM-IGNORE-END
+
+#endif //PLIB_TWIHS2_MASTER_H
