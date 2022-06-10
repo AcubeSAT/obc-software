@@ -17,7 +17,7 @@ namespace PlatformParameters {
         OnBoardSecond = 5,
         ReportParametersUnusedStack = 6,
         AvailableHeap = 7,
-        OBCBoardTemperature1 = 289,
+        OBCBoardTemperature1 = 290,
         OBCMCUTemperature = 293,
         OBCBootCounter = 301,
         OBCSystick = 329,
