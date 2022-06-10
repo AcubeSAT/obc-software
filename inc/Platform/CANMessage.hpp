@@ -5,9 +5,10 @@
 
 class CANMessage {
     enum BusID : uint8_t {
-        CAN_MAIN_BUS = 0, CAN_REDUNDANT_BUS = 1
+        MainBus = 0,
+        RedundantBus = 1
     };
-    BusID currentBus = CAN_MAIN_BUS;
+    BusID currentBus = MainBus;
 
 public:
     const uint8_t pingDataPacket = 0x30;
