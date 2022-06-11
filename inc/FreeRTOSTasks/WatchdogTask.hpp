@@ -6,11 +6,14 @@
 
 class WatchdogTask : public Task{
 private:
-    const uint16_t delayMs = 3000;
+    /**
+     * The delay in milliseconds between each watchdog reset.
+     */
+    const uint16_t delayMs = 14000;
 public:
     void execute();
 
-    WatchdogTask() : Task("Watchdog", nullptr, 2000) {}
+    WatchdogTask() : Task("Watchdog", nullptr, 500) {}
 };
 
 
