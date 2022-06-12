@@ -4,6 +4,6 @@ void WatchdogTask::execute() {
     while (true) {
         WDT_Clear();
         LOG_DEBUG << "Watchdog reset";
-        vTaskDelay(pdMS_TO_TICKS(delayMs));
+        vTaskDelay(pdMS_TO_TICKS(watchdogWindow));
     }
 }
