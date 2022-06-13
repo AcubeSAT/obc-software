@@ -4,7 +4,6 @@ UARTGatekeeper::UARTGatekeeper() : Task("UARTGatekeeper", nullptr, 1000) {
     xUartQueue = xQueueCreate(UARTQueueSize, sizeof(etl::string<LOGGER_MAX_MESSAGE_SIZE>));
 }
 
-
 void UARTGatekeeper::execute() {
     etl::string<LOGGER_MAX_MESSAGE_SIZE> output;
     while (true) {

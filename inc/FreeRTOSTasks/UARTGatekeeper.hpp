@@ -8,7 +8,9 @@ class UARTGatekeeper : public Task {
 public:
 
     void execute();
+
     QueueHandle_t xUartQueue;
+
     UARTGatekeeper();
 
 };
