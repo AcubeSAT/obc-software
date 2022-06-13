@@ -48,7 +48,7 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
         SEGGER_RTT_printf(0, output.c_str());
     } else {
         if (TaskList::uartGatekeeper) {
-            xQueueSendToBack(TaskList::uartGatekeeper->xUartQueue, &output, 0);
+            TaskList::uartGatekeeper->addToQueue(output);
         }
     }
 }

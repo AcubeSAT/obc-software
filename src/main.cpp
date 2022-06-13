@@ -47,7 +47,6 @@ extern "C" void main_cpp() {
     xTaskCreate(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
                 &ambientTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
 
-
     vTaskStartScheduler();
 
     while (true) {
