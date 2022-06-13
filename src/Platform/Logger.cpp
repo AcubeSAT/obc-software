@@ -8,7 +8,7 @@
 #include "queue.h"
 #include "OBC_Definitions.hpp"
 #include "SEGGER_RTT.h"
-#include "definitions.h"
+#include "TaskList.hpp"
 
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
     etl::string<MaxLogNameSize> levelString;
@@ -47,7 +47,9 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
     if (PreferRTT) {
         SEGGER_RTT_printf(0, output.c_str());
     } else {
-        xQueueSendToBack(xUartQueue, &output, portMAX_DELAY);
+        if (TaskList::uartGatekeeper) {
+            xQueueSendToBack(TaskList::uartGatekeeper->xUartQueue, &output, 0);
+        }
     }
 }
 

@@ -4,13 +4,13 @@
 #include "Task.hpp"
 #include "queue.h"
 
-class UARTGatekeeper : public Task{
+class UARTGatekeeper : public Task {
 public:
+
     void execute();
-    QueueHandle_t xPrintQueue;
-    UARTGatekeeper(QueueHandle_t queue) : Task("Gatekeeper", nullptr, 1000) {
-        this->xPrintQueue = queue;
-    }
+    QueueHandle_t xUartQueue;
+    UARTGatekeeper();
+
 };
 
 #endif //OBC_SOFTWARE_GATEKEEPERPRINT_H
