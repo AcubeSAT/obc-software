@@ -6,7 +6,7 @@
 
 class UARTGatekeeper : public Task{
 public:
-    [[noreturn]] void execute();
+    void execute();
     QueueHandle_t xPrintQueue;
     UARTGatekeeper(QueueHandle_t queue) : Task("Gatekeeper", nullptr, 1000) {
         this->xPrintQueue = queue;
