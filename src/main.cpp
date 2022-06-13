@@ -29,9 +29,10 @@ extern "C" void main_cpp() {
     reportParametersTask.emplace();
     updateParametersTask.emplace();
     ambientTemperatureTask.emplace();
-
-    xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
-                &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
+    StackType_t * const puxStackBuffer = nullptr;
+    StaticTask_t * const pxTaskBuffer = nullptr;
+    xTaskCreateStatic(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
+                &uartDMATask, tskIDLE_PRIORITY + 1, puxStackBuffer, pxTaskBuffer);
     xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
                 &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
