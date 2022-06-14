@@ -2,15 +2,10 @@
 #define OBC_SOFTWARE_CANMESSAGE_H
 
 #include <cstdint>
+#include "OBC_Definitions.hpp"
 
-class CANTPMessage {
-    enum BusID : uint8_t {
-        MainBus = 0,
-        RedundantBus = 1
-    };
-    BusID currentBus = MainBus;
-
-public:
+class CANMessage {
+private:
     const uint8_t pingDataPacket = 0x30;
 
     const uint8_t pongDataPacket = 0x31;
@@ -24,7 +19,7 @@ public:
     }
 
     inline uint8_t getBusToSwitchover() {
-        return currentBus ? 0 : 1;
+        return CAN::currentBus ? 0 : 1;
     }
 
     inline uint32_t getTimeID(const uint16_t nodeID) {
@@ -34,6 +29,11 @@ public:
     inline bool isTPMessage(const uint16_t canID) {
         return (((canID >> 7) == 0b0111));
     }
+public:
+    struct MessageData{
+        uint16_t id;
+        uint8_t data[8];
+    };
 };
 
 

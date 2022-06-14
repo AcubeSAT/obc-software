@@ -91,4 +91,19 @@ namespace BootCounter {
     inline const uint16_t BootCounterLimit = 1000;
 }
 
+namespace CAN{
+    /**
+     * Defines the Available CAN Buses to use.
+     */
+    enum BusID : uint8_t {
+        MainBus = 0,
+        RedundantBus = 1
+    };
+
+    /**
+     * The current CAN Bus in use.
+     */
+    inline BusID currentBus = MainBus;
+}
+
 #endif //OBC_SOFTWARE_OBC_DEFINITIONS_HPP
