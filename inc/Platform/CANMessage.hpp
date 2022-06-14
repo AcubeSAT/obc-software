@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-class CANMessage {
+class CANTPMessage {
     enum BusID : uint8_t {
         MainBus = 0,
         RedundantBus = 1
@@ -34,8 +34,6 @@ public:
     inline bool isTPMessage(const uint16_t canID) {
         return (((canID >> 7) == 0b0111));
     }
-
-    static void decodeTPMessage(uint16_t canID);
 };
 
 
