@@ -23,7 +23,7 @@ public:
         return nodeID + 0x400;
     }
 
-    inline uint8_t getBusSwitchoverData() {
+    inline uint8_t getBusToSwitchover() {
         return currentBus ? 0 : 1;
     }
 
