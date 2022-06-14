@@ -11,6 +11,7 @@ namespace CANTPMessage{
     };
     
     static idInfo decodeId(uint16_t canID);
+    static uint16_t encodeId(idInfo idInfo);
 
 }
 
