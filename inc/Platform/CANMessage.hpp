@@ -29,11 +29,20 @@ private:
     inline bool isTPMessage(const uint16_t id) {
         return (((id >> 7) == 0b0111));
     }
+
 public:
     struct MessageData{
         uint16_t id;
         uint8_t data[8];
     };
+
+    MessageData createPingMessage();
+
+    MessageData createPongMessage();
+
+    MessageData createHeartbeatMessage();
+
+    MessageData createBusSwitchoverMessage();
 };
 
 
