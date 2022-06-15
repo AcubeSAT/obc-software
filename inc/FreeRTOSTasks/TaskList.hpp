@@ -8,7 +8,7 @@
 #include "ReportParametersTask.hpp"
 #include "UpdateParametersTask.hpp"
 #include "AmbientTemperatureTask.hpp"
-
+#include "WatchdogTask.hpp"
 /**
  * Storage of FreeRTOS task instances.
  */
@@ -20,6 +20,7 @@ namespace TaskList {
     inline std::optional<ReportParametersTask> reportParametersTask;
     inline std::optional<UpdateParametersTask> updateParametersTask;
     inline std::optional<AmbientTemperatureTask> ambientTemperatureTask;
+    inline std::optional<WatchdogTask> watchdogTask;
 }
 
 #endif //OBC_SOFTWARE_TASKLIST_H
