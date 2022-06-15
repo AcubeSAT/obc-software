@@ -10,8 +10,8 @@ namespace CANTPMessage{
         bool isMulticast;
     };
     
-    static idInfo decodeId(uint16_t canID);
-    static uint16_t encodeId(idInfo idInfo);
+    idInfo decodeId(uint16_t canID);
+    uint16_t encodeId(idInfo idInfo);
 
 }
 
