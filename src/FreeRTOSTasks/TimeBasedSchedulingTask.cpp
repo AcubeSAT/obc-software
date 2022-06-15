@@ -1,12 +1,16 @@
 #include "FreeRTOSTasks/TimeBasedSchedulingTask.hpp"
 
 void TimeBasedSchedulingTask::execute() {
+    static etl::array<Message, ECSSMaxNumberOfTimeSchedActivities> Activities = {
+            {Message(), Message(), Message(), Message(), Message(), Message(), Message()}
+    };
+
     auto &timeBasedScheduling = Services.timeBasedScheduling;
     Message TCMessage(TimeBasedSchedulingService::ServiceType,
                       TimeBasedSchedulingService::MessageType::InsertActivities, Message::TC, 1);
     TCMessage.appendUint16(7);
 
-    for (auto &message: TimeBasedActivities::Activities) {
+    for (auto &message: Activities) {
         message.serviceType = 17;
         message.messageType = 1;
         message.packetType = Message::TC;
