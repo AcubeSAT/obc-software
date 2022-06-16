@@ -7,13 +7,9 @@
 #include "MCUTemperatureTask.hpp"
 #include "ReportParametersTask.hpp"
 #include "UpdateParametersTask.hpp"
-<<<<<<< HEAD
 #include "TimeBasedSchedulingTask.hpp"
-
-=======
 #include "AmbientTemperatureTask.hpp"
 #include "WatchdogTask.hpp"
->>>>>>> master
 /**
  * Storage of FreeRTOS task instances.
  */
