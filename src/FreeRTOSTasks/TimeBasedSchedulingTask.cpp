@@ -22,7 +22,6 @@ void TimeBasedSchedulingTask::execute() {
     }
 
     MessageParser::execute(TCMessage);
-    TCMessage.readPosition = 0;
 
     TickType_t xLastWakeTime = xTaskGetTickCount();
 
@@ -30,7 +29,7 @@ void TimeBasedSchedulingTask::execute() {
         auto activity = timeBasedScheduling.popScheduledActivity();
 
         Time::CustomCUC_t now = TimeGetter::getCurrentTimeCustomCUC();
-        TickType_t nextActivityExecutionTime = (activity.requestReleaseTime.elapsed100msTicks - now.elapsed100msTicks)*multiplierToCovertTimeFromDsToMs;
+        TickType_t nextActivityExecutionTime = Time::getMsFromCustomCUC(activity.requestReleaseTime - now);
         vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(nextActivityExecutionTime));
 
         MessageParser::execute(activity.request);

@@ -56,11 +56,6 @@ inline const uint8_t ReferenceTemperature = 25;
  */
 inline const uint16_t TypicalVoltageAt25 = 720;
 
-/**
- * Multiplier to Covert time from ds To ms
- */
-inline const uint16_t multiplierToCovertTimeFromDsToMs = 100;
-
 namespace BootCounter {
     /**
      * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter
