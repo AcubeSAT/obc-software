@@ -1,13 +1,10 @@
 #include "main.h"
 #include "FreeRTOS.h"
-#include "queue.h"
 #include "list.h"
 #include "task.h"
 #include "definitions.h"
-#include "OBC_Definitions.hpp"
 #include "BootCounter.hpp"
 #include "SEGGER_RTT.h"
-#include "FreeRTOSTasks/Task.hpp"
 #include "FreeRTOSTasks/TaskList.hpp"
 
 template<class T>
@@ -23,20 +20,21 @@ extern "C" void main_cpp() {
     BootCounter::incrementBootCounter();
 
     uartDMATask.emplace();
-    temperatureTask.emplace();
+    mcuTemperatureTask.emplace();
     timeKeepingTask.emplace();
     housekeepingTask.emplace();
     reportParametersTask.emplace();
     updateParametersTask.emplace();
     timeBasedSchedulingTask.emplace();
-
+    ambientTemperatureTask.emplace();
+    watchdogTask.emplace();
 
     xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
                 &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
                 &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<TemperatureTask>, temperatureTask->taskName, temperatureTask->taskStackDepth,
-                &temperatureTask, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
+                &mcuTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
     xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask->taskName, reportParametersTask->taskStackDepth,
                 &reportParametersTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask->taskName, updateParametersTask->taskStackDepth,
@@ -45,7 +43,10 @@ extern "C" void main_cpp() {
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<TimeBasedSchedulingTask>, timeBasedSchedulingTask->taskName, timeBasedSchedulingTask->taskStackDepth,
                 &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2, NULL);
-
+    xTaskCreate(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
+                &ambientTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
+               &watchdogTask, tskIDLE_PRIORITY, NULL);
 
     vTaskStartScheduler();
 
