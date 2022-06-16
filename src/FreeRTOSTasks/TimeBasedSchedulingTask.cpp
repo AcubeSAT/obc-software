@@ -16,7 +16,7 @@ void TimeBasedSchedulingTask::execute() {
         message.packetType = Message::TC;
         Time::CustomCUC_t exe;
         Time::CustomCUC_t now = TimeGetter::getCurrentTimeCustomCUC();
-        exe = now + 1;
+        exe = now + 80;
         TCMessage.append(exe);
         TCMessage.appendMessage(message, ECSSTCRequestStringSize);
     }
@@ -27,7 +27,7 @@ void TimeBasedSchedulingTask::execute() {
     TickType_t xLastWakeTime = xTaskGetTickCount();
 
     while (true) {
-        auto activity = timeBasedScheduling.getScheduledActivities();
+        auto activity = timeBasedScheduling.popScheduledActivity();
 
         Time::CustomCUC_t now = TimeGetter::getCurrentTimeCustomCUC();
         TickType_t nextActivityExecutionTime = (activity.requestReleaseTime.elapsed100msTicks - now.elapsed100msTicks)*multiplierToCovertTimeFromDsToMs;

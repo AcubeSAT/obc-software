@@ -7,7 +7,7 @@ class TimeBasedSchedulingTask : public Task {
 public:
     void execute();
 
-    TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask", nullptr, 3000) {}
+    TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask", nullptr, 4000) {}
 };
 
 #endif
