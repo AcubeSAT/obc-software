@@ -1,12 +1,10 @@
 #include "main.h"
 #include "FreeRTOS.h"
-#include "queue.h"
 #include "list.h"
 #include "task.h"
 #include "definitions.h"
 #include "BootCounter.hpp"
 #include "SEGGER_RTT.h"
-#include "FreeRTOSTasks/Task.hpp"
 #include "FreeRTOSTasks/TaskList.hpp"
 #include "OBC_Definitions.hpp"
 
@@ -29,6 +27,7 @@ extern "C" void main_cpp() {
     reportParametersTask.emplace();
     updateParametersTask.emplace();
     ambientTemperatureTask.emplace();
+    watchdogTask.emplace();
 
     xTaskCreate(vClassTask<UARTGatekeeper>, uartGatekeeper->taskName, uartGatekeeper->taskStackDepth,
                 &uartGatekeeper, tskIDLE_PRIORITY + 2, NULL);
@@ -46,6 +45,8 @@ extern "C" void main_cpp() {
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
                 &ambientTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
+               &watchdogTask, tskIDLE_PRIORITY, NULL);
 
     vTaskStartScheduler();
 

@@ -2,8 +2,7 @@
 #define OBC_SOFTWARE_OBC_DEFINITIONS_HPP
 
 #include <cstdint>
-#include "FreeRTOS.h"
-#include "queue.h"
+
 /**
  * @defgroup Definitions of OBC_SOFTWARE Defined Constants
  *
