@@ -59,7 +59,7 @@ inline const uint16_t TypicalVoltageAt25 = 720;
 /**
  * Set to 1 for Continuous Measurement Mode and 0 for Single Measurement Mode for the RM3100 magnetometer.
  */
-inline const uint8_t ContinuousMeasurementMode = 1;
+inline const uint8_t RM3100ContinuousMeasurementMode = 1;
 
 /**
  * The number of sensor oscillation cycles that will be counted during a measurement sequence, where 200 is the default value.

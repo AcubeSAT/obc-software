@@ -1,7 +1,7 @@
 #include "FreeRTOSTasks/RM3100Task.hpp"
 
 void RM3100Task::execute() {
-    RM3100 rm3100(ContinuousMeasurementMode, RM3100CycleCount, PIO_PIN_PB2, PIO_PIN_PB3);
+    RM3100 rm3100(RM3100ContinuousMeasurementMode, RM3100CycleCount, PIO_PIN_PB2, PIO_PIN_PB3);
     rm3100.getREVID();
 
     while (true) {
@@ -11,7 +11,7 @@ void RM3100Task::execute() {
     }
 }
 
-void RM3100Task::printData(RM3100 rm3100) {
+void RM3100Task::printData(const RM3100& rm3100) {
     etl::string<80> log = "";
     log += "x=";
     etl::to_string(rm3100.getX() / rm3100.getGain(), log, etl::format_spec().precision(6), true);
