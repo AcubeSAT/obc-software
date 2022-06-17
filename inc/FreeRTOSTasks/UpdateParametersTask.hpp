@@ -12,7 +12,7 @@ private:
 public:
     void execute();
 
-    UpdateParametersTask() : Task("ParameterUpdating", nullptr, 2000) {}
+    UpdateParametersTask() : Task("ParameterUpdating", nullptr, 6000) {}
 };
 
 #endif

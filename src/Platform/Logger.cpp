@@ -8,8 +8,7 @@
 #include "queue.h"
 #include "OBC_Definitions.hpp"
 #include "SEGGER_RTT.h"
-#include "definitions.h"
-
+#include "TaskList.hpp"
 
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
     etl::string<MaxLogNameSize> levelString;
@@ -48,8 +47,9 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
     if (PreferRTT) {
         SEGGER_RTT_printf(0, output.c_str());
     } else {
-        const void *txRegisterAddress = const_cast<void *>(reinterpret_cast<volatile void *>(&USART1_REGS->US_THR));
-        XDMAC_ChannelTransfer(XDMAC_CHANNEL_0, output.data(), txRegisterAddress, output.size());
+        if (TaskList::uartGatekeeper) {
+            TaskList::uartGatekeeper->addToQueue(output);
+        }
     }
 }
 
