@@ -14,7 +14,7 @@
  * A switch to control whether the Logger sends its messages over RTT or over UART0
  * 1 is set for RTT, 0 for USART1
  */
-inline const bool PreferRTT = 0 ;
+inline const bool PreferRTT = 0;
 
 /**
  * Maximum string size for a LogLevel is 9 characters long
@@ -57,14 +57,14 @@ inline const uint8_t ReferenceTemperature = 25;
 inline const uint16_t TypicalVoltageAt25 = 720;
 
 /**
- * Sets the mode, 1 for Continuous Measurement Mode and 0 for Single Measurement Mode.
+ * Set to 1 for Continuous Measurement Mode and 0 for Single Measurement Mode for the RM3100 magnetometer.
  */
 inline const uint8_t ContinuousMeasurementMode = 1;
 
 /**
  * The number of sensor oscillation cycles that will be counted during a measurement sequence, where 200 is the default value.
  */
-inline const uint16_t RM3100CycleCount= 200;
+inline const uint16_t RM3100CycleCount = 200;
 
 namespace BootCounter {
     /**
