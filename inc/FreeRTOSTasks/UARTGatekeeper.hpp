@@ -1,9 +1,14 @@
-#ifndef OBC_SOFTWARE_GATEKEEPERPRINT_H
-#define OBC_SOFTWARE_GATEKEEPERPRINT_H
+#ifndef OBC_SOFTWARE_UARTGATEKEEPER_H
+#define OBC_SOFTWARE_UARTGATEKEEPER_H
 
 #include "Task.hpp"
 #include "queue.h"
 
+/**
+ * Contains functionality of a Gatekeeper Task for the UART resource. It has the sole access to UART, to avoid any
+ * deadlocks that might be caused by simultaneous requests of access to the same resource. It works by having anyone
+ * needing to access UART, send the data in a queue. Then, this task receives queue elements and sends them to UART.
+ */
 class UARTGatekeeper : public Task {
 private:
     QueueHandle_t xUartQueue;
@@ -30,4 +35,4 @@ public:
 
 };
 
-#endif //OBC_SOFTWARE_GATEKEEPERPRINT_H
+#endif //OBC_SOFTWARE_UARTGATEKEEPER_H
