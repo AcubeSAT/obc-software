@@ -1,8 +1,8 @@
 #include "FreeRTOSTasks/RM3100Task.hpp"
 
 void RM3100Task::execute() {
-    RM3100 rm3100(RM3100Mode, RM3100triggerDRDY, RM3100CycleCount, PIO_PIN_PB2, PIO_PIN_PB3);
-    rm3100.checkREVID();
+    RM3100 rm3100(ContinuousMeasurementMode, RM3100CycleCount, PIO_PIN_PB2, PIO_PIN_PB3);
+    rm3100.getREVID();
 
     while (true) {
         rm3100.readMeasurements();
