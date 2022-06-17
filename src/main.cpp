@@ -14,6 +14,9 @@ template<class T>
 static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
 }
+#define STACK_SIZE 200
+
+
 
 extern "C" void main_cpp() {
     using namespace TaskList;
@@ -21,7 +24,12 @@ extern "C" void main_cpp() {
     SYS_Initialize(NULL);
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
-
+// Structure that will hold the TCB of the task being created.
+    StaticTask_t xTaskBuffer;
+// Buffer that the task being created will use as its stack.  Note this is
+// an array of StackType_t variables.  The size of StackType_t is dependent on
+// the RTOS port.
+    StackType_t xStack[ STACK_SIZE ];
     uartDMATask.emplace();
     mcuTemperatureTask.emplace();
     timeKeepingTask.emplace();
@@ -29,22 +37,25 @@ extern "C" void main_cpp() {
     reportParametersTask.emplace();
     updateParametersTask.emplace();
     ambientTemperatureTask.emplace();
-    StackType_t * const puxStackBuffer = nullptr;
-    StaticTask_t * const pxTaskBuffer = nullptr;
-    xTaskCreateStatic(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
-                &uartDMATask, tskIDLE_PRIORITY + 1, puxStackBuffer, pxTaskBuffer);
-    xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
-                &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
-                &mcuTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
-    xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask->taskName, reportParametersTask->taskStackDepth,
-                &reportParametersTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask->taskName, updateParametersTask->taskStackDepth,
-                &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
+
+//    xTaskCreateStatic(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
+//                &uartDMATask, tskIDLE_PRIORITY + 1,     xStack,          // Array to use as the task's stack.
+//                      &xTaskBuffer );
+//    xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
+//                &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreate(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
+//                &mcuTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
+//    xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask->taskName, reportParametersTask->taskStackDepth,
+//                &reportParametersTask, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreate(vClassTask<UpdateParametersTask>, updateParametersTask->taskName, updateParametersTask->taskStackDepth,
+//                &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
+//    xTaskCreateStatic(vClassTask<HousekeepingTask>, housekeepingTask->taskName, STACK_SIZE,
+//                &housekeepingTask, tskIDLE_PRIORITY + 1,xStack,          // Array to use as the task's stack.
+//                      &xTaskBuffer );
+    xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask->taskName, STACK_SIZE,
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
-                &ambientTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
+//    xTaskCreate(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
+//                &ambientTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
 
     vTaskStartScheduler();
 
