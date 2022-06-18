@@ -2,6 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/atsam-component-drivers" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/cobs-c" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/ecss-services" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/ecss-services/ci/page_style/doxygen_dark_theme" vcs="Git" />
