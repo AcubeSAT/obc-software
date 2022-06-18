@@ -61,6 +61,12 @@ inline const uint8_t UARTQueueSize = 5;
  */
 inline const uint16_t TypicalVoltageAt25 = 720;
 
+/**
+ * False means that log messages will be printed using UART.
+ * True means that log messages will be printed using the Dummy ECSS Service through CAN.
+ */
+inline const bool PreferCANForLogs = false;
+
 namespace BootCounter {
     /**
      * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter

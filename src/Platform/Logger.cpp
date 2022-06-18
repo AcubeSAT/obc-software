@@ -9,6 +9,7 @@
 #include "OBC_Definitions.hpp"
 #include "SEGGER_RTT.h"
 #include "TaskList.hpp"
+#include "DummyECSS.hpp"
 
 void Logger::log(Logger::LogLevel level, etl::istring &message) {
     etl::string<MaxLogNameSize> levelString;
@@ -47,9 +48,15 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
     if (PreferRTT) {
         SEGGER_RTT_printf(0, output.c_str());
     } else {
-        if (TaskList::uartGatekeeper) {
-            TaskList::uartGatekeeper->addToQueue(output);
+        if (PreferCANForLogs) {
+            DummyECSS dummyEcss;
+            dummyEcss.logAsECSSMessage(output);
+        } else {
+            if (TaskList::uartGatekeeper) {
+                TaskList::uartGatekeeper->addToQueue(output);
+            }
         }
+
     }
 }
 
