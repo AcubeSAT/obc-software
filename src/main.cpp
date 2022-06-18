@@ -34,7 +34,7 @@ extern "C" void main_cpp() {
     xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
                 &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
-                &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
+                &timeKeepingTask, tskIDLE_PRIORITY + 1, &timeKeepingTask->taskHandle);
     xTaskCreate(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
                 &mcuTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
     xTaskCreate(vClassTask<ReportParametersTask>, reportParametersTask->taskName, reportParametersTask->taskStackDepth,

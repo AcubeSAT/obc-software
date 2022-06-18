@@ -1,8 +1,12 @@
 #include "Helpers/TimeGetter.hpp"
 #include "PlatformParameters.hpp"
+#include "TaskList.hpp"
+#include "task.h"
 
 UTCTimestamp TimeGetter::getCurrentTimeUTC() {
     using namespace PlatformParameters;
+    xTaskNotify(TaskList::timeKeepingTask->taskHandle, 0, eNoAction);
+
     UTCTimestamp currentTime(onBoardYear.getValue(), onBoardMonth.getValue(),
                              onBoardDay.getValue(), onBoardHour.getValue(), onBoardMinute.getValue(),
                              onBoardSecond.getValue());
