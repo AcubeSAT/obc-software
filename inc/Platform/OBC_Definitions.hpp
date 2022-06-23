@@ -11,12 +11,6 @@
  */
 
 /**
- * A switch to control whether the Logger sends its messages over RTT or over UART0
- * 1 is set for RTT, 0 for USART1
- */
-inline const bool PreferRTT = false;
-
-/**
  * Maximum string size for a LogLevel is 9 characters long
  */
 inline const uint8_t MaxLogNameSize = 9;
@@ -62,10 +56,19 @@ inline const uint8_t UARTQueueSize = 5;
 inline const uint16_t TypicalVoltageAt25 = 720;
 
 /**
- * False means that log messages will be printed using UART.
- * True means that log messages will be printed using the Dummy ECSS Service through CAN.
+ * Logger will output messages using using RTT
  */
-inline const bool PreferCANForLogs = false;
+inline const bool useRTT = false;
+
+/**
+ * Logger will output messages using using UART
+ */
+inline const bool useUART = true;
+
+/**
+ * Logger will output messages using using CAN
+ */
+inline const bool useCAN = false;
 
 namespace BootCounter {
     /**
