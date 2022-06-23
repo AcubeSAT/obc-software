@@ -31,7 +31,7 @@ public:
      */
     void printOnBoardTime();
 
-    TimeKeepingTask() : Task("Timekeeping", nullptr, 1000) {}
+    TimeKeepingTask() : Task("Timekeeping", nullptr, configMINIMAL_STACK_SIZE) {}
 };
 
 #endif

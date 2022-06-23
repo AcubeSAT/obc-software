@@ -13,7 +13,7 @@ public:
       */
     void execute();
 
-    HousekeepingTask() : Task("Housekeeping", nullptr, 2000) {}
+    HousekeepingTask() : Task("Housekeeping", nullptr, 2*configMINIMAL_STACK_SIZE) {}
 
 };
 
