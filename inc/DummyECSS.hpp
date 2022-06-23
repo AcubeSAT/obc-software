@@ -24,7 +24,7 @@ public:
      * Send data as a part of a custom ECSS Message
      * Creates a TM[128, 128]
      */
-    inline void logAsECSSMessage(etl::string<LOGGER_MAX_MESSAGE_SIZE> data) {
+    inline void logAsECSSMessage(const etl::string<LOGGER_MAX_MESSAGE_SIZE>& data) {
         Message log(ServiceType, MessageType::DataString, Message::TM, 1);
         log.appendString(data);
         storeMessage(log);
