@@ -66,7 +66,6 @@ inline const bool useRTT = false;
 inline const bool useUART = true;
 
 /**
- * Logger will output messages using using CAN
  */
 inline const bool useCAN = false;
 

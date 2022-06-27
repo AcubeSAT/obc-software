@@ -2,6 +2,7 @@
 #include <Logger.hpp>
 #include "OBC_Definitions.hpp"
 #include "Service.hpp"
+#include "MessageParser.hpp"
 
 void Service::storeMessage(Message &message) {
     // appends the remaining bits to complete a byte
@@ -22,10 +23,12 @@ void Service::storeMessage(Message &message) {
     output.append("] message! ");
 
     auto data = String<ECSSMaxStringSize>("");
-    for (unsigned int i = 0; i < message.dataSize; i++) {
-        etl::to_string(static_cast<int>(message.data[i]), data, formatSpec, true);
+    String<CCSDSMaxMessageSize> createdPacket = MessageParser::compose(message);
+    for (unsigned int i = 0; i < createdPacket.size(); i++) {
+        etl::to_string(static_cast<int>(createdPacket[i]), data, formatSpec, true);
         data.append(" ");
     }
+
     output.append(data.c_str());
 
     LOG_DEBUG << output.c_str();
