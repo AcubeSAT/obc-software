@@ -11,9 +11,9 @@ void RM3100Task::execute() {
     }
 }
 
-void RM3100Task::printData(const RM3100& rm3100) {
+void RM3100Task::printData(RM3100 &rm3100) {
     etl::string<80> log = "";
-    log += "x=";
+    log += "\rx=";
     etl::to_string(rm3100.getX() / rm3100.getGain(), log, etl::format_spec().precision(6), true);
     log += " y=";
     etl::to_string(rm3100.getY() / rm3100.getGain(), log, etl::format_spec().precision(6), true);

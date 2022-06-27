@@ -13,7 +13,7 @@ public:
     /**
      * Prints the rm3100 measurements.
      */
-    void printData(RM3100 rm3100);
+    void printData(RM3100 &rm3100);
 
     RM3100Task() : Task("RM3100Task", nullptr, 1000) {}
 };
