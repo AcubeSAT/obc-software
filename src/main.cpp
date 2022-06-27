@@ -31,7 +31,7 @@ extern "C" void main_cpp() {
     statisticsReportingTask.emplace();
 
     xTaskCreate(vClassTask<StatisticsReportingTask>, statisticsReportingTask->taskName,
-                statisticsReportingTask->taskStackDepth, &statisticsReportingTask, tskIDLE_PRIORITY + 1, nullptr);
+                5000, &statisticsReportingTask, tskIDLE_PRIORITY + 1, nullptr);
 //    xTaskCreate(vClassTask<UARTGatekeeper>, uartGatekeeper->taskName, uartGatekeeper->taskStackDepth,
 //                &uartGatekeeper, tskIDLE_PRIORITY + 2, NULL);
 //    xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,

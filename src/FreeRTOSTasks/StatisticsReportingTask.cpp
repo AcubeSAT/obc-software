@@ -5,9 +5,10 @@ void StatisticsReportingTask::execute() {
 //    todo: while (parameterStatistics.periodicStatisticsReportingStatus) {}
 
     while (true) {
-        Message request(ParameterStatisticsService::ServiceType,
-                        ParameterStatisticsService::MessageType::ReportParameterStatistics, Message::TC, 1);
+        Message request = Message(ParameterStatisticsService::ServiceType,
+                                  ParameterStatisticsService::MessageType::ReportParameterStatistics,
+                                  Message::PacketType::TC, 1);
         MessageParser::execute(request);
-        vTaskDelay(delayMs);
+        vTaskDelay(pdMS_TO_TICKS(delayMs));
     }
 }
