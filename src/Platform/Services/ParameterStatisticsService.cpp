@@ -3,7 +3,7 @@
 
 void ParameterStatisticsService::initializeStatistics() {
     using namespace PlatformParameters;
-    uint16_t statisticParameterIDs[] = {ParameterID::AvailableHeap, ParameterID::OBCMCUTemperature};
+    uint16_t statisticParameterIDs[] = {ParameterID::OnBoardMinute, ParameterID::OnBoardSecond};
     uint8_t idIndex = 0;
 
     for (auto &statistic: ParameterStatistics::statistics) {
