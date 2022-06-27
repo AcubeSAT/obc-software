@@ -58,12 +58,12 @@ inline const uint16_t TypicalVoltageAt25 = 720;
 /**
  * Logger will output messages using using RTT
  */
-inline const bool useRTT = false;
+inline const bool useRTT = true;
 
 /**
  * Logger will output messages using using UART
  */
-inline const bool useUART = true;
+inline const bool useUART = false;
 
 /**
  * Logger will output messages using using CAN
