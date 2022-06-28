@@ -15,20 +15,19 @@ void Service::storeMessage(Message &message) {
     etl::to_string(message.serviceType, serviceType, formatSpec, false);
     etl::to_string(message.messageType, messageType, formatSpec, false);
 
-    auto output = String<ECSSMaxMessageSize>("New ");
+    auto output = String<ECSSMaxMessageSize>("");
     (message.packetType == Message::TM) ? output.append("TM[") : output.append("TC[");
     output.append(serviceType);
     output.append(",");
     output.append(messageType);
     output.append("] message! ");
 
-    auto data = String<ECSSMaxStringSize>("");
+    auto data = String<CCSDSMaxMessageSize>("");
     String<CCSDSMaxMessageSize> createdPacket = MessageParser::compose(message);
     for (unsigned int i = 0; i < createdPacket.size(); i++) {
-        etl::to_string(static_cast<int>(createdPacket[i]), data, formatSpec, true);
+        etl::to_string(createdPacket[i], data, formatSpec, true);
         data.append(" ");
     }
-
     output.append(data.c_str());
 
     LOG_DEBUG << output.c_str();
