@@ -11,12 +11,6 @@
  */
 
 /**
- * A switch to control whether the Logger sends its messages over RTT or over UART0
- * 1 is set for RTT, 0 for USART1
- */
-inline const bool PreferRTT = 0;
-
-/**
  * Maximum string size for a LogLevel is 9 characters long
  */
 inline const uint8_t MaxLogNameSize = 9;
@@ -52,9 +46,29 @@ inline const float TemperatureSensitivity = 2.33;
 inline const uint8_t ReferenceTemperature = 25;
 
 /**
+ * The size of the queue used to communicate with the UART Gatekeeper task
+ */
+inline const uint8_t UARTQueueSize = 5;
+
+/**
  * The typical voltage output of the DAC of the AFEC channel at 25 Celsius
  */
 inline const uint16_t TypicalVoltageAt25 = 720;
+
+/**
+ * Logger will output messages using using RTT
+ */
+inline const bool useRTT = false;
+
+/**
+ * Logger will output messages using using UART
+ */
+inline const bool useUART = true;
+
+/**
+ * Logger will output messages using using CAN
+ */
+inline const bool useCAN = false;
 
 namespace BootCounter {
     /**

@@ -6,6 +6,7 @@
 #include "BootCounter.hpp"
 #include "SEGGER_RTT.h"
 #include "FreeRTOSTasks/TaskList.hpp"
+#include "OBC_Definitions.hpp"
 
 template<class T>
 static void vClassTask(void *pvParameters) {
@@ -14,11 +15,11 @@ static void vClassTask(void *pvParameters) {
 
 extern "C" void main_cpp() {
     using namespace TaskList;
-
     SYS_Initialize(NULL);
     SEGGER_RTT_Init();
     BootCounter::incrementBootCounter();
 
+    uartGatekeeper.emplace();
     uartDMATask.emplace();
     mcuTemperatureTask.emplace();
     timeKeepingTask.emplace();
@@ -29,6 +30,8 @@ extern "C" void main_cpp() {
     ambientTemperatureTask.emplace();
     watchdogTask.emplace();
 
+    xTaskCreate(vClassTask<UARTGatekeeper>, uartGatekeeper->taskName, uartGatekeeper->taskStackDepth,
+                &uartGatekeeper, tskIDLE_PRIORITY + 2, NULL);
     xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
                 &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
