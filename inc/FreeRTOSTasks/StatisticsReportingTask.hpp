@@ -1,10 +1,9 @@
 #pragma once
 
 #include "Task.hpp"
+#include "semphr.h"
 
 class StatisticsReportingTask : public Task {
-private:
-    uint16_t delayMs = 1000;
 public:
     /**
      * @see ParameterStatisticsService
