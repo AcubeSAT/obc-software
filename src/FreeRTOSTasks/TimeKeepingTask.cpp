@@ -6,11 +6,9 @@ void TimeKeepingTask::execute() {
     RTC_TimeSet(&dateTime);
 
     while (true) {
-        if (xTaskNotifyWait(0, 0, nullptr, portMAX_DELAY) == pdTRUE) {
-            RTC_TimeGet(&dateTime);
-            setTimePlatformParameters(dateTime);
-            printOnBoardTime();
-        }
+        RTC_TimeGet(&dateTime);
+        setTimePlatformParameters(dateTime);
+        printOnBoardTime();
     }
 }
 
