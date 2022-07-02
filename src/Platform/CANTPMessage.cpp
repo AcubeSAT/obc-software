@@ -1,25 +1,26 @@
 #include "CANTPMessage.hpp"
 
-namespace CANTPMessage{
-    idInfo decodeId(uint16_t canID) {
-        idInfo id;
+using MessageData = CANMessage::MessageData;
 
-        id.sourceAddress = (canID >> 4) & 0b111;
-        id.destinationAddress = (canID >> 1) & 0b111;
-        id.isMulticast = canID & 0b1;
+CANTPMessage::IdInfo CANTPMessage::decodeId(uint16_t canID) {
+    IdInfo id;
 
-        return id;
-    }
+    id.sourceAddress = (canID >> 4) & 0b111;
+    id.destinationAddress = (canID >> 1) & 0b111;
+    id.isMulticast = canID & 0b1;
 
-    uint16_t encodeId(idInfo idInfo){
-        uint16_t id = 0b0111 << 7;
+    return id;
+}
 
-        id |= (idInfo.sourceAddress << 4);
-        id |=  (idInfo.destinationAddress << 1);
-        id |= idInfo.isMulticast;
+uint16_t CANTPMessage::encodeId(IdInfo idInfo){
+    uint16_t id = 0b0111 << 7;
 
-        return id;
-    }
+    id |= (idInfo.sourceAddress << 4);
+    id |= (idInfo.destinationAddress << 1);
+    id |= idInfo.isMulticast;
+
+    return id;
+}
 
 
 }

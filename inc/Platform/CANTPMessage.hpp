@@ -2,16 +2,18 @@
 #define OBC_SOFTWARE_CANTPMESSAGE_H
 
 #include <cstdint>
+#include "CANMessage.hpp"
 
-namespace CANTPMessage{
-    struct idInfo{
+class CANTPMessage : CANMessage{
+    struct IdInfo{
         uint8_t sourceAddress;
         uint8_t destinationAddress;
         bool isMulticast;
     };
     
-    idInfo decodeId(uint16_t canID);
-    uint16_t encodeId(idInfo idInfo);
+    IdInfo decodeId(uint16_t canID);
+
+    uint16_t encodeId(IdInfo idInfo);
 
 }
 
