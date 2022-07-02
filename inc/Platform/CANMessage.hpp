@@ -19,7 +19,10 @@ private:
     }
 
     inline uint8_t getBusToSwitchover() {
-        return CAN::currentBus ? 0 : 1;
+        if (CAN::currentBus == CAN::MainBus){
+            return 1;
+        }
+        return 0;
     }
 
     inline uint16_t getTimeID(const uint16_t nodeID) {
