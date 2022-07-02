@@ -30,7 +30,7 @@ private:
     }
 
     inline bool isTPMessage(const uint16_t id) {
-        return (((id >> 7) == 0b0111));
+        return ((id >> 7) == 0b0111);
     }
 
 public:
