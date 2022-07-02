@@ -7,6 +7,7 @@
 #include "MCUTemperatureTask.hpp"
 #include "ReportParametersTask.hpp"
 #include "UpdateParametersTask.hpp"
+#include "TimeBasedSchedulingTask.hpp"
 #include "AmbientTemperatureTask.hpp"
 #include "UARTGatekeeper.hpp"
 #include "WatchdogTask.hpp"
@@ -21,6 +22,7 @@ namespace TaskList {
     inline std::optional<HousekeepingTask> housekeepingTask;
     inline std::optional<ReportParametersTask> reportParametersTask;
     inline std::optional<UpdateParametersTask> updateParametersTask;
+    inline std::optional<TimeBasedSchedulingTask> timeBasedSchedulingTask;
     inline std::optional<AmbientTemperatureTask> ambientTemperatureTask;
     inline std::optional<UARTGatekeeper> uartGatekeeper;
     inline std::optional<WatchdogTask> watchdogTask;
