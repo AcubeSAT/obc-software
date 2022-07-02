@@ -108,7 +108,7 @@ namespace CAN{
     /**
      * The ID for the current node as described in DDJF_OBDH
      */
-     inline uint16_t nodeID = 0x0;
+     inline uint8_t nodeID = 0x0;
 }
 
 #endif //OBC_SOFTWARE_OBC_DEFINITIONS_HPP
