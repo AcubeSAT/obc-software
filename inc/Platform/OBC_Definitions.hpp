@@ -56,6 +56,18 @@ inline const uint8_t UARTQueueSize = 5;
 inline const uint16_t TypicalVoltageAt25 = 720;
 
 /**
+ * The size of the receiving task's buffer. Should be able to fit the maximum message size.
+ * @see UARTRXTask.hpp
+ */
+inline static constexpr uint16_t UartRXBufferSize = 10;
+
+/**
+ * The length of the queue, used by the uart receiver task to store the received message.
+ * @see UARTRXTask.hpp
+ */
+static constexpr uint16_t UartRXQueueLength = 10;
+
+/**
  * Logger will output messages using using RTT
  */
 inline const bool useRTT = false;
