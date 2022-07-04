@@ -51,7 +51,7 @@
  * The official FreeRTOS documentations suggests we use the configMINIMAL_STACK_SIZE that is provided by their demo of
  * the respective platform. This number was chosen by copying the demo of SAMV71 FreeRTOConfig
  */
-#define configMINIMAL_STACK_SIZE				( ( unsigned short ) 130 )
+#define configMINIMAL_STACK_SIZE				( ( unsigned short ) 1000 )
 #define configSUPPORT_DYNAMIC_ALLOCATION        1
 #define configSUPPORT_STATIC_ALLOCATION         1
 #define configTOTAL_HEAP_SIZE                   ( ( size_t ) 40960 )
