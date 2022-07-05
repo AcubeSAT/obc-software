@@ -2,53 +2,19 @@
 #define OBC_SOFTWARE_CANMESSAGE_H
 
 #include <cstdint>
+#include <cstring>
 #include "OBC_Definitions.hpp"
 
 class CANMessage {
-private:
-    const uint8_t pingDataPacket = 0x30;
-
-    const uint8_t pongDataPacket = 0x31;
-
-    inline uint16_t getHeartbeatID(const uint16_t nodeID) {
-        return nodeID + 0x700;
-    }
-
-    inline uint16_t getBusSwitchoverID(const uint16_t nodeID) {
-        return nodeID + 0x400;
-    }
-
-    inline uint8_t getBusToSwitchover() {
-        if (CAN::currentBus == CAN::MainBus){
-            return 1;
-        }
-        return 0;
-    }
-
-    inline uint16_t getTimeID(const uint16_t nodeID) {
-        return nodeID + 0x200;
-    }
-
-    inline bool isTPMessage(const uint16_t id) {
-        return ((id >> 7) == 0b0111);
-    }
-
 public:
-    struct MessageData{
-        uint16_t id;
-        uint8_t data[8];
+    uint16_t id;
+    uint8_t data[CAN::dataLength];
+
+    CANMessage(uint16_t id) : id(id) {};
+
+    CANMessage(uint16_t id, uint8_t incomingData[CAN::dataLength]) : id(id) {
+        memcpy(data, incomingData, CAN::dataLength);
     };
-
-    MessageData createPingMessage();
-
-    MessageData createPongMessage();
-
-    MessageData createHeartbeatMessage();
-
-    MessageData createBusSwitchoverMessage();
-
-    MessageData createUTCTimeMessage();
 };
-
 
 #endif //OBC_SOFTWARE_CANMESSAGE_H
