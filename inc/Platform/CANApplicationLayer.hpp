@@ -84,6 +84,12 @@ namespace CANApplicationLayer {
     inline uint16_t getTimeID(const uint16_t nodeID) {
         return nodeID + 0x200;
     }
+
+    /**
+     * Function that parses an incoming message and calls the appropriate functions for it's handling.
+     * @param message A CANMessage object with an ID and a Data field.
+     */
+    void parseMessage(CANMessage message);
 }
 
 #endif //OBC_SOFTWARE_CANAPPLICATIONLAYER_H

@@ -36,5 +36,19 @@ namespace CANApplicationLayer {
 
         return {id, data};
     }
+
+    void parseMessage(CANMessage message) {
+        if (isTPMessage(message.id)) {
+//            parseTPMessage(); @todo how to do this async?
+        } else if (message.id > 0x700) {
+//            @todo register heartbeat?
+        } else if (message.id > 0x400) {
+            CAN::currentBus = static_cast<CAN::BusID>(message.data[0]);
+//            @todo write code to use the other CAN peripheral
+        } else {
+//            @todo UTC time message receipt
+        }
+    }
+
 }
 
