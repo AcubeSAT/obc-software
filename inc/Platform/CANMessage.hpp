@@ -8,9 +8,9 @@
 class CANMessage {
 public:
     uint16_t id;
-    uint8_t data[CAN::dataLength];
+    uint8_t data[CAN::dataLength]{};
 
-    CANMessage(uint16_t id) : id(id) {};
+    explicit CANMessage(uint16_t id) : id(id) {};
 
     CANMessage(uint16_t id, uint8_t incomingData[CAN::dataLength]) : id(id) {
         memcpy(data, incomingData, CAN::dataLength);

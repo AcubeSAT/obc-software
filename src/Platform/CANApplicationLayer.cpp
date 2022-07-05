@@ -16,7 +16,7 @@ namespace CANApplicationLayer {
     }
 
     CANMessage createHeartbeatMessage() {
-        return {getHeartbeatID(CAN::nodeID)};
+        return CANMessage(getHeartbeatID(CAN::nodeID));
     }
 
     CANMessage createBusSwitchoverMessage() {
