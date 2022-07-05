@@ -46,6 +46,8 @@ public:
     MessageData createHeartbeatMessage();
 
     MessageData createBusSwitchoverMessage();
+
+    MessageData createUTCTimeMessage();
 };
 
 
