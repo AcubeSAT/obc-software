@@ -3,44 +3,55 @@
 
 #include "CANMessage.hpp"
 #include "CANTPMessage.hpp"
+#include "etl/queue.h"
 
 namespace CANApplicationLayer {
 
     /**
-     * Function that creates a Ping message to be sent, according to the CDR.
-     * @return A CANMessage object with an ID and a Data field ready to be sent via CAN Bus.
+     * A queue that holds messages that are waiting to be sent via the CAN Bus.
      */
-    CANMessage createPingMessage();
+    etl::queue<CANMessage, 64> outgoingMessages;
 
     /**
-     * Function that creates a Pong message to be sent in response to a Ping message, according to the CDR.
-     * @return A CANMessage object with an ID and a Data field ready to be sent via CAN Bus.
+     * A queue that holds messages that have been received via the CAN Bus, and are awaiting parsing.
      */
-    CANMessage createPongMessage();
+    etl::queue<CANMessage, 64> incomingMessages;
 
     /**
-     * Function that creates a Heartbeat message to be sent periodically, according to the CDR.
-     * @return A CANMessage object with an ID and a Data field ready to be sent via CAN Bus.
+     * A queue that holds a collection of CAN Messages that compose a CAN TP Message.
      */
-    CANMessage createHeartbeatMessage();
+    etl::queue<CANMessage, 64> incomingTPMessage;
+
+    /**
+     * Function that adds a Ping message to the outgoing queue, according to the CDR.
+     */
+    void sendPingMessage();
+
+    /**
+     * Function that adds a Pong message to the outgoing queue, to be sent in response to a Ping message, according to the CDR.
+     */
+    void sendPongMessage();
+
+    /**
+     * Function that adds a Heartbeat message to the outgoing queue, to be called periodically, according to the CDR.
+     */
+    void sendHeartbeatMessage();
 
     /**
      * Function that creates a Heartbeat message to be sent whenever the FDIR responsible determines the bus quality
      * is not satisfactory, according to the CDR.
-     * @return A CANMessage object with an ID and a Data field ready to be sent via CAN Bus.
      */
-    CANMessage createBusSwitchoverMessage();
+    void sendBusSwitchoverMessage();
 
     /**
-     * Function that creates a message with the current UTC Time, according to the CDR.
-     * @return A CANMessage object with an ID and a Data field ready to be sent via CAN Bus.
+     * Function that adds a message to the outgoing queue with the current UTC Time, according to the CDR.
      */
-    CANMessage createUTCTimeMessage();
+    void sendUTCTimeMessage();
 
     /**
      * Function that determines whether a message is following the CAN-TP Message protocol.
      * @param id The id of the message received via CAN
-     * @return Whether the message is a CAN-TP Message
+     * @return True if the message is part of a CAN-TP Message
      */
     inline bool isTPMessage(const uint16_t id) {
         return ((id >> 7) == 0b0111);
@@ -58,11 +69,17 @@ namespace CANApplicationLayer {
 
     /**
      * Value of a Heartbeat message ID according to the CDR.
+     * @param nodeID The ID of the current node.
      */
     inline uint16_t getHeartbeatID(const uint16_t nodeID) {
         return nodeID + 0x700;
     }
 
+    /**
+     * Value of a Bus Switchover message ID according to the CDR.
+     * @param nodeID The ID of the current node.
+     * @return The ID the Bus Switchover message should have.
+     */
     inline uint16_t getBusSwitchoverID(const uint16_t nodeID) {
         return nodeID + 0x400;
     }
@@ -80,6 +97,7 @@ namespace CANApplicationLayer {
 
     /**
      * Value of a UTC Time message ID according to the CDR.
+     * @param nodeID The ID of the current node.
      */
     inline uint16_t getTimeID(const uint16_t nodeID) {
         return nodeID + 0x200;
