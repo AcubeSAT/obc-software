@@ -32,14 +32,14 @@ namespace CANApplicationLayer {
         uint16_t id = getTimeID(CAN::nodeID);
         uint8_t data[CAN::dataLength] = {0, 0, //@todo how do we get submillis of ms?
                                          static_cast<uint8_t>(msOfDay), static_cast<uint8_t>(msOfDay >> 8),
-                                         static_cast<uint8_t>(msOfDay >> 16), static_cast<uint8_t>(msOfDay >> 24),
-                                         0, PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
+                                         static_cast<uint8_t>(msOfDay >> 16), static_cast<uint8_t>(msOfDay >> 24), 0,
+                                         PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
 
         outgoingMessages.push({id, data});
     }
 
     void parseMessage() {
-        CANMessage* message;
+        CANMessage *message;
         incomingMessages.pop_into(*message);
 
         if (isTPMessage(message->id)) {

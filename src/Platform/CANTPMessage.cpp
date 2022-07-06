@@ -1,6 +1,5 @@
 #include "CANTPMessage.hpp"
-
-using MessageData = CANMessage::MessageData;
+#include "OBC_Definitions.hpp"
 
 CANTPMessage::IdInfo CANTPMessage::decodeId(uint16_t canID) {
     IdInfo id;
@@ -12,7 +11,7 @@ CANTPMessage::IdInfo CANTPMessage::decodeId(uint16_t canID) {
     return id;
 }
 
-uint16_t CANTPMessage::encodeId(IdInfo idInfo){
+uint16_t CANTPMessage::encodeId(IdInfo idInfo) {
     uint16_t id = 0b0111 << 7;
 
     id |= (idInfo.sourceAddress << 4);
