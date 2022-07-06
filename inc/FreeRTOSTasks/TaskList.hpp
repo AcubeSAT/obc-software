@@ -11,6 +11,7 @@
 #include "AmbientTemperatureTask.hpp"
 #include "UARTGatekeeper.hpp"
 #include "WatchdogTask.hpp"
+#include "TCHandlingTask.hpp"
 
 /**
  * Storage of FreeRTOS task instances.
@@ -26,6 +27,7 @@ namespace TaskList {
     inline std::optional<AmbientTemperatureTask> ambientTemperatureTask;
     inline std::optional<UARTGatekeeper> uartGatekeeper;
     inline std::optional<WatchdogTask> watchdogTask;
+    inline std::optional<TCHandlingTask> tcHandlingTask;
 }
 
 #endif //OBC_SOFTWARE_TASKLIST_H
