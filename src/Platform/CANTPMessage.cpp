@@ -21,6 +21,40 @@ uint16_t CANTPMessage::encodeId(IdInfo idInfo) {
     return id;
 }
 
+void CANTPMessage::createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
+                                               etl::array<uint16_t, 10> parameterIDs) {
+    uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
+
+    uint8_t parameterCount = parameterIDs.size();
+
+    CANMessage message = {id};
+
+    for (uint8_t idx = 0; idx < parameterCount; idx++) {
+        uint16_t parameterId = parameterIDs.at(idx);
+        //@todo how should I access the parameters by ID?
+
+    }
+}
+
+void CANTPMessage::createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
+                                                  etl::array<uint8_t, 10> parameterIDs) {
+    uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
+
+    uint8_t parameterCount = parameterIDs.size();
+
+    for (uint8_t idx = 0; idx < parameterCount; idx++) {
+        uint16_t parameterId = parameterIDs.at(idx);
+
+    }
 
 }
 
+void CANTPMessage::createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
+                                                etl::array<uint8_t, 10> argumentIDs,
+                                                etl::array<uint16_t, 10> argumentValues) {
+    uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
+
+    auto argumentCount = static_cast<uint16_t>(argumentIDs.size());
+
+
+}

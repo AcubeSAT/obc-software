@@ -54,5 +54,9 @@ namespace CANApplicationLayer {
         }
     }
 
+    void
+    parseTPMessage() { // @todo How should this function be called? Whenever a TP message header is found on parseMessage?
+
+    }
 }
 
