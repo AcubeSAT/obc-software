@@ -51,6 +51,8 @@ extern "C" void main_cpp() {
 //                &ambientTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
     xTaskCreate(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
                &watchdogTask, tskIDLE_PRIORITY, NULL);
+    xTaskCreate(vClassTask<TCHandlingTask>, tcHandlingTask->taskName, tcHandlingTask->taskStackDepth, &tcHandlingTask,
+                tskIDLE_PRIORITY + 1, nullptr);
 
     vTaskStartScheduler();
 

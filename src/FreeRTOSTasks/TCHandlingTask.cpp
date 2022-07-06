@@ -8,7 +8,6 @@
 #include "etl/compare.h"
 
 using ECSSMessage = Message;
-uint8_t ctr = 0;
 
 TCHandlingTask::TCHandlingTask() {
 
@@ -50,6 +49,7 @@ void TCHandlingTask::execute() {
             messageComplete = false;
             LOG_DEBUG << "message is" << byteBuffer.message;
             byteBuffer = Buffer{""};
+
         }
     }
 }

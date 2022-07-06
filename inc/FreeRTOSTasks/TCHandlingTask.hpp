@@ -36,7 +36,7 @@ public:
     void execute();
 
     /**
-     * Stores the received bytes into the buffer and updates the queue when the whole message is received.
+     * Stores the received bytes into the buffer and generates a TC-ready signal.
      */
     void createTC();
 
@@ -60,6 +60,7 @@ private:
      */
     QueueHandle_t byteQueue;
 
+
     QueueHandle_t messageQueue;
 
     bool messageComplete = false;
@@ -71,11 +72,15 @@ private:
     Buffer byteBuffer;
 
 
+    /**
+     * Incoming byte
+     */
     char byteIn = 0;
 
     /**
      * The buffer containing the decoded (COBS) message.
      */
+
     etl::string<byteBufferSize> cobsDecodedMessage = "";
 };
 

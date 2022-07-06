@@ -56,6 +56,7 @@ inline const uint8_t UARTQueueSize = 5;
 inline const uint16_t TypicalVoltageAt25 = 720;
 
 /**
+<<<<<<< HEAD
  * The max bytes a buffer of bytes can hold
  */
 inline const uint8_t byteBufferSize = 25;
