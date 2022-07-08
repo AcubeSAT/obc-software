@@ -108,6 +108,14 @@ namespace CANApplicationLayer {
      * @param message A CANMessage object with an ID and a Data field.
      */
     void parseMessage(CANMessage message);
+
+    /**
+     * Function that splits a CAN-TP Message into a collection of CAN Messages and adds them to the outgoing queue.
+     * @param id The ID that will be used for the messages.
+     * @param messagePayload A vector containing the data part of the CAN-TP Message.
+     */
+    void finalizeMessage(uint16_t id, etl::vector<uint8_t, 256> messagePayload);
+
 }
 
 #endif //OBC_SOFTWARE_CANAPPLICATIONLAYER_H
