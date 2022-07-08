@@ -106,12 +106,12 @@ CANTPMessage::createLogMessage(uint8_t destinationAddress, bool isMulticast, etl
 template<typename T>
 etl::vector<uint8_t, 8> CANTPMessage::stuffIntoVector(T value) {
     auto size = sizeof(T);
-    etl::vector<uint8_t, 8> vec;
+    etl::vector<uint8_t, 8> vector;
 
     while (size > 0) {
         size--;
-        vec.push_back(value >> (size * 8));
+        vector.push_back(value >> (size * 8));
     }
 
-    return vec;
+    return vector;
 }
