@@ -3,7 +3,9 @@
 
 #include <cstdint>
 #include "CANMessage.hpp"
-#include "etl/array.h"
+#include "etl/String.hpp"
+#include "etl/vector.h"
+#include "Logger_Definitions.hpp"
 
 class CANTPMessage : CANMessage {
 private:
@@ -17,8 +19,9 @@ private:
 
     uint16_t encodeId(IdInfo idInfo);
 
+    template<typename T>
     void
-    createSendParametersMessage(uint8_t destinationAddress, bool isMulticast, etl::array<uint16_t, 10> parameterIDs);
+    createSendParametersMessage(uint8_t destinationAddress, bool isMulticast, etl::vector<uint16_t, 10> parameterIDs);
 
     void
     createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast, etl::array<uint8_t, 10> parameterIDs);

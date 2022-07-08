@@ -1,5 +1,7 @@
+#include "CANApplicationLayer.hpp"
 #include "CANTPMessage.hpp"
 #include "OBC_Definitions.hpp"
+#include "ServicePool.hpp"
 
 CANTPMessage::IdInfo CANTPMessage::decodeId(uint16_t canID) {
     IdInfo id;
@@ -21,19 +23,29 @@ uint16_t CANTPMessage::encodeId(IdInfo idInfo) {
     return id;
 }
 
+template<typename T>
 void CANTPMessage::createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                               etl::array<uint16_t, 10> parameterIDs) {
+                                               etl::vector<uint16_t, 10> parameterIDs) {
     uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
+    uint16_t parameterCount = parameterIDs.size();
 
-    uint8_t parameterCount = parameterIDs.size();
+    etl::vector<uint8_t, 256> data = {0x01, static_cast<uint8_t>(parameterCount >> 8),
+                                      static_cast<uint8_t>(parameterCount)};
 
-    CANMessage message = {id};
+    for (uint16_t parameterId: parameterIDs) {
+        auto parameter = static_cast<Parameter <T> &>(Services.parameterManagement.getParameter(
+                parameterId)->get()).getValue();
 
-    for (uint8_t idx = 0; idx < parameterCount; idx++) {
-        uint16_t parameterId = parameterIDs.at(idx);
-        //@todo how should I access the parameters by ID?
+        for (auto paramId: stuffIntoVector(parameterId)) {
+            data.push_back(paramId);
+        }
 
+        for (auto param: stuffIntoVector(parameter)) { //@todo better name for this?
+            data.push_back(param);
+        }
     }
+
+    CANApplicationLayer::finalizeMessage(id, data);
 }
 
 void CANTPMessage::createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
