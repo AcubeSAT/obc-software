@@ -53,7 +53,7 @@ void CANTPMessage::createRequestParametersMessage(uint8_t destinationAddress, bo
     uint16_t id = encodeId({0x1, destinationAddress, isMulticast});
     uint16_t parameterCount = parameterIDs.size();
 
-    etl::vector<uint8_t, 256> data = {0x01, static_cast<uint8_t>(parameterCount >> 8),
+    etl::vector<uint8_t, 256> data = {0x02, static_cast<uint8_t>(parameterCount >> 8),
                                       static_cast<uint8_t>(parameterCount)};
 
     for (auto parameter: parameterIDs) {
