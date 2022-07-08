@@ -4,16 +4,13 @@
 
 namespace CANApplicationLayer {
     void createPingMessage() {
-        uint16_t id = CAN::nodeID; //@todo ping pong messages should have the original node ID?
-        uint8_t data[CAN::dataLength] = {pingDataPacket};
-
-        outgoingMessages.push({id, data});
+        uint16_t id = pingMessageId;
+        outgoingMessages.push({id});
     }
 
     void createPongMessage() {
-        uint16_t id = CAN::nodeID;
-        uint8_t data[CAN::dataLength] = {pongDataPacket};
-        outgoingMessages.push({id, data});
+        uint16_t id = pongMessageId;
+        outgoingMessages.push({id});
     }
 
     void createHeartbeatMessage() {

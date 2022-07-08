@@ -60,12 +60,12 @@ namespace CANApplicationLayer {
     /**
      * Value of a Ping data packet according to the CDR.
      */
-    const uint8_t pingDataPacket = 0x30;
+    const uint8_t pingMessageId = 0x30;
 
     /**
      * Value of a Pong data packet according to the CDR.
      */
-    const uint8_t pongDataPacket = 0x31;
+    const uint8_t pongMessageId = 0x31;
 
     /**
      * Value of a Heartbeat message ID according to the CDR.
