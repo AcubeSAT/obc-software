@@ -20,6 +20,9 @@ private:
     uint16_t encodeId(IdInfo idInfo);
 
     template<typename T>
+    etl::vector<uint8_t, 8> stuffIntoVector(T value);
+
+    template<typename T>
     void
     createSendParametersMessage(uint8_t destinationAddress, bool isMulticast, etl::vector<uint16_t, 10> parameterIDs);
 

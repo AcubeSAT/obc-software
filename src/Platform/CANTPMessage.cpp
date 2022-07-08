@@ -69,4 +69,15 @@ void CANTPMessage::createPerformFunctionMessage(uint8_t destinationAddress, bool
     auto argumentCount = static_cast<uint16_t>(argumentIDs.size());
 
 
+template<typename T>
+etl::vector<uint8_t, 8> CANTPMessage::stuffIntoVector(T value) {
+    auto size = sizeof(T);
+    etl::vector<uint8_t, 8> vec;
+
+    while (size > 0) {
+        size--;
+        vec.push_back(value >> (size * 8));
+    }
+
+    return vec;
 }
