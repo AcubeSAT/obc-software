@@ -85,7 +85,7 @@ void CANTPMessage::createPerformFunctionMessage(uint8_t destinationAddress, bool
         for (auto value: stuffIntoVector(argumentValue)) {
             data.push_back(value);
         }
-        idx++; //@todo This is not error handled, if the arugmentValues.size() != argumentIDs.size() there is undefined behavior.
+        idx++; //@todo This is not error handled, if the argumentValues.size() != argumentIDs.size() there is undefined behavior.
     }
 
 }
