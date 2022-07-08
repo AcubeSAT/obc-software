@@ -26,11 +26,15 @@ private:
     void
     createSendParametersMessage(uint8_t destinationAddress, bool isMulticast, etl::vector<uint16_t, 10> parameterIDs);
 
-    void
-    createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast, etl::array<uint8_t, 10> parameterIDs);
+    void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
+                                        etl::vector<uint16_t, 10> parameterIDs);
 
+    template<typename T>
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
-                                      etl::array<uint8_t, 10> argumentIDs, etl::array<uint16_t, 10> argumentValues);
+                                      etl::vector<uint8_t, 10> argumentIDs, etl::vector<T, 10> argumentValues);
+
+    void createLogMessage(uint8_t destinationAddress, bool isMulticast, etl::string<LOGGER_MAX_MESSAGE_SIZE> log);
+
 };
 
 #endif //OBC_SOFTWARE_CANTPMESSAGE_H

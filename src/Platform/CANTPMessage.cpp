@@ -49,25 +49,58 @@ void CANTPMessage::createSendParametersMessage(uint8_t destinationAddress, bool 
 }
 
 void CANTPMessage::createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                                  etl::array<uint8_t, 10> parameterIDs) {
+                                                  etl::vector<uint16_t, 10> parameterIDs) {
+    uint16_t id = encodeId({0x1, destinationAddress, isMulticast});
+    uint16_t parameterCount = parameterIDs.size();
+
+    etl::vector<uint8_t, 256> data = {0x01, static_cast<uint8_t>(parameterCount >> 8),
+                                      static_cast<uint8_t>(parameterCount)};
+
+    for (auto parameter: parameterIDs) {
+        data.push_back(parameter);
+    }
+
+    CANApplicationLayer::finalizeMessage(id, data);
+}
+
+template<typename T>
+void CANTPMessage::createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
+                                                etl::vector<uint8_t, 10> argumentIDs,
+                                                etl::vector<T, 10> argumentValues) {
     uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
 
-    uint8_t parameterCount = parameterIDs.size();
+    auto argumentCount = static_cast<uint16_t>(argumentIDs.size());
+    etl::vector<uint8_t, 256> data = {0x03};
 
-    for (uint8_t idx = 0; idx < parameterCount; idx++) {
-        uint16_t parameterId = parameterIDs.at(idx);
+    uint8_t functionIdSize = 6;
+    while (functionIdSize > 0) {
+        functionIdSize--;
+        data.push_back(functionId >> (functionIdSize * 8));
+    }
 
+    uint8_t idx = 0;
+    for (auto argumentValue: argumentValues) {
+        data.push_back(argumentIDs.at(idx));
+
+        for (auto value: stuffIntoVector(argumentValue)) {
+            data.push_back(value);
+        }
     }
 
 }
 
-void CANTPMessage::createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
-                                                etl::array<uint8_t, 10> argumentIDs,
-                                                etl::array<uint16_t, 10> argumentValues) {
+void
+CANTPMessage::createLogMessage(uint8_t destinationAddress, bool isMulticast, etl::string<LOGGER_MAX_MESSAGE_SIZE> log) {
     uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
 
-    auto argumentCount = static_cast<uint16_t>(argumentIDs.size());
+    etl::vector<uint8_t, 256> data = {0x40};
 
+    for (auto character: log) {
+        data.push_back(character);
+    }
+
+    CANApplicationLayer::finalizeMessage(id, data);
+}
 
 template<typename T>
 etl::vector<uint8_t, 8> CANTPMessage::stuffIntoVector(T value) {
