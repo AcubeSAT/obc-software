@@ -6,6 +6,7 @@
 #include "etl/String.hpp"
 #include "etl/vector.h"
 #include "Logger_Definitions.hpp"
+#include "Services/EventReportService.hpp"
 
 class CANTPMessage : CANMessage {
 private:
@@ -13,6 +14,13 @@ private:
         uint8_t sourceAddress;
         uint8_t destinationAddress;
         bool isMulticast;
+    };
+
+    enum EventReportType : uint8_t {
+        Informative = 0x0,
+        LowSeverity = 0x1,
+        MediumSeverity = 0x2,
+        HighSeverity = 0x3
     };
 
     IdInfo decodeId(uint16_t canID);
@@ -35,6 +43,8 @@ private:
 
     void createLogMessage(uint8_t destinationAddress, bool isMulticast, etl::string<LOGGER_MAX_MESSAGE_SIZE> log);
 
+    void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type,
+                                  uint16_t eventID, etl::array<uint8_t, 256> data);
 };
 
 #endif //OBC_SOFTWARE_CANTPMESSAGE_H

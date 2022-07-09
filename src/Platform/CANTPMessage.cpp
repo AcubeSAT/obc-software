@@ -103,6 +103,19 @@ CANTPMessage::createLogMessage(uint8_t destinationAddress, bool isMulticast, etl
     CANApplicationLayer::finalizeMessage(id, data);
 }
 
+void CANTPMessage::createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID, etl::array<uint8_t, 256> payload){
+    uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
+
+    etl::vector<uint8_t, 256> data = {0x10, static_cast<unsigned char>(eventID >> 8), static_cast<unsigned char>(eventID) };
+
+    for (auto point: payload) {
+        data.push_back(point);
+    }
+
+    CANApplicationLayer::finalizeMessage(id, data);
+}
+
+
 template<typename T>
 etl::vector<uint8_t, 8> CANTPMessage::stuffIntoVector(T value) {
     auto size = sizeof(T);
