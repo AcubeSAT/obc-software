@@ -88,6 +88,7 @@ void CANTPMessage::createPerformFunctionMessage(uint8_t destinationAddress, bool
         idx++; //@todo This is not error handled, if the argumentValues.size() != argumentIDs.size() there is undefined behavior.
     }
 
+    CANApplicationLayer::finalizeMessage(id, data);
 }
 
 void
