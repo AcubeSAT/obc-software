@@ -46,8 +46,10 @@ namespace CANApplicationLayer {
         } else if (message->id > 0x400) {
             CAN::currentBus = static_cast<CAN::BusID>(message->data[0]);
 //            @todo write code to use the other CAN peripheral
-        } else {
+        } else if (message->id > 0x200) {
 //            @todo UTC time message receipt
+        } else if (message->id == pingMessageId){
+            sendPongMessage();
         }
     }
 
