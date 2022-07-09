@@ -40,6 +40,7 @@ public:
      */
     void createTC();
 
+    void ingress();
 private:
     struct Buffer {
         char message[byteBufferSize] = "";
@@ -76,6 +77,8 @@ private:
      * Incoming byte
      */
     char byteIn = 0;
+
+    char byteOut = 0;
 
     /**
      * The buffer containing the decoded (COBS) message.

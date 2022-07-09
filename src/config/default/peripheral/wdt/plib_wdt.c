@@ -52,7 +52,7 @@ void WDT_Initialize( void )
 
 void WDT_Clear(void)
 {
-   WDT_REGS->WDT_CR = (WDT_CR_KEY_PASSWD | WDT_CR_WDRSTT_Msk);
+//   WDT_REGS->WDT_CR = (WDT_CR_KEY_PASSWD | WDT_CR_WDRSTT_Msk);
 }
 
 

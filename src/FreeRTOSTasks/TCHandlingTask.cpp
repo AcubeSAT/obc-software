@@ -23,33 +23,37 @@ TCHandlingTask::TCHandlingTask() {
         if (USART1_ReadCountGet() == 0) {
             ErrorHandler::reportInternalError(ErrorHandler::InternalErrorType::UsartFailedRead);
         } else {
-            xQueueSendToBackFromISR(TCTask->byteQueue, static_cast<void *>(&TCTask->byteIn), nullptr);
+            TCTask->ingress();
         }
         USART1_Read(&(TCTask->byteIn), 1);
     }, reinterpret_cast<uintptr_t>(this));
 }
 
-void TCHandlingTask::createTC() {
-    char byteOut;
-    xQueueReceive(byteQueue, static_cast<void *>(&byteOut), portMAX_DELAY);
-    byteBuffer.message[currentReadLocation++] = byteOut;
-    if(byteOut == 0) {
-        xQueueSendToBack(messageQueue, static_cast<void *>(&byteBuffer.message), portMAX_DELAY);
-        messageComplete = true;
+void TCHandlingTask::ingress() {
+    xQueueSendToBackFromISR(byteQueue, static_cast<void *>(&byteIn), nullptr);
+    currentReadLocation = 0;
+    if (currentReadLocation == byteBufferSize) {
+        overrun = true;
         currentReadLocation = 0;
+    }
+}
+
+
+void TCHandlingTask::createTC() {
+    while(!messageComplete) {
+        char byteOut;
+        xQueueReceive(byteQueue, static_cast<void *>(&byteOut), portMAX_DELAY);
+        byteBuffer.message[currentReadLocation++] = byteOut;
+        if(byteOut == 0) {
+            currentReadLocation = 0;
+            messageComplete = true;
+        }
     }
 }
 
 void TCHandlingTask::execute() {
     while (true) {
         createTC();
-        if (messageComplete) {
-            Buffer output{""};
-            xQueueReceive(messageQueue, static_cast<void *>(&output.message), portMAX_DELAY);
-            messageComplete = false;
-            LOG_DEBUG << "message is" << byteBuffer.message;
-            byteBuffer = Buffer{""};
-
-        }
+        messageComplete = false;
     }
 }

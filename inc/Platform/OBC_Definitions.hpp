@@ -59,12 +59,12 @@ inline const uint16_t TypicalVoltageAt25 = 720;
 <<<<<<< HEAD
  * The max bytes a buffer of bytes can hold
  */
-inline const uint8_t byteBufferSize = 25;
+inline const uint8_t byteBufferSize = 10;
 
 /**
  * The max bytes a queue of bytes can hold
  */
-inline const uint8_t byteQueueLength = 25;
+inline const uint8_t byteQueueLength = 10;
 
 /**
  * The max bytes a buffer of messages can hold
