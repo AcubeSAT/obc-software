@@ -8,8 +8,7 @@
 #include "Logger_Definitions.hpp"
 #include "Services/EventReportService.hpp"
 
-class CANTPMessage : CANMessage {
-private:
+namespace CANTPMessage {
     struct IdInfo {
         uint8_t sourceAddress;
         uint8_t destinationAddress;
