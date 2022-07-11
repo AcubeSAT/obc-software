@@ -21,20 +21,20 @@ extern "C" void main_cpp() {
 
     uartGatekeeper.emplace();
     uartDMATask.emplace();
-    mcuTemperatureTask.emplace();
-    timeKeepingTask.emplace();
-    housekeepingTask.emplace();
-    reportParametersTask.emplace();
-    updateParametersTask.emplace();
-    timeBasedSchedulingTask.emplace();
+//    mcuTemperatureTask.emplace();
+//    timeKeepingTask.emplace();
+//    housekeepingTask.emplace();
+//    reportParametersTask.emplace();
+//    updateParametersTask.emplace();
+//    timeBasedSchedulingTask.emplace();
 //    ambientTemperatureTask.emplace();
-    watchdogTask.emplace();
+//    watchdogTask.emplace();
     tcHandlingTask.emplace();
 
-//    xTaskCreate(vClassTask<UARTGatekeeper>, uartGatekeeper->taskName, uartGatekeeper->taskStackDepth,
-//                &uartGatekeeper, tskIDLE_PRIORITY + 2, NULL);
-//    xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
-//                &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
+    xTaskCreate(vClassTask<UARTGatekeeper>, uartGatekeeper->taskName, uartGatekeeper->taskStackDepth,
+                &uartGatekeeper, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(vClassTask<UartDMATask>, uartDMATask->taskName, uartDMATask->taskStackDepth,
+                &uartDMATask, tskIDLE_PRIORITY + 1, NULL);
 //    xTaskCreate(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
 //                &timeKeepingTask, tskIDLE_PRIORITY + 1, NULL);
 //    xTaskCreate(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
