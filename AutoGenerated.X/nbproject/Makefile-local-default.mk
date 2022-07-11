@@ -14,11 +14,11 @@
 # You can invoke make with the values of the macros:
 # $ makeMP_CC="/opt/microchip/mplabc30/v3.30c/bin/pic30-gcc" ...  
 #
-PATH_TO_IDE_BIN=/opt/microchip/mplabx/v5.50/mplab_platform/platform/../mplab_ide/modules/../../bin/
+PATH_TO_IDE_BIN=/opt/microchip/mplabx/v6.00/mplab_platform/platform/../mplab_ide/modules/../../bin/
 # Adding MPLAB X bin directory to path.
-PATH:=/opt/microchip/mplabx/v5.50/mplab_platform/platform/../mplab_ide/modules/../../bin/:$(PATH)
+PATH:=/opt/microchip/mplabx/v6.00/mplab_platform/platform/../mplab_ide/modules/../../bin/:$(PATH)
 # Path to java used to run MPLAB X when this makefile was created
-MP_JAVA_PATH="/opt/microchip/mplabx/v5.50/sys/java/zulu8.40.0.25-ca-fx-jre8.0.222-linux_x64/bin/"
+MP_JAVA_PATH="/opt/microchip/mplabx/v6.00/sys/java/zulu8.54.0.21-ca-fx-jre8.0.292-linux_x64/bin/"
 OS_CURRENT="$(shell uname -s)"
 MP_CC="/usr/bin/arm-none-eabi-gcc"
 MP_CPPC="/usr/bin/arm-none-eabi-g++"
@@ -26,7 +26,7 @@ MP_CPPC="/usr/bin/arm-none-eabi-g++"
 MP_AS="/usr/bin/arm-none-eabi-as"
 MP_LD="/usr/bin/arm-none-eabi-ld"
 MP_AR="/usr/bin/arm-none-eabi-ar"
-DEP_GEN=${MP_JAVA_PATH}java -jar "/opt/microchip/mplabx/v5.50/mplab_platform/platform/../mplab_ide/modules/../../bin/extractobjectdependencies.jar"
+DEP_GEN=${MP_JAVA_PATH}java -jar "/opt/microchip/mplabx/v6.00/mplab_platform/platform/../mplab_ide/modules/../../bin/extractobjectdependencies.jar"
 MP_CC_DIR="/usr/bin"
 MP_CPPC_DIR="/usr/bin"
 # MP_BC_DIR is not defined
@@ -34,5 +34,4 @@ MP_AS_DIR="/usr/bin"
 MP_LD_DIR="/usr/bin"
 MP_AR_DIR="/usr/bin"
 # MP_BC_DIR is not defined
-DFP_DIR=/opt/microchip/mplabx/v5.50/packs/Microchip/SAMV71_DFP/4.5.82
-CMSIS_DIR=/opt/microchip/mplabx/v5.50/packs/arm/CMSIS/5.4.0
+CMSIS_DIR=/opt/microchip/mplabx/v6.00/packs/arm/CMSIS/5.4.0

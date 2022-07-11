@@ -67,6 +67,10 @@ inline const uint8_t byteBufferSize = 10;
 inline const uint8_t byteQueueLength = 10;
 
 /**
+ *
+ */
+inline const uint8_t byteTrailerLength = 3;
+/**
  * The max bytes a buffer of messages can hold
  */
 inline const uint8_t messageQueueLength = 10;

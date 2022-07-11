@@ -21,25 +21,24 @@ TCHandlingTask::TCHandlingTask() {
         if (USART1_ReadCountGet() == 0) {
             ErrorHandler::reportInternalError(ErrorHandler::InternalErrorType::UsartFailedRead);
         } else {
-
             xQueueSendToBackFromISR(TCTask->byteQueue, static_cast<void *>(&TCTask->byteIn), nullptr);;
         }
         USART1_Read(&(TCTask->byteIn), sizeof(TCTask->byteIn));
     }, reinterpret_cast<uintptr_t>(this));
 }
 
-void TCHandlingTask::ingress() {
-
-}
-
 
 void TCHandlingTask::createTC() {
     char byteOut;
     xQueueReceive(byteQueue, static_cast<void*>(&byteOut), portMAX_DELAY);
-
-    byteBuffer.message[currentReadLocation++] = byteOut;
-    if(byteOut == 0x0F)
+    if(byteOut == 0x69) {
         messageComplete = true;
+        currentReadLocation = 0;
+
+    } else {
+        byteBuffer.message[currentReadLocation++] = byteOut;
+    }
+
 }
 
 void TCHandlingTask::execute() {
@@ -47,9 +46,14 @@ void TCHandlingTask::execute() {
         createTC();
         if (messageComplete) {
             messageComplete = false;
-//            xQueueReset(byteQueue);
-            currentReadLocation = 0;
-            LOG_DEBUG << byteBuffer.message;
+            uint8_t message[64];
+
+            std::copy(std::begin(byteBuffer.message), std::end(byteBuffer.message), std::begin(message));
+
+            ECSSMessage ecss = MessageParser::parseECSSTC(message);
+            MessageParser::execute(ecss);
+
+            LOG_DEBUG << "Received new [" << ecss.serviceType << "," << ecss.messageType << "] TC";
         }
     }
 }

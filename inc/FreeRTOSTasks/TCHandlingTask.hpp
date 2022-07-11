@@ -80,6 +80,7 @@ private:
 
     char byteOut = 0;
 
+    uint8_t delimiterCounter = 0;
     /**
      * The buffer containing the decoded (COBS) message.
      */
