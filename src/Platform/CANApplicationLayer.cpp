@@ -26,7 +26,7 @@ namespace CANApplicationLayer {
         uint32_t msOfDay; //@todo How do we get millisecond accuracy?
 
         uint16_t id = getTimeID(CAN::nodeID);
-        uint8_t data[CAN::dataLength] = {0, 0, //@todo how do we get submillis of ms?
+        uint8_t data[CAN::dataLength] = {0, 0,
                                          static_cast<uint8_t>(msOfDay), static_cast<uint8_t>(msOfDay >> 8),
                                          static_cast<uint8_t>(msOfDay >> 16), static_cast<uint8_t>(msOfDay >> 24), 0,
                                          PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
@@ -40,12 +40,12 @@ namespace CANApplicationLayer {
 
         if (isTPMessage(message->id)) {
             incomingTPMessage.push(*message);
-        } else if (message->id > 0x700) {
+        } else if (isHeartbeatMessage(message->id)) {
 //            @todo register heartbeat?
-        } else if (message->id > 0x400) {
+        } else if (isSwitchoverMessage(message->id)) {
             currentBus = static_cast<CAN::BusID>(message->data[0]);
 //            @todo write code to use the other CAN peripheral
-        } else if (message->id > 0x200) {
+        } else if (isUTCTimeMessage(message->id)) {
 //            @todo UTC time message receipt
         } else if (message->id == pingMessageId) {
             sendPongMessage();
