@@ -71,7 +71,7 @@ namespace CANApplicationLayer {
      * Value of a Heartbeat message ID according to the CDR.
      * @param nodeID The ID of the current node.
      */
-    inline uint16_t getHeartbeatID(const uint16_t nodeID) {
+    inline uint16_t getHeartbeatID(uint16_t nodeID) {
         return nodeID + 0x700;
     }
 
@@ -80,7 +80,7 @@ namespace CANApplicationLayer {
      * @param nodeID The ID of the current node.
      * @return The ID the Bus Switchover message should have.
      */
-    inline uint16_t getBusSwitchoverID(const uint16_t nodeID) {
+    inline uint16_t getBusSwitchoverID(uint16_t nodeID) {
         return nodeID + 0x400;
     }
 
@@ -99,7 +99,7 @@ namespace CANApplicationLayer {
      * Value of a UTC Time message ID according to the CDR.
      * @param nodeID The ID of the current node.
      */
-    inline uint16_t getTimeID(const uint16_t nodeID) {
+    inline uint16_t getTimeID(uint16_t nodeID) {
         return nodeID + 0x200;
     }
 
