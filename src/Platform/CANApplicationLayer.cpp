@@ -4,17 +4,16 @@
 
 namespace CANApplicationLayer {
     void createPingMessage() {
-        uint16_t id = pingMessageId;
-        outgoingMessages.push({id});
+        outgoingMessages.push({pingMessageId});
     }
 
     void createPongMessage() {
-        uint16_t id = pongMessageId;
-        outgoingMessages.push({id});
+        outgoingMessages.push({pongMessageId});
     }
 
     void createHeartbeatMessage() {
-        outgoingMessages.push({getHeartbeatID(CAN::nodeID)});
+        uint16_t id = getHeartbeatID(CAN::nodeID);
+        outgoingMessages.push({id});
     }
 
     void createBusSwitchoverMessage() {
@@ -48,14 +47,43 @@ namespace CANApplicationLayer {
 //            @todo write code to use the other CAN peripheral
         } else if (message->id > 0x200) {
 //            @todo UTC time message receipt
-        } else if (message->id == pingMessageId){
+        } else if (message->id == pingMessageId) {
             sendPongMessage();
         }
     }
 
     void
     parseTPMessage() { // @todo How should this function be called? Whenever a TP message header is found on parseMessage?
+        CANMessage *message;
+        incomingTPMessage.pop_into(*message);
 
+        auto idInfo = CANTPMessage::decodeId(message->id);
+        if ((idInfo.destinationAddress == CAN::nodeID) | idInfo.isMulticast) {
+//            switch(message->data[0]){
+//                case 0x01:
+//                    parseSendParametersMessage();
+//                    break;
+//                case 0x02:
+//                    parseRequestParametersMessage();
+//                    break;
+//                case 0x03:
+//                    parsePerformFunctionMessage();
+//                    break;
+//                case 0x10:
+//                    parseEventReportMessage();
+//                    break;
+//                case 0x20:
+//                    parseTMPacketMessage();
+//                    break;
+//                case 0x21:
+//                    parseTCPacketMessage();
+//                    break;
+//                case 0x22:
+//                    parseCCSDSPacketMessage();
+//                    break;
+//                default: ;
+//            };
+        }
     }
 
     void finalizeMessage(uint16_t id, etl::vector<uint8_t, 256> messagePayload) {
