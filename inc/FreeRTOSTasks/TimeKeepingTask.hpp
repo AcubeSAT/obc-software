@@ -7,9 +7,6 @@ class TimeKeepingTask : public Task {
 private:
     const uint16_t delayMs = 1100;
 public:
-
-    static StackType_t taskStack[configMINIMAL_STACK_SIZE * 1];
-
     void execute();
 
     /**
