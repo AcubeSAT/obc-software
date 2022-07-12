@@ -28,6 +28,21 @@ static StaticTask_t watchdogTaskBuffer;
 static StackType_t watchdogTaskStack[configMINIMAL_STACK_SIZE * 2];
 
 
+#define IDLE_TASK_SIZE 4000
+
+#if configSUPPORT_STATIC_ALLOCATION
+/* static memory allocation for the IDLE task */
+static StaticTask_t xIdleTaskTCBBuffer;
+static StackType_t xIdleStack[IDLE_TASK_SIZE];
+
+extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize) {
+    *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
+    *ppxIdleTaskStackBuffer = &xIdleStack[0];
+    *pulIdleTaskStackSize = IDLE_TASK_SIZE;
+}
+
+#endif
+
 template<class T>
 static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
