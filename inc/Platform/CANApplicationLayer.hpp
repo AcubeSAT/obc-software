@@ -6,7 +6,6 @@
 #include "etl/queue.h"
 
 namespace CANApplicationLayer {
-
     /**
      * A queue that holds messages that are waiting to be sent via the CAN Bus.
      */

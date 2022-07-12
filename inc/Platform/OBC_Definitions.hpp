@@ -91,13 +91,12 @@ namespace BootCounter {
     inline const uint16_t BootCounterLimit = 1000;
 }
 
-namespace CAN{
+namespace CAN {
     /**
      * Defines the Available CAN Buses to use.
      */
     enum BusID : uint8_t {
-        MainBus = 0,
-        RedundantBus = 1
+        MainBus = 0, RedundantBus = 1
     };
 
     /**
@@ -108,7 +107,7 @@ namespace CAN{
     /**
      * The ID for the current node as described in DDJF_OBDH
      */
-     inline const uint8_t nodeID = 0x0;
+    inline const uint8_t nodeID = 0x0;
 
     /**
      * The length for the data of a single CAN message.
