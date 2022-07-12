@@ -22,33 +22,33 @@ namespace CANApplicationLayer {
     inline etl::queue<CANMessage, CAN::tpMessageQueueSize> incomingTPMessage;
 
     /**
-     * Function that adds a Ping message to the outgoing queue, according to the CDR.
+     * Adds a Ping message to the outgoing queue, according to DDJF_OBDH.
      */
     void sendPingMessage();
 
     /**
-     * Function that adds a Pong message to the outgoing queue, to be sent in response to a Ping message, according to the CDR.
+     * Adds a Pong message to the outgoing queue, to be sent in response to a Ping message, according to DDJF_OBDH.
      */
     void sendPongMessage();
 
     /**
-     * Function that adds a Heartbeat message to the outgoing queue, to be called periodically, according to the CDR.
+     * Adds a Heartbeat message to the outgoing queue, to be called periodically, according to DDJF_OBDH.
      */
     void sendHeartbeatMessage();
 
     /**
-     * Function that creates a Heartbeat message to be sent whenever the FDIR responsible determines the bus quality
-     * is not satisfactory, according to the CDR.
+     * Creates a Heartbeat message to be sent whenever the FDIR responsible determines the bus quality
+     * is not satisfactory, according to DDJF_OBDH.
      */
     void sendBusSwitchoverMessage();
 
     /**
-     * Function that adds a message to the outgoing queue with the current UTC Time, according to the CDR.
+     * Adds a message to the outgoing queue with the current UTC Time, according to DDJF_OBDH.
      */
     void sendUTCTimeMessage();
 
     /**
-     * Function that determines whether a message is following the CAN-TP Message protocol.
+     * Determines whether a message is following the CAN-TP Message protocol.
      * @param id The id of the message received via CAN
      * @return True if the message is part of a CAN-TP Message
      */
@@ -57,17 +57,17 @@ namespace CANApplicationLayer {
     }
 
     /**
-     * Value of a Ping data packet according to the CDR.
+     * Value of a Ping data packet according to DDJF_OBDH.
      */
     const uint8_t pingMessageId = 0x30;
 
     /**
-     * Value of a Pong data packet according to the CDR.
+     * Value of a Pong data packet according to DDJF_OBDH.
      */
     const uint8_t pongMessageId = 0x31;
 
     /**
-     * Value of a Heartbeat message ID according to the CDR.
+     * Value of a Heartbeat message ID according to DDJF_OBDH.
      * @param nodeID The ID of the current node.
      */
     inline uint16_t getHeartbeatID(uint16_t nodeID) {
@@ -75,7 +75,7 @@ namespace CANApplicationLayer {
     }
 
     /**
-     * Value of a Bus Switchover message ID according to the CDR.
+     * Value of a Bus Switchover message ID according to DDJF_OBDH.
      * @param nodeID The ID of the current node.
      * @return The ID the Bus Switchover message should have.
      */
@@ -84,8 +84,7 @@ namespace CANApplicationLayer {
     }
 
     /**
-     * Function that determines the bus that will be used after a CAN Bus switchover event.
-     * @return The bus to be used after the switchover.
+     * Determines the bus that will be used after a CAN Bus switchover event.
      */
     inline CAN::BusID getBusToSwitchover() {
         if (CAN::currentBus == CAN::MainBus) {
@@ -95,7 +94,7 @@ namespace CANApplicationLayer {
     }
 
     /**
-     * Value of a UTC Time message ID according to the CDR.
+     * Value of a UTC Time message ID according to DDJF_OBDH.
      * @param nodeID The ID of the current node.
      */
     inline uint16_t getTimeID(uint16_t nodeID) {
@@ -103,18 +102,17 @@ namespace CANApplicationLayer {
     }
 
     /**
-     * Function that parses an incoming message and calls the appropriate functions for it's handling.
+     * Parses an incoming message and calls the appropriate functions for it's handling.
      * @param message A CANMessage object with an ID and a Data field.
      */
     void parseMessage(CANMessage message);
 
     /**
-     * Function that splits a CAN-TP Message into a collection of CAN Messages and adds them to the outgoing queue.
+     * Splits a CAN-TP Message into a collection of CAN Messages and adds them to the outgoing queue.
      * @param id The ID that will be used for the messages.
      * @param messagePayload A vector containing the data part of the CAN-TP Message.
      */
     void finalizeMessage(uint16_t id, etl::vector<uint8_t, 256> messagePayload);
-
 }
 
 #endif //OBC_SOFTWARE_CANAPPLICATIONLAYER_H
