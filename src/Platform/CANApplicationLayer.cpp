@@ -86,21 +86,19 @@ namespace CANApplicationLayer {
         }
     }
 
-    void finalizeMessage(uint16_t id, const etl::vector<uint8_t, 256>& messagePayload) {
+    void finalizeMessage(uint16_t id, const etl::vector<uint8_t, 256> &messagePayload) {
         auto remainingBytes = messagePayload.size();
         uint8_t data[CAN::dataLength];
-        uint8_t idx = 0;
 
-        while (remainingBytes > 0) {
+        for (uint8_t idx = 0; idx < messagePayload.size(); idx++) {
             data[idx % CAN::dataLength] = messagePayload.at(idx);
             if (idx % CAN::dataLength == CAN::dataLength - 1) {
                 CANMessage message = {id, data};
                 CANApplicationLayer::outgoingMessages.push(message);
-                memset(data, 0, sizeof(data));
+                std::fill(data, data + CAN::dataLength, 0);
             }
-            idx++;
-            remainingBytes--;
         }
+
     }
 
 }
