@@ -67,6 +67,11 @@ namespace CANApplicationLayer {
     const uint8_t pongMessageId = 0x31;
 
     /**
+     * The current CAN Bus in use.
+     */
+    inline CAN::BusID currentBus = CAN::MainBus;
+
+    /**
      * Value of a Heartbeat message ID according to DDJF_OBDH.
      * @param nodeID The ID of the current node.
      */
@@ -87,7 +92,7 @@ namespace CANApplicationLayer {
      * Determines the bus that will be used after a CAN Bus switchover event.
      */
     inline CAN::BusID getBusToSwitchover() {
-        if (CAN::currentBus == CAN::MainBus) {
+        if (currentBus == CAN::MainBus) {
             return CAN::RedundantBus;
         }
         return CAN::MainBus;

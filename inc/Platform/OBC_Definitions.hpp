@@ -100,11 +100,6 @@ namespace CAN {
     };
 
     /**
-     * The current CAN Bus in use.
-     */
-    inline BusID currentBus = MainBus;
-
-    /**
      * The ID for the current node as described in DDJF_OBDH
      */
     inline const uint8_t nodeID = 0x0;
