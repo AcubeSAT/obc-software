@@ -86,7 +86,7 @@ namespace CANApplicationLayer {
         }
     }
 
-    void finalizeMessage(uint16_t id, etl::vector<uint8_t, 256> messagePayload) {
+    void finalizeMessage(uint16_t id, const etl::vector<uint8_t, 256>& messagePayload) {
         auto remainingBytes = messagePayload.size();
         uint8_t data[CAN::dataLength];
         uint8_t idx = 0;
