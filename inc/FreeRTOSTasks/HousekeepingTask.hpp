@@ -8,12 +8,13 @@
  */
 class HousekeepingTask : public Task {
 public:
+    static StackType_t taskStack[configMINIMAL_STACK_SIZE * 2];
     /**
       * @see HousekeepingService
       */
     void execute();
 
-    HousekeepingTask() : Task("Housekeeping", nullptr, 2*configMINIMAL_STACK_SIZE) {}
+    HousekeepingTask() : Task("Housekeeping", nullptr, 2000) {}
 
 };
 

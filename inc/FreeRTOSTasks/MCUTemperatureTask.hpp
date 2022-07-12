@@ -10,6 +10,8 @@ class MCUTemperatureTask : public Task {
 private:
     const uint16_t delayMs = 10000;
 public:
+    static StackType_t taskStack[configMINIMAL_STACK_SIZE * 1];
+
     void execute();
 
     MCUTemperatureTask() : Task("MCUTemperatureSensor", nullptr, 1000) {}

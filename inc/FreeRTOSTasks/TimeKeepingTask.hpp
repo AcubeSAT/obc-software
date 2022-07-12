@@ -7,6 +7,9 @@ class TimeKeepingTask : public Task {
 private:
     const uint16_t delayMs = 1100;
 public:
+
+    static StackType_t taskStack[configMINIMAL_STACK_SIZE * 1];
+
     void execute();
 
     /**
@@ -31,7 +34,7 @@ public:
      */
     void printOnBoardTime();
 
-    TimeKeepingTask() : Task("Timekeeping", nullptr, configMINIMAL_STACK_SIZE) {}
+    TimeKeepingTask() : Task("Timekeeping", nullptr, 1000) {}
 };
 
 #endif

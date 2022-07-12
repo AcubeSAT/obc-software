@@ -14,6 +14,7 @@ private:
     QueueHandle_t xUartQueue;
 
 public:
+    static StackType_t taskStack[configMINIMAL_STACK_SIZE * 2];
 
     void execute();
 

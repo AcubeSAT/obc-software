@@ -49,7 +49,7 @@
 #define configMAX_PRIORITIES                    ( 5UL )
 /**
  * The official FreeRTOS documentations suggests we use the configMINIMAL_STACK_SIZE that is provided by their demo of
- * the respective platform. This number was chosen by copying the demo of SAMV71 FreeRTOConfig
+ * the respective platform. This number was chosen by copying the demo of SAMV71 FreeRTOSConfig
  */
 #define configMINIMAL_STACK_SIZE				( ( unsigned short ) 1000 )
 #define configSUPPORT_DYNAMIC_ALLOCATION        1

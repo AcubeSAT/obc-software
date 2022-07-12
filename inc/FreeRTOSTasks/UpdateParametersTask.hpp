@@ -10,6 +10,8 @@ class UpdateParametersTask : public Task {
 private:
     const uint16_t delayMs = 3000;
 public:
+    static StackType_t taskStack[configMINIMAL_STACK_SIZE * 6];
+
     void execute();
 
     UpdateParametersTask() : Task("ParameterUpdating", nullptr, 6000) {}
