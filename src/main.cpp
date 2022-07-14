@@ -45,7 +45,7 @@ extern "C" void main_cpp() {
     xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<TimeBasedSchedulingTask>, timeBasedSchedulingTask->taskName, timeBasedSchedulingTask->taskStackDepth,
-                &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2, NULL);
+                &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2, &timeBasedSchedulingTask->taskHandle);
     xTaskCreate(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
                 &ambientTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
     xTaskCreate(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
