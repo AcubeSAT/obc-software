@@ -9,17 +9,17 @@ namespace CANApplicationLayer {
     /**
      * A queue that holds messages that are waiting to be sent via the CAN Bus.
      */
-    inline etl::queue<CANMessage, CAN::messageQueueSize> outgoingMessages;
+    inline etl::queue<CANMessage, CAN::MessageQueueSize> outgoingMessages;
 
     /**
      * A queue that holds messages that have been received via the CAN Bus, and are awaiting parsing.
      */
-    inline etl::queue<CANMessage, CAN::messageQueueSize> incomingMessages;
+    inline etl::queue<CANMessage, CAN::MessageQueueSize> incomingMessages;
 
     /**
      * A queue that holds a collection of CAN Messages that compose a CAN TP Message.
      */
-    inline etl::queue<CANMessage, CAN::tpMessageQueueSize> incomingTPMessage;
+    inline etl::queue<CANMessage, CAN::TPMessageQueueSize> incomingTPMessage;
 
     /**
      * Adds a Ping message to the outgoing queue, according to DDJF_OBDH.

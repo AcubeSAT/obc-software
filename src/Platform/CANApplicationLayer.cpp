@@ -12,21 +12,21 @@ namespace CANApplicationLayer {
     }
 
     void createHeartbeatMessage() {
-        uint16_t id = getHeartbeatID(CAN::nodeID);
+        uint16_t id = getHeartbeatID(CAN::NodeID);
         outgoingMessages.push({id});
     }
 
     void createBusSwitchoverMessage() {
-        uint16_t id = getBusSwitchoverID(CAN::nodeID);
-        uint8_t data[CAN::dataLength] = {getBusToSwitchover()};
+        uint16_t id = getBusSwitchoverID(CAN::NodeID);
+        uint8_t data[CAN::DataLength] = {getBusToSwitchover()};
         outgoingMessages.push({id, data});
     }
 
     void createUTCTimeMessage() {
         uint32_t msOfDay; //@todo How do we get millisecond accuracy?
 
-        uint16_t id = getTimeID(CAN::nodeID);
-        uint8_t data[CAN::dataLength] = {0, 0,
+        uint16_t id = getTimeID(CAN::NodeID);
+        uint8_t data[CAN::DataLength] = {0, 0,
                                          static_cast<uint8_t>(msOfDay), static_cast<uint8_t>(msOfDay >> 8),
                                          static_cast<uint8_t>(msOfDay >> 16), static_cast<uint8_t>(msOfDay >> 24), 0,
                                          PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
@@ -58,7 +58,7 @@ namespace CANApplicationLayer {
         incomingTPMessage.pop_into(*message);
 
         auto idInfo = CANTPMessage::decodeId(message->id);
-        if ((idInfo.destinationAddress == CAN::nodeID) | idInfo.isMulticast) {
+        if ((idInfo.destinationAddress == CAN::NodeID) | idInfo.isMulticast) {
 //            switch(message->data[0]){
 //                case 0x01:
 //                    parseSendParametersMessage();
@@ -88,14 +88,14 @@ namespace CANApplicationLayer {
 
     void finalizeMessage(uint16_t id, const etl::vector<uint8_t, 256> &messagePayload) {
         auto remainingBytes = messagePayload.size();
-        uint8_t data[CAN::dataLength];
+        uint8_t data[CAN::DataLength];
 
         for (uint8_t idx = 0; idx < messagePayload.size(); idx++) {
-            data[idx % CAN::dataLength] = messagePayload.at(idx);
-            if (idx % CAN::dataLength == CAN::dataLength - 1) {
+            data[idx % CAN::DataLength] = messagePayload.at(idx);
+            if (idx % CAN::DataLength == CAN::DataLength - 1) {
                 CANMessage message = {id, data};
                 CANApplicationLayer::outgoingMessages.push(message);
-                std::fill(data, data + CAN::dataLength, 0);
+                std::fill(data, data + CAN::DataLength, 0);
             }
         }
 

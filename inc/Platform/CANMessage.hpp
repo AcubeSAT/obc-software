@@ -8,12 +8,12 @@
 class CANMessage {
 public:
     uint16_t id;
-    uint8_t data[CAN::dataLength]{};
+    uint8_t data[CAN::DataLength]{};
 
     CANMessage(uint16_t id) : id(id) {};
 
-    CANMessage(uint16_t id, uint8_t _data[CAN::dataLength]) : id(id) {
-        std::copy(_data, _data + CAN::dataLength, data);
+    CANMessage(uint16_t id, uint8_t _data[CAN::DataLength]) : id(id) {
+        std::copy(_data, _data + CAN::DataLength, data);
     };
 };
 

@@ -102,22 +102,22 @@ namespace CAN {
     /**
      * The ID for the current node as described in DDJF_OBDH
      */
-    inline const uint8_t nodeID = 0x0;
+    inline const uint8_t NodeID = 0x0;
 
     /**
      * The length for the data of a single CAN message.
      */
-    inline const uint8_t dataLength = 8;
+    inline const uint8_t DataLength = 8;
 
     /**
      * The maximum of the length of the queue for incoming/outgoing CAN messages.
      */
-    inline const uint8_t messageQueueSize = 20;
+    inline const uint8_t MessageQueueSize = 20;
 
     /**
     * The maximum of the length of the queue for an incoming/outgoing CAN-TP message.
     */
-    inline const uint8_t tpMessageQueueSize = 10;
+    inline const uint8_t TPMessageQueueSize = 10;
 }
 
 #endif //OBC_SOFTWARE_OBC_DEFINITIONS_HPP

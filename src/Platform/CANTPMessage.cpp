@@ -27,7 +27,7 @@ namespace CANTPMessage {
     template<typename T>
     void
     createSendParametersMessage(uint8_t destinationAddress, bool isMulticast, etl::vector<uint16_t, 10> parameterIDs) {
-        uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
+        uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
         uint16_t parameterCount = parameterIDs.size();
 
         etl::vector<uint8_t, 256> data = {0x01, static_cast<uint8_t>(parameterCount >> 8),
@@ -67,7 +67,7 @@ namespace CANTPMessage {
     template<typename T>
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
                                       etl::vector<uint8_t, 10> argumentIDs, etl::vector<T, 10> argumentValues) {
-        uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
+        uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         auto argumentCount = static_cast<uint16_t>(argumentIDs.size());
         etl::vector<uint8_t, 256> data = {0x03};
@@ -92,7 +92,7 @@ namespace CANTPMessage {
     }
 
     void createLogMessage(uint8_t destinationAddress, bool isMulticast, etl::string<LOGGER_MAX_MESSAGE_SIZE> log) {
-        uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
+        uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         etl::vector<uint8_t, 256> data = {0x40};
 
@@ -105,7 +105,7 @@ namespace CANTPMessage {
 
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
                                   etl::array<uint8_t, 256> payload) {
-        uint16_t id = encodeId({CAN::nodeID, destinationAddress, isMulticast});
+        uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         etl::vector<uint8_t, 256> data = {0x10, static_cast<unsigned char>(eventID >> 8),
                                           static_cast<unsigned char>(eventID)};
