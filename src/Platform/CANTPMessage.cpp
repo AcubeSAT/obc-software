@@ -17,8 +17,8 @@ namespace CANTPMessage {
     uint16_t encodeId(IdInfo idInfo) {
         uint16_t id = 0b0111 << 7;
 
-        id |= (idInfo.sourceAddress << 4);
-        id |= (idInfo.destinationAddress << 1);
+        id |= idInfo.sourceAddress << 4;
+        id |= idInfo.destinationAddress << 1;
         id |= idInfo.isMulticast;
 
         return id;

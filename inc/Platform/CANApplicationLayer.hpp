@@ -77,7 +77,7 @@ namespace CANApplicationLayer {
      * @return True if the message is part of a CAN-TP Message
      */
     inline bool isTPMessage(const uint16_t id) {
-        return ((id >> 7) == 0b0111);
+        return (id >> 7) == 0b0111;
     }
 
     /**
