@@ -25,8 +25,8 @@ namespace CANTPMessage {
     }
 
     template<typename T>
-    void
-    createSendParametersMessage(uint8_t destinationAddress, bool isMulticast, etl::vector<uint16_t, 10> parameterIDs) {
+    void createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
+                                     const etl::vector<uint16_t, 10> &parameterIDs) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
         uint16_t parameterCount = parameterIDs.size();
 
@@ -45,7 +45,7 @@ namespace CANTPMessage {
     }
 
     void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                        etl::vector<uint16_t, 10> parameterIDs) {
+                                        const etl::vector<uint16_t, 10> &parameterIDs) {
         uint16_t id = encodeId({0x1, destinationAddress, isMulticast});
         uint16_t parameterCount = parameterIDs.size();
 
@@ -77,14 +77,15 @@ namespace CANTPMessage {
         for (auto argumentValue: argumentValues) {
             data.push_back(argumentIDs.at(idx));
             stuffIntoVector(argumentValue, data);
-            
+
             idx++; //@todo This is not error handled, if the argumentValues.size() != argumentIDs.size() there is undefined behavior.
         }
 
         CANApplicationLayer::finalizeMessage(id, data);
     }
 
-    void createLogMessage(uint8_t destinationAddress, bool isMulticast, etl::string<LOGGER_MAX_MESSAGE_SIZE> log) {
+    void
+    createLogMessage(uint8_t destinationAddress, bool isMulticast, const etl::string<LOGGER_MAX_MESSAGE_SIZE> &log) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         etl::vector<uint8_t, 256> data = {0x40};
