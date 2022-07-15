@@ -18,7 +18,8 @@ namespace CANApplicationLayer {
 
     void createBusSwitchoverMessage() {
         uint16_t id = getBusSwitchoverID(CAN::NodeID);
-        uint8_t data[CAN::DataLength] = {getBusToSwitchover()};
+        etl::array<uint8_t, CAN::DataLength> data = {getBusToSwitchover()};
+
         outgoingMessages.push({id, data});
     }
 
@@ -26,7 +27,7 @@ namespace CANApplicationLayer {
         uint32_t msOfDay; //@todo How do we get millisecond accuracy?
 
         uint16_t id = getTimeID(CAN::NodeID);
-        uint8_t data[CAN::DataLength] = {0, 0,
+        etl::array<uint8_t, CAN::DataLength> data = {0, 0,
                                          static_cast<uint8_t>(msOfDay), static_cast<uint8_t>(msOfDay >> 8),
                                          static_cast<uint8_t>(msOfDay >> 16), static_cast<uint8_t>(msOfDay >> 24), 0,
                                          PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
@@ -87,15 +88,14 @@ namespace CANApplicationLayer {
     }
 
     void finalizeMessage(uint16_t id, const etl::vector<uint8_t, 256> &messagePayload) {
-        auto remainingBytes = messagePayload.size();
-        uint8_t data[CAN::DataLength];
+        etl::array<uint8_t, CAN::DataLength> data = {};
 
         for (uint8_t idx = 0; idx < messagePayload.size(); idx++) {
             data[idx % CAN::DataLength] = messagePayload.at(idx);
             if (idx % CAN::DataLength == CAN::DataLength - 1) {
                 CANMessage message = {id, data};
                 CANApplicationLayer::outgoingMessages.push(message);
-                std::fill(data, data + CAN::DataLength, 0);
+                data.fill(0);
             }
         }
 
