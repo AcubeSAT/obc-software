@@ -3,6 +3,8 @@
 #include "PlatformParameters.hpp"
 
 namespace CANApplicationLayer {
+    static CANMessage message = {};
+
     void createPingMessage() {
         outgoingMessages.push({pingMessageId});
     }
@@ -37,29 +39,29 @@ namespace CANApplicationLayer {
     }
 
     void parseMessage() {
-        CANMessage *message;
-        incomingMessages.pop_into(*message);
+        message.empty();
+        incomingMessages.pop_into(message);
 
-        if (isTPMessage(message->id)) {
-            incomingTPMessage.push(*message);
-        } else if (isHeartbeatMessage(message->id)) {
+        if (isTPMessage(message.id)) {
+            incomingTPMessage.push(message);
+        } else if (isHeartbeatMessage(message.id)) {
 //            @todo register heartbeat?
-        } else if (isSwitchoverMessage(message->id)) {
-            currentBus = static_cast<BusID>(message->data[0]);
+        } else if (isSwitchoverMessage(message.id)) {
+            currentBus = static_cast<BusID>(message.data[0]);
 //            @todo write code to use the other CAN peripheral
-        } else if (isUTCTimeMessage(message->id)) {
+        } else if (isUTCTimeMessage(message.id)) {
 //            @todo UTC time message receipt
-        } else if (message->id == pingMessageId) {
+        } else if (message.id == pingMessageId) {
             sendPongMessage();
         }
     }
 
     void
     parseTPMessage() { // @todo How should this function be called? Whenever a TP message header is found on parseMessage?
-        CANMessage *message;
-        incomingTPMessage.pop_into(*message);
+        message.empty();
+        incomingTPMessage.pop_into(message);
 
-        auto idInfo = CANTPMessage::decodeId(message->id);
+        auto idInfo = CANTPMessage::decodeId(message.id);
         if ((idInfo.destinationAddress == CAN::NodeID) | idInfo.isMulticast) {
 //            switch(message->data[0]){
 //                case 0x01:
@@ -94,12 +96,12 @@ namespace CANApplicationLayer {
         for (uint8_t idx = 0; idx < messagePayload.size(); idx++) {
             data[idx % CAN::DataLength] = messagePayload.at(idx);
             if (idx % CAN::DataLength == CAN::DataLength - 1) {
-                CANMessage message = {id, data};
+                message.empty();
+                message = {id, data};
                 CANApplicationLayer::outgoingMessages.push(message);
                 data.fill(0);
             }
         }
-
     }
 
 }
