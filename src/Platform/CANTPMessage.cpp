@@ -107,7 +107,7 @@ namespace CANTPMessage {
                                   etl::array<uint8_t, 256> payload) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
-        etl::vector<uint8_t, 256> data = {0x10, static_cast<unsigned char>(eventID >> 8),
+        etl::vector<uint8_t, 256> data = {0x10, type, static_cast<unsigned char>(eventID >> 8),
                                           static_cast<unsigned char>(eventID)};
 
         for (auto point: payload) {
