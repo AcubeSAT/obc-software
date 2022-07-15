@@ -93,13 +93,6 @@ namespace BootCounter {
 
 namespace CAN {
     /**
-     * Defines the Available CAN Buses to use.
-     */
-    enum BusID : uint8_t {
-        MainBus = 0, RedundantBus = 1
-    };
-
-    /**
      * The ID for the current node as described in DDJF_OBDH
      */
     inline const uint8_t NodeID = 0x0;

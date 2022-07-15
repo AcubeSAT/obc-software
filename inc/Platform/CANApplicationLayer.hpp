@@ -22,6 +22,13 @@ namespace CANApplicationLayer {
     inline etl::queue<CANMessage, CAN::TPMessageQueueSize> incomingTPMessage;
 
     /**
+     * Defines the Available CAN Buses to use.
+     */
+    enum BusID : uint8_t {
+        MainBus = 0, RedundantBus = 1
+    };
+
+    /**
      * Adds a Ping message to the outgoing queue, according to DDJF_OBDH.
      */
     void sendPingMessage();
@@ -93,7 +100,7 @@ namespace CANApplicationLayer {
     /**
      * The current CAN Bus in use.
      */
-    inline CAN::BusID currentBus = CAN::MainBus;
+    inline BusID currentBus = MainBus;
 
     /**
      * Value of a Heartbeat message ID according to DDJF_OBDH.
@@ -115,11 +122,11 @@ namespace CANApplicationLayer {
     /**
      * Determines the bus that will be used after a CAN Bus switchover event.
      */
-    inline CAN::BusID getBusToSwitchover() {
-        if (currentBus == CAN::MainBus) {
-            return CAN::RedundantBus;
+    inline BusID getBusToSwitchover() {
+        if (currentBus == MainBus) {
+            return RedundantBus;
         }
-        return CAN::MainBus;
+        return MainBus;
     }
 
     /**

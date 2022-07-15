@@ -44,7 +44,7 @@ namespace CANApplicationLayer {
         } else if (isHeartbeatMessage(message->id)) {
 //            @todo register heartbeat?
         } else if (isSwitchoverMessage(message->id)) {
-            currentBus = static_cast<CAN::BusID>(message->data[0]);
+            currentBus = static_cast<BusID>(message->data[0]);
 //            @todo write code to use the other CAN peripheral
         } else if (isUTCTimeMessage(message->id)) {
 //            @todo UTC time message receipt
