@@ -27,10 +27,11 @@ namespace CANApplicationLayer {
         uint32_t msOfDay; //@todo How do we get millisecond accuracy?
 
         uint16_t id = getTimeID(CAN::NodeID);
-        etl::array<uint8_t, CAN::DataLength> data = {0, 0,
-                                         static_cast<uint8_t>(msOfDay), static_cast<uint8_t>(msOfDay >> 8),
-                                         static_cast<uint8_t>(msOfDay >> 16), static_cast<uint8_t>(msOfDay >> 24), 0,
-                                         PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
+        etl::array<uint8_t, CAN::DataLength> data = {0, 0, static_cast<uint8_t>(msOfDay),
+                                                     static_cast<uint8_t>(msOfDay >> 8),
+                                                     static_cast<uint8_t>(msOfDay >> 16),
+                                                     static_cast<uint8_t>(msOfDay >> 24), 0,
+                                                     PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
 
         outgoingMessages.push({id, data});
     }
