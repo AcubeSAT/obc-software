@@ -120,12 +120,10 @@ namespace CANTPMessage {
 
     template<typename T>
     etl::vector<uint8_t, 8> stuffIntoVector(T value) {
-        auto size = sizeof(T);
         etl::vector<uint8_t, 8> vector;
 
-        while (size > 0) {
-            size--;
-            vector.push_back(value >> (size * 8));
+        for (auto i = sizeof(T); i > 0;) {
+            vector.push_back(value >> (--i * 8));
         }
 
         return vector;
