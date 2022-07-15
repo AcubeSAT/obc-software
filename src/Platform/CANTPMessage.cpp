@@ -37,13 +37,8 @@ namespace CANTPMessage {
             auto parameter = static_cast<Parameter<T> &>(Services.parameterManagement.getParameter(
                     parameterId)->get()).getValue();
 
-            for (auto paramId: stuffIntoVector(parameterId)) {
-                data.push_back(paramId);
-            }
-
-            for (auto param: stuffIntoVector(parameter)) { //@todo better name for this?
-                data.push_back(param);
-            }
+            stuffIntoVector(parameterId, data);
+            stuffIntoVector(parameter, data);
         }
 
         CANApplicationLayer::finalizeMessage(id, data);
@@ -81,10 +76,8 @@ namespace CANTPMessage {
         uint8_t idx = 0;
         for (auto argumentValue: argumentValues) {
             data.push_back(argumentIDs.at(idx));
-
-            for (auto value: stuffIntoVector(argumentValue)) {
-                data.push_back(value);
-            }
+            stuffIntoVector(argumentValue, data);
+            
             idx++; //@todo This is not error handled, if the argumentValues.size() != argumentIDs.size() there is undefined behavior.
         }
 
@@ -118,14 +111,4 @@ namespace CANTPMessage {
     }
 
 
-    template<typename T>
-    etl::vector<uint8_t, 8> stuffIntoVector(T value) {
-        etl::vector<uint8_t, 8> vector;
-
-        for (auto i = sizeof(T); i > 0;) {
-            vector.push_back(value >> (--i * 8));
-        }
-
-        return vector;
-    }
 }

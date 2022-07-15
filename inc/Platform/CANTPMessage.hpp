@@ -26,8 +26,12 @@ namespace CANTPMessage {
 
     uint16_t encodeId(IdInfo idInfo);
 
-    template<typename T>
-    etl::vector<uint8_t, 8> stuffIntoVector(T value);
+    template<typename T, size_t N>
+    inline void stuffIntoVector(T value, etl::vector<uint8_t, N>& vector) {
+        for (auto i = sizeof(T); i > 0;) {
+            vector.push_back(value >> (--i * 8));
+        }
+    }
 
     template<typename T>
     void
