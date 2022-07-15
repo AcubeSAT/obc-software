@@ -52,8 +52,8 @@ namespace CANTPMessage {
         etl::vector<uint8_t, 256> data = {0x02, static_cast<uint8_t>(parameterCount >> 8),
                                           static_cast<uint8_t>(parameterCount)};
 
-        for (auto parameter: parameterIDs) {
-            data.push_back(parameter);
+        for (auto parameterID: parameterIDs) {
+            stuffIntoVector(parameterID, data);
         }
 
         CANApplicationLayer::finalizeMessage(id, data);
