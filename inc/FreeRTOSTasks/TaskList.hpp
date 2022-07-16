@@ -7,7 +7,7 @@
 #include "UpdateParametersTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 #include "AmbientTemperatureTask.hpp"
-#include "UARTGatekeeper.hpp"
+#include "UARTGatekeeperTask.hpp"
 #include "WatchdogTask.hpp"
 
 /**
@@ -20,7 +20,7 @@ namespace TaskList {
     inline std::optional<UpdateParametersTask> updateParametersTask;
     inline std::optional<TimeBasedSchedulingTask> timeBasedSchedulingTask;
     inline std::optional<AmbientTemperatureTask> ambientTemperatureTask;
-    inline std::optional<UARTGatekeeper> uartGatekeeper;
+    inline std::optional<UARTGatekeeperTask> uartGatekeeperTask;
     inline std::optional<WatchdogTask> watchdogTask;
 }
 
