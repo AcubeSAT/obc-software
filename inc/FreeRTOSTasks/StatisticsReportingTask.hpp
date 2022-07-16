@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Task.hpp"
-#include "semphr.h"
 
 class StatisticsReportingTask : public Task {
 public:
@@ -10,5 +9,5 @@ public:
      */
     void execute();
 
-    StatisticsReportingTask() : Task("StatisticsReporting", nullptr, 2000) {}
+    StatisticsReportingTask() : Task("StatisticsReporting", nullptr, 3500) {}
 };

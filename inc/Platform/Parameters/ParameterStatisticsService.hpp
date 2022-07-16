@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Services/ParameterStatisticsService.hpp"
+#include "PlatformParameters.hpp"
 
 namespace ParameterStatistics {
-    static etl::array<Statistic, ECSSMaxStatisticParameters> statistics = {
-            Statistic(), Statistic(),
+    using namespace PlatformParameters;
+    inline const uint16_t statisticParameterIDs[] = {ParameterID::OnBoardMinute, ParameterID::OnBoardSecond};
+    inline etl::array<Statistic, 2> statistics = {
     };
 }
