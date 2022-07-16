@@ -18,7 +18,8 @@ public:
      * Name of each task.
      */
     const char *taskName;
-    static StaticTask_t taskBuffer;
+
+    StaticTask_t taskBuffer;
     /**
      * Handle of each FreeRTOS task.
      */

@@ -5,7 +5,7 @@
 
 class TimeBasedSchedulingTask : public Task {
 public:
-    static StackType_t taskStack[configMINIMAL_STACK_SIZE * 4];
+    StackType_t taskStack[configMINIMAL_STACK_SIZE * 4];
 
     void execute();
 

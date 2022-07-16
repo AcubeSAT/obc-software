@@ -13,7 +13,7 @@ private:
      */
     const uint16_t watchdogWindow = 14000;
 public:
-    static StackType_t taskStack[configMINIMAL_STACK_SIZE * 2];
+    StackType_t taskStack[configMINIMAL_STACK_SIZE * 2];
 
     void execute();
 
