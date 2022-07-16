@@ -27,6 +27,7 @@ extern "C" void main_cpp() {
     housekeepingTask.emplace();
     reportParametersTask.emplace();
     updateParametersTask.emplace();
+    timeBasedSchedulingTask.emplace();
     ambientTemperatureTask.emplace();
     watchdogTask.emplace();
     statisticsReportingTask.emplace();
@@ -48,8 +49,9 @@ extern "C" void main_cpp() {
                 &updateParametersTask, tskIDLE_PRIORITY + 1, NULL);
     xTaskCreate(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
                 &housekeepingTask, tskIDLE_PRIORITY + 1, NULL);
-    xTaskCreate(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName,
-                ambientTemperatureTask->taskStackDepth,
+    xTaskCreate(vClassTask<TimeBasedSchedulingTask>, timeBasedSchedulingTask->taskName, timeBasedSchedulingTask->taskStackDepth,
+                &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2, NULL);
+    xTaskCreate(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
                 &ambientTemperatureTask, tskIDLE_PRIORITY + 2, NULL);
     xTaskCreate(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
                 &watchdogTask, tskIDLE_PRIORITY, NULL);
