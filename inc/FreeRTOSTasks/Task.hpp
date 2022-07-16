@@ -20,10 +20,12 @@ public:
     const char *taskName;
 
     StaticTask_t taskBuffer;
+
     /**
      * Handle of each FreeRTOS task.
      */
     TaskHandle_t taskHandle;
+
     /**
      * The stack depth of each FreeRTOS task, defined as the number of words the stack can hold. For example, in an
      * architecture with 4 byte stack, assigning 100 to the usStackDepth argument, will allocate 4x100=400 bytes.
