@@ -2,8 +2,6 @@
 
 void StatisticsReportingTask::execute() {
     auto &parameterStatistics = Services.parameterStatistics;
-    uint32_t nextCollection = 0;
-    uint32_t timeBeforeDelay = 0;
     TickType_t xLastWakeTime = xTaskGetTickCount();
 
     while (true) {
@@ -14,7 +12,6 @@ void StatisticsReportingTask::execute() {
             request.appendBoolean(false);
             MessageParser::execute(request);
         }
-        vTaskDelay(pdMS_TO_TICKS(parameterStatistics.getReportingIntervalMs()));
-//        vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(nextCollection))
+        vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(parameterStatistics.getReportingIntervalMs()));
     }
 }
