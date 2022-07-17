@@ -8,7 +8,7 @@ void StatisticsReportingTask::execute() {
         if (parameterStatistics.getPeriodicReportingStatus()) {
             Message request = Message(ParameterStatisticsService::ServiceType,
                                       ParameterStatisticsService::MessageType::ReportParameterStatistics,
-                                      Message::PacketType::TC, 1);
+                                      Message::PacketType::TC, ApplicationId);
             request.appendBoolean(false);
             MessageParser::execute(request);
         }

@@ -13,7 +13,6 @@ static void vClassTask(void *pvParameters) {
     (static_cast<T *>(pvParameters))->execute();
 }
 
-
 extern "C" void main_cpp() {
     using namespace TaskList;
     SYS_Initialize(NULL);

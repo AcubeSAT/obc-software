@@ -1,7 +1,5 @@
 #include "Helpers/TimeGetter.hpp"
 #include "PlatformParameters.hpp"
-#include "TaskList.hpp"
-#include "task.h"
 
 UTCTimestamp TimeGetter::getCurrentTimeUTC() {
     using namespace PlatformParameters;
