@@ -21,9 +21,14 @@ private:
      */
     float ambientTemperature;
 public:
+
+    const static inline uint16_t taskStackDepth = 2000;
+
+    StackType_t taskStack[taskStackDepth];
+
     void execute();
 
-    AmbientTemperatureTask() : Task("ExternalTemperatureSensor", nullptr, 1000) {}
+    AmbientTemperatureTask() : Task("ExternalTemperatureSensor") {}
 };
 
 #endif

@@ -1,11 +1,11 @@
 #include "FreeRTOSTasks/UpdateParametersTask.hpp"
 
 void UpdateParametersTask::execute() {
-    TaskHandle_t reportParametersHandle = xTaskGetHandle(taskName);
+    TaskHandle_t updateParametersHandle = xTaskGetHandle(taskName);
 
     while (true) {
         PlatformParameters::reportParametersUnusedStack.setValue(
-                uxTaskGetStackHighWaterMark(reportParametersHandle));
+                uxTaskGetStackHighWaterMark(updateParametersHandle));
         PlatformParameters::availableHeap.setValue(
                 static_cast<uint16_t>(xPortGetFreeHeapSize()));
         PlatformParameters::obcBootCounter.setValue(
