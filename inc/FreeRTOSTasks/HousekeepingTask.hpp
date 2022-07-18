@@ -8,13 +8,15 @@
  */
 class HousekeepingTask : public Task {
 public:
-    StackType_t taskStack[configMINIMAL_STACK_SIZE * 2];
+    const static inline uint16_t taskStackDepth = 2000;
+
+    StackType_t taskStack[taskStackDepth];
     /**
       * @see HousekeepingService
       */
     void execute();
 
-    HousekeepingTask() : Task("Housekeeping", nullptr, 2000) {}
+    HousekeepingTask() : Task("Housekeeping", nullptr, taskStackDepth) {}
 
 };
 

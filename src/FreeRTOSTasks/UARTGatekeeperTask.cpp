@@ -1,6 +1,6 @@
 #include "UARTGatekeeperTask.hpp"
 
-UARTGatekeeperTask::UARTGatekeeperTask() : Task("UARTGatekeeperTask", nullptr, 1000) {
+UARTGatekeeperTask::UARTGatekeeperTask() : Task("UARTGatekeeperTask", nullptr, taskStackDepth) {
     static StaticQueue_t xStaticQueue;
     uint8_t ucQueueStorageArea[ UARTQueueSize * sizeof(etl::string<LOGGER_MAX_MESSAGE_SIZE>) ];
     xUartQueue = xQueueCreateStatic(UARTQueueSize, sizeof(etl::string<LOGGER_MAX_MESSAGE_SIZE>), ucQueueStorageArea, &xStaticQueue);

@@ -14,7 +14,9 @@ private:
     QueueHandle_t xUartQueue;
 
 public:
-    StackType_t taskStack[configMINIMAL_STACK_SIZE * 2];
+    const static inline uint16_t taskStackDepth = 2000;
+
+    StackType_t taskStack[taskStackDepth];
 
     void execute();
 

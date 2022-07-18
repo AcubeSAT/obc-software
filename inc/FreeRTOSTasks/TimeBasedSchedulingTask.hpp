@@ -5,11 +5,13 @@
 
 class TimeBasedSchedulingTask : public Task {
 public:
-    StackType_t taskStack[configMINIMAL_STACK_SIZE * 4];
+    const static inline uint16_t taskStackDepth = 4000;
+
+    StackType_t taskStack[taskStackDepth];
 
     void execute();
 
-    TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask", nullptr, 4000) {}
+    TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask", nullptr, taskStackDepth) {}
 };
 
 #endif
