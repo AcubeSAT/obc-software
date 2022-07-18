@@ -28,7 +28,7 @@ public:
 
     void execute();
 
-    AmbientTemperatureTask() : Task("ExternalTemperatureSensor", nullptr, taskStackDepth) {}
+    AmbientTemperatureTask() : Task("ExternalTemperatureSensor", nullptr) {}
 };
 
 #endif

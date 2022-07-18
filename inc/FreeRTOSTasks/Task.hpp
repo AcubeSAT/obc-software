@@ -32,10 +32,8 @@ public:
      */
     const uint16_t taskStackDepth = 1000;
 
-    Task(const char *taskName, TaskHandle_t taskHandle, const uint16_t taskStackDepth) : taskName(taskName),
-                                                                                         taskHandle(taskHandle),
-                                                                                         taskStackDepth(
-                                                                                                 taskStackDepth) {}
+    Task(const char *taskName, TaskHandle_t taskHandle) : taskName(taskName),
+                                                                                         taskHandle(taskHandle) {}
 };
 
 #endif

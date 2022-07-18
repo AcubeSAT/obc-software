@@ -35,7 +35,7 @@ public:
      */
     void printOnBoardTime();
 
-    TimeKeepingTask() : Task("Timekeeping", nullptr, taskStackDepth) {}
+    TimeKeepingTask() : Task("Timekeeping", nullptr) {}
 };
 
 #endif

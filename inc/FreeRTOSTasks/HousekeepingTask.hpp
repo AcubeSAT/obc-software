@@ -16,7 +16,7 @@ public:
       */
     void execute();
 
-    HousekeepingTask() : Task("Housekeeping", nullptr, taskStackDepth) {}
+    HousekeepingTask() : Task("Housekeeping", nullptr) {}
 
 };
 

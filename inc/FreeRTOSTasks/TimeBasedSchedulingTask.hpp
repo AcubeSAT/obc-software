@@ -11,7 +11,7 @@ public:
 
     void execute();
 
-    TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask", nullptr, taskStackDepth) {}
+    TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask", nullptr) {}
 };
 
 #endif

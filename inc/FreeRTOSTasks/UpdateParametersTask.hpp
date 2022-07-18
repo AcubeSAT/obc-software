@@ -15,7 +15,7 @@ public:
     StackType_t taskStack[taskStackDepth];
     void execute();
 
-    UpdateParametersTask() : Task("ParameterUpdating", nullptr, taskStackDepth) {}
+    UpdateParametersTask() : Task("ParameterUpdating", nullptr) {}
 };
 
 #endif
