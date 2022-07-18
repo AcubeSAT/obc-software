@@ -16,7 +16,7 @@ public:
       */
     void execute();
 
-    HousekeepingTask() : Task("Housekeeping", nullptr) {}
+    HousekeepingTask() : Task("Housekeeping") {}
 
 };
 

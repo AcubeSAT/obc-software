@@ -16,7 +16,7 @@ public:
 
     void execute();
 
-    MCUTemperatureTask() : Task("MCUTemperatureSensor", nullptr) {}
+    MCUTemperatureTask() : Task("MCUTemperatureSensor") {}
 };
 
 #endif

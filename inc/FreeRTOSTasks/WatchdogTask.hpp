@@ -19,7 +19,7 @@ public:
 
     void execute();
 
-    WatchdogTask() : Task("Watchdog", nullptr) {}
+    WatchdogTask() : Task("Watchdog") {}
 };
 
 
