@@ -6,7 +6,7 @@
 
 #include "Services/TimeBasedSchedulingService.hpp"
 
-void TimeBasedSchedulingService::taskNotifier() {
+void TimeBasedSchedulingService::notifyNewActivityAddition() {
     if (scheduledActivities.size() >= 1) {
         xTaskNotify(TaskList::timeBasedSchedulingTask->taskHandle, 0, eNoAction);
     }
