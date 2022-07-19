@@ -5,7 +5,7 @@
 
 class TimeBasedSchedulingTask : public Task {
 public:
-    const static inline uint16_t taskStackDepth = 4000;
+    const static inline uint16_t taskStackDepth = 2500;
 
     StackType_t taskStack[taskStackDepth];
 
