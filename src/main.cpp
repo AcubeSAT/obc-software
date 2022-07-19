@@ -64,7 +64,7 @@ extern "C" void main_cpp() {
                       &mcuTemperatureTask->taskBuffer);
 //    xTaskCreateStatic(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
 //                &ambientTemperatureTask, tskIDLE_PRIORITY + 2, ambientTemperatureTask->taskStack, &ambientTemperatureTask->taskBuffer );
-    xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>, timeBasedSchedulingTask->taskName,
+    TaskList::timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>, timeBasedSchedulingTask->taskName,
                       timeBasedSchedulingTask->taskStackDepth,
                       &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2, timeBasedSchedulingTask->taskStack,
                       &timeBasedSchedulingTask->taskBuffer);
