@@ -47,22 +47,22 @@ void CANDriver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
         static_cast<APPStates>(context) == MCANReceive) {
         memset(&rxFifo0, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessages, &rxFifo0)) {
-            printMessage(numberOfMessages, rxFifo0);
+            printMessage(rxFifo0);
         }
     }
 }
 
-void CANDriver::printMessage(uint8_t numberOfMessages, MCAN_RX_BUFFER rxBuf) {
-    for (uint8_t count = 0; count < numberOfMessages; count++) {
-        auto message = String<ECSSMaxStringSize>("\r\nCAN Message: ");
-        uint32_t id = rxBuf.id >> 18;
-        uint8_t msgLength = convertDlcToLength(rxBuf.dlc);
-        message.append("Message - ID : ");
-        etl::to_string(id, message, etl::format_spec().hex(), true);
-        message.append(" Length : ");
-        etl::to_string(msgLength, message, true);
-        message.append(" Message : ");
-        message.append(rxBuf.data, msgLength);
-        LOG_INFO << message.c_str();
+void CANDriver::printMessage(MCAN_RX_BUFFER rxBuf) {
+    auto message = String<ECSSMaxStringSize>("CAN Message: ");
+    uint32_t id = rxBuf.id >> 18;
+    uint8_t msgLength = convertDlcToLength(rxBuf.dlc);
+    message.append("Message - ID : ");
+    etl::to_string(id, message, etl::format_spec().hex(), true);
+    message.append(" Length : ");
+    etl::to_string(msgLength, message, true);
+    message.append(" Message : ");
+    for(uint8_t idx = 0; idx < msgLength; idx++){
+        etl::to_string(rxBuf.data[idx], message, true);
     }
+    LOG_INFO << message.c_str();
 }

@@ -51,7 +51,7 @@ public:
      * @param rxBuf The RX Buffer that the messages are stored
      * @param rxBufLen The length of the above buffer
      */
-    static void printMessage(uint8_t numberOfMessages, MCAN_RX_BUFFER rxBuf);
+    static void printMessage(MCAN_RX_BUFFER rxBuf);
 
     /**
      * This function decodes the data length code to get the largest expected size of the message.
