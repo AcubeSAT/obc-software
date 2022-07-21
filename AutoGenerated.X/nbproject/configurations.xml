@@ -22,6 +22,10 @@
             <logicalFolder name="f5" displayName="efc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/efc/plib_efc.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f12" displayName="mcan" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/mcan/plib_mcan_common.h</itemPath>
+              <itemPath>../src/config/default/peripheral/mcan/plib_mcan1.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f3" displayName="nvic" projectFiles="true">
               <itemPath>../src/config/default/peripheral/nvic/plib_nvic.h</itemPath>
             </logicalFolder>
@@ -234,6 +238,9 @@
             </logicalFolder>
             <logicalFolder name="f5" displayName="efc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/efc/plib_efc.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f12" displayName="mcan" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/mcan/plib_mcan1.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="nvic" projectFiles="true">
               <itemPath>../src/config/default/peripheral/nvic/plib_nvic.c</itemPath>
