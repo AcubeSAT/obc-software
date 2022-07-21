@@ -4,7 +4,6 @@
 #include <cstdint>
 #include "ECSS_Definitions.hpp"
 #include "peripheral/mcan/plib_mcan1.h"
-#include <newlib.h>
 
 class CANDriver{
 public:
