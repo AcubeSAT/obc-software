@@ -46,6 +46,7 @@ extern "C" void main_cpp() {
     timeBasedSchedulingTask.emplace();
     ambientTemperatureTask.emplace();
     watchdogTask.emplace();
+    canTransmitTask.emplace();
 
     xTaskCreateStatic(vClassTask<UARTGatekeeperTask>, uartGatekeeperTask->taskName, uartGatekeeperTask->taskStackDepth,
                       &uartGatekeeperTask, tskIDLE_PRIORITY + 2, uartGatekeeperTask->taskStack,
@@ -70,6 +71,8 @@ extern "C" void main_cpp() {
                       &timeBasedSchedulingTask->taskBuffer);
     xTaskCreateStatic(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
                       &watchdogTask, tskIDLE_PRIORITY, watchdogTask->taskStack, &watchdogTask->taskBuffer);
+    xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->taskName, canTransmitTask->taskStackDepth,
+                      &canTransmitTask, tskIDLE_PRIORITY, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
 
     vTaskStartScheduler();
 
