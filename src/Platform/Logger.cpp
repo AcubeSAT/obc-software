@@ -37,7 +37,7 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
 
     etl::to_string(xTaskGetTickCount(), time, format.width(MaxTickCountStringSize), 0);
 
-    etl::string<LOGGER_MAX_MESSAGE_SIZE> output = "\r\n";
+    etl::string<LOGGER_MAX_MESSAGE_SIZE> output = "\r";
     output.append(time.c_str());
     output.append(" [");
     output.append(levelString.c_str());
