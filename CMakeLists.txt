@@ -88,6 +88,7 @@ include_directories(lib/cross-platform-software/lib/ecss-services/lib/etl/includ
 include_directories(lib/cross-platform-software/lib/ecss-services/lib/logger/inc)
 include_directories(lib/SEGGER/RTT)
 include_directories(lib/SEGGER/Config)
+include_directories(lib/SEGGER/SystemView)
 include_directories(lib/cobs-c)
 include_directories(lib/atsam-component-drivers/MCP9808/inc)
 add_subdirectory(lib/cross-platform-software)
@@ -97,6 +98,11 @@ file(GLOB_RECURSE SOURCES "src/*.c" "src/*.cpp" "lib/SEGGER/RTT/*.c" "AutoGenera
 file(GLOB_RECURSE FREERTOS_SOURCES "lib/FreeRTOS/*.c")
 file(GLOB_RECURSE EXTRA_SOURCES "lib/cobs-c/cobs.c" "lib/cobs-c/cobsr.c")
 
+#add_library(SystemView STATIC)
+#target_include_directories(SystemView PRIVATE "lib/SEGGER/SystemView")
+#target_sources(SystemView PRIVATE "lib/SEGGER/Config/SEGGER_SYSVIEW_Config_FreeRTOS.c"
+#    "lib/SEGGER/SystemView/SEGGER_SYSVIEW.c"
+#    "lib/SEGGER/SystemView/SEGGER_SYSVIEW_FreeRTOS.c")
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${EXTRA_SOURCES} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
 
 
