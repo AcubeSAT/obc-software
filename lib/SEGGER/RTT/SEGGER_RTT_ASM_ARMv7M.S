@@ -15,7 +15,6 @@ Additional information:
 */
 
 #define SEGGER_RTT_ASM      // Used to control processed input from header file
-
 #include "SEGGER_RTT.h"
 
 /*********************************************************************
@@ -29,60 +28,60 @@ Additional information:
 #define _CCCLANG 1
 
 #if (defined __SES_ARM) || (defined __GNUC__) || (defined __clang__)
-#define _CC_TYPE             _CCCLANG
-#define _PUB_SYM             .global
-#define _EXT_SYM             .extern
-#define _END                 .end
-#define _WEAK                .weak
-#define _THUMB_FUNC          .thumb_func
-#define _THUMB_CODE          .code 16
-#define _WORD                .word
-#define _SECTION(Sect, Type, AlignExp) .section Sect ##, "ax"
-#define _ALIGN(Exp)          .align Exp
-#define _PLACE_LITS          .ltorg
-#define _DATA_SECT_START
-#define _C_STARTUP           _start
-#define _STACK_END           __stack_end__
-#define _RAMFUNC
-//
-// .text     => Link to flash
-// .fast     => Link to RAM
-// OtherSect => Usually link to RAM
-// Alignment is 2^x
-//
+  #define _CC_TYPE             _CCCLANG
+  #define _PUB_SYM             .global
+  #define _EXT_SYM             .extern
+  #define _END                 .end
+  #define _WEAK                .weak
+  #define _THUMB_FUNC          .thumb_func
+  #define _THUMB_CODE          .code 16
+  #define _WORD                .word
+  #define _SECTION(Sect, Type, AlignExp) .section Sect ##, "ax"
+  #define _ALIGN(Exp)          .align Exp 
+  #define _PLACE_LITS          .ltorg
+  #define _DATA_SECT_START 
+  #define _C_STARTUP           _start
+  #define _STACK_END           __stack_end__
+  #define _RAMFUNC
+  //
+  // .text     => Link to flash
+  // .fast     => Link to RAM
+  // OtherSect => Usually link to RAM
+  // Alignment is 2^x
+  //
 #elif defined (__IASMARM__)
-#define _CC_TYPE             _CCIAR
-#define _PUB_SYM             PUBLIC
-#define _EXT_SYM             EXTERN
-#define _END                 END
-#define _WEAK                _WEAK
-#define _THUMB_FUNC
-#define _THUMB_CODE          THUMB
-#define _WORD                DCD
-#define _SECTION(Sect, Type, AlignExp) SECTION Sect ## : ## Type ## :REORDER:NOROOT ## (AlignExp)
-#define _ALIGN(Exp)          alignrom Exp
-#define _PLACE_LITS
-#define _DATA_SECT_START     DATA
-#define _C_STARTUP           __iar_program_start
-#define _STACK_END           sfe(CSTACK)
-#define _RAMFUNC             SECTION_TYPE SHT_PROGBITS, SHF_WRITE | SHF_EXECINSTR
-//
-// .text     => Link to flash
-// .textrw   => Link to RAM
-// OtherSect => Usually link to RAM
-// NOROOT    => Allows linker to throw away the function, if not referenced
-// Alignment is 2^x
-//
+  #define _CC_TYPE             _CCIAR
+  #define _PUB_SYM             PUBLIC
+  #define _EXT_SYM             EXTERN
+  #define _END                 END
+  #define _WEAK                _WEAK
+  #define _THUMB_FUNC
+  #define _THUMB_CODE          THUMB
+  #define _WORD                DCD
+  #define _SECTION(Sect, Type, AlignExp) SECTION Sect ## : ## Type ## :REORDER:NOROOT ## (AlignExp)
+  #define _ALIGN(Exp)          alignrom Exp 
+  #define _PLACE_LITS
+  #define _DATA_SECT_START     DATA
+  #define _C_STARTUP           __iar_program_start
+  #define _STACK_END           sfe(CSTACK)
+  #define _RAMFUNC             SECTION_TYPE SHT_PROGBITS, SHF_WRITE | SHF_EXECINSTR
+  //
+  // .text     => Link to flash
+  // .textrw   => Link to RAM
+  // OtherSect => Usually link to RAM
+  // NOROOT    => Allows linker to throw away the function, if not referenced
+  // Alignment is 2^x
+  //
 #endif
 
 #if (_CC_TYPE == _CCIAR)
-NAME SEGGER_RTT_ASM_ARMv7M
+        NAME SEGGER_RTT_ASM_ARMv7M
 #else
-.syntax unified
+        .syntax unified
 #endif
 
 #if defined (RTT_USE_ASM) && (RTT_USE_ASM == 1)
-#define SHT_PROGBITS 0x1
+        #define SHT_PROGBITS 0x1
 
 /*********************************************************************
 *
@@ -238,6 +237,6 @@ _Case3:
         _PLACE_LITS
 
 #endif  // defined (RTT_USE_ASM) && (RTT_USE_ASM == 1)
-_END
+        _END
 
 /*************************** End of file ****************************/
