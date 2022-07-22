@@ -5,8 +5,9 @@
 
 namespace ParameterStatistics {
     using namespace PlatformParameters;
-    inline const uint16_t statisticParameterIDs[] = {ParameterID::OnBoardMinute, ParameterID::OnBoardSecond};
-    const uint8_t numOfStatistics = 2;
-    inline etl::array<Statistic, numOfStatistics> statistics = {
+    const uint8_t NumOfStatistics = 2;
+    inline const etl::array<uint16_t, NumOfStatistics> statisticParameterIDs = {ParameterID::OnBoardMinute,
+                                                                                ParameterID::OnBoardSecond};
+    inline etl::array<Statistic, NumOfStatistics> statistics = {
     };
 }

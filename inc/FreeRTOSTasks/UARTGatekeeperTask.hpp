@@ -9,15 +9,18 @@
  * deadlocks that might be caused by simultaneous requests of access to the same resource. It works by having anyone
  * needing to access UART, send the data in a queue. Then, this task receives queue elements and sends them to UART.
  */
-class UARTGatekeeper : public Task {
+class UARTGatekeeperTask : public Task {
 private:
     QueueHandle_t xUartQueue;
 
 public:
+    const static inline uint16_t taskStackDepth = 2000;
+
+    StackType_t taskStack[taskStackDepth];
 
     void execute();
 
-    UARTGatekeeper();
+    UARTGatekeeperTask();
 
     /**
      * Adds an etl::string to the UART Gatekeeper's queue.

@@ -9,5 +9,9 @@ public:
      */
     void execute();
 
-    StatisticsReportingTask() : Task("StatisticsReporting", nullptr, 3500) {}
+    const static inline uint16_t taskStackDepth = 3000;
+
+    StackType_t taskStack[taskStackDepth];
+
+    StatisticsReportingTask() : Task("StatisticsReporting") {}
 };
