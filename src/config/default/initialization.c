@@ -148,6 +148,7 @@ void SYS_Initialize ( void* data )
 
 	WDT_Initialize();
 
+
 	TWIHS2_Initialize();
 
 	RTC_Initialize();

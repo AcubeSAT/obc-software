@@ -4,13 +4,13 @@
 
 
 project: obc-software
-creation_date: 2022-06-11T14:20:01.907+03:00[Europe/Athens]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2022-07-24T13:40:44.827+03:00[Europe/Athens]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Linux
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.5
 mplabx_version: v6.00        # if MPLAB X plugin only
 plugin_version: v3.6.4        # if MPLAB X plugin only
-compiler: ARM (12.1.0)
+compiler: ARM (10.3.1)
 
 modules:
     - {name: "csp", version: "v3.12.0"}

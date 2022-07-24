@@ -56,20 +56,15 @@ inline const uint8_t UARTQueueSize = 5;
 inline const uint16_t TypicalVoltageAt25 = 720;
 
 /**
-<<<<<<< HEAD
- * The max bytes a buffer of bytes can hold
+ * The maximum byte capacity of a byte buffer containing TC bytes
  */
-inline const uint8_t byteBufferSize = 10;
+inline const uint8_t ByteBufferSize = 64;
 
 /**
- * The max bytes a queue of bytes can hold
+ * The maximum byte capacity of a byte queue that stores incoming TC bytes
  */
-inline const uint8_t byteQueueLength = 10;
+inline const uint8_t ByteQueueLength = 64;
 
-/**
- *
- */
-inline const uint8_t byteTrailerLength = 3;
 /**
  * The max bytes a buffer of messages can hold
  */
