@@ -50,7 +50,7 @@ extern "C" void main_cpp() {
     xTaskCreate(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
                &watchdogTask, tskIDLE_PRIORITY, NULL);
     xTaskCreate(vClassTask<TCHandlingTask>, tcHandlingTask->taskName, tcHandlingTask->taskStackDepth, &tcHandlingTask,
-                tskIDLE_PRIORITY, &tcHandlingTask->taskHandle);
+                tskIDLE_PRIORITY, NULL);
 
     vTaskStartScheduler();
 
