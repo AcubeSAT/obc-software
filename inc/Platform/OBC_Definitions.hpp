@@ -56,6 +56,7 @@ inline const uint8_t UARTQueueSize = 5;
 inline const uint16_t TypicalVoltageAt25 = 720;
 
 /**
+<<<<<<< HEAD
  * The maximum byte capacity of a byte buffer containing TC bytes
  */
 inline const uint8_t ByteBufferSize = 64;
@@ -67,16 +68,19 @@ inline const uint8_t ByteQueueLength = 64;
 
 /**
  * Logger will output messages using using RTT
+=======
+ * Logger will output messages using RTT
+>>>>>>> origin/master
  */
-inline const bool useRTT = false;
+inline const bool useRTT = true;
 
 /**
- * Logger will output messages using using UART
+ * Logger will output messages using UART
  */
 inline const bool useUART = true;
 
 /**
- * Logger will output messages using using CAN
+ * Logger will output messages using CAN
  */
 inline const bool useCAN = false;
 

@@ -10,7 +10,7 @@
 
 using ECSSMessage = Message;
 
-TCHandlingTask::TCHandlingTask() {
+TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
 
     byteQueue = xQueueCreate(ByteQueueLength, sizeof(char));
 

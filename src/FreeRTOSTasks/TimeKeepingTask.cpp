@@ -13,9 +13,6 @@ void TimeKeepingTask::execute() {
     }
 }
 
-/**
- * This function prints the on-board time.
- */
 void TimeKeepingTask::printOnBoardTime() {
     etl::string<29> printTime = "";
     printTime += "\rTime:";

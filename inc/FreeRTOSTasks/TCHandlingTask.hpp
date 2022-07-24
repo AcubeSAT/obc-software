@@ -14,7 +14,7 @@
 /**
  * FreeRTOS task implementing TC execution.
  */
-class TCHandlingTask {
+class TCHandlingTask : public Task {
 private:
     struct Buffer {
         char message[ByteBufferSize] = "";
@@ -51,17 +51,13 @@ private:
     bool messageComplete = false;
 
 public:
-
-    /**
-     * Name of the task
-     */
-    const char *taskName = "TCHandling";
-
     /**
      * The stack depth of each FreeRTOS task, defined as the number of words the stack can hold. For example, in an
      * architecture with 4 byte stack, assigning 100 to the usStackDepth argument, will allocate 4x100=400 bytes.
      */
-    const uint16_t taskStackDepth = 3000;
+    const static inline uint16_t taskStackDepth = 3000;
+
+    StackType_t taskStack[taskStackDepth];
 
     TCHandlingTask();
 
@@ -71,7 +67,6 @@ public:
     void createTC();
 
     void execute();
-
 
 };
 
