@@ -64,12 +64,7 @@ inline const uint8_t ByteBufferSize = 64;
  * The maximum byte capacity of a byte queue that stores incoming TC bytes
  */
 inline const uint8_t ByteQueueLength = 64;
-
-/**
- * The max bytes a buffer of messages can hold
- */
-inline const uint8_t messageQueueLength = 10;
-
+g
 /**
  * Logger will output messages using using RTT
  */

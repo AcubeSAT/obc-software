@@ -11,7 +11,7 @@ private:
      * @see config/default/peripheral/wdt.c for the specific configuration.
      * Do not change this value, without also modifying the value in Harmony configurator.
      */
-    const uint16_t watchdogWindow = 1e3;
+    const uint16_t watchdogWindow = 14000;
 public:
     void execute();
 
