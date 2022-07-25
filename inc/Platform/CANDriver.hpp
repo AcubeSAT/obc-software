@@ -10,12 +10,12 @@ public:
     static inline uint8_t mcan1MessageRAM[MCAN1_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32)));
 
     /**
-     * Array that stores a message that is buffered to be sent
+     * A buffer that stores a message that is ready to be sent
      */
     static inline MCAN_TX_BUFFER txFifo;
 
     /**
-     * Array that stores a received message that is buffered to be processed.
+     * Buffer that stores a received message that is to be processed.
      */
     static inline MCAN_RX_BUFFER rxFifo0;
 
@@ -62,7 +62,7 @@ public:
     static uint8_t convertDlcToLength(uint8_t dlc);
 
     /**
-     * This function encodes the body of the message to the smallest data length code that it fits in.
+     * This function encodes the length of the message body to the smallest data length code that it fits in.
      *
      * @param length The length of the message in bytes
      * @return The data length code
