@@ -3,6 +3,8 @@
 #include "OBC_Definitions.hpp"
 #include "ServicePool.hpp"
 
+using CAN::TPMessageMaximumSize;
+
 namespace CANTPMessage {
     IdInfo decodeId(uint16_t canID) {
         IdInfo id;
@@ -30,7 +32,7 @@ namespace CANTPMessage {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
         uint16_t parameterCount = parameterIDs.size();
 
-        etl::vector<uint8_t, 256> data = {0x01, static_cast<uint8_t>(parameterCount >> 8),
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {0x01, static_cast<uint8_t>(parameterCount >> 8),
                                           static_cast<uint8_t>(parameterCount)};
 
         for (uint16_t parameterId: parameterIDs) {
@@ -49,7 +51,7 @@ namespace CANTPMessage {
         uint16_t id = encodeId({0x1, destinationAddress, isMulticast});
         uint16_t parameterCount = parameterIDs.size();
 
-        etl::vector<uint8_t, 256> data = {0x02, static_cast<uint8_t>(parameterCount >> 8),
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {0x02, static_cast<uint8_t>(parameterCount >> 8),
                                           static_cast<uint8_t>(parameterCount)};
 
         for (auto parameterID: parameterIDs) {
@@ -65,7 +67,7 @@ namespace CANTPMessage {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         auto argumentCount = static_cast<uint16_t>(argumentIDs.size());
-        etl::vector<uint8_t, 256> data = {0x03};
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {0x03};
 
         uint8_t functionIdSize = 6;
         while (functionIdSize > 0) {
@@ -88,7 +90,7 @@ namespace CANTPMessage {
     createLogMessage(uint8_t destinationAddress, bool isMulticast, const etl::string<LOGGER_MAX_MESSAGE_SIZE> &log) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
-        etl::vector<uint8_t, 256> data = {0x40};
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {0x40};
 
         for (auto character: log) {
             data.push_back(character);
@@ -101,7 +103,7 @@ namespace CANTPMessage {
                                   etl::array<uint8_t, 256> payload) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
-        etl::vector<uint8_t, 256> data = {0x10, type, static_cast<unsigned char>(eventID >> 8),
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {0x10, type, static_cast<unsigned char>(eventID >> 8),
                                           static_cast<unsigned char>(eventID)};
 
         for (auto point: payload) {
