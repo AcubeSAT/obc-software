@@ -20,7 +20,7 @@ namespace CANApplicationLayer {
 
     void createBusSwitchoverMessage() {
         uint16_t id = getBusSwitchoverID(CAN::NodeID);
-        etl::array<uint8_t, CAN::DataLength> data = {getBusToSwitchover()};
+        etl::array<uint8_t, CANMessage::MaxDataLength> data = {getBusToSwitchover()};
 
         outgoingMessages.push({id, data});
     }
@@ -29,7 +29,7 @@ namespace CANApplicationLayer {
         uint32_t msOfDay; //@todo How do we get millisecond accuracy?
 
         uint16_t id = getTimeID(CAN::NodeID);
-        etl::array<uint8_t, CAN::DataLength> data = {0, 0, static_cast<uint8_t>(msOfDay),
+        etl::array<uint8_t, CANMessage::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay),
                                                      static_cast<uint8_t>(msOfDay >> 8),
                                                      static_cast<uint8_t>(msOfDay >> 16),
                                                      static_cast<uint8_t>(msOfDay >> 24), 0,
@@ -45,12 +45,12 @@ namespace CANApplicationLayer {
         if (isTPMessage(message.id)) {
             incomingTPMessage.push(message);
         } else if (isHeartbeatMessage(message.id)) {
-//            @todo register heartbeat?
+//            parseHeartbeatMessage(message);
         } else if (isSwitchoverMessage(message.id)) {
             currentBus = static_cast<BusID>(message.data[0]);
-//            @todo write code to use the other CAN peripheral
+//            parseBusSwitchoverMessage(message);
         } else if (isUTCTimeMessage(message.id)) {
-//            @todo UTC time message receipt
+//            parseUTCTimeMessage(message);
         } else if (message.id == pingMessageId) {
             sendPongMessage();
         }
@@ -91,11 +91,11 @@ namespace CANApplicationLayer {
     }
 
     void finalizeMessage(uint16_t id, const etl::vector<uint8_t, 256> &messagePayload) {
-        etl::array<uint8_t, CAN::DataLength> data = {};
+        etl::array<uint8_t, CANMessage::MaxDataLength> data = {};
 
         for (uint8_t idx = 0; idx < messagePayload.size(); idx++) {
-            data[idx % CAN::DataLength] = messagePayload.at(idx);
-            if (idx % CAN::DataLength == CAN::DataLength - 1) {
+            data[idx % CANMessage::MaxDataLength] = messagePayload.at(idx);
+            if (idx % CANMessage::MaxDataLength == CANMessage::MaxDataLength - 1) {
                 message.empty();
                 message = {id, data};
                 CANApplicationLayer::outgoingMessages.push(message);

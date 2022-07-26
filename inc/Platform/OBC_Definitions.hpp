@@ -98,11 +98,6 @@ namespace CAN {
     inline const uint8_t NodeID = 0x0;
 
     /**
-     * The length for the data of a single CAN message.
-     */
-    inline const uint8_t DataLength = 8;
-
-    /**
      * The maximum of the length of the queue for incoming/outgoing CAN messages.
      */
     inline const uint8_t MessageQueueSize = 20;

@@ -8,14 +8,15 @@
 
 class CANMessage {
 public:
+    static constexpr uint8_t MaxDataLength = 8;
     uint16_t id;
-    etl::array<uint8_t, CAN::DataLength> data;
+    etl::array<uint8_t, MaxDataLength> data;
 
     CANMessage() {};
 
     CANMessage(uint16_t id) : id(id) {};
 
-    CANMessage(uint16_t id, etl::array<uint8_t, CAN::DataLength> _data) : id(id), data(_data) {};
+    CANMessage(uint16_t id, const etl::array<uint8_t, MaxDataLength>& _data) : id(id), data(_data) {};
 
     inline void empty(){
         id = 0;
