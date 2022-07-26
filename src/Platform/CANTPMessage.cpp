@@ -63,7 +63,7 @@ namespace CANTPMessage {
 
     template<typename T>
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
-                                      etl::vector<uint8_t, 10> argumentIDs, etl::vector<T, 10> argumentValues) {
+                                      const etl::vector<uint8_t, 10>& argumentIDs, const etl::vector<T, 10>& argumentValues) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         auto argumentCount = static_cast<uint16_t>(argumentIDs.size());
@@ -100,7 +100,7 @@ namespace CANTPMessage {
     }
 
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
-                                  etl::array<uint8_t, 256> payload) {
+                                  const etl::array<uint8_t, 256>& payload) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         etl::vector<uint8_t, TPMessageMaximumSize> data = {0x10, type, static_cast<unsigned char>(eventID >> 8),
