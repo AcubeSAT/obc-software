@@ -37,9 +37,12 @@ private:
      */
     char byteIn = 0;
 
+
     /**
      * Saves incoming bytes by inserting them into a queue.
      */
+    uint8_t byteQueueStorageArea[ByteBufferSize * sizeof (char)];
+    static StaticQueue_t staticQueue;
     QueueHandle_t byteQueue;
 
     /**

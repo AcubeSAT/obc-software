@@ -9,11 +9,12 @@
 #include "task.h"
 
 using ECSSMessage = Message;
+StaticQueue_t TCHandlingTask::staticQueue;
 
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
 
-
-    byteQueue = xQueueCreateStatic(ByteQueueLength, sizeof(char));
+    byteQueue = xQueueCreateStatic(ByteQueueLength, sizeof(char), byteQueueStorageArea, &staticQueue);
+    configASSERT(byteQueue);
 
     USART1_Read(&byteIn, sizeof(byteIn));
 
@@ -21,7 +22,7 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
         TCHandlingTask *TCTask = reinterpret_cast<TCHandlingTask *>(object);
         BaseType_t xHigherPriorityTaskWoken;
         if (USART1_ReadCountGet() == 0) {
-            USART_ERROR Usart_error = USART1_ErrorGet();
+            USART_ERROR UsartError = USART1_ErrorGet();
         } else {
             xQueueSendToBackFromISR(TCTask->byteQueue, static_cast<void *>(&TCTask->byteIn), nullptr);
         }
