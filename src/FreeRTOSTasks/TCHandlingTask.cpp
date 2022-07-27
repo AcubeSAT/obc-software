@@ -13,7 +13,7 @@ using ECSSMessage = Message;
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
 
 
-    byteQueue = xQueueCreate(ByteQueueLength, sizeof(char));
+    byteQueue = xQueueCreateStatic(ByteQueueLength, sizeof(char));
 
     USART1_Read(&byteIn, sizeof(byteIn));
 
@@ -21,7 +21,7 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
         TCHandlingTask *TCTask = reinterpret_cast<TCHandlingTask *>(object);
         BaseType_t xHigherPriorityTaskWoken;
         if (USART1_ReadCountGet() == 0) {
-            ErrorHandler::reportInternalError(ErrorHandler::InternalErrorType::UsartFailedRead);
+            USART_ERROR Usart_error = USART1_ErrorGet();
         } else {
             xQueueSendToBackFromISR(TCTask->byteQueue, static_cast<void *>(&TCTask->byteIn), nullptr);
         }
