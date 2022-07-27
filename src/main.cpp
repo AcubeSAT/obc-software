@@ -64,17 +64,17 @@ extern "C" void main_cpp() {
                       &mcuTemperatureTask, tskIDLE_PRIORITY + 2, mcuTemperatureTask->taskStack,
                       &mcuTemperatureTask->taskBuffer);
 //    xTaskCreateStatic(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName, ambientTemperatureTask->taskStackDepth,
-//                &ambientTemperatureTask, tskIDLE_PRIORITY + 2, ambientTemperatureTask->taskStack, &ambientTemperatureTask->taskBuffer );
-    TaskList::timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>, timeBasedSchedulingTask->taskName,
-                      timeBasedSchedulingTask->taskStackDepth,
-                      &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2, timeBasedSchedulingTask->taskStack,
-                      &timeBasedSchedulingTask->taskBuffer);
+//                      &ambientTemperatureTask, tskIDLE_PRIORITY + 2,
+//                      ambientTemperatureTask->taskStack, &ambientTemperatureTask->taskBuffer );
+    TaskList::timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>,timeBasedSchedulingTask->taskName,timeBasedSchedulingTask->taskStackDepth,
+                                                                      &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2,
+                                                                      timeBasedSchedulingTask->taskStack,&timeBasedSchedulingTask->taskBuffer);
     xTaskCreateStatic(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
-                      &watchdogTask, tskIDLE_PRIORITY, watchdogTask->taskStack, &watchdogTask->taskBuffer);
-
-    TaskList::tcHandlingTask->taskHandle = xTaskCreateStatic(vClassTask<TCHandlingTask>, tcHandlingTask->taskName, tcHandlingTask->taskStackDepth,
-                                                             &tcHandlingTask, tskIDLE_PRIORITY, tcHandlingTask->taskStack,
-                                                             &tcHandlingTask->taskBuffer);
+                      &watchdogTask, tskIDLE_PRIORITY,
+                      watchdogTask->taskStack, &watchdogTask->taskBuffer);
+    xTaskCreateStatic(vClassTask<TCHandlingTask>, tcHandlingTask->taskName, tcHandlingTask->taskStackDepth,
+                      &tcHandlingTask, tskIDLE_PRIORITY+1, tcHandlingTask->taskStack,
+                      &tcHandlingTask->taskBuffer);
 
     vTaskStartScheduler();
 

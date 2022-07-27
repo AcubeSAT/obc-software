@@ -30,7 +30,6 @@ void Service::storeMessage(Message &message) {
     }
 
     output.append(data.c_str());
-    output.append("\r\n");
 
     LOG_DEBUG << output.c_str();
 }
