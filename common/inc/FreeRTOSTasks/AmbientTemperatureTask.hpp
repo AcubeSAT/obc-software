@@ -1,7 +1,7 @@
 #ifndef OBC_SOFTWARE_AMBIENTTEMPERATURETASK_HPP
 #define OBC_SOFTWARE_AMBIENTTEMPERATURETASK_HPP
 
-#include "Task.hpp"
+#include "../../../inc/FreeRTOSTasks/Task.hpp"
 #include "MCP9808.hpp"
 
 /**

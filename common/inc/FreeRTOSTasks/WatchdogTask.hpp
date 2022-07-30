@@ -1,7 +1,7 @@
 #ifndef OBC_SOFTWARE_WATCHDOGTASK_H
 #define OBC_SOFTWARE_WATCHDOGTASK_H
 
-#include "Task.hpp"
+#include "../../../inc/FreeRTOSTasks/Task.hpp"
 
 class WatchdogTask : public Task{
 private:

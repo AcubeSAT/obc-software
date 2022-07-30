@@ -1,4 +1,4 @@
-#include "FreeRTOSTasks/UpdateParametersTask.hpp"
+#include "UpdateParametersTask.hpp"
 
 void UpdateParametersTask::execute() {
     TaskHandle_t updateParametersHandle = xTaskGetHandle(taskName);

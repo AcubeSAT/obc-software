@@ -1,4 +1,4 @@
-#include "FreeRTOSTasks/AmbientTemperatureTask.hpp"
+#include "AmbientTemperatureTask.hpp"
 
 void AmbientTemperatureTask::execute() {
     while (true) {

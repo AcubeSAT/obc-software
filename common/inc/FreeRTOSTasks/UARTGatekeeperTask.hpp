@@ -1,7 +1,7 @@
 #ifndef OBC_SOFTWARE_UARTGATEKEEPER_H
 #define OBC_SOFTWARE_UARTGATEKEEPER_H
 
-#include "Task.hpp"
+#include "../../../inc/FreeRTOSTasks/Task.hpp"
 #include "queue.h"
 
 /**

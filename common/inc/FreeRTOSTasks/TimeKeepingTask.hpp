@@ -1,7 +1,7 @@
 #ifndef ECSS_SERVICES_TIMEKEEPINGTASK_HPP
 #define ECSS_SERVICES_TIMEKEEPINGTASK_HPP
 
-#include "Task.hpp"
+#include "../../../inc/FreeRTOSTasks/Task.hpp"
 
 class TimeKeepingTask : public Task {
 private:
