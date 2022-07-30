@@ -5,10 +5,11 @@
 #include "task.h"
 #include "definitions.h"
 #include "OBC_Definitions.hpp"
-#include "BootCounter.hpp"
-#include "FreeRTOSTasks/Task.hpp"
-#include "FreeRTOSTasks/TaskList.hpp"
 #include "TaskInitialization.hpp"
+#include "HousekeepingTask.hpp"
+#include "UpdateParametersTask.hpp"
+#include "TimeBasedSchedulingTask.hpp"
+#include "StatisticsReportingTask.hpp"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -27,28 +28,28 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 #endif
 
 extern "C" void main_cpp() {
-    using namespace TaskList;
 
     SYS_Initialize(NULL);
-    Init::initializeTasks();
+    initializeTasks();
 
-    mcuTemperatureTask.emplace();
     housekeepingTask.emplace();
     timeBasedSchedulingTask.emplace();
     statisticsReportingTask.emplace();
+    updateParametersTask.emplace();
 
-    xTaskCreateStatic(vClassTask<StatisticsReportingTask>, statisticsReportingTask->taskName,
-                      statisticsReportingTask->taskStackDepth, &statisticsReportingTask, tskIDLE_PRIORITY + 1,
+    xTaskCreateStatic(vClassTask<UpdateParametersTask>, updateParametersTask->TaskName,
+                      updateParametersTask->TaskStackDepth,
+                      &updateParametersTask, tskIDLE_PRIORITY + 1, updateParametersTask->taskStack,
+                      &updateParametersTask->taskBuffer);
+    xTaskCreateStatic(vClassTask<StatisticsReportingTask>, statisticsReportingTask->TaskName,
+                      statisticsReportingTask->TaskStackDepth, &statisticsReportingTask, tskIDLE_PRIORITY + 1,
                       statisticsReportingTask->taskStack, &statisticsReportingTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
+    xTaskCreateStatic(vClassTask<HousekeepingTask>, housekeepingTask->TaskName, housekeepingTask->TaskStackDepth,
                       &housekeepingTask, configMAX_PRIORITIES - 1, housekeepingTask->taskStack,
                       &housekeepingTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
-                      &mcuTemperatureTask, tskIDLE_PRIORITY + 2, mcuTemperatureTask->taskStack,
-                      &mcuTemperatureTask->taskBuffer);
     timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>,
-                                                            timeBasedSchedulingTask->taskName,
-                                                            timeBasedSchedulingTask->taskStackDepth,
+                                                            timeBasedSchedulingTask->TaskName,
+                                                            timeBasedSchedulingTask->TaskStackDepth,
                                                             &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2,
                                                             timeBasedSchedulingTask->taskStack,
                                                             &timeBasedSchedulingTask->taskBuffer);

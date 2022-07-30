@@ -5,13 +5,15 @@
 
 class TimeBasedSchedulingTask : public Task {
 public:
-    const static inline uint16_t taskStackDepth = 2500;
+    const static inline uint16_t TaskStackDepth = 2500;
 
-    StackType_t taskStack[taskStackDepth];
+    StackType_t taskStack[TaskStackDepth];
 
     void execute();
 
     TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask") {}
 };
+
+inline std::optional<TimeBasedSchedulingTask> timeBasedSchedulingTask;
 
 #endif

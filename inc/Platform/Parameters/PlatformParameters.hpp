@@ -2,7 +2,6 @@
 #define ECSS_SERVICES_PLATFORMPARAMETERS_HPP
 
 #include "Helpers/Parameter.hpp"
-#include "OBC_Definitions.hpp"
 
 namespace PlatformParameters {
     /**

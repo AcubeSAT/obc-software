@@ -1,7 +1,7 @@
 #include "UpdateParametersTask.hpp"
 
 void UpdateParametersTask::execute() {
-    TaskHandle_t updateParametersHandle = xTaskGetHandle(taskName);
+    TaskHandle_t updateParametersHandle = xTaskGetHandle(TaskName);
 
     while (true) {
         PlatformParameters::reportParametersUnusedStack.setValue(
