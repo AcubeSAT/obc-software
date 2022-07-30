@@ -6,11 +6,7 @@ void StatisticsReportingTask::execute() {
 
     while (true) {
         if (parameterStatistics.getPeriodicReportingStatus()) {
-            Message request = Message(ParameterStatisticsService::ServiceType,
-                                      ParameterStatisticsService::MessageType::ReportParameterStatistics,
-                                      Message::PacketType::TC, ApplicationId);
-            request.appendBoolean(false);
-            MessageParser::execute(request);
+            parameterStatistics.reportParameterStatistics(false);
         }
         vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(parameterStatistics.getReportingIntervalMs()));
     }

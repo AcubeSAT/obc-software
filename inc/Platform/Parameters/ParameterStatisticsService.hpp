@@ -8,6 +8,5 @@ namespace ParameterStatistics {
     const uint8_t NumOfStatistics = 2;
     inline const etl::array<uint16_t, NumOfStatistics> statisticParameterIDs = {ParameterID::OnBoardMinute,
                                                                                 ParameterID::OnBoardSecond};
-    inline etl::array<Statistic, NumOfStatistics> statistics = {
-    };
+    inline etl::array<Statistic, NumOfStatistics> statistics = {};
 }
