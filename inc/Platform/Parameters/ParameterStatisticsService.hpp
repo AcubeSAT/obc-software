@@ -16,7 +16,7 @@ namespace ParameterStatistics {
     inline const etl::array<uint16_t, NumOfStatistics> statisticParameterIDs = {ParameterID::OnBoardMinute,
                                                                                 ParameterID::OnBoardSecond};
     /**
-     * An array holding Statistic instances. Each Statistic will correspond to one parameter.
+     * An array holding Statistic instances. Each Statistic will correspond to the similarly-numbered parameter from statisticParameterIDs
      * This is used in the initializeStatisticsMap function, which is called in the constructor of the ST04
      * Service
      */
