@@ -90,7 +90,7 @@ namespace CANApplicationLayer {
         }
     }
 
-    void finalizeMessage(uint16_t id, const etl::vector<uint8_t, 256> &messagePayload) {
+    void finalizeMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload) {
         etl::array<uint8_t, CANMessage::MaxDataLength> data = {};
 
         for (uint8_t idx = 0; idx < messagePayload.size(); idx++) {

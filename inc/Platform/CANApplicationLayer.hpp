@@ -150,7 +150,7 @@ namespace CANApplicationLayer {
      * @param id The ID that will be used for the messages.
      * @param messagePayload A vector containing the data part of the CAN-TP Message.
      */
-    void finalizeMessage(uint16_t id, const etl::vector<uint8_t, 256> &messagePayload);
+    void finalizeMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload);
 }
 
 #endif //OBC_SOFTWARE_CANAPPLICATIONLAYER_H

@@ -45,7 +45,7 @@ namespace CANTPMessage {
     createLogMessage(uint8_t destinationAddress, bool isMulticast, const etl::string<LOGGER_MAX_MESSAGE_SIZE> &log);
 
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
-                                  etl::array<uint8_t, 256> data);
+                                  etl::array<uint8_t, CAN::TPMessageMaximumSize> data);
 };
 
 #endif //OBC_SOFTWARE_CANTPMESSAGE_H

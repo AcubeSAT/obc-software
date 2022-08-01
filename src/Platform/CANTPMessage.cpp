@@ -33,7 +33,7 @@ namespace CANTPMessage {
         uint16_t parameterCount = parameterIDs.size();
 
         etl::vector<uint8_t, TPMessageMaximumSize> data = {0x01, static_cast<uint8_t>(parameterCount >> 8),
-                                          static_cast<uint8_t>(parameterCount)};
+                                                           static_cast<uint8_t>(parameterCount)};
 
         for (uint16_t parameterId: parameterIDs) {
             auto parameter = static_cast<Parameter<T> &>(Services.parameterManagement.getParameter(
@@ -52,7 +52,7 @@ namespace CANTPMessage {
         uint16_t parameterCount = parameterIDs.size();
 
         etl::vector<uint8_t, TPMessageMaximumSize> data = {0x02, static_cast<uint8_t>(parameterCount >> 8),
-                                          static_cast<uint8_t>(parameterCount)};
+                                                           static_cast<uint8_t>(parameterCount)};
 
         for (auto parameterID: parameterIDs) {
             stuffIntoVector(parameterID, data);
@@ -63,7 +63,8 @@ namespace CANTPMessage {
 
     template<typename T>
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
-                                      const etl::vector<uint8_t, 10>& argumentIDs, const etl::vector<T, 10>& argumentValues) {
+                                      const etl::vector<uint8_t, 10> &argumentIDs,
+                                      const etl::vector<T, 10> &argumentValues) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         auto argumentCount = static_cast<uint16_t>(argumentIDs.size());
@@ -100,11 +101,11 @@ namespace CANTPMessage {
     }
 
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
-                                  const etl::array<uint8_t, 256>& payload) {
+                                  const etl::array<uint8_t, TPMessageMaximumSize> &payload) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         etl::vector<uint8_t, TPMessageMaximumSize> data = {0x10, type, static_cast<unsigned char>(eventID >> 8),
-                                          static_cast<unsigned char>(eventID)};
+                                                           static_cast<unsigned char>(eventID)};
 
         for (auto point: payload) {
             data.push_back(point);
