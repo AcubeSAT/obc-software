@@ -47,6 +47,7 @@ extern "C" void main_cpp() {
     ambientTemperatureTask.emplace();
     watchdogTask.emplace();
     statisticsReportingTask.emplace();
+    canTransmitTask.emplace();
 
     xTaskCreateStatic(vClassTask<StatisticsReportingTask>, statisticsReportingTask->taskName,
                       statisticsReportingTask->taskStackDepth, &statisticsReportingTask, tskIDLE_PRIORITY + 1,
@@ -78,6 +79,8 @@ extern "C" void main_cpp() {
                                                                       &timeBasedSchedulingTask->taskBuffer);
     xTaskCreateStatic(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
                       &watchdogTask, tskIDLE_PRIORITY, watchdogTask->taskStack, &watchdogTask->taskBuffer);
+    xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->taskName, canTransmitTask->taskStackDepth,
+                      &canTransmitTask, tskIDLE_PRIORITY + 1, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
 
     vTaskStartScheduler();
 
