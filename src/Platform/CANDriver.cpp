@@ -45,12 +45,12 @@ void CANDriver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
         static_cast<APPStates>(context) == MCANReceive) {
         memset(&rxFifo0, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessages, &rxFifo0)) {
-            printMessage(rxFifo0);
+            logMessage(rxFifo0);
         }
     }
 }
 
-void CANDriver::printMessage(MCAN_RX_BUFFER rxBuf) {
+void CANDriver::logMessage(MCAN_RX_BUFFER rxBuf) {
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
     uint32_t id = rxBuf.id >> 18;
     uint8_t msgLength = convertDlcToLength(rxBuf.dlc);
