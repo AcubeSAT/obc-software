@@ -10,7 +10,7 @@ public:
     static inline uint8_t mcan1MessageRAM[MCAN1_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32)));
 
     /**
-     * A buffer that stores a message that is ready to be sent
+     * Buffer that stores a message that is ready to be sent
      */
     static inline MCAN_TX_BUFFER txFifo;
 
@@ -27,7 +27,7 @@ public:
     } APPStates;
 
     /**
-     * This function logs a successful CAN Bus transmission.
+     * Logs a successful CAN Bus transmission.
      * It is registered as a callback to be automatically called by Microchip's HAL whenever
      * there is a message transmission on TX FIFO.
      *
@@ -36,7 +36,7 @@ public:
     static void txFifoCallback(uintptr_t context);
 
     /**
-     * This function initiates a message receipt from the peripheral to the processor.
+     * Initiates a message receipt from the peripheral to the processor.
      * It is registered as a callback to be automatically called by Microchip's HAL whenever
      * there is a message receipt on RX FIFO 0.
      *
@@ -46,7 +46,7 @@ public:
     static void rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context);
 
     /**
-     * This function logs messages that are in the Rx buffer
+     * Logs messages that are in the Rx buffer
      * @param numberOfMessages Number of messages to be logged
      * @param rxBuf The RX Buffer that the messages are stored
      * @param rxBufLen The length of the above buffer
@@ -54,7 +54,7 @@ public:
     static void printMessage(MCAN_RX_BUFFER rxBuf);
 
     /**
-     * This function decodes the data length code to get the largest expected size of the message.
+     * Decodes the data length code to get the largest expected size of the message.
      *
      * @param dlc The data length code
      * @return The length of the message in bytes
@@ -62,7 +62,7 @@ public:
     static uint8_t convertDlcToLength(uint8_t dlc);
 
     /**
-     * This function encodes the length of the message body to the smallest data length code that it fits in.
+     * Encodes the length of the message body to the smallest data length code that it fits in.
      *
      * @param length The length of the message in bytes
      * @return The data length code
