@@ -72,7 +72,7 @@ extern "C" void main_cpp() {
     xTaskCreateStatic(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
                       &watchdogTask, tskIDLE_PRIORITY, watchdogTask->taskStack, &watchdogTask->taskBuffer);
     xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->taskName, canTransmitTask->taskStackDepth,
-                      &canTransmitTask, tskIDLE_PRIORITY, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
+                      &canTransmitTask, tskIDLE_PRIORITY + 1, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
 
     vTaskStartScheduler();
 
