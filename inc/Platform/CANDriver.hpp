@@ -67,7 +67,6 @@ public:
      * @return The data length code
      */
     static uint8_t convertLengthToDlc(uint8_t length);
-
 };
 
 #endif //OBC_SOFTWARE_CANDRIVER_H

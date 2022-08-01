@@ -14,6 +14,5 @@ void CANTransmitTask::execute() {
     while (true) {
         MCAN1_MessageTransmitFifo(1, &CANDriver::txFifo);
         vTaskDelay(pdMS_TO_TICKS(1000));
-
     }
 }
