@@ -32,11 +32,9 @@ uint8_t CANDriver::convertLengthToDlc(uint8_t length) {
 void CANDriver::txFifoCallback(uintptr_t context) {
     uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
 
-    if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
-        static_cast<APPStates>(context) == MCANTransmit) {
-//        LOG_INFO << "Successful CAN transmission\r\n";
-    } else if (static_cast<APPStates>(context) == MCANTransmit) {
-//        LOG_ERROR << "Could not transmit CAN message. The status is " << status;
+    if (static_cast<APPStates>(context) == MCANTransmit &&
+        not((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE))) {
+        LOG_ERROR << "Could not transmit CAN message. The status is " << status;
     }
 }
 
@@ -61,7 +59,7 @@ void CANDriver::printMessage(MCAN_RX_BUFFER rxBuf) {
     message.append(" Length : ");
     etl::to_string(msgLength, message, true);
     message.append(" Message : ");
-    for(uint8_t idx = 0; idx < msgLength; idx++){
+    for (uint8_t idx = 0; idx < msgLength; idx++) {
         etl::to_string(rxBuf.data[idx], message, true);
     }
     LOG_INFO << message.c_str();
