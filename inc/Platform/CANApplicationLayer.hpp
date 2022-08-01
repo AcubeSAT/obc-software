@@ -44,7 +44,7 @@ namespace CANApplicationLayer {
     void sendHeartbeatMessage();
 
     /**
-     * Creates a Heartbeat message to be sent whenever the FDIR responsible determines the bus quality
+     * Creates a CAN Bus switchover message to be sent whenever the FDIR responsible determines the bus quality
      * is not satisfactory, according to DDJF_OBDH.
      */
     void sendBusSwitchoverMessage();
@@ -120,13 +120,15 @@ namespace CANApplicationLayer {
     }
 
     /**
-     * Determines the bus that will be used after a CAN Bus switchover event.
+     * Switches the active CAN Bus and returns the data packet to be sent in a Bus Switchover message.
      */
     inline BusID getBusToSwitchover() {
         if (currentBus == MainBus) {
-            return RedundantBus;
+            currentBus = RedundantBus;
+        } else {
+            currentBus = MainBus;
         }
-        return MainBus;
+        return currentBus;
     }
 
     /**
@@ -148,7 +150,7 @@ namespace CANApplicationLayer {
      * @param id The ID that will be used for the messages.
      * @param messagePayload A vector containing the data part of the CAN-TP Message.
      */
-    void finalizeMessage(uint16_t id, const etl::vector<uint8_t, 256>& messagePayload);
+    void finalizeMessage(uint16_t id, const etl::vector<uint8_t, 256> &messagePayload);
 }
 
 #endif //OBC_SOFTWARE_CANAPPLICATIONLAYER_H
