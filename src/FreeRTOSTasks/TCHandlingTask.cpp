@@ -12,7 +12,6 @@ using ECSSMessage = Message;
 StaticQueue_t TCHandlingTask::staticQueue;
 
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
-
     byteQueue = xQueueCreateStatic(TCByteQueueLength, sizeof(char), byteQueueStorageArea, &staticQueue);
     configASSERT(byteQueue);
 
