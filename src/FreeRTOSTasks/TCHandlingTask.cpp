@@ -22,7 +22,7 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
         TCHandlingTask *TCTask = reinterpret_cast<TCHandlingTask *>(object);
 
         if (USART1_ReadCountGet() == 0) {
-            USART_ERROR UsartError = USART1_ErrorGet();
+            USART_ERROR usartError = USART1_ErrorGet();
         } else {
             xQueueSendToBackFromISR(TCTask->byteQueue, static_cast<void *>(&TCTask->byteIn), nullptr);
         }
