@@ -5,7 +5,7 @@
 #include "ECSS_Definitions.hpp"
 #include "peripheral/mcan/plib_mcan1.h"
 
-class CANDriver{
+class CANDriver {
 public:
     static inline uint8_t mcan1MessageRAM[MCAN1_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32)));
 
@@ -42,14 +42,13 @@ public:
      *
      * @param numberOfMessages The number of messages to be received from the peripheral
      * @param context The state of the peripheral when the function is called.
+     * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
      */
     static void rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context);
 
     /**
      * Logs messages that are in the Rx buffer
-     * @param numberOfMessages Number of messages to be logged
      * @param rxBuf The RX Buffer that the messages are stored
-     * @param rxBufLen The length of the above buffer
      */
     static void printMessage(MCAN_RX_BUFFER rxBuf);
 
