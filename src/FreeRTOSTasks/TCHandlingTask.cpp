@@ -13,14 +13,14 @@ StaticQueue_t TCHandlingTask::staticQueue;
 
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
 
-    byteQueue = xQueueCreateStatic(ByteQueueLength, sizeof(char), byteQueueStorageArea, &staticQueue);
+    byteQueue = xQueueCreateStatic(TCByteQueueLength, sizeof(char), byteQueueStorageArea, &staticQueue);
     configASSERT(byteQueue);
 
     USART1_Read(&byteIn, sizeof(byteIn));
 
     USART1_ReadCallbackRegister([](uintptr_t object) {
         TCHandlingTask *TCTask = reinterpret_cast<TCHandlingTask *>(object);
-        BaseType_t xHigherPriorityTaskWoken;
+
         if (USART1_ReadCountGet() == 0) {
             USART_ERROR UsartError = USART1_ErrorGet();
         } else {
@@ -49,15 +49,15 @@ void TCHandlingTask::execute() {
         if (messageComplete) {
             messageComplete = false;
 
-            auto cobsDecodedMessage = COBSdecode<ByteBufferSize>(
+            auto cobsDecodedMessage = COBSdecode<TCByteBufferSize>(
                     reinterpret_cast<uint8_t *>(byteBuffer.message),
-                    ByteBufferSize);
+                    TCByteBufferSize);
 
-            uint8_t message[ByteBufferSize];
+            uint8_t message[TCByteBufferSize];
             std::copy(std::begin(cobsDecodedMessage), std::end(cobsDecodedMessage), std::begin(message));
 
 
-            ECSSMessage ecssTC = MessageParser::parse(message, ByteBufferSize);
+            ECSSMessage ecssTC = MessageParser::parse(message, TCByteBufferSize);
             MessageParser::execute(ecssTC);
 
             LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";

@@ -19,7 +19,7 @@
 class TCHandlingTask : public Task {
 private:
     struct Buffer {
-        char message[ByteBufferSize] = "";
+        char message[TCByteBufferSize] = "";
     };
 
     /**
@@ -41,7 +41,7 @@ private:
     /**
      * Saves incoming bytes by inserting them into a queue.
      */
-    uint8_t byteQueueStorageArea[ByteBufferSize * sizeof (char)];
+    uint8_t byteQueueStorageArea[TCByteBufferSize * sizeof (char)];
     static StaticQueue_t staticQueue;
     QueueHandle_t byteQueue;
 

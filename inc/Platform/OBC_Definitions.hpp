@@ -58,12 +58,12 @@ inline const uint16_t TypicalVoltageAt25 = 720;
 /**
  * The maximum byte capacity of a byte buffer containing TC bytes
  */
-inline const uint8_t ByteBufferSize = 64;
+inline const uint8_t TCByteBufferSize = 64;
 
 /**
  * The maximum byte capacity of a byte queue that stores incoming TC bytes
  */
-inline const uint8_t ByteQueueLength = 64;
+inline const uint8_t TCByteQueueLength = 64;
 
 /**
  * Logger will output messages using RTT
