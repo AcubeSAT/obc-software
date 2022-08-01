@@ -18,8 +18,7 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
 
     USART1_Read(&byteIn, sizeof(byteIn));
 
-    USART1_ReadCallbackRegister([](uintptr_t object) {
-        TCHandlingTask *TCTask = reinterpret_cast<TCHandlingTask *>(object);
+    USART1_ReadCallbackRegister([this](uintptr_t object) {
 
         if (USART1_ReadCountGet() == 0) {
             USART_ERROR usartError = USART1_ErrorGet();
