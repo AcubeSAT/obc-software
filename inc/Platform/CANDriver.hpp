@@ -32,6 +32,7 @@ public:
      * there is a message transmission on TX FIFO.
      *
      * @param context The state of the peripheral when the function is called.
+     * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
      */
     static void txFifoCallback(uintptr_t context);
 
