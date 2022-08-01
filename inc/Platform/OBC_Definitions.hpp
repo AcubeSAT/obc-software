@@ -73,7 +73,7 @@ inline const bool useRTT = true;
 /**
  * Logger will output messages using UART
  */
-inline const bool useUART = true;
+inline const bool useUART = false;
 
 /**
  * Logger will output messages using CAN
