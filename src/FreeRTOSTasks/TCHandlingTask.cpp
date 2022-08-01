@@ -31,7 +31,6 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
     }, reinterpret_cast<uintptr_t>(this));
 }
 
-
 void TCHandlingTask::createTC() {
     char byteOut;
     xQueueReceive(byteQueue, static_cast<void *>(&byteOut), portMAX_DELAY);
