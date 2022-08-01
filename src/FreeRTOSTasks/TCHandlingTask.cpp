@@ -56,7 +56,6 @@ void TCHandlingTask::execute() {
             uint8_t message[TCByteBufferSize];
             std::copy(std::begin(cobsDecodedMessage), std::end(cobsDecodedMessage), std::begin(message));
 
-
             ECSSMessage ecssTC = MessageParser::parse(message, TCByteBufferSize);
             MessageParser::execute(ecssTC);
 
