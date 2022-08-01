@@ -50,7 +50,7 @@ void CANDriver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
     }
 }
 
-void CANDriver::logMessage(MCAN_RX_BUFFER rxBuf) {
+void CANDriver::logMessage(const MCAN_RX_BUFFER &rxBuf) {
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
     uint32_t id = rxBuf.id >> 18;
     uint8_t msgLength = convertDlcToLength(rxBuf.dlc);

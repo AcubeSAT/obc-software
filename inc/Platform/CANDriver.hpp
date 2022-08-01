@@ -51,7 +51,7 @@ public:
      * Logs messages that are in the Rx buffer
      * @param rxBuf The RX Buffer that the messages are stored
      */
-    static void logMessage(MCAN_RX_BUFFER rxBuf);
+    static void logMessage(const MCAN_RX_BUFFER &rxBuf);
 
     /**
      * Decodes the data length code to get the largest expected size of the message.
