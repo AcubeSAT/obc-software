@@ -9,55 +9,48 @@
 #include "task.h"
 
 using ECSSMessage = Message;
-StaticQueue_t TCHandlingTask::staticQueue;
+
+TCHandlingTask::Buffer TCHandlingTask::savedMessage;
 
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
-    byteQueue = xQueueCreateStatic(TCByteQueueLength, sizeof(char), byteQueueStorageArea, &staticQueue);
-    configASSERT(byteQueue);
-
+    messageQueue = xQueueCreateStatic(MaxTCSize, sizeof(Buffer), messageQueueStorageArea, &staticQueue);
     USART1_Read(&byteIn, sizeof(byteIn));
 
-    USART1_ReadCallbackRegister([this](uintptr_t object) {
-
+    USART1_ReadCallbackRegister([](uintptr_t object) -> void {
+        TCHandlingTask *task = reinterpret_cast<TCHandlingTask * >(object);
         if (USART1_ReadCountGet() == 0) {
             USART_ERROR usartError = USART1_ErrorGet();
         } else {
-            xQueueSendToBackFromISR(TCTask->byteQueue, static_cast<void *>(&TCTask->byteIn), nullptr);
+            task->ingress();
         }
 
-        USART1_Read(&(TCTask->byteIn), sizeof(TCTask->byteIn));
+        USART1_Read(&(task->byteIn), sizeof(task->byteIn));
     }, reinterpret_cast<uintptr_t>(this));
 }
 
-void TCHandlingTask::createTC() {
-    char byteOut;
-    xQueueReceive(byteQueue, static_cast<void *>(&byteOut), portMAX_DELAY);
-    if (byteOut == 0x69) {
-        messageComplete = true;
-        currentReadLocation = 0;
+void TCHandlingTask::ingress() {
+    if (savedMessage.full()) {
+        overrun = true;
+        savedMessage.erase(savedMessage.begin(), savedMessage.end());
+    }
+    if (byteIn == 0x69) {
+
+        xQueueSendToBackFromISR(messageQueue, static_cast<void *>(&savedMessage), nullptr);
+        savedMessage.clear();
     } else {
-        byteBuffer.message[currentReadLocation++] = byteOut;
+        savedMessage.append(1, byteIn);
     }
 }
 
 void TCHandlingTask::execute() {
     while (true) {
-        createTC();
-        if (messageComplete) {
-            messageComplete = false;
+        xQueueReceive(messageQueue, static_cast<void *>(&messageOut), portMAX_DELAY);
+        auto cobsDecodedMessage = COBSdecode<MaxTCSize>(messageOut);
 
-            auto cobsDecodedMessage = COBSdecode<TCByteBufferSize>(
-                    reinterpret_cast<uint8_t *>(byteBuffer.message),
-                    TCByteBufferSize);
+        ECSSMessage ecssTC = MessageParser::parse(reinterpret_cast<uint8_t *>(cobsDecodedMessage.data()), MaxTCSize);
+        MessageParser::execute(ecssTC);
 
-            uint8_t message[TCByteBufferSize];
-            std::copy(std::begin(cobsDecodedMessage), std::end(cobsDecodedMessage), std::begin(message));
+        LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
 
-            ECSSMessage ecssTC = MessageParser::parse(message, TCByteBufferSize);
-            MessageParser::execute(ecssTC);
-
-            LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
-            new(&(byteBuffer)) Buffer{};
-        }
     }
 }

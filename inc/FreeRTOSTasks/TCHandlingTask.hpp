@@ -18,42 +18,38 @@
  */
 class TCHandlingTask : public Task {
 private:
-    struct Buffer {
-        char message[TCByteBufferSize] = "";
-    };
+    /**
+     * Appends the bytes from the queue and then its contents is used to create an ECSS TC
+     */
+    typedef etl::string<MaxTCSize> Buffer;
+
+    static Buffer savedMessage;
+
+    Buffer messageOut;
 
     /**
      * Pointer to the location of the buffer, to write the next byte, when received.
      */
     uint8_t currentReadLocation = 0;
 
+
     /**
      * Returns true when the byte buffer is full.
      */
-    std::atomic<bool> overrun = false;
+    bool overrun = false;
 
+    bool messageReady = false;
     /**
      * Incoming byte
      */
     char byteIn = 0;
 
-
     /**
      * Saves incoming bytes by inserting them into a queue.
      */
-    uint8_t byteQueueStorageArea[TCByteBufferSize * sizeof (char)];
+    uint8_t messageQueueStorageArea[MaxTCSize * sizeof(Buffer)];
     inline static StaticQueue_t staticQueue;
-    QueueHandle_t byteQueue;
-
-    /**
-     * Appends the bytes from the queue and then its contents is used to create an ECSS TC
-     */
-    Buffer byteBuffer;
-
-    /**
-     * Signals if a message is ready.
-     */
-    bool messageComplete = false;
+    QueueHandle_t messageQueue;
 
 public:
 
@@ -65,12 +61,10 @@ public:
 
     StackType_t taskStack[taskStackDepth];
 
+
     TCHandlingTask();
 
-    /**
-     * Stores the received bytes into the buffer and generates a TC-ready signal.
-     */
-    void createTC();
+    void ingress();
 
     void execute();
 

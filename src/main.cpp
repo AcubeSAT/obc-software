@@ -48,39 +48,42 @@ extern "C" void main_cpp() {
     watchdogTask.emplace();
     statisticsReportingTask.emplace();
     canTransmitTask.emplace();
+    tcHandlingTask.emplace();
 
-    xTaskCreateStatic(vClassTask<StatisticsReportingTask>, statisticsReportingTask->taskName,
-                      statisticsReportingTask->taskStackDepth, &statisticsReportingTask, tskIDLE_PRIORITY + 1,
-                      statisticsReportingTask->taskStack, &statisticsReportingTask->taskBuffer);
+//    xTaskCreateStatic(vClassTask<StatisticsReportingTask>, statisticsReportingTask->taskName,
+//                      statisticsReportingTask->taskStackDepth, &statisticsReportingTask, tskIDLE_PRIORITY + 1,
+//                      statisticsReportingTask->taskStack, &statisticsReportingTask->taskBuffer);
     xTaskCreateStatic(vClassTask<UARTGatekeeperTask>, uartGatekeeperTask->taskName, uartGatekeeperTask->taskStackDepth,
                       &uartGatekeeperTask, tskIDLE_PRIORITY + 2, uartGatekeeperTask->taskStack,
                       &uartGatekeeperTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<UpdateParametersTask>, updateParametersTask->taskName,
-                      updateParametersTask->taskStackDepth,
-                      &updateParametersTask, tskIDLE_PRIORITY + 1, updateParametersTask->taskStack,
-                      &updateParametersTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
-                      &timeKeepingTask, tskIDLE_PRIORITY + 1, timeKeepingTask->taskStack, &timeKeepingTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
-                      &housekeepingTask, configMAX_PRIORITIES - 1, housekeepingTask->taskStack,
-                      &housekeepingTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
-                      &mcuTemperatureTask, tskIDLE_PRIORITY + 2, mcuTemperatureTask->taskStack,
-                      &mcuTemperatureTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName,
-                      ambientTemperatureTask->taskStackDepth,
-                      &ambientTemperatureTask, tskIDLE_PRIORITY + 2, ambientTemperatureTask->taskStack,
-                      &ambientTemperatureTask->taskBuffer);
-    TaskList::timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>,
-                                                                      timeBasedSchedulingTask->taskName,
-                                                                      timeBasedSchedulingTask->taskStackDepth,
-                                                                      &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2,
-                                                                      timeBasedSchedulingTask->taskStack,
-                                                                      &timeBasedSchedulingTask->taskBuffer);
+//    xTaskCreateStatic(vClassTask<UpdateParametersTask>, updateParametersTask->taskName,
+//                      updateParametersTask->taskStackDepth,
+//                      &updateParametersTask, tskIDLE_PRIORITY + 1, updateParametersTask->taskStack,
+//                      &updateParametersTask->taskBuffer);
+//    xTaskCreateStatic(vClassTask<TimeKeepingTask>, timeKeepingTask->taskName, timeKeepingTask->taskStackDepth,
+//                      &timeKeepingTask, tskIDLE_PRIORITY + 1, timeKeepingTask->taskStack, &timeKeepingTask->taskBuffer);
+//    xTaskCreateStatic(vClassTask<HousekeepingTask>, housekeepingTask->taskName, housekeepingTask->taskStackDepth,
+//                      &housekeepingTask, configMAX_PRIORITIES - 1, housekeepingTask->taskStack,
+//                      &housekeepingTask->taskBuffer);
+//    xTaskCreateStatic(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
+//                      &mcuTemperatureTask, tskIDLE_PRIORITY + 2, mcuTemperatureTask->taskStack,
+//                      &mcuTemperatureTask->taskBuffer);
+//    xTaskCreateStatic(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName,
+//                      ambientTemperatureTask->taskStackDepth,
+//                      &ambientTemperatureTask, tskIDLE_PRIORITY + 2, ambientTemperatureTask->taskStack,
+//                      &ambientTemperatureTask->taskBuffer);
+//    TaskList::timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>,
+//                                                                      timeBasedSchedulingTask->taskName,
+//                                                                      timeBasedSchedulingTask->taskStackDepth,
+//                                                                      &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2,
+//                                                                      timeBasedSchedulingTask->taskStack,
+//                                                                      &timeBasedSchedulingTask->taskBuffer);
     xTaskCreateStatic(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
                       &watchdogTask, tskIDLE_PRIORITY, watchdogTask->taskStack, &watchdogTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->taskName, canTransmitTask->taskStackDepth,
-                      &canTransmitTask, tskIDLE_PRIORITY + 1, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
+//    xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->taskName, canTransmitTask->taskStackDepth,
+//                      &canTransmitTask, tskIDLE_PRIORITY + 1, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
+    xTaskCreateStatic(vClassTask<TCHandlingTask>, tcHandlingTask->taskName, tcHandlingTask->taskStackDepth,
+                      &tcHandlingTask, tskIDLE_PRIORITY, tcHandlingTask->taskStack, &tcHandlingTask->taskBuffer);
 
     vTaskStartScheduler();
 
