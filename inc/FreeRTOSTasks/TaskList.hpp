@@ -10,7 +10,7 @@
 #include "UARTGatekeeperTask.hpp"
 #include "WatchdogTask.hpp"
 #include "StatisticsReportingTask.hpp"
-#include "TCHandlingTask.hpp"
+#include "CANTransmitTask.hpp"
 
 /**
  * Storage of FreeRTOS task instances.
@@ -25,7 +25,7 @@ namespace TaskList {
     inline std::optional<UARTGatekeeperTask> uartGatekeeperTask;
     inline std::optional<WatchdogTask> watchdogTask;
     inline std::optional<StatisticsReportingTask> statisticsReportingTask;
-    inline std::optional<TCHandlingTask> tcHandlingTask;
+    inline std::optional<CANTransmitTask> canTransmitTask;
 }
 
 #endif //OBC_SOFTWARE_TASKLIST_H

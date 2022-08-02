@@ -7,6 +7,7 @@
 #include "OBC_Definitions.hpp"
 #include "BootCounter.hpp"
 #include "SEGGER_RTT.h"
+#include "FreeRTOSTasks/Task.hpp"
 #include "FreeRTOSTasks/TaskList.hpp"
 
 #define IDLE_TASK_SIZE 4000
@@ -46,7 +47,7 @@ extern "C" void main_cpp() {
     ambientTemperatureTask.emplace();
     watchdogTask.emplace();
     statisticsReportingTask.emplace();
-    tcHandlingTask.emplace();
+    canTransmitTask.emplace();
 
     xTaskCreateStatic(vClassTask<StatisticsReportingTask>, statisticsReportingTask->taskName,
                       statisticsReportingTask->taskStackDepth, &statisticsReportingTask, tskIDLE_PRIORITY + 1,
@@ -66,10 +67,10 @@ extern "C" void main_cpp() {
     xTaskCreateStatic(vClassTask<MCUTemperatureTask>, mcuTemperatureTask->taskName, mcuTemperatureTask->taskStackDepth,
                       &mcuTemperatureTask, tskIDLE_PRIORITY + 2, mcuTemperatureTask->taskStack,
                       &mcuTemperatureTask->taskBuffer);
-//    xTaskCreateStatic(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName,
-//                      ambientTemperatureTask->taskStackDepth,
-//                      &ambientTemperatureTask, tskIDLE_PRIORITY + 2, ambientTemperatureTask->taskStack,
-//                      &ambientTemperatureTask->taskBuffer);
+    xTaskCreateStatic(vClassTask<AmbientTemperatureTask>, ambientTemperatureTask->taskName,
+                      ambientTemperatureTask->taskStackDepth,
+                      &ambientTemperatureTask, tskIDLE_PRIORITY + 2, ambientTemperatureTask->taskStack,
+                      &ambientTemperatureTask->taskBuffer);
     TaskList::timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>,
                                                                       timeBasedSchedulingTask->taskName,
                                                                       timeBasedSchedulingTask->taskStackDepth,
@@ -78,9 +79,8 @@ extern "C" void main_cpp() {
                                                                       &timeBasedSchedulingTask->taskBuffer);
     xTaskCreateStatic(vClassTask<WatchdogTask>, watchdogTask->taskName, watchdogTask->taskStackDepth,
                       &watchdogTask, tskIDLE_PRIORITY, watchdogTask->taskStack, &watchdogTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<TCHandlingTask>, tcHandlingTask->taskName, tcHandlingTask->taskStackDepth,
-                      &tcHandlingTask, tskIDLE_PRIORITY+1, tcHandlingTask->taskStack,
-                      &tcHandlingTask->taskBuffer);
+    xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->taskName, canTransmitTask->taskStackDepth,
+                      &canTransmitTask, tskIDLE_PRIORITY + 1, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
 
     vTaskStartScheduler();
 

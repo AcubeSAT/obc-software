@@ -55,6 +55,7 @@
 #include "peripheral/systick/plib_systick.h"
 #include "peripheral/xdmac/plib_xdmac.h"
 #include "peripheral/wdt/plib_wdt.h"
+#include "peripheral/mcan/plib_mcan1.h"
 #include "peripheral/efc/plib_efc.h"
 #include "peripheral/twihs/master/plib_twihs2_master.h"
 #include "peripheral/rtc/plib_rtc.h"
