@@ -19,7 +19,17 @@ namespace CANApplicationLayer {
     /**
      * A queue that holds a collection of CAN Messages that compose a CAN TP Message.
      */
-    inline etl::queue<CANMessage, CAN::TPMessageQueueSize> incomingTPMessage;
+    inline etl::queue<CANMessage, CAN::TPMessageQueueSize> incomingCommsTPMessage;
+
+    /**
+     * A queue that holds a collection of CAN Messages that compose a CAN TP Message.
+     */
+    inline etl::queue<CANMessage, CAN::TPMessageQueueSize> incomingAdcsTPMessage;
+
+    /**
+     * A queue that holds a collection of CAN Messages that compose a CAN TP Message.
+     */
+    inline etl::queue<CANMessage, CAN::TPMessageQueueSize> incomingSuTPMessage;
 
     /**
      * Defines the Available CAN Buses to use.
