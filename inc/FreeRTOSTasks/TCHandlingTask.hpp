@@ -10,8 +10,6 @@
 #include "MessageParser.hpp"
 #include "OBC_Definitions.hpp"
 #include "Task.hpp"
-#include "semaphore"
-#include "semphr.h"
 
 /**
  * FreeRTOS task implementing TC execution.
@@ -21,11 +19,12 @@ private:
     /**
      * Appends the bytes from the queue and then its contents is used to create an ECSS TC
      */
-    typedef etl::string<MaxTCSize> Buffer;
 
-    static Buffer savedMessage;
 
-    Buffer messageOut;
+
+    static etl::string<MaxTCSize> savedMessage;
+
+    String<MaxTCSize> messageOut{""};
 
     /**
      * Pointer to the location of the buffer, to write the next byte, when received.
@@ -36,9 +35,8 @@ private:
     /**
      * Returns true when the byte buffer is full.
      */
-    bool overrun = false;
+    bool overRun = false;
 
-    bool messageReady = false;
     /**
      * Incoming byte
      */
@@ -47,7 +45,7 @@ private:
     /**
      * Saves incoming bytes by inserting them into a queue.
      */
-    uint8_t messageQueueStorageArea[MaxTCSize * sizeof(Buffer)];
+    uint8_t messageQueueStorageArea[MaxTCSize * sizeof(etl::string<MaxTCSize>)];
     inline static StaticQueue_t staticQueue;
     QueueHandle_t messageQueue;
 

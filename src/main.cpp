@@ -39,15 +39,15 @@ extern "C" void main_cpp() {
     BootCounter::incrementBootCounter();
 
     uartGatekeeperTask.emplace();
-    mcuTemperatureTask.emplace();
-    timeKeepingTask.emplace();
-    housekeepingTask.emplace();
-    updateParametersTask.emplace();
-    timeBasedSchedulingTask.emplace();
-    ambientTemperatureTask.emplace();
+//    mcuTemperatureTask.emplace();
+//    timeKeepingTask.emplace();
+//    housekeepingTask.emplace();
+//    updateParametersTask.emplace();
+//    timeBasedSchedulingTask.emplace();
+//    ambientTemperatureTask.emplace();
     watchdogTask.emplace();
-    statisticsReportingTask.emplace();
-    canTransmitTask.emplace();
+//    statisticsReportingTask.emplace();
+//    canTransmitTask.emplace();
     tcHandlingTask.emplace();
 
 //    xTaskCreateStatic(vClassTask<StatisticsReportingTask>, statisticsReportingTask->taskName,
@@ -83,7 +83,7 @@ extern "C" void main_cpp() {
 //    xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->taskName, canTransmitTask->taskStackDepth,
 //                      &canTransmitTask, tskIDLE_PRIORITY + 1, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
     xTaskCreateStatic(vClassTask<TCHandlingTask>, tcHandlingTask->taskName, tcHandlingTask->taskStackDepth,
-                      &tcHandlingTask, tskIDLE_PRIORITY, tcHandlingTask->taskStack, &tcHandlingTask->taskBuffer);
+                      &tcHandlingTask, tskIDLE_PRIORITY+1, tcHandlingTask->taskStack, &tcHandlingTask->taskBuffer);
 
     vTaskStartScheduler();
 
