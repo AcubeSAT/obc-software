@@ -93,13 +93,24 @@ namespace CANApplicationLayer {
     void finalizeMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload) {
         etl::array<uint8_t, CANMessage::MaxDataLength> data = {};
 
-        for (uint8_t idx = 0; idx < messagePayload.size(); idx++) {
-            data[idx % CANMessage::MaxDataLength] = messagePayload.at(idx);
-            if (idx % CANMessage::MaxDataLength == CANMessage::MaxDataLength - 1) {
+        uint8_t messageNumber = 0;
+        uint8_t idx = 0;
+
+        for (uint8_t character: messagePayload) {
+            if (idx == 0) {
+                data[idx] = messageNumber;
+                idx++;
+            }
+
+            data[idx] = character;
+            idx++;
+
+            if (idx == CANMessage::MaxDataLength) {
                 message.empty();
                 message = {id, data};
                 CANApplicationLayer::outgoingMessages.push(message);
                 data.fill(0);
+                idx = 0;
             }
         }
     }
