@@ -12,6 +12,8 @@
 #include "StatisticsReportingTask.hpp"
 #include "CANTransmitTask.hpp"
 #include "TCHandlingTask.hpp"
+#include "SEGGER_RTT.h"
+#include "SEGGER_SYSVIEW.h"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -32,6 +34,10 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
     initializeTasks();
+    SEGGER_RTT_Init();
+    SEGGER_SYSVIEW_Conf();
+    
+    traceSTART();
 
     housekeepingTask.emplace();
     timeBasedSchedulingTask.emplace();
