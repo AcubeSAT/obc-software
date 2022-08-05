@@ -112,7 +112,7 @@
 #define INCLUDE_xTaskGetSchedulerState          0
 #define INCLUDE_xTaskGetCurrentTaskHandle       0
 #define INCLUDE_uxTaskGetStackHighWaterMark     1
-#define INCLUDE_xTaskGetIdleTaskHandle          0
+#define INCLUDE_xTaskGetIdleTaskHandle          1 /* needed for SystemView */
 #define INCLUDE_eTaskGetState                   0
 #define INCLUDE_xTimerPendFunctionCall          0
 #define INCLUDE_xTaskAbortDelay                 0
@@ -121,6 +121,7 @@
 #define INCLUDE_xSemaphoreGetMutexHolder        0
 #define INCLUDE_uxTaskGetStackHighWaterMark2    0
 #define INCLUDE_xTaskResumeFromISR              0
+#define INCLUDE_pxTaskGetStackStart             1 /* needed for SystemView */
 
 //#define configASSERT(x)     if( ( x ) == 0 ) { taskDISABLE_INTERRUPTS(); for( ;; ); }
 #define configASSERT(x) if((x)==0) taskDISABLE_INTERRUPTS()
@@ -131,5 +132,5 @@ standard names. */
 #define xPortPendSVHandler PendSV_Handler
 #define xPortSysTickHandler SysTick_Handler
 
-
+#include "SEGGER_SYSVIEW_FreeRTOS.h"
 #endif /* FREERTOS_H */
