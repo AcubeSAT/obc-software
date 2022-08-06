@@ -46,11 +46,14 @@ void TCHandlingTask::execute() {
     while (true) {
         xQueueReceive(messageQueue, static_cast<void *>(&messageOut), portMAX_DELAY);
 
-        char message[MaxTCSize];
+        auto decodedMessage = COBSdecode<MaxTCSize>(reinterpret_cast<const uint8_t *>(messageOut.data()), MaxTCSize);
 
-        auto ecssTC = MessageParser::parseECSSTC(reinterpret_cast<const uint8_t *>(messageOut.c_str()));
-
+        auto ecssTC = MessageParser::parse(reinterpret_cast<uint8_t *>(const_cast<char *>(decodedMessage.c_str())),
+                                           MaxTCSize);
         MessageParser::execute(ecssTC);
-//        LOG_DEBUG << "Received new  TC[" << "," << "]";
+
+        LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType <<  "," << ecssTC.messageType << "]";
+        new(&(TCHandlingTask::messageOut)) etl::string<MaxTCSize>;
     }
 }
+
