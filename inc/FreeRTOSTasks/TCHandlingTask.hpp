@@ -20,23 +20,24 @@ private:
      * Appends the bytes from the queue and then its contents is used to create an ECSS TC
      */
 
-
-
     static etl::string<MaxTCSize> savedMessage;
 
-    String<MaxTCSize> messageOut{""};
+    etl::string<MaxTCSize> messageOut;
 
     /**
      * Pointer to the location of the buffer, to write the next byte, when received.
      */
     uint8_t currentReadLocation = 0;
 
-
     /**
      * Returns true when the byte buffer is full.
      */
     bool overRun = false;
 
+    /**
+     * Reports if a message is ready for execution.
+     */
+    bool firstPass = false;
     /**
      * Incoming byte
      */

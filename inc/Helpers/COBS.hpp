@@ -35,7 +35,7 @@ template<int MaxLength>
 etl::string<MaxLength> COBSdecode(const etl::string<MaxLength>& input) {
     char output[MaxLength];
 
-    auto cobsOutput = cobs_decode(output, MaxLength, input.data(), input.length());
+    auto cobsOutput = cobs_decode(output, MaxLength, input.c_str(), input.length());
 
     return { output, cobsOutput.out_len };
 }
