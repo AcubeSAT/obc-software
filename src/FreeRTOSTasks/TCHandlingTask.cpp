@@ -49,13 +49,19 @@ void TCHandlingTask::ingress() {
 
 void TCHandlingTask::execute() {
     while (true) {
-        xQueueReceive(messageQueue, static_cast<void *>(&messageOut), portMAX_DELAY);char TCBytes[MaxTCSize];
+        xQueueReceive(messageQueue, static_cast<void *>(&messageOut), portMAX_DELAY);
 
-        auto cobsDecoded = COBSdecode<MaxTCSize>(messageOut);
+        char tcBytesEncoded[MaxTCSize];
+        etl::copy_n(messageOut.begin(), MaxTCSize, tcBytesEncoded);
+
+        //USING POINTERS
+        auto cobsDecoded1 = COBSdecode<MaxTCSize>(reinterpret_cast<const uint8_t *>(tcBytesEncoded), MaxTCSize);
+
+        //USING etl::string
+        auto cobsDecoded2 = COBSdecode<MaxTCSize>(messageOut);
 
         auto ecssTC = MessageParser::parse(const_cast<uint8_t *>(reinterpret_cast<const uint8_t *>(messageOut.c_str())), MaxTCSize);
         MessageParser::execute(ecssTC);
         LOG_DEBUG << "Received new  TC[" << "," << "]";
-
     }
 }
