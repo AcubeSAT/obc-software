@@ -61,6 +61,11 @@ inline const uint16_t TypicalVoltageAt25 = 720;
 inline const uint8_t MaxTCSize = 64;
 
 /**
+ * The capacity of the queue holding TC messages received externally.
+ */
+ inline const uint8_t TCQueueCapacity = 10;
+
+/**
  * Logger will output messages using RTT
  */
 inline const bool useRTT = false;
