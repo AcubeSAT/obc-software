@@ -17,11 +17,13 @@
 class TCHandlingTask : public Task {
 private:
     /**
-     * Appends the bytes from the queue and then its contents is used to create an ECSS TC
+     * A buffer to save incoming TC bytes and later queue it for later use
      */
+    inline static etl::string<MaxTCSize> savedMessage;
 
-    static etl::string<MaxTCSize> savedMessage;
-
+    /**
+     * A buffer to save TC bytes coming out of the queue.
+     */
     etl::string<MaxTCSize> messageOut;
 
     /**
@@ -35,9 +37,10 @@ private:
     bool overRun = false;
 
     /**
-     * Reports if a message is ready for execution.
+     * A flag to clear the queue when the task starts.
      */
     bool firstPass = false;
+
     /**
      * Incoming byte
      */
@@ -63,6 +66,9 @@ public:
 
     TCHandlingTask();
 
+    /**
+     * Appends bytes into a buffer and then queues them ready.
+     */
     void ingress();
 
     void execute();

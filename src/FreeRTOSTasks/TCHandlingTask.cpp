@@ -10,12 +10,11 @@
 
 using ECSSMessage = Message;
 
-etl::string<MaxTCSize> TCHandlingTask::savedMessage{""};
+//etl::string<MaxTCSize> TCHandlingTask::savedMessage();
 
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
     messageQueue = xQueueCreateStatic(MaxTCSize, sizeof(etl::string<MaxTCSize>), messageQueueStorageArea, &staticQueue);
     configASSERT(messageQueue);
-    USART1_Read(&byteIn, sizeof(byteIn));
 
     USART1_ReadCallbackRegister([](uintptr_t object) -> void {
         TCHandlingTask *task = reinterpret_cast<TCHandlingTask * >(object);
@@ -27,6 +26,8 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
 
         USART1_Read(&(task->byteIn), sizeof(task->byteIn));
     }, reinterpret_cast<uintptr_t>(this));
+
+    USART1_Read(&byteIn, sizeof(byteIn));
 }
 
 void TCHandlingTask::ingress() {
@@ -43,25 +44,20 @@ void TCHandlingTask::ingress() {
             firstPass = false;
         }
     } else {
-        savedMessage[currentReadLocation++] = byteIn;
+        savedMessage.push_back(byteIn);
+//        savedMessage[currentReadLocation++] = byteIn;
     }
 }
 
 void TCHandlingTask::execute() {
     while (true) {
         xQueueReceive(messageQueue, static_cast<void *>(&messageOut), portMAX_DELAY);
-
-        char tcBytesEncoded[MaxTCSize];
-        etl::copy_n(messageOut.begin(), MaxTCSize, tcBytesEncoded);
-
-        //USING POINTERS
-        auto cobsDecoded1 = COBSdecode<MaxTCSize>(reinterpret_cast<const uint8_t *>(tcBytesEncoded), MaxTCSize);
-
-        //USING etl::string
+        messageOut.repair();
         auto cobsDecoded2 = COBSdecode<MaxTCSize>(messageOut);
 
         auto ecssTC = MessageParser::parse(const_cast<uint8_t *>(reinterpret_cast<const uint8_t *>(messageOut.c_str())), MaxTCSize);
         MessageParser::execute(ecssTC);
+
         LOG_DEBUG << "Received new  TC[" << "," << "]";
     }
 }
