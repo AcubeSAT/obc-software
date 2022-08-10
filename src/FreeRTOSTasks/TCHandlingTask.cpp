@@ -42,7 +42,6 @@ void TCHandlingTask::ingress() {
         if (firstPass) {
             firstPass = false;
             xQueueReset(messageQueue);
-
         }
     } else {
         savedMessage.push_back(byteIn);
