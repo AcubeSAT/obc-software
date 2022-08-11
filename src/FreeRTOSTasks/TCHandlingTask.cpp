@@ -34,11 +34,11 @@ void TCHandlingTask::resetInput() {
 
 void TCHandlingTask::ingress() {
     if (savedMessage.full()) {
-        resetInput();
+        new(&(TCHandlingTask::savedMessage)) etl::string<MaxTCSize>;
     }
     if (byteIn == 0x00) {
         xQueueSendToBackFromISR(messageQueue, static_cast<void *>(&savedMessage), nullptr);
-        resetInput();
+        new(&(TCHandlingTask::savedMessage)) etl::string<MaxTCSize>;
         if (firstPass) {
             firstPass = false;
             xQueueReset(messageQueue);
@@ -55,8 +55,7 @@ void TCHandlingTask::execute() {
 
         auto cobsDecodedMessage = COBSdecode<MaxTCSize>(messageOut);
 
-        auto ecssTC = MessageParser::parse(
-                const_cast<uint8_t *>(reinterpret_cast<const uint8_t *>(cobsDecodedMessage.c_str())), MaxTCSize);
+        auto ecssTC = MessageParser::parse(const_cast<uint8_t *>(reinterpret_cast<const uint8_t *>(cobsDecodedMessage.c_str())), MaxTCSize);
         MessageParser::execute(ecssTC);
 
         LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]" << "\r\n";
