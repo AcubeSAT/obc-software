@@ -34,4 +34,5 @@ MP_AS_DIR="/usr/bin"
 MP_LD_DIR="/usr/bin"
 MP_AR_DIR="/usr/bin"
 # MP_BC_DIR is not defined
+DFP_DIR=/home/antonis/.mchp_packs/Microchip/SAMV71_DFP/4.5.82
 CMSIS_DIR=/opt/microchip/mplabx/v6.00/packs/arm/CMSIS/5.4.0

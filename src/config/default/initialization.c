@@ -146,7 +146,12 @@ void SYS_Initialize ( void* data )
 
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
 
-	WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk; 		// Disable WDT 
+	WDT_Initialize();
+
+
+    MCAN1_Initialize();
+
+	TWIHS2_Initialize();
 
 	RTC_Initialize();
 
