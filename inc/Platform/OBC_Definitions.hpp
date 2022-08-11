@@ -111,6 +111,11 @@ namespace CAN {
      * The maximum size for the data field of a CAN-TP message.
      */
     inline const uint16_t TPMessageMaximumSize = 256;
+
+    /**
+     * The maximum numbers of parameters, function arguments etc. inside a single CAN-TP Message.
+     */
+    inline const uint8_t TPMessageMaximumArguments = 10;
 }
 
 #endif //OBC_SOFTWARE_OBC_DEFINITIONS_HPP

@@ -4,6 +4,7 @@
 #include "ServicePool.hpp"
 
 using CAN::TPMessageMaximumSize;
+using CAN::TPMessageMaximumArguments;
 
 namespace CANTPMessage {
     IdInfo decodeId(uint16_t canID) {
@@ -28,7 +29,7 @@ namespace CANTPMessage {
 
     template<typename T>
     void createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                     const etl::vector<uint16_t, 10> &parameterIDs) {
+                                     const etl::vector<uint16_t, TPMessageMaximumArguments> &parameterIDs) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
         uint16_t parameterCount = parameterIDs.size();
 
@@ -47,7 +48,7 @@ namespace CANTPMessage {
     }
 
     void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                        const etl::vector<uint16_t, 10> &parameterIDs) {
+                                        const etl::vector<uint16_t, TPMessageMaximumArguments> &parameterIDs) {
         uint16_t id = encodeId({0x1, destinationAddress, isMulticast});
         uint16_t parameterCount = parameterIDs.size();
 
@@ -63,8 +64,8 @@ namespace CANTPMessage {
 
     template<typename T>
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
-                                      const etl::vector<uint8_t, 10> &argumentIDs,
-                                      const etl::vector<T, 10> &argumentValues) {
+                                      const etl::vector<uint8_t, TPMessageMaximumArguments> &argumentIDs,
+                                      const etl::vector<T, TPMessageMaximumArguments> &argumentValues) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         auto argumentCount = static_cast<uint16_t>(argumentIDs.size());

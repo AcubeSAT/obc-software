@@ -32,20 +32,21 @@ namespace CANTPMessage {
 
     template<typename T>
     void createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                     const etl::vector<uint16_t, 10> &parameterIDs);
+                                     const etl::vector<uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
 
     void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                        const etl::vector<uint16_t, 10> &parameterIDs);
+                                        const etl::vector<uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
 
     template<typename T>
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
-                                      etl::vector<uint8_t, 10> argumentIDs, etl::vector<T, 10> argumentValues);
+                                      const etl::vector<uint8_t, CAN::TPMessageMaximumArguments> &argumentIDs,
+                                      const etl::vector<T, CAN::TPMessageMaximumArguments> &argumentValues);
 
     void
     createLogMessage(uint8_t destinationAddress, bool isMulticast, const etl::string<LOGGER_MAX_MESSAGE_SIZE> &log);
 
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
-                                  etl::array<uint8_t, CAN::TPMessageMaximumSize> data);
+                                  const etl::array<uint8_t, CAN::TPMessageMaximumSize> &payload);
 };
 
 #endif //OBC_SOFTWARE_CANTPMESSAGE_H
