@@ -9,7 +9,7 @@
 
 
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
-    messageQueue = xQueueCreateStatic(TCQueueCapacity, sizeof(etl::string<MaxTCSize>), messageQueueStorageArea,
+    messageQueue = xQueueCreateStatic(TCQueueCapacity, sizeof(etl::string<MaxUsartTCSize>), messageQueueStorageArea,
                                       &staticQueue);
     configASSERT(messageQueue);
 
@@ -29,16 +29,16 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
 }
 
 void TCHandlingTask::resetInput() {
-    new(&(TCHandlingTask::savedMessage)) etl::string<MaxTCSize>;
+    new(&(TCHandlingTask::savedMessage)) etl::string<MaxUsartTCSize>;
 }
 
 void TCHandlingTask::ingress() {
     if (savedMessage.full()) {
-        new(&(TCHandlingTask::savedMessage)) etl::string<MaxTCSize>;
+        new(&(TCHandlingTask::savedMessage)) etl::string<MaxUsartTCSize>;
     }
     if (byteIn == 0x00) {
         xQueueSendToBackFromISR(messageQueue, static_cast<void *>(&savedMessage), nullptr);
-        new(&(TCHandlingTask::savedMessage)) etl::string<MaxTCSize>;
+        new(&(TCHandlingTask::savedMessage)) etl::string<MaxUsartTCSize>;
         if (firstPass) {
             firstPass = false;
             xQueueReset(messageQueue);
@@ -53,9 +53,9 @@ void TCHandlingTask::execute() {
         xQueueReceive(messageQueue, static_cast<void *>(&messageOut), portMAX_DELAY);
         messageOut.repair();
 
-        auto cobsDecodedMessage = COBSdecode<MaxTCSize>(messageOut);
+        auto cobsDecodedMessage = COBSdecode<MaxUsartTCSize>(messageOut);
 
-        auto ecssTC = MessageParser::parse(const_cast<uint8_t *>(reinterpret_cast<const uint8_t *>(cobsDecodedMessage.c_str())), MaxTCSize);
+        auto ecssTC = MessageParser::parse(const_cast<uint8_t *>(reinterpret_cast<const uint8_t *>(cobsDecodedMessage.c_str())), MaxUsartTCSize);
         MessageParser::execute(ecssTC);
 
         LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]" << "\r\n";

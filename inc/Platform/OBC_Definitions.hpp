@@ -56,9 +56,9 @@ inline const uint8_t UARTQueueSize = 5;
 inline const uint16_t TypicalVoltageAt25 = 720;
 
 /**
- * The maximum length of a TC
+ * The maximum length of a TC received from usart.
  */
-inline const uint8_t MaxTCSize = 64;
+inline const uint8_t MaxUsartTCSize = 64;
 
 /**
  * The capacity of the queue holding TC messages received externally.
