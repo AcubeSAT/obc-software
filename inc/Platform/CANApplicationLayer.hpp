@@ -65,7 +65,7 @@ namespace CANApplicationLayer {
     void sendUTCTimeMessage();
 
     /**
-     * Retrus true if the message follows the heartbeat message id format, according to DDJF_OBDH.
+     * Returns true if the message follows the heartbeat message id format, according to DDJF_OBDH.
      * @param id The id of the message to be checked.
      */
     inline bool isHeartbeatMessage(uint16_t id) {
@@ -73,7 +73,7 @@ namespace CANApplicationLayer {
     }
 
     /**
-     * Retrus true if the message follows the switchover message id format, according to DDJF_OBDH.
+     * Returns true if the message follows the switchover message id format, according to DDJF_OBDH.
      * @param id The id of the message to be checked.
      */
     inline bool isSwitchoverMessage(uint16_t id) {
@@ -81,7 +81,7 @@ namespace CANApplicationLayer {
     }
 
     /**
-     * Retrus true if the message follows the UTC Time message id format, according to DDJF_OBDH.
+     * Returns true if the message follows the UTC Time message id format, according to DDJF_OBDH.
      * @param id The id of the message to be checked.
      */
     inline bool isUTCTimeMessage(uint16_t id) {
