@@ -1,6 +1,7 @@
 #include "CANApplicationLayer.hpp"
 #include "OBC_Definitions.hpp"
 #include "PlatformParameters.hpp"
+#include "Helpers/TimeGetter.hpp"
 
 namespace CANApplicationLayer {
     static CANMessage message = {};
@@ -26,7 +27,7 @@ namespace CANApplicationLayer {
     }
 
     void createUTCTimeMessage() {
-        uint32_t msOfDay; //@todo How do we get millisecond accuracy?
+        uint64_t msOfDay = TimeGetter::getCurrentTimeCustomCUC().elapsed100msTicks; //@todo This doesn't reset every day, only since epoch.
 
         uint16_t id = getTimeID(CAN::NodeID);
         etl::array<uint8_t, CANMessage::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay),
