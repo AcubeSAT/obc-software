@@ -65,30 +65,6 @@ namespace CANApplicationLayer {
     void sendUTCTimeMessage();
 
     /**
-     * Returns true if the message follows the heartbeat message id format, according to DDJF_OBDH.
-     * @param id The id of the message to be checked.
-     */
-    inline bool isHeartbeatMessage(uint16_t id) {
-        return (id & 0x700) == 0x700;
-    }
-
-    /**
-     * Returns true if the message follows the switchover message id format, according to DDJF_OBDH.
-     * @param id The id of the message to be checked.
-     */
-    inline bool isSwitchoverMessage(uint16_t id) {
-        return (id & 0x400) == 0x400;
-    }
-
-    /**
-     * Returns true if the message follows the UTC Time message id format, according to DDJF_OBDH.
-     * @param id The id of the message to be checked.
-     */
-    inline bool isUTCTimeMessage(uint16_t id) {
-        return (id & 0x200) == 0x200;
-    }
-
-    /**
      * Determines whether a message is following the CAN-TP Message protocol.
      * @param id The id of the message received via CAN
      * @return True if the message is part of a CAN-TP Message
@@ -111,6 +87,30 @@ namespace CANApplicationLayer {
      * The current CAN Bus in use.
      */
     inline BusID currentBus = MainBus;
+
+    /**
+     * Value of a Heartbeat message ID according to DDJF_OBDH.
+     */
+    inline const uint16_t heartbeatMessageID = 0x700;
+
+    /**
+     * Value of a Bus Switchover message ID according to DDJF_OBDH.
+     */
+    inline const uint16_t busSwitchoverMessageID = 0x400;
+
+    /**
+     * Value of a UTC Time message ID according to DDJF_OBDH.
+     */
+    inline const uint16_t utcTimeMessageID = 0x200;
+
+    /**
+     * Removes the ID of the sender in an incoming CAN Message.
+     * @param id The ID to be filtered.
+     * @return The filtered ID.
+     */
+    inline uint16_t filterMessageID(uint16_t id) {
+        return id & 0x700;
+    }
 
     /**
      * Value of a Heartbeat message ID according to DDJF_OBDH.

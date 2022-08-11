@@ -30,10 +30,10 @@ namespace CANApplicationLayer {
 
         uint16_t id = getTimeID(CAN::NodeID);
         etl::array<uint8_t, CANMessage::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay),
-                                                     static_cast<uint8_t>(msOfDay >> 8),
-                                                     static_cast<uint8_t>(msOfDay >> 16),
-                                                     static_cast<uint8_t>(msOfDay >> 24), 0,
-                                                     PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
+                                                               static_cast<uint8_t>(msOfDay >> 8),
+                                                               static_cast<uint8_t>(msOfDay >> 16),
+                                                               static_cast<uint8_t>(msOfDay >> 24), 0,
+                                                               PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
 
         outgoingMessages.push({id, data});
     }
@@ -43,23 +43,31 @@ namespace CANApplicationLayer {
         incomingMessages.pop_into(message);
 
         if (isTPMessage(message.id)) {
-            incomingTPMessage.push(message);
-        } else if (isHeartbeatMessage(message.id)) {
-//            parseHeartbeatMessage(message);
-        } else if (isSwitchoverMessage(message.id)) {
-            currentBus = static_cast<BusID>(message.data[0]);
-//            parseBusSwitchoverMessage(message);
-        } else if (isUTCTimeMessage(message.id)) {
-//            parseUTCTimeMessage(message);
+//            incomingTPMessage.push(message);
         } else if (message.id == pingMessageId) {
             sendPongMessage();
+        } else {
+            switch (filterMessageID(message.id)) {
+                case heartbeatMessageID:
+//                    parseHeartbeatMessage();
+                    break;
+                case busSwitchoverMessageID:
+//                    parseBusSwitchoverMessage();
+                    break;
+                case utcTimeMessageID:
+//                    parseTimeMessage();
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 
     void
     parseTPMessage() { // @todo How should this function be called? Whenever a TP message header is found on parseMessage?
         message.empty();
-        incomingTPMessage.pop_into(message);
+//        incomingTPMessage.pop_into(message);
 
         auto idInfo = CANTPMessage::decodeId(message.id);
         if ((idInfo.destinationAddress == CAN::NodeID) | idInfo.isMulticast) {
