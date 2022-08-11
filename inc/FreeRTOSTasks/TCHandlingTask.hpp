@@ -39,8 +39,8 @@ private:
      * Saves incoming bytes by inserting them into a queue.
      */
     uint8_t messageQueueStorageArea[TCQueueCapacity * sizeof(etl::string<MaxUsartTCSize>)];
-    inline static StaticQueue_t staticQueue;
-    QueueHandle_t messageQueue;
+    inline static StaticQueue_t byteQueue;
+    QueueHandle_t messageQueueHandle;
 
 public:
     /**
@@ -52,11 +52,6 @@ public:
     StackType_t taskStack[taskStackDepth];
 
     TCHandlingTask();
-
-    /**
-     * Resets the input buffer after the queue insertion or in an over run case.
-     */
-    void resetInput();
 
     /**
      * Appends bytes into a buffer and then queues them ready.
