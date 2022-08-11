@@ -94,9 +94,7 @@ namespace CANTPMessage {
 
         etl::vector<uint8_t, TPMessageMaximumSize> data = {0x40};
 
-        for (auto character: log) {
-            data.push_back(character);
-        }
+        std::copy(log.begin(), log.end(), data.end());
 
         CANApplicationLayer::finalizeMessage(id, data);
     }
