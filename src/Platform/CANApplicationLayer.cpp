@@ -6,27 +6,27 @@
 namespace CANApplicationLayer {
     static CANMessage message = {};
 
-    void createPingMessage() {
+    void sendPingMessage() {
         outgoingMessages.push({pingMessageId});
     }
 
-    void createPongMessage() {
+    void sendPongMessage() {
         outgoingMessages.push({pongMessageId});
     }
 
-    void createHeartbeatMessage() {
+    void sendHeartbeatMessage() {
         uint16_t id = getHeartbeatID(CAN::NodeID);
         outgoingMessages.push({id});
     }
 
-    void createBusSwitchoverMessage() {
+    void sendBusSwitchoverMessage() {
         uint16_t id = getBusSwitchoverID(CAN::NodeID);
         etl::array<uint8_t, CANMessage::MaxDataLength> data = {getBusToSwitchover()};
 
         outgoingMessages.push({id, data});
     }
 
-    void createUTCTimeMessage() {
+    void sendUTCTimeMessage() {
         uint64_t msOfDay = TimeGetter::getCurrentTimeCustomCUC().elapsed100msTicks; //@todo This doesn't reset every day, only since epoch.
 
         uint16_t id = getTimeID(CAN::NodeID);
