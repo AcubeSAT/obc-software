@@ -60,7 +60,6 @@ namespace CANApplicationLayer {
                 default:
                     break;
             }
-
         }
     }
 
@@ -122,6 +121,5 @@ namespace CANApplicationLayer {
             }
         }
     }
-
 }
 

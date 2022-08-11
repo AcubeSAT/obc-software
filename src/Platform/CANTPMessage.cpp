@@ -112,6 +112,4 @@ namespace CANTPMessage {
 
         CANApplicationLayer::finalizeMessage(id, data);
     }
-
-
 }
