@@ -12,6 +12,11 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
     messageQueueHandle = xQueueCreateStatic(TCQueueCapacity, sizeof(etl::string<MaxUsartTCSize>), messageQueueStorageArea,
                                       &byteQueue);
 
+    if (messageQueueHandle == 0) {
+        LOG_ERROR << "Failed to create queue, suspending task...\r\n";
+        vTaskSuspend(taskHandle);
+    }
+
     USART1_ReadCallbackRegister([](uintptr_t object) -> void {
         TCHandlingTask *task = reinterpret_cast<TCHandlingTask * >(object);
 
