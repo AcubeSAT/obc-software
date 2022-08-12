@@ -1,21 +1,16 @@
-#include <optional>
 #include "FreeRTOSTasks/TCHandlingTask.hpp"
 #include <Logger.hpp>
 #include <definitions.h>
 #include <MessageParser.hpp>
-#include <cobs.h>
 #include "COBS.hpp"
 #include "task.h"
 
 
 TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
-    messageQueueHandle = xQueueCreateStatic(TCQueueCapacity, sizeof(etl::string<MaxUsartTCSize>), messageQueueStorageArea,
-                                      &byteQueue);
-
-    if (messageQueueHandle == 0) {
-        LOG_ERROR << "Failed to create queue, suspending task...\r\n";
-        vTaskSuspend(taskHandle);
-    }
+    messageQueueHandle = xQueueCreateStatic(TCQueueCapacity, sizeof(etl::string<MaxUsartTCSize>),
+                                            messageQueueStorageArea,
+                                            &messageQueue);
+    configASSERT(messageQueueHandle);
 
     USART1_ReadCallbackRegister([](uintptr_t object) -> void {
         TCHandlingTask *task = reinterpret_cast<TCHandlingTask * >(object);
@@ -36,13 +31,9 @@ void TCHandlingTask::ingress() {
     if (savedMessage.full()) {
         new(&(TCHandlingTask::savedMessage)) etl::string<MaxUsartTCSize>;
     }
-    if (byteIn == 0x00) {
+    if (byteIn == messageEndDelimiter) {
         xQueueSendToBackFromISR(messageQueueHandle, static_cast<void *>(&savedMessage), nullptr);
         new(&(TCHandlingTask::savedMessage)) etl::string<MaxUsartTCSize>;
-        if (firstPass) {
-            firstPass = false;
-            xQueueReset(messageQueueHandle);
-        }
     } else {
         savedMessage.push_back(byteIn);
     }
@@ -51,13 +42,21 @@ void TCHandlingTask::ingress() {
 void TCHandlingTask::execute() {
     while (true) {
         xQueueReceive(messageQueueHandle, static_cast<void *>(&messageOut), portMAX_DELAY);
+
+        // xQueueReceive does a low-level copy of the message string, so we need to call
+        // etl::string::repair() to rearrange the string pointers and prevent memory errors.
         messageOut.repair();
 
         auto cobsDecodedMessage = COBSdecode<MaxUsartTCSize>(messageOut);
 
-        auto ecssTC = MessageParser::parse(const_cast<uint8_t *>(reinterpret_cast<const uint8_t *>(cobsDecodedMessage.c_str())), MaxUsartTCSize);
-        MessageParser::execute(ecssTC);
+        uint8_t messageLength = cobsDecodedMessage.size();
+        uint8_t ecssTCBytes[messageLength];
 
-        LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]" << "\r\n";
+        etl::copy(cobsDecodedMessage.begin(), cobsDecodedMessage.end(), ecssTCBytes, ecssTCBytes + messageLength);
+        auto ecssTC = MessageParser::parse(ecssTCBytes, messageLength);
+
+        LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
+
+        MessageParser::execute(ecssTC);
     }
 }
