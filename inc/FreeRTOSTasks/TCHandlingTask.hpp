@@ -18,7 +18,7 @@ private:
     /**
      * A buffer to save externally incoming TC bytes using usart. This buffer is queued for later use.
      */
-    inline static etl::string<MaxUsartTCSize> savedMessage;
+    etl::string<MaxUsartTCSize> savedMessage;
 
     /**
      * A buffer containing TC bytes coming out of the queue.
@@ -26,20 +26,20 @@ private:
     etl::string<MaxUsartTCSize> messageOut;
 
     /**
-     * A flag to clear the queue when the task starts.
-     */
-    bool firstPass = true;
-
-    /**
      * Incoming TC byte
      */
     uint8_t byteIn = 0;
 
     /**
+     * The value that signals a message is done being transmitted.1
+     */
+     inline static const uint8_t messageEndDelimiter = 0x00;
+
+    /**
      * Saves incoming bytes by inserting them into a queue.
      */
     uint8_t messageQueueStorageArea[TCQueueCapacity * sizeof(etl::string<MaxUsartTCSize>)];
-    inline static StaticQueue_t byteQueue;
+    StaticQueue_t messageQueue;
     QueueHandle_t messageQueueHandle;
 
 public:
