@@ -27,13 +27,17 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
     USART1_Read(&byteIn, sizeof(byteIn));
 }
 
+void TCHandlingTask::resetInput() {
+    new(&(TCHandlingTask::savedMessage)) etl::string<MaxUsartTCSize>;
+}
+
 void TCHandlingTask::ingress() {
     if (savedMessage.full()) {
-        new(&(TCHandlingTask::savedMessage)) etl::string<MaxUsartTCSize>;
+        resetInput();
     }
     if (byteIn == messageEndDelimiter) {
         xQueueSendToBackFromISR(messageQueueHandle, static_cast<void *>(&savedMessage), nullptr);
-        new(&(TCHandlingTask::savedMessage)) etl::string<MaxUsartTCSize>;
+        resetInput();
     } else {
         savedMessage.push_back(byteIn);
     }

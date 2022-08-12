@@ -33,7 +33,7 @@ private:
     /**
      * The value that signals a message is done being transmitted.1
      */
-     inline static const uint8_t messageEndDelimiter = 0x00;
+     const inline static uint8_t messageEndDelimiter = 0x00;
 
     /**
      * Saves incoming bytes by inserting them into a queue.
@@ -52,6 +52,11 @@ public:
     StackType_t taskStack[taskStackDepth];
 
     TCHandlingTask();
+
+    /**
+     * Resets input buffer when queued.
+     */
+    void resetInput();
 
     /**
      * Appends bytes into a buffer and then queues them ready.
