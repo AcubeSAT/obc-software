@@ -21,6 +21,9 @@ namespace PlatformParameters {
         OBCMCUTemperature = 293,
         OBCBootCounter = 301,
         OBCSystick = 329,
+        UseRTT = 331,
+        UseUART = 332,
+        UseCAN = 333,
     };
 
     // Parameters used for testing
@@ -38,6 +41,9 @@ namespace PlatformParameters {
     inline Parameter<uint64_t> obcSysTick(0);
     inline Parameter<float> mcuTemperature(0);
     inline Parameter<float> obcBoardTemperature1(0);
+    inline Parameter<bool> useRTT(true);
+    inline Parameter<bool> useUART(true);
+    inline Parameter<bool> useCAN(true);
 }
 
 #endif
