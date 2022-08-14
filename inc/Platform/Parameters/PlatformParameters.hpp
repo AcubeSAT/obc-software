@@ -17,13 +17,13 @@ namespace PlatformParameters {
         OnBoardSecond = 5,
         ReportParametersUnusedStack = 6,
         AvailableHeap = 7,
+        UseRTT = 8,
+        UseUART = 9,
+        UseCAN = 10,
         OBCBoardTemperature1 = 290,
         OBCMCUTemperature = 293,
         OBCBootCounter = 301,
-        OBCSystick = 329,
-        UseRTT = 331,
-        UseUART = 332,
-        UseCAN = 333,
+        OBCSystick = 329
     };
 
     // Parameters used for testing
