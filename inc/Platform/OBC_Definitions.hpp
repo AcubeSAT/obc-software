@@ -55,21 +55,6 @@ inline const uint8_t UARTQueueSize = 5;
  */
 inline const uint16_t TypicalVoltageAt25 = 720;
 
-/**
- * Logger will output messages using RTT
- */
-inline const bool useRTT = true;
-
-/**
- * Logger will output messages using UART
- */
-inline const bool useUART = false;
-
-/**
- * Logger will output messages using CAN
- */
-inline const bool useCAN = false;
-
 namespace BootCounter {
     /**
      * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter
