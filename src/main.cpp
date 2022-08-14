@@ -10,6 +10,7 @@
 #include "UpdateParametersTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
+#include "CANTransmitTask.hpp"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -55,7 +56,7 @@ extern "C" void main_cpp() {
                                                             &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2,
                                                             timeBasedSchedulingTask->taskStack,
                                                             &timeBasedSchedulingTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->taskName, canTransmitTask->taskStackDepth,
+    xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->TaskName, canTransmitTask->TaskStackDepth,
                       &canTransmitTask, tskIDLE_PRIORITY + 1, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
 
     vTaskStartScheduler();
