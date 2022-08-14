@@ -14,10 +14,13 @@ void ParameterService::initializeParameterMap() {
                   {PlatformParameters::OnBoardSecond,               PlatformParameters::onBoardSecond},
                   {PlatformParameters::ReportParametersUnusedStack, PlatformParameters::reportParametersUnusedStack},
                   {PlatformParameters::AvailableHeap,               PlatformParameters::availableHeap},
-                  {PlatformParameters::OBCBoardTemperature1,       PlatformParameters::obcBoardTemperature1},
+                  {PlatformParameters::OBCBoardTemperature1,        PlatformParameters::obcBoardTemperature1},
                   {PlatformParameters::OBCBootCounter,              PlatformParameters::obcBootCounter},
                   {PlatformParameters::OBCSystick,                  PlatformParameters::obcSysTick},
-                  {PlatformParameters::OBCMCUTemperature,           PlatformParameters::mcuTemperature}};
+                  {PlatformParameters::OBCMCUTemperature,           PlatformParameters::mcuTemperature},
+                  {PlatformParameters::UseRTT,                      PlatformParameters::useRTT},
+                  {PlatformParameters::UseUART,                     PlatformParameters::useUART},
+                  {PlatformParameters::UseCAN,                      PlatformParameters::useCAN}};
 }
 
 #endif
