@@ -139,6 +139,13 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: AFEC_CLK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: afec0, value: '18750000'}
   - type: Comment
     attributes: {id: AFEC_CLK_ENABLE_COMMENT}
     children:
@@ -155,6 +162,15 @@ children:
       children:
       - type: User
         attributes: {value: '1'}
+  - type: Comment
+    attributes: {id: AFEC_CONV_TIME}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: '**** Conversion Time is 1.22666666667 us ****'}
   - type: Comment
     attributes: {id: AFEC_NVIC_ENABLE_COMMENT}
     children:

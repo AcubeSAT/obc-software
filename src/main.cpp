@@ -29,6 +29,7 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 extern "C" void main_cpp() {
 
+
     SYS_Initialize(NULL);
     initializeTasks();
 
@@ -36,6 +37,7 @@ extern "C" void main_cpp() {
     timeBasedSchedulingTask.emplace();
     statisticsReportingTask.emplace();
     updateParametersTask.emplace();
+    canTransmitTask.emplace();
 
     xTaskCreateStatic(vClassTask<UpdateParametersTask>, updateParametersTask->TaskName,
                       updateParametersTask->TaskStackDepth,
@@ -53,6 +55,8 @@ extern "C" void main_cpp() {
                                                             &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2,
                                                             timeBasedSchedulingTask->taskStack,
                                                             &timeBasedSchedulingTask->taskBuffer);
+    xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->taskName, canTransmitTask->taskStackDepth,
+                      &canTransmitTask, tskIDLE_PRIORITY + 1, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
 
     vTaskStartScheduler();
 
