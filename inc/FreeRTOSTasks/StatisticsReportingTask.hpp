@@ -9,9 +9,11 @@ public:
      */
     void execute();
 
-    const static inline uint16_t taskStackDepth = 3000;
+    const static inline uint16_t TaskStackDepth = 3000;
 
-    StackType_t taskStack[taskStackDepth];
+    StackType_t taskStack[TaskStackDepth];
 
     StatisticsReportingTask() : Task("StatisticsReporting") {}
 };
+
+inline std::optional<StatisticsReportingTask> statisticsReportingTask;

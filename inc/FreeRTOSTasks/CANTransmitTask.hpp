@@ -8,9 +8,9 @@ class CANTransmitTask : public Task{
 private:
 
 public:
-    const static inline uint16_t taskStackDepth = 1500;
+    const static inline uint16_t TaskStackDepth = 1500;
 
-    StackType_t taskStack[taskStackDepth];
+    StackType_t taskStack[TaskStackDepth];
 
     void execute();
 
@@ -21,5 +21,7 @@ public:
         MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CANDriver::rxFifo0Callback, CANDriver::MCANReceive);
     }
 };
+
+inline std::optional<CANTransmitTask> canTransmitTask;
 
 #endif //OBC_SOFTWARE_CANTRANSMITTASK_HPP
