@@ -8,9 +8,9 @@
  */
 class HousekeepingTask : public Task {
 public:
-    const static inline uint16_t taskStackDepth = 2000;
+    const static inline uint16_t TaskStackDepth = 2000;
 
-    StackType_t taskStack[taskStackDepth];
+    StackType_t taskStack[TaskStackDepth];
     /**
       * @see HousekeepingService
       */
@@ -19,5 +19,7 @@ public:
     HousekeepingTask() : Task("Housekeeping") {}
 
 };
+
+inline std::optional<HousekeepingTask> housekeepingTask;
 
 #endif

@@ -2,7 +2,6 @@
 #define ECSS_SERVICES_PLATFORMPARAMETERS_HPP
 
 #include "Helpers/Parameter.hpp"
-#include "OBC_Definitions.hpp"
 
 namespace PlatformParameters {
     /**
@@ -43,7 +42,7 @@ namespace PlatformParameters {
     inline Parameter<float> obcBoardTemperature1(0);
     inline Parameter<bool> useRTT(true);
     inline Parameter<bool> useUART(true);
-    inline Parameter<bool> useCAN(true);
+    inline Parameter<bool> useCAN(false);
 }
 
 #endif
