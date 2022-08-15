@@ -63,22 +63,7 @@ inline const uint8_t MaxUsartTCSize = 64;
 /**
  * The capacity of the queue holding TC messages received externally.
  */
- inline const uint8_t TCQueueCapacity = 10;
-
-/**
- * Logger will output messages using RTT
- */
-inline const bool useRTT = false;
-
-/**
- * Logger will output messages using UART
- */
-inline const bool useUART = true;
-
-/**
- * Logger will output messages using CAN
- */
-inline const bool useCAN = false;
+inline const uint8_t TCQueueCapacity = 10;
 
 namespace BootCounter {
     /**

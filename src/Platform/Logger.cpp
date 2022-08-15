@@ -45,15 +45,15 @@ void Logger::log(Logger::LogLevel level, etl::istring &message) {
     output.append(message.c_str());
     output.append("\n");
 
-    if (useRTT) {
+    if (PlatformParameters::useRTT.getValue()) {
         SEGGER_RTT_printf(0, output.c_str());
     }
-    if (useUART) {
+    if (PlatformParameters::useUART.getValue()) {
         if (TaskList::uartGatekeeperTask) {
             TaskList::uartGatekeeperTask->addToQueue(output);
         }
     }
-    if (useCAN) {
+    if (PlatformParameters::useCAN.getValue()) {
         Services.dummyService.logAsECSSMessage(output);
     }
 }
