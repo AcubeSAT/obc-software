@@ -60,6 +60,9 @@ public:
 
     /**
      * Appends bytes into a buffer and then queues them ready.
+     *
+     * This function receives a single byte from the microcontroller's UART, and stores it to the buffer.
+     * It should be called by an interrupt as soon as possible, so that no bytes are lost.
      */
     void ingress();
 
