@@ -91,7 +91,7 @@ namespace CANApplicationLayer {
     /**
      * Removes the ID of the sender in an incoming CAN Message.
      * @param id The ID to be filtered.
-     * @return The filtered ID.
+     * @return The filtered ID, representing the message type.
      */
     inline uint16_t filterMessageID(uint16_t id) {
         return id & 0x700;
