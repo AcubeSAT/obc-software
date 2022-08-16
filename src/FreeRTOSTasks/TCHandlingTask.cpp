@@ -59,8 +59,7 @@ void TCHandlingTask::execute() {
         auto cobsDecodedMessage = COBSdecode<MaxUsartTCSize>(messageOut);
 
         uint8_t messageLength = cobsDecodedMessage.size();
-        uint8_t ecssTCBytes[messageLength];
-        std::copy(std::begin(cobsDecodedMessage), std::end(cobsDecodedMessage), ecssTCBytes);
+        uint8_t *ecssTCBytes = reinterpret_cast<uint8_t *>(cobsDecodedMessage.data());
 
         auto ecssTC = MessageParser::parse(ecssTCBytes, messageLength);
 
