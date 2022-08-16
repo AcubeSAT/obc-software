@@ -56,7 +56,7 @@ void TCHandlingTask::execute() {
         uint8_t messageLength = cobsDecodedMessage.size();
         uint8_t ecssTCBytes[messageLength];
 
-        etl::copy(cobsDecodedMessage.begin(), cobsDecodedMessage.end(), ecssTCBytes, ecssTCBytes + messageLength);
+        etl::copy(cobsDecodedMessage.begin(), cobsDecodedMessage.end(), ecssTCBytes);
         auto ecssTC = MessageParser::parse(ecssTCBytes, messageLength);
 
         LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
