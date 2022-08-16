@@ -60,7 +60,7 @@ void TCHandlingTask::execute() {
         std::copy(cobsDecodedMessage.begin(), cobsDecodedMessage.end(), ecssTCBytes);
         auto ecssTC = MessageParser::parse(ecssTCBytes, messageLength);
 
-        LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
+        LOG_DEBUG << "Received new TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
 
         MessageParser::execute(ecssTC);
     }
