@@ -59,6 +59,7 @@
 
 /***************************** WDT API *******************************/
 void WDT_Initialize( void );
+
 void WDT_Clear( void );
 	
 #ifdef __cplusplus // Provide C++ Compatibility
