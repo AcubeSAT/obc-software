@@ -28,6 +28,7 @@ void Service::storeMessage(Message &message) {
         etl::to_string(createdPacket[i], data, formatSpec, true);
         data.append(" ");
     }
+
     output.append(data.c_str());
 
     LOG_DEBUG << output.c_str();
