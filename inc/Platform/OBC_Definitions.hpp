@@ -65,39 +65,4 @@ inline const uint8_t MaxUsartTCSize = 64;
  */
 inline const uint8_t TCQueueCapacity = 10;
 
-namespace BootCounter {
-    /**
-     * Enumeration of the General Purpose Backup Registers (GPBR) used in the boot counter parameter
-     * implementation.
-     */
-    enum BackupRegisters : uint8_t {
-        /**
-         * Defines which one of the eight backup registers will be used to distinguish software from
-         * hardware resets.
-         */
-        UnexpectedResetRegister = 0,
-        /**
-         * Defines which one of the eight backup registers will be used to save the boot counter variable.
-         */
-        BootCounterRegister = 1
-    };
-
-    /**
-     * When this value is detected inside the \ref UnexpectedResetRegister a software reset is acknowledged,
-     * otherwise an unexpected reset has occurred.
-     */
-    inline const uint8_t SoftwareResetValue = 1;
-
-    /**
-     * Defines the backup register's value after it is cleared.
-     */
-    inline const uint8_t ClearRegisterValue = 0;
-
-    /**
-     * A counter limit for hardware reset simulation.
-     * @see incrementBootCounter
-     */
-    inline const uint16_t BootCounterLimit = 1000;
-}
-
 #endif //OBC_SOFTWARE_OBC_DEFINITIONS_HPP
