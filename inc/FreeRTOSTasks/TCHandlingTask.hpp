@@ -54,7 +54,7 @@ public:
     TCHandlingTask();
 
     /**
-     * Resets input buffer when queued.
+     * Resets the savedMessage input buffer.
      */
     void resetInput();
 
