@@ -33,7 +33,7 @@ private:
     /**
      * The value that signals a message is done being transmitted.1
      */
-     const inline static uint8_t MessageEndDelimiter = 0x00;
+    const inline static uint8_t MessageEndDelimiter = 0x00;
 
     /**
      * Saves incoming bytes by inserting them into a queue.
@@ -71,7 +71,6 @@ public:
 };
 
 inline std::optional<TCHandlingTask> tcHandlingTask;
-
 
 
 #endif
