@@ -54,9 +54,10 @@ void TCHandlingTask::execute() {
         auto cobsDecodedMessage = COBSdecode<MaxUsartTCSize>(messageOut);
 
         uint8_t messageLength = cobsDecodedMessage.size();
-        uint8_t ecssTCBytes[messageLength];
 
-        etl::copy(cobsDecodedMessage.begin(), cobsDecodedMessage.end(), ecssTCBytes);
+        uint8_t *ecssTCBytes = reinterpret_cast<uint8_t *>(cobsDecodedMessage.data());
+
+        std::copy(cobsDecodedMessage.begin(), cobsDecodedMessage.end(), ecssTCBytes);
         auto ecssTC = MessageParser::parse(ecssTCBytes, messageLength);
 
         LOG_DEBUG << "Received new  TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
