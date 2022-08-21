@@ -25,10 +25,10 @@ namespace PlatformParameters {
         OBCSystick = 329,
 
         /* SU */
-        MCUBootCounter = 4040,
-        MCUSysTick = 4047,
-        MCUTemperature = 4038,
-        MCUInputVoltage = 4039,
+        SUMCUBootCounter = 4040,
+        SUMCUSysTick = 4047,
+        SUMCUTemperature = 4038,
+        SUMCUInputVoltage = 4039,
         FlashIntUsedPercentage = 4041,
         FlashUsedPercentage = 4042,
         SRAMUsedPercentage = 4043,
@@ -166,10 +166,11 @@ namespace PlatformParameters {
 
     /******************* SU PARAMETERS *******************/
     // MCU
-    inline Parameter<uint32_t> mcuBootCounter(0);
-    inline Parameter<uint32_t> mcuSysTick(0);
+    inline Parameter<uint32_t> suMCUBootCounter(0);
+    inline Parameter<uint32_t> suMCUSysTick(0);
 
-    inline Parameter<float> mcuInputVoltage(0);
+    inline Parameter<float> suMCUTemperature(0);
+    inline Parameter<float> suMCUInputVoltage(0);
 
     // Memory
     inline Parameter<uint32_t> flashIntUsedPercentage(0);
