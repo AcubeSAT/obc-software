@@ -83,7 +83,7 @@ namespace PlatformParameters {
         PhotoCroppedResolution = 4033,
         PhotoCompressionRate = 4034,
         ExperimentNumber = 4035,
-        OnBoardTime = 4044,
+        SUOnBoardTime = 4044,
 
         /* ADCS */
         ADCSUseRTT = 11,
@@ -201,7 +201,44 @@ namespace PlatformParameters {
         EPSPCBTemperatureSensor1 = 3054,
         EPSPCBTemperatureSensor2 = 3055,
         BatteryTemperatureSensor1 = 3056,
-        BatteryTemperatureSensor2 = 3057
+        BatteryTemperatureSensor2 = 3057,
+
+        /* COMMS Parameters */
+        UHFBandPATemperature = 2000,
+        SBandPATemperature = 2001,
+        COMMSPCBTemperature = 2002,
+        AntennaDeploymentStatus = 2003,
+        DataRateUHFTX = 2004,
+        DataRateUHFRX = 2005,
+        SymbolRateSBand = 2006,
+        CWInterval = 2007,
+        GMSKBeaconInterval = 2008,
+        UHFBandTXPower = 2009,
+        SBandTXPower = 2010,
+        ChannelNumberUHFBand = 2011,
+        ChannelNumberSBand = 2012,
+        LNAGain = 2013,
+        PAGainUHFBand = 2014,
+        PAGainSBand = 2015,
+        VGAGain = 2016,
+        RSSI = 2017,
+        UHFBandTXOnOff = 2018,
+        UHFBandRXOnOff = 2019,
+        SBandTXOnOff = 2020,
+        PacketsRejectedCOMMS = 2021,
+        InvalidHMAC = 2022,
+        InvalidPacketStructure = 2023,
+        InvalidSpacecraftID = 2024,
+        FrameSequenceCounter = 2025,
+        COMMSPCBTemperature1 = 2026,
+        COMMSPCBTemperature2 = 2027,
+        COMMSMCUTemperature = 2028,
+        COMMSMCUInputVoltage = 2029,
+        COMMSMCUBootCounter = 2030,
+        COMMSOnBoardTime = 2031,
+        COMMSNANDCurrentlyUsedMemoryPartition = 2032,
+        COMMSLastFailedEvent = 2033,
+        COMMSMCUSystick = 2034
     };
 
     // Parameters used for testing
@@ -266,7 +303,7 @@ namespace PlatformParameters {
     inline Parameter<float> growthMediumTemperature(0);
 
     // Misc
-    inline Parameter<uint32_t> onBoardTime(0);
+    inline Parameter<uint32_t> suOnBoardTime(0);
     inline Parameter<uint16_t> lastFailedEvent(0);
 
     // Sensors
@@ -452,6 +489,54 @@ namespace PlatformParameters {
 
     inline Parameter<float> batteryTemperatureSensor1(0);
     inline Parameter<float> batteryTemperatureSensor2(0);
+
+    /****************** COMMS PARAMETERS *******************/
+    inline Parameter<float> uhfBandPATemperature(0);
+    inline Parameter<float> sBandPATemperature(0);
+    inline Parameter<float> commsPCBTemperature(0);
+
+    inline Parameter<uint8_t> antennaDeploymentStatus(0); // enum
+
+    inline Parameter<uint16_t> dataRateUHFTX(0);
+    inline Parameter<uint16_t> dataRateUHFRX(0);
+    inline Parameter<uint16_t> symbolRateSBand(0);
+    inline Parameter<uint16_t> cwInterval(0);
+    inline Parameter<uint16_t> gmskBeaconInterval(0);
+    inline Parameter<uint16_t> uhfBandTXPower(0);
+    inline Parameter<uint16_t> sBandTXPower(0);
+    inline Parameter<uint16_t> channelNumberUHFBand(0);
+    inline Parameter<uint16_t> channelNumberSBand(0);
+
+    // enums
+    inline Parameter<uint8_t> lnaGain(0);
+    inline Parameter<uint16_t> paGainUHFBand(0);
+    inline Parameter<uint16_t> paGainSBand(0);
+
+    inline Parameter<uint16_t> vgaGain(0);
+    inline Parameter<float> rssi(0);
+
+    inline Parameter<bool> uhfBandTXOnOff(0);
+    inline Parameter<bool> uhfBandRXOnOff(0);
+    inline Parameter<bool> sBandTXOnOff(0);
+
+    inline Parameter<uint16_t> packetsRejectedCOMMS(0);
+    inline Parameter<uint16_t> invalidHMAC(0);
+    inline Parameter<uint16_t> invalidPacketStructure(0);
+    inline Parameter<uint16_t> invalidSpacecraftID(0);
+    inline Parameter<uint16_t> frameSequenceCounter(0);
+
+    inline Parameter<float> commsPCBTemperature1(0);
+    inline Parameter<float> commsPCBTemperature2(0);
+    inline Parameter<float> commsMCUTemperature(0);
+    inline Parameter<float> commsMCUInputVoltage(0);
+
+    inline Parameter<uint16_t> commsMCUBootCounter(0);
+    inline Parameter<uint32_t> commsOnBoardTime(0);
+
+    inline Parameter<uint8_t> commsNANDCurrentlyUsedMemoryPartition(0); // enum
+
+    inline Parameter<uint16_t> commsLastFailedEvent(0);
+    inline Parameter<uint64_t> commsMCUSystick(0);
 }
 
 #endif
