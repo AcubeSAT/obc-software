@@ -187,51 +187,51 @@ namespace PlatformParameters {
         EPSSwitch3 = 3010,
         EPSSwitch4 = 3011,
         EPSSwitch5 = 3012,
-        CurrentForRail3V1 = 3013,
-        CurrentForRail3V2 = 3014,
-        CurrentForRail3V3 = 3015,
-        CurrentForRail3V4 = 3016,
-        CurrentForRail5V1 = 3017,
-        CurrentForRail5V2 = 3018,
-        CurrentForRail5V3 = 3019,
-        CurrentForRail5V4 = 3020,
-        CurrentForRail1 = 3021,
-        CurrentForRail2 = 3022,
-        CurrentForRail3 = 3023,
-        CurrentForRail4 = 3024,
-        CurrentForRail5 = 3025,
-        VoltageForEachRail3V1 = 3026,
-        VoltageForEachRail3V2 = 3027,
-        VoltageForEachRail3V3 = 3028,
-        VoltageForEachRail3V4 = 3029,
-        VoltageForEachRail5V1 = 3030,
-        VoltageForEachRail5V2 = 3031,
-        VoltageForEachRail5V3 = 3032,
-        VoltageForEachRail5V4 = 3033,
-        VoltageForEachRail12V1 = 3034,
-        VoltageForEachRail12V2 = 3035,
-        VoltageForEachRail12V3 = 3036,
-        VoltageForEachRail12V4 = 3037,
-        PanelVoltageXPlus = 3038,
-        PanelVoltageXMinus = 3039,
-        PanelVoltageYPlus = 3040,
-        PanelVoltageYMinus = 3041,
-        PanelVoltageZ = 3042,
-        PanelCurrentXPlus = 3043,
-        PanelCurrentXMinus = 3044,
-        PanelCurrentYPlus = 3045,
-        PanelCurrentYMinus = 3046,
-        PanelCurrentZ = 3047,
-        BatteryPackVoltage = 3048,
-        PanelTemperatureXPlus = 3049,
-        PanelTemperatureXMinus = 3050,
-        PanelTemperatureYPlus = 3051,
-        PanelTemperatureYMinus = 3052,
-        PanelTemperatureZ = 3053,
+        EPSCurrentForRail3V1 = 3013,
+        EPSCurrentForRail3V2 = 3014,
+        EPSCurrentForRail3V3 = 3015,
+        EPSCurrentForRail3V4 = 3016,
+        EPSCurrentForRail5V1 = 3017,
+        EPSCurrentForRail5V2 = 3018,
+        EPSCurrentForRail5V3 = 3019,
+        EPSCurrentForRail5V4 = 3020,
+        EPSCurrentForRail1 = 3021,
+        EPSCurrentForRail2 = 3022,
+        EPSCurrentForRail3 = 3023,
+        EPSCurrentForRail4 = 3024,
+        EPSCurrentForRail5 = 3025,
+        EPSVoltageForEachRail3V1 = 3026,
+        EPSVoltageForEachRail3V2 = 3027,
+        EPSVoltageForEachRail3V3 = 3028,
+        EPSVoltageForEachRail3V4 = 3029,
+        EPSVoltageForEachRail5V1 = 3030,
+        EPSVoltageForEachRail5V2 = 3031,
+        EPSVoltageForEachRail5V3 = 3032,
+        EPSVoltageForEachRail5V4 = 3033,
+        EPSVoltageForEachRail12V1 = 3034,
+        EPSVoltageForEachRail12V2 = 3035,
+        EPSVoltageForEachRail12V3 = 3036,
+        EPSVoltageForEachRail12V4 = 3037,
+        EPSPanelVoltageXPlus = 3038,
+        EPSPanelVoltageXMinus = 3039,
+        EPSPanelVoltageYPlus = 3040,
+        EPSPanelVoltageYMinus = 3041,
+        EPSPanelVoltageZ = 3042,
+        EPSPanelCurrentXPlus = 3043,
+        EPSPanelCurrentXMinus = 3044,
+        EPSPanelCurrentYPlus = 3045,
+        EPSPanelCurrentYMinus = 3046,
+        EPSPanelCurrentZ = 3047,
+        EPSBatteryPackVoltage = 3048,
+        EPSPanelTemperatureXPlus = 3049,
+        EPSPanelTemperatureXMinus = 3050,
+        EPSPanelTemperatureYPlus = 3051,
+        EPSPanelTemperatureYMinus = 3052,
+        EPSPanelTemperatureZ = 3053,
         EPSPCBTemperatureSensor1 = 3054,
         EPSPCBTemperatureSensor2 = 3055,
-        BatteryTemperatureSensor1 = 3056,
-        BatteryTemperatureSensor2 = 3057,
+        EPSBatteryTemperatureSensor1 = 3056,
+        EPSBatteryTemperatureSensor2 = 3057,
 
         /* COMMS Parameters */
         COMMSUHFBandPATemperature = 2000,
@@ -501,58 +501,58 @@ namespace PlatformParameters {
     inline Parameter<bool> epsSwitch4(0);
     inline Parameter<bool> epsSwitch5(0);
 
-    inline Parameter<float> currentForRail3V1(0);
-    inline Parameter<float> currentForRail3V2(0);
-    inline Parameter<float> currentForRail3V3(0);
-    inline Parameter<float> currentForRail3V4(0);
-    inline Parameter<float> currentForRail5V1(0);
-    inline Parameter<float> currentForRail5V2(0);
-    inline Parameter<float> currentForRail5V3(0);
-    inline Parameter<float> currentForRail5V4(0);
-    inline Parameter<float> currentForRail1(0);
-    inline Parameter<float> currentForRail2(0);
-    inline Parameter<float> currentForRail3(0);
-    inline Parameter<float> currentForRail4(0);
-    inline Parameter<float> currentForRail5(0);
+    inline Parameter<float> epsCurrentForRail3V1(0);
+    inline Parameter<float> epsCurrentForRail3V2(0);
+    inline Parameter<float> epsCurrentForRail3V3(0);
+    inline Parameter<float> epsCurrentForRail3V4(0);
+    inline Parameter<float> epsCurrentForRail5V1(0);
+    inline Parameter<float> epsCurrentForRail5V2(0);
+    inline Parameter<float> epsCurrentForRail5V3(0);
+    inline Parameter<float> epsCurrentForRail5V4(0);
+    inline Parameter<float> epsCurrentForRail1(0);
+    inline Parameter<float> epsCurrentForRail2(0);
+    inline Parameter<float> epsCurrentForRail3(0);
+    inline Parameter<float> epsCurrentForRail4(0);
+    inline Parameter<float> epsCurrentForRail5(0);
 
-    inline Parameter<float> voltageForEachRail3V1(0);
-    inline Parameter<float> voltageForEachRail3V2(0);
-    inline Parameter<float> voltageForEachRail3V3(0);
-    inline Parameter<float> voltageForEachRail3V4(0);
-    inline Parameter<float> voltageForEachRail5V1(0);
-    inline Parameter<float> voltageForEachRail5V2(0);
-    inline Parameter<float> voltageForEachRail5V3(0);
-    inline Parameter<float> voltageForEachRail5V4(0);
-    inline Parameter<float> voltageForEachRail12V1(0);
-    inline Parameter<float> voltageForEachRail12V2(0);
-    inline Parameter<float> voltageForEachRail12V3(0);
-    inline Parameter<float> voltageForEachRail12V4(0);
+    inline Parameter<float> epsVoltageForEachRail3V1(0);
+    inline Parameter<float> epsVoltageForEachRail3V2(0);
+    inline Parameter<float> epsVoltageForEachRail3V3(0);
+    inline Parameter<float> epsVoltageForEachRail3V4(0);
+    inline Parameter<float> epsVoltageForEachRail5V1(0);
+    inline Parameter<float> epsVoltageForEachRail5V2(0);
+    inline Parameter<float> epsVoltageForEachRail5V3(0);
+    inline Parameter<float> epsVoltageForEachRail5V4(0);
+    inline Parameter<float> epsVoltageForEachRail12V1(0);
+    inline Parameter<float> epsVoltageForEachRail12V2(0);
+    inline Parameter<float> epsVoltageForEachRail12V3(0);
+    inline Parameter<float> epsVoltageForEachRail12V4(0);
 
-    inline Parameter<float> panelVoltageXPlus(0);
-    inline Parameter<float> panelVoltageXMinus(0);
-    inline Parameter<float> panelVoltageYPlus(0);
-    inline Parameter<float> panelVoltageYMinus(0);
-    inline Parameter<float> panelVoltageZ(0);
+    inline Parameter<float> epsPanelVoltageXPlus(0);
+    inline Parameter<float> epsPanelVoltageXMinus(0);
+    inline Parameter<float> epsPanelVoltageYPlus(0);
+    inline Parameter<float> epsPanelVoltageYMinus(0);
+    inline Parameter<float> epsPanelVoltageZ(0);
 
-    inline Parameter<float> panelCurrentXPlus(0);
-    inline Parameter<float> panelCurrentXMinus(0);
-    inline Parameter<float> panelCurrentYPlus(0);
-    inline Parameter<float> panelCurrentYMinus(0);
-    inline Parameter<float> panelCurrentZ(0);
+    inline Parameter<float> epsPanelCurrentXPlus(0);
+    inline Parameter<float> epsPanelCurrentXMinus(0);
+    inline Parameter<float> epsPanelCurrentYPlus(0);
+    inline Parameter<float> epsPanelCurrentYMinus(0);
+    inline Parameter<float> epsPanelCurrentZ(0);
 
-    inline Parameter<float> batteryPackVoltage(0);
+    inline Parameter<float> epsBatteryPackVoltage(0);
 
-    inline Parameter<float> panelTemperatureXPlus(0);
-    inline Parameter<float> panelTemperatureXMinus(0);
-    inline Parameter<float> panelTemperatureYPlus(0);
-    inline Parameter<float> panelTemperatureYMinus(0);
-    inline Parameter<float> panelTemperatureZ(0);
+    inline Parameter<float> epsPanelTemperatureXPlus(0);
+    inline Parameter<float> epsPanelTemperatureXMinus(0);
+    inline Parameter<float> epsPanelTemperatureYPlus(0);
+    inline Parameter<float> epsPanelTemperatureYMinus(0);
+    inline Parameter<float> epsPanelTemperatureZ(0);
 
     inline Parameter<float> epsPCBTemperatureSensor1(0);
     inline Parameter<float> epsPCBTemperatureSensor2(0);
 
-    inline Parameter<float> batteryTemperatureSensor1(0);
-    inline Parameter<float> batteryTemperatureSensor2(0);
+    inline Parameter<float> epsBatteryTemperatureSensor1(0);
+    inline Parameter<float> epsBatteryTemperatureSensor2(0);
 
     /****************** COMMS PARAMETERS *******************/
     inline Parameter<float> commsUHFBandPATemperature(0);
