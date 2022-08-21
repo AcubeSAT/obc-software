@@ -13,7 +13,7 @@ namespace CommonParameters {
     inline auto &onBoardHour = PlatformParameters::onBoardHour;
     inline auto &onBoardMinute = PlatformParameters::onBoardMinute;
     inline auto &onBoardSecond = PlatformParameters::onBoardSecond;
-    inline auto &useRTT = PlatformParameters::useRTT;
-    inline auto &useUART = PlatformParameters::useUART;
-    inline auto &useCAN = PlatformParameters::useCAN;
+    inline auto &useRTT = PlatformParameters::obcUseRTT;
+    inline auto &useUART = PlatformParameters::obcUseUART;
+    inline auto &useCAN = PlatformParameters::obcUseCAN;
 }

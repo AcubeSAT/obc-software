@@ -16,13 +16,43 @@ namespace PlatformParameters {
         OnBoardSecond = 5,
         ReportParametersUnusedStack = 6,
         AvailableHeap = 7,
-        UseRTT = 8,
-        UseUART = 9,
-        UseCAN = 10,
-        OBCBoardTemperature1 = 290,
-        OBCMCUTemperature = 293,
+        OBCUseRTT = 8,
+        OBCUseUART = 9,
+        OBCUseCAN = 10,
         OBCBootCounter = 301,
         OBCSystick = 329,
+
+        /* OBDH Parameters */
+        OBCPCBTemperature1 = 5000,
+        OBCPCBTemperature2 = 5001,
+        OBCMCUTemperature = 5002,
+        OBCMCUInputVoltage = 5003,
+        OBCMCUBootCounter = 5004,
+        OBCAFlashInt = 5005,
+        OBCASRAMInt = 5006,
+        OBCOFLASHInt = 5007,
+        OBCOSRAMInt = 5008,
+        OBCMRAM = 5009,
+        OBCNAND = 5010,
+        OBCSpacecraftTimeRef = 5011,
+        OBCMCUTime = 5012,
+        OBCOperationalMode = 5013,
+        OBCMemoryPartition = 5014,
+        OBCReconfigurationTimer = 5015,
+        OBCLastFailedEvent = 5016,
+        OBCMCUSystick = 5017,
+        OBCCANBUSLoad1 = 5018,
+        OBCCANBUSLoad2 = 5019,
+        OBCCANBUSActive = 5020,
+        OBCMCUFDIR = 5021,
+        OBCMCURestartSafeModeThreshold = 5022,
+        OBCNANDFLASHLCLThreshold = 5023,
+        OBCMRAMLCLThreshold = 5024,
+        OBCNANDFLASHON = 5025,
+        OBCMRAMON = 5026,
+        OBCNANDFLASHScrubbingFrequency = 5027,
+        OBCRAMScrubbingFrequency = 5028,
+        OBCProgramFlashScrubbingFrequency = 5029,
 
         /* SU */
         SUMCUBootCounter = 4040,
@@ -251,14 +281,50 @@ namespace PlatformParameters {
     inline Parameter<uint16_t> reportParametersUnusedStack(0);
     inline Parameter<uint16_t> availableHeap(0);
 
-    // OBDH parameters
+    /******************* OBDH PARAMETERS *******************/
     inline Parameter<uint16_t> obcBootCounter(0);
     inline Parameter<uint64_t> obcSysTick(0);
+    inline Parameter<bool> obcUseRTT(true);
+    inline Parameter<bool> obcUseUART(true);
+    inline Parameter<bool> obcUseCAN(false);
+
+    inline Parameter<float> obcPCBTemperature1(0);
+    inline Parameter<float> obcPCBTemperature2(0);
     inline Parameter<float> obcMCUTemperature(0);
-    inline Parameter<float> obcBoardTemperature1(0);
-    inline Parameter<bool> useRTT(true);
-    inline Parameter<bool> useUART(true);
-    inline Parameter<bool> useCAN(false);
+    inline Parameter<float> obcMCUInputVoltage(0);
+
+    inline Parameter<uint32_t> obcMCUBootCounter(0);
+    inline Parameter<uint32_t> obcAFlashInt(0);
+    inline Parameter<uint32_t> obcASRAMInt(0);
+    inline Parameter<uint32_t> obcOFLASHInt(0);
+    inline Parameter<uint32_t> obcOSRAMInt(0);
+    inline Parameter<uint32_t> obcMRAM(0);
+    inline Parameter<uint32_t> obcNAND(0);
+
+    inline Parameter<uint32_t> obcMCUTime(0);
+
+    inline Parameter<uint16_t> obcSpacecraftTimeRef(0); // enum
+    inline Parameter<uint16_t> obcOperationalMode(0); // enum
+    inline Parameter<uint16_t> obcMemoryPartition(0); // enum
+
+    inline Parameter<uint32_t> obcReconfigurationTimer(0);
+    inline Parameter<uint16_t> obcLastFailedEvent(0);
+    inline Parameter<uint32_t> obcMCUSystick(0);
+
+    inline Parameter<float> obcCANBUSLoad1(0);
+    inline Parameter<float> obcCANBUSLoad2(0);
+
+    inline Parameter<uint16_t> obcCANBUSActive(0); // enum
+    inline Parameter<uint16_t> obcMCUFDIR(0); // enum
+
+    inline Parameter<float> obcMCURestartSafeModeThreshold(0);
+    inline Parameter<float> obcNANDFLASHLCLThreshold(0);
+    inline Parameter<float> obcMRAMLCLThreshold(0);
+    inline Parameter<float> obcNANDFLASHON(0);
+    inline Parameter<float> obcNANDFlashScrubbingFrequency(0);
+    inline Parameter<float> obcMRAMON(0);
+    inline Parameter<float> obcRAMScrubbingFrequency(0);
+    inline Parameter<float> obcProgramFlashScrubbingFrequency(0);
 
     /******************* SU PARAMETERS *******************/
     // MCU
@@ -301,10 +367,6 @@ namespace PlatformParameters {
     inline Parameter<float> cameraTemperature(0);
     inline Parameter<float> pdmsTemperature(0);
     inline Parameter<float> growthMediumTemperature(0);
-
-    // Misc
-    inline Parameter<uint32_t> suOnBoardTime(0);
-    inline Parameter<uint16_t> lastFailedEvent(0);
 
     // Sensors
     inline Parameter<float> pressureLevelSensor1(0);
@@ -352,6 +414,8 @@ namespace PlatformParameters {
 
     // Misc
     inline Parameter<uint8_t> experimentNumber(0); // FIXME: is enum in database
+    inline Parameter<uint32_t> suOnBoardTime(0);
+    inline Parameter<uint16_t> lastFailedEvent(0);
 
     /******************* ADCS PARAMETERS *******************/
     inline Parameter<bool> adcsUseRTT(true);
