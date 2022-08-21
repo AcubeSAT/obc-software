@@ -234,32 +234,32 @@ namespace PlatformParameters {
         BatteryTemperatureSensor2 = 3057,
 
         /* COMMS Parameters */
-        UHFBandPATemperature = 2000,
-        SBandPATemperature = 2001,
+        COMMSUHFBandPATemperature = 2000,
+        COMMSSBandPATemperature = 2001,
         COMMSPCBTemperature = 2002,
-        AntennaDeploymentStatus = 2003,
-        DataRateUHFTX = 2004,
-        DataRateUHFRX = 2005,
-        SymbolRateSBand = 2006,
-        CWInterval = 2007,
-        GMSKBeaconInterval = 2008,
-        UHFBandTXPower = 2009,
-        SBandTXPower = 2010,
-        ChannelNumberUHFBand = 2011,
-        ChannelNumberSBand = 2012,
-        LNAGain = 2013,
-        PAGainUHFBand = 2014,
-        PAGainSBand = 2015,
-        VGAGain = 2016,
-        RSSI = 2017,
-        UHFBandTXOnOff = 2018,
-        UHFBandRXOnOff = 2019,
-        SBandTXOnOff = 2020,
-        PacketsRejectedCOMMS = 2021,
-        InvalidHMAC = 2022,
-        InvalidPacketStructure = 2023,
-        InvalidSpacecraftID = 2024,
-        FrameSequenceCounter = 2025,
+        COMMSAntennaDeploymentStatus = 2003,
+        COMMSDataRateUHFTX = 2004,
+        COMMSDataRateUHFRX = 2005,
+        COMMSSymbolRateSBand = 2006,
+        COMMSCWInterval = 2007,
+        COMMSGMSKBeaconInterval = 2008,
+        COMMSUHFBandTXPower = 2009,
+        COMMSSBandTXPower = 2010,
+        COMMSChannelNumberUHFBand = 2011,
+        COMMSChannelNumberSBand = 2012,
+        COMMSLNAGain = 2013,
+        COMMSPAGainUHFBand = 2014,
+        COMMSPAGainSBand = 2015,
+        COMMSVGAGain = 2016,
+        COMMSRSSI = 2017,
+        COMMSUHFBandTXOnOff = 2018,
+        COMMSUHFBandRXOnOff = 2019,
+        COMMSSBandTXOnOff = 2020,
+        COMMSPacketsRejectedCOMMS = 2021,
+        COMMSInvalidHMAC = 2022,
+        COMMSInvalidPacketStructure = 2023,
+        COMMSInvalidSpacecraftID = 2024,
+        COMMSFrameSequenceCounter = 2025,
         COMMSPCBTemperature1 = 2026,
         COMMSPCBTemperature2 = 2027,
         COMMSMCUTemperature = 2028,
@@ -555,39 +555,39 @@ namespace PlatformParameters {
     inline Parameter<float> batteryTemperatureSensor2(0);
 
     /****************** COMMS PARAMETERS *******************/
-    inline Parameter<float> uhfBandPATemperature(0);
-    inline Parameter<float> sBandPATemperature(0);
+    inline Parameter<float> commsUHFBandPATemperature(0);
+    inline Parameter<float> commsSBandPATemperature(0);
     inline Parameter<float> commsPCBTemperature(0);
 
-    inline Parameter<uint8_t> antennaDeploymentStatus(0); // enum
+    inline Parameter<uint8_t> commsAntennaDeploymentStatus(0); // enum
 
-    inline Parameter<uint16_t> dataRateUHFTX(0);
-    inline Parameter<uint16_t> dataRateUHFRX(0);
-    inline Parameter<uint16_t> symbolRateSBand(0);
-    inline Parameter<uint16_t> cwInterval(0);
-    inline Parameter<uint16_t> gmskBeaconInterval(0);
-    inline Parameter<uint16_t> uhfBandTXPower(0);
-    inline Parameter<uint16_t> sBandTXPower(0);
-    inline Parameter<uint16_t> channelNumberUHFBand(0);
-    inline Parameter<uint16_t> channelNumberSBand(0);
+    inline Parameter<uint16_t> commsDataRateUHFTX(0);
+    inline Parameter<uint16_t> commsDataRateUHFRX(0);
+    inline Parameter<uint16_t> commsSymbolRateSBand(0);
+    inline Parameter<uint16_t> commsCWInterval(0);
+    inline Parameter<uint16_t> commsGMSKBeaconInterval(0);
+    inline Parameter<uint16_t> commsUHFBandTXPower(0);
+    inline Parameter<uint16_t> commsSBandTXPower(0);
+    inline Parameter<uint16_t> commsChannelNumberUHFBand(0);
+    inline Parameter<uint16_t> commsChannelNumberSBand(0);
 
     // enums
-    inline Parameter<uint8_t> lnaGain(0);
-    inline Parameter<uint16_t> paGainUHFBand(0);
-    inline Parameter<uint16_t> paGainSBand(0);
+    inline Parameter<uint8_t> commsLNAGain(0);
+    inline Parameter<uint16_t> commsPAGainUHFBand(0);
+    inline Parameter<uint16_t> commsPAGainSBand(0);
 
-    inline Parameter<uint16_t> vgaGain(0);
-    inline Parameter<float> rssi(0);
+    inline Parameter<uint16_t> commsVGAGain(0);
+    inline Parameter<float> commsRSSI(0);
 
-    inline Parameter<bool> uhfBandTXOnOff(0);
-    inline Parameter<bool> uhfBandRXOnOff(0);
-    inline Parameter<bool> sBandTXOnOff(0);
+    inline Parameter<bool> commsUHFBandTXOnOff(0);
+    inline Parameter<bool> commsUHFBandRXOnOff(0);
+    inline Parameter<bool> commsSBandTXOnOff(0);
 
-    inline Parameter<uint16_t> packetsRejectedCOMMS(0);
-    inline Parameter<uint16_t> invalidHMAC(0);
-    inline Parameter<uint16_t> invalidPacketStructure(0);
-    inline Parameter<uint16_t> invalidSpacecraftID(0);
-    inline Parameter<uint16_t> frameSequenceCounter(0);
+    inline Parameter<uint16_t> commsPacketsRejectedCOMMS(0);
+    inline Parameter<uint16_t> commsInvalidHMAC(0);
+    inline Parameter<uint16_t> commsInvalidPacketStructure(0);
+    inline Parameter<uint16_t> commsInvalidSpacecraftID(0);
+    inline Parameter<uint16_t> commsFrameSequenceCounter(0);
 
     inline Parameter<float> commsPCBTemperature1(0);
     inline Parameter<float> commsPCBTemperature2(0);
