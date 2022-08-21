@@ -59,60 +59,60 @@ namespace PlatformParameters {
         SUMCUSysTick = 4047,
         SUMCUTemperature = 4038,
         SUMCUInputVoltage = 4039,
-        FlashIntUsedPercentage = 4041,
-        FlashUsedPercentage = 4042,
-        SRAMUsedPercentage = 4043,
-        NANDCurrentlyUsedPartition = 4045,
-        NANDFlashLCLOn = 4052,
-        NANDFlashLCLThreshold = 4048,
-        NANDFlashScrubbingFrequency = 4056,
-        RAMScrubbingFrequency = 4057,
-        ProgramFlashScrubbingFrequency = 4058,
-        ControlPumpFlashLCLOn = 4054,
-        ControlPumpFlashLCLThreshold = 4050,
-        FlowPumpFlashOn = 4053,
-        FlowPumpFlashLCLThreshold = 4049,
-        CameraON = 4055,
-        CameraLCLThreshold = 4051,
-        PCBTemperature1 = 4000,
-        PCBTemperature2 = 4001,
-        PCBTemperatureControlValves = 4002,
-        PCBTemperatureFlowValves = 4003,
-        CameraTemperature = 4037,
-        PDMSTemperature = 4004,
-        GrowthMediumTemperature = 4005,
-        LastFailedEvent = 4046,
-        PressureLevelSensor1 = 4010,
-        PressureLevelSensor2 = 4011,
-        HumidityLevelSensor1 = 4012,
-        HumidityLevelSensor2 = 4013,
-        RADFET = 4036,
-        PumpFlowRate1 = 4015,
-        PumpFlowRate2 = 4016,
-        ControlChamberValve1 = 4017,
-        ControlChamberValve2 = 4018,
-        ControlChamberValve3 = 4019,
-        ControlSandwitchValve1 = 4020,
-        ControlSandwitchValve2 = 4021,
-        ControlSandwitchValve3 = 4022,
-        FlowValveInlet1 = 4023,
-        FlowValveInlet2 = 4024,
-        FlowValveInlet3 = 4025,
-        FlowValveOutlet1 = 4026,
-        FlowValveOutlet2 = 4027,
-        FlowValveOutlet3 = 4028,
-        FlowValveTest1 = 4029,
-        FlowValveTest2 = 4030,
-        LEDIntensity1 = 4006,
-        LEDIntensity2 = 4007,
-        LEDIntensity3 = 4008,
-        LEDIntensity4 = 4009,
-        NumberOfPhotosTaken = 4014,
-        PhotoExposureTime = 4031,
-        PhotoInterval = 4032,
-        PhotoCroppedResolution = 4033,
-        PhotoCompressionRate = 4034,
-        ExperimentNumber = 4035,
+        SUFlashIntUsedPercentage = 4041,
+        SUFlashUsedPercentage = 4042,
+        SUSRAMUsedPercentage = 4043,
+        SUNANDCurrentlyUsedPartition = 4045,
+        SUNANDFlashLCLOn = 4052,
+        SUNANDFlashLCLThreshold = 4048,
+        SUNANDFlashScrubbingFrequency = 4056,
+        SURAMScrubbingFrequency = 4057,
+        SUProgramFlashScrubbingFrequency = 4058,
+        SUControlPumpFlashLCLOn = 4054,
+        SUControlPumpFlashLCLThreshold = 4050,
+        SUFlowPumpFlashOn = 4053,
+        SUFlowPumpFlashLCLThreshold = 4049,
+        SUCameraON = 4055,
+        SUCameraLCLThreshold = 4051,
+        SUPCBTemperature1 = 4000,
+        SUPCBTemperature2 = 4001,
+        SUPCBTemperatureControlValves = 4002,
+        SUPCBTemperatureFlowValves = 4003,
+        SUCameraTemperature = 4037,
+        SUPDMSTemperature = 4004,
+        SUGrowthMediumTemperature = 4005,
+        SULastFailedEvent = 4046,
+        SUPressureLevelSensor1 = 4010,
+        SUPressureLevelSensor2 = 4011,
+        SUHumidityLevelSensor1 = 4012,
+        SUHumidityLevelSensor2 = 4013,
+        SURADFET = 4036,
+        SUPumpFlowRate1 = 4015,
+        SUPumpFlowRate2 = 4016,
+        SUControlChamberValve1 = 4017,
+        SUControlChamberValve2 = 4018,
+        SUControlChamberValve3 = 4019,
+        SUControlSandwitchValve1 = 4020,
+        SUControlSandwitchValve2 = 4021,
+        SUControlSandwitchValve3 = 4022,
+        SUFlowValveInlet1 = 4023,
+        SUFlowValveInlet2 = 4024,
+        SUFlowValveInlet3 = 4025,
+        SUFlowValveOutlet1 = 4026,
+        SUFlowValveOutlet2 = 4027,
+        SUFlowValveOutlet3 = 4028,
+        SUFlowValveTest1 = 4029,
+        SUFlowValveTest2 = 4030,
+        SULEDIntensity1 = 4006,
+        SULEDIntensity2 = 4007,
+        SULEDIntensity3 = 4008,
+        SULEDIntensity4 = 4009,
+        SUNumberOfPhotosTaken = 4014,
+        SUPhotoExposureTime = 4031,
+        SUPhotoInterval = 4032,
+        SUPhotoCroppedResolution = 4033,
+        SUPhotoCompressionRate = 4034,
+        SUExperimentNumber = 4035,
         SUOnBoardTime = 4044,
 
         /* ADCS */
@@ -335,87 +335,87 @@ namespace PlatformParameters {
     inline Parameter<float> suMCUInputVoltage(0);
 
     // Memory
-    inline Parameter<uint32_t> flashIntUsedPercentage(0);
-    inline Parameter<uint32_t> flashUsedPercentage(0);
-    inline Parameter<uint32_t> sramUsedPercentage(0);
+    inline Parameter<uint32_t> suFlashIntUsedPercentage(0);
+    inline Parameter<uint32_t> suFlashUsedPercentage(0);
+    inline Parameter<uint32_t> suSRAMUsedPercentage(0);
 
-    inline Parameter<uint8_t> nandCurrentlyUsedPartition(0); // FIXME: is enum in database
-    inline Parameter<float> nandFlashLclOn(0);
-    inline Parameter<float> nandFlashLclThreshold(0);
+    inline Parameter<uint8_t> suNANDCurrentlyUsedPartition(0); // FIXME: is enum in database
+    inline Parameter<float> suNANDFlashLclOn(0);
+    inline Parameter<float> suNANDFlashLclThreshold(0);
 
-    inline Parameter<float> nandFlashScrubbingFrequency(0);
-    inline Parameter<float> ramScrubbingFrequency(0);
-    inline Parameter<float> programFlashScrubbingFrequency(0);
+    inline Parameter<float> suNANDFlashScrubbingFrequency(0);
+    inline Parameter<float> suRAMScrubbingFrequency(0);
+    inline Parameter<float> suProgramFlashScrubbingFrequency(0);
 
     // Components
-    inline Parameter<float> controlPumpFlashLclOn(0);
-    inline Parameter<float> controlPumpFlashLclThreshold(0);
+    inline Parameter<float> suControlPumpFlashLclOn(0);
+    inline Parameter<float> suControlPumpFlashLclThreshold(0);
 
-    inline Parameter<float> flowPumpFlashOn(0);
-    inline Parameter<float> flowPumpFlashLclThreshold(0);
+    inline Parameter<float> suFlowPumpFlashOn(0);
+    inline Parameter<float> suFlowPumpFlashLclThreshold(0);
 
-    inline Parameter<float> cameraOn(0);
-    inline Parameter<float> cameraLclThreshold(0);
+    inline Parameter<float> suCameraOn(0);
+    inline Parameter<float> suCameraLCLThreshold(0);
 
     // Temperatures
-    inline Parameter<float> pcbTemperature1(0);
-    inline Parameter<float> pcbTemperature2(0);
+    inline Parameter<float> suPCBTemperature1(0);
+    inline Parameter<float> suPCBTemperature2(0);
 
-    inline Parameter<float> pcbTemperatureControlValves(0);
-    inline Parameter<float> pcbTemperatureFlowValves(0);
+    inline Parameter<float> suPCBTemperatureControlValves(0);
+    inline Parameter<float> suPCBTemperatureFlowValves(0);
 
-    inline Parameter<float> cameraTemperature(0);
-    inline Parameter<float> pdmsTemperature(0);
-    inline Parameter<float> growthMediumTemperature(0);
+    inline Parameter<float> suCameraTemperature(0);
+    inline Parameter<float> suPDMSTemperature(0);
+    inline Parameter<float> suGrowthMediumTemperature(0);
 
     // Sensors
-    inline Parameter<float> pressureLevelSensor1(0);
-    inline Parameter<float> pressureLevelSensor2(0);
+    inline Parameter<float> suPressureLevelSensor1(0);
+    inline Parameter<float> suPressureLevelSensor2(0);
 
-    inline Parameter<float> humidityLevelSensor1(0);
-    inline Parameter<float> humidityLevelSensor2(0);
+    inline Parameter<float> suHumidityLevelSensor1(0);
+    inline Parameter<float> suHumidityLevelSensor2(0);
 
-    inline Parameter<double> radfet(0);
+    inline Parameter<double> suRadfet(0);
 
     // Components
-    inline Parameter<float> pumpFlowRate1(0);
-    inline Parameter<float> pumpFlowRate2(0);
+    inline Parameter<float> suPumpFlowRate1(0);
+    inline Parameter<float> suPumpFlowRate2(0);
 
-    inline Parameter<bool> controlChamberValve1(0);
-    inline Parameter<bool> controlChamberValve2(0);
-    inline Parameter<bool> controlChamberValve3(0);
+    inline Parameter<bool> suCcontrolChamberValve1(0);
+    inline Parameter<bool> suControlChamberValve2(0);
+    inline Parameter<bool> suControlChamberValve3(0);
 
-    inline Parameter<bool> controlSandwitchValve1(0);
-    inline Parameter<bool> controlSandwitchValve2(0);
-    inline Parameter<bool> controlSandwitchValve3(0);
+    inline Parameter<bool> suControlSandwitchValve1(0);
+    inline Parameter<bool> suControlSandwitchValve2(0);
+    inline Parameter<bool> suControlSandwitchValve3(0);
 
-    inline Parameter<bool> flowValveInlet1(0);
-    inline Parameter<bool> flowValveInlet2(0);
-    inline Parameter<bool> flowValveInlet3(0);
+    inline Parameter<bool> suFlowValveInlet1(0);
+    inline Parameter<bool> suFlowValveInlet2(0);
+    inline Parameter<bool> suFlowValveInlet3(0);
 
-    inline Parameter<bool> flowValveOutlet1(0);
-    inline Parameter<bool> flowValveOutlet2(0);
-    inline Parameter<bool> flowValveOutlet3(0);
+    inline Parameter<bool> suFlowValveOutlet1(0);
+    inline Parameter<bool> suFlowValveOutlet2(0);
+    inline Parameter<bool> suFlowValveOutlet3(0);
 
-    inline Parameter<bool> flowValveTest1(0);
-    inline Parameter<bool> flowValveTest2(0);
+    inline Parameter<bool> suFlowValveTest1(0);
+    inline Parameter<bool> suFlowValveTest2(0);
 
-    inline Parameter<float> ledIntensity1(0);
-    inline Parameter<float> ledIntensity2(0);
-    inline Parameter<float> ledIntensity3(0);
-    inline Parameter<float> ledIntensity4(0);
+    inline Parameter<float> suLEDIntensity1(0);
+    inline Parameter<float> suLEDIntensity2(0);
+    inline Parameter<float> suLEDIntensity3(0);
+    inline Parameter<float> suLEDIntensity4(0);
 
     // Photos
-    inline Parameter<uint16_t> numberOfPhotosTaken(0);
-    inline Parameter<float> photoExposureTime(0);
-    inline Parameter<uint16_t> photoInterval(0);
-    inline Parameter<uint64_t> photoCroppedResolution(0); // FIXME: is enum in database
-    inline Parameter<uint32_t> photoCompressionRate(0); // FIXME: is enum in database
+    inline Parameter<uint16_t> suNumberOfPhotosTaken(0);
+    inline Parameter<float> suPhotoExposureTime(0);
+    inline Parameter<uint16_t> suPhotoInterval(0);
+    inline Parameter<uint64_t> suPhotoCroppedResolution(0); // FIXME: is enum in database
+    inline Parameter<uint32_t> suPhotoCompressionRate(0); // FIXME: is enum in database
 
     // Misc
-    inline Parameter<uint8_t> experimentNumber(0); // FIXME: is enum in database
+    inline Parameter<uint8_t> suExperimentNumber(0); // FIXME: is enum in database
     inline Parameter<uint32_t> suOnBoardTime(0);
-    inline Parameter<uint16_t> lastFailedEvent(0);
+    inline Parameter<uint16_t> suLastFailedEvent(0);
 
     /******************* ADCS PARAMETERS *******************/
     inline Parameter<bool> adcsUseRTT(true);
