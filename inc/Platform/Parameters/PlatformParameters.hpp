@@ -84,6 +84,65 @@ namespace PlatformParameters {
         PhotoCompressionRate = 4034,
         ExperimentNumber = 4035,
         OnBoardTime = 4044,
+
+        /* ADCS */
+        ADCSUseRTT = 11,
+        ADCSUseUART = 12,
+        ADCSUseCAN = 13,
+        ADCSMCUTemperature = 1218,
+        ADCSBootCounter = 1220,
+        ADCSMCUOnBoardTime = 1221,
+        ADCSSystick = 1224,
+        MagnetometerRawX = 1013,
+        MagnetometerRawY = 1014,
+        MagnetometerRawZ = 1015,
+        MagnetometerFrequency = 1016,
+        MagnetometerCycleCountX = 1017,
+        MagnetometerCycleCountY = 1018,
+        MagnetometerCycleCountZ = 1019,
+        MagnetometerSelfTest = 1020,
+        GyroscopeX = 1043,
+        GyroscopeY = 1044,
+        GyroscopeZ = 1045,
+        GyroXLOCST1Register = 1046,
+        GyroXLOCST0Register = 1047,
+        GyroXHICST1Register = 1048,
+        GyroXHICST0Register = 1049,
+        GyroXQUAD1Register = 1050,
+        GyroXQUAD0Register = 1051,
+        GyroXFAULT1Register = 1052,
+        GyroXFAULT0Register = 1053,
+        GyroYLOCST1Register = 1054,
+        GyroYLOCST0Register = 1055,
+        GyroYHICST1Register = 1056,
+        GyroYHICST0Register = 1057,
+        GyroYQUAD1Register = 1058,
+        GyroYQUAD0Register = 1059,
+        GyroYFAULT1Register = 1060,
+        GyroYFAULT0Register = 1061,
+        GyroZLOCST1Register = 1062,
+        GyroZLOCST0Register = 1063,
+        GyroZHICST1Register = 1064,
+        GyroZHICST0Register = 1065,
+        GyroZQUAD1Register = 1066,
+        GyroZQUAD0Register = 1067,
+        GyroZFAULT1Register = 1068,
+        GyroZFAULT0Register = 1069,
+        GyroscopeXTemperature = 1089,
+        GyroscopeYTemperature = 1090,
+        GyroscopeZTemperature = 1091,
+        ADCSBoardTemperature1 = 1092,
+        ADCSBoardTemperature2 = 1093,
+        MagnetometerSignX = 1158,
+        MagnetometerSignY = 1159,
+        MagnetometerSignZ = 1160,
+        GyroSignX = 1164,
+        GyroSignY = 1166,
+        GyroSignZ = 1166,
+        GyroBiasX = 1189,
+        GyroBiasY = 1190,
+        GyroBiasZ = 1191,
+
     };
 
     // Parameters used for testing
@@ -196,6 +255,76 @@ namespace PlatformParameters {
 
     // Misc
     inline Parameter<uint8_t> experimentNumber(0); // FIXME: is enum in database
+
+    /******************* ADCS PARAMETERS *******************/
+    inline Parameter<bool> adcsUseRTT(true);
+    inline Parameter<bool> adcsUseUART(false);
+    inline Parameter<bool> adcsUseCAN(false);
+
+    inline Parameter<float> adcsMCUTemperature(0);
+    inline Parameter<uint16_t> adcsBootCounter(0);
+    inline Parameter<float> adcsMCUOnBoardTime(0);
+    inline Parameter<uint64_t> adcsSystick(0);
+
+    inline Parameter<int32_t> magnetometerRawX(0);
+    inline Parameter<int32_t> magnetometerRawY(0);
+    inline Parameter<int32_t> magnetometerRawZ(0);
+    inline Parameter<uint8_t> magnetometerFrequency(0);
+    inline Parameter<uint16_t> magnetometerCycleCountX(0); //uint8_t(?)
+    inline Parameter<uint16_t> magnetometerCycleCountY(0); //uint8_t(?)
+    inline Parameter<uint16_t> magnetometerCycleCountZ(0); //uint8_t(?)
+    inline Parameter<bool> magnetometerSelfTest(0);
+
+    inline Parameter<float> gyroscopeX(0);
+    inline Parameter<float> gyroscopeY(0);
+    inline Parameter<float> gyroscopeZ(0);
+
+    inline Parameter<uint16_t> gyroXLOCST1Register(0);
+    inline Parameter<uint16_t> gyroXLOCST0Register(0);
+    inline Parameter<uint16_t> gyroXHICST1Register(0);
+    inline Parameter<uint16_t> gyroXHICST0Register(0);
+    inline Parameter<uint16_t> gyroXQUAD1Register(0);
+    inline Parameter<uint16_t> gyroXQUAD0Register(0);
+    inline Parameter<uint16_t> gyroXFAULT1Register(0);
+    inline Parameter<uint16_t> gyroXFAULT0Register(0);
+
+    inline Parameter<uint16_t> gyroYLOCST1Register(0);
+    inline Parameter<uint16_t> gyroYLOCST0Register(0);
+    inline Parameter<uint16_t> gyroYHICST1Register(0);
+    inline Parameter<uint16_t> gyroYHICST0Register(0);
+    inline Parameter<uint16_t> gyroYQUAD1Register(0);
+    inline Parameter<uint16_t> gyroYQUAD0Register(0);
+    inline Parameter<uint16_t> gyroYFAULT1Register(0);
+    inline Parameter<uint16_t> gyroYFAULT0Register(0);
+
+    inline Parameter<uint16_t> gyroZLOCST1Register(0);
+    inline Parameter<uint16_t> gyroZLOCST0Register(0);
+    inline Parameter<uint16_t> gyroZHICST1Register(0);
+    inline Parameter<uint16_t> gyroZHICST0Register(0);
+    inline Parameter<uint16_t> gyroZQUAD1Register(0);
+    inline Parameter<uint16_t> gyroZQUAD0Register(0);
+    inline Parameter<uint16_t> gyroZFAULT1Register(0);
+    inline Parameter<uint16_t> gyroZFAULT0Register(0);
+
+    inline Parameter<float> gyroscopeXTemperature(0);
+    inline Parameter<float> gyroscopeYTemperature(0);
+    inline Parameter<float> gyroscopeZTemperature(0);
+
+    inline Parameter<float> adcsBoardTemperature1(0);
+    inline Parameter<float> adcsBoardTemperature2(0);
+
+    inline Parameter<bool> magnetometerSignX(0);
+    inline Parameter<bool> magnetometerSignY(0);
+    inline Parameter<bool> magnetometerSignZ(0);
+
+    inline Parameter<bool> gyroSignX(0);
+    inline Parameter<bool> gyroSignY(0);
+    inline Parameter<bool> gyroSignZ(0);
+
+    inline Parameter<float> gyroBiasX(0);
+    inline Parameter<float> gyroBiasY(0);
+    inline Parameter<float> gyroBiasZ(0);
+
 }
 
 #endif
