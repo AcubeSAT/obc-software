@@ -6,7 +6,7 @@
 
 namespace CommonParameters {
     inline auto &boardTemperature1 = PlatformParameters::obcBoardTemperature1;
-    inline auto &mcuTemperature = PlatformParameters::mcuTemperature;
+    inline auto &mcuTemperature = PlatformParameters::obcMCUTemperature;
     inline auto &onBoardYear = PlatformParameters::onBoardYear;
     inline auto &onBoardMonth = PlatformParameters::onBoardMonth;
     inline auto &onBoardDay = PlatformParameters::onBoardDay;

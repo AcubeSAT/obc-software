@@ -158,7 +158,7 @@ namespace PlatformParameters {
     // OBDH parameters
     inline Parameter<uint16_t> obcBootCounter(0);
     inline Parameter<uint64_t> obcSysTick(0);
-    inline Parameter<float> mcuTemperature(0);
+    inline Parameter<float> obcMCUTemperature(0);
     inline Parameter<float> obcBoardTemperature1(0);
     inline Parameter<bool> useRTT(true);
     inline Parameter<bool> useUART(true);

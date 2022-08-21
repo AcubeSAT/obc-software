@@ -17,7 +17,7 @@ void ParameterService::initializeParameterMap() {
                   {PlatformParameters::OBCBoardTemperature1,        PlatformParameters::obcBoardTemperature1},
                   {PlatformParameters::OBCBootCounter,              PlatformParameters::obcBootCounter},
                   {PlatformParameters::OBCSystick,                  PlatformParameters::obcSysTick},
-                  {PlatformParameters::OBCMCUTemperature,           PlatformParameters::mcuTemperature},
+                  {PlatformParameters::OBCMCUTemperature,           PlatformParameters::obcMCUTemperature},
                   {PlatformParameters::UseRTT,                      PlatformParameters::useRTT},
                   {PlatformParameters::UseUART,                     PlatformParameters::useUART},
                   {PlatformParameters::UseCAN,                      PlatformParameters::useCAN},
@@ -79,7 +79,7 @@ void ParameterService::initializeParameterMap() {
                   {PlatformParameters::PhotoInterval,                   PlatformParameters::photoInterval},
                   {PlatformParameters::PhotoCroppedResolution,          PlatformParameters::photoCroppedResolution},
                   {PlatformParameters::PhotoCompressionRate,            PlatformParameters::photoCompressionRate},
-                  {PlatformParameters::PhotoCompressionRate,            PlatformParameters::experimentNumber},
+                  {PlatformParameters::ExperimentNumber,                PlatformParameters::experimentNumber},
                   {PlatformParameters::OnBoardTime,                     PlatformParameters::onBoardTime},
                   //---------------------------------------------------------------------------------------------
                   {PlatformParameters::ADCSUseRTT,                  PlatformParameters::adcsUseRTT},
