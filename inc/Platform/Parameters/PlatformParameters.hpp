@@ -114,6 +114,8 @@ namespace PlatformParameters {
         SUPhotoCompressionRate = 4034,
         SUExperimentNumber = 4035,
         SUOnBoardTime = 4044,
+        SUTemperatureFromHumiditySensor1 = 4059,
+        SUTemperatureFromHumiditySensor2 = 4060,
 
         /* ADCS */
         ADCSUseRTT = 11,
