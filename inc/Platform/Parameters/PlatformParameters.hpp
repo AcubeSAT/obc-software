@@ -119,10 +119,21 @@ namespace PlatformParameters {
         ADCSUseRTT = 11,
         ADCSUseUART = 12,
         ADCSUseCAN = 13,
-        ADCSMCUTemperature = 1218,
-        ADCSBootCounter = 1220,
-        ADCSMCUOnBoardTime = 1221,
-        ADCSSystick = 1224,
+
+        ADCSXBodyFrameRegardingOrbitFrame = 1000,
+        ADCSYBodyFrameRegardingOrbitFrame = 1001,
+        ADCSZBodyFrameRegardingOrbitFrame = 1002,
+        ADCSAngularVelocityOnX = 1003,
+        ADCSAngularVelocityOnY = 1004,
+        ADCSAngularVelocityOnZ = 1005,
+        ADCSBDotXAxis = 1006,
+        ADCSBDotYAxis = 1007,
+        ADCSBDotZAxis = 1008,
+        ADCSQuaternionOrbitFrameToBodyScalar = 1009,
+        ADCSQuaternionOrbitFrameToBodyVectorElem1 = 1010,
+        ADCSQuaternionOrbitFrameToBodyVectorElem2 = 1011,
+        ADCSQuaternionOrbitFrameToBodyVectorElem3 = 1012,
+
         ADCSMagnetometerRawX = 1013,
         ADCSMagnetometerRawY = 1014,
         ADCSMagnetometerRawZ = 1015,
@@ -131,6 +142,30 @@ namespace PlatformParameters {
         ADCSMagnetometerCycleCountY = 1018,
         ADCSMagnetometerCycleCountZ = 1019,
         ADCSMagnetometerSelfTest = 1020,
+
+        ADCSMagnetometerISISCalibratedXAxis = 1021,
+        ADCSMagnetometerISISCalibratedYAxis = 1022,
+        ADCSMagnetometerISISCalibratedZAxis = 1023,
+        ADCSMagnetometerISISFilteredXAxis = 1024,
+        ADCSMagnetometerISISFilteredYAxis = 1025,
+        ADCSMagnetometerISISFilteredZAxis = 1026,
+        ADCSMagnetometerISISRawXAxis = 1027,
+        ADCSMagnetometerISISRawYAxis = 1028,
+        ADCSMagnetometerISISRawZAxis = 1029,
+        ADCSFineSunSensorRawTopLeft = 1030,
+        ADCSFineSunSensorRawTopRight = 1031,
+        ADCSFineSunSensorRawBottomLeft = 1032,
+        ADCSFineSunSensorRawBottomRight = 1033,
+        ADCSFineSunSensorFilteredTopLeft = 1034,
+        ADCSFineSunSensorFilteredTopRight = 1035,
+        ADCSFineSunSensorFilteredBottomLeft = 1036,
+        ADCSFineSunSensorFilteredBottomRight = 1037,
+        ADCSFineSunSensorAngularAlphaAngle = 1038,
+        ADCSFineSunSensorAngularBetaAngle = 1039,
+        ADCSFineSunSensorCalculatedX = 1040,
+        ADCSFineSunSensorCalculatedY = 1041,
+        ADCSFineSunSensorCalculatedZ = 1042,
+
         ADCSGyroscopeX = 1043,
         ADCSGyroscopeY = 1044,
         ADCSGyroscopeZ = 1045,
@@ -158,20 +193,178 @@ namespace PlatformParameters {
         ADCSGyroZQUAD0Register = 1067,
         ADCSGyroZFAULT1Register = 1068,
         ADCSGyroZFAULT0Register = 1069,
+
+        ADCSMagnetorquerOnXAxisHBridgePolarity = 1070,
+        ADCSMagnetorquerOnYAxisHBridgePolarity = 1071,
+        ADCSMagnetorquerOnZAxisHBridgePolarity = 1072,
+        ADCSMagnetorquerOnXAxisOnOff = 1073,
+        ADCSMagnetorquerOnYAxisOnOff = 1074,
+        ADCSMagnetorquerOnZAxisOnOff = 1075,
+        ADCSGainBdot1 = 1076,
+        ADCSGainBdot2 = 1077,
+        ADCSGainBdot3 = 1078,
+        ADCSGainProportionalPD1 = 1079,
+        ADCSGainProportionalPD2 = 1080,
+        ADCSGainProportionalPD3 = 1081,
+        ADCSGainDerivativePD1 = 1082,
+        ADCSGainDerivativePD2 = 1083,
+        ADCSGainDerivativePD3 = 1084,
+        ADCSiMQTBoardCoilXTemperatureSensor = 1085,
+        ADCSiMQTBoardCoilYTemperatureSensor = 1086,
+        ADCSiMQTBoardCoilZTemperatureSensor = 1087,
+        ADCSiMQTBoardExtraTemperatureSensor = 1088,
+
         ADCSGyroscopeXTemperature = 1089,
         ADCSGyroscopeYTemperature = 1090,
         ADCSGyroscopeZTemperature = 1091,
         ADCSBoardTemperature1 = 1092,
         ADCSBoardTemperature2 = 1093,
+
+        ADCSMode = 1094,
+        ADCSTLE = 1095,
+        ADCSInitialKalmanQuaternionECIFrameToBodyScalar = 1096,
+        ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem1 = 1097,
+        ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem2 = 1098,
+        ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem3 = 1099,
+        ADCSTLEOrbitalElementsArgumentPerigee = 1100,
+        ADCSTLEOrbitalElementsRAAN = 1101,
+        ADCSTLEOrbitalElementsInclination = 1102,
+        ADCSTLEOrbitalElementsEccentricity = 1103,
+        ADCSTLEOrbitalElementsMeanAnomaly = 1104,
+        ADCSSGP4OrbitalElementsArgumentPerigee = 1105,
+        ADCSSGP4OrbitalElementsRAAN = 1106,
+        ADCSSGP4OrbitalElementsInclination = 1107,
+        ADCSSGP4OrbitalElementsMeanAnomaly = 1108,
+        ADCSTimeGST_JD = 1109,
+        ADCSDeterminationInitialMatricesQ1 = 1110,
+        ADCSDeterminationInitialMatricesQ2 = 1111,
+        ADCSDeterminationInitialMatricesQ3 = 1112,
+        ADCSDeterminationInitialMatricesQ4 = 1113,
+        ADCSDeterminationInitialMatricesQ5 = 1114,
+        ADCSDeterminationInitialMatricesQ6 = 1115,
+        ADCSDeterminationInitialMatricesQ7 = 1116,
+        ADCSDeterminationInitialMatricesQ8 = 1117,
+        ADCSDeterminationInitialMatricesQ9 = 1118,
+        ADCSDeterminationInitialMatricesQ10 = 1119,
+        ADCSDeterminationInitialMatricesR1 = 1120,
+        ADCSDeterminationInitialMatricesR2 = 1121,
+        ADCSDeterminationInitialMatricesR3 = 1122,
+        ADCSDeterminationInitialMatricesR4 = 1123,
+        ADCSDeterminationInitialMatricesR5 = 1124,
+        ADCSDeterminationInitialMatricesR6 = 1125,
+        ADCSDeterminationInitialMatricesR7 = 1126,
+        ADCSDeterminationInitialMatricesR8 = 1127,
+        ADCSDeterminationInitialMatricesR9 = 1128,
+        ADCSDeterminationInitialMatricesPInitial1 = 1129,
+        ADCSDeterminationInitialMatricesPInitial2 = 1130,
+        ADCSDeterminationInitialMatricesPInitial3 = 1131,
+        ADCSDeterminationInitialMatricesPInitial4 = 1132,
+        ADCSDeterminationInitialMatricesPInitial5 = 1133,
+        ADCSDeterminationInitialMatricesPInitial6 = 1134,
+        ADCSDeterminationInitialMatricesPInitial7 = 1135,
+        ADCSDeterminationInitialMatricesPInitial8 = 1136,
+        ADCSDeterminationInitialMatricesPInitial9 = 1137,
+        ADCSDeterminationInitialMatricesPInitial10 = 1138,
+        ADCSReactionWheelOnOff = 1139,
+        ADCSReactionWheelAngularVelocity = 1140,
+        ADCSMagnetorquerAxisAssignment = 1141,
+        ADCSControlProfileSwitching = 1142,
+        ADCSTransformationAxisXAssignment = 1143,
+        ADCSTransformationAxisYAssignment = 1144,
+        ADCSTransformationAxisZAssignment = 1145,
+        ADCSMagnetometerAxisAssignment = 1146,
+        ADCSSunSensorAxisAssignment = 1147,
+        ADCSGyroscopeAxisAssignment = 1148,
+        ADCSFrameAxisSignECIToECEF_X = 1149,
+        ADCSFrameAxisSignECIToECEF_Y = 1150,
+        ADCSFrameAxisSignECIToECEF_Z = 1151,
+        ADCSFrameAxisSignECIToOrbit_X = 1152,
+        ADCSFrameAxisSignECIToOrbit_Y = 1153,
+        ADCSFrameAxisSignECIToOrbit_Z = 1154,
+        ADCSFrameAxisSignNEDToECEF_X = 1155,
+        ADCSFrameAxisSignNEDToECEF_Y = 1156,
+        ADCSFrameAxisSignNEDToECEF_Z = 1157,
+
         ADCSMagnetometerSignX = 1158,
         ADCSMagnetometerSignY = 1159,
         ADCSMagnetometerSignZ = 1160,
+
+        ADCSSunSensorXAxisSign = 1161,
+        ADCSSunSensorYAxisSign = 1162,
+        ADCSSunSensorZAxisSign = 1163,
+
         ADCSGyroSignX = 1164,
-        ADCSGyroSignY = 1166,
+        ADCSGyroSignY = 1165,
         ADCSGyroSignZ = 1166,
+
+        ADCSDetumblingNominalThresholds = 1167,
+        ADCSNominalDetumblingThresholds = 1168,
+        ADCSStandByDetumblingThresholds = 1169,
+        ADCSDetumblingStandByThresholds = 1170,
+        ADCSNominalStandByThresholds = 1171,
+        ADCSMagnetorquerMagneticDipoleX = 1172,
+        ADCSMagnetorquerMagneticDipoleY = 1173,
+        ADCSMagnetorquerMagneticDipoleZ = 1174,
+        ADCSMagnetorquerDutyCycle = 1175,
+        ADCSMagnetorquerCurrentX = 1176,
+        ADCSMagnetorquerCurrentY = 1177,
+        ADCSMagnetorquerCurrentZ = 1178,
+        ADCSMagnetorquerBDot = 1179,
+        ADCSReactionWheelTorque = 1180,
+        ADCSReactionWheelAngularAcceleration = 1181,
+        ADCSDesiredQuaternionOrbitToBodyScalar = 1182,
+        ADCSDesiredQuaternionVectorElem1 = 1183,
+        ADCSDesiredQuaternionVectorElem2 = 1184,
+        ADCSDesiredQuaternionVectorElem3 = 1185,
+        ADCSAngularVelocityDesiredX = 1186,
+        ADCSAngularVelocityDesiredY = 1187,
+        ADCSAngularVelocityDesiredZ = 1188,
+
         ADCSGyroBiasX = 1189,
         ADCSGyroBiasY = 1190,
         ADCSGyroBiasZ = 1191,
+
+        ADCSSatellitePositionLatitude = 1192,
+        ADCSSatellitePositionLongitude = 1193,
+        ADCSSatellitePositionHeight = 1194,
+        ADCSSatellitePositionECIX = 1195,
+        ADCSSatellitePositionECIY = 1196,
+        ADCSSatellitePositionECIZ = 1197,
+        ADCSSatelliteLinearVelocityECIX = 1198,
+        ADCSSatelliteLinearVelocityECIY = 1199,
+        ADCSSatelliteLinearVelocityECIZ = 1200,
+        ADCSMagneticFieldNEDX = 1201,
+        ADCSMagneticFieldNEDY = 1202,
+        ADCSMagneticFieldNEDZ = 1203,
+        ADCSMagneticFieldECIX = 1204,
+        ADCSMagneticFieldECIY = 1205,
+        ADCSMagneticFieldECIZ = 1206,
+        ADCSSunPositionECIX = 1207,
+        ADCSSunPositionECIY = 1208,
+        ADCSSunPositionECIZ = 1209,
+        ADCSEclipse = 1210,
+        ADCSDesaturationPecentageParameter = 1211,
+        ADCSISISMTQModes = 1212,
+        ADCSMagnetorquerActuationMethod = 1213,
+        ADCSDutyCycleDetermination = 1214,
+        ADCSDutyCycleControl = 1215,
+        ADCSDutyCycleOther = 1216,
+        ADCSDesatInitialAngularVelocityParam = 1217,
+
+        ADCSMCUTemperature = 1218,
+
+        ADCSMCUInputVoltage = 1219,
+
+        ADCSBootCounter = 1220,
+        ADCSMCUOnBoardTime = 1221,
+
+        ADCSMemoryPartition = 1222,
+        ADCSLastFailedEvent = 1223,
+
+        ADCSSystick = 1224,
+
+        ADCSRAMScrubbingFrequency = 1225,
+        ADCSProgramFlashScrubbingFrequency = 1226,
 
         /* EPS Parameters */
         EPSSwitch3V1 = 3000,
@@ -422,10 +615,19 @@ namespace PlatformParameters {
     inline Parameter<bool> adcsUseUART(false);
     inline Parameter<bool> adcsUseCAN(false);
 
-    inline Parameter<float> adcsMCUTemperature(0);
-    inline Parameter<uint16_t> adcsBootCounter(0);
-    inline Parameter<float> adcsMCUOnBoardTime(0);
-    inline Parameter<uint64_t> adcsSystick(0);
+    inline Parameter<float> adcsXBodyFrameRegardingOrbitFrame(0);
+    inline Parameter<float> adcsYBodyFrameRegardingOrbitFrame(0);
+    inline Parameter<float> adcsZBodyFrameRegardingOrbitFrame(0);
+    inline Parameter<float> adcsAngularVelocityOnX(0);
+    inline Parameter<float> adcsAngularVelocityOnY(0);
+    inline Parameter<float> adcsAngularVelocityOnZ(0);
+    inline Parameter<float> adcsBDotXAxis(0);
+    inline Parameter<float> adcsBDotYAxis(0);
+    inline Parameter<float> adcsBDotZAxis(0);
+    inline Parameter<float> adcsQuaternionOrbitFrameToBodyScalar(0);
+    inline Parameter<float> adcsQuaternionOrbitFrameToBodyVectorElem1(0);
+    inline Parameter<float> adcsQuaternionOrbitFrameToBodyVectorElem2(0);
+    inline Parameter<float> adcsQuaternionOrbitFrameToBodyVectorElem3(0);
 
     inline Parameter<int32_t> adcsMagnetometerRawX(0);
     inline Parameter<int32_t> adcsMagnetometerRawY(0);
@@ -435,6 +637,30 @@ namespace PlatformParameters {
     inline Parameter<uint16_t> adcsMagnetometerCycleCountY(0); //uint8_t(?)
     inline Parameter<uint16_t> adcsMagnetometerCycleCountZ(0); //uint8_t(?)
     inline Parameter<bool> adcsMagnetometerSelfTest(0);
+
+    inline Parameter<int32_t> adcsMagnetometerISISCalibratedXAxis(0);
+    inline Parameter<int32_t> adcsMagnetometerISISCalibratedYAxis(0);
+    inline Parameter<int32_t> adcsMagnetometerISISCalibratedZAxis(0);
+    inline Parameter<int32_t> adcsMagnetometerISISFilteredXAxis(0);
+    inline Parameter<int32_t> adcsMagnetometerISISFilteredYAxis(0);
+    inline Parameter<int32_t> adcsMagnetometerISISFilteredZAxis(0);
+    inline Parameter<int32_t> adcsMagnetometerISISRawXAxis(0);
+    inline Parameter<int32_t> adcsMagnetometerISISRawYAxis(0);
+    inline Parameter<int32_t> adcsMagnetometerISISRawZAxis(0);
+
+    inline Parameter<float> adcsFineSunSensorRawTopLeft(0);
+    inline Parameter<float> adcsFineSunSensorRawTopRight(0);
+    inline Parameter<float> adcsFineSunSensorRawBottomLeft(0);
+    inline Parameter<float> adcsFineSunSensorRawBottomRight(0);
+    inline Parameter<float> adcsFineSunSensorFilteredTopLeft(0);
+    inline Parameter<float> adcsFineSunSensorFilteredTopRight(0);
+    inline Parameter<float> adcsFineSunSensorFilteredBottomLeft(0);
+    inline Parameter<float> adcsFineSunSensorFilteredBottomRight(0);
+    inline Parameter<float> adcsFineSunSensorAngularAlphaAngle(0);
+    inline Parameter<float> adcsFineSunSensorAngularBetaAngle(0);
+    inline Parameter<float> adcsFineSunSensorCalculatedX(0);
+    inline Parameter<float> adcsFineSunSensorCalculatedY(0);
+    inline Parameter<float> adcsFineSunSensorCalculatedZ(0);
 
     inline Parameter<float> adcsGyroscopeX(0);
     inline Parameter<float> adcsGyroscopeY(0);
@@ -467,6 +693,28 @@ namespace PlatformParameters {
     inline Parameter<uint16_t> adcsGyroZFAULT1Register(0);
     inline Parameter<uint16_t> adcsGyroZFAULT0Register(0);
 
+    inline Parameter<bool> adcsMagnetorquerOnXAxisHBridgePolarity(0);
+    inline Parameter<bool> adcsMagnetorquerOnYAxisHBridgePolarity(0);
+    inline Parameter<bool> adcsMagnetorquerOnZAxisHBridgePolarity(0);
+    inline Parameter<bool> adcsMagnetorquerOnXAxisOnOff(0);
+    inline Parameter<bool> adcsMagnetorquerOnYAxisOnOff(0);
+    inline Parameter<bool> adcsMagnetorquerOnZAxisOnOff(0);
+
+    inline Parameter<float> adcsGainBdot1(0);
+    inline Parameter<float> adcsGainBdot2(0);
+    inline Parameter<float> adcsGainBdot3(0);
+    inline Parameter<float> adcsGainProportionalPD1(0);
+    inline Parameter<float> adcsGainProportionalPD2(0);
+    inline Parameter<float> adcsGainProportionalPD3(0);
+    inline Parameter<float> adcsGainDerivativePD1(0);
+    inline Parameter<float> adcsGainDerivativePD2(0);
+    inline Parameter<float> adcsGainDerivativePD3(0);
+
+    inline Parameter<int16_t> adcsiMQTBoardCoilXTemperatureSensor(0);
+    inline Parameter<int16_t> adcsiMQTBoardCoilYTemperatureSensor(0);
+    inline Parameter<int16_t> adcsiMQTBoardCoilZTemperatureSensor(0);
+    inline Parameter<int16_t> adcsiMQTBoardExtraTemperatureSensor(0);
+
     inline Parameter<float> adcsGyroscopeXTemperature(0);
     inline Parameter<float> adcsGyroscopeYTemperature(0);
     inline Parameter<float> adcsGyroscopeZTemperature(0);
@@ -474,17 +722,160 @@ namespace PlatformParameters {
     inline Parameter<float> adcsBoardTemperature1(0);
     inline Parameter<float> adcsBoardTemperature2(0);
 
+    inline Parameter<int16_t> adcsMode(0); // enum
+    inline Parameter<int8_t> adcsTLE(0); // string
+
+    inline Parameter<float> adcsInitialKalmanQuaternionECIFrameToBodyScalar(0);
+    inline Parameter<float> adcsInitialKalmanQuaternionECIFrameToBodyVectorElem1(0);
+    inline Parameter<float> adcsInitialKalmanQuaternionECIFrameToBodyVectorElem2(0);
+    inline Parameter<float> adcsInitialKalmanQuaternionECIFrameToBodyVectorElem3(0);
+    inline Parameter<float> adcsTLEOrbitalElementsArgumentPerigee(0);
+    inline Parameter<float> adcsTLEOrbitalElementsRAAN(0);
+    inline Parameter<float> adcsTLEOrbitalElementsInclination(0);
+    inline Parameter<float> adcsTLEOrbitalElementsEccentricity(0);
+    inline Parameter<float> adcsTLEOrbitalElementsMeanAnomaly(0);
+
+    inline Parameter<double> adcsSGP4OrbitalElementsArgumentPerigee(0);
+    inline Parameter<double> adcsSGP4OrbitalElementsRAAN(0);
+    inline Parameter<double> adcsSGP4OrbitalElementsInclination(0);
+    inline Parameter<double> adcsSGP4OrbitalElementsMeanAnomaly(0);
+    inline Parameter<double> adcsTimeGST_JD(0);
+
+    inline Parameter<float> adcsDeterminationInitialMatricesQ1(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesQ2(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesQ3(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesQ4(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesQ5(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesQ6(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesQ7(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesQ8(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesQ9(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesQ10(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesR1(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesR2(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesR3(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesR4(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesR5(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesR6(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesR7(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesR8(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesR9(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesPInitial1(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesPInitial2(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesPInitial3(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesPInitial4(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesPInitial5(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesPInitial6(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesPInitial7(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesPInitial8(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesPInitial9(0);
+    inline Parameter<float> adcsDeterminationInitialMatricesPInitial10(0);
+
+    inline Parameter<bool> adcsReactionWheelOnOff(0);
+    inline Parameter<float> adcsReactionWheelAngularVelocity(0);
+    inline Parameter<bool> adcsControlProfileSwitching(0);
+
+    inline Parameter<uint16_t> adcsMagnetorquerAxisAssignment(0); // enum
+    inline Parameter<uint16_t> adcsTransformationAxisXAssignment(0); // enum
+    inline Parameter<uint16_t> adcsTransformationAxisYAssignment(0); // enum
+    inline Parameter<uint16_t> adcsTransformationAxisZAssignment(0); // enum
+    inline Parameter<uint16_t> adcsMagnetometerAxisAssignment(0); // enum
+    inline Parameter<uint16_t> adcsSunSensorAxisAssignment(0); // enum
+    inline Parameter<uint16_t> adcsGyroscopeAxisAssignment(0); // enum
+
+    inline Parameter<bool> adcsFrameAxisSignECIToECEF_X(0);
+    inline Parameter<bool> adcsFrameAxisSignECIToECEF_Y(0);
+    inline Parameter<bool> adcsFrameAxisSignECIToECEF_Z(0);
+    inline Parameter<bool> adcsFrameAxisSignECIToOrbit_X(0);
+    inline Parameter<bool> adcsFrameAxisSignECIToOrbit_Y(0);
+    inline Parameter<bool> adcsFrameAxisSignECIToOrbit_Z(0);
+    inline Parameter<bool> adcsFrameAxisSignNEDToECEF_X(0);
+    inline Parameter<bool> adcsFrameAxisSignNEDToECEF_Y(0);
+    inline Parameter<bool> adcsFrameAxisSignNEDToECEF_Z(0);
+
     inline Parameter<bool> adcsMagnetometerSignX(0);
     inline Parameter<bool> adcsMagnetometerSignY(0);
     inline Parameter<bool> adcsMagnetometerSignZ(0);
+
+    inline Parameter<bool> adcsSunSensorXAxisSign(0);
+    inline Parameter<bool> adcsSunSensorYAxisSign(0);
+    inline Parameter<bool> adcsSunSensorZAxisSign(0);
 
     inline Parameter<bool> adcsGyroSignX(0);
     inline Parameter<bool> adcsGyroSignY(0);
     inline Parameter<bool> adcsGyroSignZ(0);
 
+    inline Parameter<float> adcsDetumblingNominalThresholds(0);
+    inline Parameter<float> adcsNominalDetumblingThresholds(0);
+    inline Parameter<float> adcsStandByDetumblingThresholds(0);
+    inline Parameter<float> adcsDetumblingStandByThresholds(0);
+    inline Parameter<float> adcsNominalStandByThresholds(0);
+    inline Parameter<float> adcsMagnetorquerMagneticDipoleX(0);
+    inline Parameter<float> adcsMagnetorquerMagneticDipoleY(0);
+    inline Parameter<float> adcsMagnetorquerMagneticDipoleZ(0);
+
+    inline Parameter<uint16_t> adcsMagnetorquerDutyCycle(0); // enum
+
+    inline Parameter<uint16_t> adcsMagnetorquerCurrentX(0);
+    inline Parameter<uint16_t> adcsMagnetorquerCurrentY(0);
+    inline Parameter<uint16_t> adcsMagnetorquerCurrentZ(0);
+
+    inline Parameter<float> adcsMagnetorquerBDot(0);
+    inline Parameter<float> adcsReactionWheelTorque(0);
+    inline Parameter<float> adcsReactionWheelAngularAcceleration(0);
+    inline Parameter<float> adcsDesiredQuaternionOrbitToBodyScalar(0);
+    inline Parameter<float> adcsDesiredQuaternionVectorElem1(0);
+    inline Parameter<float> adcsDesiredQuaternionVectorElem2(0);
+    inline Parameter<float> adcsDesiredQuaternionVectorElem3(0);
+    inline Parameter<float> adcsAngularVelocityDesiredX(0);
+    inline Parameter<float> adcsAngularVelocityDesiredY(0);
+    inline Parameter<float> adcsAngularVelocityDesiredZ(0);
+
     inline Parameter<float> adcsGyroBiasX(0);
     inline Parameter<float> adcsGyroBiasY(0);
     inline Parameter<float> adcsGyroBiasZ(0);
+
+    inline Parameter<double> adcsSatellitePositionLatitude(0);
+    inline Parameter<double> adcsSatellitePositionLongitude(0);
+    inline Parameter<double> adcsSatellitePositionHeight(0);
+
+    inline Parameter<float> adcsSatellitePositionECIX(0);
+    inline Parameter<float> adcsSatellitePositionECIY(0);
+    inline Parameter<float> adcsSatellitePositionECIZ(0);
+    inline Parameter<float> adcsSatelliteLinearVelocityECIX(0);
+    inline Parameter<float> adcsSatelliteLinearVelocityECIY(0);
+    inline Parameter<float> adcsSatelliteLinearVelocityECIZ(0);
+    inline Parameter<float> adcsMagneticFieldNEDX(0);
+    inline Parameter<float> adcsMagneticFieldNEDY(0);
+    inline Parameter<float> adcsMagneticFieldNEDZ(0);
+    inline Parameter<float> adcsMagneticFieldECIX(0);
+    inline Parameter<float> adcsMagneticFieldECIY(0);
+    inline Parameter<float> adcsMagneticFieldECIZ(0);
+    inline Parameter<float> adcsSunPositionECIX(0);
+    inline Parameter<float> adcsSunPositionECIY(0);
+    inline Parameter<float> adcsSunPositionECIZ(0);
+
+    inline Parameter<bool> adcsEclipse(0);
+
+    inline Parameter<float> adcsDesaturationPecentageParameter(0);
+
+    inline Parameter<uint16_t> adcsISISMTQModes(0); // enum
+    inline Parameter<uint16_t> adcsMagnetorquerActuationMethod(0); // enum
+
+    inline Parameter<float> adcsDutyCycleDetermination(0);
+    inline Parameter<float> adcsDutyCycleControl(0);
+    inline Parameter<float> adcsDutyCycleOther(0);
+    inline Parameter<float> adcsDesatInitialAngularVelocityParam(0);
+
+    inline Parameter<float> adcsMCUTemperature(0);
+    inline Parameter<float> adcsMCUInputVoltage(0);
+    inline Parameter<uint16_t> adcsBootCounter(0);
+    inline Parameter<float> adcsMCUOnBoardTime(0);
+    inline Parameter<uint16_t> adcsMemoryPartition(0); // enum
+    inline Parameter<int32_t> adcsLastFailedEvent(0);
+    inline Parameter<uint64_t> adcsSystick(0);
+    inline Parameter<float> adcsRAMScrubbingFrequency(0);
+    inline Parameter<float> adcsProgramFlashScrubbingFrequency(0);
 
     /****************** EPS PARAMETERS *******************/
     inline Parameter<bool> epsSwitch3V1(0);
