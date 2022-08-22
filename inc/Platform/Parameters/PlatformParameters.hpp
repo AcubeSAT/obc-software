@@ -612,6 +612,9 @@ namespace PlatformParameters {
     inline Parameter<uint32_t> suOnBoardTime(0);
     inline Parameter<uint16_t> suLastFailedEvent(0);
 
+    inline Parameter<float> suTemperatureFromHumiditySensor1(0);
+    inline Parameter<float> suTemperatureFromHumiditySensor2(0);
+
     /******************* ADCS PARAMETERS *******************/
     inline Parameter<bool> adcsUseRTT(true);
     inline Parameter<bool> adcsUseUART(false);
