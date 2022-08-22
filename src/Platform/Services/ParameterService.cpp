@@ -110,6 +110,8 @@ void ParameterService::initializeParameterMap() {
                   {PlatformParameters::SUPhotoCompressionRate,   PlatformParameters::suPhotoCompressionRate},
                   {PlatformParameters::SUExperimentNumber,       PlatformParameters::suExperimentNumber},
                   {PlatformParameters::SUOnBoardTime,            PlatformParameters::suOnBoardTime},
+                  {PlatformParameters::SUTemperatureFromHumiditySensor1, PlatformParameters::suTemperatureFromHumiditySensor1},
+                  {PlatformParameters::SUTemperatureFromHumiditySensor2, PlatformParameters::suTemperatureFromHumiditySensor2},
                   //---------------------------------------------------------------------------------------------
                   {PlatformParameters::ADCSUseRTT,                                PlatformParameters::adcsUseRTT},
                   {PlatformParameters::ADCSUseUART,                               PlatformParameters::adcsUseUART},
