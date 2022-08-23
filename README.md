@@ -6,6 +6,10 @@ We use FreeRTOS to handle the tasking of the MCU.
 More information regarding OBC can be found [here](https://gitlab.com/groups/acubesat/obc/-/wikis/home).
 
 There is the `env-tests` branch that contains the test code, to be used in the Environmental Tests campaign.
+
+**To build, you first have to cd `cmake-build-debug` (or to the respective CMake build dir) and run `conan install ..
+`.**
+
 ## Implemented Software
 
 Prototypes of ECSS Services
