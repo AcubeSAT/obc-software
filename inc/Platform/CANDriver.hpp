@@ -41,33 +41,33 @@ public:
      * It is registered as a callback to be automatically called by Microchip's HAL whenever
      * there is a message receipt on RX FIFO 0.
      *
-     * @param numberOfMessages The number of messages to be received from the peripheral
+     * @param NumberOfMessages The number of messages to be received from the peripheral
      * @param context The state of the peripheral when the function is called.
      * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
      */
-    static void rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context);
+    static void rxFifo0Callback(uint8_t NumberOfMessages, uintptr_t context);
 
     /**
      * Logs messages that are in the Rx buffer
-     * @param rxBuf The RX Buffer that the messages are stored
+     * @param RXBuf The RX Buffer that the messages are stored
      */
-    static void logMessage(const MCAN_RX_BUFFER &rxBuf);
+    static void logMessage(const MCAN_RX_BUFFER &RXBuf);
 
     /**
      * Decodes the data length code to get the largest expected size of the message.
      *
-     * @param dlc The data length code
+     * @param DLC The data length code
      * @return The length of the message in bytes
      */
-    static uint8_t convertDlcToLength(uint8_t dlc);
+    static uint8_t convertDlcToLength(uint8_t DLC);
 
     /**
-     * Encodes the length of the message body to the smallest data length code that it fits in.
+     * Encodes the Length of the message body to the smallest data Length code that it fits in.
      *
-     * @param length The length of the message in bytes
-     * @return The data length code
+     * @param Length The Length of the message in bytes
+     * @return The data Length code
      */
-    static uint8_t convertLengthToDlc(uint8_t length);
+    static uint8_t convertLengthToDlc(uint8_t Length);
 };
 
 #endif //OBC_SOFTWARE_CANDRIVER_H

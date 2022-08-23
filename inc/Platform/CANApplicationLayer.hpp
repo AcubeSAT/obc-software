@@ -51,22 +51,22 @@ namespace CANApplicationLayer {
 
     /**
      * Determines whether a message is following the CAN-TP Message protocol.
-     * @param id The id of the message received via CAN
+     * @param Id The Id of the message received via CAN
      * @return True if the message is part of a CAN-TP Message
      */
-    inline bool isTPMessage(const uint16_t id) {
-        return (id >> 7) == 0b0111;
+    inline bool isTPMessage(const uint16_t Id) {
+        return (Id >> 7) == 0b0111;
     }
 
     /**
      * Value of a Ping data packet according to DDJF_OBDH.
      */
-    const uint8_t pingMessageId = 0x30;
+    const uint8_t PingMessageId = 0x30;
 
     /**
      * Value of a Pong data packet according to DDJF_OBDH.
      */
-    const uint8_t pongMessageId = 0x31;
+    const uint8_t PongMessageId = 0x31;
 
     /**
      * The current CAN Bus in use.
@@ -76,42 +76,42 @@ namespace CANApplicationLayer {
     /**
      * Value of a Heartbeat message ID according to DDJF_OBDH.
      */
-    inline const uint16_t heartbeatMessageID = 0x700;
+    inline const uint16_t HeartbeatMessageID = 0x700;
 
     /**
      * Value of a Bus Switchover message ID according to DDJF_OBDH.
      */
-    inline const uint16_t busSwitchoverMessageID = 0x400;
+    inline const uint16_t BusSwitchoverMessageID = 0x400;
 
     /**
      * Value of a UTC Time message ID according to DDJF_OBDH.
      */
-    inline const uint16_t utcTimeMessageID = 0x200;
+    inline const uint16_t UTCTimeMessageID = 0x200;
 
     /**
      * Removes the ID of the sender in an incoming CAN Message.
-     * @param id The ID to be filtered.
+     * @param Id The ID to be filtered.
      * @return The filtered ID.
      */
-    inline uint16_t filterMessageID(uint16_t id) {
-        return id & 0x700;
+    inline uint16_t filterMessageID(const uint16_t Id) {
+        return Id & 0x700;
     }
 
     /**
      * Value of a Heartbeat message ID according to DDJF_OBDH.
-     * @param nodeID The ID of the current node.
+     * @param NodeID The ID of the current node.
      */
-    inline uint16_t getHeartbeatID(uint16_t nodeID) {
-        return nodeID + 0x700;
+    inline uint16_t getHeartbeatID(const uint16_t NodeID) {
+        return NodeID + 0x700;
     }
 
     /**
      * Value of a Bus Switchover message ID according to DDJF_OBDH.
-     * @param nodeID The ID of the current node.
+     * @param NodeID The ID of the current node.
      * @return The ID the Bus Switchover message should have.
      */
-    inline uint16_t getBusSwitchoverID(uint16_t nodeID) {
-        return nodeID + 0x400;
+    inline uint16_t getBusSwitchoverID(const uint16_t NodeID) {
+        return NodeID + 0x400;
     }
 
     /**
@@ -128,10 +128,10 @@ namespace CANApplicationLayer {
 
     /**
      * Value of a UTC Time message ID according to DDJF_OBDH.
-     * @param nodeID The ID of the current node.
+     * @param NodeID The ID of the current node.
      */
-    inline uint16_t getTimeID(uint16_t nodeID) {
-        return nodeID + 0x200;
+    inline uint16_t getTimeID(const uint16_t NodeID) {
+        return NodeID + 0x200;
     }
 
     /**

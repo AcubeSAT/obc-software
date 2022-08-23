@@ -7,11 +7,11 @@ namespace CANApplicationLayer {
     static CANMessage message = {};
 
     void sendPingMessage() {
-        outgoingMessages.push({pingMessageId});
+        outgoingMessages.push({PingMessageId});
     }
 
     void sendPongMessage() {
-        outgoingMessages.push({pongMessageId});
+        outgoingMessages.push({PongMessageId});
     }
 
     void sendHeartbeatMessage() {
@@ -45,17 +45,17 @@ namespace CANApplicationLayer {
 
         if (isTPMessage(message.id)) {
 //            incomingTPMessage.push(message);
-        } else if (message.id == pingMessageId) {
+        } else if (message.id == PingMessageId) {
             sendPongMessage();
         } else {
             switch (filterMessageID(message.id)) {
-                case heartbeatMessageID:
+                case HeartbeatMessageID:
 //                    parseHeartbeatMessage();
                     break;
-                case busSwitchoverMessageID:
+                case BusSwitchoverMessageID:
 //                    parseBusSwitchoverMessage();
                     break;
-                case utcTimeMessageID:
+                case UTCTimeMessageID:
 //                    parseTimeMessage();
                     break;
                 default:

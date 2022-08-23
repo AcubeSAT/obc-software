@@ -27,10 +27,10 @@ namespace CANTPMessage {
 
     /**
      * Decodes the ID of a CAN-TP Message.
-     * @param canID The received ID.
+     * @param CanID The received ID.
      * @return A struct containing the ID information.
      */
-    IdInfo decodeId(uint16_t canID);
+    IdInfo decodeId(const uint16_t CanID);
 
     /**
      * Encodes the ID of a CAN-TP Message.
