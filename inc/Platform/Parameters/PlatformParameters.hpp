@@ -467,12 +467,6 @@ namespace PlatformParameters {
     };
 
     // Parameters used for testing
-    inline Parameter<uint16_t> onBoardYear(2022);
-    inline Parameter<uint8_t> onBoardMonth(1);
-    inline Parameter<uint8_t> onBoardDay(1);
-    inline Parameter<uint8_t> onBoardHour(0);
-    inline Parameter<uint8_t> onBoardMinute(0);
-    inline Parameter<uint8_t> onBoardSecond(0);
     inline Parameter<uint16_t> reportParametersUnusedStack(0);
     inline Parameter<uint16_t> availableHeap(0);
 
@@ -496,7 +490,7 @@ namespace PlatformParameters {
     inline Parameter<uint32_t> obcMRAM(0);
     inline Parameter<uint32_t> obcNAND(0);
 
-    inline Parameter<uint32_t> obcMCUTime(0);
+    inline Parameter<Time::CustomCUC_t> obcMCUTime({0});
 
     inline Parameter<uint16_t> obcSpacecraftTimeRef(0); // enum
     inline Parameter<uint16_t> obcOperationalMode(0); // enum

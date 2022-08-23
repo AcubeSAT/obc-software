@@ -2,6 +2,7 @@
 #include "OBC_Definitions.hpp"
 #include "PlatformParameters.hpp"
 #include "Helpers/TimeGetter.hpp"
+#include "CommonParameters.hpp"
 
 namespace CANApplicationLayer {
     static CANMessage message = {};
@@ -30,11 +31,13 @@ namespace CANApplicationLayer {
         uint64_t msOfDay = TimeGetter::getCurrentTimeCustomCUC().elapsed100msTicks; //@todo This doesn't reset every day, only since epoch.
 
         uint16_t id = getTimeID(CAN::NodeID);
+        TimeStamp<4, 0> timeStamp(CommonParameters::time.getValue()); //TODO remove magic numbers when transferred to cross-platform-software
+        UTCTimestamp timestamp = timeStamp.toUTCtimestamp();
         etl::array<uint8_t, CANMessage::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay),
                                                                static_cast<uint8_t>(msOfDay >> 8),
                                                                static_cast<uint8_t>(msOfDay >> 16),
                                                                static_cast<uint8_t>(msOfDay >> 24), 0,
-                                                               PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
+                                                               timestamp.day}; //@todo days parameter should not be uint8_t
 
         outgoingMessages.push({id, data});
     }
