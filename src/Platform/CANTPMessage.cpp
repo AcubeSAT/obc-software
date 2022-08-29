@@ -7,12 +7,12 @@ using CAN::TPMessageMaximumSize;
 using CAN::TPMessageMaximumArguments;
 
 namespace CANTPMessage {
-    IdInfo decodeId(const uint16_t CanID) {
+    IdInfo decodeId(const uint16_t canID) {
         IdInfo id;
 
-        id.sourceAddress = (CanID >> 4) & 0b111;
-        id.destinationAddress = (CanID >> 1) & 0b111;
-        id.isMulticast = CanID & 0b1;
+        id.sourceAddress = (canID >> 4) & 0b111;
+        id.destinationAddress = (canID >> 1) & 0b111;
+        id.isMulticast = canID & 0b1;
 
         return id;
     }

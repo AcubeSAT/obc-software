@@ -7,11 +7,11 @@ namespace CANApplicationLayer {
     static CANMessage message = {};
 
     void sendPingMessage() {
-        outgoingMessages.push({PingMessageId});
+        outgoingMessages.push({PingMessageID});
     }
 
     void sendPongMessage() {
-        outgoingMessages.push({PongMessageId});
+        outgoingMessages.push({PongMessageID});
     }
 
     void sendHeartbeatMessage() {
@@ -45,7 +45,7 @@ namespace CANApplicationLayer {
 
         if (isTPMessage(message.id)) {
 //            incomingTPMessage.push(message);
-        } else if (message.id == PingMessageId) {
+        } else if (message.id == PingMessageID) {
             sendPongMessage();
         } else {
             switch (filterMessageID(message.id)) {
