@@ -16,8 +16,10 @@ namespace CANTPProtocol {
     };
 
     uint8_t const CANTPMessageMapSize = 64;
+    inline const uint8_t FirstFramePayloadLength = 6;
+    inline const uint8_t ConsecutiveFramePayloadLength = 7;
 
-    etl::map<uint8_t, CANMessage, CANTPMessageMapSize> outgoingMessages;
+    etl::map<uint8_t, etl::vector<uint8_t, 256>, CANTPMessageMapSize> outgoingMessages;
 
     etl::map<uint8_t, CANMessage, CANTPMessageMapSize> incomingMessages;
 
