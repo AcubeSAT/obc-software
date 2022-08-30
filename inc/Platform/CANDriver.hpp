@@ -67,7 +67,7 @@ public:
      * @param length The length of the message in bytes
      * @return The data length code
      */
-    static uint8_t convertLengthToDlc(uint8_t length);
+    static uint8_t convertLengthToDLC(uint8_t length);
 };
 
 #endif //OBC_SOFTWARE_CANDRIVER_H
