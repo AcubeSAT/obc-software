@@ -20,3 +20,11 @@ Peripherals:
 - External (MCP9808) Temperature Sensor
 - UART with DMA
 - Parameter updating of ST[20]
+
+## Installation
+
+To install run the command:
+
+    git clone https://gitlab.com/acubesat/obc/obc-software.git --recursive
+
+After cloning, the project must be imported to MPLAB. Make sure you have version **TADE** or a lot of merge conflicts will occur when generating the code.
