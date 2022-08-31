@@ -996,13 +996,6 @@ children:
       - type: Dynamic
         attributes: {id: rtc, value: 'true'}
   - type: Integer
-    attributes: {id: SDRAMC_CLOCK_FREQUENCY}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: core, value: '150000000'}
-  - type: Integer
     attributes: {id: SMC_CLOCK_FREQUENCY}
     children:
     - type: Values
