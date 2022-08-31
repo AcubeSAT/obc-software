@@ -8,16 +8,14 @@ using namespace CANTPMessage;
 namespace CANTPProtocol {
 
     void encodeCANTPMessage(uint8_t messageID, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload) {
-        uint16_t firstFrameElements = (FirstFrame << 12) | messagePayload.size();
-        uint8_t idDLC = firstFrameElements & 0xFF;
-        uint8_t DLC = firstFrameElements >> 8;
+        uint8_t idDLC =((FirstFrame << 12) | messagePayload.size()) & 0xFF;
+        uint8_t DLC = ((FirstFrame << 12) | messagePayload.size()) >> 8;
+
         etl::vector<uint8_t, CANMessage::MaxDataLength> firstFrame = {idDLC, DLC};
 
         for (uint8_t i = 0; i < FirstFramePayloadLength; i++) {
             firstFrame.push_back(messagePayload[i]);
         }
-
-        etl::vector<uint8_t, 256> totalFrame;
 
         uint8_t currentConsecutiveFrameNumber = 0x01;
         uint8_t consecutiveFrameElements = (ConsecutiveFrame << 4) | currentConsecutiveFrameNumber;

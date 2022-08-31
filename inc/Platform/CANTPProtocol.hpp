@@ -15,13 +15,30 @@ namespace CANTPProtocol {
         SingleFrame = 0x00, FirstFrame = 0x01, ConsecutiveFrame = 0x02, FlowControlFrame = 0x03
     };
 
+    /**
+     * The size of the map holding the received messages.
+     */
     uint8_t const CANTPMessageMapSize = 64;
+
+    /**
+     * The byte payload length of the First Frame.
+     */
     inline const uint8_t FirstFramePayloadLength = 6;
+
+    /**
+     * The byte payload length of a Consecutive Frame
+     */
     inline const uint8_t ConsecutiveFramePayloadLength = 7;
 
-    etl::map<uint8_t, etl::vector<uint8_t, 256>, CANTPMessageMapSize> outgoingMessages;
+    /**
+     * A structure holding received CAN-TP messages.
+     */
+    etl::map<uint8_t, etl::vector<uint8_t, CANTPMessageMapSize>, CANTPMessageMapSize> incomingMessages;
 
-    etl::map<uint8_t, CANMessage, CANTPMessageMapSize> incomingMessages;
+    /**
+     * A queue holding the outgoing messages.
+     */
+    etl::queue<etl::vector<uint8_t, CANMessage::MaxDataLength>, CANTPMessageMapSize> outgoingCANTPMessages;
 
     /**
      * Sends a Send Parameters CAN-TP Message as described in DDJF_OBDH.
@@ -32,7 +49,7 @@ namespace CANTPProtocol {
      */
     template<typename T>
     void createSendParametersCANTPMessage(uint8_t destinationAddress, bool isMulticast,
-                                     const etl::vector<uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
+                                          const etl::vector<uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
 
     /**
      * Sends a Request Parameters CAN-TP Message as described in DDJF_OBDH.
@@ -41,7 +58,7 @@ namespace CANTPProtocol {
      * @param parameterIDs The IDs of the parameters to be requested.
      */
     void createRequestParametersCANTPMessage(uint8_t destinationAddress, bool isMulticast,
-                                        const etl::vector<uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
+                                             const etl::vector<uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
 
 
     void createTMPackerCANTPMessage();
@@ -54,13 +71,15 @@ namespace CANTPProtocol {
      * Encodes a message according to the CAN-TP Protocol.
      * @param messagePayload one of the CAN-TP messages found in DDJF_OBDH
      */
-    void encodeCANTPMessage(const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload);
+    template<typename T>
+    void encodeCANTPMessage(const etl::vector<T, CAN::TPMessageMaximumSize> &messagePayload);
 
     /**
      * Decodes a received CAN-TP Protocol message to extract the containing information.
      * @param incomingMessage
      */
-    void decodeCANTPMessage(const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &incomingMessage);
+    template<typename T>
+    void decodeCANTPMessage(const etl::vector<T, CAN::TPMessageMaximumSize> &incomingMessage);
 
 
 }
