@@ -27,4 +27,4 @@ To install run the command:
 
     git clone https://gitlab.com/acubesat/obc/obc-software.git --recursive
 
-After cloning, the project must be imported to MPLAB. Make sure you have version **TADE** or a lot of merge conflicts will occur when generating the code.
+After cloning, the project must be imported to MPLAB. Make sure you have version **6.00**. During the MPLAB installation, uncheck 8 and 16 bit MCUs.
