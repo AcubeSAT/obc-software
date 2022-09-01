@@ -7,22 +7,56 @@
 namespace HousekeepingStructures {
     using namespace PlatformParameters;
 
-    static etl::array<HousekeepingStructure, ECSSMaxHousekeepingStructures> structures = {
-            {
-                    {0, 1000, true, {OBCPCBTemperature1, OBCPCBTemperature2, OBCMCUTemperature, OBCMCUInputVoltage,
-                                     OBCMCUBootCounter}},
-                    {1, 1000, true, {OBCAFlashInt, OBCASRAMInt, OBCOFLASHInt, OBCOSRAMInt, OBCMRAM, OBCNAND}},
-                    {2, 1000, true,
-                     {OBCSpacecraftTimeRef, OBCMCUTime, OBCOperationalMode, OBCMemoryPartition, OBCReconfigurationTimer,
-                      OBCLastFailedEvent, OBCMCUSystick}},
-                    {3, 1000, true,
-                     {OBCCANBUSLoad1, OBCCANBUSLoad1, OBCCANBUSActive, OBCMCUFDIR, OBCMCURestartSafeModeThreshold,
-                      OBCNANDFLASHLCLThreshold, OBCMRAMLCLThreshold, OBCNANDFLASHON, OBCMRAMON}},
-                    {4, 1000, true,
-                     {OBCNANDFLASHScrubbingFrequency, OBCRAMScrubbingFrequency, OBCProgramFlashScrubbingFrequency}},
-            }
-    };
+    static etl::array<HousekeepingStructure, ECSSMaxHousekeepingStructures> structures = {{{0, 10, true,
+                                                                                            {ADCSMagnetometerRawX,
+                                                                                             ADCSMagnetometerRawY,
+                                                                                             ADCSMagnetometerRawZ,
+                                                                                             ADCSGyroscopeX,
+                                                                                             ADCSGyroscopeY,
+                                                                                             ADCSGyroscopeZ}},
+                                                                                           {1, 3000, true,
+                                                                                            {/* TODO: Add OnBoardTime here once it's merged */
+                                                                                                    ReportParametersUnusedStack,
+                                                                                                    AvailableHeap,
+                                                                                                    OBCUseCAN,
+                                                                                                    OBCUseRTT,
+                                                                                                    OBCUseUART,
+                                                                                                    ADCSUseCAN,
+                                                                                                    ADCSUseRTT,
+                                                                                                    ADCSUseUART,
+                                                                                                    OBCPCBTemperature1,
+                                                                                                    OBCPCBTemperature2,
+                                                                                                    OBCSpacecraftTimeRef,
+                                                                                                    OBCOperationalMode,
+                                                                                                    OBCReconfigurationTimer,
+                                                                                                    OBCLastFailedEvent,
+                                                                                                    OBCMCUSystick}},
+                                                                                           {2, 3000, true,
+                                                                                            {ADCSMagnetometerFrequency,
+                                                                                             ADCSMagnetometerCycleCountX,
+                                                                                             ADCSMagnetometerCycleCountY,
+                                                                                             ADCSMagnetometerCycleCountZ,
+                                                                                             ADCSMagnetometerSelfTest,
+                                                                                             ADCSGyroscopeXTemperature,
+                                                                                             ADCSGyroscopeYTemperature,
+                                                                                             ADCSGyroscopeZTemperature,
+                                                                                             ADCSBoardTemperature1,
+                                                                                             ADCSBoardTemperature2,
+                                                                                             ADCSMCUTemperature,
+                                                                                             ADCSBootCounter,
+                                                                                             ADCSMCUOnBoardTime,
+                                                                                             ADCSSystick}},
+                                                                                           {3, 5000, false,
+                                                                                            {ADCSMagnetometerSignX,
+                                                                                             ADCSMagnetometerSignY,
+                                                                                             ADCSMagnetometerSignZ,
+                                                                                             ADCSGyroscopeX,
+                                                                                             ADCSGyroscopeY,
+                                                                                             ADCSGyroscopeZ,
+                                                                                             ADCSGyroBiasX,
+                                                                                             ADCSGyroBiasY,
+                                                                                             ADCSGyroBiasZ}}
+                                                                                          }};
 }
-
 
 #endif
