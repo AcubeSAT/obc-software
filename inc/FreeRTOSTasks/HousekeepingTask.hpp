@@ -2,6 +2,7 @@
 #define OBC_SOFTWARE_HOUSEKEEPINGTASK_HPP
 
 #include "Task.hpp"
+#include "TaskInitialization.hpp"
 
 /**
  * FreeRTOS task implementing the ST[03] Housekeeping Service.
@@ -17,6 +18,17 @@ public:
     void execute();
 
     HousekeepingTask() : Task("Housekeeping") {}
+
+    /**
+     *
+     * @brief Create freeRTOS Task
+     *
+     */
+    void createTask(){
+        xTaskCreateStatic(vClassTask<HousekeepingTask>, this->TaskName, HousekeepingTask::TaskStackDepth,
+                          this, configMAX_PRIORITIES - 1, this->taskStack,
+                          &(this->taskBuffer));
+    }
 
 };
 
