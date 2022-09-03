@@ -6,7 +6,7 @@ uint8_t CANDriver::convertDlcToLength(uint8_t dlc) {
     return msgLength[dlc];
 }
 
-uint8_t CANDriver::convertLengthToDlc(uint8_t length) {
+uint8_t CANDriver::convertLengthToDLC(uint8_t length) {
     uint8_t dlc;
 
     if (length <= 8U) {
@@ -54,13 +54,13 @@ void CANDriver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
 void CANDriver::logMessage(const MCAN_RX_BUFFER &rxBuf) {
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
     uint32_t id = rxBuf.id >> 18;
-    uint8_t msgLength = convertDlcToLength(rxBuf.dlc);
+    const uint8_t MsgLength = convertDlcToLength(rxBuf.dlc);
     message.append("Message - ID : ");
     etl::to_string(id, message, etl::format_spec().hex(), true);
     message.append(" Length : ");
-    etl::to_string(msgLength, message, true);
+    etl::to_string(MsgLength, message, true);
     message.append(" Message : ");
-    for (uint8_t idx = 0; idx < msgLength; idx++) {
+    for (uint8_t idx = 0; idx < MsgLength; idx++) {
         etl::to_string(rxBuf.data[idx], message, true);
     }
     LOG_INFO << message.c_str();

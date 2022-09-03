@@ -51,22 +51,22 @@ namespace CANApplicationLayer {
 
     /**
      * Determines whether a message is following the CAN-TP Message protocol.
-     * @param id The id of the message received via CAN
+     * @param id The Id of the message received via CAN
      * @return True if the message is part of a CAN-TP Message
      */
-    inline bool isTPMessage(const uint16_t id) {
+    inline bool isTPMessage(uint16_t id) {
         return (id >> 7) == 0b0111;
     }
 
     /**
      * Value of a Ping data packet according to DDJF_OBDH.
      */
-    const uint8_t pingMessageId = 0x30;
+    const uint8_t PingMessageID = 0x30;
 
     /**
      * Value of a Pong data packet according to DDJF_OBDH.
      */
-    const uint8_t pongMessageId = 0x31;
+    const uint8_t PongMessageID = 0x31;
 
     /**
      * The current CAN Bus in use.
@@ -76,20 +76,20 @@ namespace CANApplicationLayer {
     /**
      * Value of a Heartbeat message ID according to DDJF_OBDH.
      */
-    inline const uint16_t heartbeatMessageID = 0x700;
+    inline const uint16_t HeartbeatMessageID = 0x700;
 
     /**
      * Value of a Bus Switchover message ID according to DDJF_OBDH.
      */
-    inline const uint16_t busSwitchoverMessageID = 0x400;
+    inline const uint16_t BusSwitchoverMessageID = 0x400;
 
     /**
      * Value of a UTC Time message ID according to DDJF_OBDH.
      */
-    inline const uint16_t utcTimeMessageID = 0x200;
+    inline const uint16_t UTCTimeMessageID = 0x200;
 
     /**
-     * Removes the ID of the sender in an incoming CAN Message.
+     * Removes the id of the sender in an incoming CAN Message.
      * @param id The ID to be filtered.
      * @return The filtered ID.
      */
