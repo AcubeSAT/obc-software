@@ -42,16 +42,8 @@ extern "C" void main_cpp() {
     canTransmitTask.emplace();
     tcHandlingTask.emplace();
 
-    xTaskCreateStatic(vClassTask<UpdateParametersTask>, updateParametersTask->TaskName,
-                      updateParametersTask->TaskStackDepth,
-                      &updateParametersTask, tskIDLE_PRIORITY + 1, updateParametersTask->taskStack,
-                      &updateParametersTask->taskBuffer);
-    xTaskCreateStatic(vClassTask<StatisticsReportingTask>, statisticsReportingTask->TaskName,
-                      statisticsReportingTask->TaskStackDepth, &statisticsReportingTask, tskIDLE_PRIORITY + 1,
-                      statisticsReportingTask->taskStack, &statisticsReportingTask->taskBuffer);
-//    xTaskCreateStatic(vClassTask<HousekeepingTask>, housekeepingTask->TaskName, housekeepingTask->TaskStackDepth,
-//                      &housekeepingTask, configMAX_PRIORITIES - 1, housekeepingTask->taskStack,
-//                      &housekeepingTask->taskBuffer);
+    updateParametersTask->createTask();
+    statisticsReportingTask->createTask();
     housekeepingTask->createTask();
     timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>,
                                                             timeBasedSchedulingTask->TaskName,

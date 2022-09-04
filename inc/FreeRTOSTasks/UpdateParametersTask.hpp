@@ -2,6 +2,7 @@
 #define OBC_SOFTWARE_UPDATEPARAMETERSTASK_HPP
 
 #include "Task.hpp"
+#include "TaskInitialization.hpp"
 
 /**
  * FreeRTOS task for periodically updating specific parameters using ParameterService functionality.
@@ -16,6 +17,19 @@ public:
     void execute();
 
     UpdateParametersTask() : Task("ParameterUpdating") {}
+
+
+    /**
+     *
+     * @brief Initialize the freeRTOS UpdateParametersTask Task
+     *
+     */
+    void createTask(){
+        xTaskCreateStatic(vClassTask<UpdateParametersTask>, this->TaskName,
+                          this->TaskStackDepth,
+                          this, tskIDLE_PRIORITY + 1, this->taskStack,
+                          &(this->taskBuffer));
+    }
 };
 
 inline std::optional<UpdateParametersTask> updateParametersTask;
