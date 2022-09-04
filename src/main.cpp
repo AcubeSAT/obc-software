@@ -45,12 +45,7 @@ extern "C" void main_cpp() {
     updateParametersTask->createTask();
     statisticsReportingTask->createTask();
     housekeepingTask->createTask();
-    timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>,
-                                                            timeBasedSchedulingTask->TaskName,
-                                                            timeBasedSchedulingTask->TaskStackDepth,
-                                                            &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2,
-                                                            timeBasedSchedulingTask->taskStack,
-                                                            &timeBasedSchedulingTask->taskBuffer);
+    timeBasedSchedulingTask->createTask();
     tcHandlingTask->createTask();
     canTransmitTask->createTask();
 
