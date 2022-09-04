@@ -23,7 +23,7 @@ public:
      */
     void createTask(){
         xTaskCreateStatic(vClassTask<StatisticsReportingTask>, this->TaskName,
-                          this->TaskStackDepth, this, tskIDLE_PRIORITY + 1,
+                          StatisticsReportingTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1,
                           this->taskStack, &(this->taskBuffer));
     }
 };

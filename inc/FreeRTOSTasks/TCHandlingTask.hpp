@@ -75,7 +75,7 @@ public:
      *
      */
      void createTask(){
-        xTaskCreateStatic(vClassTask<TCHandlingTask>, this->TaskName, this->TaskStackDepth, this, tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
+        xTaskCreateStatic(vClassTask<TCHandlingTask>, this->TaskName, TCHandlingTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
      }
 
 };
