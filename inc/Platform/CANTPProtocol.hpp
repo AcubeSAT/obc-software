@@ -2,9 +2,9 @@
 #define OBC_SOFTWARE_CANTPPROTOCOL_HPP
 
 #include "CANMessage.hpp"
-#include "CANApplicationLayer.hpp"
-#include "CANTPMessage.hpp"
 #include "etl/map.h"
+#include "etl/vector.h"
+#include "etl/queue.h"
 
 namespace CANTPProtocol {
 
@@ -33,53 +33,31 @@ namespace CANTPProtocol {
     /**
      * A structure holding received CAN-TP messages.
      */
-    etl::map<uint8_t, etl::vector<uint8_t, CANTPMessageMapSize>, CANTPMessageMapSize> incomingMessages;
+//    etl::map<uint8_t, etl::vector<uint8_t, CANTPMessageMapSize>, CANTPMessageMapSize> incomingMessages;
 
     /**
      * A queue holding the outgoing messages.
      */
-    etl::queue<etl::vector<uint8_t, CANMessage::MaxDataLength>, CANTPMessageMapSize> outgoingCANTPMessages;
-
-    /**
-     * Sends a Send Parameters CAN-TP Message as described in DDJF_OBDH.
-     * @tparam T The type of the parameter.
-     * @param destinationAddress The ID of the destination node.
-     * @param isMulticast Whether the message is to be sent to a multicast group.
-     * @param parameterIDs The IDs of the parameters to be sent.
-     */
-    template<typename T>
-    void createSendParametersCANTPMessage(uint8_t destinationAddress, bool isMulticast,
-                                          const etl::vector<uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
-
-    /**
-     * Sends a Request Parameters CAN-TP Message as described in DDJF_OBDH.
-     * @param destinationAddress The ID of the destination node.
-     * @param isMulticast Whether the message is to be sent to a multicast group.
-     * @param parameterIDs The IDs of the parameters to be requested.
-     */
-    void createRequestParametersCANTPMessage(uint8_t destinationAddress, bool isMulticast,
-                                             const etl::vector<uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
+    etl::queue<CANMessage, CANTPMessageMapSize> CANTPMessages;
 
 
-    void createTMPackerCANTPMessage();
+    void createTMPacketMessage();
 
-    void createTCPackerCANTPMessage();
+    void createTCPacketMessage();
 
-    void createCCSDSPackerCANTPMessage();
+    void createCCSDSPacketMessage();
 
     /**
      * Encodes a message according to the CAN-TP Protocol.
      * @param messagePayload one of the CAN-TP messages found in DDJF_OBDH
      */
-    template<typename T>
-    void encodeCANTPMessage(const etl::vector<T, CAN::TPMessageMaximumSize> &messagePayload);
+    void createCANTPMessage(uint8_t messageID, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload);
 
     /**
      * Decodes a received CAN-TP Protocol message to extract the containing information.
      * @param incomingMessage
      */
-    template<typename T>
-    void decodeCANTPMessage(const etl::vector<T, CAN::TPMessageMaximumSize> &incomingMessage);
+    void decodeCANTPMessage(const etl::vector<uint8_t , CAN::TPMessageMaximumSize> &incomingMessage);
 
 
 }
