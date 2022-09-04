@@ -9,6 +9,7 @@
 #include "MessageParser.hpp"
 #include "OBC_Definitions.hpp"
 #include "Task.hpp"
+#include "TaskInitialization.hpp"
 
 /**
  * FreeRTOS task implementing TC execution received externally using usart.
@@ -67,6 +68,15 @@ public:
     void ingress();
 
     void execute();
+
+    /**
+     *
+     * @brief Initialize the freeRTOS TCHandlingTask Task
+     *
+     */
+     void createTask(){
+        xTaskCreateStatic(vClassTask<TCHandlingTask>, this->TaskName, this->TaskStackDepth, this, tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
+     }
 
 };
 
