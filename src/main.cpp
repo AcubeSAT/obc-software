@@ -42,25 +42,26 @@ extern "C" void main_cpp() {
     canTransmitTask.emplace();
     tcHandlingTask.emplace();
 
-    xTaskCreateStatic(Task::vClassTask<UpdateParametersTask>, updateParametersTask->TaskName,
+    xTaskCreateStatic(vClassTask<UpdateParametersTask>, updateParametersTask->TaskName,
                       updateParametersTask->TaskStackDepth,
                       &updateParametersTask, tskIDLE_PRIORITY + 1, updateParametersTask->taskStack,
                       &updateParametersTask->taskBuffer);
-    xTaskCreateStatic(Task::vClassTask<StatisticsReportingTask>, statisticsReportingTask->TaskName,
+    xTaskCreateStatic(vClassTask<StatisticsReportingTask>, statisticsReportingTask->TaskName,
                       statisticsReportingTask->TaskStackDepth, &statisticsReportingTask, tskIDLE_PRIORITY + 1,
                       statisticsReportingTask->taskStack, &statisticsReportingTask->taskBuffer);
-    xTaskCreateStatic(Task::vClassTask<HousekeepingTask>, housekeepingTask->TaskName, housekeepingTask->TaskStackDepth,
-                      &housekeepingTask, configMAX_PRIORITIES - 1, housekeepingTask->taskStack,
-                      &housekeepingTask->taskBuffer);
-    timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(Task::vClassTask<TimeBasedSchedulingTask>,
+//    xTaskCreateStatic(vClassTask<HousekeepingTask>, housekeepingTask->TaskName, housekeepingTask->TaskStackDepth,
+//                      &housekeepingTask, configMAX_PRIORITIES - 1, housekeepingTask->taskStack,
+//                      &housekeepingTask->taskBuffer);
+    housekeepingTask->createTask();
+    timeBasedSchedulingTask->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>,
                                                             timeBasedSchedulingTask->TaskName,
                                                             timeBasedSchedulingTask->TaskStackDepth,
                                                             &timeBasedSchedulingTask, tskIDLE_PRIORITY + 2,
                                                             timeBasedSchedulingTask->taskStack,
                                                             &timeBasedSchedulingTask->taskBuffer);
-    xTaskCreateStatic(Task::vClassTask<CANTransmitTask>, canTransmitTask->TaskName, canTransmitTask->TaskStackDepth,
+    xTaskCreateStatic(vClassTask<CANTransmitTask>, canTransmitTask->TaskName, canTransmitTask->TaskStackDepth,
                       &canTransmitTask, tskIDLE_PRIORITY + 1, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
-    xTaskCreateStatic(Task::vClassTask<TCHandlingTask>, tcHandlingTask->TaskName, tcHandlingTask->TaskStackDepth,
+    xTaskCreateStatic(vClassTask<TCHandlingTask>, tcHandlingTask->TaskName, tcHandlingTask->TaskStackDepth,
                       &tcHandlingTask, tskIDLE_PRIORITY + 1, tcHandlingTask->taskStack, &tcHandlingTask->taskBuffer);
 
     vTaskStartScheduler();
