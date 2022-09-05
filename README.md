@@ -16,9 +16,9 @@ After you've run `conan install ..` you can `Reload CMake project` and build as 
 <details>
 <summary>Getting conan</summary>
 
-You can install [conan](https://conan.io/) following the instructions from [here](https://docs.conan.
-io/en/latest/installation.html). Just to be safe, you can follow the standard procedure from [here](https://docs.
-conan.io/en/latest/getting_started.html):
+You can install [conan](https://conan.io/) following the instructions from
+[here](https://docs.conan.io/en/latest/installation.html). Just to be safe, you can follow the standard procedure from 
+[here](https://docs.conan.io/en/latest/getting_started.html):
 
 - `conan profile new default --detect`: Generates default profile detecting GCC and sets old ABI. This step and the 
   one below is needed to [manage the GCC >=5 ABI](https://docs.conan.io/en/latest/howtos/manage_gcc_abi.html#manage-gcc-abi)
@@ -32,7 +32,7 @@ Prototypes of ECSS Services
 
 - ST[01]
 - ST[03]
-- ST[17] (Not a task, since there isn't a need of periodic update. However, the MCU responds to TC[17,1] and TC[17,3]
+- ST[17] (Not a task, since there isn't a need of periodic update. However, the MCU responds to TC[17,1] and TC[17,3])
 - ST[20]
 
 Peripherals:
