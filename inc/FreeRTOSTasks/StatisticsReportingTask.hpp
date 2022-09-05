@@ -21,7 +21,7 @@ public:
      * @brief Initialize the freeRTOS StatisticsReporting Task
      *
      */
-    void createTask(){
+    void createTask() {
         xTaskCreateStatic(vClassTask<StatisticsReportingTask>, this->TaskName,
                           StatisticsReportingTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1,
                           this->taskStack, &(this->taskBuffer));

@@ -74,9 +74,10 @@ public:
      * @brief Initialize the freeRTOS TCHandlingTask Task
      *
      */
-     void createTask(){
-        xTaskCreateStatic(vClassTask<TCHandlingTask>, this->TaskName, TCHandlingTask::TaskStackDepth, this, tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
-     }
+    void createTask() {
+        xTaskCreateStatic(vClassTask<TCHandlingTask>, this->TaskName, TCHandlingTask::TaskStackDepth, this,
+                          tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
+    }
 
 };
 

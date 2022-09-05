@@ -14,13 +14,13 @@ public:
 
     TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask") {}
 
-    void createTask(){
+    void createTask() {
         this->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>,
-                                                                this->TaskName,
-                                                                TimeBasedSchedulingTask::TaskStackDepth,
-                                                                this, tskIDLE_PRIORITY + 2,
-                                                                this->taskStack,
-                                                                &(this->taskBuffer));
+                                             this->TaskName,
+                                             TimeBasedSchedulingTask::TaskStackDepth,
+                                             this, tskIDLE_PRIORITY + 2,
+                                             this->taskStack,
+                                             &(this->taskBuffer));
     }
 };
 

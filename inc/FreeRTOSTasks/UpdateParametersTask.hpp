@@ -14,6 +14,7 @@ public:
     const static inline uint16_t TaskStackDepth = 6000;
 
     StackType_t taskStack[TaskStackDepth];
+
     void execute();
 
     UpdateParametersTask() : Task("ParameterUpdating") {}
@@ -24,7 +25,7 @@ public:
      * @brief Initialize the freeRTOS UpdateParametersTask Task
      *
      */
-    void createTask(){
+    void createTask() {
         xTaskCreateStatic(vClassTask<UpdateParametersTask>, this->TaskName,
                           UpdateParametersTask::TaskStackDepth,
                           this, tskIDLE_PRIORITY + 1, this->taskStack,

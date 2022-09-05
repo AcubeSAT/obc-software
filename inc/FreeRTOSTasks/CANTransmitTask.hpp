@@ -5,7 +5,7 @@
 #include "Task.hpp"
 #include "TaskInitialization.hpp"
 
-class CANTransmitTask : public Task{
+class CANTransmitTask : public Task {
 private:
 
 public:
@@ -22,7 +22,7 @@ public:
         MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CANDriver::rxFifo0Callback, CANDriver::MCANReceive);
     }
 
-    void createTask(){
+    void createTask() {
         xTaskCreateStatic(vClassTask<CANTransmitTask>, this->TaskName, CANTransmitTask::TaskStackDepth,
                           this, tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
     }
