@@ -5,6 +5,7 @@
 #include "etl/map.h"
 #include "etl/vector.h"
 #include "etl/queue.h"
+#include "CANApplicationLayer.hpp"
 
 namespace CANTPProtocol {
 
@@ -12,7 +13,7 @@ namespace CANTPProtocol {
      * Types of CAN-TP procotol frames.
      */
     enum CANTPFrames : uint8_t {
-        SingleFrame = 0x00, FirstFrame = 0x01, ConsecutiveFrame = 0x02, FlowControlFrame = 0x03
+        Single = 0x00, First = 0x01, Consecutive = 0x02, FlowControl = 0x03
     };
 
     /**
@@ -20,46 +21,32 @@ namespace CANTPProtocol {
      */
     uint8_t const CANTPMessageMapSize = 64;
 
-    /**
-     * The byte payload length of the First Frame.
-     */
-    inline const uint8_t FirstFramePayloadLength = 6;
-
-    /**
-     * The byte payload length of a Consecutive Frame
-     */
-    inline const uint8_t ConsecutiveFramePayloadLength = 7;
 
     /**
      * A structure holding received CAN-TP messages.
      */
-//    etl::map<uint8_t, etl::vector<uint8_t, CANTPMessageMapSize>, CANTPMessageMapSize> incomingMessages;
+    static etl::map<uint8_t, etl::vector<uint8_t, CANTPMessageMapSize>, CANTPMessageMapSize> incomingMessages;
 
     /**
-     * A queue holding the outgoing messages.
-     */
-    etl::queue<CANMessage, CANTPMessageMapSize> CANTPMessages;
-
-
-    void createTMPacketMessage();
-
-    void createTCPacketMessage();
-
-    void createCCSDSPacketMessage();
-
-    /**
-     * Encodes a message according to the CAN-TP Protocol.
+     * Splits a CAN-TP Message into a collection of CAN-TP frames and adds them to the outgoing CANApplicationLayer queue.
+     * @param id the CAN Message encoded id
+     * @param messageMapKey a map key to save the message correctly to the message map when received
      * @param messagePayload one of the CAN-TP messages found in DDJF_OBDH
      */
-    void createCANTPMessage(uint8_t messageID, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload);
+    void createCANTPMessage(uint16_t id, uint8_t messageMapKey,
+                            const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload);
 
     /**
      * Decodes a received CAN-TP Protocol message to extract the containing information.
-     * @param incomingMessage
+     * @param incomingMessage the received message split into CAN-TP frames
      */
-    void decodeCANTPMessage(const etl::vector<uint8_t , CAN::TPMessageMaximumSize> &incomingMessage);
+    void parseCANTPMessage(const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &incomingMessage);
 
-
+    /**
+     * Extracts information from the CAN-TP first frame and sends back information about the
+     * @param firstFrame
+     */
+    void sendFlowControlFrame(CANMessage firstFrame);
 }
 
 #endif //OBC_SOFTWARE_CANTPPROTOCOL_HPP
