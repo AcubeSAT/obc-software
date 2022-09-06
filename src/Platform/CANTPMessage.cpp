@@ -1,5 +1,6 @@
 #include "CANApplicationLayer.hpp"
 #include "CANTPMessage.hpp"
+#include "CANTPProtocol.hpp"
 #include "OBC_Definitions.hpp"
 #include "ServicePool.hpp"
 
@@ -44,7 +45,7 @@ namespace CANTPMessage {
             stuffIntoVector(parameter, data);
         }
 
-        CANApplicationLayer::finalizeMessage(id, data);
+        CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
 
     void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
@@ -59,7 +60,7 @@ namespace CANTPMessage {
             stuffIntoVector(parameterID, data);
         }
 
-        CANApplicationLayer::finalizeMessage(id, data);
+        CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
 
     template<typename T>
@@ -85,7 +86,7 @@ namespace CANTPMessage {
             idx++; //@todo This is not error handled, if the argumentValues.size() != argumentIDs.size() there is undefined behavior.
         }
 
-        CANApplicationLayer::finalizeMessage(id, data);
+        CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
 
     void
@@ -110,6 +111,6 @@ namespace CANTPMessage {
             data.push_back(point);
         }
 
-        CANApplicationLayer::finalizeMessage(id, data);
+        CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
 }
