@@ -20,9 +20,7 @@ public:
     HousekeepingTask() : Task("Housekeeping") {}
 
     /**
-     *
-     * @brief Create freeRTOS Task
-     *
+     * Create freeRTOS Task
      */
     void createTask() {
         xTaskCreateStatic(vClassTask<HousekeepingTask>, this->TaskName, HousekeepingTask::TaskStackDepth,

@@ -16,9 +16,7 @@ public:
     StatisticsReportingTask() : Task("StatisticsReporting") {}
 
     /**
-     *
-     * @brief Initialize the freeRTOS StatisticsReporting Task
-     *
+     * Create freeRTOS Task
      */
     void createTask() {
         xTaskCreateStatic(vClassTask<StatisticsReportingTask>, this->TaskName,

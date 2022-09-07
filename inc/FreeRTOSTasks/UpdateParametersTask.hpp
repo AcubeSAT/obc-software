@@ -20,9 +20,7 @@ public:
 
 
     /**
-     *
-     * @brief Initialize the freeRTOS UpdateParametersTask Task
-     *
+     * Create freeRTOS Task
      */
     void createTask() {
         xTaskCreateStatic(vClassTask<UpdateParametersTask>, this->TaskName,

@@ -69,9 +69,7 @@ public:
     void execute();
 
     /**
-     *
-     * @brief Initialize the freeRTOS TCHandlingTask Task
-     *
+     * Create freeRTOS Task
      */
     void createTask() {
         xTaskCreateStatic(vClassTask<TCHandlingTask>, this->TaskName, TCHandlingTask::TaskStackDepth, this,

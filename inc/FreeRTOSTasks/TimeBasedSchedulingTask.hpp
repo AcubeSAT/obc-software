@@ -13,6 +13,9 @@ public:
 
     TimeBasedSchedulingTask() : Task("TimeBasedSchedulingTask") {}
 
+    /**
+     * Create freeRTOS Task
+     */
     void createTask() {
         this->taskHandle = xTaskCreateStatic(vClassTask<TimeBasedSchedulingTask>,
                                              this->TaskName,
