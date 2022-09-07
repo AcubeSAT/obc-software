@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Task.hpp"
-#include "TaskInitialization.hpp"
 
 class StatisticsReportingTask : public Task {
 public:

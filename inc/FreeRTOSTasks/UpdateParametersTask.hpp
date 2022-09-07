@@ -2,7 +2,6 @@
 #define OBC_SOFTWARE_UPDATEPARAMETERSTASK_HPP
 
 #include "Task.hpp"
-#include "TaskInitialization.hpp"
 
 /**
  * FreeRTOS task for periodically updating specific parameters using ParameterService functionality.

@@ -2,7 +2,6 @@
 #define ECSS_SERVICES_TimeBasedSchedulingTask_HPP
 
 #include "Task.hpp"
-#include "TaskInitialization.hpp"
 
 class TimeBasedSchedulingTask : public Task {
 public:

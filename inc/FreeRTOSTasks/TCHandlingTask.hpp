@@ -9,7 +9,6 @@
 #include "MessageParser.hpp"
 #include "OBC_Definitions.hpp"
 #include "Task.hpp"
-#include "TaskInitialization.hpp"
 
 /**
  * FreeRTOS task implementing TC execution received externally using usart.

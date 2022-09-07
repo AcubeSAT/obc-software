@@ -3,7 +3,6 @@
 
 #include "CANDriver.hpp"
 #include "Task.hpp"
-#include "TaskInitialization.hpp"
 
 class CANTransmitTask : public Task {
 private:
