@@ -8,6 +8,12 @@
 #include "CANApplicationLayer.hpp"
 
 namespace CANTPProtocol {
+    /**
+     * The size of the map holding the received messages.
+     */
+    uint8_t const CANTPStructureSize = 64;
+
+    typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 
     /**
      * Types of CAN-TP procotol frames.
@@ -31,13 +37,6 @@ namespace CANTPProtocol {
         Pong = 0x31,
         LogMessage = 0x40
     };
-
-    /**
-     * The size of the map holding the received messages.
-     */
-    uint8_t const CANTPStructureSize = 64;
-
-    typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 
     /**
      * A structure holding received CAN-TP messages.
@@ -69,6 +68,12 @@ namespace CANTPProtocol {
      * @param firstFrame lmao
      */
     void sendFlowControlFrame(CANMessage firstFrame);
+
+    /**
+     * When a message is done being received, it is then parsed future processing.
+     * @param message the complete CAN-TP message.
+     */
+     void parseMessage(CANTPMessage message);
 }
 
 #endif //OBC_SOFTWARE_CANTPPROTOCOL_HPP

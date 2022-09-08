@@ -53,14 +53,39 @@ namespace CANTPProtocol {
             uint16_t dataLengthCode = (static_cast<uint16_t>(dataLengthCodeMSB) << 8) | dataLengthCodeLSB;
             incomingMessages.insert(etl::pair{messageMapKey, CANTPMessage{}});
             dataLengthCodes[messageMapKey] = dataLengthCode;
-        } else if (frame == Consecutive){
+        } else if (frame == Consecutive) {
             uint8_t messageMapKey = messageFrame.data[1];
             etl::vector<uint8_t, messageFrame.MaxDataLength> data = {messageFrame.data};
             incomingMessages[messageMapKey].insert(incomingMessages[messageMapKey].end(),
                                                    data.begin(), data.end());
-            if(incomingMessages[messageMapKey].size() == dataLengthCodes[messageMapKey]){
-                //Message ready handling
+            if (incomingMessages[messageMapKey].size() == dataLengthCodes[messageMapKey]) {
+                parseMessage(incomingMessages[messageMapKey]);
             }
+        }
+    }
+    //todo: AAAAAAAA
+    void parseMessage(CANTPMessage message) {
+        switch (message[0]){
+            case SendParameters:
+                break;
+            case RequestParameters:
+                break;
+            case PerformFunction:
+                break;
+            case EventReport:
+                break;
+            case TMPacket:
+                break;
+            case TCPacket:
+                break;
+            case CCSDSPacket:
+                break;
+            case Ping:
+                break;
+            case Pong:
+                break;
+            case LogMessage:
+                break;
         }
     }
 }
