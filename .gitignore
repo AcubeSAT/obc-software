@@ -93,3 +93,6 @@ fp-info-cache
 
 # Atmel SAMV71 cfg
 atmel_samv71_xplained_ultra.cfg
+
+#harmony3 cfg via clion
+Makefile
