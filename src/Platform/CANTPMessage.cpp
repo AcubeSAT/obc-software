@@ -101,7 +101,7 @@ namespace CANTPMessage {
     }
 
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
-                                  const etl::array<uint8_t, TPMessageMaximumSize> &payload) {
+                                  const etl::vector<uint8_t, TPMessageMaximumSize> &payload) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         etl::vector<uint8_t, TPMessageMaximumSize> data = {0x10, type, static_cast<unsigned char>(eventID >> 8),

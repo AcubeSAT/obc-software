@@ -105,7 +105,7 @@ namespace CANTPMessage {
      * @param payload An array of the event data.
      */
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
-                                  const etl::array<uint8_t, CAN::TPMessageMaximumSize> &payload);
+                                  const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &payload);
 
     /**
      * Creates an ECSS Services TM/TC packet to be sent

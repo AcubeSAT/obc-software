@@ -21,7 +21,7 @@ namespace CANApplicationLayer {
 
     void sendBusSwitchoverMessage() {
         uint16_t id = getBusSwitchoverID(CAN::NodeID);
-        etl::array<uint8_t, CANMessage::MaxDataLength> data = {getBusToSwitchover()};
+        etl::vector<uint8_t, CANMessage::MaxDataLength> data = {getBusToSwitchover()};
 
         outgoingMessages.push({id, data});
     }
@@ -30,7 +30,7 @@ namespace CANApplicationLayer {
         uint64_t msOfDay = TimeGetter::getCurrentTimeCustomCUC().elapsed100msTicks; //@todo This doesn't reset every day, only since epoch.
 
         uint16_t id = getTimeID(CAN::NodeID);
-        etl::array<uint8_t, CANMessage::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay),
+        etl::vector<uint8_t, CANMessage::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay),
                                                                static_cast<uint8_t>(msOfDay >> 8),
                                                                static_cast<uint8_t>(msOfDay >> 16),
                                                                static_cast<uint8_t>(msOfDay >> 24), 0,
@@ -99,7 +99,7 @@ namespace CANApplicationLayer {
     }
 
     void finalizeMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload) {
-        etl::array<uint8_t, CANMessage::MaxDataLength> data = {};
+        etl::vector<uint8_t, CANMessage::MaxDataLength> data = {};
 
         uint8_t messageNumber = 0;
         uint8_t idx = 0;

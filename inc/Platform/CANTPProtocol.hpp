@@ -17,15 +17,32 @@ namespace CANTPProtocol {
     };
 
     /**
+     * CAN-TP message IDs, as specified in DDJF_OBDH.
+     */
+    enum CANTPMessages : uint8_t {
+        SendParameters = 0x01,
+        RequestParameters = 0x02,
+        PerformFunction = 0x03,
+        EventReport = 0x04,
+        TMPacket = 0x20,
+        TCPacket = 0x21,
+        CCSDSPacket = 0x022,
+        Ping = 0x30,
+        Pong = 0x31,
+        LogMessage = 0x40
+    };
+
+    /**
      * The size of the map holding the received messages.
      */
     uint8_t const CANTPMessageMapSize = 64;
 
+    typedef etl::vector<uint8_t, CANTPMessageMapSize> CANTPMessage;
 
     /**
      * A structure holding received CAN-TP messages.
      */
-    static etl::map<uint8_t, etl::vector<uint8_t, CANTPMessageMapSize>, CANTPMessageMapSize> incomingMessages;
+    static etl::map<uint8_t, CANTPMessage, CANTPMessageMapSize> incomingMessages;
 
     /**
      * Splits a CAN-TP Message into a collection of CAN-TP frames and adds them to the outgoing CANApplicationLayer queue.
@@ -37,14 +54,14 @@ namespace CANTPProtocol {
                             const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload);
 
     /**
-     * Decodes a received CAN-TP Protocol message to extract the containing information.
-     * @param incomingMessage the received message split into CAN-TP frames
+     * Receives CAN-TP Protocol message frame and saves it to the map.
+     * @param messageFrame the received CAN-TP frame
      */
-    void parseCANTPMessage(const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &incomingMessage);
+    void saveCANTPMessage(const CANMessage messageFrame);
 
     /**
-     * Extracts information from the CAN-TP first frame and sends back information about the
-     * @param firstFrame
+     * Extracts information from the CAN-TP first frame and sends back information about the current machine state.
+     * @param firstFrame lmao
      */
     void sendFlowControlFrame(CANMessage firstFrame);
 }
