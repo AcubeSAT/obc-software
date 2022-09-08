@@ -35,14 +35,19 @@ namespace CANTPProtocol {
     /**
      * The size of the map holding the received messages.
      */
-    uint8_t const CANTPMessageMapSize = 64;
+    uint8_t const CANTPStructureSize = 64;
 
-    typedef etl::vector<uint8_t, CANTPMessageMapSize> CANTPMessage;
+    typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 
     /**
      * A structure holding received CAN-TP messages.
      */
-    static etl::map<uint8_t, CANTPMessage, CANTPMessageMapSize> incomingMessages;
+    static etl::map<uint8_t, CANTPMessage, CANTPStructureSize> incomingMessages;
+
+    /**
+     * A structure holding the data length codes of the received CAN-TP messages.
+     */
+    static etl::array<uint8_t, CANTPStructureSize> dataLengthCodes;
 
     /**
      * Splits a CAN-TP Message into a collection of CAN-TP frames and adds them to the outgoing CANApplicationLayer queue.

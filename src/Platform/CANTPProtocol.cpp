@@ -12,18 +12,18 @@ namespace CANTPProtocol {
                             const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload) {
 
         // 4 MSB bits is the frame type id and the 4 LSB are the 4 out of 12 bits for the data length code
-        uint8_t idDLC = ((First << 12) | messagePayload.size()) & 0xFF;
+        uint8_t idDLC = (First << 4) | (messagePayload.size() >> 4);
         // Rest 8 bits of data length code
-        uint8_t DLC = ((First << 12) | messagePayload.size()) >> 8;
+        uint8_t DLC = messagePayload.size() << 4;
 
-        etl::array<uint8_t, CANMessage::MaxDataLength> firstFrame = {idDLC, DLC, messageMapKey};
+        etl::vector<uint8_t, CANMessage::MaxDataLength> firstFrame = {idDLC, DLC, messageMapKey};
         newMessage = {id, firstFrame};
         CANApplicationLayer::outgoingMessages.push(newMessage);
         newMessage.empty();
 
         uint8_t currentConsecutiveFrameCount = 0x01;
         uint8_t consecutiveFrameElements = (Consecutive << 4) | currentConsecutiveFrameCount;
-        etl::array<uint8_t, CANMessage::MaxDataLength> consecutiveFrame = {consecutiveFrameElements, messageMapKey};
+        etl::vector<uint8_t, CANMessage::MaxDataLength> consecutiveFrame = {consecutiveFrameElements, messageMapKey};
 
         for (uint8_t i = 0; i < messagePayload.size(); i++) {
             consecutiveFrame[i] = messagePayload[i];
@@ -38,9 +38,28 @@ namespace CANTPProtocol {
                 //Fill the new consecutive frame with the necessary information
                 consecutiveFrameElements = (Consecutive << 4) | currentConsecutiveFrameCount;
                 consecutiveFrame = {consecutiveFrameElements, messageMapKey};
-
                 //Fill
                 if (currentConsecutiveFrameCount == 0x0F) currentConsecutiveFrameCount = 0x00;
+            }
+        }
+    }
+
+    void saveCANTPMessage(const CANMessage messageFrame) {
+        uint8_t frame = messageFrame.data[0] >> 4;
+        if (frame == First) {
+            uint8_t messageMapKey = messageFrame.data[2];
+            uint8_t dataLengthCodeLSB = messageFrame.data[0] << 4;
+            uint8_t dataLengthCodeMSB = messageFrame.data[1];
+            uint16_t dataLengthCode = (static_cast<uint16_t>(dataLengthCodeMSB) << 8) | dataLengthCodeLSB;
+            incomingMessages.insert(etl::pair{messageMapKey, CANTPMessage{}});
+            dataLengthCodes[messageMapKey] = dataLengthCode;
+        } else {
+            uint8_t messageMapKey = messageFrame.data[1];
+            etl::vector<uint8_t, messageFrame.MaxDataLength> data = {messageFrame.data};
+            incomingMessages[messageMapKey].insert(incomingMessages[messageMapKey].end(),
+                                                   data.begin(), data.end());
+            if(incomingMessages[messageMapKey].size() == dataLengthCodes[messageMapKey]){
+                //Message ready handling
             }
         }
     }
