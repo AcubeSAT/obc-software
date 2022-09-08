@@ -53,7 +53,7 @@ namespace CANTPProtocol {
             uint16_t dataLengthCode = (static_cast<uint16_t>(dataLengthCodeMSB) << 8) | dataLengthCodeLSB;
             incomingMessages.insert(etl::pair{messageMapKey, CANTPMessage{}});
             dataLengthCodes[messageMapKey] = dataLengthCode;
-        } else {
+        } else if (frame == Consecutive){
             uint8_t messageMapKey = messageFrame.data[1];
             etl::vector<uint8_t, messageFrame.MaxDataLength> data = {messageFrame.data};
             incomingMessages[messageMapKey].insert(incomingMessages[messageMapKey].end(),
