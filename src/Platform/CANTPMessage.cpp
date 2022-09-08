@@ -134,6 +134,15 @@ namespace CANTPMessage {
     }
 
     void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, Message message) {
-        //todo: ti 8elei apo tin zwi mou auto?
+        uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
+        etl::string<ECSSMaxMessageSize> messageHeader = MessageParser::compose(message);
+        etl::vector<uint8_t, TPMessageMaximumSize> data;
+        for (int i = 0; i < CCSDSMaxMessageSize; i++) {
+            data.push_back(messageHeader[i]);
+        }
+        for (int i = 0; i < messageHeader.size(); i++) {
+            data.push_back(message.data[i]);
+        }
+        CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
 }
