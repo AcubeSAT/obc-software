@@ -113,4 +113,27 @@ namespace CANTPMessage {
 
         CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
+
+    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, Message message) {
+        uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
+        etl::string<ECSSMaxMessageSize> messageHeader = MessageParser::composeECSS(message);
+        etl::vector<uint8_t, TPMessageMaximumSize> data;
+        if (message.packetType == Message::TM) {
+            data.push_back(0x20);
+        } else {
+            data.push_back(0x21);
+        }
+
+        for (int i = 0; i < ECSSMaxMessageSize; i++) {
+            data.push_back(messageHeader[i]);
+        }
+        for (int i = 0; i < messageHeader.size(); i++) {
+            data.push_back(message.data[i]);
+        }
+        CANTPProtocol::createCANTPMessage(id, 0x00, data);
+    }
+
+    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, Message message) {
+        //todo: ti 8elei apo tin zwi mou auto?
+    }
 }

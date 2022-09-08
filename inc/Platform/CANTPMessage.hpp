@@ -108,31 +108,22 @@ namespace CANTPMessage {
                                   const etl::array<uint8_t, CAN::TPMessageMaximumSize> &payload);
 
     /**
-     * Creates an ECSS Services TM packet to be sent
+     * Creates an ECSS Services TM/TC packet to be sent
      * @param destinationAddress The ID of the destination node.
      * @param isMulticast Whether the message is to be sent to a multicast group
      * @param serviceType the type of the ECSS service
      * @param messageType the message type of the service to be send
      */
-    void createTMPacketMessage(uint8_t destinationAddress, bool isMulticast, uint8_t serviceType, uint8_t messageType);
+    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, uint8_t serviceType, uint8_t messageType);
 
     /**
-     * Creates an ECSS Services TC packet to be sent
+     * Creates an CCSDS packet to be sent
      * @param destinationAddress The ID of the destination node.
      * @param isMulticast Whether the message is to be sent to a multicast group
      * @param serviceType the type of the ECSS service
      * @param messageType the message type of the service to be send
      */
-    void createTCPacketMessage(uint8_t destinationAddress, bool isMulticast, uint8_t serviceType, uint8_t messageType);
-
-    /**
-     * Creates an CCSDS Services TC packet to be sent
-     * @param destinationAddress The ID of the destination node.
-     * @param isMulticast Whether the message is to be sent to a multicast group
-     * @param serviceType the type of the ECSS service
-     * @param messageType the message type of the service to be send
-     */
-    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, uint8_t serviceType, uint8_t messageType);
+    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, Message message);
 };
 
 #endif //OBC_SOFTWARE_CANTPMESSAGE_H
