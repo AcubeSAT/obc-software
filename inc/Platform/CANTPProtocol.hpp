@@ -13,19 +13,29 @@ namespace CANTPProtocol {
      */
     uint8_t const CANTPStructureSize = 64;
 
+    /**
+     * How many bytes of information are contained in a consecutive frame
+     */
+    uint8_t const bytesPerFrame = 4;
+
+    /**
+     * A pointer indicating the information starting point.
+     */
+    uint8_t const bytesStartingPoint = 2;
+
     typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 
     /**
      * Types of CAN-TP procotol frames.
      */
-    enum CANTPFrames : uint8_t {
+    enum CANTPFrame : uint8_t {
         Single = 0x00, First = 0x01, Consecutive = 0x02, FlowControl = 0x03
     };
 
     /**
      * CAN-TP message IDs, as specified in DDJF_OBDH.
      */
-    enum CANTPMessages : uint8_t {
+    enum Message : uint8_t {
         SendParameters = 0x01,
         RequestParameters = 0x02,
         PerformFunction = 0x03,
@@ -38,15 +48,16 @@ namespace CANTPProtocol {
         LogMessage = 0x40
     };
 
+
     /**
      * A structure holding received CAN-TP messages.
      */
-    static etl::map<uint8_t, CANTPMessage, CANTPStructureSize> incomingMessages;
+    inline static etl::map<uint8_t, CANTPMessage, CANTPStructureSize> incomingMessages;
 
     /**
      * A structure holding the data length codes of the received CAN-TP messages.
      */
-    static etl::array<uint8_t, CANTPStructureSize> dataLengthCodes;
+    inline static etl::array<uint8_t, CANTPStructureSize> dataLengthCodes;
 
     /**
      * Splits a CAN-TP Message into a collection of CAN-TP frames and adds them to the outgoing CANApplicationLayer queue.
@@ -65,15 +76,15 @@ namespace CANTPProtocol {
 
     /**
      * Extracts information from the CAN-TP first frame and sends back information about the current machine state.
-     * @param firstFrame lmao
+     * @param firstFrame the first frame of a CAN-TP message
      */
-    void sendFlowControlFrame(CANMessage firstFrame);
+    void sendFlowControlFrame(const CANMessage firstFrame);
 
     /**
      * When a message is done being received, it is then parsed future processing.
      * @param message the complete CAN-TP message.
      */
-     void parseMessage(CANTPMessage message);
+    void parseMessage(const CANTPMessage message);
 }
 
 #endif //OBC_SOFTWARE_CANTPPROTOCOL_HPP

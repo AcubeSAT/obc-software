@@ -114,16 +114,15 @@ namespace CANTPMessage {
      * @param serviceType the type of the ECSS service
      * @param messageType the message type of the service to be send
      */
-    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, uint8_t serviceType, uint8_t messageType);
+    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message message);
 
     /**
      * Creates an CCSDS packet to be sent
      * @param destinationAddress The ID of the destination node.
      * @param isMulticast Whether the message is to be sent to a multicast group
-     * @param serviceType the type of the ECSS service
-     * @param messageType the message type of the service to be send
+     * @param message an ECSS service Message
      */
-    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, Message message);
+    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message message);
 };
 
 #endif //OBC_SOFTWARE_CANTPMESSAGE_H

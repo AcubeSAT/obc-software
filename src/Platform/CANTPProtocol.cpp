@@ -1,9 +1,8 @@
-//
-// Created by sourland on 28/8/2022.
-//
-
 #include "CANTPProtocol.hpp"
-
+#include "CANTPMessage.hpp"
+#include "Services/ParameterService.hpp"
+#include "Services/FunctionManagementService.hpp"
+#include "Services/EventReportService.hpp"
 
 namespace CANTPProtocol {
     static CANMessage newMessage = {};
@@ -28,7 +27,7 @@ namespace CANTPProtocol {
         for (uint8_t i = 0; i < messagePayload.size(); i++) {
             consecutiveFrame[i] = messagePayload[i];
 
-            if ((i + 1) % 4 == 0) {
+            if ((i + 1) % bytesPerFrame == 0) {
                 //Create a can message and insert it to a queue.
                 newMessage = {id, consecutiveFrame};
                 CANApplicationLayer::outgoingMessages.push(newMessage);
@@ -39,7 +38,9 @@ namespace CANTPProtocol {
                 consecutiveFrameElements = (Consecutive << 4) | currentConsecutiveFrameCount;
                 consecutiveFrame = {consecutiveFrameElements, messageMapKey};
                 //Fill
-                if (currentConsecutiveFrameCount == 0x0F) currentConsecutiveFrameCount = 0x00;
+                if (currentConsecutiveFrameCount == 0x0F) {
+                    currentConsecutiveFrameCount = 0x00;
+                }
             }
         }
     }
@@ -54,8 +55,12 @@ namespace CANTPProtocol {
             incomingMessages.insert(etl::pair{messageMapKey, CANTPMessage{}});
             dataLengthCodes[messageMapKey] = dataLengthCode;
         } else if (frame == Consecutive) {
+            //todo: clean up the starting payload bytes
             uint8_t messageMapKey = messageFrame.data[1];
-            etl::vector<uint8_t, messageFrame.MaxDataLength> data = {messageFrame.data};
+            etl::vector<uint8_t, messageFrame.MaxDataLength> data;
+            for (uint8_t i = 0; i < bytesPerFrame; i++) {
+                data.push_back(messageFrame.data[bytesStartingPoint + i]);
+            }
             incomingMessages[messageMapKey].insert(incomingMessages[messageMapKey].end(),
                                                    data.begin(), data.end());
             if (incomingMessages[messageMapKey].size() == dataLengthCodes[messageMapKey]) {
@@ -63,9 +68,10 @@ namespace CANTPProtocol {
             }
         }
     }
-    //todo: AAAAAAAA
+
+    //todo: answer with functionality
     void parseMessage(CANTPMessage message) {
-        switch (message[0]){
+        switch (message[0]) {
             case SendParameters:
                 break;
             case RequestParameters:
@@ -81,7 +87,7 @@ namespace CANTPProtocol {
             case CCSDSPacket:
                 break;
             case Ping:
-                break;
+                CANApplicationLayer::sendPongMessage();
             case Pong:
                 break;
             case LogMessage:

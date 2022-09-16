@@ -34,7 +34,8 @@ namespace CANTPMessage {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
         uint16_t parameterCount = parameterIDs.size();
 
-        etl::vector<uint8_t, TPMessageMaximumSize> data = {0x01, static_cast<uint8_t>(parameterCount >> 8),
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {CANTPProtocol::SendParameters,
+                                                           static_cast<uint8_t>(parameterCount >> 8),
                                                            static_cast<uint8_t>(parameterCount)};
 
         for (uint16_t parameterId: parameterIDs) {
@@ -53,7 +54,8 @@ namespace CANTPMessage {
         uint16_t id = encodeId({0x1, destinationAddress, isMulticast});
         uint16_t parameterCount = parameterIDs.size();
 
-        etl::vector<uint8_t, TPMessageMaximumSize> data = {0x02, static_cast<uint8_t>(parameterCount >> 8),
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {CANTPProtocol::RequestParameters,
+                                                           static_cast<uint8_t>(parameterCount >> 8),
                                                            static_cast<uint8_t>(parameterCount)};
 
         for (auto parameterID: parameterIDs) {
@@ -70,7 +72,7 @@ namespace CANTPMessage {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         auto argumentCount = static_cast<uint16_t>(argumentIDs.size());
-        etl::vector<uint8_t, TPMessageMaximumSize> data = {0x03};
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {CANTPProtocol::PerformFunction};
 
         uint8_t functionIdSize = 6;
         while (functionIdSize > 0) {
@@ -93,18 +95,19 @@ namespace CANTPMessage {
     createLogMessage(uint8_t destinationAddress, bool isMulticast, const etl::string<LOGGER_MAX_MESSAGE_SIZE> &log) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
-        etl::vector<uint8_t, TPMessageMaximumSize> data = {0x40};
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {CANTPProtocol::LogMessage};
 
         std::copy(log.begin(), log.end(), data.end());
 
-        CANApplicationLayer::finalizeMessage(id, data);
+        CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
 
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
                                   const etl::vector<uint8_t, TPMessageMaximumSize> &payload) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
-        etl::vector<uint8_t, TPMessageMaximumSize> data = {0x10, type, static_cast<unsigned char>(eventID >> 8),
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {CANTPProtocol::EventReport, type,
+                                                           static_cast<unsigned char>(eventID >> 8),
                                                            static_cast<unsigned char>(eventID)};
 
         for (auto point: payload) {
@@ -114,33 +117,33 @@ namespace CANTPMessage {
         CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
 
-    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, Message message) {
+    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message message) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
         etl::string<ECSSMaxMessageSize> messageHeader = MessageParser::composeECSS(message);
         etl::vector<uint8_t, TPMessageMaximumSize> data;
         if (message.packetType == Message::TM) {
-            data.push_back(0x20);
+            data.push_back(CANTPProtocol::TMPacket);
         } else {
-            data.push_back(0x21);
+            data.push_back(CANTPProtocol::TCPacket);
         }
 
-        for (int i = 0; i < ECSSMaxMessageSize; i++) {
+        for (uint8_t i = 0; i < ECSSMaxMessageSize; i++) {
             data.push_back(messageHeader[i]);
         }
-        for (int i = 0; i < messageHeader.size(); i++) {
+        for (uint8_t i = 0; i < messageHeader.size(); i++) {
             data.push_back(message.data[i]);
         }
         CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
 
-    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, Message message) {
+    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message message) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
         etl::string<ECSSMaxMessageSize> messageHeader = MessageParser::compose(message);
-        etl::vector<uint8_t, TPMessageMaximumSize> data;
-        for (int i = 0; i < CCSDSMaxMessageSize; i++) {
+        etl::vector<uint8_t, TPMessageMaximumSize> data = {CANTPProtocol::CCSDSPacket};
+        for (uint8_t i = 0; i < CCSDSMaxMessageSize; i++) {
             data.push_back(messageHeader[i]);
         }
-        for (int i = 0; i < messageHeader.size(); i++) {
+        for (uint8_t i = 0; i < messageHeader.size(); i++) {
             data.push_back(message.data[i]);
         }
         CANTPProtocol::createCANTPMessage(id, 0x00, data);
