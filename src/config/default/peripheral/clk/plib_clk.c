@@ -33,15 +33,17 @@
 /*********************************************************************************
 Initialize PLLA (PLLACK)
 *********************************************************************************/
-
 static void CLK_PLLAInitialize(void)
 {
     /* Configure and Enable PLLA */
-    PMC_REGS->CKGR_PLLAR = CKGR_PLLAR_ONE_Msk | CKGR_PLLAR_PLLACOUNT(0x3f) |
-                              CKGR_PLLAR_MULA(25 - 1) |
-                              CKGR_PLLAR_DIVA(1);
+    PMC_REGS->CKGR_PLLAR = CKGR_PLLAR_ONE_Msk | CKGR_PLLAR_PLLACOUNT(0x3fU) |
+                              CKGR_PLLAR_MULA(24) |
+                              CKGR_PLLAR_DIVA(1U);
 
-    while ( (PMC_REGS->PMC_SR & PMC_SR_LOCKA_Msk) != PMC_SR_LOCKA_Msk);
+    while ( (PMC_REGS->PMC_SR & PMC_SR_LOCKA_Msk) != PMC_SR_LOCKA_Msk)
+    {
+
+    }
 
 }
 
@@ -55,15 +57,24 @@ static void CLK_MasterClockInitialize(void)
 {
     /* Program PMC_MCKR.PRES and wait for PMC_SR.MCKRDY to be set   */
     PMC_REGS->PMC_MCKR = (PMC_REGS->PMC_MCKR & ~PMC_MCKR_PRES_Msk) | PMC_MCKR_PRES_CLK_1;
-    while ((PMC_REGS->PMC_SR & PMC_SR_MCKRDY_Msk) != PMC_SR_MCKRDY_Msk);
+    while ((PMC_REGS->PMC_SR & PMC_SR_MCKRDY_Msk) != PMC_SR_MCKRDY_Msk)
+    {
+
+    }
 
     /* Program PMC_MCKR.MDIV and Wait for PMC_SR.MCKRDY to be set   */
     PMC_REGS->PMC_MCKR = (PMC_REGS->PMC_MCKR & ~PMC_MCKR_MDIV_Msk) | PMC_MCKR_MDIV_PCK_DIV2;
-    while ((PMC_REGS->PMC_SR & PMC_SR_MCKRDY_Msk) != PMC_SR_MCKRDY_Msk);
+    while ((PMC_REGS->PMC_SR & PMC_SR_MCKRDY_Msk) != PMC_SR_MCKRDY_Msk)
+    {
+
+    }
 
     /* Program PMC_MCKR.CSS and Wait for PMC_SR.MCKRDY to be set    */
     PMC_REGS->PMC_MCKR = (PMC_REGS->PMC_MCKR & ~PMC_MCKR_CSS_Msk) | PMC_MCKR_CSS_PLLA_CLK;
-    while ((PMC_REGS->PMC_SR & PMC_SR_MCKRDY_Msk) != PMC_SR_MCKRDY_Msk);
+    while ((PMC_REGS->PMC_SR & PMC_SR_MCKRDY_Msk) != PMC_SR_MCKRDY_Msk)
+    {
+
+    }
 
 }
 
@@ -79,16 +90,17 @@ Initialize Programmable Clock (PCKx)
 static void CLK_ProgrammableClockInitialize(void)
 {
     /* Disable selected programmable clock  */
-    PMC_REGS->PMC_SCDR = PMC_SCDR_PCK5_Msk;
+    PMC_REGS->PMC_SCDR = PMC_SCDR_PCK4_Msk | PMC_SCDR_PCK5_Msk;
 
     /* Configure selected programmable clock    */
+    PMC_REGS->PMC_PCK[4]= PMC_PCK_CSS_MCK | PMC_PCK_PRES(0);
     PMC_REGS->PMC_PCK[5]= PMC_PCK_CSS_MCK | PMC_PCK_PRES(2);
 
     /* Enable selected programmable clock   */
-    PMC_REGS->PMC_SCER =    PMC_SCER_PCK5_Msk;
+    PMC_REGS->PMC_SCER =    PMC_SCER_PCK4_Msk | PMC_SCER_PCK5_Msk;
 
     /* Wait for clock to be ready   */
-    while( (PMC_REGS->PMC_SR & (PMC_SR_PCKRDY5_Msk) ) != (PMC_SR_PCKRDY5_Msk));
+    while( (PMC_REGS->PMC_SR & (PMC_SR_PCKRDY4_Msk | PMC_SR_PCKRDY5_Msk) ) != (PMC_SR_PCKRDY4_Msk | PMC_SR_PCKRDY5_Msk));
 
 
 }
@@ -116,5 +128,5 @@ void CLOCK_Initialize( void )
 
     /* Enable Peripheral Clock */
     PMC_REGS->PMC_PCER0=0x20035c00;
-    PMC_REGS->PMC_PCER1=0x4000220;
+    PMC_REGS->PMC_PCER1=0x4004220;
 }
