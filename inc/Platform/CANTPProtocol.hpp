@@ -16,12 +16,12 @@ namespace CANTPProtocol {
     /**
      * How many bytes of information are contained in a consecutive frame
      */
-    uint8_t const bytesPerFrame = 4;
+    uint8_t const BytesPerFrame = 4;
 
     /**
      * A pointer indicating the information starting point.
      */
-    uint8_t const bytesStartingPoint = 2;
+    uint8_t const BytesStartingPoint = 2;
 
     typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 
