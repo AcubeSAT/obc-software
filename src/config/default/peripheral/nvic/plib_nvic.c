@@ -69,6 +69,8 @@ void NVIC_Initialize( void )
     NVIC_EnableIRQ(MCAN1_INT0_IRQn);
     NVIC_SetPriority(TWIHS2_IRQn, 7);
     NVIC_EnableIRQ(TWIHS2_IRQn);
+    NVIC_SetPriority(UART4_IRQn, 7);
+    NVIC_EnableIRQ(UART4_IRQn);
     NVIC_SetPriority(XDMAC_IRQn, 7);
     NVIC_EnableIRQ(XDMAC_IRQn);
 

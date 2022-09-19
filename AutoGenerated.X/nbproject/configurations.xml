@@ -45,6 +45,10 @@
                 <itemPath>../src/config/default/peripheral/twihs/master/plib_twihs2_master.h</itemPath>
               </logicalFolder>
             </logicalFolder>
+            <logicalFolder name="f13" displayName="uart" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/uart/plib_uart_common.h</itemPath>
+              <itemPath>../src/config/default/peripheral/uart/plib_uart4.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f6" displayName="usart" projectFiles="true">
               <itemPath>../src/config/default/peripheral/usart/plib_usart_common.h</itemPath>
               <itemPath>../src/config/default/peripheral/usart/plib_usart1.h</itemPath>
@@ -103,7 +107,6 @@
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/gpbr.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/qspi.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/matrix.h</itemPath>
-            <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/sdramc.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/hsmci.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/aes.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/dacc.h</itemPath>
@@ -152,7 +155,6 @@
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/piod.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/qspi.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/matrix.h</itemPath>
-            <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/sdramc.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/pioc.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/hsmci.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/afec0.h</itemPath>
@@ -259,6 +261,9 @@
                 <itemPath>../src/config/default/peripheral/twihs/master/plib_twihs2_master.c</itemPath>
               </logicalFolder>
             </logicalFolder>
+            <logicalFolder name="f13" displayName="uart" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/uart/plib_uart4.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="f6" displayName="usart" projectFiles="true">
               <itemPath>../src/config/default/peripheral/usart/plib_usart1.c</itemPath>
             </logicalFolder>
@@ -300,24 +305,26 @@
                    displayName="Important Files"
                    projectFiles="false">
       <logicalFolder name="f1" displayName="default.mhc" projectFiles="true">
-        <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/core.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/project.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/settings.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/mcan1.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/efc.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/cmsis.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/core.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/usart1.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/HarmonyCore.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/cmsis.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/mcan1.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/dfp.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/twihs2.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/afec0.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/uart4.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/project.yml</itemPath>
       </logicalFolder>
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/default/harmony-manifest-success.yml</itemPath>
       <itemPath>../src/config/default/harmony-manifest-failure.yml</itemPath>
+      <itemPath>../src/config/default/pin_configurations.csv</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -331,7 +338,7 @@
         <targetDevice>ATSAMV71Q21B</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>EdbgTool</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>ARM</languageToolchain>
         <languageToolchainVersion>9.2.1</languageToolchainVersion>
         <platform>2</platform>
@@ -492,9 +499,13 @@
       </AtmelIceTool>
       <EdbgTool>
         <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="arm.use_vtor" value="false"/>
+        <property key="arm.vtor_adr" value="exception_table"/>
         <property key="communication.activationmode" value="nohv"/>
         <property key="communication.interface" value="swd"/>
         <property key="communication.speed" value="2.000"/>
+        <property key="debugoptions.debug-startup" value="Use system settings"/>
+        <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="firmware.path"
                   value="Press to browse for a specific firmware version"/>
@@ -502,6 +513,7 @@
                   value="Press to select which tool pack to use"/>
         <property key="firmware.update.action" value="firmware.update.use.latest"/>
         <property key="freeze.timers" value="false"/>
+        <property key="lastid" value=""/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
@@ -515,10 +527,7 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="400000-5fffff"/>
-        <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmerToGoFilePath"
-                  value="/home/kchristin/HarmonyProjects/tempfinal/firmware/AutoGenerated.X/debug/default/AutoGenerated_ptg"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preservedataflash.ranges"
@@ -529,6 +538,10 @@
         <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
+        <property key="script.has_reset" value="true"/>
+        <property key="script.log_level" value="1"/>
+        <property key="script.reset_delay" value="0"/>
+        <property key="script.show_output" value="false"/>
         <property key="toolpack.updateoptions"
                   value="toolpack.updateoptions.uselatestoolpack"/>
         <property key="toolpack.updateoptions.packversion"
@@ -1065,12 +1078,16 @@
       </Simulator>
       <Tool>
         <property key="AutoSelectMemRanges" value="auto"/>
+        <property key="arm.use_vtor" value="false"/>
+        <property key="arm.vtor_adr" value="exception_table"/>
         <property key="codecoverage.enabled" value="Disable"/>
         <property key="codecoverage.enableoutputtofile" value="false"/>
         <property key="codecoverage.outputfile" value=""/>
         <property key="communication.activationmode" value="nohv"/>
         <property key="communication.interface" value="swd"/>
         <property key="communication.speed" value="2.000"/>
+        <property key="debugoptions.debug-startup" value="Use system settings"/>
+        <property key="debugoptions.reset-behaviour" value="Use system settings"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
         <property key="firmware.path"
                   value="Press to browse for a specific firmware version"/>
@@ -1078,6 +1095,7 @@
                   value="Press to select which tool pack to use"/>
         <property key="firmware.update.action" value="firmware.update.use.latest"/>
         <property key="freeze.timers" value="false"/>
+        <property key="lastid" value=""/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
@@ -1125,6 +1143,10 @@
         <property key="programoptions.programuserotp" value="false"/>
         <property key="reset.scl" value="false"/>
         <property key="reset.type" value="MCLR"/>
+        <property key="script.has_reset" value="true"/>
+        <property key="script.log_level" value="1"/>
+        <property key="script.reset_delay" value="0"/>
+        <property key="script.show_output" value="false"/>
         <property key="toolpack.updateoptions"
                   value="toolpack.updateoptions.uselatestoolpack"/>
         <property key="toolpack.updateoptions.packversion"

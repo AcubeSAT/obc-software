@@ -6,15 +6,15 @@ set(CMAKE_C_STANDARD 11)
 
 # specify cross compilers and tools
 SET(CMAKE_C_COMPILER_WORKS 1)
-SET(CMAKE_C_COMPILER arm-none-eabi-gcc)
+SET(CMAKE_C_COMPILER /home/stavros/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc)
 SET(CMAKE_CXX_COMPILER_WORKS 1)
-SET(CMAKE_CXX_COMPILER arm-none-eabi-g++)
+SET(CMAKE_CXX_COMPILER /home/stavros/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin/arm-none-eabi-g++)
 project(OBC_SOFTWARE C CXX ASM)
-set(CMAKE_ASM_COMPILER arm-none-eabi-gcc)
-set(CMAKE_AR arm-none-eabi-ar)
-set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
-set(CMAKE_OBJDUMP arm-none-eabi-objdump)
-set(SIZE arm-none-eabi-size)
+set(CMAKE_ASM_COMPILER /home/stavros/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin/arm-none-eabi-gcc)
+set(CMAKE_AR /home/stavros/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin/arm-none-eabi-ar)
+set(CMAKE_OBJCOPY /home/stavros/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin/arm-none-eabi-objcopy)
+set(CMAKE_OBJDUMP /home/stavros/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin/arm-none-eabi-objdump)
+set(SIZE /home/stavros/gcc-arm-11.2-2022.02-x86_64-arm-none-eabi/bin/arm-none-eabi-size)
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld)
 

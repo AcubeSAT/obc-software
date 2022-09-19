@@ -49,6 +49,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "peripheral/afec/plib_afec0.h"
+#include "peripheral/uart/plib_uart4.h"
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/pio/plib_pio.h"
 #include "peripheral/nvic/plib_nvic.h"

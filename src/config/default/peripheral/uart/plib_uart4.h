@@ -1,20 +1,20 @@
 /*******************************************************************************
- System Interrupts File
+  UART4 PLIB
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    interrupt.h
+    plib_uart4.h
 
   Summary:
-    Interrupt vectors mapping
+    UART4 PLIB Header File
 
   Description:
-    This file contains declarations of device vectors used by Harmony 3
- *******************************************************************************/
+    None
 
-// DOM-IGNORE-BEGIN
+*******************************************************************************/
+
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -36,43 +36,64 @@
 * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *******************************************************************************/
+*******************************************************************************/
+
+#ifndef PLIB_UART4_H
+#define PLIB_UART4_H
+
+#include "plib_uart_common.h"
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
 // DOM-IGNORE-END
 
-#ifndef INTERRUPTS_H
-#define INTERRUPTS_H
-
 // *****************************************************************************
 // *****************************************************************************
-// Section: Included Files
-// *****************************************************************************
-// *****************************************************************************
-#include <stdint.h>
-
-
-
-// *****************************************************************************
-// *****************************************************************************
-// Section: Handler Routines
+// Section: Interface
 // *****************************************************************************
 // *****************************************************************************
 
-void Reset_Handler (void);
-void NonMaskableInt_Handler (void);
-void HardFault_Handler (void);
-void MemoryManagement_Handler (void);
-void BusFault_Handler (void);
-void UsageFault_Handler (void);
-void DebugMonitor_Handler (void);
-void SysTick_Handler (void);
-void RTC_InterruptHandler (void);
-void USART1_InterruptHandler (void);
-void AFEC0_InterruptHandler (void);
-void MCAN1_INT0_InterruptHandler (void);
-void TWIHS2_InterruptHandler (void);
-void UART4_InterruptHandler (void);
-void XDMAC_InterruptHandler (void);
+#define UART4_FrequencyGet()    (uint32_t)(150000000UL)
+
+/****************************** UART4 API *********************************/
+
+void UART4_Initialize( void );
+
+UART_ERROR UART4_ErrorGet( void );
+
+bool UART4_SerialSetup( UART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
+
+bool UART4_Write( void *buffer, const size_t size );
+
+bool UART4_Read( void *buffer, const size_t size );
+
+bool UART4_WriteIsBusy( void );
+
+bool UART4_ReadIsBusy( void );
+
+size_t UART4_WriteCountGet( void );
+
+size_t UART4_ReadCountGet( void );
+
+bool UART4_ReadAbort(void);
+
+void UART4_WriteCallbackRegister( UART_CALLBACK callback, uintptr_t context );
+
+void UART4_ReadCallbackRegister( UART_CALLBACK callback, uintptr_t context );
 
 
+bool UART4_TransmitComplete( void );
 
-#endif // INTERRUPTS_H
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    }
+
+#endif
+
+// DOM-IGNORE-END
+#endif // PLIB_UART4_H

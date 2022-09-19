@@ -99,6 +99,13 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'false'}
+  - type: Boolean
+    attributes: {id: CoreMPU_PRIVDEFENA}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
   - type: Integer
     attributes: {id: DACC_CLOCK_FREQUENCY}
     children:
@@ -352,6 +359,27 @@ children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
   - type: Boolean
+    attributes: {id: NVIC_46_0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: NVIC_46_0_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: UART4_InterruptHandler}
+  - type: Boolean
+    attributes: {id: NVIC_46_0_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: Boolean
     attributes: {id: NVIC_4_0_ENABLE}
     children:
     - type: Values
@@ -499,6 +527,20 @@ children:
       - type: User
         attributes: {value: A}
   - type: String
+    attributes: {id: PIN_128_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: ''}
+  - type: String
+    attributes: {id: PIN_128_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: ''}
+  - type: String
     attributes: {id: PIN_129_FUNCTION_TYPE}
     children:
     - type: Values
@@ -624,6 +666,34 @@ children:
       children:
       - type: User
         attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_67_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: UART4_UTXD4}
+  - type: String
+    attributes: {id: PIN_67_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: C}
+  - type: String
+    attributes: {id: PIN_69_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: UART4_URXD4}
+  - type: String
+    attributes: {id: PIN_69_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: C}
   - type: String
     attributes: {id: PIN_70_FUNCTION_TYPE}
     children:
@@ -805,7 +875,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '402653184'}
+        attributes: {id: core, value: '403439616'}
   - type: Boolean
     attributes: {id: PIOD_CLOCK_ENABLE}
     children:
@@ -826,7 +896,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '402653184'}
+        attributes: {id: core, value: '403439616'}
   - type: Boolean
     attributes: {id: PIOE_CLOCK_ENABLE}
     children:
@@ -861,7 +931,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '67109408'}
+        attributes: {id: core, value: '67125792'}
   - type: Combo
     attributes: {id: PMC_PCK5_CSS}
     children:
@@ -995,13 +1065,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: rtc, value: 'true'}
-  - type: Integer
-    attributes: {id: SDRAMC_CLOCK_FREQUENCY}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: core, value: '150000000'}
   - type: Integer
     attributes: {id: SMC_CLOCK_FREQUENCY}
     children:
@@ -1257,6 +1320,48 @@ children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
   - type: Boolean
+    attributes: {id: UART4_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart4, value: 'true'}
+  - type: Integer
+    attributes: {id: UART4_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '150000000'}
+  - type: Boolean
+    attributes: {id: UART4_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart4, value: 'true'}
+  - type: Boolean
+    attributes: {id: UART4_INTERRUPT_ENABLE_UPDATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: String
+    attributes: {id: UART4_INTERRUPT_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart4, value: UART4_InterruptHandler}
+  - type: Boolean
+    attributes: {id: UART4_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart4, value: 'true'}
+  - type: Boolean
     attributes: {id: USART1_CLOCK_ENABLE}
     children:
     - type: Values
@@ -1396,14 +1501,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: USART1_Transmit}
+        attributes: {value: UART4_Transmit}
   - type: Integer
     attributes: {id: XDMAC_CC0_PERID_VAL}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '9'}
+        attributes: {id: core, value: '28'}
   - type: KeyValueSet
     attributes: {id: XDMAC_CC0_SAM}
     children:

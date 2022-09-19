@@ -1,0 +1,22 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: uart4}
+children:
+- type: Symbols
+  children:
+  - type: Integer
+    attributes: {id: BRG_VALUE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart4, value: '81'}
+  - type: Integer
+    attributes: {id: UART_CLOCK_FREQ}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: uart4, value: '150000000'}
+- type: ElementPosition
+  attributes: {x: '445', y: '289', id: uart4}

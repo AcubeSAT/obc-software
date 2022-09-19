@@ -141,13 +141,15 @@ void SYS_Initialize ( void* data )
 
     AFEC0_Initialize();
 
+	UART4_Initialize();
+
 	SYSTICK_TimerInitialize();
     XDMAC_Initialize();
 
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
 
-    WDT_Initialize();
-
+//    WDT_Initialize();
+    WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk;
 
     MCAN1_Initialize();
 
