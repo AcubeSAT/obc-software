@@ -72,7 +72,14 @@ namespace CANTPProtocol {
      * Receives CAN-TP Protocol message frame and saves it to the map.
      * @param messageFrame the received CAN-TP frame
      */
-    void saveCANTPMessage(const CANMessage messageFrame);
+    void saveCANTPMessage(const CANMessage &messageFrame);
+
+    /**
+     * Extracts information(Map key, data length code) from the first frame
+     * @param messageFrame the received CAN-TP frame
+     * @return the map key and the message data length code
+     */
+    etl::vector<uint8_t, 3> extractMessageInformation(const CANMessage &messageFrame);
 
     /**
      * Extracts information from the CAN-TP first frame and sends back information about the current machine state.
