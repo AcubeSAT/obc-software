@@ -24,8 +24,6 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
     }, reinterpret_cast<uintptr_t>(this));
 
     USART1_Read(&byteIn, sizeof(byteIn));
-
-
 }
 
 void TCHandlingTask::resetInput() {
@@ -55,7 +53,6 @@ void TCHandlingTask::execute() {
     while (true) {
 
         xQueueReceive(messageQueueHandle, static_cast<void *>(&messageOut), portMAX_DELAY);
-
         // xQueueReceive does a low-level copy of the message string, so we need to call
         // etl::string::repair() to rearrange the string pointers and prevent memory errors.
         messageOut.repair();
