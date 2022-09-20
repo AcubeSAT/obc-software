@@ -1,17 +1,17 @@
 #ifndef OBC_SOFTWARE_CANTPPROTOCOL_HPP
 #define OBC_SOFTWARE_CANTPPROTOCOL_HPP
 
+#include "CANApplicationLayer.hpp"
 #include "CANMessage.hpp"
 #include "etl/map.h"
-#include "etl/vector.h"
 #include "etl/queue.h"
-#include "CANApplicationLayer.hpp"
+#include "etl/vector.h"
 
 namespace CANTPProtocol {
     /**
      * The size of the map holding the received messages.
      */
-    uint8_t const CANTPStructureSize = 64;
+    constexpr uint8_t CANTPStructureSize = 64;
 
     /**
      * How many bytes of information are contained in a consecutive frame
@@ -25,6 +25,11 @@ namespace CANTPProtocol {
 
     typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 
+
+    struct MessageInformation{
+        uint16_t dataLengthCode;
+        uint8_t messageMapKey;
+    };
     /**
      * Types of CAN-TP procotol frames.
      */
@@ -79,19 +84,13 @@ namespace CANTPProtocol {
      * @param messageFrame the received CAN-TP frame
      * @return the map key and the message data length code
      */
-    etl::vector<uint8_t, 3> extractMessageInformation(const CANMessage &messageFrame);
-
-    /**
-     * Extracts information from the CAN-TP first frame and sends back information about the current machine state.
-     * @param firstFrame the first frame of a CAN-TP message
-     */
-    void sendFlowControlFrame(const CANMessage firstFrame);
+    MessageInformation extractMessageInformation(const CANMessage &messageFrame);
 
     /**
      * When a message is done being received, it is then parsed future processing.
      * @param message the complete CAN-TP message.
      */
-    void parseMessage(const CANTPMessage message);
+    void parseMessage(const CANTPMessage& message);
 }
 
 #endif //OBC_SOFTWARE_CANTPPROTOCOL_HPP

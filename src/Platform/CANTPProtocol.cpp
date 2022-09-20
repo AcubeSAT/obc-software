@@ -28,9 +28,9 @@ namespace CANTPProtocol {
 
         for (uint8_t byte: messagePayload) {
 
-            if (byteCounter % bytesPerFrame == 0) {
+            if ((byteCounter & 0x03) == 0) {
                 byteCounter = 0;
-                //Create a can message and insert it to a queue.
+                //Create a CAN message and insert it to a queue.
                 message = {id, consecutiveFrame};
                 CANApplicationLayer::outgoingMessages.push(message);
                 message.empty();
@@ -48,31 +48,32 @@ namespace CANTPProtocol {
         }
     }
 
-    etl::vector<uint8_t, 3> extractMessageInformation(const CANMessage& messageFrame) {
+    MessageInformation extractMessageInformation(const CANMessage &messageFrame) {
 
         uint8_t dataLengthCodeLSB = messageFrame.data[0] << 4;
         uint8_t dataLengthCodeMSB = messageFrame.data[1];
         uint8_t messageMapKey = messageFrame.data[2];
-        return {messageMapKey, dataLengthCodeLSB, dataLengthCodeMSB};
+
+        uint16_t dataLengthCode = (static_cast<uint16_t>(dataLengthCodeMSB) << 8) | dataLengthCodeLSB;
+
+        return {dataLengthCode, messageMapKey};
     }
 
-    void saveCANTPMessage(const CANMessage& messageFrame) {
+    void saveCANTPMessage(const CANMessage &messageFrame) {
         uint8_t frame = messageFrame.data[0] >> 4;
         if (frame == First) {
-            etl::vector<uint8_t, 3> information = extractMessageInformation(messageFrame);
+            auto information = extractMessageInformation(messageFrame);
 
-            uint8_t dataLengthCodeLSB = information[0] >> 4;
-            uint8_t dataLengthCodeMSB = information[1];
-            uint8_t messageMapKey = information[2];
+            auto dataLengthCode = information.dataLengthCode;
+            auto messageMapKey = information.messageMapKey;
 
-            uint16_t dataLengthCode = (static_cast<uint16_t>(dataLengthCodeMSB) << 8) | dataLengthCodeLSB;
             incomingMessages.insert(etl::pair{messageMapKey, CANTPMessage{}});
             dataLengthCodes[messageMapKey] = dataLengthCode;
         } else if (frame == Consecutive) {
             uint8_t messageMapKey = messageFrame.data[1];
             etl::vector<uint8_t, CANMessage::MaxDataLength> data;
-            for (uint8_t i = 0; i < bytesPerFrame; i++) {
-                data.push_back(messageFrame.data[bytesStartingPoint + i]);
+            for (uint8_t i = 0; i < BytesPerFrame; i++) {
+                data.push_back(messageFrame.data[BytesStartingPoint + i]);
             }
             incomingMessages[messageMapKey].insert(incomingMessages[messageMapKey].end(),
                                                    data.begin(), data.end());
@@ -83,7 +84,7 @@ namespace CANTPProtocol {
     }
 
     //todo: answer with functionality
-    void parseMessage(const CANTPMessage message) {
+    void parseMessage(const CANTPMessage &message) {
         switch (message[0]) {
             case SendParameters:
                 break; //todo: use ParameterService to update the values.
@@ -105,6 +106,8 @@ namespace CANTPProtocol {
                 break; //Saul goodman
             case LogMessage:
                 break; //LOG this message.
+            default:
+                break; //Error handling
         }
     }
 }

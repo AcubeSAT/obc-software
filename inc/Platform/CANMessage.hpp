@@ -14,9 +14,9 @@ public:
 
     CANMessage() {};
 
-    CANMessage(uint16_t _id) : id(_id) {};
+    CANMessage(uint16_t id) : id(id) {};
 
-    CANMessage(uint16_t _id, const etl::vector<uint8_t, MaxDataLength> &_data) : id(_id), data(_data) {};
+    CANMessage(uint16_t id, const etl::vector<uint8_t, MaxDataLength> &data) : id(id), data(data) {};
 
     inline void empty() {
         id = 0;
