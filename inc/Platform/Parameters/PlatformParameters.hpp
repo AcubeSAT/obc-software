@@ -460,7 +460,9 @@ namespace PlatformParameters {
         COMMSOnBoardTime = 2031,
         COMMSNANDCurrentlyUsedMemoryPartition = 2032,
         COMMSLastFailedEvent = 2033,
-        COMMSMCUSystick = 2034
+        COMMSMCUSystick = 2034,
+        COMMSFlashInt = 2035,
+        COMMSSRAMInt = 2036
     };
 
     // Parameters used for testing
@@ -991,6 +993,8 @@ namespace PlatformParameters {
 
     inline Parameter<uint16_t> commsLastFailedEvent(0);
     inline Parameter<uint64_t> commsMCUSystick(0);
+    inline Parameter<uint32_t> commsFlashInt(0);
+    inline Parameter<uint32_t> commsSRAMInt(0);
 }
 
 #endif
