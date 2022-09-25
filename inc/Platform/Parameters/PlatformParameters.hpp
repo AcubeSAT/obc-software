@@ -25,31 +25,29 @@ namespace PlatformParameters {
         OBCMCUTemperature = 5002,
         OBCMCUInputVoltage = 5003,
         OBCMCUBootCounter = 5004,
-        OBCAFlashInt = 5005,
-        OBCASRAMInt = 5006,
-        OBCOFLASHInt = 5007,
-        OBCOSRAMInt = 5008,
-        OBCMRAM = 5009,
-        OBCNAND = 5010,
-        OBCSpacecraftTimeRef = 5011,
-        OBCMCUTime = 5012,
-        OBCOperationalMode = 5013,
-        OBCMemoryPartition = 5014,
-        OBCReconfigurationTimer = 5015,
-        OBCLastFailedEvent = 5016,
-        OBCMCUSystick = 5017,
-        OBCCANBUSLoad1 = 5018,
-        OBCCANBUSLoad2 = 5019,
-        OBCCANBUSActive = 5020,
-        OBCMCUFDIR = 5021,
-        OBCMCURestartSafeModeThreshold = 5022,
-        OBCNANDFLASHLCLThreshold = 5023,
-        OBCMRAMLCLThreshold = 5024,
-        OBCNANDFLASHON = 5025,
-        OBCMRAMON = 5026,
-        OBCNANDFLASHScrubbingFrequency = 5027,
-        OBCRAMScrubbingFrequency = 5028,
-        OBCProgramFlashScrubbingFrequency = 5029,
+        OBCFlashInt = 5005,
+        OBCSRAMInt = 5006,
+        OBCMRAM = 5007,
+        OBCNAND = 5008,
+        OBCSpacecraftTimeRef = 5009,
+        OBCMCUTime = 5010,
+        OBCOperationalMode = 5011,
+        OBCMemoryPartition = 5012,
+        OBCReconfigurationTimer = 5013,
+        OBCLastFailedEvent = 5014,
+        OBCMCUSystick = 5015,
+        OBCCANBUSLoad1 = 5016,
+        OBCCANBUSLoad2 = 5017,
+        OBCCANBUSActive = 5018,
+        OBCMCUFDIR = 5019,
+        OBCMCURestartSafeModeThreshold = 5020,
+        OBCNANDFLASHLCLThreshold = 5021,
+        OBCMRAMLCLThreshold = 5022,
+        OBCNANDFLASHON = 5023,
+        OBCMRAMON = 5024,
+        OBCNANDFLASHScrubbingFrequency = 5025,
+        OBCRAMScrubbingFrequency = 5026,
+        OBCProgramFlashScrubbingFrequency = 5027,
 
         /* SU */
         SUMCUBootCounter = 4040,
@@ -364,6 +362,8 @@ namespace PlatformParameters {
 
         ADCSRAMScrubbingFrequency = 1225,
         ADCSProgramFlashScrubbingFrequency = 1226,
+        ADCSFLASHInt = 1227,
+        ADCSSRAMInt = 1228,
 
         /* EPS Parameters */
         EPSSwitch3V1 = 3000,
@@ -483,10 +483,8 @@ namespace PlatformParameters {
     inline Parameter<float> obcMCUInputVoltage(0);
 
     inline Parameter<uint32_t> obcMCUBootCounter(0);
-    inline Parameter<uint32_t> obcAFlashInt(0);
-    inline Parameter<uint32_t> obcASRAMInt(0);
-    inline Parameter<uint32_t> obcOFLASHInt(0);
-    inline Parameter<uint32_t> obcOSRAMInt(0);
+    inline Parameter<uint32_t> obcFlashInt(0);
+    inline Parameter<uint32_t> obcSRAMInt(0);
     inline Parameter<uint32_t> obcMRAM(0);
     inline Parameter<uint32_t> obcNAND(0);
 
@@ -875,6 +873,8 @@ namespace PlatformParameters {
     inline Parameter<uint64_t> adcsSystick(0);
     inline Parameter<float> adcsRAMScrubbingFrequency(0);
     inline Parameter<float> adcsProgramFlashScrubbingFrequency(0);
+    inline Parameter<uint32_t> adcsSRAMInt(0);
+    inline Parameter<uint32_t> adcsFlashInt(0);
 
     /****************** EPS PARAMETERS *******************/
     inline Parameter<bool> epsSwitch3V1(0);

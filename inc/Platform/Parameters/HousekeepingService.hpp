@@ -49,10 +49,8 @@ namespace HousekeepingStructures {
                      */
                     {2, 5000, false,
                      {OBCMCUInputVoltage,
-                      OBCAFlashInt,
-                      OBCASRAMInt,
-                      OBCOFLASHInt,
-                      OBCOSRAMInt,
+                      OBCFlashInt,
+                      OBCSRAMInt,
                       OBCMRAM,
                       OBCNAND,
                              /** OnBoardTime */
@@ -107,7 +105,9 @@ namespace HousekeepingStructures {
                       ADCSGyroscopeZ,
                       ADCSGyroBiasX,
                       ADCSGyroBiasY,
-                      ADCSGyroBiasZ}},
+                      ADCSGyroBiasZ,
+                      ADCSFLASHInt,
+                      ADCSSRAMInt}},
             }
     };
 }
