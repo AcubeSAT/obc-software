@@ -30,8 +30,7 @@ namespace HousekeepingStructures {
                       AvailableHeap,
                       OBCUseCAN,
                       OBCUseUART,
-                      OBCUseRTT,
-                      OBCBootCounter}},
+                      OBCUseRTT}},
                     /**
                     * OBC Mission Database parameters monitored every 3 sec
                     */

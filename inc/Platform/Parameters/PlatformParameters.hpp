@@ -14,13 +14,10 @@ namespace PlatformParameters {
         OnBoardHour = 3,
         OnBoardMinute = 4,
         OnBoardSecond = 5,
-        ReportParametersUnusedStack = 6,
         AvailableHeap = 7,
         OBCUseRTT = 8,
         OBCUseUART = 9,
         OBCUseCAN = 10,
-        OBCBootCounter = 301,
-        OBCSystick = 329,
 
         /* OBDH Parameters */
         OBCPCBTemperature1 = 5000,
@@ -473,12 +470,9 @@ namespace PlatformParameters {
     inline Parameter<uint8_t> onBoardHour(0);
     inline Parameter<uint8_t> onBoardMinute(0);
     inline Parameter<uint8_t> onBoardSecond(0);
-    inline Parameter<uint16_t> reportParametersUnusedStack(0);
     inline Parameter<uint16_t> availableHeap(0);
 
     /******************* OBDH PARAMETERS *******************/
-    inline Parameter<uint16_t> obcBootCounter(0);
-    inline Parameter<uint64_t> obcSysTick(0);
     inline Parameter<bool> obcUseRTT(true);
     inline Parameter<bool> obcUseUART(true);
     inline Parameter<bool> obcUseCAN(false);
