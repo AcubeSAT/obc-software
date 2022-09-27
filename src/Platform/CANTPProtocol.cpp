@@ -7,18 +7,13 @@
 namespace CANTPProtocol {
     void createCANTPMessage(uint16_t id, uint8_t messageMapKey,
                             const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload) {
-
-        CANMessage message = {};
-
         // 4 MSB bits is the frame type id and the 4 LSB are the 4 out of 12 bits for the data length code.
         uint8_t idDLC = (First << 4) | (messagePayload.size() >> 4);
         // Rest 8 bits of data length code.
         uint8_t DLC = messagePayload.size() << 4;
 
         etl::vector<uint8_t, CANMessage::MaxDataLength> firstFrame = {idDLC, DLC, messageMapKey};
-        message = {id, firstFrame};
-        CANApplicationLayer::outgoingMessages.push(message);
-        message.empty();
+        CANApplicationLayer::outgoingMessages.push({id, firstFrame});
 
         //Start creating the consecutive frames.
         uint8_t currentConsecutiveFrameCount = 0x01;
@@ -27,18 +22,13 @@ namespace CANTPProtocol {
         uint16_t byteCounter = 0;
 
         for (uint8_t byte: messagePayload) {
-            if ((byteCounter & 0x03) == 0) {
+            if (byteCounter % 4 == 0) {
                 byteCounter = 0;
-                //Create a CAN message and insert it to a queue.
-                message = {id, consecutiveFrame};
-                CANApplicationLayer::outgoingMessages.push(message);
-                message.empty();
+                CANApplicationLayer::outgoingMessages.push({id, consecutiveFrame});
                 currentConsecutiveFrameCount++;
 
-                //Fill the new consecutive frame with the necessary information
                 consecutiveFrameElements = (Consecutive << 4) | currentConsecutiveFrameCount;
                 consecutiveFrame = {consecutiveFrameElements, messageMapKey};
-                //Reset the CF counter
                 if (currentConsecutiveFrameCount == 0x0F) {
                     currentConsecutiveFrameCount = 0x00;
                 }
