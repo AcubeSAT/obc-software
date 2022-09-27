@@ -117,7 +117,7 @@ namespace CANTPMessage {
         CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
 
-    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message& message) {
+    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
         etl::string<ECSSMaxMessageSize> messageHeader = MessageParser::composeECSS(message);
         etl::vector<uint8_t, TPMessageMaximumSize> data;
@@ -127,16 +127,16 @@ namespace CANTPMessage {
             data.push_back(CANTPProtocol::TCPacket);
         }
 
-        for (uint8_t i = 0; i < ECSSMaxMessageSize; i++) {
-            data.push_back(messageHeader[i]);
+        for (auto byte: messageHeader) {
+            data.push_back(byte);
         }
-        for (uint8_t i = 0; i < messageHeader.size(); i++) {
-            data.push_back(message.data[i]);
+        for (auto byte: message.data) {
+            data.push_back(byte);
         }
         CANTPProtocol::createCANTPMessage(id, 0x00, data);
     }
 
-    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message& message) {
+    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message) {
         uint16_t id = encodeId({CAN::NodeID, destinationAddress, isMulticast});
         etl::string<ECSSMaxMessageSize> messageHeader = MessageParser::compose(message);
         etl::vector<uint8_t, TPMessageMaximumSize> data = {CANTPProtocol::CCSDSPacket};

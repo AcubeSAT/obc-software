@@ -5,10 +5,10 @@
 #include "Services/EventReportService.hpp"
 
 namespace CANTPProtocol {
-    static CANMessage message = {};
-
     void createCANTPMessage(uint16_t id, uint8_t messageMapKey,
                             const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload) {
+
+        CANMessage message = {};
 
         // 4 MSB bits is the frame type id and the 4 LSB are the 4 out of 12 bits for the data length code.
         uint8_t idDLC = (First << 4) | (messagePayload.size() >> 4);
@@ -27,7 +27,6 @@ namespace CANTPProtocol {
         uint16_t byteCounter = 0;
 
         for (uint8_t byte: messagePayload) {
-
             if ((byteCounter & 0x03) == 0) {
                 byteCounter = 0;
                 //Create a CAN message and insert it to a queue.
@@ -49,7 +48,6 @@ namespace CANTPProtocol {
     }
 
     MessageInformation extractMessageInformation(const CANMessage &messageFrame) {
-
         uint8_t dataLengthCodeLSB = messageFrame.data[0] << 4;
         uint8_t dataLengthCodeMSB = messageFrame.data[1];
         uint8_t messageMapKey = messageFrame.data[2];

@@ -25,22 +25,21 @@ namespace CANTPProtocol {
 
     typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 
-
-    struct MessageInformation{
+    struct MessageInformation {
         uint16_t dataLengthCode;
         uint8_t messageMapKey;
     };
     /**
      * Types of CAN-TP procotol frames.
      */
-    enum Frame : uint8_t {
+    enum class Frame : uint8_t {
         Single = 0x00, First = 0x01, Consecutive = 0x02, FlowControl = 0x03
     };
 
     /**
      * CAN-TP message IDs, as specified in DDJF_OBDH.
      */
-    enum Message : uint8_t {
+    enum class Message : uint8_t {
         SendParameters = 0x01,
         RequestParameters = 0x02,
         PerformFunction = 0x03,
@@ -52,7 +51,6 @@ namespace CANTPProtocol {
         Pong = 0x31,
         LogMessage = 0x40
     };
-
 
     /**
      * A structure holding received CAN-TP messages.
@@ -74,7 +72,8 @@ namespace CANTPProtocol {
                             const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload);
 
     /**
-     * Receives CAN-TP Protocol message frame and saves it to the map.
+     * Receives CAN-TP Protocol message frame, processes its bytes for information and then saves it to the incoming
+     * messages map.
      * @param messageFrame the received CAN-TP frame
      */
     void saveCANTPMessage(const CANMessage &messageFrame);
@@ -87,10 +86,10 @@ namespace CANTPProtocol {
     MessageInformation extractMessageInformation(const CANMessage &messageFrame);
 
     /**
-     * When a message is done being received, it is then parsed future processing.
+     * Processes the stored messages received and acts on their content accordingly.
      * @param message the complete CAN-TP message.
      */
-    void parseMessage(const CANTPMessage& message);
+    void parseMessage(const CANTPMessage &message);
 }
 
 #endif //OBC_SOFTWARE_CANTPPROTOCOL_HPP
