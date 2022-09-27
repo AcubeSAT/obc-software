@@ -5,14 +5,98 @@
 #include "Services/HousekeepingService.hpp"
 
 namespace HousekeepingStructures {
-   static etl::array<HousekeepingStructure, ECSSMaxHousekeepingStructures> structures = {
-           {0, 900, true,
-            {PlatformParameters::OnBoardSecond, PlatformParameters::AvailableHeap},
-            1, 1000, true,
-            {PlatformParameters::OnBoardDay, PlatformParameters::OnBoardHour, PlatformParameters::OnBoardMinute}
-           },
-   };
-}
+    using namespace PlatformParameters;
 
+    //TODO: Add OBCOnBoardTime once it's merged
+    static etl::array <HousekeepingStructure, ECSSMaxHousekeepingStructures> structures = {
+            {
+                    // OBC Parameters that will be monitored in the campaign
+                    {0, 1000, true,
+                     {OBCPCBTemperature1,
+                      OBCPCBTemperature2,
+                      OBCMCUTemperature,
+                      OBCMCUBootCounter,
+                      OBCMemoryPartition,
+                      OBCMCUSystick,
+                      OBCCANBUSLoad1,
+                      OBCCANBUSLoad2,
+                      OBCCANBUSActive,
+                      OBCNANDFLASHLCLThreshold,
+                      OBCMRAMLCLThreshold,
+                      OBCNANDFLASHON,
+                      OBCMRAMON,
+                      AvailableHeap,
+                      OBCUseCAN,
+                      OBCUseUART,
+                      OBCUseRTT}},
+                    // OBC Mission Database parameters monitored every 3 sec
+                    {1, 3000, true,
+                     {OBCPCBTemperature1,
+                      OBCPCBTemperature2,
+                      OBCSpacecraftTimeRef,
+                      OBCOperationalMode,
+                      OBCMemoryPartition,
+                      OBCReconfigurationTimer,
+                      OBCLastFailedEvent,
+                      OBCMCUSystick
+                     }},
+                    // OBC Mission Database parameters not sampled
+                    {2, 5000, false,
+                     {OBCMCUInputVoltage,
+                      OBCFlashInt,
+                      OBCSRAMInt,
+                      OBCMRAM,
+                      OBCNAND,
+                      OBCCANBUSLoad1,
+                      OBCCANBUSLoad2,
+                      OBCCANBUSActive,
+                      OBCMCUFDIR,
+                      OBCMCURestartSafeModeThreshold,
+                      OBCNANDFLASHLCLThreshold,
+                      OBCMRAMLCLThreshold,
+                      OBCNANDFLASHON,
+                      OBCNANDFLASHScrubbingFrequency,
+                      OBCRAMScrubbingFrequency,
+                      OBCProgramFlashScrubbingFrequency}},
+                    // ADCS Parameters that will be monitored every 0.01 sec in the campaign
+                    {3, 10, true,
+                     {ADCSMagnetometerRawX,
+                      ADCSMagnetometerRawY,
+                      ADCSMagnetometerRawZ,
+                      ADCSGyroscopeX,
+                      ADCSGyroscopeY,
+                      ADCSGyroscopeZ}},
+                    // ADCS Parameters that will be monitored every 3 seconds in the campaign
+                    {4, 3000, true,
+                     {ADCSMagnetometerFrequency,
+                      ADCSMagnetometerCycleCountX,
+                      ADCSMagnetometerCycleCountY,
+                      ADCSMagnetometerCycleCountZ,
+                      ADCSMagnetometerSelfTest,
+                      ADCSGyroscopeXTemperature,
+                      ADCSGyroscopeYTemperature,
+                      ADCSGyroscopeZTemperature,
+                      ADCSBoardTemperature1,
+                      ADCSBoardTemperature2,
+                      ADCSMCUTemperature,
+                      ADCSBootCounter,
+                      ADCSMCUOnBoardTime,
+                      ADCSSystick}},
+                    // ADCS Parameters that might not be used
+                    {5, 5000, false,
+                     {ADCSMagnetometerSignX,
+                      ADCSMagnetometerSignY,
+                      ADCSMagnetometerSignZ,
+                      ADCSGyroscopeX,
+                      ADCSGyroscopeY,
+                      ADCSGyroscopeZ,
+                      ADCSGyroBiasX,
+                      ADCSGyroBiasY,
+                      ADCSGyroBiasZ,
+                      ADCSFLASHInt,
+                      ADCSSRAMInt}},
+            }
+    };
+}
 
 #endif
