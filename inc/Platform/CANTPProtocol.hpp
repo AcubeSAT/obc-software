@@ -32,14 +32,14 @@ namespace CANTPProtocol {
     /**
      * Types of CAN-TP procotol frames.
      */
-    enum class Frame : uint8_t {
+    enum Frame : uint8_t {
         Single = 0x00, First = 0x01, Consecutive = 0x02, FlowControl = 0x03
     };
 
     /**
      * CAN-TP message IDs, as specified in DDJF_OBDH.
      */
-    enum class Message : uint8_t {
+    enum Message : uint8_t {
         SendParameters = 0x01,
         RequestParameters = 0x02,
         PerformFunction = 0x03,
