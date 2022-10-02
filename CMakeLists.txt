@@ -1,6 +1,6 @@
 SET(CMAKE_SYSTEM_NAME Generic)
 SET(CMAKE_SYSTEM_VERSION 1)
-cmake_minimum_required(VERSION 3.19.2)
+cmake_minimum_required(VERSION 3.11.2)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 11)
 

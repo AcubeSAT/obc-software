@@ -8,12 +8,6 @@ namespace PlatformParameters {
      * ID enumeration of OBDH subsystem's specific parameters.
      */
     enum ParameterID : uint16_t {
-        OnBoardYear = 0,
-        OnBoardMonth = 1,
-        OnBoardDay = 2,
-        OnBoardHour = 3,
-        OnBoardMinute = 4,
-        OnBoardSecond = 5,
         AvailableHeap = 7,
         OBCUseRTT = 8,
         OBCUseUART = 9,
@@ -466,12 +460,6 @@ namespace PlatformParameters {
     };
 
     // Parameters used for testing
-    inline Parameter<uint16_t> onBoardYear(2022);
-    inline Parameter<uint8_t> onBoardMonth(1);
-    inline Parameter<uint8_t> onBoardDay(1);
-    inline Parameter<uint8_t> onBoardHour(0);
-    inline Parameter<uint8_t> onBoardMinute(0);
-    inline Parameter<uint8_t> onBoardSecond(0);
     inline Parameter<uint16_t> availableHeap(0);
 
     /******************* OBDH PARAMETERS *******************/
