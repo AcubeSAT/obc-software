@@ -28,16 +28,18 @@ namespace CANApplicationLayer {
     }
 
     void sendUTCTimeMessage() {
-        uint64_t msOfDay = TimeGetter::getCurrentTimeCustomCUC().elapsed100msTicks; //@todo This doesn't reset every day, only since epoch.
+        auto now = TimeGetter::getCurrentTimeDefaultCUC();
+
+        std::chrono::duration<uint64_t, std::milli> msOfDay = now.asDuration(); //@todo This doesn't reset every day, only since epoch.
 
         uint16_t id = getTimeID(CAN::NodeID);
-        TimeStamp<4, 0> timeStamp(CommonParameters::time.getValue()); //TODO remove magic numbers when transferred to cross-platform-software
-        UTCTimestamp timestamp = timeStamp.toUTCtimestamp();
-        etl::array<uint8_t, CANMessage::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay),
-                                                               static_cast<uint8_t>(msOfDay >> 8),
-                                                               static_cast<uint8_t>(msOfDay >> 16),
-                                                               static_cast<uint8_t>(msOfDay >> 24), 0,
-                                                               timestamp.day}; //@todo days parameter should not be uint8_t
+        UTCTimestamp utc = now.toUTCtimestamp();
+        etl::array<uint8_t, CANMessage::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay.count()),
+                                                               static_cast<uint8_t>(msOfDay.count() >> 8),
+                                                               static_cast<uint8_t>(msOfDay.count() >> 16),
+                                                               static_cast<uint8_t>(msOfDay.count() >> 24), 0,
+                                                               utc.day}; //@todo days parameter should not be uint8_t
+
 
         outgoingMessages.push({id, data});
     }

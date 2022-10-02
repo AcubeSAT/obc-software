@@ -490,7 +490,7 @@ namespace PlatformParameters {
     inline Parameter<uint32_t> obcMRAM(0);
     inline Parameter<uint32_t> obcNAND(0);
 
-    inline Parameter<Time::CustomCUC_t> obcMCUTime({0});
+    inline Parameter<Time::DefaultCUC> obcMCUTime(Time::DefaultCUC(0));
 
     inline Parameter<uint16_t> obcSpacecraftTimeRef(0); // enum
     inline Parameter<uint16_t> obcOperationalMode(0); // enum
