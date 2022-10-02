@@ -1,6 +1,6 @@
 SET(CMAKE_SYSTEM_NAME Generic)
 SET(CMAKE_SYSTEM_VERSION 1)
-cmake_minimum_required(VERSION 3.19.2)
+cmake_minimum_required(VERSION 3.11.2)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_STANDARD 11)
 
@@ -29,7 +29,7 @@ SET(CMAKE_CXX_FLAGS_INIT "${COMMON_FLAGS} -std=c++11")
 SET(CMAKE_C_FLAGS_INIT "${COMMON_FLAGS} -std=gnu99")
 SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT}")
 
-add_compile_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16)
+add_compile_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fstack-usage -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16)
 add_link_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
@@ -107,3 +107,4 @@ set(CMAKE_EXE_LINKER_FLAGS
         "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
 
 add_compile_definitions(LOGLEVEL_TRACE)
+
