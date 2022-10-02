@@ -10,5 +10,6 @@
     <mapping directory="$PROJECT_DIR$/lib/cross-platform-software/lib/ecss-services/lib/Catch2" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/cross-platform-software/lib/ecss-services/lib/etl" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/cross-platform-software/lib/ecss-services/lib/logger" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/cross-platform-software/lib/ecss-services/lib/logger/lib/etl" vcs="Git" />
   </component>
 </project>
