@@ -6,10 +6,7 @@
 #include "PlatformParameters.hpp"
 
 void ParameterService::initializeParameterMap() {
-    parameters = {{PlatformParameters::ReportParametersUnusedStack,                          PlatformParameters::reportParametersUnusedStack},
-                  {PlatformParameters::AvailableHeap,                                        PlatformParameters::availableHeap},
-                  {PlatformParameters::OBCBootCounter,                                       PlatformParameters::obcBootCounter},
-                  {PlatformParameters::OBCSystick,                                           PlatformParameters::obcSysTick},
+    parameters = {{PlatformParameters::AvailableHeap,                                        PlatformParameters::availableHeap},
                   {PlatformParameters::OBCMCUTemperature,                                    PlatformParameters::obcMCUTemperature},
                   {PlatformParameters::OBCUseRTT,                                            PlatformParameters::obcUseRTT},
                   {PlatformParameters::OBCUseUART,                                           PlatformParameters::obcUseUART},
@@ -19,14 +16,12 @@ void ParameterService::initializeParameterMap() {
                   {PlatformParameters::OBCPCBTemperature2,                                   PlatformParameters::obcPCBTemperature2},
                   {PlatformParameters::OBCMCUInputVoltage,                                   PlatformParameters::obcMCUInputVoltage},
                   {PlatformParameters::OBCMCUBootCounter,                                    PlatformParameters::obcMCUBootCounter},
-                  {PlatformParameters::OBCAFlashInt,                                         PlatformParameters::obcAFlashInt},
-                  {PlatformParameters::OBCASRAMInt,                                          PlatformParameters::obcASRAMInt},
-                  {PlatformParameters::OBCOFLASHInt,                                         PlatformParameters::obcOFLASHInt},
-                  {PlatformParameters::OBCOSRAMInt,                                          PlatformParameters::obcOSRAMInt},
+                  {PlatformParameters::OBCFlashInt,                                          PlatformParameters::obcFlashInt},
+                  {PlatformParameters::OBCSRAMInt,                                           PlatformParameters::obcSRAMInt},
                   {PlatformParameters::OBCMRAM,                                              PlatformParameters::obcMRAM},
                   {PlatformParameters::OBCNAND,                                              PlatformParameters::obcNAND},
-                  {PlatformParameters::OBCSpacecraftTimeRef,                                 PlatformParameters::obcSpacecraftTimeRef},
-                  {PlatformParameters::OBCMCUTime,                                           PlatformParameters::obcMCUTime},
+                  {PlatformParameters::OBCSpacecraftTimeRef,                                 PlatformParameters::obcMCUTime},
+                  {PlatformParameters::OBCMCUTime,                                           PlatformParameters::obcSpacecraftTimeRef},
                   {PlatformParameters::OBCOperationalMode,                                   PlatformParameters::obcOperationalMode},
                   {PlatformParameters::OBCMemoryPartition,                                   PlatformParameters::obcMemoryPartition},
                   {PlatformParameters::OBCReconfigurationTimer,                              PlatformParameters::obcReconfigurationTimer},
@@ -40,8 +35,8 @@ void ParameterService::initializeParameterMap() {
                   {PlatformParameters::OBCNANDFLASHLCLThreshold,                             PlatformParameters::obcNANDFLASHLCLThreshold},
                   {PlatformParameters::OBCMRAMLCLThreshold,                                  PlatformParameters::obcMRAMLCLThreshold},
                   {PlatformParameters::OBCNANDFLASHON,                                       PlatformParameters::obcNANDFLASHON},
-                  {PlatformParameters::OBCMRAMON,                                            PlatformParameters::obcMRAMON},
-                  {PlatformParameters::OBCNANDFLASHScrubbingFrequency,                       PlatformParameters::obcNANDFlashScrubbingFrequency},
+                  {PlatformParameters::OBCMRAMON,                                            PlatformParameters::obcNANDFlashScrubbingFrequency},
+                  {PlatformParameters::OBCNANDFLASHScrubbingFrequency,                       PlatformParameters::obcMRAMON},
                   {PlatformParameters::OBCRAMScrubbingFrequency,                             PlatformParameters::obcRAMScrubbingFrequency},
                   {PlatformParameters::OBCProgramFlashScrubbingFrequency,                    PlatformParameters::obcProgramFlashScrubbingFrequency},
             //-----------------------------------------------------------------------------------------------
@@ -337,6 +332,8 @@ void ParameterService::initializeParameterMap() {
                   {PlatformParameters::ADCSLastFailedEvent,                                  PlatformParameters::adcsLastFailedEvent},
                   {PlatformParameters::ADCSRAMScrubbingFrequency,                            PlatformParameters::adcsRAMScrubbingFrequency},
                   {PlatformParameters::ADCSProgramFlashScrubbingFrequency,                   PlatformParameters::adcsProgramFlashScrubbingFrequency},
+                  {PlatformParameters::ADCSFLASHInt,                                         PlatformParameters::adcsFlashInt},
+                  {PlatformParameters::ADCSSRAMInt,                                          PlatformParameters::adcsSRAMInt},
             //---------------------------------------------------------------------------------------------
                   {PlatformParameters::EPSSwitch3V1,                                         PlatformParameters::epsSwitch3V1},
                   {PlatformParameters::EPSSwitch3V2,                                         PlatformParameters::epsSwitch3V2},
@@ -431,7 +428,9 @@ void ParameterService::initializeParameterMap() {
                   {PlatformParameters::COMMSOnBoardTime,                                     PlatformParameters::commsOnBoardTime},
                   {PlatformParameters::COMMSNANDCurrentlyUsedMemoryPartition,                PlatformParameters::commsNANDCurrentlyUsedMemoryPartition},
                   {PlatformParameters::COMMSLastFailedEvent,                                 PlatformParameters::commsLastFailedEvent},
-                  {PlatformParameters::COMMSMCUSystick,                                      PlatformParameters::commsMCUSystick}};
-    }
+                  {PlatformParameters::COMMSMCUSystick,                                      PlatformParameters::commsMCUSystick},
+                  {PlatformParameters::COMMSFlashInt,                                        PlatformParameters::commsFlashInt},
+                  {PlatformParameters::COMMSSRAMInt,                                         PlatformParameters::commsSRAMInt}};
+}
 
 #endif
