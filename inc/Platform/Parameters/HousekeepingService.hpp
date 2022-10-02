@@ -59,7 +59,7 @@ namespace HousekeepingStructures {
                       OBCRAMScrubbingFrequency,
                       OBCProgramFlashScrubbingFrequency}},
                     // ADCS Parameters that will be monitored every 0.01 sec in the campaign
-                    {3, 10, true,
+                    {3, 10, false,
                      {ADCSMagnetometerRawX,
                       ADCSMagnetometerRawY,
                       ADCSMagnetometerRawZ,
