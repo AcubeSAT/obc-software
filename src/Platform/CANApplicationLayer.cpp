@@ -27,13 +27,13 @@ namespace CANApplicationLayer {
     }
 
     void sendUTCTimeMessage() {
-        uint64_t msOfDay = TimeGetter::getCurrentTimeCustomCUC().elapsed100msTicks; //@todo This doesn't reset every day, only since epoch.
+        std::chrono::duration<uint64_t, std::milli> msOfDay = TimeGetter::getCurrentTimeDefaultCUC().asDuration(); //@todo This doesn't reset every day, only since epoch.
 
         uint16_t id = getTimeID(CAN::NodeID);
-        etl::array<uint8_t, CANMessage::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay),
-                                                               static_cast<uint8_t>(msOfDay >> 8),
-                                                               static_cast<uint8_t>(msOfDay >> 16),
-                                                               static_cast<uint8_t>(msOfDay >> 24), 0,
+        etl::array<uint8_t, CANMessage::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay.count()),
+                                                               static_cast<uint8_t>(msOfDay.count() >> 8),
+                                                               static_cast<uint8_t>(msOfDay.count() >> 16),
+                                                               static_cast<uint8_t>(msOfDay.count() >> 24), 0,
                                                                PlatformParameters::onBoardDay.getValue()}; //@todo days parameter should not be uint8_t
 
         outgoingMessages.push({id, data});
