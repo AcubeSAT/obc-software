@@ -6,13 +6,7 @@
 #include "PlatformParameters.hpp"
 
 void ParameterService::initializeParameterMap() {
-    parameters = {{PlatformParameters::OnBoardYear,                                          PlatformParameters::onBoardYear},
-                  {PlatformParameters::OnBoardMonth,                                         PlatformParameters::onBoardMonth},
-                  {PlatformParameters::OnBoardDay,                                           PlatformParameters::onBoardDay},
-                  {PlatformParameters::OnBoardHour,                                          PlatformParameters::onBoardHour},
-                  {PlatformParameters::OnBoardMinute,                                        PlatformParameters::onBoardMinute},
-                  {PlatformParameters::OnBoardSecond,                                        PlatformParameters::onBoardSecond},
-                  {PlatformParameters::AvailableHeap,                                        PlatformParameters::availableHeap},
+    parameters = {{PlatformParameters::AvailableHeap,                                        PlatformParameters::availableHeap},
                   {PlatformParameters::OBCMCUTemperature,                                    PlatformParameters::obcMCUTemperature},
                   {PlatformParameters::OBCUseRTT,                                            PlatformParameters::obcUseRTT},
                   {PlatformParameters::OBCUseUART,                                           PlatformParameters::obcUseUART},

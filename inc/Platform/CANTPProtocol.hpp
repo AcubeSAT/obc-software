@@ -16,7 +16,7 @@ namespace CANTPProtocol {
     /**
      * How many bytes of information are contained in a consecutive frame
      */
-    uint8_t const BytesPerFrame = 4;
+    uint8_t const BytesPerFrame = 5;
 
     /**
      * A pointer indicating the information starting point.
@@ -83,7 +83,7 @@ namespace CANTPProtocol {
      * @param messageFrame the received CAN-TP frame
      * @return the map key and the message data length code
      */
-    MessageInformation extractMessageInformation(const CANMessage &messageFrame);
+    uint16_t extractDataLengthCode(const CANMessage &messageFrame);
 
     /**
      * Processes the stored messages received and acts on their content accordingly.
