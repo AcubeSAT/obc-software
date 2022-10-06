@@ -108,7 +108,7 @@ namespace CANTPMessage {
                                   const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &payload);
 
     /**
-     * Creates an ECSS Services TM/TC packet to be sent.
+     * Creates an ECSS-E-ST-70-41C Services TM/TC packet to be sent.
      * @param destinationAddress The ID of the destination node.
      * @param isMulticast Whether the message is to be sent to a multicast group.
      * @param message An ECSS Message.

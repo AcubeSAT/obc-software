@@ -8,10 +8,11 @@
 #include "etl/vector.h"
 
 namespace CANTPProtocol {
+
     /**
      * The size of the map holding the received messages.
      */
-    constexpr uint8_t CANTPStructureSize = 64;
+    constexpr uint16_t CANTPStructureSize = 256;
 
     /**
      * How many bytes of information are contained in a consecutive frame
@@ -23,12 +24,14 @@ namespace CANTPProtocol {
      */
     uint8_t const BytesStartingPoint = 2;
 
+    /**
+     * A structure holding the data length codes of the received CAN-TP messages.
+     */
+    uint8_t gamwtinmanasou;
+
     typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 
-    struct MessageInformation {
-        uint16_t dataLengthCode;
-        uint8_t messageMapKey;
-    };
+    static CANTPMessage canTPMessage = {};
     /**
      * Types of CAN-TP procotol frames.
      */
@@ -52,15 +55,6 @@ namespace CANTPProtocol {
         LogMessage = 0x40
     };
 
-    /**
-     * A structure holding received CAN-TP messages.
-     */
-    inline static etl::map<uint8_t, CANTPMessage, CANTPStructureSize> incomingMessages;
-
-    /**
-     * A structure holding the data length codes of the received CAN-TP messages.
-     */
-    inline static etl::array<uint8_t, CANTPStructureSize> dataLengthCodes;
 
     /**
      * Splits a CAN-TP Message into a collection of CAN-TP frames and adds them to the outgoing CANApplicationLayer queue.
@@ -68,8 +62,7 @@ namespace CANTPProtocol {
      * @param messageMapKey a map key to save the message correctly to the message map when received
      * @param messagePayload one of the CAN-TP messages found in DDJF_OBDH
      */
-    void createCANTPMessage(uint16_t id, uint8_t messageMapKey,
-                            const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload);
+    void createCANTPMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload);
 
     /**
      * Receives CAN-TP Protocol message frame, processes its bytes for information and then saves it to the incoming

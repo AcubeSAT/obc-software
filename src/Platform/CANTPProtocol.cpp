@@ -5,6 +5,7 @@
 #include "Services/EventReportService.hpp"
 
 namespace CANTPProtocol {
+
     void createCANTPMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload) {
         // 4 MSB bits is the frame type id and the 4 LSB are the 4 out of 12 bits for the data length code.
         uint8_t idDLC = (First << 4) | (messagePayload.size() >> 4);
@@ -40,26 +41,23 @@ namespace CANTPProtocol {
         uint8_t dataLengthCodeLSB = messageFrame.data[0] << 4;
         uint8_t dataLengthCodeMSB = messageFrame.data[1];
 
-        uint16_t dataLengthCode = (static_cast<uint16_t>(dataLengthCodeMSB) << 8) | dataLengthCodeLSB;
+        uint16_t DLC = (static_cast<uint16_t>(dataLengthCodeMSB) << 8) | dataLengthCodeLSB;
 
-        return dataLengthCode;
+        return DLC;
     }
 
     void saveCANTPMessage(const CANMessage &messageFrame) {
         uint8_t frame = messageFrame.data[0] >> 4;
         if (frame == First) {
-            auto dataLengthCode = extractDataLengthCode(messageFrame);
+            gamwtinmanasou = extractDataLengthCode(messageFrame);
             
         } else if (frame == Consecutive) {
-            uint8_t messageMapKey = messageFrame.data[1];
-            etl::vector<uint8_t, CANMessage::MaxDataLength> data;
-            for (uint8_t i = 0; i < BytesPerFrame; i++) {
-                data.push_back(messageFrame.data[BytesStartingPoint + i]);
+            for (uint8_t i = 1; i < BytesPerFrame; i++) {
+                canTPMessage.push_back(messageFrame.data[i]);
             }
-            incomingMessages[messageMapKey].insert(incomingMessages[messageMapKey].end(),
-                                                   data.begin(), data.end());
-            if (incomingMessages[messageMapKey].size() == dataLengthCodes[messageMapKey]) {
-                parseMessage(incomingMessages[messageMapKey]);
+
+            if (canTPMessage.size() == gamwtinmanasou) {
+                parseMessage(canTPMessage);
             }
         }
     }

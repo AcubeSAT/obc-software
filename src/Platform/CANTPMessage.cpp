@@ -46,7 +46,7 @@ namespace CANTPMessage {
             stuffIntoVector(parameter, data);
         }
 
-        CANTPProtocol::createCANTPMessage(id, 0x00, data);
+        CANTPProtocol::createCANTPMessage(id, data);
     }
 
     void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
@@ -62,7 +62,7 @@ namespace CANTPMessage {
             stuffIntoVector(parameterID, data);
         }
 
-        CANTPProtocol::createCANTPMessage(id, 0x00, data);
+        CANTPProtocol::createCANTPMessage(id,  data);
     }
 
     template<typename T>
@@ -88,7 +88,7 @@ namespace CANTPMessage {
             idx++; //@todo This is not error handled, if the argumentValues.size() != argumentIDs.size() there is undefined behavior.
         }
 
-        CANTPProtocol::createCANTPMessage(id, 0x00, data);
+        CANTPProtocol::createCANTPMessage(id, data);
     }
 
     void
@@ -99,7 +99,7 @@ namespace CANTPMessage {
 
         std::copy(log.begin(), log.end(), data.end());
 
-        CANTPProtocol::createCANTPMessage(id, 0x00, data);
+        CANTPProtocol::createCANTPMessage(id, data);
     }
 
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
@@ -114,7 +114,7 @@ namespace CANTPMessage {
             data.push_back(point);
         }
 
-        CANTPProtocol::createCANTPMessage(id, 0x00, data);
+        CANTPProtocol::createCANTPMessage(id, data);
     }
 
     void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message) {
@@ -133,7 +133,7 @@ namespace CANTPMessage {
         for (auto byte: message.data) {
             data.push_back(byte);
         }
-        CANTPProtocol::createCANTPMessage(id, 0x00, data);
+        CANTPProtocol::createCANTPMessage(id, data);
     }
 
     void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message) {
@@ -147,6 +147,6 @@ namespace CANTPMessage {
             data.push_back(character);
         }
 
-        CANTPProtocol::createCANTPMessage(id, 0x00, data);
+        CANTPProtocol::createCANTPMessage(id, data);
     }
 }
