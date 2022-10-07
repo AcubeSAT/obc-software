@@ -27,7 +27,7 @@ namespace CANTPProtocol {
     /**
      * A structure holding the data length codes of the received CAN-TP messages.
      */
-    uint8_t gamwtinmanasou;
+    uint8_t randomleksi;
 
     typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 

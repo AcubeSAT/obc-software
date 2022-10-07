@@ -49,14 +49,14 @@ namespace CANTPProtocol {
     void saveCANTPMessage(const CANMessage &messageFrame) {
         uint8_t frame = messageFrame.data[0] >> 4;
         if (frame == First) {
-            gamwtinmanasou = extractDataLengthCode(messageFrame);
+            randomleksi = extractDataLengthCode(messageFrame);
             
         } else if (frame == Consecutive) {
             for (uint8_t i = 1; i < BytesPerFrame; i++) {
                 canTPMessage.push_back(messageFrame.data[i]);
             }
 
-            if (canTPMessage.size() == gamwtinmanasou) {
+            if (canTPMessage.size() == randomleksi) {
                 parseMessage(canTPMessage);
             }
         }
