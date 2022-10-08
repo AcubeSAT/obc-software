@@ -93,8 +93,8 @@ namespace CANTPMessage {
      * @param isMulticast Whether the message is to be sent to a multicast group.
      * @param log A LogEntry to be sent.
      */
-    void
-    createLogMessage(uint8_t destinationAddress, bool isMulticast, const etl::string<LOGGER_MAX_MESSAGE_SIZE> &log);
+
+    void createLogMessage(uint8_t destinationAddress, bool isMulticast, uint16_t logSize, const etl::string<LOGGER_MAX_MESSAGE_SIZE> &log);
 
     /**
      * Sends a Event Report CAN-TP Message as described in DDJF_OBDH.

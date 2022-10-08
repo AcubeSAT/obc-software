@@ -17,7 +17,7 @@ namespace CANTPProtocol {
     /**
      * How many bytes of information are contained in a consecutive frame
      */
-    uint8_t const BytesPerFrame = 5;
+    static constexpr uint8_t BytesPerFrame = 6;
 
     /**
      * A pointer indicating the information starting point.
@@ -27,11 +27,11 @@ namespace CANTPProtocol {
     /**
      * A structure holding the data length codes of the received CAN-TP messages.
      */
-    uint8_t randomleksi;
+    inline etl::vector<uint16_t, 1> dataLengthCodes;
 
     typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 
-    static CANTPMessage canTPMessage = {};
+    inline static CANTPMessage canTPMessage = {};
     /**
      * Types of CAN-TP procotol frames.
      */
@@ -62,7 +62,7 @@ namespace CANTPProtocol {
      * @param messageMapKey a map key to save the message correctly to the message map when received
      * @param messagePayload one of the CAN-TP messages found in DDJF_OBDH
      */
-    void createCANTPMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload);
+    void createCANTPMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload, uint16_t messageSize);
 
     /**
      * Receives CAN-TP Protocol message frame, processes its bytes for information and then saves it to the incoming
