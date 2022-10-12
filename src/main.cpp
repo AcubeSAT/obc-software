@@ -30,8 +30,6 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 #endif
 
 extern "C" void main_cpp() {
-    LogSource::currentSubsystem = "OBC";
-
     SYS_Initialize(NULL);
     initializeTasks();
 
