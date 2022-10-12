@@ -96,7 +96,9 @@ namespace CANTPMessage {
 
         etl::vector<uint8_t, TPMessageMaximumSize> data = {CANTPProtocol::LogMessage};
 
-        std::copy(log.begin(), log.begin() + logSize, data.end());
+        for(uint16_t idx = 0; idx < logSize; idx++){
+            data.push_back(log[idx]);
+        }
 
         CANTPProtocol::createCANTPMessage(id, data, logSize);
     }

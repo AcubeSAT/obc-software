@@ -11,6 +11,7 @@ namespace CANTPProtocol {
         uint8_t DLC = messageSize << 4;
 
         etl::vector<uint8_t, CANMessage::MaxDataLength> firstFrame = {idDLC, DLC};
+
         CANApplicationLayer::outgoingMessages.push({id, firstFrame});
 
         //Start creating the consecutive frames.
