@@ -73,9 +73,9 @@ namespace CAN {
     inline const uint8_t NodeID = 0x0;
 
     /**
-     * The maximum of the length of the queue for incoming/outgoing CAN messages.
+     * The maximum of the length of the queue for incoming/outgoing CAN packets.
      */
-    inline const uint8_t MessageQueueSize = 20;
+    inline const uint8_t PacketQueueSize = 20;
 
     /**
      * The maximum size for the data field of a CAN-TP message.

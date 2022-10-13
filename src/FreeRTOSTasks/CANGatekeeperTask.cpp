@@ -4,12 +4,12 @@
 
 CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
     static StaticQueue_t xStaticQueue;
-    uint8_t ucQueueStorageArea[CAN::MessageQueueSize * sizeof(CAN::Message)];
-    xCanQueue = xQueueCreateStatic(CAN::MessageQueueSize, sizeof(CAN::Message), ucQueueStorageArea, &xStaticQueue);
+    uint8_t ucQueueStorageArea[CAN::PacketQueueSize * sizeof(CAN::Packet)];
+    xCanQueue = xQueueCreateStatic(CAN::PacketQueueSize, sizeof(CAN::Packet), ucQueueStorageArea, &xStaticQueue);
 }
 
 void CANGatekeeperTask::execute() {
-    CAN::Message message = {};
+    CAN::Packet message = {};
 
     while (true) {
         xQueueReceive(xCanQueue, &message, portMAX_DELAY);
