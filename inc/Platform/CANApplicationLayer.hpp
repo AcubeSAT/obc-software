@@ -2,7 +2,7 @@
 #define OBC_SOFTWARE_CANAPPLICATIONLAYER_H
 
 #include "CAN/Packet.hpp"
-#include "CANTPMessage.hpp"
+#include "CAN/TPMessage.hpp"
 #include "etl/queue.h"
 
 namespace CANApplicationLayer {
