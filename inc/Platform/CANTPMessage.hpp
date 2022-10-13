@@ -10,15 +10,6 @@
 
 namespace CANTPMessage {
     /**
-     * The ID information of a CAN-TP Message, as specified in DDJF_OBDH.
-     */
-    struct IdInfo {
-        uint8_t sourceAddress;
-        uint8_t destinationAddress;
-        bool isMulticast;
-    };
-
-    /**
      * The available Event Report Types, for an Event Report CAN-TP Message.
      */
     enum EventReportType : uint8_t {
