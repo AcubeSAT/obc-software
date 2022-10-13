@@ -65,18 +65,28 @@ namespace CAN::Application {
     }
 
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
-                                      const etl::vector<uint8_t, TPMessageMaximumArguments> &argumentIDs,
-                                      const etl::vector<uint16_t, TPMessageMaximumArguments> &argumentValues) {
+                                      const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments) {
         CAN::TPMessage message = {};
         message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         message.appendUint8(MessageIDs::PerformFunction);
 
+        //TODO Find a more readable way to append a 6 byte variable to this message
+        message.appendUint16(functionId >> 4 * 8);
+        message.appendUint32(functionId & 0xffffffff);
+
+        message.appendUint16(arguments.size());
+
+        for (auto argument: arguments) {
+            message.appendUint8(argument.first);
+            message.appendUint64(argument.second);
+        }
+
         //TODO Move to TP Protocol -> Gatekeeper
     }
 
     void createLogMessage(uint8_t destinationAddress, bool isMulticast, uint16_t logSize,
-                          const etl::string<LOGGER_MAX_MESSAGE_SIZE> &log) {
+                          const String<LOGGER_MAX_MESSAGE_SIZE> &log) {
         CAN::TPMessage message = {};
         message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
 

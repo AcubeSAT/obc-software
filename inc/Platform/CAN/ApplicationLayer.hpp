@@ -99,8 +99,8 @@ namespace CAN::Application {
      * @param destinationAddress The ID of the destination node.
      * @param isMulticast Whether the message is to be sent to a multicast group.
      * @param functionId The ID of the function to be called.
-     * @param argumentIDs The IDs of the arguments to be sent.
-     * @param argumentValues The values of the arguments to be sent.
+     * @param arguments The map containing the arguments of the function to be called.
+     * @TODO This map should be changed to accomodate arguments of differing types, not just uint64_t
      * */
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
                                       const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments);
@@ -112,7 +112,7 @@ namespace CAN::Application {
      * @param log A LogEntry to be sent.
      */
     void createLogMessage(uint8_t destinationAddress, bool isMulticast, uint16_t logSize,
-                          const etl::string <LOGGER_MAX_MESSAGE_SIZE> &log);
+                          const String<LOGGER_MAX_MESSAGE_SIZE> &log);
 
     /**
      * Sends a Event Report CAN-TP Message as described in DDJF_OBDH.
@@ -123,7 +123,7 @@ namespace CAN::Application {
      * @param payload An array of the event data.
      */
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
-                                  const etl::vector<uint8_t, TPMessageMaximumSize> &payload);
+                                  const Message &eventData);
 
     /**
      * Creates an ECSS-E-ST-70-41C Services TM/TC packet to be sent.
