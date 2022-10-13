@@ -48,7 +48,7 @@ namespace CANTPMessage {
      */
     template<typename T, size_t N>
     inline void stuffIntoVector(T value, etl::vector<uint8_t, N> &vector) {
-        for (auto i = sizeof(T) - 1; i >= 0; i--) {
+        for (int8_t i = sizeof(T) - 1; i >= 0; i--) {
             vector.push_back(value >> (i * 8));
         }
     }
