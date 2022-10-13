@@ -57,6 +57,7 @@ namespace CAN::Application {
         message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
         message.appendUint8(MessageIDs::RequestParameters);
+        message.appendUint16(parameterIDs.size());
         for (auto parameterID: parameterIDs) {
             message.appendUint16(parameterID);
         }
