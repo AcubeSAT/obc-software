@@ -64,28 +64,28 @@ namespace CANTPProtocol {
     //todo: answer with functionality
     void parseMessage(const CANTPMessage &message) {
         switch (message[0]) {
-            case SendParameters:
+            case CAN::Application::SendParameters:
                 break; //todo: use ParameterService to update the values.
-            case RequestParameters:
+            case CAN::Application::RequestParameters:
                 break; //todo: send back the requested parameters.
-            case PerformFunction:
+            case CAN::Application::PerformFunction:
                 break; //todo: using ST[08] execute the perform function command
-            case EventReport:
+            case CAN::Application::EventReport:
                 break; //todo: use the Event Report service to... report the event.... hehe
-            case TMPacket:
+            case CAN::Application::TMPacket:
                 break; //todo: idk
-            case TCPacket:
-                break; //execute the incoming TC
-            case CCSDSPacket:
-                break; //send this to comms? idk
-            case Ping:
+            case CAN::Application::TCPacket:
+                break; //todo execute the incoming TC
+            case CAN::Application::CCSDSPacket:
+                break; //todo send this to comms? idk
+            case CAN::Application::Ping:
                 CAN::Application::sendPongMessage();
-            case Pong:
-                break; //Saul goodman
-            case LogMessage:
-                break; //LOG this message.
+            case CAN::Application::Pong:
+                break; //todo Saul goodman
+            case CAN::Application::LogMessage:
+                break; //todo LOG this message.
             default:
-                break; //Error handling
+                break; //todo Error handling
         }
     }
 }
