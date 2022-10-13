@@ -1,12 +1,12 @@
-#include "CANDriver.hpp"
+#include "CAN/Driver.hpp"
 #include "Logger.hpp"
 
-uint8_t CANDriver::convertDlcToLength(uint8_t dlc) {
+uint8_t CAN::Driver::convertDlcToLength(uint8_t dlc) {
     static constexpr uint8_t msgLength[] = {0U, 1U, 2U, 3U, 4U, 5U, 6U, 7U, 8U, 12U, 16U, 20U, 24U, 32U, 48U, 64U};
     return msgLength[dlc];
 }
 
-uint8_t CANDriver::convertLengthToDLC(uint8_t length) {
+uint8_t CAN::Driver::convertLengthToDLC(uint8_t length) {
     uint8_t dlc;
 
     if (length <= 8U) {
@@ -29,7 +29,7 @@ uint8_t CANDriver::convertLengthToDLC(uint8_t length) {
     return dlc;
 }
 
-void CANDriver::txFifoCallback(uintptr_t context) {
+void CAN::Driver::txFifoCallback(uintptr_t context) {
     uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
 
     if (static_cast<APPStates>(context) == MCANTransmit &&
@@ -38,7 +38,7 @@ void CANDriver::txFifoCallback(uintptr_t context) {
     }
 }
 
-void CANDriver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
+void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
     uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
 
     if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
@@ -51,7 +51,7 @@ void CANDriver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
     }
 }
 
-void CANDriver::logMessage(const MCAN_RX_BUFFER &rxBuf) {
+void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf) {
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
     uint32_t id = rxBuf.id >> 18;
     const uint8_t MsgLength = convertDlcToLength(rxBuf.dlc);
