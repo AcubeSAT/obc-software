@@ -2,7 +2,7 @@
 #define OBC_SOFTWARE_CANTPMESSAGE_H
 
 #include <cstdint>
-#include "CAN/Message.hpp"
+#include "CAN/Packet.hpp"
 #include "etl/String.hpp"
 #include "etl/vector.h"
 #include "Logger_Definitions.hpp"

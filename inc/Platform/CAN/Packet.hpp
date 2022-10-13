@@ -5,17 +5,17 @@
 #include "OBC_Definitions.hpp"
 
 namespace CAN {
-    class Message {
+    class Packet {
     public:
         static constexpr uint8_t MaxDataLength = 8;
         uint16_t id = 0;
         etl::vector<uint8_t, MaxDataLength> data = {};
 
-        Message() = default;
+        Packet() = default;
 
-        Message(uint16_t id) : id(id) {};
+        Packet(uint16_t id) : id(id) {};
 
-        Message(uint16_t id, const etl::vector<uint8_t, MaxDataLength> &data) : id(id), data(data) {};
+        Packet(uint16_t id, const etl::vector<uint8_t, MaxDataLength> &data) : id(id), data(data) {};
 
         inline void empty() {
             id = 0;

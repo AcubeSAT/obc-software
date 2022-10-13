@@ -1,7 +1,7 @@
 #ifndef OBC_SOFTWARE_CANAPPLICATIONLAYER_H
 #define OBC_SOFTWARE_CANAPPLICATIONLAYER_H
 
-#include "CAN/Message.hpp"
+#include "CAN/Packet.hpp"
 #include "CANTPMessage.hpp"
 #include "etl/queue.h"
 
@@ -9,18 +9,18 @@ namespace CANApplicationLayer {
     /**
      * A queue that holds messages that are waiting to be sent via the CAN Bus.
      */
-    inline etl::queue<CAN::Message, CAN::MessageQueueSize> outgoingMessages;
+    inline etl::queue<CAN::Packet, CAN::MessageQueueSize> outgoingMessages;
 
     /**
      * A queue that holds messages that have been received via the CAN Bus, and are awaiting parsing.
      */
-    inline etl::queue<CAN::Message, CAN::MessageQueueSize> incomingMessages;
+    inline etl::queue<CAN::Packet, CAN::MessageQueueSize> incomingMessages;
 
     /**
      * Parses an incoming message and calls the appropriate functions for it's handling.
-     * @param message A CAN::Message object with an ID and a Data field.
+     * @param message A CAN::Packet object with an ID and a Data field.
      */
-    void parseMessage(CAN::Message message);
+    void parseMessage(CAN::Packet message);
 
     /**
      * Splits a CAN-TP Message into a collection of CAN Messages and adds them to the outgoing queue.

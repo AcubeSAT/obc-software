@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CAN/Message.hpp"
+#include "CAN/Packet.hpp"
 #include "Task.hpp"
 #include "queue.h"
 
@@ -24,16 +24,16 @@ public:
     CANGatekeeperTask();
 
     /**
-     * Adds an CAN::Message to the CAN Gatekeeper's queue.
+     * Adds an CAN::Packet to the CAN Gatekeeper's queue.
      *
      * This function was added as an extra abstraction layer to house the `xQueueSendToBack` function.
      * It can be used from anywhere in the code to get access to the CAN queue/CAN Gatekeeper task, without having to
      * know the low level details of the queue.
      *
      * If the queue is full, the message is not added to the queue and is lost.
-     * @param message the CAN::Message to be added in the queue of the CAN Gatekeeper task.
+     * @param message the CAN::Packet to be added in the queue of the CAN Gatekeeper task.
      */
-    void addToQueue(const CAN::Message &message) {
+    void addToQueue(const CAN::Packet &message) {
         xQueueSendToBack(xCanQueue, &message, 0);
     }
 

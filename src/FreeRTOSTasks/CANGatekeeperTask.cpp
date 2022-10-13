@@ -1,5 +1,5 @@
 #include "CAN/Driver.hpp"
-#include "CAN/Message.hpp"
+#include "CAN/Packet.hpp"
 #include "CANGatekeeperTask.hpp"
 
 CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
