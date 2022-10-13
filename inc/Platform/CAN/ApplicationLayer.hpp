@@ -30,6 +30,7 @@ namespace CAN::Application {
     ActiveBus currentBus = MainBus;
 
     inline uint8_t toggleBusSwitchover() {
+        //TODO Signal logic to peripheral
         if (currentBus == MainBus) {
             currentBus = RedundantBus;
         } else {
