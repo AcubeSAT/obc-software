@@ -1,18 +1,16 @@
 #ifndef OBC_SOFTWARE_CANMESSAGE_H
 #define OBC_SOFTWARE_CANMESSAGE_H
 
-#include <algorithm>
-#include <cstdint>
 #include "etl/vector.h"
 #include "OBC_Definitions.hpp"
 
 class CANMessage {
 public:
     static constexpr uint8_t MaxDataLength = 8;
-    uint16_t id;
-    etl::vector<uint8_t, MaxDataLength> data;
+    uint16_t id = 0;
+    etl::vector<uint8_t, MaxDataLength> data = {};
 
-    CANMessage() {};
+    CANMessage() = default;
 
     CANMessage(uint16_t id) : id(id) {};
 
