@@ -40,23 +40,6 @@ namespace CANTPProtocol {
     };
 
     /**
-     * CAN-TP message IDs, as specified in DDJF_OBDH.
-     */
-    enum Message : uint8_t {
-        SendParameters = 0x01,
-        RequestParameters = 0x02,
-        PerformFunction = 0x03,
-        EventReport = 0x04,
-        TMPacket = 0x20,
-        TCPacket = 0x21,
-        CCSDSPacket = 0x022,
-        Ping = 0x30,
-        Pong = 0x31,
-        LogMessage = 0x40
-    };
-
-
-    /**
      * Splits a CAN-TP Message into a collection of CAN-TP frames and adds them to the outgoing CANApplicationLayer queue.
      * @param id the CAN Message encoded id
      * @param messageMapKey a map key to save the message correctly to the message map when received
