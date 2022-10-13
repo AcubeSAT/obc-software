@@ -4,8 +4,8 @@
 
 CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
     static StaticQueue_t xStaticQueue;
-    uint8_t ucQueueStorageArea[CANQueueSize * sizeof(CAN::Message)];
-    xCanQueue = xQueueCreateStatic(CANQueueSize, sizeof(CAN::Message), ucQueueStorageArea, &xStaticQueue);
+    uint8_t ucQueueStorageArea[CAN::MessageQueueSize * sizeof(CAN::Message)];
+    xCanQueue = xQueueCreateStatic(CAN::MessageQueueSize, sizeof(CAN::Message), ucQueueStorageArea, &xStaticQueue);
 }
 
 void CANGatekeeperTask::execute() {

@@ -50,10 +50,6 @@ inline const uint8_t ReferenceTemperature = 25;
  */
 inline const uint8_t UARTQueueSize = 5;
 
-/**
- * The size of the queue used to communicate with the CAN Gatekeeper task
- */
-inline const uint8_t CANQueueSize = 15;
 
 /**
  * The typical voltage output of the DAC of the AFEC channel at 25 Celsius
@@ -80,11 +76,6 @@ namespace CAN {
      * The maximum of the length of the queue for incoming/outgoing CAN messages.
      */
     inline const uint8_t MessageQueueSize = 20;
-
-    /**
-    * The maximum of the length of the queue for an incoming/outgoing CAN-TP message.
-    */
-    inline const uint8_t TPMessageQueueSize = 10;
 
     /**
      * The maximum size for the data field of a CAN-TP message.
