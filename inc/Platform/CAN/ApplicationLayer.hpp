@@ -51,6 +51,24 @@ namespace CAN::Application {
     };
 
     /**
+     * Determines whether a message is following the CAN-TP Message protocol.
+     * @param id The Id of the message received via CAN
+     * @return True if the message is part of a CAN-TP Message
+     */
+    inline bool isTPMessage(uint16_t id) {
+        return (id >> 7) == 0b0111;
+    }
+
+    /**
+     * Removes the id of the sender in an incoming CAN Message.
+     * @param id The ID to be filtered.
+     * @return The filtered ID.
+     */
+    inline uint16_t filterMessageID(uint16_t id) {
+        return id & 0x700;
+    }
+
+    /**
      * Adds a Ping message to the outgoing queue, according to DDJF_OBDH.
      */
     void sendPingMessage();
@@ -106,15 +124,6 @@ namespace CAN::Application {
                                       const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments);
 
     /**
-     * Sends a Log CAN-TP Message as described in DDJF_OBDH.
-     * @param destinationAddress The ID of the destination node.
-     * @param isMulticast Whether the message is to be sent to a multicast group.
-     * @param log A LogEntry to be sent.
-     */
-    void createLogMessage(uint8_t destinationAddress, bool isMulticast, uint16_t logSize,
-                          const String<LOGGER_MAX_MESSAGE_SIZE> &log);
-
-    /**
      * Sends a Event Report CAN-TP Message as described in DDJF_OBDH.
      * @param destinationAddress The ID of the destination node.
      * @param isMulticast Whether the message is to be sent to a multicast group.
@@ -142,21 +151,10 @@ namespace CAN::Application {
     void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message);
 
     /**
-     * Determines whether a message is following the CAN-TP Message protocol.
-     * @param id The Id of the message received via CAN
-     * @return True if the message is part of a CAN-TP Message
+     * Sends a Log CAN-TP Message as described in DDJF_OBDH.
+     * @param destinationAddress The ID of the destination node.
+     * @param isMulticast Whether the message is to be sent to a multicast group.
+     * @param log A LogEntry to be sent.
      */
-    inline bool isTPMessage(uint16_t id) {
-        return (id >> 7) == 0b0111;
-    }
-
-    /**
-     * Removes the id of the sender in an incoming CAN Message.
-     * @param id The ID to be filtered.
-     * @return The filtered ID.
-     */
-    inline uint16_t filterMessageID(uint16_t id) {
-        return id & 0x700;
-    }
-
+    void createLogMessage(uint8_t destinationAddress, bool isMulticast, const String<LOGGER_MAX_MESSAGE_SIZE> &log);
 }

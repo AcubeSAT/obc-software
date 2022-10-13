@@ -86,17 +86,6 @@ namespace CAN::Application {
         //TODO Move to TP Protocol -> Gatekeeper
     }
 
-    void createLogMessage(uint8_t destinationAddress, bool isMulticast, uint16_t logSize,
-                          const String<LOGGER_MAX_MESSAGE_SIZE> &log) {
-        CAN::TPMessage message = {};
-        message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
-
-        message.appendUint8(MessageIDs::LogMessage);
-        message.appendString(log);
-
-        //TODO Move to TP Protocol -> Gatekeeper
-    }
-
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
                                   const Message &eventData) {
         CAN::TPMessage message = {};
@@ -141,5 +130,14 @@ namespace CAN::Application {
         //TODO Move to TP Protocol -> Gatekeeper
     }
 
+    void createLogMessage(uint8_t destinationAddress, bool isMulticast,
+                          const String<LOGGER_MAX_MESSAGE_SIZE> &log) {
+        CAN::TPMessage message = {};
+        message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
 
+        message.appendUint8(MessageIDs::LogMessage);
+        message.appendString(log);
+
+        //TODO Move to TP Protocol -> Gatekeeper
+    }
 }
