@@ -4,22 +4,24 @@
 #include "etl/vector.h"
 #include "OBC_Definitions.hpp"
 
-class CANMessage {
-public:
-    static constexpr uint8_t MaxDataLength = 8;
-    uint16_t id = 0;
-    etl::vector<uint8_t, MaxDataLength> data = {};
+namespace CAN {
+    class Message {
+    public:
+        static constexpr uint8_t MaxDataLength = 8;
+        uint16_t id = 0;
+        etl::vector<uint8_t, MaxDataLength> data = {};
 
-    CANMessage() = default;
+        Message() = default;
 
-    CANMessage(uint16_t id) : id(id) {};
+        Message(uint16_t id) : id(id) {};
 
-    CANMessage(uint16_t id, const etl::vector<uint8_t, MaxDataLength> &data) : id(id), data(data) {};
+        Message(uint16_t id, const etl::vector<uint8_t, MaxDataLength> &data) : id(id), data(data) {};
 
-    inline void empty() {
-        id = 0;
-        data.fill(0);
-    }
-};
+        inline void empty() {
+            id = 0;
+            data.fill(0);
+        }
+    };
+}
 
 #endif //OBC_SOFTWARE_CANMESSAGE_H
