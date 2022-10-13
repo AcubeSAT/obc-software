@@ -2,7 +2,7 @@
 #define OBC_SOFTWARE_CANTPPROTOCOL_HPP
 
 #include "CANApplicationLayer.hpp"
-#include "CANMessage.hpp"
+#include "CAN/Message.hpp"
 #include "etl/map.h"
 #include "etl/queue.h"
 #include "etl/vector.h"
@@ -69,14 +69,14 @@ namespace CANTPProtocol {
      * messages map.
      * @param messageFrame the received CAN-TP frame
      */
-    void saveCANTPMessage(const CANMessage &messageFrame);
+    void saveCANTPMessage(const CAN::Message &messageFrame);
 
     /**
      * Extracts information(Map key, data length code) from the first frame
      * @param messageFrame the received CAN-TP frame
      * @return the map key and the message data length code
      */
-    uint16_t extractDataLengthCode(const CANMessage &messageFrame);
+    uint16_t extractDataLengthCode(const CAN::Message &messageFrame);
 
     /**
      * Processes the stored messages received and acts on their content accordingly.
