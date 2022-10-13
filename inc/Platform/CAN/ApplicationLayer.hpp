@@ -39,6 +39,13 @@ namespace CAN::Application {
     }
 
     /**
+     * The available Event Report Types, for an Event Report CAN-TP Message.
+     */
+    enum EventReportType : uint8_t {
+        Informative = 0x0, LowSeverity = 0x1, MediumSeverity = 0x2, HighSeverity = 0x3
+    };
+
+    /**
      * Adds a Ping message to the outgoing queue, according to DDJF_OBDH.
      */
     void sendPingMessage();
@@ -63,6 +70,71 @@ namespace CAN::Application {
      * Adds a message to the outgoing queue with the current UTC Time, according to DDJF_OBDH.
      */
     void sendUTCTimeMessage();
+
+    /**
+     * Sends a Send Parameters CAN-TP Message as described in DDJF_OBDH.
+     * @param destinationAddress The ID of the destination node.
+     * @param isMulticast Whether the message is to be sent to a multicast group.
+     * @param parameterIDs The IDs of the parameters to be sent.
+     */
+    void createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
+                                     const etl::vector <uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
+
+    /**
+     * Sends a Request Parameters CAN-TP Message as described in DDJF_OBDH.
+     * @param destinationAddress The ID of the destination node.
+     * @param isMulticast Whether the message is to be sent to a multicast group.
+     * @param parameterIDs The IDs of the parameters to be requested.
+     */
+    void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
+                                        const etl::vector <uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
+
+    /**
+     * Sends a Request Parameters CAN-TP Message as described in DDJF_OBDH.
+     * @param destinationAddress The ID of the destination node.
+     * @param isMulticast Whether the message is to be sent to a multicast group.
+     * @param functionId The ID of the function to be called.
+     * @param argumentIDs The IDs of the arguments to be sent.
+     * @param argumentValues The values of the arguments to be sent.
+     * */
+    void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
+                                      const etl::map <uint8_t, uint64_t, TPMessageMaximumArguments> &arguments);
+
+    /**
+     * Sends a Log CAN-TP Message as described in DDJF_OBDH.
+     * @param destinationAddress The ID of the destination node.
+     * @param isMulticast Whether the message is to be sent to a multicast group.
+     * @param log A LogEntry to be sent.
+     */
+    void createLogMessage(uint8_t destinationAddress, bool isMulticast, uint16_t logSize,
+                          const etl::string <LOGGER_MAX_MESSAGE_SIZE> &log);
+
+    /**
+     * Sends a Event Report CAN-TP Message as described in DDJF_OBDH.
+     * @param destinationAddress The ID of the destination node.
+     * @param isMulticast Whether the message is to be sent to a multicast group.
+     * @param type The event report type.
+     * @param eventID The ID of the event.
+     * @param payload An array of the event data.
+     */
+    void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
+                                  const etl::vector <uint8_t, CAN::TPMessageMaximumSize> &payload);
+
+    /**
+     * Creates an ECSS-E-ST-70-41C Services TM/TC packet to be sent.
+     * @param destinationAddress The ID of the destination node.
+     * @param isMulticast Whether the message is to be sent to a multicast group.
+     * @param message An ECSS Message.
+     */
+    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message);
+
+    /**
+     * Creates a CCSDS packet to be sent.
+     * @param destinationAddress The ID of the destination node.
+     * @param isMulticast Whether the message is to be sent to a multicast group.
+     * @param message An ECSS Message.
+     */
+    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message);
 
     /**
      * Determines whether a message is following the CAN-TP Message protocol.

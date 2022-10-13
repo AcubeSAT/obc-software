@@ -1,4 +1,5 @@
 #include "CAN/ApplicationLayer.hpp"
+#include "CAN/TPMessage.hpp"
 #include "CANGatekeeperTask.hpp"
 
 namespace CAN::Application {
@@ -34,4 +35,100 @@ namespace CAN::Application {
 
         canGatekeeperTask->addToQueue({MessageIDs::UTCTime + CAN::NodeID, data});
     }
+
+    void createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
+                                     const etl::vector<uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs) {
+        CAN::TPMessage message = {};
+        message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
+
+        message.appendUint8(MessageIDs::SendParameters);
+        message.appendUint16(parameterIDs.size());
+        for (auto parameterID: parameterIDs) {
+            message.appendUint16(parameterID);
+            Services.parameterManagement.getParameter(parameterID)->get().appendValueToMessage(message);
+        }
+
+        //TODO Move to TP Protocol -> Gatekeeper
+    }
+
+    void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
+                                        const etl::vector<uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs) {
+        CAN::TPMessage message = {};
+        message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
+
+        message.appendUint8(MessageIDs::RequestParameters);
+        for (auto parameterID: parameterIDs) {
+            message.appendUint16(parameterID);
+        }
+
+        //TODO Move to TP Protocol -> Gatekeeper
+    }
+
+    void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
+                                      const etl::vector<uint8_t, TPMessageMaximumArguments> &argumentIDs,
+                                      const etl::vector<uint16_t, TPMessageMaximumArguments> &argumentValues) {
+        CAN::TPMessage message = {};
+        message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
+
+        message.appendUint8(MessageIDs::PerformFunction);
+
+        //TODO Move to TP Protocol -> Gatekeeper
+    }
+
+    void createLogMessage(uint8_t destinationAddress, bool isMulticast, uint16_t logSize,
+                          const etl::string<LOGGER_MAX_MESSAGE_SIZE> &log) {
+        CAN::TPMessage message = {};
+        message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
+
+        message.appendUint8(MessageIDs::LogMessage);
+        message.appendString(log);
+
+        //TODO Move to TP Protocol -> Gatekeeper
+    }
+
+    void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
+                                  const Message &eventData) {
+        CAN::TPMessage message = {};
+        message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
+
+        message.appendUint8(MessageIDs::EventReport);
+        message.appendEnum8(type);
+        message.appendUint16(eventID);
+        message.appendMessage(eventData, eventData.dataSize);
+
+        //TODO Move to TP Protocol -> Gatekeeper
+    }
+
+    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &incomingMessage) {
+        CAN::TPMessage message = {};
+        message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
+
+        etl::string<ECSSMaxMessageSize> messageHeader = MessageParser::composeECSS(incomingMessage);
+
+        if (message.packetType == Message::TM) {
+            message.appendUint8(MessageIDs::TMPacket);
+        } else {
+            message.appendUint8(MessageIDs::TCPacket);
+        }
+
+        //TODO Check how this should be done, I feel like it's not correct
+        message.appendString(messageHeader);
+        message.appendMessage(incomingMessage, incomingMessage.dataSize);
+
+        //TODO Move to TP Protocol -> Gatekeeper
+    }
+
+    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &incomingMessage) {
+        CAN::TPMessage message = {};
+        message.encodeId({CAN::NodeID, destinationAddress, isMulticast});
+
+        auto ccsdsMessage = MessageParser::compose(incomingMessage);
+
+        message.appendUint8(MessageIDs::CCSDSPacket);
+        message.appendString(ccsdsMessage);
+
+        //TODO Move to TP Protocol -> Gatekeeper
+    }
+
+
 }
