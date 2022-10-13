@@ -10,7 +10,7 @@ namespace CAN::Application {
         SendParameters = 0x01,
         RequestParameters = 0x02,
         PerformFunction = 0x03,
-        EventReport = 0x04,
+        EventReport = 0x10,
         TMPacket = 0x20,
         TCPacket = 0x21,
         CCSDSPacket = 0x022,
