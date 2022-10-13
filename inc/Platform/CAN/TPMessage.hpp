@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cstdint>
 #include "Message.hpp"
 
 namespace CAN {
