@@ -1,7 +1,7 @@
 #ifndef OBC_SOFTWARE_CANTRANSMITTASK_HPP
 #define OBC_SOFTWARE_CANTRANSMITTASK_HPP
 
-#include "CANDriver.hpp"
+#include "CAN/Driver.hpp"
 #include "Task.hpp"
 
 class CANTransmitTask : public Task{
@@ -15,10 +15,10 @@ public:
     void execute();
 
     CANTransmitTask() : Task("CAN Transmit") {
-        MCAN1_MessageRAMConfigSet(CANDriver::mcan1MessageRAM);
+        MCAN1_MessageRAMConfigSet(CAN::Driver::mcan1MessageRAM);
 
-        MCAN1_TxFifoCallbackRegister(CANDriver::txFifoCallback, CANDriver::MCANTransmit);
-        MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CANDriver::rxFifo0Callback, CANDriver::MCANReceive);
+        MCAN1_TxFifoCallbackRegister(CAN::Driver::txFifoCallback, CAN::Driver::MCANTransmit);
+        MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::rxFifo0Callback, CAN::Driver::MCANReceive);
     }
 };
 
