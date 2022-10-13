@@ -28,8 +28,7 @@ namespace CAN::Application {
     };
 
     enum ActiveBus : uint8_t {
-        MainBus = 0x0,
-        RedundantBus = 0x1
+        MainBus = 0x0, RedundantBus = 0x1
     };
 
     ActiveBus currentBus = MainBus;
@@ -84,7 +83,7 @@ namespace CAN::Application {
      * @param parameterIDs The IDs of the parameters to be sent.
      */
     void createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                     const etl::vector <uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
+                                     const etl::vector<uint16_t, TPMessageMaximumArguments> &parameterIDs);
 
     /**
      * Sends a Request Parameters CAN-TP Message as described in DDJF_OBDH.
@@ -93,7 +92,7 @@ namespace CAN::Application {
      * @param parameterIDs The IDs of the parameters to be requested.
      */
     void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                        const etl::vector <uint16_t, CAN::TPMessageMaximumArguments> &parameterIDs);
+                                        const etl::vector<uint16_t, TPMessageMaximumArguments> &parameterIDs);
 
     /**
      * Sends a Request Parameters CAN-TP Message as described in DDJF_OBDH.
@@ -104,7 +103,7 @@ namespace CAN::Application {
      * @param argumentValues The values of the arguments to be sent.
      * */
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
-                                      const etl::map <uint8_t, uint64_t, TPMessageMaximumArguments> &arguments);
+                                      const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments);
 
     /**
      * Sends a Log CAN-TP Message as described in DDJF_OBDH.
@@ -124,7 +123,7 @@ namespace CAN::Application {
      * @param payload An array of the event data.
      */
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
-                                  const etl::vector <uint8_t, CAN::TPMessageMaximumSize> &payload);
+                                  const etl::vector<uint8_t, TPMessageMaximumSize> &payload);
 
     /**
      * Creates an ECSS-E-ST-70-41C Services TM/TC packet to be sent.
