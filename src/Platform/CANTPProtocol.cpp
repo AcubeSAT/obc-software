@@ -1,5 +1,5 @@
 #include "CANTPProtocol.hpp"
-#include "CANTPMessage.hpp"
+#include "CAN/ApplicationLayer.hpp"
 #include "Services/ParameterService.hpp"
 
 namespace CANTPProtocol {
@@ -79,7 +79,7 @@ namespace CANTPProtocol {
             case CCSDSPacket:
                 break; //send this to comms? idk
             case Ping:
-                CANApplicationLayer::sendPongMessage();
+                CAN::Application::sendPongMessage();
             case Pong:
                 break; //Saul goodman
             case LogMessage:
