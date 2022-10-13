@@ -1,6 +1,11 @@
 #pragma once
 
-#include <cstdint>
+#include "etl/map.h"
+#include "etl/vector.h"
+#include "etl/String.hpp"
+#include "Logger_Definitions.hpp"
+#include "Message.hpp"
+#include "OBC_Definitions.hpp"
 
 namespace CAN::Application {
     /**
