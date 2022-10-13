@@ -51,6 +51,11 @@ inline const uint8_t ReferenceTemperature = 25;
 inline const uint8_t UARTQueueSize = 5;
 
 /**
+ * The size of the queue used to communicate with the CAN Gatekeeper task
+ */
+inline const uint8_t CANQueueSize = 15;
+
+/**
  * The typical voltage output of the DAC of the AFEC channel at 25 Celsius
  */
 inline const uint16_t TypicalVoltageAt25 = 720;

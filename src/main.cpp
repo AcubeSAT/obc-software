@@ -12,6 +12,7 @@
 #include "StatisticsReportingTask.hpp"
 #include "CANTransmitTask.hpp"
 #include "TCHandlingTask.hpp"
+#include "CANGatekeeperTask.hpp"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -30,8 +31,6 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 #endif
 
 extern "C" void main_cpp() {
-
-
     SYS_Initialize(NULL);
     initializeTasks();
 
@@ -41,6 +40,7 @@ extern "C" void main_cpp() {
     updateParametersTask.emplace();
     canTransmitTask.emplace();
     tcHandlingTask.emplace();
+    canGatekeeperTask.emplace();
 
     xTaskCreateStatic(Task::vClassTask<UpdateParametersTask>, updateParametersTask->TaskName,
                       updateParametersTask->TaskStackDepth,
@@ -62,6 +62,7 @@ extern "C" void main_cpp() {
                       &canTransmitTask, tskIDLE_PRIORITY + 1, canTransmitTask->taskStack, &canTransmitTask->taskBuffer);
     xTaskCreateStatic(Task::vClassTask<TCHandlingTask>, tcHandlingTask->TaskName, tcHandlingTask->TaskStackDepth,
                       &tcHandlingTask, tskIDLE_PRIORITY + 1, tcHandlingTask->taskStack, &tcHandlingTask->taskBuffer);
+    canGatekeeperTask->createTask();
 
     vTaskStartScheduler();
 
@@ -69,6 +70,4 @@ extern "C" void main_cpp() {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
         SYS_Tasks();
     }
-
-    return;
 }
