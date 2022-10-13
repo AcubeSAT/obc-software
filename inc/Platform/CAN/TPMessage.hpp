@@ -18,5 +18,19 @@ namespace CAN {
         IdInfo idInfo = {};
 
         TPMessage() = default;
+
+        /**
+         * Decodes the ID of a CAN-TP Message.
+         * @param canID The received ID.
+         * @return A struct containing the ID information.
+         */
+        IdInfo decodeId(uint16_t canID);
+
+        /**
+         * Encodes the ID of a CAN-TP Message.
+         * @param idInfo The ID information.
+         * @return The encoded ID.
+         */
+        uint16_t encodeId(IdInfo idInfo);
     };
 }

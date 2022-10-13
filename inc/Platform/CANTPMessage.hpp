@@ -17,34 +17,6 @@ namespace CANTPMessage {
     };
 
     /**
-     * Decodes the ID of a CAN-TP Message.
-     * @param canID The received ID.
-     * @return A struct containing the ID information.
-     */
-    IdInfo decodeId(uint16_t canID);
-
-    /**
-     * Encodes the ID of a CAN-TP Message.
-     * @param idInfo The ID information.
-     * @return The encoded ID.
-     */
-    uint16_t encodeId(IdInfo idInfo);
-
-    /**
-     * Split a value into an array of bytes and insert it into vector.
-     * @tparam T The type of the parameter.
-     * @tparam N The maximum size of the vector.
-     * @param value The value to be inserted.
-     * @param vector The vector to insert the value into.
-     */
-    template<typename T, size_t N>
-    inline void stuffIntoVector(T value, etl::vector<uint8_t, N> &vector) {
-        for (int8_t i = sizeof(T) - 1; i >= 0; i--) {
-            vector.push_back(value >> (i * 8));
-        }
-    }
-
-    /**
      * Sends a Send Parameters CAN-TP Message as described in DDJF_OBDH.
      * @tparam T The type of the parameter.
      * @param destinationAddress The ID of the destination node.
