@@ -40,14 +40,13 @@ public:
     }
 
     /**
-     * Adds an CAN::Packet to the CAN Gatekeeper's queue.
+     * Receives a CAN::Packet from the CAN Gatekeeper's queue.
      *
-     * This function was added as an extra abstraction layer to house the `xQueueSendToBack` function.
+     * This function was added as an extra abstraction layer to house the `xQueueReceive` function.
      * It can be used from anywhere in the code to get access to the CAN queue/CAN Gatekeeper task, without having to
      * know the low level details of the queue.
      *
-     * If the queue is full, the message is not added to the queue and is lost.
-     * @param message the CAN::Packet to be added in the queue of the CAN Gatekeeper task.
+     * If the queue is empty, the returned message is empty.
      */
     CAN::Packet getFromQueue() {
         CAN::Packet message;
