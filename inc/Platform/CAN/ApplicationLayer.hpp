@@ -118,7 +118,7 @@ namespace CAN::Application {
      * @param isMulticast Whether the message is to be sent to a multicast group.
      * @param functionId The ID of the function to be called.
      * @param arguments The map containing the arguments of the function to be called.
-     * @TODO This map should be changed to accomodate arguments of differing types, not just uint64_t
+     * @TODO This map should be changed to accommodate arguments of differing types, not just uint64_t
      * */
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
                                       const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments);
