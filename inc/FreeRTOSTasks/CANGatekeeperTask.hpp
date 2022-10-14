@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CAN/Packet.hpp"
+#include "CAN/Frame.hpp"
 #include "Task.hpp"
 #include "queue.h"
 
@@ -26,21 +26,21 @@ public:
     CANGatekeeperTask();
 
     /**
-     * Adds an CAN::Packet to the CAN Gatekeeper's queue.
+     * Adds an CAN::Frame to the CAN Gatekeeper's queue.
      *
      * This function was added as an extra abstraction layer to house the `xQueueSendToBack` function.
      * It can be used from anywhere in the code to get access to the CAN queue/CAN Gatekeeper task, without having to
      * know the low level details of the queue.
      *
      * If the queue is full, the message is not added to the queue and is lost.
-     * @param message the CAN::Packet to be added in the queue of the CAN Gatekeeper task.
+     * @param message the CAN::Frame to be added in the queue of the CAN Gatekeeper task.
      */
-    void addToQueue(const CAN::Packet &message) {
+    void addToQueue(const CAN::Frame &message) {
         xQueueSendToBack(outgoingQueue, &message, 0);
     }
 
     /**
-     * Receives a CAN::Packet from the CAN Gatekeeper's queue.
+     * Receives a CAN::Frame from the CAN Gatekeeper's queue.
      *
      * This function was added as an extra abstraction layer to house the `xQueueReceive` function.
      * It can be used from anywhere in the code to get access to the CAN queue/CAN Gatekeeper task, without having to
@@ -48,8 +48,8 @@ public:
      *
      * If the queue is empty, the returned message is empty.
      */
-    CAN::Packet getFromQueue() {
-        CAN::Packet message;
+    CAN::Frame getFromQueue() {
+        CAN::Frame message;
         xQueueReceive(incomingQueue, &message, 0);
         return message;
     }

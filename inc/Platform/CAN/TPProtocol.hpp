@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CAN/ApplicationLayer.hpp"
-#include "CAN/Packet.hpp"
+#include "CAN/Frame.hpp"
 #include "CAN/TPMessage.hpp"
 
 namespace CAN::TPProtocol {
@@ -36,15 +36,14 @@ namespace CAN::TPProtocol {
      * messages map.
      * @param messageFrame the received CAN-TP frame
      */
-    void saveCANTPMessage(const CAN::Packet &messageFrame);
+    void saveCANTPMessage(const CAN::Frame &messageFrame);
 
     /**
      * Extracts information(Map key, data length code) from the first frame
      * @param messageFrame the received CAN-TP Frame
-     * //TODO Docs mention a CAN-TP Frame, should this be a single 8-byte CAN::Packet?
      * @return the map key and the message data length code
      */
-    inline uint16_t extractDataLengthCode(const CAN::Packet &messageFrame) {
+    inline uint16_t extractDataLengthCode(const CAN::Frame &messageFrame) {
         uint8_t dataLengthCodeLSB = messageFrame.data[0] << 4;
         uint8_t dataLengthCodeMSB = messageFrame.data[1];
 
@@ -59,7 +58,7 @@ namespace CAN::TPProtocol {
 
     /**
      * Splits a CAN-TP Message into a collection of CAN-TP frames and adds them to the CAN Gatekeeper Task queue.
-     * @param id the CAN Packet encoded id
+     * @param id the CAN Frame encoded id
      * @param messageMapKey a map key to save the message correctly to the message map when received
      * @param messagePayload one of the CAN-TP messages found in DDJF_OBDH
      */

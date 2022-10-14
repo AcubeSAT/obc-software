@@ -1,19 +1,19 @@
 #include "CAN/Driver.hpp"
-#include "CAN/Packet.hpp"
+#include "CAN/Frame.hpp"
 #include "CANGatekeeperTask.hpp"
 
 CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
     static StaticQueue_t outgoingQueueBuffer;
     static StaticQueue_t incomingQueueBuffer;
-    uint8_t ucQueueStorageArea[CAN::PacketQueueSize * sizeof(CAN::Packet)];
-    outgoingQueue = xQueueCreateStatic(CAN::PacketQueueSize, sizeof(CAN::Packet), ucQueueStorageArea,
+    uint8_t ucQueueStorageArea[CAN::PacketQueueSize * sizeof(CAN::Frame)];
+    outgoingQueue = xQueueCreateStatic(CAN::PacketQueueSize, sizeof(CAN::Frame), ucQueueStorageArea,
                                        &outgoingQueueBuffer);
-    incomingQueue = xQueueCreateStatic(CAN::PacketQueueSize, sizeof(CAN::Packet), ucQueueStorageArea,
+    incomingQueue = xQueueCreateStatic(CAN::PacketQueueSize, sizeof(CAN::Frame), ucQueueStorageArea,
                                        &incomingQueueBuffer);
 }
 
 void CANGatekeeperTask::execute() {
-    CAN::Packet message = {};
+    CAN::Frame message = {};
 
     while (true) {
         xQueueReceive(outgoingQueue, &message, portMAX_DELAY);

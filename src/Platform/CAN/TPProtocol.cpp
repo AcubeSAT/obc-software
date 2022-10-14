@@ -2,7 +2,7 @@
 #include "CANGatekeeperTask.hpp"
 
 namespace CAN {
-    void TPProtocol::saveCANTPMessage(const CAN::Packet &messageFrame) {
+    void TPProtocol::saveCANTPMessage(const CAN::Frame &messageFrame) {
         uint8_t frameType = messageFrame.data[0] >> 4;
         if (frameType == First) {
             dataLengthCodes[0] = (extractDataLengthCode(messageFrame));
@@ -54,18 +54,18 @@ namespace CAN {
         // Rest 8 bits of data length code.
         uint8_t DLC = messageSize << 4;
 
-        etl::vector<uint8_t, CAN::Packet::MaxDataLength> firstFrame = {idDLC, DLC};
+        etl::vector<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {idDLC, DLC};
 
         canGatekeeperTask->addToQueue({id, firstFrame});
 
         //Start creating the consecutive frames.
         uint8_t currentConsecutiveFrameCount = 0x01;
         uint8_t consecutiveFrameElements = (Consecutive << 4) | currentConsecutiveFrameCount;
-        etl::vector<uint8_t, CAN::Packet::MaxDataLength> consecutiveFrame = {consecutiveFrameElements};
+        etl::vector<uint8_t, CAN::Frame::MaxDataLength> consecutiveFrame = {consecutiveFrameElements};
         uint16_t byteCounter = 0;
 
         for (uint16_t idx = 1; idx < messageSize; idx++) {
-            if (byteCounter % CAN::Packet::MaxDataLength == 0) {
+            if (byteCounter % CAN::Frame::MaxDataLength == 0) {
                 byteCounter = 1;
 
                 canGatekeeperTask->addToQueue({id, consecutiveFrame});
