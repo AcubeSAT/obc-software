@@ -7,16 +7,6 @@
 
 namespace CANApplicationLayer {
     /**
-     * A queue that holds messages that are waiting to be sent via the CAN Bus.
-     */
-    inline etl::queue<CAN::Packet, CAN::PacketQueueSize> outgoingMessages;
-
-    /**
-     * A queue that holds messages that have been received via the CAN Bus, and are awaiting parsing.
-     */
-    inline etl::queue<CAN::Packet, CAN::PacketQueueSize> incomingMessages;
-
-    /**
      * Parses an incoming message and calls the appropriate functions for it's handling.
      * @param message A CAN::Packet object with an ID and a Data field.
      */

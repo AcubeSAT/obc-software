@@ -3,16 +3,20 @@
 #include "CANGatekeeperTask.hpp"
 
 CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
-    static StaticQueue_t xStaticQueue;
+    static StaticQueue_t outgoingQueueBuffer;
+    static StaticQueue_t incomingQueueBuffer;
     uint8_t ucQueueStorageArea[CAN::PacketQueueSize * sizeof(CAN::Packet)];
-    xCanQueue = xQueueCreateStatic(CAN::PacketQueueSize, sizeof(CAN::Packet), ucQueueStorageArea, &xStaticQueue);
+    outgoingQueue = xQueueCreateStatic(CAN::PacketQueueSize, sizeof(CAN::Packet), ucQueueStorageArea,
+                                       &outgoingQueueBuffer);
+    incomingQueue = xQueueCreateStatic(CAN::PacketQueueSize, sizeof(CAN::Packet), ucQueueStorageArea,
+                                       &incomingQueueBuffer);
 }
 
 void CANGatekeeperTask::execute() {
     CAN::Packet message = {};
 
     while (true) {
-        xQueueReceive(xCanQueue, &message, portMAX_DELAY);
+        xQueueReceive(outgoingQueue, &message, portMAX_DELAY);
         CAN::Driver::txFifo.brs = 1;
         CAN::Driver::txFifo.fdf = 1;
         CAN::Driver::txFifo.xtd = 0;
