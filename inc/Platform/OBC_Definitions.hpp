@@ -50,7 +50,6 @@ inline const uint8_t ReferenceTemperature = 25;
  */
 inline const uint8_t UARTQueueSize = 5;
 
-
 /**
  * The typical voltage output of the DAC of the AFEC channel at 25 Celsius
  */
