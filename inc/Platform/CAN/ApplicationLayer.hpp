@@ -28,17 +28,17 @@ namespace CAN::Application {
     };
 
     enum ActiveBus : uint8_t {
-        MainBus = 0x0, RedundantBus = 0x1
+        Main = 0x0, Redundant = 0x1
     };
 
-    inline ActiveBus currentBus = MainBus;
+    inline ActiveBus currentBus = Main;
 
     inline uint8_t toggleBusSwitchover() {
         //TODO Signal logic to peripheral
-        if (currentBus == MainBus) {
-            currentBus = RedundantBus;
+        if (currentBus == Main) {
+            currentBus = Redundant;
         } else {
-            currentBus = MainBus;
+            currentBus = Main;
         }
         return currentBus;
     }
