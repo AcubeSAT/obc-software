@@ -68,6 +68,14 @@ public:
 
     void execute();
 
+    /**
+     * Create freeRTOS Task
+     */
+    void createTask() {
+        xTaskCreateStatic(vClassTask<TCHandlingTask>, this->TaskName, TCHandlingTask::TaskStackDepth, this,
+                          tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
+    }
+
 };
 
 inline std::optional<TCHandlingTask> tcHandlingTask;

@@ -11,12 +11,22 @@ public:
     const static inline uint16_t TaskStackDepth = 2000;
 
     StackType_t taskStack[TaskStackDepth];
+
     /**
       * @see HousekeepingService
       */
     void execute();
 
     HousekeepingTask() : Task("Housekeeping") {}
+
+    /**
+     * Create freeRTOS Task
+     */
+    void createTask() {
+        xTaskCreateStatic(vClassTask<HousekeepingTask>, this->TaskName, HousekeepingTask::TaskStackDepth,
+                          this, configMAX_PRIORITIES - 1, this->taskStack,
+                          &(this->taskBuffer));
+    }
 
 };
 
