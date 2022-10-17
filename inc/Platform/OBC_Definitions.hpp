@@ -2,6 +2,8 @@
 #define OBC_SOFTWARE_OBC_DEFINITIONS_HPP
 
 #include <cstdint>
+#include "Logger_Definitions.hpp"
+#include "Parameters.hpp"
 
 /**
  * @defgroup Definitions of OBC_SOFTWARE Defined Constants
@@ -91,5 +93,7 @@ namespace CAN {
      */
     inline const uint8_t TPMessageMaximumArguments = 10;
 }
+
+inline String<LogSource::MaximumLettersInSubsystemName> LogSource::currentSubsystem = "OBC";
 
 #endif //OBC_SOFTWARE_OBC_DEFINITIONS_HPP

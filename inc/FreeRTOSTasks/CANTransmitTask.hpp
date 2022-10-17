@@ -4,7 +4,7 @@
 #include "CANDriver.hpp"
 #include "Task.hpp"
 
-class CANTransmitTask : public Task{
+class CANTransmitTask : public Task {
 private:
 
 public:
@@ -19,6 +19,14 @@ public:
 
         MCAN1_TxFifoCallbackRegister(CANDriver::txFifoCallback, CANDriver::MCANTransmit);
         MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CANDriver::rxFifo0Callback, CANDriver::MCANReceive);
+    }
+
+    /**
+     * Create freeRTOS Task
+     */
+    void createTask() {
+        xTaskCreateStatic(vClassTask<CANTransmitTask>, this->TaskName, CANTransmitTask::TaskStackDepth,
+                          this, tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
     }
 };
 

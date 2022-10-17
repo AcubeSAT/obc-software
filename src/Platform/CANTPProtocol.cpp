@@ -52,11 +52,11 @@ namespace CANTPProtocol {
             
         } else if (frame == Consecutive) {
             for (uint8_t i = 1; i < BytesPerFrame; i++) {
-                canTPMessage.push_back(messageFrame.data[i]);
+                message.push_back(messageFrame.data[i]);
             }
 
-            if (canTPMessage.size() == dataLengthCodes[0]) {
-                parseMessage(canTPMessage);
+            if (message.size() == dataLengthCodes[0]) {
+                parseMessage(message);
 
             }
         }

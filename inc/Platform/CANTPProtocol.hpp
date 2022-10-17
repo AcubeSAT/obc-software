@@ -8,7 +8,6 @@
 #include "etl/vector.h"
 
 namespace CANTPProtocol {
-
     /**
      * The size of the map holding the received messages.
      */
@@ -31,7 +30,7 @@ namespace CANTPProtocol {
 
     typedef etl::vector<uint8_t, CANTPStructureSize> CANTPMessage;
 
-    inline static CANTPMessage canTPMessage = {};
+    inline static CANTPMessage message = {};
     /**
      * Types of CAN-TP procotol frames.
      */
@@ -55,12 +54,11 @@ namespace CANTPProtocol {
         LogMessage = 0x40
     };
 
-
     /**
      * Splits a CAN-TP Message into a collection of CAN-TP frames and adds them to the outgoing CANApplicationLayer queue.
      * @param id the CAN Message encoded id
-     * @param messageMapKey a map key to save the message correctly to the message map when received
      * @param messagePayload one of the CAN-TP messages found in DDJF_OBDH
+     * @param messageSize the size of the CAN-TP message
      */
     void createCANTPMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload, uint16_t messageSize);
 
