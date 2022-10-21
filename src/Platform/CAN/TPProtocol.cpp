@@ -5,8 +5,7 @@ namespace CAN {
     void TPProtocol::saveCANTPMessage(const CAN::Frame &messageFrame) {
         uint8_t frameType = messageFrame.data[0] >> 4;
         if (frameType == First) {
-            dataLengthCodes[0] = (extractDataLengthCode(messageFrame));
-
+            dataLengthCodes[0] = extractDataLengthCode(messageFrame);
         } else if (frameType == Consecutive) {
             for (uint8_t i = 1; i < BytesInConsecutiveFrame; i++) {
                 tpMessage.appendUint8(messageFrame.data[i]);
