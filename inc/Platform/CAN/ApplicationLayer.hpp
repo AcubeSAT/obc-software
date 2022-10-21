@@ -135,7 +135,8 @@ namespace CAN::Application {
                                   const Message &eventData);
 
     /**
-     * Creates an ECSS-E-ST-70-41C Services TM/TC packet to be sent.
+     * Creates an ECSS-E-ST-70-41C Services TM/TC packet to be sent. After creation the packet is split into CAN-TP
+     * Protocol frames to be transmitted.
      * @param destinationAddress The ID of the destination node.
      * @param isMulticast Whether the message is to be sent to a multicast group.
      * @param message An ECSS Message.
@@ -143,7 +144,8 @@ namespace CAN::Application {
     void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message);
 
     /**
-     * Creates a CCSDS packet to be sent.
+     * Creates a CCSDS packet to be sent. After creation the packet is split into CAN-TP
+     * Protocol frames to be transmitted.
      * @param destinationAddress The ID of the destination node.
      * @param isMulticast Whether the message is to be sent to a multicast group.
      * @param message An ECSS Message.
