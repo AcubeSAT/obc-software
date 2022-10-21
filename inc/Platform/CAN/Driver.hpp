@@ -24,7 +24,7 @@ namespace CAN {
          * Possible states for the peripheral, to be used as arguments in the callback functions.
          */
         typedef enum {
-            MCANReceive, MCANTransmit,
+            Receive, Transmit,
         } APPStates;
 
         /**

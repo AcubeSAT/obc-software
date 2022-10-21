@@ -17,8 +17,8 @@ public:
     CANTransmitTask() : Task("CAN Transmit") {
         MCAN1_MessageRAMConfigSet(CAN::Driver::mcan1MessageRAM);
 
-        MCAN1_TxFifoCallbackRegister(CAN::Driver::txFifoCallback, CAN::Driver::MCANTransmit);
-        MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::rxFifo0Callback, CAN::Driver::MCANReceive);
+        MCAN1_TxFifoCallbackRegister(CAN::Driver::txFifoCallback, CAN::Driver::Transmit);
+        MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::rxFifo0Callback, CAN::Driver::Receive);
     }
 
     /**
