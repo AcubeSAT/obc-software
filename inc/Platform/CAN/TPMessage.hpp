@@ -11,7 +11,7 @@ namespace CAN {
         struct IdInfo {
             uint8_t sourceAddress;
             uint8_t destinationAddress;
-            bool isMulticast;
+            bool isMulticast : 1;
         };
 
         IdInfo idInfo = {};
