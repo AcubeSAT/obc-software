@@ -1,8 +1,9 @@
 #include "CAN/TPProtocol.hpp"
 #include "CANGatekeeperTask.hpp"
+#include "ParameterService.hpp"
 
 namespace CAN {
-    void TPProtocol::saveCANTPMessage(const CAN::Frame &messageFrame) {
+    void TPProtocol:: saveCANTPMessage(const CAN::Frame &messageFrame) {
         uint8_t frameType = messageFrame.data[0] >> 4;
         if (frameType == First) {
             dataLengthCodes[0] = (extractDataLengthCode(messageFrame));
@@ -22,7 +23,9 @@ namespace CAN {
         uint8_t frameType; //todo Get Frame type
         switch (frameType) {
             case CAN::Application::SendParameters:
-                break; //todo: use ParameterService to update the values.
+                auto parameterService = ParameterService();
+                parameterService.setParameters(static_cast<Message>(message))
+                break;
             case CAN::Application::RequestParameters:
                 break; //todo: send back the requested parameters.
             case CAN::Application::PerformFunction:
@@ -54,7 +57,7 @@ namespace CAN {
         // Rest 8 bits of data length code.
         uint8_t DLC = messageSize << 4;
 
-        etl::vector<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {idDLC, DLC};
+        etl::vector<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {idDLC, DLC, id};
 
         canGatekeeperTask->addToQueue({id, firstFrame});
 
