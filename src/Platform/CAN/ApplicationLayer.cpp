@@ -24,14 +24,14 @@ namespace CAN::Application {
     void sendUTCTimeMessage() {
         auto now = TimeGetter::getCurrentTimeDefaultCUC();
 
-        std::chrono::duration<uint64_t, std::milli> msOfDay = now.asDuration(); //@todo This doesn't reset every day, only since epoch.
+        std::chrono::duration<uint64_t, std::milli> msOfDay = now.asDuration(); //TODO: This doesn't reset every day, only since epoch.
 
         UTCTimestamp utc = now.toUTCtimestamp();
         etl::vector<uint8_t, CAN::Frame::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay.count()),
                                                                 static_cast<uint8_t>(msOfDay.count() >> 8),
                                                                 static_cast<uint8_t>(msOfDay.count() >> 16),
                                                                 static_cast<uint8_t>(msOfDay.count() >> 24), 0,
-                                                                utc.day}; //@todo days parameter should not be uint8_t
+                                                                utc.day}; //TODO: days parameter should not be uint8_t
 
         canGatekeeperTask->addToQueue({MessageIDs::UTCTime + CAN::NodeID, data});
     }
