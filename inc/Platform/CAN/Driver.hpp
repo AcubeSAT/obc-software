@@ -23,7 +23,7 @@ namespace CAN {
         /**
          * Possible states for the peripheral, to be used as arguments in the callback functions.
          */
-        enum APPStates : uint8_t {
+        enum AppStates: uint8_t {
             Receive, Transmit,
         };
 
