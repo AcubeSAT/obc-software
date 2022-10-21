@@ -29,6 +29,6 @@ namespace CAN {
          * Encodes the ID of a CAN-TP Message, using the already set idInfo member.
          * @return The encoded ID.
          */
-        uint16_t encodeId();
+        uint16_t encodeId() const;
     };
 }

@@ -10,7 +10,7 @@ IdInfo CAN::TPMessage::decodeId(uint16_t canID) {
     return idInfo;
 }
 
-uint16_t CAN::TPMessage::encodeId() {
+uint16_t CAN::TPMessage::encodeId() const {
     uint16_t id = 0b0111 << 7;
 
     id |= idInfo.sourceAddress << 4;
