@@ -53,7 +53,7 @@ void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
 
 void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf) {
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
-    uint32_t id = rxBuf.id >> 18;
+    uint32_t id = readId(rxBuf.id);
     const uint8_t MsgLength = convertDlcToLength(rxBuf.dlc);
     message.append("Message - ID : ");
     etl::to_string(id, message, etl::format_spec().hex(), true);

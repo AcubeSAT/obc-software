@@ -69,6 +69,24 @@ namespace CAN {
          * @return The data length code
          */
         static uint8_t convertLengthToDLC(uint8_t length);
+
+        /**
+         * Transforms a frame ID to conform to the CAN Standard
+         * @param id The actual ID
+         * @return The outgoing ID
+         */
+        static inline uint16_t writeId(uint16_t id) {
+            return id << 18;
+        }
+
+        /**
+         * Transforms the ID from the CAN Standard to match a frame ID
+         * @param id The incoming ID
+         * @return The actual ID
+         */
+        static inline uint16_t readId(uint16_t id) {
+            return id >> 18;
+        }
     };
 }
 

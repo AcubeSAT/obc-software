@@ -20,7 +20,7 @@ void CANGatekeeperTask::execute() {
         CAN::Driver::txFifo.brs = 1;
         CAN::Driver::txFifo.fdf = 1;
         CAN::Driver::txFifo.xtd = 0;
-        CAN::Driver::txFifo.id = message.id << 18;
+        CAN::Driver::txFifo.id = CAN::Driver::writeId(message.id);
         CAN::Driver::txFifo.dlc = CAN::Driver::convertLengthToDLC(message.data.size());
 
         for (uint8_t idx = 0; idx < message.data.size(); idx++) {
