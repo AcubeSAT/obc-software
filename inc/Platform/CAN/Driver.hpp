@@ -23,9 +23,9 @@ namespace CAN {
         /**
          * Possible states for the peripheral, to be used as arguments in the callback functions.
          */
-        typedef enum {
+        enum APPStates : uint8_t {
             Receive, Transmit,
-        } APPStates;
+        };
 
         /**
          * Logs a successful CAN Bus transmission.
