@@ -53,14 +53,14 @@ namespace CAN {
         // Rest 8 bits of data length code.
         uint8_t DLC = messageSize << 4;
 
-        etl::vector<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {idDLC, DLC};
+        etl::array<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {idDLC, DLC};
 
         canGatekeeperTask->addToQueue({id, firstFrame});
 
         //Start creating the consecutive frames.
         uint8_t currentConsecutiveFrameCount = 0x01;
         uint8_t consecutiveFrameElements = (Consecutive << 4) | currentConsecutiveFrameCount;
-        etl::vector<uint8_t, CAN::Frame::MaxDataLength> consecutiveFrame = {consecutiveFrameElements};
+        etl::array<uint8_t, CAN::Frame::MaxDataLength> consecutiveFrame = {consecutiveFrameElements};
         uint16_t byteCounter = 0;
 
         for (uint16_t idx = 1; idx < messageSize; idx++) {
