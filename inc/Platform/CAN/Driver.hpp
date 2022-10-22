@@ -75,7 +75,7 @@ namespace CAN {
          * @param id The actual ID
          * @return The outgoing ID
          */
-        static inline uint16_t writeId(uint16_t id) {
+        static inline uint32_t writeId(uint32_t id) {
             return id << 18;
         }
 
@@ -84,7 +84,7 @@ namespace CAN {
          * @param id The incoming ID
          * @return The actual ID
          */
-        static inline uint16_t readId(uint16_t id) {
+        static inline uint32_t readId(uint32_t id) {
             return id >> 18;
         }
     };
