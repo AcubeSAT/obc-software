@@ -55,7 +55,7 @@ namespace CAN {
 
         etl::array<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {idDLC, DLC};
 
-        canGatekeeperTask->addToQueue({id, firstFrame});
+        canGatekeeperTask->send({id, firstFrame});
 
         //Start creating the consecutive frames.
         uint8_t currentConsecutiveFrameCount = 0x01;
@@ -67,7 +67,7 @@ namespace CAN {
             if (byteCounter % CAN::Frame::MaxDataLength == 0) {
                 byteCounter = 1;
 
-                canGatekeeperTask->addToQueue({id, consecutiveFrame});
+                canGatekeeperTask->send({id, consecutiveFrame});
                 currentConsecutiveFrameCount++;
 
                 consecutiveFrameElements = (Consecutive << 4) | currentConsecutiveFrameCount;

@@ -10,7 +10,7 @@ void CANTransmitTask::execute() {
     }
 
     while (true) {
-        canGatekeeperTask->addToQueue(message);
+        canGatekeeperTask->send(message);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

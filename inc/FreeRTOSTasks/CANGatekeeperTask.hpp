@@ -40,7 +40,7 @@ public:
      * If the queue is full, the message is not added to the queue and is lost.
      * @param message the CAN::Frame to be added in the queue of the CAN Gatekeeper task.
      */
-    void addToQueue(const CAN::Frame &message) {
+    void send(const CAN::Frame &message) {
         xQueueSendToBack(outgoingQueue, &message, 0);
     }
 

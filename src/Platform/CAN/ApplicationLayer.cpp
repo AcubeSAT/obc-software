@@ -4,21 +4,21 @@
 
 namespace CAN::Application {
     void sendPingMessage() {
-        canGatekeeperTask->addToQueue({MessageIDs::Ping + CAN::NodeID});
+        canGatekeeperTask->send({MessageIDs::Ping + CAN::NodeID});
     }
 
     void sendPongMessage() {
-        canGatekeeperTask->addToQueue({MessageIDs::Pong + CAN::NodeID});
+        canGatekeeperTask->send({MessageIDs::Pong + CAN::NodeID});
     }
 
     void sendHeartbeatMessage() {
-        canGatekeeperTask->addToQueue({MessageIDs::Heartbeat + CAN::NodeID});
+        canGatekeeperTask->send({MessageIDs::Heartbeat + CAN::NodeID});
     }
 
     void sendBusSwitchoverMessage() {
         etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {toggleBusSwitchover()};
 
-        canGatekeeperTask->addToQueue({MessageIDs::BusSwitchover + CAN::NodeID, data});
+        canGatekeeperTask->send({MessageIDs::BusSwitchover + CAN::NodeID, data});
     }
 
     void sendUTCTimeMessage() {
@@ -33,7 +33,7 @@ namespace CAN::Application {
                                                                 static_cast<uint8_t>(msOfDay.count() >> 24), 0,
                                                                 utc.day}; //TODO: days parameter should not be uint8_t
 
-        canGatekeeperTask->addToQueue({MessageIDs::UTCTime + CAN::NodeID, data});
+        canGatekeeperTask->send({MessageIDs::UTCTime + CAN::NodeID, data});
     }
 
     void createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
