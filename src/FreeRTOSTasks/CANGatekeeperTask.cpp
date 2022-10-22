@@ -21,6 +21,9 @@ void CANGatekeeperTask::execute() {
     CAN::Frame message = {};
 
     while (true) {
+        message.empty();
+        memset(&CAN::Driver::txFifo, 0, MCAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
+
         xQueueReceive(outgoingQueue, &message, portMAX_DELAY);
         CAN::Driver::txFifo.brs = 1;
         CAN::Driver::txFifo.fdf = 1;
