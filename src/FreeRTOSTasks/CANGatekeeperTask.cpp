@@ -3,6 +3,11 @@
 #include "CANGatekeeperTask.hpp"
 
 CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
+    MCAN1_MessageRAMConfigSet(CAN::Driver::mcan1MessageRAM);
+
+    MCAN1_TxFifoCallbackRegister(CAN::Driver::txFifoCallback, CAN::Driver::Transmit);
+    MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::rxFifo0Callback, CAN::Driver::Receive);
+
     static StaticQueue_t outgoingQueueBuffer;
     static StaticQueue_t incomingQueueBuffer;
     uint8_t ucQueueStorageArea[CAN::FrameQueueSize * sizeof(CAN::Frame)];

@@ -23,6 +23,11 @@ private:
 public:
     void execute();
 
+    /**
+     * The constructor initializes the FreeRTOS queues for incoming and outgoing messages.
+     * It also sets the required functions for the interrupt callbacks, as well as the Message RAM which is a necessary
+     * memory region for communication with the peripheral.
+     */
     CANGatekeeperTask();
 
     /**

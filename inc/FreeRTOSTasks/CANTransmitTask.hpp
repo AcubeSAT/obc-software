@@ -14,19 +14,14 @@ public:
 
     void execute();
 
-    CANTransmitTask() : Task("CAN Transmit") {
-        MCAN1_MessageRAMConfigSet(CAN::Driver::mcan1MessageRAM);
-
-        MCAN1_TxFifoCallbackRegister(CAN::Driver::txFifoCallback, CAN::Driver::Transmit);
-        MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::rxFifo0Callback, CAN::Driver::Receive);
-    }
+    CANTransmitTask() : Task("CAN Transmit") {}
 
     /**
      * Create freeRTOS Task
      */
     void createTask() {
-        xTaskCreateStatic(vClassTask<CANTransmitTask>, this->TaskName, CANTransmitTask::TaskStackDepth,
-                          this, tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
+        xTaskCreateStatic(vClassTask < CANTransmitTask > , this->TaskName, CANTransmitTask::TaskStackDepth, this,
+                          tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
     }
 };
 
