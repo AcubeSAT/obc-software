@@ -55,7 +55,7 @@ namespace CAN::Application {
      * @param id The Id of the message received via CAN
      * @return True if the message is part of a CAN-TP Message
      */
-    inline bool isTPMessage(uint16_t id) {
+    inline bool isTPMessage(uint32_t id) {
         return (id >> 7) == 0b0111;
     }
 
@@ -64,7 +64,7 @@ namespace CAN::Application {
      * @param id The ID to be filtered.
      * @return The filtered ID.
      */
-    inline uint16_t filterMessageID(uint16_t id) {
+    inline uint32_t filterMessageID(uint32_t id) {
         return id & 0x700;
     }
 
