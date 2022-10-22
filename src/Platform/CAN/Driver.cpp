@@ -51,6 +51,22 @@ void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
     }
 }
 
+void CAN::Driver::send(const CAN::Frame &message) {
+    memset(&CAN::Driver::txFifo, 0, MCAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
+
+    CAN::Driver::txFifo.brs = 1;
+    CAN::Driver::txFifo.fdf = 1;
+    CAN::Driver::txFifo.xtd = 0;
+    CAN::Driver::txFifo.id = CAN::Driver::writeId(message.id);
+    CAN::Driver::txFifo.dlc = CAN::Driver::convertLengthToDLC(message.data.size());
+
+    for (uint8_t idx = 0; idx < message.data.size(); idx++) {
+        CAN::Driver::txFifo.data[idx] = message.data[idx];
+    }
+
+    MCAN1_MessageTransmitFifo(1, &CAN::Driver::txFifo);
+}
+
 void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf) {
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
     uint32_t id = readId(rxBuf.id);

@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "ECSS_Definitions.hpp"
+#include "Frame.hpp"
 #include "peripheral/mcan/plib_mcan1.h"
 
 namespace CAN {
@@ -87,6 +88,12 @@ namespace CAN {
         static inline uint32_t readId(uint32_t id) {
             return id >> 18;
         }
+
+        /**
+         * Sends a CAN Message
+         * @param message The message to be sent.
+         */
+        static void send(const CAN::Frame &message);
     };
 }
 
