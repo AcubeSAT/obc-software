@@ -28,10 +28,10 @@ namespace CAN::Application {
 
         UTCTimestamp utc = now.toUTCtimestamp();
         etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay.count()),
-                                                                static_cast<uint8_t>(msOfDay.count() >> 8),
-                                                                static_cast<uint8_t>(msOfDay.count() >> 16),
-                                                                static_cast<uint8_t>(msOfDay.count() >> 24), 0,
-                                                                utc.day}; //TODO: days parameter should not be uint8_t
+                                                               static_cast<uint8_t>(msOfDay.count() >> 8),
+                                                               static_cast<uint8_t>(msOfDay.count() >> 16),
+                                                               static_cast<uint8_t>(msOfDay.count() >> 24), 0,
+                                                               utc.day}; //TODO: days parameter should not be uint8_t
 
         canGatekeeperTask->send({MessageIDs::UTCTime + CAN::NodeID, data});
     }
@@ -130,8 +130,7 @@ namespace CAN::Application {
         //TODO Move to TP Protocol -> Gatekeeper
     }
 
-    void createLogMessage(uint8_t destinationAddress, bool isMulticast,
-                          const String<LOGGER_MAX_MESSAGE_SIZE> &log) {
+    void createLogMessage(uint8_t destinationAddress, bool isMulticast, const String<LOGGER_MAX_MESSAGE_SIZE> &log) {
         CAN::TPMessage message = {};
         message.idInfo = {CAN::NodeID, destinationAddress, isMulticast};
 
@@ -139,5 +138,16 @@ namespace CAN::Application {
         message.appendString(log);
 
         //TODO Move to TP Protocol -> Gatekeeper
+    }
+
+    void parseMessage(const CAN::Frame &message) {
+        uint32_t id = filterMessageID(message.id);
+        if (id == 0x700) {
+//            registerHeartbeat();
+        } else if (id == 0x400) {
+            toggleBusSwitchover(static_cast<ActiveBus>(message.data[0]));
+        } else if (id == 0x200) {
+//            registerUTCTime();
+        }
     }
 }

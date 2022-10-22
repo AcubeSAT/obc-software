@@ -3,6 +3,7 @@
 #include "etl/map.h"
 #include "etl/vector.h"
 #include "etl/String.hpp"
+#include "Frame.hpp"
 #include "Logger_Definitions.hpp"
 #include "Message.hpp"
 #include "OBC_Definitions.hpp"
@@ -33,9 +34,14 @@ namespace CAN::Application {
 
     inline ActiveBus currentBus = Main;
 
-    inline uint8_t toggleBusSwitchover() {
+    /**
+     * Toggles the active CAN Bus.
+     * @param bus A default argument that uses the currentBus member variable if a value is not provided.
+     * @return The ID of the bus to be switched to.
+     */
+    inline uint8_t toggleBusSwitchover(ActiveBus bus = currentBus) {
         //TODO Signal logic to peripheral
-        if (currentBus == Main) {
+        if (bus == Main) {
             currentBus = Redundant;
         } else {
             currentBus = Main;
@@ -159,4 +165,10 @@ namespace CAN::Application {
      * @param log A LogEntry to be sent.
      */
     void createLogMessage(uint8_t destinationAddress, bool isMulticast, const String<LOGGER_MAX_MESSAGE_SIZE> &log);
+
+    /**
+     * Parses an incoming non-TP frame for the appropriate response.
+     * @param message The incoming CAN::Frame.
+     */
+    void parseMessage(const CAN::Frame &message);
 }
