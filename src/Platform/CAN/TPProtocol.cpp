@@ -51,7 +51,7 @@ namespace CAN {
         static constexpr uint8_t usableDataLength = CAN::Frame::MaxDataLength - 1;
 
         // Data fits in a Single Frame
-        if (messageSize < usableDataLength) {
+        if (messageSize <= usableDataLength) {
             etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {
                     static_cast<uint8_t>((Single << 4) | (messageSize & 0b1111))};
             for (size_t idx = 0; idx < messageSize; idx++) {
