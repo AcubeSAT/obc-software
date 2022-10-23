@@ -85,6 +85,8 @@ namespace CAN {
             for (uint8_t idx = 0; idx < usableDataLength; idx++) {
                 consecutiveFrame[idx + 1] = message.data[idx + usableDataLength * (currentConsecutiveFrameCount - 1)];
             }
+
+            canGatekeeperTask->send({id, consecutiveFrame});
         }
     }
 }
