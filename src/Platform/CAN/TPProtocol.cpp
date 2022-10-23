@@ -37,7 +37,7 @@ namespace CAN {
             case CAN::Application::Ping:
                 CAN::Application::sendPongMessage();
             case CAN::Application::Pong:
-                break; //todo Saul goodman
+                break; //todo Register successful pong
             case CAN::Application::LogMessage:
                 break; //todo LOG this message.
             default:
