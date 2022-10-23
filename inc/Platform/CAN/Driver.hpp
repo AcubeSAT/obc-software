@@ -7,8 +7,26 @@
 #include "peripheral/mcan/plib_mcan1.h"
 
 namespace CAN {
+    /**
+     * A basic driver for the included CAN Peripheral. This driver includes encoding/decoding functions for the
+     * Data Length Code as well as the ID when used in normal addressing mode. There are two interrupt callback functions,
+     * one for registering a transmission plus logging an error if needed, and one for passing the incoming CAN::Frames
+     * to the higher level services in the application.
+     *
+     * @note CAN Normal Addressing requires the NodeID to be at most 11 bits long.
+     *
+     * @example @code
+     * uint32_t id = 0x4; //Specify the sending Node ID
+     * etl::array<uint8_t, 8> data = {0,1,2,3,4,5,6,7}; //Specify an array of data
+     * CAN::Frame message = {id, data}; //Create a CAN::Frame object
+     * CAN::Driver::send(message); //Use the included send function
+     * @endcode
+     */
     class Driver {
     public:
+        /**
+         * An area of memory the HAL uses to house incoming/outgoing buffers for the peripheral.
+         */
         static inline uint8_t mcan1MessageRAM[MCAN1_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32)));
 
         /**
