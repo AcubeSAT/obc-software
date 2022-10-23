@@ -57,11 +57,9 @@ namespace CAN::TPProtocol {
     void parseMessage(const TPMessage &message);
 
     /**
-     * Splits a CAN-TP Message into a collection of CAN-TP frames and adds them to the CAN Gatekeeper Task queue.
-     * @param id the CAN Frame encoded id
-     * @param messageMapKey a map key to save the message correctly to the message map when received
-     * @param messagePayload one of the CAN-TP messages found in DDJF_OBDH
+     * Splits a CAN-TP Message into a collection of CAN frames according to the TP protocol and adds them to the CAN
+     * Gatekeeper Task queue.
+     * @param message A CAN-TP message.
      */
-    void createCANTPMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload,
-                            uint16_t messageSize);
+    void createCANTPMessage(const TPMessage &message);
 }

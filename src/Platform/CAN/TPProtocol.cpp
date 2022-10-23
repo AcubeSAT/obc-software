@@ -45,9 +45,21 @@ namespace CAN {
         }
     }
 
-    void
-    TPProtocol::createCANTPMessage(uint16_t id, const etl::vector<uint8_t, CAN::TPMessageMaximumSize> &messagePayload,
-                                   uint16_t messageSize) {
+    void TPProtocol::createCANTPMessage(const TPMessage &message) {
+        size_t messageSize = message.dataSize;
+        uint32_t id = message.encodeId();
+
+        // Data fits in a Single Frame
+        if (messageSize < CAN::Frame::MaxDataLength - 1) {
+            etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {static_cast<uint8_t>(messageSize)};
+            for (size_t idx = 0; idx < messageSize; idx++) {
+                data[idx + 1] = message.data[idx];
+            }
+            canGatekeeperTask->send({id, data});
+
+            return;
+        }
+
         // 4 MSB bits is the frame type id and the 4 LSB are the 4 out of 12 bits for the data length code.
         uint8_t idDLC = (First << 4) | (messageSize >> 4);
         // Rest 8 bits of data length code.
@@ -76,7 +88,7 @@ namespace CAN {
                     currentConsecutiveFrameCount = 0x00;
                 }
             }
-            consecutiveFrame[byteCounter++] = messagePayload[idx];
+//            consecutiveFrame[byteCounter++] = messagePayload[idx];
         }
     }
 }
