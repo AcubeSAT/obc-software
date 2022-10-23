@@ -59,6 +59,8 @@ namespace CAN::TPProtocol {
     /**
      * Splits a CAN-TP Message into a collection of CAN frames according to the TP protocol and adds them to the CAN
      * Gatekeeper Task queue.
+     * For more information about the CAN-TP Protocol check
+     * https://piembsystech.com/can-tp-protocol/
      * @param message A CAN-TP message.
      */
     void createCANTPMessage(const TPMessage &message);
