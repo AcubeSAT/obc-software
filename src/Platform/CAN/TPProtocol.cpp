@@ -51,7 +51,8 @@ namespace CAN {
 
         // Data fits in a Single Frame
         if (messageSize < CAN::Frame::MaxDataLength - 1) {
-            etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {static_cast<uint8_t>(messageSize)};
+            etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {
+                    static_cast<uint8_t>((Single << 4) | (messageSize & 0b1111))};
             for (size_t idx = 0; idx < messageSize; idx++) {
                 data[idx + 1] = message.data[idx];
             }
