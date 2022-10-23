@@ -61,17 +61,18 @@ namespace CAN {
             return;
         }
 
-        // 4 MSB bits is the frame type id and the 4 LSB are the 4 out of 12 bits for the data length code.
-        uint8_t idDLC = (First << 4) | (messageSize >> 4);
-        // Rest 8 bits of data length code.
-        uint8_t DLC = messageSize << 4;
+        // First Frame
+        // 4 MSB bits is the Frame Type identifier and the 4 LSB are the leftmost 4 bits of the data length.
+        uint8_t firstByte = (First << 4) | (messageSize >> 8);
+        // Rest of the data length.
+        uint8_t secondByte = messageSize & 0xFF;
 
-        etl::array<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {idDLC, DLC};
+        etl::array<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {firstByte, secondByte};
 
         canGatekeeperTask->send({id, firstFrame});
 
-        //Start creating the consecutive frames.
-        uint8_t currentConsecutiveFrameCount = 0x01;
+        //Consecutive Frames
+        uint8_t currentConsecutiveFrameCount = 1;
         uint8_t consecutiveFrameElements = (Consecutive << 4) | currentConsecutiveFrameCount;
         etl::array<uint8_t, CAN::Frame::MaxDataLength> consecutiveFrame = {consecutiveFrameElements};
         uint16_t byteCounter = 0;
