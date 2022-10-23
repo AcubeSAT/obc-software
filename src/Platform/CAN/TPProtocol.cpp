@@ -48,9 +48,10 @@ namespace CAN {
     void TPProtocol::createCANTPMessage(const TPMessage &message) {
         size_t messageSize = message.dataSize;
         uint32_t id = message.encodeId();
+        static constexpr uint8_t usableDataLength = CAN::Frame::MaxDataLength - 1;
 
         // Data fits in a Single Frame
-        if (messageSize < CAN::Frame::MaxDataLength - 1) {
+        if (messageSize < usableDataLength) {
             etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {
                     static_cast<uint8_t>((Single << 4) | (messageSize & 0b1111))};
             for (size_t idx = 0; idx < messageSize; idx++) {
@@ -74,25 +75,16 @@ namespace CAN {
         }
 
         //Consecutive Frames
-        uint8_t currentConsecutiveFrameCount = 1;
-        uint8_t consecutiveFrameElements = (Consecutive << 4) | currentConsecutiveFrameCount;
-        etl::array<uint8_t, CAN::Frame::MaxDataLength> consecutiveFrame = {consecutiveFrameElements};
-        uint16_t byteCounter = 0;
+        uint8_t totalConsecutiveFramesNeeded = ceil(messageSize / usableDataLength);
+        for (uint8_t currentConsecutiveFrameCount = 1;
+             currentConsecutiveFrameCount < totalConsecutiveFramesNeeded; currentConsecutiveFrameCount++) {
 
-        for (uint16_t idx = 1; idx < messageSize; idx++) {
-            if (byteCounter % CAN::Frame::MaxDataLength == 0) {
-                byteCounter = 1;
+            uint8_t firstByte = (Consecutive << 4) | (currentConsecutiveFrameCount & 0b1111);
+            etl::array<uint8_t, CAN::Frame::MaxDataLength> consecutiveFrame = {firstByte};
 
-                canGatekeeperTask->send({id, consecutiveFrame});
-                currentConsecutiveFrameCount++;
-
-                consecutiveFrameElements = (Consecutive << 4) | currentConsecutiveFrameCount;
-                consecutiveFrame = {consecutiveFrameElements};
-                if (currentConsecutiveFrameCount == 0x0F) {
-                    currentConsecutiveFrameCount = 0x00;
-                }
+            for (uint8_t idx = 0; idx < usableDataLength; idx++) {
+                consecutiveFrame[idx + 1] = message.data[idx + usableDataLength * (currentConsecutiveFrameCount - 1)];
             }
-//            consecutiveFrame[byteCounter++] = messagePayload[idx];
         }
     }
 }
