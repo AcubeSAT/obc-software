@@ -44,8 +44,12 @@ namespace CAN::Application {
         message.appendUint8(MessageIDs::SendParameters);
         message.appendUint16(parameterIDs.size());
         for (auto parameterID: parameterIDs) {
-            message.appendUint16(parameterID);
-            Services.parameterManagement.getParameter(parameterID)->get().appendValueToMessage(message);
+            if (Services.parameterManagement.getParameter(parameterID)) {
+                message.appendUint16(parameterID);
+                Services.parameterManagement.getParameter(parameterID)->get().appendValueToMessage(message);
+            } else {
+                LOG_ERROR << "Requested parameter that doesn't exist! ID: " << parameterID;
+            }
         }
 
         //TODO Move to TP Protocol -> Gatekeeper
