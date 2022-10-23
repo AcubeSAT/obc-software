@@ -1,14 +1,25 @@
 #include "CAN/ApplicationLayer.hpp"
 #include "CAN/TPMessage.hpp"
+#include "CAN/TPProtocol.hpp"
 #include "CANGatekeeperTask.hpp"
 
 namespace CAN::Application {
-    void sendPingMessage() {
-        canGatekeeperTask->send({MessageIDs::Ping + CAN::NodeID});
+    void sendPingMessage(uint8_t destinationAddress, bool isMulticast) {
+        TPMessage message;
+
+        message.idInfo = {NodeID, destinationAddress, isMulticast};
+        message.appendUint8(Ping);
+
+        CAN::TPProtocol::createCANTPMessage(message);
     }
 
     void sendPongMessage() {
-        canGatekeeperTask->send({MessageIDs::Pong + CAN::NodeID});
+        TPMessage message;
+
+        message.idInfo = {NodeID, OBC, false};
+        message.appendUint8(Pong);
+
+        CAN::TPProtocol::createCANTPMessage(message);
     }
 
     void sendHeartbeatMessage() {
