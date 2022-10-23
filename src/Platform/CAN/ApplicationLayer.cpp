@@ -63,7 +63,7 @@ namespace CAN::Application {
             }
         }
 
-        //TODO Move to TP Protocol -> Gatekeeper
+        CAN::TPProtocol::createCANTPMessage(message);
     }
 
     void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
@@ -77,7 +77,7 @@ namespace CAN::Application {
             message.appendUint16(parameterID);
         }
 
-        //TODO Move to TP Protocol -> Gatekeeper
+        CAN::TPProtocol::createCANTPMessage(message);
     }
 
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
@@ -98,7 +98,7 @@ namespace CAN::Application {
             message.appendUint64(argument.second);
         }
 
-        //TODO Move to TP Protocol -> Gatekeeper
+        CAN::TPProtocol::createCANTPMessage(message);
     }
 
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
@@ -111,7 +111,7 @@ namespace CAN::Application {
         message.appendUint16(eventID);
         message.appendMessage(eventData, eventData.dataSize);
 
-        //TODO Move to TP Protocol -> Gatekeeper
+        CAN::TPProtocol::createCANTPMessage(message);
     }
 
     void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &incomingMessage) {
@@ -130,7 +130,7 @@ namespace CAN::Application {
         message.appendString(messageHeader);
         message.appendMessage(incomingMessage, incomingMessage.dataSize);
 
-        //TODO Move to TP Protocol -> Gatekeeper
+        CAN::TPProtocol::createCANTPMessage(message);
     }
 
     void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &incomingMessage) {
@@ -142,7 +142,7 @@ namespace CAN::Application {
         message.appendUint8(MessageIDs::CCSDSPacket);
         message.appendString(ccsdsMessage);
 
-        //TODO Move to TP Protocol -> Gatekeeper
+        CAN::TPProtocol::createCANTPMessage(message);
     }
 
     void createLogMessage(uint8_t destinationAddress, bool isMulticast, const String<LOGGER_MAX_MESSAGE_SIZE> &log) {
@@ -152,7 +152,7 @@ namespace CAN::Application {
         message.appendUint8(MessageIDs::LogMessage);
         message.appendString(log);
 
-        //TODO Move to TP Protocol -> Gatekeeper
+        CAN::TPProtocol::createCANTPMessage(message);
     }
 
     void parseMessage(const CAN::Frame &message) {
