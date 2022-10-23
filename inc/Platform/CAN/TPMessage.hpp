@@ -23,12 +23,26 @@ namespace CAN {
          * @param canID The received ID.
          * @return A struct containing the ID information.
          */
-        [[maybe_unused]] IdInfo decodeId(uint32_t canID);
+        [[maybe_unused]] inline IdInfo decodeId(uint32_t canID) {
+            idInfo.sourceAddress = (canID >> 4) & 0b111;
+            idInfo.destinationAddress = (canID >> 1) & 0b111;
+            idInfo.isMulticast = canID & 0b1;
+
+            return idInfo;
+        }
 
         /**
          * Encodes the ID of a CAN-TP Message, using the already set idInfo member.
          * @return The encoded ID.
          */
-        uint32_t encodeId() const;
+        inline uint32_t encodeId() const {
+            uint16_t id = 0b0111 << 7;
+
+            id |= idInfo.sourceAddress << 4;
+            id |= idInfo.destinationAddress << 1;
+            id |= idInfo.isMulticast;
+
+            return id;
+        }
     };
 }
