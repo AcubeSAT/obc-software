@@ -10,6 +10,13 @@
 
 namespace CAN::Application {
     /**
+     * CAN Nodes, as specified in DDJF_OBDH.
+     */
+    enum NodeIDs : uint8_t {
+        OBC = 0x0, COMMS = 0x1, ADCS = 0x2, SU = 0x3
+    };
+
+    /**
      * CAN-TP message IDs, as specified in DDJF_OBDH.
      */
     enum MessageIDs : uint16_t {
@@ -77,7 +84,7 @@ namespace CAN::Application {
     /**
      * Adds a Ping message to the outgoing queue, according to DDJF_OBDH.
      */
-    void sendPingMessage();
+    void sendPingMessage(uint8_t destinationAddress, bool isMulticast);
 
     /**
      * Adds a Pong message to the outgoing queue, to be sent in response to a Ping message, according to DDJF_OBDH.
