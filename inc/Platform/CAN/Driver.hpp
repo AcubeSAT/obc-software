@@ -27,7 +27,7 @@ namespace CAN {
         /**
          * An area of memory the HAL uses to house incoming/outgoing buffers for the peripheral.
          */
-        static inline uint8_t mcan1MessageRAM[MCAN1_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32)));
+        static inline uint8_t mcan1MessageRAM[MCAN1_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32))) __attribute__((section (".ram_nocache")));
 
         /**
          * Buffer that stores a message that is ready to be sent
