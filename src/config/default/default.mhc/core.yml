@@ -99,6 +99,20 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'false'}
+  - type: Boolean
+    attributes: {id: CoreMPU_PRIVDEFENA}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: CoreUseMPU}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
   - type: Integer
     attributes: {id: DACC_CLOCK_FREQUENCY}
     children:
@@ -232,6 +246,111 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '150000000'}
+  - type: Menu
+    attributes: {id: MPU_MENU_0}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Menu
+    attributes: {id: MPU_MENU_CONF}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: MPU_Region_0_Access}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '3'}
+      - type: User
+        attributes: {value: '3'}
+  - type: Hex
+    attributes: {id: MPU_Region_0_Address}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '3758096384'}
+      - type: User
+        attributes: {value: '541454336'}
+  - type: Boolean
+    attributes: {id: MPU_Region_0_Enable}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: MPU_Region_0_Execute}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: String
+    attributes: {id: MPU_Region_0_Length}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 4KB}
+  - type: Boolean
+    attributes: {id: MPU_Region_0_Share}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: KeyValueSet
+    attributes: {id: MPU_Region_0_Size}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '15'}
+      - type: User
+        attributes: {value: '7'}
+  - type: KeyValueSet
+    attributes: {id: MPU_Region_0_Type}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '0'}
+      - type: User
+        attributes: {value: '5'}
+  - type: String
+    attributes: {id: MPU_Region_Name0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: SRAM_NOCACHE}
+  - type: Combo
+    attributes: {id: MPU_Region_Name0_Options}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: SYSTEM}
+  - type: File
+    attributes: {id: MPU_SYSTEM_DEFINITIONS_H}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
   - type: Boolean
     attributes: {id: NVIC_-1_0_ENABLE}
     children:
@@ -848,6 +967,33 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '16'}
+  - type: File
+    attributes: {id: PLIB_MPU_C}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: PLIB_MPU_H}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+  - type: File
+    attributes: {id: PLIB_MPU_LOCAL_H}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
   - type: Hex
     attributes: {id: PMC_PCER0}
     children:

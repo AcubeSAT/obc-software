@@ -4,13 +4,13 @@
 
 
 project: canbus
-creation_date: 2022-07-21T17:29:22.707+03:00[Europe/Athens]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2022-10-25T14:03:11.858+03:00[Europe/Athens]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Linux
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.5
 mplabx_version: v6.00        # if MPLAB X plugin only
 plugin_version: v3.6.4        # if MPLAB X plugin only
-compiler: ARM (9.2.1)
+compiler: ARM (11.1.0)
 
 modules:
     - {name: "csp", version: "v3.12.0"}
