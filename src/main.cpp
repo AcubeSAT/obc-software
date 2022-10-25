@@ -40,12 +40,12 @@ extern "C" void main_cpp() {
     canTransmitTask.emplace();
     tcHandlingTask.emplace();
 
-    updateParametersTask->createTask();
-    statisticsReportingTask->createTask();
-    housekeepingTask->createTask();
-    timeBasedSchedulingTask->createTask();
+//    updateParametersTask->createTask();
+//    statisticsReportingTask->createTask();
+//    housekeepingTask->createTask();
+//    timeBasedSchedulingTask->createTask();
     tcHandlingTask->createTask();
-    canTransmitTask->createTask();
+//    canTransmitTask->createTask();
 
     vTaskStartScheduler();
 

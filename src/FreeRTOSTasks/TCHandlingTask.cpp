@@ -63,7 +63,7 @@ void TCHandlingTask::execute() {
 
         auto ecssTC = MessageParser::parse(ecssTCBytes, messageLength);
 
-        LOG_DEBUG << "Received new TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
+//        LOG_DEBUG << "Received new TC[" << ecssTC.serviceType << "," << ecssTC.messageType << "]";
 
         MessageParser::execute(ecssTC);
     }
