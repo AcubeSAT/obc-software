@@ -19,8 +19,8 @@ namespace CAN {
     }
 
     void TPProtocol::parseMessage(const TPMessage &message) {
-        uint8_t frameType = static_cast<Application::MessageIDs>(message.data[0]);
-        switch (frameType) {
+        uint8_t messageType = static_cast<Application::MessageIDs>(message.data[0]);
+        switch (messageType) {
             case CAN::Application::SendParameters:
                 break; //todo: parse parameters
             case CAN::Application::RequestParameters:
