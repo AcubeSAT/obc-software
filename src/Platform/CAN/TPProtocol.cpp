@@ -47,7 +47,11 @@ namespace CAN {
                 CAN::Application::sendPongMessage();
             case CAN::Application::Pong:
                 break; //todo Register successful pong
-            case CAN::Application::LogMessage:
+            case CAN::Application::LogMessage: {
+                String<10> logSource = "ADCS Log: ";
+                auto logData = String<ECSSMaxMessageSize>(message.data + 1, message.dataSize - 1);
+                LOG_DEBUG << logSource.c_str() << logData.c_str();
+            }
                 break; //todo LOG this message.
             default:
                 ErrorHandler::reportInternalError(ErrorHandler::UnknownMessageType);
