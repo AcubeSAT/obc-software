@@ -49,13 +49,15 @@ namespace CAN {
         parseMessage(message);
     }
 
-    void TPProtocol::parseMessage(const TPMessage &message) {
+    void TPProtocol::parseMessage(TPMessage &message) {
         uint8_t messageType = static_cast<Application::MessageIDs>(message.data[0]);
         switch (messageType) {
             case CAN::Application::SendParameters:
-                break; //todo: parse parameters
+                CAN::Application::parseSendParametersMessage(message);
+                break;
             case CAN::Application::RequestParameters:
-                break; //todo: send back the requested parameters.
+                CAN::Application::parseRequestParametersMessage(message);
+                break;
             case CAN::Application::PerformFunction:
                 break; //todo: use ST[08] to execute the perform function command
             case CAN::Application::EventReport:
@@ -71,7 +73,7 @@ namespace CAN {
             case CAN::Application::Pong:
                 break; //todo Register successful pong
             case CAN::Application::LogMessage: {
-                String<10> logSource = "ADCS Log: ";
+                String<14> logSource = "Incoming Log: ";
                 auto logData = String<ECSSMaxMessageSize>(message.data + 1, message.dataSize - 1);
                 LOG_DEBUG << logSource.c_str() << logData.c_str();
             }

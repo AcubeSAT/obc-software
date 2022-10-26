@@ -42,7 +42,7 @@ namespace CAN::TPProtocol {
      * Processes the stored messages received and acts on their content accordingly.
      * @param message the complete CAN-TP message.
      */
-    void parseMessage(const TPMessage &message);
+    void parseMessage(TPMessage &message);
 
     /**
      * Splits a CAN-TP Message into a collection of CAN frames according to the TP protocol and adds them to the CAN

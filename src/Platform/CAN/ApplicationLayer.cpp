@@ -165,4 +165,26 @@ namespace CAN::Application {
 //            registerUTCTime();
         }
     }
+
+    void parseSendParametersMessage(TPMessage &message) {
+        uint16_t parameterCount = message.readUint16();
+
+        for (uint16_t idx = 0; idx < parameterCount; idx++) {
+            uint16_t parameterID = message.readUint16();
+            if (Services.parameterManagement.parameterExists(parameterID)) {
+                Services.parameterManagement.getParameter(parameterID)->get().setValueFromMessage(message);
+            }
+        }
+    }
+
+    void parseRequestParametersMessage(TPMessage &message) {
+        uint16_t parameterCount = message.readUint16();
+        etl::vector<uint16_t, TPMessageMaximumArguments> parameterIDs;
+
+        for (uint16_t idx = 0; idx < parameterCount; idx++) {
+            parameterIDs.push_back(message.readUint16());
+        }
+
+        createSendParametersMessage(message.idInfo.sourceAddress, message.idInfo.isMulticast, parameterIDs);
+    }
 }

@@ -7,6 +7,7 @@
 #include "Logger_Definitions.hpp"
 #include "Message.hpp"
 #include "OBC_Definitions.hpp"
+#include "TPMessage.hpp"
 
 namespace CAN::Application {
     /**
@@ -178,4 +179,16 @@ namespace CAN::Application {
      * @param message The incoming CAN::Frame.
      */
     void parseMessage(const CAN::Frame &message);
+
+    /**
+     * Parses an incoming Send Parameters Message and updates the according parameters
+     * @param message An incoming TPMessage
+     */
+    void parseSendParametersMessage(TPMessage &message);
+
+    /**
+     * Parses an incoming Request Parameters Message and sends the according parameters back, if they exist.
+     * @param message An incoming TPMessage
+     */
+    void parseRequestParametersMessage(TPMessage &message);
 }
