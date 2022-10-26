@@ -74,7 +74,7 @@ namespace CAN {
     inline const uint8_t NodeID = 0x0;
 
     /**
-     * The maximum of the length of the queue for incoming/outgoing CAN packets.
+     * The maximum of the length of the queue for incoming/outgoing CAN frames.
      */
     inline const uint8_t FrameQueueSize = 20;
 
