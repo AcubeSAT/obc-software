@@ -7,7 +7,7 @@
 namespace CAN {
     class Frame {
     public:
-        static constexpr uint8_t MaxDataLength = 8;
+        static constexpr uint8_t MaxDataLength = 64;
         uint32_t id = 0;
         etl::array<uint8_t, MaxDataLength> data = {};
 

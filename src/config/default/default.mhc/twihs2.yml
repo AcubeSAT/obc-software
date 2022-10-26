@@ -4,7 +4,7 @@ attributes: {id: twihs2}
 children:
 - type: Symbols
   children:
-  - type: Integer
+    - type: Integer
     attributes: {id: TWIHS_CLK_SRC_FREQ}
     children:
     - type: Values
@@ -23,14 +23,21 @@ children:
     children:
     - type: Values
       children:
-      - type: Dynamic
-        attributes: {id: twihs2, value: '0'}
-  - type: Integer
-    attributes: {id: TWIHS_CWGR_CLDIV}
-    children:
-    - type: Values
+        - type: Dynamic
+          attributes: { id: twihs2, value: '0' }
+    - type: Integer
+      attributes: { id: TWIHS_CWGR_CLDIV }
       children:
-      - type: Dynamic
-        attributes: {id: twihs2, value: '192'}
+        - type: Values
+          children:
+            - type: Dynamic
+              attributes: { id: twihs2, value: '192' }
+    - type: Integer
+      attributes: { id: TWIHS_TIMEOUT_COUNT_VAL }
+      children:
+        - type: Values
+          children:
+            - type: Dynamic
+              attributes: { id: twihs2, value: '60000' }
 - type: ElementPosition
   attributes: {x: '615', y: '137', id: twihs2}

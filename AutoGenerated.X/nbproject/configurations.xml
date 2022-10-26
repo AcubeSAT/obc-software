@@ -107,7 +107,6 @@
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/gpbr.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/qspi.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/matrix.h</itemPath>
-            <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/sdramc.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/hsmci.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/aes.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/dacc.h</itemPath>
@@ -156,7 +155,6 @@
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/piod.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/qspi.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/matrix.h</itemPath>
-            <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/sdramc.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/pioc.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/hsmci.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/afec0.h</itemPath>
@@ -325,6 +323,7 @@
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/default/harmony-manifest-success.yml</itemPath>
       <itemPath>../src/config/default/harmony-manifest-failure.yml</itemPath>
+      <itemPath>../src/config/default/pin_configurations.csv</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

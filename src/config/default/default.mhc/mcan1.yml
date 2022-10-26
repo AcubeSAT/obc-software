@@ -4,7 +4,7 @@ attributes: {id: mcan1}
 children:
 - type: Symbols
   children:
-  - type: Integer
+    - type: Integer
     attributes: {id: CALCULATED_DATA_BITRATE}
     children:
     - type: Values
@@ -215,53 +215,103 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '100.000'}
-  - type: KeyValueSet
-    attributes: {id: RXF0_BYTES_CFG}
-    children:
-    - type: Attributes
+        attributes: { id: mcan1, value: '100.000' }
+    - type: KeyValueSet
+      attributes: { id: RXF0_BYTES_CFG }
       children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
-  - type: KeyValueSet
-    attributes: {id: RXF1_BYTES_CFG}
-    children:
-    - type: Attributes
+        - type: Attributes
+          children:
+            - type: Boolean
+              attributes: { id: visible }
+              children:
+                - { type: Value, value: 'true' }
+        - type: Values
+          children:
+            - type: User
+              attributes: { value: '7' }
+    - type: Integer
+      attributes: { id: RXF0_ELEMENTS }
       children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
-  - type: KeyValueSet
-    attributes: {id: RX_BUFFER_BYTES_CFG}
-    children:
-    - type: Attributes
+        - type: Values
+          children:
+            - type: User
+              attributes: { value: '20' }
+    - type: Integer
+      attributes: { id: RXF0_WATERMARK }
       children:
-      - type: Boolean
-        attributes: {id: readOnly}
-        children:
-        - {type: Value, value: 'true'}
-  - type: KeyValueSet
-    attributes: {id: TX_FIFO_BYTES_CFG}
-    children:
-    - type: Attributes
+        - type: Values
+          children:
+            - type: Dynamic
+              attributes: { id: mcan1, value: '0' }
+    - type: KeyValueSet
+      attributes: { id: RXF1_BYTES_CFG }
       children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
-  - type: File
-    attributes: {id: instHeaderFile}
-    children:
-    - type: Attributes
+        - type: Attributes
+          children:
+            - type: Boolean
+              attributes: { id: visible }
+              children:
+                - { type: Value, value: 'true' }
+    - type: Integer
+      attributes: { id: RXF1_ELEMENTS }
       children:
-      - type: String
-        attributes: {id: source}
-        children:
-        - {type: Value, value: ../peripheral/mcan_11273/templates/plib_mcan_interrupt.h.ftl}
-  - type: File
+        - type: Values
+          children:
+            - type: User
+              attributes: { value: '10' }
+    - type: Integer
+      attributes: { id: RXF1_WATERMARK }
+      children:
+        - type: Values
+          children:
+            - type: Dynamic
+              attributes: { id: mcan1, value: '0' }
+    - type: KeyValueSet
+      attributes: { id: RX_BUFFER_BYTES_CFG }
+      children:
+        - type: Attributes
+          children:
+            - type: Boolean
+              attributes: { id: readOnly }
+              children:
+                - { type: Value, value: 'true' }
+    - type: KeyValueSet
+      attributes: { id: TX_FIFO_BYTES_CFG }
+      children:
+        - type: Attributes
+          children:
+            - type: Boolean
+              attributes: { id: visible }
+              children:
+                - { type: Value, value: 'true' }
+        - type: Values
+          children:
+            - type: User
+              attributes: { value: '7' }
+    - type: Integer
+      attributes: { id: TX_FIFO_ELEMENTS }
+      children:
+        - type: Values
+          children:
+            - type: User
+              attributes: { value: '10' }
+    - type: Integer
+      attributes: { id: TX_FIFO_WATERMARK }
+      children:
+        - type: Values
+          children:
+            - type: Dynamic
+              attributes: { id: mcan1, value: '0' }
+    - type: File
+      attributes: { id: instHeaderFile }
+      children:
+        - type: Attributes
+          children:
+            - type: String
+              attributes: { id: source }
+              children:
+                - { type: Value, value: ../peripheral/mcan_11273/templates/plib_mcan_interrupt.h.ftl }
+    - type: File
     attributes: {id: sourceFile}
     children:
     - type: Attributes
