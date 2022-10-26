@@ -22,9 +22,6 @@ namespace CAN::TPProtocol {
      */
     static constexpr uint8_t BytesStartingPoint = 2;
 
-    //TODO Should this be a single message in the namespace? Handle processing of many messages.
-    static TPMessage tpMessage;
-
     /**
      * A structure holding the data length codes of the received CAN-TP messages.
      * TODO This doesn't make sense being a vector of size 1.
