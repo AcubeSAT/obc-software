@@ -39,18 +39,6 @@ namespace CAN::TPProtocol {
     void processMultipleFrames();
 
     /**
-     * Extracts information(Map key, data length code) from the first frame
-     * @param messageFrame the received CAN-TP Frame
-     * @return the map key and the message data length code
-     */
-    inline uint16_t extractDataLengthCode(const CAN::Frame &messageFrame) {
-        uint8_t dataLengthCodeLSB = messageFrame.data[0] << 4;
-        uint8_t dataLengthCodeMSB = messageFrame.data[1];
-
-        return (static_cast<uint16_t>(dataLengthCodeMSB) << 8) | dataLengthCodeLSB;
-    }
-
-    /**
      * Processes the stored messages received and acts on their content accordingly.
      * @param message the complete CAN-TP message.
      */
