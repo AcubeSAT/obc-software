@@ -1,4 +1,6 @@
 #include "CAN/Driver.hpp"
+#include "CAN/ApplicationLayer.hpp"
+#include "CANGatekeeperTask.hpp"
 #include "Logger.hpp"
 
 uint8_t CAN::Driver::convertDlcToLength(uint8_t dlc) {
@@ -60,8 +62,7 @@ void CAN::Driver::rxFifo1Callback(uint8_t numberOfMessages, uintptr_t context) {
         //TODO: Is it necessary to set all the elements to 0?
         memset(&rxFifo1, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, numberOfMessages, &rxFifo1)) {
-            logMessage(rxFifo1);
-//            TODO: Logic for parsing single frame messages
+            CAN::Application::parseMessage(getFrame(rxFifo1));
         }
     }
 }
@@ -95,4 +96,14 @@ void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf) {
         etl::to_string(rxBuf.data[idx], message, true);
     }
     LOG_INFO << message.c_str();
+}
+
+CAN::Frame CAN::Driver::getFrame(const MCAN_RX_BUFFER &rxBuffer) {
+    CAN::Frame frame;
+    const uint8_t messageLength = convertDlcToLength(rxBuffer.dlc);
+
+    frame.id = readId(rxBuffer.id);
+    memcpy(frame.data.data(), rxBuffer.data, messageLength);
+
+    return frame;
 }

@@ -136,6 +136,13 @@ namespace CAN {
          * @param message The message to be sent.
          */
         static void send(const CAN::Frame &message);
+
+        /**
+         * Converts an MCAN_RX_BUFFER object into a CAN::Frame.
+         * @param rxBuffer The incoming buffer.
+         * @return A CAN::Frame.
+         */
+        static CAN::Frame getFrame(const MCAN_RX_BUFFER &rxBuffer);
     };
 }
 
