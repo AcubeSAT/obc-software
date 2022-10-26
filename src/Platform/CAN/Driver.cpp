@@ -46,7 +46,6 @@ void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
 
     if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
         static_cast<AppStates>(context) == Receive) {
-        //TODO: Is it necessary to set all the elements to 0?
         memset(&rxFifo0, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessages, &rxFifo0)) {
             if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
@@ -66,7 +65,6 @@ void CAN::Driver::rxFifo1Callback(uint8_t numberOfMessages, uintptr_t context) {
 
     if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
         static_cast<AppStates>(context) == Receive) {
-        //TODO: Is it necessary to set all the elements to 0?
         memset(&rxFifo1, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, numberOfMessages, &rxFifo1)) {
             CAN::Application::parseMessage(getFrame(rxFifo1));
