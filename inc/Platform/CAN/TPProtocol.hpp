@@ -23,12 +23,6 @@ namespace CAN::TPProtocol {
     static constexpr uint8_t BytesStartingPoint = 2;
 
     /**
-     * A structure holding the data length codes of the received CAN-TP messages.
-     * TODO This doesn't make sense being a vector of size 1.
-     */
-    inline etl::vector<uint16_t, 1> dataLengthCodes;
-
-    /**
      * Creates a TPMessage object from a single frame, and passes it over to the parse function.
      * @param message A received CAN::Frame.
      */
