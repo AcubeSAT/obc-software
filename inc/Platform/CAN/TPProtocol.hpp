@@ -9,7 +9,7 @@ namespace CAN::TPProtocol {
      * Types of CAN-TP protocol frames.
      */
     enum Frame : uint8_t {
-        Single = 0x00, First = 0x01, Consecutive = 0x02, FlowControl = 0x03
+        Single = 0x00, First = 0x01, Consecutive = 0x02, FlowControl = 0x03, Final = 0x04
     };
 
     /**
