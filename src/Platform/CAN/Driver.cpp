@@ -46,7 +46,22 @@ void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
         //TODO: Is it necessary to set all the elements to 0?
         memset(&rxFifo0, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessages, &rxFifo0)) {
+//            TODO: Add to freeRTOS queue and notify the parser once the final message is delivered
             logMessage(rxFifo0);
+        }
+    }
+}
+
+void CAN::Driver::rxFifo1Callback(uint8_t numberOfMessages, uintptr_t context) {
+    uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
+
+    if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
+        static_cast<AppStates>(context) == Receive) {
+        //TODO: Is it necessary to set all the elements to 0?
+        memset(&rxFifo1, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
+        if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, numberOfMessages, &rxFifo1)) {
+            logMessage(rxFifo1);
+//            TODO: Logic for parsing single frame messages
         }
     }
 }

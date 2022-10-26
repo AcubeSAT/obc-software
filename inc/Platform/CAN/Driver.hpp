@@ -36,8 +36,15 @@ namespace CAN {
 
         /**
          * Buffer that stores a received message that is to be processed.
+         * In this setup, rxFifo0 is used to store TP Messages that usually span across multiple CAN::Frames
          */
         static inline MCAN_RX_BUFFER rxFifo0;
+
+        /**
+         * Buffer that stores a received message that is to be processed.
+         * In this setup, rxFifo1 is used to store normal messages that are contained in a single CAN::Frame
+         */
+        static inline MCAN_RX_BUFFER rxFifo1;
 
         /**
          * Possible states for the peripheral, to be used as arguments in the callback functions.
@@ -61,11 +68,28 @@ namespace CAN {
          * It is registered as a callback to be automatically called by Microchip's HAL whenever
          * there is a message receipt on RX FIFO 0.
          *
+         * In this setup, messages using the TP Protocol will be moved to RX FIFO 0, requiring further parsing
+         * using the gatekeeper task.
+         *
          * @param numberOfMessages The number of messages to be received from the peripheral
          * @param context The state of the peripheral when the function is called.
          * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
          */
         static void rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context);
+
+        /**
+         * Initiates a message receipt from the peripheral to the processor.
+         * It is registered as a callback to be automatically called by Microchip's HAL whenever
+         * there is a message receipt on RX FIFO 1.
+         *
+         * In this setup, all received messages are contained in a single frame and will immediately be processed
+         * in this callback.
+         *
+         * @param numberOfMessages The number of messages to be received from the peripheral
+         * @param context The state of the peripheral when the function is called.
+         * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
+         */
+        static void rxFifo1Callback(uint8_t numberOfMessages, uintptr_t context);
 
         /**
          * Logs messages that are in the Rx buffer

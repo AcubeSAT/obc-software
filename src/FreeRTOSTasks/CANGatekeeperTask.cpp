@@ -7,6 +7,7 @@ CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
 
     MCAN1_TxFifoCallbackRegister(CAN::Driver::txFifoCallback, CAN::Driver::Transmit);
     MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::rxFifo0Callback, CAN::Driver::Receive);
+    MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_1, CAN::Driver::rxFifo1Callback, CAN::Driver::Receive);
 
     static StaticQueue_t outgoingQueueBuffer;
     static StaticQueue_t incomingQueueBuffer;
