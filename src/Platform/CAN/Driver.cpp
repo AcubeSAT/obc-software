@@ -48,13 +48,20 @@ void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
         static_cast<AppStates>(context) == Receive) {
         memset(&rxFifo0, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessages, &rxFifo0)) {
-            if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
-                TPProtocol::processSingleFrame(getFrame(rxFifo0));
-                return;
-            }
-            //TODO: Add to freeRTOS queue and notify the parser once the final message is delivered
-            if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Final) {
-                //TODO: Notify Task to process TP Message
+            for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
+                MCAN_RX_BUFFER *bufferAddress = &rxFifo0 + messageNumber * MCAN1_RX_FIFO0_ELEMENT_SIZE;
+                auto rxBuffer = static_cast<MCAN_RX_BUFFER>(*bufferAddress);
+
+                if (rxBuffer.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
+                    TPProtocol::processSingleFrame(getFrame(rxBuffer));
+                    return;
+                }
+
+                canGatekeeperTask->addToIncoming(getFrame(rxBuffer));
+
+                if (rxBuffer.data[0] >> 4 == CAN::TPProtocol::Frame::Final) {
+                    CAN::TPProtocol::processMultipleFrames();
+                }
             }
         }
     }
@@ -67,7 +74,12 @@ void CAN::Driver::rxFifo1Callback(uint8_t numberOfMessages, uintptr_t context) {
         static_cast<AppStates>(context) == Receive) {
         memset(&rxFifo1, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, numberOfMessages, &rxFifo1)) {
-            CAN::Application::parseMessage(getFrame(rxFifo1));
+            for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
+                MCAN_RX_BUFFER *bufferAddress = &rxFifo1 + messageNumber * MCAN1_RX_FIFO0_ELEMENT_SIZE;
+                auto rxBuffer = static_cast<MCAN_RX_BUFFER>(*bufferAddress);
+
+                CAN::Application::parseMessage(getFrame(rxBuffer));
+            }
         }
     }
 }
