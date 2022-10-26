@@ -34,9 +34,9 @@ namespace CAN {
             case CAN::Application::RequestParameters:
                 break; //todo: send back the requested parameters.
             case CAN::Application::PerformFunction:
-                break; //todo: using ST[08] execute the perform function command
+                break; //todo: use ST[08] to execute the perform function command
             case CAN::Application::EventReport:
-                break; //todo: use the Event Report service to... report the event.... hehe
+                break; //todo: use the Event Report service
             case CAN::Application::TMPacket:
                 break; //todo: idk
             case CAN::Application::TCPacket:
@@ -52,10 +52,10 @@ namespace CAN {
                 auto logData = String<ECSSMaxMessageSize>(message.data + 1, message.dataSize - 1);
                 LOG_DEBUG << logSource.c_str() << logData.c_str();
             }
-                break; //todo LOG this message.
+                break;
             default:
                 ErrorHandler::reportInternalError(ErrorHandler::UnknownMessageType);
-                break; //todo Error handling
+                break;
         }
     }
 
