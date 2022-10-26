@@ -21,7 +21,7 @@ public:
      */
     void createTask() {
         xTaskCreateStatic(vClassTask < CANTransmitTask > , this->TaskName, CANTransmitTask::TaskStackDepth, this,
-                          tskIDLE_PRIORITY + 1, this->taskStack, &(this->taskBuffer));
+                          configMAX_PRIORITIES - 1, this->taskStack, &(this->taskBuffer));
     }
 };
 
