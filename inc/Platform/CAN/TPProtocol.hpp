@@ -29,11 +29,15 @@ namespace CAN::TPProtocol {
     inline etl::vector<uint16_t, 1> dataLengthCodes;
 
     /**
-     * Receives CAN-TP Protocol message frame, processes its bytes for information and then saves it to the incoming
-     * messages map.
-     * @param messageFrame the received CAN-TP frame
+     * Creates a TPMessage object from a single frame, and passes it over to the parse function.
+     * @param message A received CAN::Frame.
      */
-    void saveCANTPMessage(const CAN::Frame &messageFrame);
+    void processSingleFrame(CAN::Frame message);
+
+    /**
+     * Receives a collection of messages from the Gatekeeper Task's incomingQueue, and processes them.
+     */
+    void processTPMessage();
 
     /**
      * Extracts information(Map key, data length code) from the first frame

@@ -2,19 +2,20 @@
 #include "CANGatekeeperTask.hpp"
 
 namespace CAN {
-    void TPProtocol::saveCANTPMessage(const CAN::Frame &messageFrame) {
-        uint8_t frameType = messageFrame.data[0] >> 4;
-        if (frameType == First) {
-            dataLengthCodes[0] = extractDataLengthCode(messageFrame);
-        } else if (frameType == Consecutive) {
-            for (uint8_t i = 1; i < BytesInConsecutiveFrame; i++) {
-                tpMessage.appendUint8(messageFrame.data[i]);
-            }
+    void TPProtocol::processSingleFrame(CAN::Frame message) {
+        TPMessage tpMessage;
+        tpMessage.decodeId(message.id);
+        size_t messageSize = message.data[0] & 0b1111;
 
-            if (tpMessage.dataSize == dataLengthCodes[0]) {
-                parseMessage(tpMessage);
-            }
+        for (size_t idx = 1; idx < messageSize; idx++) {
+            tpMessage.appendUint8(message.data[idx]);
         }
+
+        parseMessage(tpMessage);
+    }
+
+    void TPProtocol::processTPMessage() {
+
     }
 
     void TPProtocol::parseMessage(const TPMessage &message) {

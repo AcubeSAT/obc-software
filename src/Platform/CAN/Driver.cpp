@@ -1,5 +1,6 @@
 #include "CAN/Driver.hpp"
 #include "CAN/ApplicationLayer.hpp"
+#include "CAN/TPProtocol.hpp"
 #include "CANGatekeeperTask.hpp"
 #include "Logger.hpp"
 
@@ -48,8 +49,14 @@ void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
         //TODO: Is it necessary to set all the elements to 0?
         memset(&rxFifo0, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessages, &rxFifo0)) {
-//            TODO: Add to freeRTOS queue and notify the parser once the final message is delivered
-            logMessage(rxFifo0);
+            if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
+                TPProtocol::processSingleFrame(getFrame(rxFifo0));
+                return;
+            }
+            //TODO: Add to freeRTOS queue and notify the parser once the final message is delivered
+            if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Final) {
+                //TODO: Notify Task to process TP Message
+            }
         }
     }
 }
