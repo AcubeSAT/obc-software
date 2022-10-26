@@ -37,7 +37,7 @@ namespace CAN::TPProtocol {
     /**
      * Receives a collection of messages from the Gatekeeper Task's incomingQueue, and processes them.
      */
-    void processTPMessage();
+    void processMultipleFrames();
 
     /**
      * Extracts information(Map key, data length code) from the first frame

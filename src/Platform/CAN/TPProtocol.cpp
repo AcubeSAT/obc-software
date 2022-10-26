@@ -14,8 +14,16 @@ namespace CAN {
         parseMessage(tpMessage);
     }
 
-    void TPProtocol::processTPMessage() {
+    void TPProtocol::processMultipleFrames() {
+        TPMessage tpMessage;
+        uint8_t incomingMessagesCount = canGatekeeperTask->getIncomingMessagesCount();
+        size_t dataLength = 0;
 
+        for (uint8_t messageCounter = 0; messageCounter < incomingMessagesCount; messageCounter++) {
+            CAN::Frame frame = canGatekeeperTask->getFromQueue();
+            auto frameType = static_cast<Frame>(frame.data[0] >> 4);
+
+        }
     }
 
     void TPProtocol::parseMessage(const TPMessage &message) {
