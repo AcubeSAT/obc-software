@@ -5,26 +5,26 @@ children:
 - type: Symbols
   children:
     - type: Integer
-    attributes: {id: TWIHS_CLK_SRC_FREQ}
-    children:
-    - type: Values
+      attributes: { id: TWIHS_CLK_SRC_FREQ }
       children:
-      - type: Dynamic
-        attributes: {id: twihs2, value: '150000000'}
+        - type: Values
+          children:
+            - type: Dynamic
+              attributes: { id: twihs2, value: '150000000' }
   - type: Integer
     attributes: {id: TWIHS_CWGR_CHDIV}
     children:
-    - type: Values
+      - type: Values
+        children:
+          - type: Dynamic
+            attributes: { id: twihs2, value: '177' }
+    - type: Integer
+      attributes: { id: TWIHS_CWGR_CKDIV }
       children:
-      - type: Dynamic
-        attributes: {id: twihs2, value: '177'}
-  - type: Integer
-    attributes: {id: TWIHS_CWGR_CKDIV}
-    children:
-    - type: Values
-      children:
-        - type: Dynamic
-          attributes: { id: twihs2, value: '0' }
+        - type: Values
+          children:
+            - type: Dynamic
+              attributes: { id: twihs2, value: '0' }
     - type: Integer
       attributes: { id: TWIHS_CWGR_CLDIV }
       children:

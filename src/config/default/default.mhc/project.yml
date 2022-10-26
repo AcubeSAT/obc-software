@@ -1,18 +1,18 @@
 files:
   - generatedChecksum: null
-  logicalPath: ''
-  name: app.c
-  physicalPath: ../..
-  security: NON_SECURE
-  type: SOURCE
-  userChecksum: null
-- generatedChecksum: 6069C4FD56993BDA3B1FC223DD5BAA4A
-  logicalPath: config/default
-  name: exceptions.c
-  physicalPath: ''
-  security: NON_SECURE
-  type: SOURCE
-  userChecksum: 6069C4FD56993BDA3B1FC223DD5BAA4A
+    logicalPath: ''
+    name: app.c
+    physicalPath: ../..
+    security: NON_SECURE
+    type: SOURCE
+    userChecksum: null
+  - generatedChecksum: 6069C4FD56993BDA3B1FC223DD5BAA4A
+    logicalPath: config/default
+    name: exceptions.c
+    physicalPath: ''
+    security: NON_SECURE
+    type: SOURCE
+    userChecksum: 6069C4FD56993BDA3B1FC223DD5BAA4A
   - generatedChecksum: AFF69004F2CCAE5F401237B8AAAD5983
     logicalPath: config/default
     name: initialization.c
@@ -38,9 +38,9 @@ files:
     logicalPath: ''
     name: main.c
     physicalPath: ../..
-  security: NON_SECURE
-  type: SOURCE
-  userChecksum: null
+    security: NON_SECURE
+    type: SOURCE
+    userChecksum: null
   - generatedChecksum: 3F1F729685C762BF6B43C2246FEC6763
     logicalPath: config/default/peripheral/afec
     name: plib_afec0.c
@@ -62,13 +62,13 @@ files:
     security: NON_SECURE
     type: SOURCE
     userChecksum: D23DF612DB8267EDD9F5F3A463A02DB2
-  - generatedChecksum: 44F4B7A70A190A3FB96F1B00F2F13389
+  - generatedChecksum: B2C231EC69806D3E7A95CE2CB0239158
     logicalPath: config/default/peripheral/mcan
     name: plib_mcan1.c
     physicalPath: peripheral/mcan
     security: NON_SECURE
     type: SOURCE
-    userChecksum: 44F4B7A70A190A3FB96F1B00F2F13389
+    userChecksum: B2C231EC69806D3E7A95CE2CB0239158
   - generatedChecksum: ED0AE350AF95C60EBF0316E940718188
     logicalPath: config/default/peripheral/mpu
     name: plib_mpu.c
@@ -125,13 +125,13 @@ files:
     security: NON_SECURE
     type: SOURCE
     userChecksum: 63129C449F39CF82183D356ED33CD245
-- generatedChecksum: 3AA3C91D7C7407C600A7221AB5D7ED4D
-  logicalPath: config/default/peripheral/xdmac
-  name: plib_xdmac.c
-  physicalPath: peripheral/xdmac
-  security: NON_SECURE
-  type: SOURCE
-  userChecksum: 3AA3C91D7C7407C600A7221AB5D7ED4D
+  - generatedChecksum: 3AA3C91D7C7407C600A7221AB5D7ED4D
+    logicalPath: config/default/peripheral/xdmac
+    name: plib_xdmac.c
+    physicalPath: peripheral/xdmac
+    security: NON_SECURE
+    type: SOURCE
+    userChecksum: 3AA3C91D7C7407C600A7221AB5D7ED4D
   - generatedChecksum: 9606B04C209E0E62BE417D403805D4C6
     logicalPath: config/default
     name: startup_xc32.c
@@ -160,13 +160,13 @@ files:
     security: NON_SECURE
     type: SOURCE
     userChecksum: 3878694A0F012B231CD5551E17F0825B
-- generatedChecksum: DE51BB8F6FDBC39FB049CB2A14E56B25
-  logicalPath: config/default
-  name: tasks.c
-  physicalPath: ''
-  security: NON_SECURE
-  type: SOURCE
-  userChecksum: DE51BB8F6FDBC39FB049CB2A14E56B25
+  - generatedChecksum: DE51BB8F6FDBC39FB049CB2A14E56B25
+    logicalPath: config/default
+    name: tasks.c
+    physicalPath: ''
+    security: NON_SECURE
+    type: SOURCE
+    userChecksum: DE51BB8F6FDBC39FB049CB2A14E56B25
   - generatedChecksum: 71352EF41F6688AD8408E42970B50B66
     logicalPath: config/default/stdio
     name: xc32_monitor.c
@@ -223,20 +223,20 @@ files:
     security: NON_SECURE
     type: HEADER
     userChecksum: 625DFAF8957213A83B43E401F0F9B76D
-- generatedChecksum: null
-  logicalPath: ''
-  name: app.h
-  physicalPath: ../..
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: null
-- generatedChecksum: 14F1AD56D242EFD0AF76849C6ADFECC4
-  logicalPath: packs/CMSIS/CMSIS/Core/Include
-  name: cachel1_armv7.h
-  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 14F1AD56D242EFD0AF76849C6ADFECC4
+  - generatedChecksum: null
+    logicalPath: ''
+    name: app.h
+    physicalPath: ../..
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: null
+  - generatedChecksum: 14F1AD56D242EFD0AF76849C6ADFECC4
+    logicalPath: packs/CMSIS/CMSIS/Core/Include
+    name: cachel1_armv7.h
+    physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: 14F1AD56D242EFD0AF76849C6ADFECC4
   - generatedChecksum: 5862A2BA460C22F8A206ED63AF40DFF1
     logicalPath: packs/ATSAMV71Q21B_DFP/component
     name: chipid.h
@@ -251,16 +251,16 @@ files:
     security: NON_SECURE
     type: HEADER
     userChecksum: E8DC7A2DE3BF0C567101B46C67D262E8
-- generatedChecksum: B79C08E0901948AD04D944B4BCE1B60D
-  logicalPath: packs/CMSIS/CMSIS/Core/Include
-  name: cmsis_armcc.h
-  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: B79C08E0901948AD04D944B4BCE1B60D
-- generatedChecksum: 6B4E2EBA8708D9E04E6136F29460ACB9
-  logicalPath: packs/CMSIS/CMSIS/Core/Include
-  name: cmsis_armclang.h
+  - generatedChecksum: B79C08E0901948AD04D944B4BCE1B60D
+    logicalPath: packs/CMSIS/CMSIS/Core/Include
+    name: cmsis_armcc.h
+    physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: B79C08E0901948AD04D944B4BCE1B60D
+  - generatedChecksum: 6B4E2EBA8708D9E04E6136F29460ACB9
+    logicalPath: packs/CMSIS/CMSIS/Core/Include
+    name: cmsis_armclang.h
   physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
   security: NON_SECURE
   type: HEADER
@@ -307,13 +307,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 2513F24E1E4ACF28C26B89F5627C9621
-- generatedChecksum: 948CEA542F04017255B040816F368DF8
-  logicalPath: packs/CMSIS/CMSIS/Core/Include
-  name: core_cm7.h
-  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 948CEA542F04017255B040816F368DF8
+  - generatedChecksum: 948CEA542F04017255B040816F368DF8
+    logicalPath: packs/CMSIS/CMSIS/Core/Include
+    name: core_cm7.h
+    physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: 948CEA542F04017255B040816F368DF8
   - generatedChecksum: F3C66F8F693E6FF8E99E5A5070809F1E
     logicalPath: packs/ATSAMV71Q21B_DFP/component
     name: dacc.h
@@ -335,20 +335,20 @@ files:
     security: NON_SECURE
     type: HEADER
     userChecksum: 8E312527A7FD5CCAE7495132B4CBA671
-- generatedChecksum: E4DDC7F84738825A532EDB866BEDBA03
-  logicalPath: config/default
-  name: device.h
-  physicalPath: ''
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: E4DDC7F84738825A532EDB866BEDBA03
-- generatedChecksum: 9FD18F0D30B89945CC141BA0DE2ABE90
-  logicalPath: config/default
-  name: device_cache.h
-  physicalPath: ''
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 9FD18F0D30B89945CC141BA0DE2ABE90
+  - generatedChecksum: E4DDC7F84738825A532EDB866BEDBA03
+    logicalPath: config/default
+    name: device.h
+    physicalPath: ''
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: E4DDC7F84738825A532EDB866BEDBA03
+  - generatedChecksum: 9FD18F0D30B89945CC141BA0DE2ABE90
+    logicalPath: config/default
+    name: device_cache.h
+    physicalPath: ''
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: 9FD18F0D30B89945CC141BA0DE2ABE90
   - generatedChecksum: 84416A32652FFD128EAA5F9C1229CAAB
     logicalPath: config/default
     name: device_vectors.h
@@ -531,16 +531,16 @@ files:
     security: NON_SECURE
     type: HEADER
     userChecksum: 3E8CD5F73754B38F73AB65EEB1B80883
-- generatedChecksum: 47E760D36E42A7B436306A9CB4E72A0E
-  logicalPath: packs/CMSIS/CMSIS/Core/Include
-  name: mpu_armv7.h
-  physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 47E760D36E42A7B436306A9CB4E72A0E
-- generatedChecksum: F0AD88762263B7CB89B02AB4F5876059
-  logicalPath: config/default/osal
-  name: osal.h
+  - generatedChecksum: 47E760D36E42A7B436306A9CB4E72A0E
+    logicalPath: packs/CMSIS/CMSIS/Core/Include
+    name: mpu_armv7.h
+    physicalPath: ../../packs/CMSIS/CMSIS/Core/Include
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: 47E760D36E42A7B436306A9CB4E72A0E
+  - generatedChecksum: F0AD88762263B7CB89B02AB4F5876059
+    logicalPath: config/default/osal
+    name: osal.h
   physicalPath: osal
   security: NON_SECURE
   type: HEADER
@@ -552,13 +552,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: 0AC88C49E4585B606FD5AC6804F0C340
-- generatedChecksum: B040122CCA94A0636810D6F15F13B751
-  logicalPath: config/default/osal
-  name: osal_impl_basic.h
-  physicalPath: osal
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: B040122CCA94A0636810D6F15F13B751
+  - generatedChecksum: B040122CCA94A0636810D6F15F13B751
+    logicalPath: config/default/osal
+    name: osal_impl_basic.h
+    physicalPath: osal
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: B040122CCA94A0636810D6F15F13B751
   - generatedChecksum: DA1A569A6DD02867FE359560EC0D6B5B
     logicalPath: packs/ATSAMV71Q21B_DFP/component
     name: pio.h
@@ -629,13 +629,13 @@ files:
     security: NON_SECURE
     type: HEADER
     userChecksum: 0ABDA5C4051B45BB0C8746712B766240
-  - generatedChecksum: EC4AA4B1445B0E6FFF5AE703BE84C6F5
+  - generatedChecksum: 8C4B5372D7E62332BD05C9ADC99481BC
     logicalPath: config/default/peripheral/mcan
     name: plib_mcan1.h
     physicalPath: peripheral/mcan
     security: NON_SECURE
     type: HEADER
-    userChecksum: EC4AA4B1445B0E6FFF5AE703BE84C6F5
+    userChecksum: 8C4B5372D7E62332BD05C9ADC99481BC
   - generatedChecksum: 3BF4CAE93539FEB20C58356494C0C6B3
     logicalPath: config/default/peripheral/mcan
     name: plib_mcan_common.h
@@ -678,13 +678,13 @@ files:
     security: NON_SECURE
     type: HEADER
     userChecksum: 621AE9009C9F785D735088FDD9252CDF
-- generatedChecksum: 23DD6551AAD0E0BE65CAE99ECB44BD61
-  logicalPath: config/default/peripheral/rtc
-  name: plib_rtc_common.h
-  physicalPath: peripheral/rtc
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 23DD6551AAD0E0BE65CAE99ECB44BD61
+  - generatedChecksum: 23DD6551AAD0E0BE65CAE99ECB44BD61
+    logicalPath: config/default/peripheral/rtc
+    name: plib_rtc_common.h
+    physicalPath: peripheral/rtc
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: 23DD6551AAD0E0BE65CAE99ECB44BD61
   - generatedChecksum: 3A39FF2F684AB10896F828DC9580D37E
     logicalPath: config/default/peripheral/systick
     name: plib_systick.h
@@ -713,13 +713,13 @@ files:
     security: NON_SECURE
     type: HEADER
     userChecksum: 44FD896AD7D4EBD0A19883496E849C53
-- generatedChecksum: 2B0D6DB62F6E6E43DA189A8FA1DB7B5C
-  logicalPath: config/default/peripheral/usart
-  name: plib_usart_common.h
-  physicalPath: peripheral/usart
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 2B0D6DB62F6E6E43DA189A8FA1DB7B5C
+  - generatedChecksum: 2B0D6DB62F6E6E43DA189A8FA1DB7B5C
+    logicalPath: config/default/peripheral/usart
+    name: plib_usart_common.h
+    physicalPath: peripheral/usart
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: 2B0D6DB62F6E6E43DA189A8FA1DB7B5C
   - generatedChecksum: 654C591FA885B5EF31788279ABFF6984
     logicalPath: config/default/peripheral/wdt
     name: plib_wdt.h
@@ -734,13 +734,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: E5E0123504F9ED4652246CC99D696CC9
-- generatedChecksum: 2FC58EF28F630EC2CC437536C41CEDB1
-  logicalPath: config/default/peripheral/xdmac
-  name: plib_xdmac_common.h
-  physicalPath: peripheral/xdmac
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 2FC58EF28F630EC2CC437536C41CEDB1
+  - generatedChecksum: 2FC58EF28F630EC2CC437536C41CEDB1
+    logicalPath: config/default/peripheral/xdmac
+    name: plib_xdmac_common.h
+    physicalPath: peripheral/xdmac
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: 2FC58EF28F630EC2CC437536C41CEDB1
   - generatedChecksum: F4EAFD9FC17B80693BAB0DC56020C070
     logicalPath: packs/ATSAMV71Q21B_DFP/component
     name: pmc.h
@@ -923,13 +923,13 @@ files:
     security: NON_SECURE
     type: HEADER
     userChecksum: 79F0E1692B21D1A28458F578ABD0284E
-- generatedChecksum: AFAAF7D896D57569CA4CF73BB3339481
-  logicalPath: config/default/system/cache
-  name: sys_cache.h
-  physicalPath: system/cache
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: AFAAF7D896D57569CA4CF73BB3339481
+  - generatedChecksum: AFAAF7D896D57569CA4CF73BB3339481
+    logicalPath: config/default/system/cache
+    name: sys_cache.h
+    physicalPath: system/cache
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: AFAAF7D896D57569CA4CF73BB3339481
   - generatedChecksum: A16AB5B2D9FB7CE4684C82260B75C7C4
     logicalPath: config/default/system/debug
     name: sys_debug.h
@@ -986,13 +986,13 @@ files:
   security: NON_SECURE
   type: HEADER
   userChecksum: C3F5136D520DAC4416512EBFCCA023C3
-- generatedChecksum: 1C75A8A6B60598A2FD0D533F57839B72
-  logicalPath: config/default/system
-  name: system_module.h
-  physicalPath: system
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: 1C75A8A6B60598A2FD0D533F57839B72
+  - generatedChecksum: 1C75A8A6B60598A2FD0D533F57839B72
+    logicalPath: config/default/system
+    name: system_module.h
+    physicalPath: system
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: 1C75A8A6B60598A2FD0D533F57839B72
   - generatedChecksum: 7FFA99F01EDD0B2A30EA448D1401F09C
     logicalPath: packs/ATSAMV71Q21B_DFP/component
     name: tc.h
@@ -1028,13 +1028,13 @@ files:
     security: NON_SECURE
     type: HEADER
     userChecksum: 3160A0FBF453DE685FD22FD7EACD1226
-- generatedChecksum: E7B1CC92ABE4830B5244251AB8FA4FB0
-  logicalPath: config/default
-  name: toolchain_specifics.h
-  physicalPath: ''
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: E7B1CC92ABE4830B5244251AB8FA4FB0
+  - generatedChecksum: E7B1CC92ABE4830B5244251AB8FA4FB0
+    logicalPath: config/default
+    name: toolchain_specifics.h
+    physicalPath: ''
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: E7B1CC92ABE4830B5244251AB8FA4FB0
   - generatedChecksum: 978258AE8F83B8BA840B24FBD237ACC0
     logicalPath: packs/ATSAMV71Q21B_DFP/component
     name: trng.h
@@ -1161,13 +1161,13 @@ files:
     security: NON_SECURE
     type: HEADER
     userChecksum: AB10AA1EF03FCD2400DD1D1BB25B875B
-- generatedChecksum: null
-  logicalPath: config/default
-  name: user.h
-  physicalPath: ''
-  security: NON_SECURE
-  type: HEADER
-  userChecksum: null
+  - generatedChecksum: null
+    logicalPath: config/default
+    name: user.h
+    physicalPath: ''
+    security: NON_SECURE
+    type: HEADER
+    userChecksum: null
   - generatedChecksum: 090DE7EEF329977C3F69E93C9A3B811B
     logicalPath: packs/ATSAMV71Q21B_DFP/component
     name: utmi.h

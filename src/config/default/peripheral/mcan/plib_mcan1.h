@@ -64,7 +64,7 @@
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
-extern "C" {
+    extern "C" {
 #endif
 // DOM-IGNORE-END
 
@@ -81,10 +81,11 @@ extern "C" {
 #define MCAN1_TX_FIFO_BUFFER_ELEMENT_SIZE 72U
 #define MCAN1_TX_FIFO_BUFFER_SIZE         720U
 #define MCAN1_TX_EVENT_FIFO_SIZE          80U
+#define MCAN1_STD_MSG_ID_FILTER_SIZE      4U
 
 /* MCAN1_MESSAGE_RAM_CONFIG_SIZE to be used by application or driver
    for allocating buffer from non-cached contiguous memory */
-#define MCAN1_MESSAGE_RAM_CONFIG_SIZE     2400U
+#define MCAN1_MESSAGE_RAM_CONFIG_SIZE     2404U
 
 // *****************************************************************************
 // *****************************************************************************
@@ -92,17 +93,33 @@ extern "C" {
 // *****************************************************************************
 // *****************************************************************************
 void MCAN1_Initialize(void);
+
 bool MCAN1_MessageTransmitFifo(uint8_t numberOfMessage, MCAN_TX_BUFFER *txBuffer);
+
 uint8_t MCAN1_TxFifoFreeLevelGet(void);
+
 bool MCAN1_TxBufferIsBusy(uint8_t bufferNumber);
+
 bool MCAN1_TxEventFifoRead(uint8_t numberOfTxEvent, MCAN_TX_EVENT_FIFO *txEventFifo);
+
 bool MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_NUM rxFifoNum, uint8_t numberOfMessage, MCAN_RX_BUFFER *rxBuffer);
+
 MCAN_ERROR MCAN1_ErrorGet(void);
+
 void MCAN1_ErrorCountGet(uint8_t *txErrorCount, uint8_t *rxErrorCount);
+
 void MCAN1_MessageRAMConfigSet(uint8_t *msgRAMConfigBaseAddress);
+
+bool MCAN1_StandardFilterElementSet(uint8_t filterNumber, mcan_sidfe_registers_t *stdMsgIDFilterElement);
+
+bool MCAN1_StandardFilterElementGet(uint8_t filterNumber, mcan_sidfe_registers_t *stdMsgIDFilterElement);
+
 void MCAN1_SleepModeEnter(void);
+
 void MCAN1_SleepModeExit(void);
+
 void MCAN1_TxFifoCallbackRegister(MCAN_TX_FIFO_CALLBACK callback, uintptr_t contextHandle);
+
 void MCAN1_TxEventFifoCallbackRegister(MCAN_TX_EVENT_FIFO_CALLBACK callback, uintptr_t contextHandle);
 
 void MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_NUM rxFifoNum, MCAN_RX_FIFO_CALLBACK callback, uintptr_t contextHandle);
@@ -110,7 +127,7 @@ void MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_NUM rxFifoNum, MCAN_RX_FIFO_CALLB
 void MCAN1_CallbackRegister(MCAN_CALLBACK callback, uintptr_t contextHandle);
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
-    }
+}
 #endif
 // DOM-IGNORE-END
 
