@@ -2,7 +2,7 @@
 #include "CANGatekeeperTask.hpp"
 
 namespace CAN {
-    void TPProtocol::processSingleFrame(CAN::Frame message) {
+    void TPProtocol::processSingleFrame(const CAN::Frame &message) {
         TPMessage tpMessage;
         tpMessage.decodeId(message.id);
         size_t messageSize = message.data[0] & 0b1111;

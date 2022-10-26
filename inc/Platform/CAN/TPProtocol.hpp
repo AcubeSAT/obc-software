@@ -32,7 +32,7 @@ namespace CAN::TPProtocol {
      * Creates a TPMessage object from a single frame, and passes it over to the parse function.
      * @param message A received CAN::Frame.
      */
-    void processSingleFrame(CAN::Frame message);
+    void processSingleFrame(const CAN::Frame &message);
 
     /**
      * Receives a collection of messages from the Gatekeeper Task's incomingQueue, and processes them.
