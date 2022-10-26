@@ -7,7 +7,7 @@ namespace CAN {
         tpMessage.decodeId(message.id);
         size_t messageSize = message.data[0] & 0b1111;
 
-        for (size_t idx = 1; idx < messageSize; idx++) {
+        for (size_t idx = 1; idx <= messageSize; idx++) {
             tpMessage.appendUint8(message.data[idx]);
         }
 
