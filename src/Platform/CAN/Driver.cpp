@@ -76,7 +76,7 @@ void CAN::Driver::send(const CAN::Frame &message) {
     CAN::Driver::txFifo.id = CAN::Driver::writeId(message.id);
     CAN::Driver::txFifo.dlc = CAN::Driver::convertLengthToDLC(message.data.size());
 
-    for (uint8_t idx = 0; idx < message.data.size(); idx++) {
+    for (size_t idx = 0; idx < message.data.size(); idx++) {
         CAN::Driver::txFifo.data[idx] = message.data[idx];
     }
 
