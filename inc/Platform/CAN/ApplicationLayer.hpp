@@ -65,15 +65,6 @@ namespace CAN::Application {
     };
 
     /**
-     * Determines whether a message is following the CAN-TP Message protocol.
-     * @param id The Id of the message received via CAN
-     * @return True if the message is part of a CAN-TP Message
-     */
-    inline bool isTPMessage(uint32_t id) {
-        return (id >> 7) == 0b0111;
-    }
-
-    /**
      * Removes the id of the sender in an incoming CAN Message.
      * @param id The ID to be filtered.
      * @return The filtered ID.
