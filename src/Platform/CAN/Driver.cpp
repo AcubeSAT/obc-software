@@ -70,13 +70,13 @@ void CAN::Driver::send(const CAN::Frame &message) {
 void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf) {
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
     uint32_t id = readId(rxBuf.id);
-    const uint8_t MsgLength = convertDlcToLength(rxBuf.dlc);
-    message.append("Message - ID : ");
+    const uint8_t msgLength = convertDlcToLength(rxBuf.dlc);
+    message.append("ID : ");
     etl::to_string(id, message, etl::format_spec().hex(), true);
     message.append(" Length : ");
-    etl::to_string(MsgLength, message, true);
-    message.append(" Message : ");
-    for (uint8_t idx = 0; idx < MsgLength; idx++) {
+    etl::to_string(msgLength, message, true);
+    message.append(" Data : ");
+    for (uint8_t idx = 0; idx < msgLength; idx++) {
         etl::to_string(rxBuf.data[idx], message, true);
     }
     LOG_INFO << message.c_str();
