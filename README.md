@@ -36,7 +36,20 @@ Prototypes of ECSS Services
 - ST[20]
 
 Peripherals:
+
 - Internal MCU Temperature Sensor
 - External (MCP9808) Temperature Sensor
 - UART with DMA
 - Parameter updating of ST[20]
+
+## Note
+
+The internal watchdog has been disabled for debugging reasons.
+
+To re-enable remove the line
+
+```cpp
+WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk;
+```
+
+in `initialization.c`. It's on line 148 at the time of writing. You should also uncomment `WDT_Initialize()` below that.
