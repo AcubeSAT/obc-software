@@ -81,6 +81,9 @@ namespace CAN {
              currentConsecutiveFrameCount <= totalConsecutiveFramesNeeded; currentConsecutiveFrameCount++) {
 
             uint8_t firstByte = (Consecutive << 4) | (currentConsecutiveFrameCount & 0b1111);
+            if (currentConsecutiveFrameCount == totalConsecutiveFramesNeeded) {
+                firstByte = (Final << 4) | (currentConsecutiveFrameCount & 0b1111);
+            }
             etl::array<uint8_t, CAN::Frame::MaxDataLength> consecutiveFrame = {firstByte};
 
             for (uint8_t idx = 0; idx < usableDataLength; idx++) {
