@@ -50,6 +50,7 @@ namespace CAN {
             case CAN::Application::LogMessage:
                 break; //todo LOG this message.
             default:
+                ErrorHandler::reportInternalError(ErrorHandler::UnknownMessageType);
                 break; //todo Error handling
         }
     }
