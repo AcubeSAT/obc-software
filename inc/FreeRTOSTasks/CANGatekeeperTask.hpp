@@ -40,8 +40,31 @@ public:
      * If the queue is full, the message is not added to the queue and is lost.
      * @param message the CAN::Frame to be added in the queue of the CAN Gatekeeper task.
      */
-    void send(const CAN::Frame &message) {
+    inline void send(const CAN::Frame &message) {
         xQueueSendToBack(outgoingQueue, &message, 0);
+    }
+
+    /**
+     * Adds a CAN::Frame to the incomingQueue.
+     * If the queue is full the message is lost.
+     * @param message The incoming CAN::Frame.
+     */
+    inline void addToIncoming(const CAN::Frame &message) {
+        BaseType_t taskShouldYield = pdFALSE;
+
+        xQueueSendToBackFromISR(incomingQueue, &message, &taskShouldYield);
+
+        if (taskShouldYield) {
+            taskYIELD()
+        }
+    }
+
+    /**
+     * An abstraction layer over the freeRTOS queue API to get the number of messages in the incoming queue.
+     * @return The number of messages in the queue.
+     */
+    inline uint8_t getIncomingMessagesCount() {
+        return uxQueueMessagesWaiting(incomingQueue);
     }
 
     /**
@@ -53,7 +76,7 @@ public:
      *
      * If the queue is empty, the returned message is empty.
      */
-    CAN::Frame getFromQueue() {
+    inline CAN::Frame getFromQueue() {
         CAN::Frame message;
         xQueueReceive(incomingQueue, &message, 0);
         return message;
