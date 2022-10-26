@@ -84,7 +84,7 @@ namespace CAN {
         }
 
         //Consecutive Frames
-        uint8_t totalConsecutiveFramesNeeded = ceil(messageSize / static_cast<float>(usableDataLength));
+        uint8_t totalConsecutiveFramesNeeded = ceil(static_cast<float>(messageSize) / usableDataLength);
         for (uint8_t currentConsecutiveFrameCount = 1;
              currentConsecutiveFrameCount <= totalConsecutiveFramesNeeded; currentConsecutiveFrameCount++) {
 
