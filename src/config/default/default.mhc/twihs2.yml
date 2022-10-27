@@ -4,40 +4,40 @@ attributes: {id: twihs2}
 children:
 - type: Symbols
   children:
-    - type: Integer
-      attributes: { id: TWIHS_CLK_SRC_FREQ }
+  - type: Integer
+    attributes: {id: TWIHS_CLK_SRC_FREQ}
+    children:
+    - type: Values
       children:
-        - type: Values
-          children:
-            - type: Dynamic
-              attributes: { id: twihs2, value: '150000000' }
+      - type: Dynamic
+        attributes: {id: twihs2, value: '150000000'}
   - type: Integer
     attributes: {id: TWIHS_CWGR_CHDIV}
     children:
-      - type: Values
-        children:
-          - type: Dynamic
-            attributes: { id: twihs2, value: '177' }
-    - type: Integer
-      attributes: { id: TWIHS_CWGR_CKDIV }
+    - type: Values
       children:
-        - type: Values
-          children:
-            - type: Dynamic
-              attributes: { id: twihs2, value: '0' }
-    - type: Integer
-      attributes: { id: TWIHS_CWGR_CLDIV }
+      - type: Dynamic
+        attributes: {id: twihs2, value: '177'}
+  - type: Integer
+    attributes: {id: TWIHS_CWGR_CKDIV}
+    children:
+    - type: Values
       children:
-        - type: Values
-          children:
-            - type: Dynamic
-              attributes: { id: twihs2, value: '192' }
-    - type: Integer
-      attributes: { id: TWIHS_TIMEOUT_COUNT_VAL }
+      - type: Dynamic
+        attributes: {id: twihs2, value: '0'}
+  - type: Integer
+    attributes: {id: TWIHS_CWGR_CLDIV}
+    children:
+    - type: Values
       children:
-        - type: Values
-          children:
-            - type: Dynamic
-              attributes: { id: twihs2, value: '60000' }
+      - type: Dynamic
+        attributes: {id: twihs2, value: '192'}
+  - type: Integer
+    attributes: {id: TWIHS_TIMEOUT_COUNT_VAL}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: twihs2, value: '60000'}
 - type: ElementPosition
   attributes: {x: '615', y: '137', id: twihs2}
