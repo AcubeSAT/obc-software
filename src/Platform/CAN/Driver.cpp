@@ -46,20 +46,17 @@ void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
 
     if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
         static_cast<AppStates>(context) == Receive) {
-        memset(&rxFifo0, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
-        if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, numberOfMessages, &rxFifo0)) {
-            for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
-                MCAN_RX_BUFFER *bufferAddress = &rxFifo0 + messageNumber * MCAN1_RX_FIFO0_ELEMENT_SIZE;
-                auto rxBuffer = static_cast<MCAN_RX_BUFFER>(*bufferAddress);
-
-                if (rxBuffer.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
-                    TPProtocol::processSingleFrame(getFrame(rxBuffer));
-                    return;
+        for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
+            memset(&rxFifo0, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
+            if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
+                if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
+                    TPProtocol::processSingleFrame(getFrame(rxFifo0));
+                    continue;
                 }
 
-                canGatekeeperTask->addToIncoming(getFrame(rxBuffer));
+                canGatekeeperTask->addToIncoming(getFrame(rxFifo0));
 
-                if (rxBuffer.data[0] >> 4 == CAN::TPProtocol::Frame::Final) {
+                if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Final) {
                     CAN::TPProtocol::processMultipleFrames();
                 }
             }
@@ -72,13 +69,10 @@ void CAN::Driver::rxFifo1Callback(uint8_t numberOfMessages, uintptr_t context) {
 
     if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
         static_cast<AppStates>(context) == Receive) {
-        memset(&rxFifo1, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
-        if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, numberOfMessages, &rxFifo1)) {
-            for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
-                MCAN_RX_BUFFER *bufferAddress = &rxFifo1 + messageNumber * MCAN1_RX_FIFO0_ELEMENT_SIZE;
-                auto rxBuffer = static_cast<MCAN_RX_BUFFER>(*bufferAddress);
-
-                CAN::Application::parseMessage(getFrame(rxBuffer));
+        for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
+            memset(&rxFifo1, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
+            if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
+                CAN::Application::parseMessage(getFrame(rxFifo1));
             }
         }
     }
@@ -111,6 +105,7 @@ void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf) {
     message.append(" Data : ");
     for (uint8_t idx = 0; idx < msgLength; idx++) {
         etl::to_string(rxBuf.data[idx], message, true);
+        message.append(" ");
     }
     LOG_INFO << message.c_str();
 }
