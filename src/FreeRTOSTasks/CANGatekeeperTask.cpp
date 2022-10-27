@@ -14,8 +14,10 @@ CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
     uint8_t ucQueueStorageArea[CAN::FrameQueueSize * sizeof(CAN::Frame)];
     outgoingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), ucQueueStorageArea,
                                        &outgoingQueueBuffer);
+    vQueueAddToRegistry(outgoingQueue, "CAN Outgoing");
     incomingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), ucQueueStorageArea,
                                        &incomingQueueBuffer);
+    vQueueAddToRegistry(incomingQueue, "CAN Incoming");
 }
 
 void CANGatekeeperTask::execute() {
