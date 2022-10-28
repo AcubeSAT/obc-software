@@ -76,13 +76,13 @@ files:
   security: NON_SECURE
   type: SOURCE
   userChecksum: D9229B3E6A6E1705E42425829622386C
-- generatedChecksum: ED0AE350AF95C60EBF0316E940718188
+- generatedChecksum: D744B54FD79EBCAB9A61EC2D4B18B8DE
   logicalPath: config/default/peripheral/mpu
   name: plib_mpu.c
   physicalPath: peripheral/mpu
   security: NON_SECURE
   type: SOURCE
-  userChecksum: ED0AE350AF95C60EBF0316E940718188
+  userChecksum: D744B54FD79EBCAB9A61EC2D4B18B8DE
 - generatedChecksum: B95EAE97B221713CB19330BD7D755415
   logicalPath: config/default/peripheral/nvic
   name: plib_nvic.c
