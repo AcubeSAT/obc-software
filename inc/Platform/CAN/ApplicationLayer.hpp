@@ -182,4 +182,16 @@ namespace CAN::Application {
      * @param message An incoming TPMessage
      */
     void parseRequestParametersMessage(TPMessage &message);
+
+    /**
+     * Parses an incoming TM Packet and logs it.
+     * @param message An incoming TMPacket
+     */
+    void parseTMMessage(TPMessage &message);
+
+    /**
+     * Parses an incoming TC Packet and executes it.
+     * @param message An incoming TCPacket
+     */
+    void parseTCMessage(TPMessage &message);
 }

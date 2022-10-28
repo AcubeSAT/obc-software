@@ -63,9 +63,11 @@ namespace CAN {
             case CAN::Application::EventReport:
                 break; //todo: use the Event Report service
             case CAN::Application::TMPacket:
-                break; //todo: idk
+                CAN::Application::parseTMMessage(message);
+                break;
             case CAN::Application::TCPacket:
-                break; //todo execute the incoming TC
+                CAN::Application::parseTCMessage(message);
+                break;
             case CAN::Application::CCSDSPacket:
                 break; //todo send this to comms? idk
             case CAN::Application::Ping:

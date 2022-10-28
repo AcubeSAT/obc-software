@@ -207,4 +207,22 @@ namespace CAN::Application {
 
         createSendParametersMessage(message.idInfo.sourceAddress, message.idInfo.isMulticast, parameterIDs);
     }
+
+    void parseTMMessage(TPMessage &message) {
+        uint8_t messageType = message.readUint8();
+        if (ErrorHandler::assertInternal(messageType == TMPacket, ErrorHandler::UnknownMessageType)) {
+            return;
+        }
+
+        Message telemetry;
+    }
+
+    void parseTCMessage(TPMessage &message) {
+        uint8_t messageType = message.readUint8();
+        if (ErrorHandler::assertInternal(messageType == TCPacket, ErrorHandler::UnknownMessageType)) {
+            return;
+        }
+
+        Message telecommand;
+    }
 }
