@@ -72,6 +72,7 @@ void CAN::Driver::mcan1RxFifo1Callback(uint8_t numberOfMessages, uintptr_t conte
         for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
             memset(&rxFifo1, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
             if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
+                logMessage(rxFifo1, Application::Main);
                 CAN::Application::parseMessage(getFrame(rxFifo1));
             }
         }
