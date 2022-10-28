@@ -143,7 +143,7 @@ void CAN::Driver::send(const CAN::Frame &message) {
     if (CAN::Application::currentBus == Application::Main) {
         MCAN1_MessageTransmitFifo(1, &CAN::Driver::txFifo);
     } else {
-//        MCAN0_MessageTransmitFifo(1, &CAN::Driver::txFifo);
+        MCAN0_MessageTransmitFifo(1, &CAN::Driver::txFifo);
     }
 }
 
