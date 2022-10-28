@@ -49,7 +49,7 @@ void CAN::Driver::mcan0RxFifo0Callback(uint8_t numberOfMessages, uintptr_t conte
             memset(&rxFifo0, 0x0, (numberOfMessages * MCAN0_RX_FIFO0_ELEMENT_SIZE));
             if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
                 if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
-                    logMessage(rxFifo0, Application::Main);
+                    logMessage(rxFifo0, Application::Redundant);
                     TPProtocol::processSingleFrame(getFrame(rxFifo0));
                     continue;
                 }
@@ -72,7 +72,7 @@ void CAN::Driver::mcan0RxFifo1Callback(uint8_t numberOfMessages, uintptr_t conte
         for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
             memset(&rxFifo1, 0x0, MCAN0_RX_FIFO0_ELEMENT_SIZE);
             if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
-                logMessage(rxFifo1, Application::Main);
+                logMessage(rxFifo1, Application::Redundant);
                 CAN::Application::parseMessage(getFrame(rxFifo1));
             }
         }
