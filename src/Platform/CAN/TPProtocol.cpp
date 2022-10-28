@@ -17,29 +17,28 @@ namespace CAN {
     void TPProtocol::processMultipleFrames() {
         TPMessage message;
         uint8_t incomingMessagesCount = canGatekeeperTask->getIncomingMessagesCount();
-        uint8_t consecutiveFrameCount = 0;
         uint16_t dataLength = 0;
-        uint8_t readPosition = 0;
 
         for (uint8_t messageCounter = 0; messageCounter < incomingMessagesCount; messageCounter++) {
             CAN::Frame frame = canGatekeeperTask->getFromQueue();
             auto frameType = static_cast<Frame>(frame.data[0] >> 4);
 
             if (frameType == First) {
-                if (ErrorHandler::assertInternal(messageCounter == 0,
+                if (ErrorHandler::assertInternal(messageCounter != 0,
                                                  ErrorHandler::InternalErrorType::UnacceptablePacket)) { //TODO: Add a more appropriate enum value
-                    break;
+                    return;
                 }
                 dataLength = ((frame.data[0] & 0b1111) << 8) | frame.data[1];
             } else {
-                if (ErrorHandler::assertInternal(messageCounter == consecutiveFrameCount,
+                uint8_t consecutiveFrameCount = frame.data[0] & 0b1111;
+                if (ErrorHandler::assertInternal(messageCounter != consecutiveFrameCount,
                                                  ErrorHandler::InternalErrorType::UnacceptablePacket)) { //TODO: Add a more appropriate enum value
-                    break;
+                    return;
                 }
 
                 for (size_t idx = 1; idx < CAN::Frame::MaxDataLength; idx++) {
-                    message.appendUint8(frame.data[readPosition]);
-                    if (readPosition == dataLength) {
+                    message.appendUint8(frame.data[idx]);
+                    if (message.dataSize == dataLength) {
                         break;
                     }
                 }
