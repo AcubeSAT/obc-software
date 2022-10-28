@@ -31,6 +31,54 @@ uint8_t CAN::Driver::convertLengthToDLC(uint8_t length) {
     return dlc;
 }
 
+void CAN::Driver::mcan0TxFifoCallback(uintptr_t context) {
+    uint32_t status = MCAN0_ErrorGet() & MCAN_PSR_LEC_Msk;
+
+    if (static_cast<AppStates>(context) == Transmit &&
+        not((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE))) {
+        LOG_ERROR << "Could not transmit CAN message. The status is " << status;
+    }
+}
+
+void CAN::Driver::mcan0RxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
+    uint32_t status = MCAN0_ErrorGet() & MCAN_PSR_LEC_Msk;
+
+    if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
+        static_cast<AppStates>(context) == Receive) {
+        for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
+            memset(&rxFifo0, 0x0, (numberOfMessages * MCAN0_RX_FIFO0_ELEMENT_SIZE));
+            if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
+                if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
+                    logMessage(rxFifo0, Application::Main);
+                    TPProtocol::processSingleFrame(getFrame(rxFifo0));
+                    continue;
+                }
+
+                canGatekeeperTask->addToIncoming(getFrame(rxFifo0));
+
+                if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Final) {
+                    CAN::TPProtocol::processMultipleFrames();
+                }
+            }
+        }
+    }
+}
+
+void CAN::Driver::mcan0RxFifo1Callback(uint8_t numberOfMessages, uintptr_t context) {
+    uint32_t status = MCAN0_ErrorGet() & MCAN_PSR_LEC_Msk;
+
+    if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
+        static_cast<AppStates>(context) == Receive) {
+        for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
+            memset(&rxFifo1, 0x0, MCAN0_RX_FIFO0_ELEMENT_SIZE);
+            if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
+                logMessage(rxFifo1, Application::Main);
+                CAN::Application::parseMessage(getFrame(rxFifo1));
+            }
+        }
+    }
+}
+
 void CAN::Driver::mcan1TxFifoCallback(uintptr_t context) {
     uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
 

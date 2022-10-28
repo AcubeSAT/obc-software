@@ -65,6 +65,8 @@ void NVIC_Initialize( void )
     NVIC_EnableIRQ(USART1_IRQn);
     NVIC_SetPriority(AFEC0_IRQn, 7);
     NVIC_EnableIRQ(AFEC0_IRQn);
+    NVIC_SetPriority(MCAN0_INT0_IRQn, 7);
+    NVIC_EnableIRQ(MCAN0_INT0_IRQn);
     NVIC_SetPriority(MCAN1_INT0_IRQn, 7);
     NVIC_EnableIRQ(MCAN1_INT0_IRQn);
     NVIC_SetPriority(TWIHS2_IRQn, 7);
@@ -72,7 +74,13 @@ void NVIC_Initialize( void )
     NVIC_SetPriority(XDMAC_IRQn, 7);
     NVIC_EnableIRQ(XDMAC_IRQn);
 
+    /* Enable Usage fault */
+    SCB->SHCSR |= (SCB_SHCSR_USGFAULTENA_Msk);
+    /* Trap divide by zero */
+    SCB->CCR   |= SCB_CCR_DIV_0_TRP_Msk;
 
+    /* Enable Bus fault */
+    SCB->SHCSR |= (SCB_SHCSR_BUSFAULTENA_Msk);
 
 }
 
@@ -84,9 +92,7 @@ void NVIC_INT_Enable( void )
 
 bool NVIC_INT_Disable( void )
 {
-    bool processorStatus;
-
-    processorStatus = (bool) (__get_PRIMASK() == 0);
+    bool processorStatus = (__get_PRIMASK() == 0U);
 
     __disable_irq();
     __DMB();

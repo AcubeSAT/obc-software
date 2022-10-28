@@ -6,6 +6,7 @@
 #include "ECSS_Definitions.hpp"
 #include "Frame.hpp"
 #include "peripheral/mcan/plib_mcan1.h"
+#include "peripheral/mcan/plib_mcan0.h"
 
 namespace CAN {
     /**
@@ -28,6 +29,11 @@ namespace CAN {
      */
     class Driver {
     public:
+        /**
+         * An area of memory the HAL uses to house incoming/outgoing buffers for the peripheral.
+         */
+        static inline uint8_t mcan0MessageRAM[MCAN0_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32))) __attribute__((section (".ram_nocache")));
+
         /**
          * An area of memory the HAL uses to house incoming/outgoing buffers for the peripheral.
          */
@@ -56,6 +62,44 @@ namespace CAN {
         enum AppStates : uint8_t {
             Receive, Transmit,
         };
+
+        /**
+         * Logs a successful CAN Bus transmission.
+         * It is registered as a callback to be automatically called by Microchip's HAL whenever
+         * there is a message transmission on TX FIFO.
+         *
+         * @param context The state of the peripheral when the function is called.
+         * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
+         */
+        static void mcan0TxFifoCallback(uintptr_t context);
+
+        /**
+         * Initiates a message receipt from the peripheral to the processor.
+         * It is registered as a callback to be automatically called by Microchip's HAL whenever
+         * there is a message receipt on RX FIFO 0.
+         *
+         * In this setup, messages using the TP Protocol will be moved to RX FIFO 0, requiring further parsing
+         * using the gatekeeper task.
+         *
+         * @param numberOfMessages The number of messages to be received from the peripheral
+         * @param context The state of the peripheral when the function is called.
+         * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
+         */
+        static void mcan0RxFifo0Callback(uint8_t numberOfMessages, uintptr_t context);
+
+        /**
+         * Initiates a message receipt from the peripheral to the processor.
+         * It is registered as a callback to be automatically called by Microchip's HAL whenever
+         * there is a message receipt on RX FIFO 1.
+         *
+         * In this setup, all received messages are contained in a single frame and will immediately be processed
+         * in this callback.
+         *
+         * @param numberOfMessages The number of messages to be received from the peripheral
+         * @param context The state of the peripheral when the function is called.
+         * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
+         */
+        static void mcan0RxFifo1Callback(uint8_t numberOfMessages, uintptr_t context);
 
         /**
          * Logs a successful CAN Bus transmission.

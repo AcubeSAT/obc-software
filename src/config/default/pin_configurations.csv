@@ -20,10 +20,10 @@
 23,PA19,,Available,In,,,,,,,
 24,PA18,,Available,In,,,,,,,
 25,PA17,,Available,In,,,,,,,
-26,PB2,,Available,In,,,,,,,
+26,PB2,,MCAN0_CANTX0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 27,PE4,,Available,In,,,,,,,
 28,PE5,,Available,In,,,,,,,
-31,PB3,,Available,In,,,,,,,
+31,PB3,,MCAN0_CANRX0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 32,PA21,,USART1_RXD1,n/a,n/a,No,Disabled,No,No,Disabled,Low
 34,PD30,,Available,In,,,,,,,
 35,PA7,,Available,In,,,,,,,

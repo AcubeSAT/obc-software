@@ -25,6 +25,7 @@
             <logicalFolder name="f12" displayName="mcan" projectFiles="true">
               <itemPath>../src/config/default/peripheral/mcan/plib_mcan_common.h</itemPath>
               <itemPath>../src/config/default/peripheral/mcan/plib_mcan1.h</itemPath>
+              <itemPath>../src/config/default/peripheral/mcan/plib_mcan0.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f13" displayName="mpu" projectFiles="true">
               <itemPath>../src/config/default/peripheral/mpu/plib_mpu.h</itemPath>
@@ -243,6 +244,7 @@
             </logicalFolder>
             <logicalFolder name="f12" displayName="mcan" projectFiles="true">
               <itemPath>../src/config/default/peripheral/mcan/plib_mcan1.c</itemPath>
+              <itemPath>../src/config/default/peripheral/mcan/plib_mcan0.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f13" displayName="mpu" projectFiles="true">
               <itemPath>../src/config/default/peripheral/mpu/plib_mpu.c</itemPath>
@@ -311,6 +313,7 @@
         <itemPath>../src/config/default/default.mhc/dfp.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/efc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/HarmonyCore.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/mcan0.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/mcan1.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>

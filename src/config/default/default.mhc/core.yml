@@ -198,6 +198,48 @@ children:
       - type: User
         attributes: {value: '150000000'}
   - type: Boolean
+    attributes: {id: MCAN0_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: 'true'}
+  - type: Integer
+    attributes: {id: MCAN0_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '50000000'}
+  - type: Boolean
+    attributes: {id: MCAN0_INT0_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: 'true'}
+  - type: Boolean
+    attributes: {id: MCAN0_INT0_INTERRUPT_ENABLE_UPDATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: String
+    attributes: {id: MCAN0_INT0_INTERRUPT_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: MCAN0_INT0_InterruptHandler}
+  - type: Boolean
+    attributes: {id: MCAN0_INT0_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: 'true'}
+  - type: Boolean
     attributes: {id: MCAN1_CLOCK_ENABLE}
     children:
     - type: Values
@@ -302,7 +344,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: 4KB}
+        attributes: {id: core, value: 8KB}
   - type: Boolean
     attributes: {id: MPU_Region_0_Share}
     children:
@@ -318,7 +360,7 @@ children:
       - type: Dynamic
         attributes: {id: core, value: '15'}
       - type: User
-        attributes: {value: '7'}
+        attributes: {value: '8'}
   - type: KeyValueSet
     attributes: {id: MPU_Region_0_Type}
     children:
@@ -423,6 +465,27 @@ children:
         attributes: {id: core, value: RTC_InterruptHandler}
   - type: Boolean
     attributes: {id: NVIC_2_0_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: Boolean
+    attributes: {id: NVIC_35_0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: NVIC_35_0_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: MCAN0_INT0_InterruptHandler}
+  - type: Boolean
+    attributes: {id: NVIC_35_0_HANDLER_LOCK}
     children:
     - type: Values
       children:
@@ -583,12 +646,54 @@ children:
       - type: User
         attributes: {value: '32000'}
   - type: String
+    attributes: {id: PCK1_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32000'}
+  - type: String
+    attributes: {id: PCK2_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32000'}
+  - type: String
+    attributes: {id: PCK3_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32000'}
+  - type: String
+    attributes: {id: PCK4_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32000'}
+  - type: String
     attributes: {id: PCK5_CLOCK_FREQUENCY}
     children:
     - type: Values
       children:
       - type: User
         attributes: {value: '50000000'}
+  - type: String
+    attributes: {id: PCK6_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32000'}
+  - type: String
+    attributes: {id: PCK7_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32000'}
   - type: String
     attributes: {id: PIN_105_FUNCTION_TYPE}
     children:
@@ -645,6 +750,34 @@ children:
       children:
       - type: User
         attributes: {value: C}
+  - type: String
+    attributes: {id: PIN_26_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: MCAN0_CANTX0}
+  - type: String
+    attributes: {id: PIN_26_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_31_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: MCAN0_CANRX0}
+  - type: String
+    attributes: {id: PIN_31_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_32_FUNCTION_TYPE}
     children:
@@ -875,7 +1008,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '16'}
+        attributes: {id: core, value: '28'}
   - type: Hex
     attributes: {id: PIOC_ABCDSR1_VALUE}
     children:
@@ -1007,7 +1140,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '67109408'}
+        attributes: {id: core, value: '67109416'}
   - type: Combo
     attributes: {id: PMC_PCK5_CSS}
     children:
