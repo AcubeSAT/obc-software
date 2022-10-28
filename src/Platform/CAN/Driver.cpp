@@ -1,5 +1,4 @@
 #include "CAN/Driver.hpp"
-#include "CAN/ApplicationLayer.hpp"
 #include "CAN/TPProtocol.hpp"
 #include "CANGatekeeperTask.hpp"
 #include "Logger.hpp"
@@ -32,7 +31,7 @@ uint8_t CAN::Driver::convertLengthToDLC(uint8_t length) {
     return dlc;
 }
 
-void CAN::Driver::txFifoCallback(uintptr_t context) {
+void CAN::Driver::mcan1TxFifoCallback(uintptr_t context) {
     uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
 
     if (static_cast<AppStates>(context) == Transmit &&
@@ -41,7 +40,7 @@ void CAN::Driver::txFifoCallback(uintptr_t context) {
     }
 }
 
-void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
+void CAN::Driver::mcan1RxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
     uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
 
     if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
@@ -50,7 +49,7 @@ void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
             memset(&rxFifo0, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
             if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
                 if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
-                    logMessage(rxFifo0);
+                    logMessage(rxFifo0, Application::Main);
                     TPProtocol::processSingleFrame(getFrame(rxFifo0));
                     continue;
                 }
@@ -65,7 +64,7 @@ void CAN::Driver::rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context) {
     }
 }
 
-void CAN::Driver::rxFifo1Callback(uint8_t numberOfMessages, uintptr_t context) {
+void CAN::Driver::mcan1RxFifo1Callback(uint8_t numberOfMessages, uintptr_t context) {
     uint32_t status = MCAN1_ErrorGet() & MCAN_PSR_LEC_Msk;
 
     if (((status == MCAN_ERROR_NONE) || (status == MCAN_ERROR_LEC_NO_CHANGE)) &&
@@ -92,11 +91,20 @@ void CAN::Driver::send(const CAN::Frame &message) {
         CAN::Driver::txFifo.data[idx] = message.data[idx];
     }
 
-    MCAN1_MessageTransmitFifo(1, &CAN::Driver::txFifo);
+    if (CAN::Application::currentBus == Application::Main) {
+        MCAN1_MessageTransmitFifo(1, &CAN::Driver::txFifo);
+    } else {
+//        MCAN0_MessageTransmitFifo(1, &CAN::Driver::txFifo);
+    }
 }
 
-void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf) {
+void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf, Application::ActiveBus incomingBus) {
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
+    if (incomingBus == Application::Main) {
+        message.append("MCAN1 ");
+    } else {
+        message.append("MCAN0 ");
+    }
     uint32_t id = readId(rxBuf.id);
     const uint8_t msgLength = convertDlcToLength(rxBuf.dlc);
     message.append("ID : ");

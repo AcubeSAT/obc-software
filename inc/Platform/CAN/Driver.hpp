@@ -2,6 +2,7 @@
 #define OBC_SOFTWARE_CANDRIVER_H
 
 #include <cstdint>
+#include "CAN/ApplicationLayer.hpp"
 #include "ECSS_Definitions.hpp"
 #include "Frame.hpp"
 #include "peripheral/mcan/plib_mcan1.h"
@@ -15,11 +16,14 @@ namespace CAN {
      *
      * @note CAN Normal Addressing requires the NodeID to be at most 11 bits long.
      *
+     * @note There are two peripherals for the CAN Bus. The main bus is considered as MCAN1, since that is the one
+     * available on the development board.
+     *
      * @example @code
-     * uint32_t id = 0x4; //Specify the sending Node ID
-     * etl::array<uint8_t, 8> data = {0,1,2,3,4,5,6,7}; //Specify an array of data
-     * CAN::Frame message = {id, data}; //Create a CAN::Frame object
-     * CAN::Driver::send(message); //Use the included send function
+     * uint32_t id = 0x4; //Specify the sending Node ID.
+     * etl::array<uint8_t, 8> data = {0,1,2,3,4,5,6,7}; //Specify an array of data, up to 64 bytes.
+     * CAN::Frame message = {id, data}; //Create a CAN::Frame object.
+     * CAN::Driver::send(message, Application::Main); //Use the included send function to send a message on the Main bus.
      * @endcode
      */
     class Driver {
@@ -61,7 +65,7 @@ namespace CAN {
          * @param context The state of the peripheral when the function is called.
          * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
          */
-        static void txFifoCallback(uintptr_t context);
+        static void mcan1TxFifoCallback(uintptr_t context);
 
         /**
          * Initiates a message receipt from the peripheral to the processor.
@@ -75,7 +79,7 @@ namespace CAN {
          * @param context The state of the peripheral when the function is called.
          * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
          */
-        static void rxFifo0Callback(uint8_t numberOfMessages, uintptr_t context);
+        static void mcan1RxFifo0Callback(uint8_t numberOfMessages, uintptr_t context);
 
         /**
          * Initiates a message receipt from the peripheral to the processor.
@@ -89,13 +93,13 @@ namespace CAN {
          * @param context The state of the peripheral when the function is called.
          * The above parameter is a uintptr_t type for compatibility with the HAL, and is casted to APPStates.
          */
-        static void rxFifo1Callback(uint8_t numberOfMessages, uintptr_t context);
+        static void mcan1RxFifo1Callback(uint8_t numberOfMessages, uintptr_t context);
 
         /**
          * Logs messages that are in the Rx buffer
          * @param rxBuf The RX Buffer that the messages are stored
          */
-        static void logMessage(const MCAN_RX_BUFFER &rxBuf);
+        static void logMessage(const MCAN_RX_BUFFER &rxBuf, Application::ActiveBus incomingBus);
 
         /**
          * Decodes the data length code to get the largest expected size of the message.
