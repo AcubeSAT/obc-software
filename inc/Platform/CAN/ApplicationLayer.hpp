@@ -48,7 +48,6 @@ namespace CAN::Application {
      * @return The ID of the bus to be switched to.
      */
     inline uint8_t toggleBusSwitchover(ActiveBus bus = currentBus) {
-        //TODO Signal logic to peripheral
         if (bus == Main) {
             currentBus = Redundant;
         } else {
