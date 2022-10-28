@@ -73,10 +73,13 @@ namespace CAN::Application {
 
         message.appendUint8(MessageIDs::RequestParameters);
         message.appendUint16(parameterIDs.size());
+        String<32> logString = "Requesting parameter with ID: ";
         for (auto parameterID: parameterIDs) {
+            etl::to_string(parameterID, logString, true);
             message.appendUint16(parameterID);
         }
 
+        LOG_DEBUG << logString.c_str();
         CAN::TPProtocol::createCANTPMessage(message);
     }
 
@@ -167,17 +170,34 @@ namespace CAN::Application {
     }
 
     void parseSendParametersMessage(TPMessage &message) {
+        uint8_t messageType = message.readUint8();
+        if (ErrorHandler::assertInternal(messageType == SendParameters, ErrorHandler::UnknownMessageType)) {
+            return;
+        }
         uint16_t parameterCount = message.readUint16();
 
         for (uint16_t idx = 0; idx < parameterCount; idx++) {
             uint16_t parameterID = message.readUint16();
             if (Services.parameterManagement.parameterExists(parameterID)) {
+                String<64> logString = "The value for parameter with ID ";
+                etl::to_string(parameterID, logString, true);
+                logString.append(" was ");
+                etl::to_string(Services.parameterManagement.getParameter(parameterID)->get().getValueAsDouble(),
+                               logString, true);
                 Services.parameterManagement.getParameter(parameterID)->get().setValueFromMessage(message);
+                logString.append(" and is now ");
+                etl::to_string(Services.parameterManagement.getParameter(parameterID)->get().getValueAsDouble(),
+                               logString, true);
+                LOG_DEBUG << logString.c_str();
             }
         }
     }
 
     void parseRequestParametersMessage(TPMessage &message) {
+        uint8_t messageType = message.readUint8();
+        if (ErrorHandler::assertInternal(messageType == RequestParameters, ErrorHandler::UnknownMessageType)) {
+            return;
+        }
         uint16_t parameterCount = message.readUint16();
         etl::vector<uint16_t, TPMessageMaximumArguments> parameterIDs;
 
