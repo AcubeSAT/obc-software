@@ -36,10 +36,16 @@ namespace CAN::Application {
         Heartbeat = 0x700
     };
 
+    /**
+     * The available buses to use. Main bus is considered MCAN1 since that is available on the dev board.
+     */
     enum ActiveBus : uint8_t {
-        Main = 0x0, Redundant = 0x1
+        Redundant = 0x0, Main = 0x1
     };
 
+    /**
+     * The initially active CAN Bus.
+     */
     inline ActiveBus currentBus = Main;
 
     /**
