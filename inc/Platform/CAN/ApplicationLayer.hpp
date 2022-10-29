@@ -44,11 +44,6 @@ namespace CAN::Application {
     };
 
     /**
-     * The initially active CAN Bus.
-     */
-    inline ActiveBus currentBus = Main;
-
-    /**
      * Toggles the active CAN Bus.
      * @param bus A default argument that uses the currentBus member variable if a value is not provided.
      * @return The ID of the bus to be switched to.

@@ -14,7 +14,7 @@ CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
     MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::mcan1RxFifo0Callback, CAN::Driver::Receive);
     MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_1, CAN::Driver::mcan1RxFifo1Callback, CAN::Driver::Receive);
 
-    CAN::Driver::disableInactiveBus(CAN::Application::currentBus);
+    CAN::Driver::disableInactiveBus(PlatformParameters::obcCANBUSActive.getValue());
 
     outgoingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), outgoingQueueStorageArea,
                                        &outgoingQueueBuffer);

@@ -1,6 +1,7 @@
 #ifndef ECSS_SERVICES_PLATFORMPARAMETERS_HPP
 #define ECSS_SERVICES_PLATFORMPARAMETERS_HPP
 
+#include "CAN/ApplicationLayer.hpp"
 #include "Helpers/Parameter.hpp"
 
 namespace PlatformParameters {
@@ -491,7 +492,7 @@ namespace PlatformParameters {
     inline Parameter<float> obcCANBUSLoad1(0);
     inline Parameter<float> obcCANBUSLoad2(0);
 
-    inline Parameter<uint16_t> obcCANBUSActive(0); // enum
+    inline Parameter<CAN::Application::ActiveBus> obcCANBUSActive(CAN::Application::Main); // enum
     inline Parameter<uint16_t> obcMCUFDIR(0); // enum
 
     inline Parameter<float> obcMCURestartSafeModeThreshold(0);

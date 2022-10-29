@@ -140,7 +140,7 @@ void CAN::Driver::send(const CAN::Frame &message) {
         CAN::Driver::txFifo.data[idx] = message.data[idx];
     }
 
-    if (CAN::Application::currentBus == Application::Main) {
+    if (PlatformParameters::obcCANBUSActive.getValue() == Application::Main) {
         MCAN1_MessageTransmitFifo(1, &CAN::Driver::txFifo);
     } else {
         MCAN0_MessageTransmitFifo(1, &CAN::Driver::txFifo);

@@ -5,14 +5,14 @@
 #include "CANGatekeeperTask.hpp"
 
 namespace CAN::Application {
-    ActiveBus toggleBusSwitchover(ActiveBus bus = currentBus) {
+    ActiveBus toggleBusSwitchover(ActiveBus bus = PlatformParameters::obcCANBUSActive.getValue()) {
         if (bus == Main) {
-            currentBus = Redundant;
+            PlatformParameters::obcCANBUSActive.setValue(Redundant);
         } else {
-            currentBus = Main;
+            PlatformParameters::obcCANBUSActive.setValue(Main);
         }
-        CAN::Driver::disableInactiveBus(currentBus);
-        return currentBus;
+        CAN::Driver::disableInactiveBus(PlatformParameters::obcCANBUSActive.getValue());
+        return PlatformParameters::obcCANBUSActive.getValue();
     }
 
     void sendPingMessage(uint8_t destinationAddress, bool isMulticast) {
