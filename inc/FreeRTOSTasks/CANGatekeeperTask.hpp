@@ -47,20 +47,6 @@ public:
     }
 
     /**
-     * Disables the interrupts from the inactive peripheral, since both generate interrupts from the same messages.
-     * @param newBus The bus that should be considered active from now on.
-     */
-    inline static void disableInactiveBus(CAN::Application::ActiveBus newBus) {
-        if (newBus == CAN::Application::Main) {
-            MCAN0_REGS->MCAN_ILE = MCAN_ILE_EINT0(0);
-            MCAN1_REGS->MCAN_ILE = MCAN_ILE_EINT0(1);
-        } else {
-            MCAN1_REGS->MCAN_ILE = MCAN_ILE_EINT0(0);
-            MCAN0_REGS->MCAN_ILE = MCAN_ILE_EINT0(1);
-        }
-    }
-
-    /**
      * Adds a CAN::Frame to the incomingQueue.
      * If the queue is full the message is lost.
      * @param message The incoming CAN::Frame.

@@ -1,4 +1,5 @@
 #include "CAN/ApplicationLayer.hpp"
+#include "CAN/Driver.hpp"
 #include "CAN/TPMessage.hpp"
 #include "CAN/TPProtocol.hpp"
 #include "CANGatekeeperTask.hpp"
@@ -10,7 +11,7 @@ namespace CAN::Application {
         } else {
             currentBus = Main;
         }
-        CANGatekeeperTask::disableInactiveBus(currentBus);
+        CAN::Driver::disableInactiveBus(currentBus);
         return currentBus;
     }
 
