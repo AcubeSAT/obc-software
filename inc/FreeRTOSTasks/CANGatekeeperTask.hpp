@@ -10,11 +10,16 @@
  * deadlocks that might be caused by simultaneous requests of access to the same resource. It works by having anyone
  * needing to access CAN, send the data in a queue. Then this task receives queue elements and sends them via CAN.
  */
-
 class CANGatekeeperTask : public Task {
 private:
+    /**
+     * A freeRTOS queue to handle outgoing messages, to keep order in case tasks interrupt each other.
+     */
     QueueHandle_t outgoingQueue;
 
+    /**
+     * A freeRTOS queue to handle incoming frames part of a CAN-TP message, since they need to be parsed as a whole.
+     */
     QueueHandle_t incomingQueue;
 
     const static inline uint16_t TaskStackDepth = 2000;
