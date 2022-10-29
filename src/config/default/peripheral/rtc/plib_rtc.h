@@ -60,13 +60,13 @@
 
 /***************************** RTC API *******************************/
 void RTC_Initialize( void );
-bool RTC_TimeSet( struct tm *Time );
-void RTC_TimeGet( struct tm *Time );
+bool RTC_TimeSet( struct tm *sysTime );
+void RTC_TimeGet( struct tm *sysTime );
 bool RTC_AlarmSet( struct tm *alarmTime, RTC_ALARM_MASK mask );
 void RTC_CallbackRegister( RTC_CALLBACK callback, uintptr_t context );
 void RTC_InterruptDisable(RTC_INT_MASK interrupt);
 void RTC_InterruptEnable(RTC_INT_MASK interrupt);
-	
+
 #ifdef __cplusplus // Provide C++ Compatibility
  }
 #endif
