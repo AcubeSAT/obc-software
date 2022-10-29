@@ -170,11 +170,11 @@ namespace CAN::Application {
 
     void parseMessage(const CAN::Frame &message) {
         uint32_t id = filterMessageID(message.id);
-        if (id == 0x700) {
+        if (id == Heartbeat) {
 //            registerHeartbeat();
-        } else if (id == 0x400) {
+        } else if (id == BusSwitchover) {
             toggleBusSwitchover(static_cast<ActiveBus>(message.data[0]));
-        } else if (id == 0x200) {
+        } else if (id == UTCTime) {
 //            registerUTCTime();
         }
     }
