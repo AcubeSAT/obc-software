@@ -1,5 +1,6 @@
 #pragma once
 
+#include "CAN/ApplicationLayer.hpp"
 #include "CAN/Frame.hpp"
 #include "Task.hpp"
 #include "queue.h"
@@ -25,8 +26,9 @@ public:
 
     /**
      * The constructor initializes the FreeRTOS queues for incoming and outgoing messages.
-     * It also sets the required functions for the interrupt callbacks, as well as the Message RAM which is a necessary
-     * memory region for communication with the peripheral.
+     * It sets the required functions for the interrupt callbacks, as well as the Message RAM which is a necessary
+     * memory region for communication with the peripheral. The function also calls disableInactiveBus(), which disables
+     * interrupts for the initially inactive bus.
      */
     CANGatekeeperTask();
 
@@ -42,6 +44,20 @@ public:
      */
     inline void send(const CAN::Frame &message) {
         xQueueSendToBack(outgoingQueue, &message, 0);
+    }
+
+    /**
+     * Disables the interrupts from the inactive peripheral, since both generate interrupts from the same messages.
+     * @param newBus The bus that should be considered active from now on.
+     */
+    inline static void disableInactiveBus(CAN::Application::ActiveBus newBus) {
+        if (newBus == CAN::Application::Main) {
+            MCAN0_REGS->MCAN_ILE = MCAN_ILE_EINT0(0);
+            MCAN1_REGS->MCAN_ILE = MCAN_ILE_EINT0(1);
+        } else {
+            MCAN1_REGS->MCAN_ILE = MCAN_ILE_EINT0(0);
+            MCAN0_REGS->MCAN_ILE = MCAN_ILE_EINT0(1);
+        }
     }
 
     /**

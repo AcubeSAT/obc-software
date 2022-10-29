@@ -4,6 +4,16 @@
 #include "CANGatekeeperTask.hpp"
 
 namespace CAN::Application {
+    ActiveBus toggleBusSwitchover(ActiveBus bus = currentBus) {
+        if (bus == Main) {
+            currentBus = Redundant;
+        } else {
+            currentBus = Main;
+        }
+        CANGatekeeperTask::disableInactiveBus(currentBus);
+        return currentBus;
+    }
+
     void sendPingMessage(uint8_t destinationAddress, bool isMulticast) {
         TPMessage message;
 
