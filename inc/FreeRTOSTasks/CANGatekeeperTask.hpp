@@ -18,9 +18,29 @@ private:
     QueueHandle_t outgoingQueue;
 
     /**
+     * The variable used to hold the queue's data structure.
+     */
+    static inline StaticQueue_t outgoingQueueBuffer;
+
+    /**
+     * Storage area given to freeRTOS to manage the queue items.
+     */
+    static inline uint8_t outgoingQueueStorageArea[CAN::FrameQueueSize * sizeof(CAN::Frame)];
+
+    /**
      * A freeRTOS queue to handle incoming frames part of a CAN-TP message, since they need to be parsed as a whole.
      */
     QueueHandle_t incomingQueue;
+
+    /**
+     * The variable used to hold the queue's data structure.
+     */
+    static inline StaticQueue_t incomingQueueBuffer;
+
+    /**
+     * Storage area given to freeRTOS to manage the queue items.
+     */
+    static inline uint8_t incomingQueueStorageArea[CAN::FrameQueueSize * sizeof(CAN::Frame)];
 
     const static inline uint16_t TaskStackDepth = 2000;
 

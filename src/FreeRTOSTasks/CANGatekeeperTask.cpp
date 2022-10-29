@@ -16,15 +16,11 @@ CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
 
     CAN::Driver::disableInactiveBus(CAN::Application::currentBus);
 
-    static StaticQueue_t outgoingQueueBuffer;
-    static StaticQueue_t incomingQueueBuffer;
-    uint8_t ucQueueStorageArea[CAN::FrameQueueSize * sizeof(CAN::Frame)];
-
-    outgoingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), ucQueueStorageArea,
+    outgoingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), outgoingQueueStorageArea,
                                        &outgoingQueueBuffer);
     vQueueAddToRegistry(outgoingQueue, "CAN Outgoing");
 
-    incomingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), ucQueueStorageArea,
+    incomingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), incomingQueueStorageArea,
                                        &incomingQueueBuffer);
     vQueueAddToRegistry(incomingQueue, "CAN Incoming");
 }
