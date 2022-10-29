@@ -24,15 +24,17 @@ namespace CAN {
             auto frameType = static_cast<Frame>(frame.data[0] >> 4);
 
             if (frameType == First) {
-                if (ErrorHandler::assertInternal(messageCounter != 0,
+                if (not ErrorHandler::assertInternal(messageCounter == 0,
                                                  ErrorHandler::InternalErrorType::UnacceptablePacket)) { //TODO: Add a more appropriate enum value
+                    canGatekeeperTask->emptyIncomingQueue();
                     return;
                 }
                 dataLength = ((frame.data[0] & 0b1111) << 8) | frame.data[1];
             } else {
                 uint8_t consecutiveFrameCount = frame.data[0] & 0b1111;
-                if (ErrorHandler::assertInternal(messageCounter != consecutiveFrameCount,
+                if (not ErrorHandler::assertInternal(messageCounter == consecutiveFrameCount,
                                                  ErrorHandler::InternalErrorType::UnacceptablePacket)) { //TODO: Add a more appropriate enum value
+                    canGatekeeperTask->emptyIncomingQueue();
                     return;
                 }
 
@@ -74,7 +76,7 @@ namespace CAN {
             case CAN::Application::Pong:
                 break; //todo Register successful pong
             case CAN::Application::LogMessage: {
-                String<ECSSMaxMessageSize> logSource = "Incoming Log: ";
+                String<ECSSMaxMessageSize> logSource = "Incoming Log from ADCS: ";
                 auto logData = String<ECSSMaxMessageSize>(message.data + 1, message.dataSize - 1);
                 LOG_DEBUG << logSource.c_str() << logData.c_str();
             }

@@ -109,6 +109,13 @@ public:
         return message;
     }
 
+    /**
+     * Deletes all items present in the incoming queue.
+     */
+    void emptyIncomingQueue() {
+        xQueueReset(incomingQueue);
+    }
+
     void createTask() {
         xTaskCreateStatic(vClassTask < CANGatekeeperTask > , this->TaskName, CANGatekeeperTask::TaskStackDepth, this,
                           tskIDLE_PRIORITY + 2, this->taskStack, &(this->taskBuffer));
