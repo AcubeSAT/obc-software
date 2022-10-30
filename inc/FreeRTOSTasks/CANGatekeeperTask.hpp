@@ -82,7 +82,7 @@ public:
         xQueueSendToBackFromISR(incomingQueue, &message, &taskShouldYield);
 
         if (taskShouldYield) {
-            taskYIELD()
+            taskYIELD();
         }
     }
 
