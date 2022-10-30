@@ -192,12 +192,14 @@ namespace CAN::Application {
                     String<64> logString = "The value for parameter with ID ";
                     etl::to_string(parameterID, logString, true);
                     logString.append(" was ");
-                    etl::to_string(Services.parameterManagement.getParameter(parameterID)->get().getValueAsDouble(),
-                                   logString, true);
-                    Services.parameterManagement.getParameter(parameterID)->get().setValueFromMessage(message);
+
+                    auto parameter = Services.parameterManagement.getParameter(parameterID);
+                    etl::to_string(parameter->get().getValueAsDouble(), logString, true);
+
+                    parameter->get().setValueFromMessage(message);
                     logString.append(" and is now ");
-                    etl::to_string(Services.parameterManagement.getParameter(parameterID)->get().getValueAsDouble(),
-                                   logString, true);
+                    etl::to_string(parameter->get().getValueAsDouble(), logString, true);
+
                     LOG_DEBUG << logString.c_str();
                 } else {
                     Services.parameterManagement.getParameter(parameterID)->get().setValueFromMessage(message);
