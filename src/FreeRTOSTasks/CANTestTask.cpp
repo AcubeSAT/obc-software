@@ -1,7 +1,7 @@
-#include "CANTransmitTask.hpp"
+#include "CANTestTask.hpp"
 #include "CANGatekeeperTask.hpp"
 
-void CANTransmitTask::execute() {
+void CANTestTask::execute() {
     CAN::Frame message = {};
 
     message.id = 0x45A;
