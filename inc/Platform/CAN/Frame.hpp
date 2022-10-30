@@ -1,7 +1,7 @@
 #ifndef OBC_SOFTWARE_CANMESSAGE_H
 #define OBC_SOFTWARE_CANMESSAGE_H
 
-#include "etl/array.h"
+#include "etl/vector.h"
 #include "OBC_Definitions.hpp"
 
 namespace CAN {
@@ -9,13 +9,13 @@ namespace CAN {
     public:
         static constexpr uint8_t MaxDataLength = 64;
         uint32_t id = 0;
-        etl::array<uint8_t, MaxDataLength> data = {};
+        etl::vector<uint8_t, MaxDataLength> data;
 
         Frame() = default;
 
         Frame(uint32_t id) : id(id) {};
 
-        Frame(uint32_t id, const etl::array<uint8_t, MaxDataLength> &data) : id(id), data(data) {};
+        Frame(uint32_t id, const etl::vector<uint8_t, MaxDataLength> &data) : id(id), data(data) {};
 
         inline void empty() {
             id = 0;

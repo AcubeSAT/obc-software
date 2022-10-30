@@ -175,7 +175,9 @@ CAN::Frame CAN::Driver::getFrame(const MCAN_RX_BUFFER &rxBuffer) {
     const uint8_t messageLength = convertDlcToLength(rxBuffer.dlc);
 
     frame.id = readId(rxBuffer.id);
-    memcpy(frame.data.data(), rxBuffer.data, messageLength);
+    for(uint8_t idx = 0; idx < messageLength; idx++) {
+        frame.data.push_back(rxBuffer.data[idx]);
+    }
 
     return frame;
 }

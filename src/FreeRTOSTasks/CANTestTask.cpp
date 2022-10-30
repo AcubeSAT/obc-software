@@ -6,7 +6,7 @@ void CANTestTask::execute() {
 
     message.id = 0x45A;
     for (uint8_t idx = 0; idx < CAN::Frame::MaxDataLength; idx++) {
-        message.data[idx] = idx;
+        message.data.push_back(idx);
     }
 
     while (true) {

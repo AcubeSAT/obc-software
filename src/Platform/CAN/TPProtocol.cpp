@@ -94,10 +94,10 @@ void TPProtocol::createCANTPMessage(const TPMessage &message) {
 
     // Data fits in a Single Frame
     if (messageSize <= UsableDataLength) {
-        etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {
+        etl::vector<uint8_t, CAN::Frame::MaxDataLength> data = {
                 static_cast<uint8_t>((Single << 4) | (messageSize & 0b1111))};
         for (size_t idx = 0; idx < messageSize; idx++) {
-            data[idx + 1] = message.data[idx];
+            data.push_back(message.data[idx]);
         }
         canGatekeeperTask->send({id, data});
 
@@ -111,7 +111,7 @@ void TPProtocol::createCANTPMessage(const TPMessage &message) {
         // Rest of the data length.
         uint8_t secondByte = messageSize & 0xFF;
 
-        etl::array<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {firstByte, secondByte};
+        etl::vector<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {firstByte, secondByte};
 
         canGatekeeperTask->send({id, firstFrame});
     }
@@ -125,10 +125,10 @@ void TPProtocol::createCANTPMessage(const TPMessage &message) {
         if (currentConsecutiveFrameCount == totalConsecutiveFramesNeeded) {
             firstByte = (Final << 4) | (currentConsecutiveFrameCount & 0b1111);
         }
-        etl::array<uint8_t, CAN::Frame::MaxDataLength> consecutiveFrame = {firstByte};
+        etl::vector<uint8_t, CAN::Frame::MaxDataLength> consecutiveFrame = {firstByte};
 
         for (uint8_t idx = 0; idx < UsableDataLength; idx++) {
-            consecutiveFrame[idx + 1] = message.data[idx + UsableDataLength * (currentConsecutiveFrameCount - 1)];
+            consecutiveFrame.push_back(message.data[idx + UsableDataLength * (currentConsecutiveFrameCount - 1)]);
         }
 
         canGatekeeperTask->send({id, consecutiveFrame});
