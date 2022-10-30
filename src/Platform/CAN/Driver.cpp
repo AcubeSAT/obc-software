@@ -190,5 +190,5 @@ void CAN::Driver::initialize() {
     MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::mcan1RxFifo0Callback, CAN::Driver::Receive);
     MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_1, CAN::Driver::mcan1RxFifo1Callback, CAN::Driver::Receive);
 
-    disableInactiveBus(PlatformParameters::obcCANBUSActive.getValue());
+    toggleActiveBus(PlatformParameters::obcCANBUSActive.getValue());
 }

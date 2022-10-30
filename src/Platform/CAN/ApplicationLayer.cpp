@@ -11,7 +11,7 @@ namespace CAN::Application {
         } else {
             PlatformParameters::obcCANBUSActive.setValue(Main);
         }
-        CAN::Driver::disableInactiveBus(PlatformParameters::obcCANBUSActive.getValue());
+        CAN::Driver::toggleActiveBus(PlatformParameters::obcCANBUSActive.getValue());
         return PlatformParameters::obcCANBUSActive.getValue();
     }
 
