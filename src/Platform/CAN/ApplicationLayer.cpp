@@ -5,7 +5,7 @@
 #include "CANGatekeeperTask.hpp"
 
 namespace CAN::Application {
-    ActiveBus toggleBusSwitchover(ActiveBus bus = PlatformParameters::obcCANBUSActive.getValue()) {
+    ActiveBus switchBus(ActiveBus bus = PlatformParameters::obcCANBUSActive.getValue()) {
         if (bus == Main) {
             PlatformParameters::obcCANBUSActive.setValue(Redundant);
         } else {
@@ -38,7 +38,7 @@ namespace CAN::Application {
     }
 
     void sendBusSwitchoverMessage() {
-        etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {toggleBusSwitchover()};
+        etl::array<uint8_t, CAN::Frame::MaxDataLength> data = {switchBus()};
 
         canGatekeeperTask->send({MessageIDs::BusSwitchover + CAN::NodeID, data});
     }
@@ -174,7 +174,7 @@ namespace CAN::Application {
         if (id == Heartbeat) {
 //            registerHeartbeat();
         } else if (id == BusSwitchover) {
-            toggleBusSwitchover(static_cast<ActiveBus>(message.data[0]));
+            switchBus(static_cast<ActiveBus>(message.data[0]));
         } else if (id == UTCTime) {
 //            registerUTCTime();
         }
