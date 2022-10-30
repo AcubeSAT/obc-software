@@ -64,6 +64,12 @@ namespace CAN {
         };
 
         /**
+         * Sets the appropriate interrupt handlers, configures the storage area for incoming/outgoing buffers and
+         * keeps only a single peripheral's interrupts active.
+         */
+        static void initialize();
+
+        /**
          * Disables the interrupts from the inactive peripheral, since both generate interrupts from the same messages.
          * @param newBus The bus that should be considered active from now on.
          */

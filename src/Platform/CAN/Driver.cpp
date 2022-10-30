@@ -177,3 +177,18 @@ CAN::Frame CAN::Driver::getFrame(const MCAN_RX_BUFFER &rxBuffer) {
 
     return frame;
 }
+
+void CAN::Driver::initialize() {
+    MCAN0_MessageRAMConfigSet(CAN::Driver::mcan0MessageRAM);
+    MCAN1_MessageRAMConfigSet(CAN::Driver::mcan1MessageRAM);
+
+    MCAN0_TxFifoCallbackRegister(CAN::Driver::mcan0TxFifoCallback, CAN::Driver::Transmit);
+    MCAN0_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::mcan0RxFifo0Callback, CAN::Driver::Receive);
+    MCAN0_RxFifoCallbackRegister(MCAN_RX_FIFO_1, CAN::Driver::mcan0RxFifo1Callback, CAN::Driver::Receive);
+
+    MCAN1_TxFifoCallbackRegister(CAN::Driver::mcan1TxFifoCallback, CAN::Driver::Transmit);
+    MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::mcan1RxFifo0Callback, CAN::Driver::Receive);
+    MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_1, CAN::Driver::mcan1RxFifo1Callback, CAN::Driver::Receive);
+
+    disableInactiveBus(PlatformParameters::obcCANBUSActive.getValue());
+}

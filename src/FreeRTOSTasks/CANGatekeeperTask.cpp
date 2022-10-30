@@ -3,18 +3,7 @@
 #include "CANGatekeeperTask.hpp"
 
 CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
-    MCAN0_MessageRAMConfigSet(CAN::Driver::mcan0MessageRAM);
-    MCAN1_MessageRAMConfigSet(CAN::Driver::mcan1MessageRAM);
-
-    MCAN0_TxFifoCallbackRegister(CAN::Driver::mcan0TxFifoCallback, CAN::Driver::Transmit);
-    MCAN0_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::mcan0RxFifo0Callback, CAN::Driver::Receive);
-    MCAN0_RxFifoCallbackRegister(MCAN_RX_FIFO_1, CAN::Driver::mcan0RxFifo1Callback, CAN::Driver::Receive);
-
-    MCAN1_TxFifoCallbackRegister(CAN::Driver::mcan1TxFifoCallback, CAN::Driver::Transmit);
-    MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::mcan1RxFifo0Callback, CAN::Driver::Receive);
-    MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_1, CAN::Driver::mcan1RxFifo1Callback, CAN::Driver::Receive);
-
-    CAN::Driver::disableInactiveBus(PlatformParameters::obcCANBUSActive.getValue());
+    CAN::Driver::initialize();
 
     outgoingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), outgoingQueueStorageArea,
                                        &outgoingQueueBuffer);
