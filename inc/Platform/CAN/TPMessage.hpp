@@ -18,6 +18,8 @@ namespace CAN {
 
         TPMessage() = default;
 
+        TPMessage(IdInfo _idInfo) : idInfo(_idInfo) {};
+
         /**
          * Decodes the ID of a CAN-TP Message, and sets the idInfo field of the current message.
          * @param canID The received ID.
