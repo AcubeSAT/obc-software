@@ -58,7 +58,7 @@ namespace CAN::Application {
     };
 
     /**
-     * Removes the id of the sender in an incoming CAN Message.
+     * Removes the ID of the sender in an incoming CAN Message.
      * @param id The ID to be filtered.
      * @return The filtered ID.
      */
