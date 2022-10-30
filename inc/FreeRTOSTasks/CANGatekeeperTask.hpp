@@ -95,7 +95,7 @@ public:
     }
 
     /**
-     * Receives a CAN::Frame from the CAN Gatekeeper's queue.
+     * Receives a CAN::Frame from the CAN Gatekeeper's incoming queue.
      *
      * This function was added as an extra abstraction layer to house the `xQueueReceive` function.
      * It can be used from anywhere in the code to get access to the CAN queue/CAN Gatekeeper task, without having to
