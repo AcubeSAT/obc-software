@@ -128,22 +128,24 @@ void CAN::Driver::mcan1RxFifo1Callback(uint8_t numberOfMessages, uintptr_t conte
 }
 
 void CAN::Driver::send(const CAN::Frame &message) {
-    memset(&CAN::Driver::txFifo, 0, MCAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
+    using namespace CAN;
 
-    CAN::Driver::txFifo.brs = 1;
-    CAN::Driver::txFifo.fdf = 1;
-    CAN::Driver::txFifo.xtd = 0;
-    CAN::Driver::txFifo.id = CAN::Driver::writeId(message.id);
-    CAN::Driver::txFifo.dlc = CAN::Driver::convertLengthToDLC(message.data.size());
+    memset(&Driver::txFifo, 0, MCAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
+
+    Driver::txFifo.brs = 1;
+    Driver::txFifo.fdf = 1;
+    Driver::txFifo.xtd = 0;
+    Driver::txFifo.id = Driver::writeId(message.id);
+    Driver::txFifo.dlc = Driver::convertLengthToDLC(message.data.size());
 
     for (size_t idx = 0; idx < message.data.size(); idx++) {
-        CAN::Driver::txFifo.data[idx] = message.data[idx];
+        Driver::txFifo.data[idx] = message.data[idx];
     }
 
     if (PlatformParameters::obcCANBUSActive.getValue() == Application::Main) {
-        MCAN1_MessageTransmitFifo(1, &CAN::Driver::txFifo);
+        MCAN1_MessageTransmitFifo(1, &Driver::txFifo);
     } else {
-        MCAN0_MessageTransmitFifo(1, &CAN::Driver::txFifo);
+        MCAN0_MessageTransmitFifo(1, &Driver::txFifo);
     }
 }
 
