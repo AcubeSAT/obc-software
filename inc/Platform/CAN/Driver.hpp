@@ -182,18 +182,18 @@ namespace CAN {
         static uint8_t convertLengthToDLC(uint8_t length);
 
         /**
-         * Transforms a frame ID to conform to the CAN Standard
-         * @param id The actual ID
-         * @return The outgoing ID
+         * Transforms a frame ID to conform to the CAN Standard.
+         * @param id The ID containing Message + Sender information.
+         * @return The ID that's sent over the network.
          */
         static inline uint32_t writeId(uint32_t id) {
             return id << 18;
         }
 
         /**
-         * Transforms the ID from the CAN Standard to match a frame ID
-         * @param id The incoming ID
-         * @return The actual ID
+         * Transforms the ID from the CAN Standard to match a frame ID.
+         * @param id The ID that was received from the network.
+         * @return The ID containing Message + Sender information.
          */
         static inline uint32_t readId(uint32_t id) {
             return id >> 18;
