@@ -7,7 +7,6 @@
 namespace HousekeepingStructures {
     using namespace PlatformParameters;
 
-    //TODO: Add OBCOnBoardTime once it's merged
     static etl::array <HousekeepingStructure, ECSSMaxHousekeepingStructures> structures = {
             {
                     // OBC Parameters that will be monitored in the campaign
@@ -28,7 +27,8 @@ namespace HousekeepingStructures {
                       AvailableHeap,
                       OBCUseCAN,
                       OBCUseUART,
-                      OBCUseRTT}},
+                      OBCUseRTT,
+                      OBCMCUTime}},
                     // OBC Mission Database parameters monitored every 3 sec
                     {1, 3000, true,
                      {OBCPCBTemperature1,
