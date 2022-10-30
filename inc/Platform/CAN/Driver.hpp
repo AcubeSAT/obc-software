@@ -13,7 +13,8 @@ namespace CAN {
      * A basic driver for the CAN Peripherals of the SAMV71 family of processors. This driver includes encoding/decoding
      * functions for the Data Length Code as well as the ID when used in normal addressing mode. There are two interrupt
      * callback functions, one for registering a transmission plus logging an error if needed, and one for passing the
-     * incoming CAN::Frames to the higher level services in the application.
+     * incoming CAN::Frames to the higher level services in the application. This driver handles both peripherals,
+     * while keeping only one active through a parameter for transmission, and disabling interrupts for receipt.
      *
      * @note CAN Normal Addressing requires the NodeID to be at most 11 bits long.
      *
