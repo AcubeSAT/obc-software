@@ -80,13 +80,20 @@ namespace CAN::Application {
 
         message.appendUint8(MessageIDs::RequestParameters);
         message.appendUint16(parameterIDs.size());
-        String<128> logString = "Requesting parameters with ID: ";
-        for (auto parameterID: parameterIDs) {
-            etl::to_string(parameterID, logString, true);
-            message.append(parameterID);
+
+        if constexpr (Logger::isLogged(Logger::debug)) {
+            String<128> logString = "Requesting parameters with ID: ";
+            for (auto parameterID: parameterIDs) {
+                etl::to_string(parameterID, logString, true);
+                message.append(parameterID);
+            }
+            LOG_DEBUG << logString.c_str();
+        } else {
+            for (auto parameterID: parameterIDs) {
+                message.append(parameterID);
+            }
         }
 
-        LOG_DEBUG << logString.c_str();
         CAN::TPProtocol::createCANTPMessage(message);
     }
 
@@ -181,16 +188,20 @@ namespace CAN::Application {
         for (uint16_t idx = 0; idx < parameterCount; idx++) {
             uint16_t parameterID = message.readUint16();
             if (Services.parameterManagement.parameterExists(parameterID)) {
-                String<64> logString = "The value for parameter with ID ";
-                etl::to_string(parameterID, logString, true);
-                logString.append(" was ");
-                etl::to_string(Services.parameterManagement.getParameter(parameterID)->get().getValueAsDouble(),
-                               logString, true);
-                Services.parameterManagement.getParameter(parameterID)->get().setValueFromMessage(message);
-                logString.append(" and is now ");
-                etl::to_string(Services.parameterManagement.getParameter(parameterID)->get().getValueAsDouble(),
-                               logString, true);
-                LOG_DEBUG << logString.c_str();
+                if constexpr (Logger::isLogged(Logger::debug)) {
+                    String<64> logString = "The value for parameter with ID ";
+                    etl::to_string(parameterID, logString, true);
+                    logString.append(" was ");
+                    etl::to_string(Services.parameterManagement.getParameter(parameterID)->get().getValueAsDouble(),
+                                   logString, true);
+                    Services.parameterManagement.getParameter(parameterID)->get().setValueFromMessage(message);
+                    logString.append(" and is now ");
+                    etl::to_string(Services.parameterManagement.getParameter(parameterID)->get().getValueAsDouble(),
+                                   logString, true);
+                    LOG_DEBUG << logString.c_str();
+                } else {
+                    Services.parameterManagement.getParameter(parameterID)->get().setValueFromMessage(message);
+                }
             }
         }
     }
