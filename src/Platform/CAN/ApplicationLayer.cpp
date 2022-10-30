@@ -16,18 +16,16 @@ namespace CAN::Application {
     }
 
     void sendPingMessage(uint8_t destinationAddress, bool isMulticast) {
-        TPMessage message;
+        TPMessage message = {{NodeID, destinationAddress, isMulticast}};
 
-        message.idInfo = {NodeID, destinationAddress, isMulticast};
         message.appendUint8(Ping);
 
         CAN::TPProtocol::createCANTPMessage(message);
     }
 
     void sendPongMessage() {
-        TPMessage message;
+        TPMessage message = {{NodeID, OBC, false}};
 
-        message.idInfo = {NodeID, OBC, false};
         message.appendUint8(Pong);
 
         CAN::TPProtocol::createCANTPMessage(message);
@@ -66,7 +64,7 @@ namespace CAN::Application {
         message.appendUint16(parameterIDs.size());
         for (auto parameterID: parameterIDs) {
             if (Services.parameterManagement.getParameter(parameterID)) {
-                message.appendUint16(parameterID);
+                message.append(parameterID);
                 Services.parameterManagement.getParameter(parameterID)->get().appendValueToMessage(message);
             } else {
                 LOG_ERROR << "Requested parameter that doesn't exist! ID: " << parameterID;
@@ -82,10 +80,10 @@ namespace CAN::Application {
 
         message.appendUint8(MessageIDs::RequestParameters);
         message.appendUint16(parameterIDs.size());
-        String<32> logString = "Requesting parameter with ID: ";
+        String<128> logString = "Requesting parameters with ID: ";
         for (auto parameterID: parameterIDs) {
             etl::to_string(parameterID, logString, true);
-            message.appendUint16(parameterID);
+            message.append(parameterID);
         }
 
         LOG_DEBUG << logString.c_str();
