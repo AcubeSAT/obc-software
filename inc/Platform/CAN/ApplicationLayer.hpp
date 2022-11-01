@@ -37,7 +37,7 @@ namespace CAN::Application {
     };
 
     /**
-     * The available buses to use. Main bus is considered MCAN1 since that is available on the dev board.
+     * The available buses to use.
      */
     enum ActiveBus : uint8_t {
         Redundant = 0x0, Main = 0x1
