@@ -99,7 +99,8 @@ namespace CAN::Application {
      * @param parameterIDs The IDs of the parameters to be sent.
      */
     void createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                     const etl::vector<uint16_t, TPMessageMaximumArguments> &parameterIDs);
+                                     const etl::vector<uint16_t, TPMessageMaximumArguments> &parameterIDs,
+                                     bool isResponse);
 
     /**
      * Sends a Request Parameters CAN-TP Message as described in DDJF_OBDH.
@@ -108,7 +109,8 @@ namespace CAN::Application {
      * @param parameterIDs The IDs of the parameters to be requested.
      */
     void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
-                                        const etl::vector<uint16_t, TPMessageMaximumArguments> &parameterIDs);
+                                        const etl::vector<uint16_t, TPMessageMaximumArguments> &parameterIDs,
+                                        bool isResponse);
 
     /**
      * Sends a Request Parameters CAN-TP Message as described in DDJF_OBDH.
@@ -119,7 +121,8 @@ namespace CAN::Application {
      * @TODO This map should be changed to accommodate arguments of differing types, not just uint64_t
      * */
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
-                                      const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments);
+                                      const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments,
+                                      bool isResponse);
 
     /**
      * Sends a Event Report CAN-TP Message as described in DDJF_OBDH.
@@ -130,7 +133,7 @@ namespace CAN::Application {
      * @param payload An array of the event data.
      */
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
-                                  const Message &eventData);
+                                  const Message &eventData, bool isResponse);
 
     /**
      * Creates an ECSS-E-ST-70-41C Services TM/TC packet to be sent. After creation the packet is split into CAN-TP
@@ -139,7 +142,7 @@ namespace CAN::Application {
      * @param isMulticast Whether the message is to be sent to a multicast group.
      * @param message An ECSS Message.
      */
-    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message);
+    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message, bool isResponse);
 
     /**
      * Creates a CCSDS packet to be sent. After creation the packet is split into CAN-TP
@@ -148,7 +151,8 @@ namespace CAN::Application {
      * @param isMulticast Whether the message is to be sent to a multicast group.
      * @param message An ECSS Message.
      */
-    void createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message);
+    void
+    createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message, bool isResponse);
 
     /**
      * Sends a Log CAN-TP Message as described in DDJF_OBDH.
@@ -156,7 +160,8 @@ namespace CAN::Application {
      * @param isMulticast Whether the message is to be sent to a multicast group.
      * @param log A LogEntry to be sent.
      */
-    void createLogMessage(uint8_t destinationAddress, bool isMulticast, const String<LOGGER_MAX_MESSAGE_SIZE> &log);
+    void createLogMessage(uint8_t destinationAddress, bool isMulticast, const String<LOGGER_MAX_MESSAGE_SIZE> &log,
+                          bool isResponse);
 
     /**
      * Parses an incoming non-TP frame for the appropriate response.

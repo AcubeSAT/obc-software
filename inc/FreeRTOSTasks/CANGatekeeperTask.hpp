@@ -72,9 +72,21 @@ public:
      * know the low level details of the queue.
      *
      * If the queue is full, the message is not added to the queue and is lost.
+     *
      * @param message the CAN::Frame to be added in the queue of the CAN Gatekeeper task.
+     * @param isResponse indicating if the message is a response to another CAN Message, thus composed through an ISR
      */
-    inline void send(const CAN::Frame &message) {
+    inline void send(const CAN::Frame &message, bool isResponse = false) {
+        if (isResponse) {
+            BaseType_t taskShouldYield = pdFALSE;
+
+            xQueueSendToBackFromISR(outgoingQueue, &message, &taskShouldYield);
+
+            if (taskShouldYield) {
+                taskYIELD();
+            }
+        }
+
         xQueueSendToBack(outgoingQueue, &message, 0);
     }
 
