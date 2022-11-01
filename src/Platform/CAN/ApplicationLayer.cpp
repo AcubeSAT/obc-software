@@ -132,17 +132,13 @@ namespace CAN::Application {
     void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &incomingMessage) {
         CAN::TPMessage message = {{CAN::NodeID, destinationAddress, isMulticast}};
 
-        etl::string<ECSSMaxMessageSize> messageHeader = MessageParser::composeECSS(incomingMessage);
-
-        if (message.packetType == Message::TM) {
+        if (incomingMessage.packetType == Message::TM) {
             message.appendUint8(MessageIDs::TMPacket);
         } else {
             message.appendUint8(MessageIDs::TCPacket);
         }
 
-        //TODO Check how this should be done, I feel like it's not correct
-        message.appendString(messageHeader);
-        message.appendMessage(incomingMessage, incomingMessage.dataSize);
+        message.appendString(MessageParser::composeECSS(incomingMessage));
 
         CAN::TPProtocol::createCANTPMessage(message);
     }
@@ -225,19 +221,23 @@ namespace CAN::Application {
 
     void parseTMMessage(TPMessage &message) {
         uint8_t messageType = message.readUint8();
-        if (ErrorHandler::assertInternal(messageType == TMPacket, ErrorHandler::UnknownMessageType)) {
+        if (not ErrorHandler::assertInternal(messageType == TMPacket, ErrorHandler::UnknownMessageType)) {
             return;
         }
 
-        Message telemetry;
+        String<ECSSMaxMessageSize> logString = message.data + 1;
+
+        LOG_DEBUG << logString.c_str();
     }
 
     void parseTCMessage(TPMessage &message) {
         uint8_t messageType = message.readUint8();
-        if (ErrorHandler::assertInternal(messageType == TCPacket, ErrorHandler::UnknownMessageType)) {
+        if (not ErrorHandler::assertInternal(messageType == TCPacket, ErrorHandler::UnknownMessageType)) {
             return;
         }
 
-        Message telecommand;
+        Message teleCommand = MessageParser::parseECSSTC(message.data + 1);
+
+        MessageParser::execute(teleCommand);
     }
 }
