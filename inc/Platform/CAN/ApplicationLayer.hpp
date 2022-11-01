@@ -58,6 +58,11 @@ namespace CAN::Application {
     };
 
     /**
+     * The size in bytes for the function ID required in Perform Function Messages.
+     */
+    static constexpr uint8_t functionIdSize = 6;
+
+    /**
      * Removes the ID of the sender in an incoming CAN Message.
      * @param id The ID to be filtered.
      * @return The filtered ID.
@@ -120,7 +125,7 @@ namespace CAN::Application {
      * @param arguments The map containing the arguments of the function to be called.
      * @TODO This map should be changed to accommodate arguments of differing types, not just uint64_t
      * */
-    void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
+    void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, const etl::string<6> &functionId,
                                       const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments,
                                       bool isResponse);
 

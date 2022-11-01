@@ -48,10 +48,10 @@ namespace CAN::Application {
 
         UTCTimestamp utc = now.toUTCtimestamp();
         etl::vector<uint8_t, CAN::Frame::MaxDataLength> data = {0, 0, static_cast<uint8_t>(msOfDay.count()),
-                                                               static_cast<uint8_t>(msOfDay.count() >> 8),
-                                                               static_cast<uint8_t>(msOfDay.count() >> 16),
-                                                               static_cast<uint8_t>(msOfDay.count() >> 24), 0,
-                                                               utc.day}; //TODO: days parameter should not be uint8_t
+                                                                static_cast<uint8_t>(msOfDay.count() >> 8),
+                                                                static_cast<uint8_t>(msOfDay.count() >> 16),
+                                                                static_cast<uint8_t>(msOfDay.count() >> 24), 0,
+                                                                utc.day}; //TODO: days parameter should not be uint8_t
 
         canGatekeeperTask->send({MessageIDs::UTCTime + CAN::NodeID, data});
     }
@@ -99,16 +99,15 @@ namespace CAN::Application {
         CAN::TPProtocol::createCANTPMessage(message);
     }
 
-    void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, uint64_t functionId,
+    void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast,
+                                      const etl::string<functionIdSize> &functionId,
                                       const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments,
                                       bool isResponse) {
         CAN::TPMessage message = {{CAN::NodeID, destinationAddress, isMulticast}, isResponse};
 
         message.appendUint8(MessageIDs::PerformFunction);
 
-        //TODO Find a more readable way to append a 6 byte variable to this message
-        message.appendUint16(functionId >> 4 * 8);
-        message.appendUint32(functionId & 0xffffffff);
+        message.appendString(functionId);
 
         message.appendUint16(arguments.size());
 
