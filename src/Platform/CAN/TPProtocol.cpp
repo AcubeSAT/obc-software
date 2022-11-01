@@ -19,18 +19,17 @@ void TPProtocol::processMultipleFrames() {
     TPMessage message;
     uint8_t incomingMessagesCount = canGatekeeperTask->getIncomingMessagesCount();
     uint16_t dataLength = 0;
+    bool receivedFirstFrame = false;
 
     for (uint8_t messageCounter = 0; messageCounter < incomingMessagesCount; messageCounter++) {
         CAN::Frame frame = canGatekeeperTask->getFromQueue();
         auto frameType = static_cast<Frame>(frame.data[0] >> 4);
 
-        if (frameType == First) {
-            if (not ErrorHandler::assertInternal(messageCounter == 0,
-                                                 ErrorHandler::InternalErrorType::UnacceptablePacket)) { //TODO: Add a more appropriate enum value
-                canGatekeeperTask->emptyIncomingQueue();
-                return;
+        if (not receivedFirstFrame) {
+            if (frameType == First) {
+                dataLength = ((frame.data[0] & 0b1111) << 8) | frame.data[1];
+                receivedFirstFrame = true;
             }
-            dataLength = ((frame.data[0] & 0b1111) << 8) | frame.data[1];
         } else {
             uint8_t consecutiveFrameCount = frame.data[0] & 0b1111;
             if (not ErrorHandler::assertInternal(messageCounter == consecutiveFrameCount,
