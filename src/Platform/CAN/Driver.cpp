@@ -152,9 +152,7 @@ void CAN::Driver::send(const CAN::Frame &message) {
     Driver::txFifo.id = Driver::writeId(message.id);
     Driver::txFifo.dlc = Driver::convertLengthToDLC(message.data.size());
 
-    for (size_t idx = 0; idx < message.data.size(); idx++) {
-        Driver::txFifo.data[idx] = message.data[idx];
-    }
+    std::copy(message.data.begin(), message.data.end(), Driver::txFifo.data);
 
     if (PlatformParameters::obcCANBUSActive.getValue() == Application::Main) {
         MCAN1_MessageTransmitFifo(1, &Driver::txFifo);
