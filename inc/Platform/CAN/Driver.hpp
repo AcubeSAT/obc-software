@@ -29,17 +29,7 @@ namespace CAN {
      * @endcode
      */
     class Driver {
-    public:
-        /**
-         * An area of memory the HAL uses to house incoming/outgoing buffers for the peripheral.
-         */
-        static inline uint8_t mcan0MessageRAM[MCAN0_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32))) __attribute__((section (".ram_nocache")));
-
-        /**
-         * An area of memory the HAL uses to house incoming/outgoing buffers for the peripheral.
-         */
-        static inline uint8_t mcan1MessageRAM[MCAN1_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32))) __attribute__((section (".ram_nocache")));
-
+    private:
         /**
          * Buffer that stores a message that is ready to be sent
          */
@@ -56,6 +46,17 @@ namespace CAN {
          * In this setup, rxFifo1 is used to store normal messages that are contained in a single CAN::Frame
          */
         static inline MCAN_RX_BUFFER rxFifo1;
+
+    public:
+        /**
+         * An area of memory the HAL uses to house incoming/outgoing buffers for the peripheral.
+         */
+        static inline uint8_t mcan0MessageRAM[MCAN0_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32))) __attribute__((section (".ram_nocache")));
+
+        /**
+         * An area of memory the HAL uses to house incoming/outgoing buffers for the peripheral.
+         */
+        static inline uint8_t mcan1MessageRAM[MCAN1_MESSAGE_RAM_CONFIG_SIZE] __attribute__((aligned (32))) __attribute__((section (".ram_nocache")));
 
         /**
          * Possible states for the peripheral, to be used as arguments in the callback functions.
