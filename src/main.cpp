@@ -12,6 +12,7 @@
 #include "StatisticsReportingTask.hpp"
 #include "CANTransmitTask.hpp"
 #include "TCHandlingTask.hpp"
+#include "LCLDefinitions.hpp"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -31,6 +32,8 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
+
+    LCLDefinitions::turnOnLCLs();
     initializeTasks();
 
     housekeepingTask.emplace();
