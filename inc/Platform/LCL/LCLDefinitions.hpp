@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LCL.hpp"
+#include "peripheral/pio/plib_pio.h"
 
 namespace LCLDefinitions {
 
@@ -51,12 +52,6 @@ namespace LCLDefinitions {
 //        CAN2 = PIO_PIN_PD22 ///< CAN2
 //    };
 //
-    struct LCLControlPins {
-        uint8_t resetPin = static_cast<uint8_t>(0);
-        uint8_t setPin = static_cast<uint8_t>(0);
-//        PWMChannelMasks pwmChannelMask = static_cast<PWMChannelMasks>(0);
-//        PWMChannelNumbers pwmChannelNumber = static_cast<PWMChannelNumbers>(0);
-    };
 //
 //    /**
 //     * @enum Devices protected by LCLs
