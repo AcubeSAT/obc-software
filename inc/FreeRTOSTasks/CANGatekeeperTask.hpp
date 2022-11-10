@@ -11,10 +11,10 @@
  * needing to access CAN, send the data in a queue. Then this task receives queue elements and sends them via CAN.
  *
  * @example @code
- * uint32_t id = 0x4; //Specify the sending Node ID.
- * etl::vector<uint8_t, 8> data = {0,1,2,3,4,5,6,7}; //Specify an array of data, up to 64 bytes.
- * CAN::Frame message = {id, data}; //Create a CAN::Frame object.
- * canGatekeeperTask->addToQueue(message); //Add the message to the outgoing queue.
+ * uint32_t id = 0x4; // Specify the sending Node ID.
+ * etl::vector<uint8_t, 8> data = {0,1,2,3,4,5,6,7}; // Specify an array of data, up to 64 bytes.
+ * CAN::Frame message = {id, data}; // Create a CAN::Frame object.
+ * canGatekeeperTask->addToQueue(message); // Add the message to the outgoing queue.
  * @endcode
  */
 class CANGatekeeperTask : public Task {

@@ -40,7 +40,7 @@ void TPProtocol::processMultipleFrames() {
 
             for (size_t idx = 1; idx < CAN::Frame::MaxDataLength; idx++) {
                 message.appendUint8(frame.data[idx]);
-                if (message.dataSize == dataLength) {
+                if (message.dataSize >= dataLength) {
                     break;
                 }
             }
@@ -114,7 +114,7 @@ void TPProtocol::createCANTPMessage(const TPMessage &message) {
         canGatekeeperTask->send({id, firstFrame}, message.isResponse);
     }
 
-    //Consecutive Frames
+    // Consecutive Frames
     uint8_t totalConsecutiveFramesNeeded = ceil(static_cast<float>(messageSize) / UsableDataLength);
     for (uint8_t currentConsecutiveFrameCount = 1;
          currentConsecutiveFrameCount <= totalConsecutiveFramesNeeded; currentConsecutiveFrameCount++) {

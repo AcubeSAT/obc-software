@@ -22,10 +22,10 @@ namespace CAN {
      * available on the development board.
      *
      * @example @code
-     * uint32_t id = 0x4; //Specify the sending Node ID.
-     * etl::vector<uint8_t, 8> data = {0,1,2,3,4,5,6,7}; //Specify an array of data, up to 64 bytes.
-     * CAN::Frame message = {id, data}; //Create a CAN::Frame object.
-     * CAN::Driver::send(message, Application::Main); //Use the included send function to send a message on the Main bus.
+     * uint32_t id = 0x4; // Specify the sending Node ID.
+     * etl::vector<uint8_t, 8> data = {0,1,2,3,4,5,6,7}; // Specify an array of data, up to 64 bytes.
+     * CAN::Frame message = {id, data}; // Create a CAN::Frame object.
+     * CAN::Driver::send(message, Application::Main); // Use the included send function to send a message on the Main bus.
      * @endcode
      */
     class Driver {
@@ -202,7 +202,7 @@ namespace CAN {
         }
 
         /**
-         * Sends a CAN Message
+         * Immediately ends a CAN Message
          * @param message The message to be sent.
          */
         static void send(const CAN::Frame &message);
