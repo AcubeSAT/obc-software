@@ -61,7 +61,7 @@ namespace CAN::Application {
     /**
      * The size in bytes for the function ID required in Perform Function Messages.
      */
-    static constexpr uint8_t functionIdSize = 6;
+    static constexpr uint8_t FunctionIdSize = 6;
 
     /**
      * Removes the ID of the sender in an incoming CAN Message.

@@ -102,7 +102,7 @@ namespace CAN::Application {
     }
 
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast,
-                                      const etl::string<functionIdSize> &functionId,
+                                      const etl::string<FunctionIdSize> &functionId,
                                       const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments,
                                       bool isResponse) {
         TPMessage::IdInfo idInfo = {CAN::NodeID, destinationAddress, isMulticast};
