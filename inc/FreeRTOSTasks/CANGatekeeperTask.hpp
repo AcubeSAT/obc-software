@@ -69,23 +69,29 @@ public:
      * It can be used from anywhere in the code to get access to the CAN queue/CAN Gatekeeper task, without having to
      * know the low level details of the queue.
      *
-     * If the queue is full, the message is not added to the queue and is lost.
+     * If the queue is full, the message is not added to the queue and an error is logged.
      *
      * @param message the CAN::Frame to be added in the queue of the CAN Gatekeeper task.
      * @param isISR indicating if the message is a response to another CAN Message, thus composed through an ISR
      */
     inline void send(const CAN::Frame &message, bool isISR = false) {
+        BaseType_t status;
+
         if (isISR) {
             BaseType_t taskShouldYield = pdFALSE;
 
-            xQueueSendToBackFromISR(outgoingQueue, &message, &taskShouldYield);
+            status = xQueueSendToBackFromISR(outgoingQueue, &message, &taskShouldYield);
 
             if (taskShouldYield) {
                 taskYIELD();
             }
         }
 
-        xQueueSendToBack(outgoingQueue, &message, 0);
+        status = xQueueSendToBack(outgoingQueue, &message, 0);
+
+        if (status == errQUEUE_FULL) {
+            LOG_ERROR << "Tried sending while outgoing queue is full!";
+        }
     }
 
     /**
