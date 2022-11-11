@@ -185,8 +185,12 @@ namespace CAN {
 
         /**
          * Transforms a frame ID to conform to the CAN Standard.
-         * @param id The ID containing Message + Sender information.
+         * The implementation shifts non-extended IDs by 18 bits to ease debugging with example projects.
+         * @param id The ID as specified in the standard.
          * @return The ID that's sent over the network.
+         *
+         * @note All IDs should be at most 11 bits long as the non-extended ID scheme is used. The function gets/returns
+         * a 32-bit ID to accomodate the shift.
          */
         static inline uint32_t writeId(uint32_t id) {
             return id << 18;
@@ -195,7 +199,10 @@ namespace CAN {
         /**
          * Transforms the ID from the CAN Standard to match a frame ID.
          * @param id The ID that was received from the network.
-         * @return The ID containing Message + Sender information.
+         * @return The ID as specified in the standard.
+         *
+         * @note All IDs should be at most 11 bits long as the non-extended ID scheme is used. The function gets/returns
+         * a 32-bit ID to accomodate the shift.
          */
         static inline uint32_t readId(uint32_t id) {
             return id >> 18;
