@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Driver.hpp"
 #include "etl/map.h"
 #include "etl/vector.h"
 #include "etl/String.hpp"
@@ -38,18 +39,11 @@ namespace CAN::Application {
     };
 
     /**
-     * The available buses to use.
-     */
-    enum ActiveBus : uint8_t {
-        Redundant = 0x0, Main = 0x1
-    };
-
-    /**
      * Toggles the active CAN Bus.
      * @param bus A default argument that uses the currentBus member variable if a value is not provided.
      * @return The ID of the bus to be switched to.
      */
-    ActiveBus switchBus(ActiveBus bus = PlatformParameters::obcCANBUSActive.getValue());
+    Driver::ActiveBus switchBus(Driver::ActiveBus bus = PlatformParameters::obcCANBUSActive.getValue());
 
     /**
      * The available Event Report Types, for an Event Report CAN-TP Message.

@@ -5,11 +5,11 @@
 #include "CANGatekeeperTask.hpp"
 
 namespace CAN::Application {
-    ActiveBus switchBus(ActiveBus bus) {
-        if (bus == Main) {
-            PlatformParameters::obcCANBUSActive.setValue(Redundant);
+    Driver::ActiveBus switchBus(Driver::ActiveBus bus) {
+        if (bus == Driver::Main) {
+            PlatformParameters::obcCANBUSActive.setValue(Driver::Redundant);
         } else {
-            PlatformParameters::obcCANBUSActive.setValue(Main);
+            PlatformParameters::obcCANBUSActive.setValue(Driver::Main);
         }
         CAN::Driver::toggleActiveBus(PlatformParameters::obcCANBUSActive.getValue());
         return PlatformParameters::obcCANBUSActive.getValue();
@@ -180,7 +180,7 @@ namespace CAN::Application {
         if (id == Heartbeat) {
 //            registerHeartbeat();
         } else if (id == BusSwitchover) {
-            switchBus(static_cast<ActiveBus>(message.data[0]));
+            switchBus(static_cast<Driver::ActiveBus>(message.data[0]));
         } else if (id == UTCTime) {
 //            registerUTCTime();
         }

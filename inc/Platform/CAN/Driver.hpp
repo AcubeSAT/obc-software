@@ -66,6 +66,13 @@ namespace CAN {
         };
 
         /**
+         * The available buses to use.
+         */
+        enum ActiveBus : uint8_t {
+            Redundant = 0x0, Main = 0x1
+        };
+
+        /**
          * Sets the appropriate interrupt handlers, configures the storage area for incoming/outgoing buffers and
          * keeps only a single peripheral's interrupts active.
          */
