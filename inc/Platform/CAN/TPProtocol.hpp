@@ -50,6 +50,8 @@ namespace CAN::TPProtocol {
      * For more information about the CAN-TP Protocol check
      * https://piembsystech.com/can-tp-protocol/
      * @param message A CAN-TP message.
+     * @param isISR Whether the function is called from an Interrupt Service Routine. The function is simply passed to
+     * canGatekeeperTask->send().
      */
-    void createCANTPMessage(const TPMessage &message);
+    void createCANTPMessage(const TPMessage &message, bool isISR);
 }

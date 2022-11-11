@@ -16,17 +16,11 @@ namespace CAN {
 
         IdInfo idInfo = {};
 
-        /**
-         * Whether the message is a response to an another CAN Message. If true then we need to use sendFromISR instead
-         * of send in the Gatekeeper Task.
-         */
-        bool isResponse = false;
-
         TPMessage() = default;
 
         TPMessage(IdInfo _idInfo) : idInfo(_idInfo) {};
 
-        TPMessage(IdInfo _idInfo, bool _isResponse) : idInfo(_idInfo), isResponse(_isResponse) {};
+        TPMessage(IdInfo _idInfo, bool _isResponse) : idInfo(_idInfo) {};
 
         /**
          * Decodes the ID of a CAN-TP Message, and sets the idInfo field of the current message.

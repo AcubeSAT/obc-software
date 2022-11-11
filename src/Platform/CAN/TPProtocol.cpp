@@ -87,7 +87,7 @@ void TPProtocol::parseMessage(TPMessage &message) {
     }
 }
 
-void TPProtocol::createCANTPMessage(const TPMessage &message) {
+void TPProtocol::createCANTPMessage(const TPMessage &message, bool isISR) {
     size_t messageSize = message.dataSize;
     uint32_t id = message.encodeId();
     // Data fits in a Single Frame
@@ -97,7 +97,7 @@ void TPProtocol::createCANTPMessage(const TPMessage &message) {
         for (size_t idx = 0; idx < messageSize; idx++) {
             data.push_back(message.data[idx]);
         }
-        canGatekeeperTask->send({id, data}, message.isResponse);
+        canGatekeeperTask->send({id, data}, isISR);
 
         return;
     }
@@ -111,7 +111,7 @@ void TPProtocol::createCANTPMessage(const TPMessage &message) {
 
         etl::vector<uint8_t, CAN::Frame::MaxDataLength> firstFrame = {firstByte, secondByte};
 
-        canGatekeeperTask->send({id, firstFrame}, message.isResponse);
+        canGatekeeperTask->send({id, firstFrame}, isISR);
     }
 
     // Consecutive Frames
@@ -129,6 +129,6 @@ void TPProtocol::createCANTPMessage(const TPMessage &message) {
             consecutiveFrame.push_back(message.data[idx + UsableDataLength * (currentConsecutiveFrameCount - 1)]);
         }
 
-        canGatekeeperTask->send({id, consecutiveFrame}, message.isResponse);
+        canGatekeeperTask->send({id, consecutiveFrame}, isISR);
     }
 }

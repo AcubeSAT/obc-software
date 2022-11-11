@@ -43,7 +43,7 @@ namespace CAN::Application {
      * @param bus A default argument that uses the currentBus member variable if a value is not provided.
      * @return The ID of the bus to be switched to.
      */
-    Driver::ActiveBus switchBus(Driver::ActiveBus bus = PlatformParameters::obcCANBUSActive.getValue());
+    CAN::Driver::ActiveBus switchBus(CAN::Driver::ActiveBus bus = PlatformParameters::obcCANBUSActive.getValue());
 
     /**
      * The available Event Report Types, for an Event Report CAN-TP Message.
@@ -100,7 +100,7 @@ namespace CAN::Application {
      */
     void createSendParametersMessage(uint8_t destinationAddress, bool isMulticast,
                                      const etl::vector<uint16_t, TPMessageMaximumArguments> &parameterIDs,
-                                     bool isResponse);
+                                     bool isISR);
 
     /**
      * Sends a Request Parameters CAN-TP Message as described in DDJF_OBDH.
@@ -110,7 +110,7 @@ namespace CAN::Application {
      */
     void createRequestParametersMessage(uint8_t destinationAddress, bool isMulticast,
                                         const etl::vector<uint16_t, TPMessageMaximumArguments> &parameterIDs,
-                                        bool isResponse);
+                                        bool isISR);
 
     /**
      * Sends a Request Parameters CAN-TP Message as described in DDJF_OBDH.
@@ -123,7 +123,7 @@ namespace CAN::Application {
     void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast,
                                       const etl::string<FunctionIdSize> &functionId,
                                       const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments,
-                                      bool isResponse);
+                                      bool isISR);
 
     /**
      * Sends a Event Report CAN-TP Message as described in DDJF_OBDH.
@@ -134,7 +134,7 @@ namespace CAN::Application {
      * @param payload An array of the event data.
      */
     void createEventReportMessage(uint8_t destinationAddress, bool isMulticast, EventReportType type, uint16_t eventID,
-                                  const Message &eventData, bool isResponse);
+                                  const Message &eventData, bool isISR);
 
     /**
      * Creates an ECSS-E-ST-70-41C Services TM/TC packet to be sent. After creation the packet is split into CAN-TP
@@ -143,7 +143,7 @@ namespace CAN::Application {
      * @param isMulticast Whether the message is to be sent to a multicast group.
      * @param message An ECSS Message.
      */
-    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message, bool isResponse);
+    void createPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message, bool isISR);
 
     /**
      * Creates a CCSDS packet to be sent. After creation the packet is split into CAN-TP
@@ -153,7 +153,7 @@ namespace CAN::Application {
      * @param message An ECSS Message.
      */
     void
-    createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message, bool isResponse);
+    createCCSDSPacketMessage(uint8_t destinationAddress, bool isMulticast, const Message &message, bool isISR);
 
     /**
      * Sends a Log CAN-TP Message as described in DDJF_OBDH.
@@ -162,7 +162,7 @@ namespace CAN::Application {
      * @param log A LogEntry to be sent.
      */
     void createLogMessage(uint8_t destinationAddress, bool isMulticast, const String<LOGGER_MAX_MESSAGE_SIZE> &log,
-                          bool isResponse);
+                          bool isISR);
 
     /**
      * Parses an incoming non-TP frame for the appropriate response.
