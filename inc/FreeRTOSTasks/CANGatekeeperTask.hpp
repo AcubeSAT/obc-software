@@ -57,10 +57,8 @@ public:
     void execute();
 
     /**
-     * The constructor initializes the FreeRTOS queues for incoming and outgoing messages.
-     * It sets the required functions for the interrupt callbacks, as well as the Message RAM which is a necessary
-     * memory region for communication with the peripheral. The function also calls toggleActiveBus(), which disables
-     * interrupts for the initially inactive bus.
+     * The constructor calls the initialize() function of the CAN::Driver. It also initializes the FreeRTOS queues for
+     * incoming/outgoing messages.
      */
     CANGatekeeperTask();
 
