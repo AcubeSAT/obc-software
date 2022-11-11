@@ -20,8 +20,10 @@ namespace CAN {
         static constexpr uint8_t MaxDataLength = 64;
 
         /**
-         * The ID of the message to be sent. Since the protocol doesn't make use of extended IDs, they should be at most
-         * 11 bits long.
+         * The right aligned ID of the message to be sent. Since the protocol doesn't make use of extended IDs,
+         * they should be at most 11 bits long.
+         *
+         * @note The ID here must match one of the IDs found in DDJF_OBDH.
          */
         uint32_t id = 0;
 
