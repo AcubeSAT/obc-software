@@ -126,7 +126,8 @@ namespace CAN::Application {
      * @param arguments The map containing the arguments of the function to be called.
      * @TODO This map should be changed to accommodate arguments of differing types, not just uint64_t
      * */
-    void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast, const etl::string<6> &functionId,
+    void createPerformFunctionMessage(uint8_t destinationAddress, bool isMulticast,
+                                      const etl::string<FunctionIdSize> &functionId,
                                       const etl::map<uint8_t, uint64_t, TPMessageMaximumArguments> &arguments,
                                       bool isResponse);
 
