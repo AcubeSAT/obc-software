@@ -54,7 +54,7 @@ void CAN::Driver::mcan0RxFifo0Callback(uint8_t numberOfMessages, uintptr_t conte
         memset(&rxFifo0, 0x0, (numberOfMessages * MCAN0_RX_FIFO0_ELEMENT_SIZE));
         if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
             if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
-                logMessage(rxFifo0, Application::Redundant);
+                logMessage(rxFifo0, Redundant);
                 TPProtocol::processSingleFrame(getFrame(rxFifo0));
                 continue;
             }
@@ -80,7 +80,7 @@ void CAN::Driver::mcan0RxFifo1Callback(uint8_t numberOfMessages, uintptr_t conte
     for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
         memset(&rxFifo1, 0x0, MCAN0_RX_FIFO0_ELEMENT_SIZE);
         if (MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
-            logMessage(rxFifo1, Application::Redundant);
+            logMessage(rxFifo1, Redundant);
             CAN::Application::parseMessage(getFrame(rxFifo1));
         }
     }
@@ -109,7 +109,7 @@ void CAN::Driver::mcan1RxFifo0Callback(uint8_t numberOfMessages, uintptr_t conte
         memset(&rxFifo0, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
             if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
-                logMessage(rxFifo0, Application::Main);
+                logMessage(rxFifo0, Main);
                 TPProtocol::processSingleFrame(getFrame(rxFifo0));
                 continue;
             }
@@ -135,7 +135,7 @@ void CAN::Driver::mcan1RxFifo1Callback(uint8_t numberOfMessages, uintptr_t conte
     for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
         memset(&rxFifo1, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
-            logMessage(rxFifo1, Application::Main);
+            logMessage(rxFifo1, Main);
             CAN::Application::parseMessage(getFrame(rxFifo1));
         }
     }
@@ -154,16 +154,16 @@ void CAN::Driver::send(const CAN::Frame &message) {
 
     std::copy(message.data.begin(), message.data.end(), Driver::txFifo.data);
 
-    if (PlatformParameters::obcCANBUSActive.getValue() == Application::Main) {
+    if (PlatformParameters::obcCANBUSActive.getValue() == Main) {
         MCAN1_MessageTransmitFifo(1, &Driver::txFifo);
     } else {
         MCAN0_MessageTransmitFifo(1, &Driver::txFifo);
     }
 }
 
-void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf, Application::ActiveBus incomingBus) {
+void CAN::Driver::logMessage(const MCAN_RX_BUFFER &rxBuf, ActiveBus incomingBus) {
     auto message = String<ECSSMaxStringSize>("CAN Message: ");
-    if (incomingBus == Application::Main) {
+    if (incomingBus == Main) {
         message.append("MCAN1 ");
     } else {
         message.append("MCAN0 ");

@@ -2,7 +2,6 @@
 #define OBC_SOFTWARE_CANDRIVER_H
 
 #include <cstdint>
-#include "CAN/ApplicationLayer.hpp"
 #include "ECSS_Definitions.hpp"
 #include "Frame.hpp"
 #include "peripheral/mcan/plib_mcan1.h"
@@ -82,8 +81,8 @@ namespace CAN {
          * Disables the interrupts from the inactive peripheral, since both generate interrupts from the same messages.
          * @param newBus The bus that should be considered active from now on.
          */
-        inline static void toggleActiveBus(CAN::Application::ActiveBus newBus) {
-            if (newBus == CAN::Application::Main) {
+        inline static void toggleActiveBus(ActiveBus newBus) {
+            if (newBus == Main) {
                 MCAN0_REGS->MCAN_ILE = MCAN_ILE_EINT0(0);
                 MCAN1_REGS->MCAN_ILE = MCAN_ILE_EINT0(1);
             } else {
@@ -172,7 +171,7 @@ namespace CAN {
          * Logs messages that are in the Rx buffer
          * @param rxBuf The RX Buffer that the messages are stored
          */
-        static void logMessage(const MCAN_RX_BUFFER &rxBuf, Application::ActiveBus incomingBus);
+        static void logMessage(const MCAN_RX_BUFFER &rxBuf, ActiveBus incomingBus);
 
         /**
          * Decodes the data length code to get the largest expected size of the message.
