@@ -7,6 +7,7 @@
 #include "Logger_Definitions.hpp"
 #include "Message.hpp"
 #include "OBC_Definitions.hpp"
+#include "PlatformParameters.hpp"
 #include "TPMessage.hpp"
 
 namespace CAN::Application {
@@ -48,7 +49,7 @@ namespace CAN::Application {
      * @param bus A default argument that uses the currentBus member variable if a value is not provided.
      * @return The ID of the bus to be switched to.
      */
-    ActiveBus switchBus(ActiveBus bus);
+    ActiveBus switchBus(ActiveBus bus = PlatformParameters::obcCANBUSActive.getValue());
 
     /**
      * The available Event Report Types, for an Event Report CAN-TP Message.

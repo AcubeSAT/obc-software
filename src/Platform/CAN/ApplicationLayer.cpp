@@ -5,7 +5,7 @@
 #include "CANGatekeeperTask.hpp"
 
 namespace CAN::Application {
-    ActiveBus switchBus(ActiveBus bus = PlatformParameters::obcCANBUSActive.getValue()) {
+    ActiveBus switchBus(ActiveBus bus) {
         if (bus == Main) {
             PlatformParameters::obcCANBUSActive.setValue(Redundant);
         } else {
