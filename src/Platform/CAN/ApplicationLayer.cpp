@@ -16,7 +16,8 @@ namespace CAN::Application {
     }
 
     void sendPingMessage(uint8_t destinationAddress, bool isMulticast) {
-        TPMessage message = {{NodeID, destinationAddress, isMulticast}};
+        TPMessage::IdInfo idInfo = {NodeID, OBC, false};
+        TPMessage message = {idInfo};
 
         message.appendUint8(Ping);
 
@@ -24,7 +25,8 @@ namespace CAN::Application {
     }
 
     void sendPongMessage() {
-        TPMessage message = {{NodeID, OBC, false}, true};
+        TPMessage::IdInfo idInfo = {NodeID, OBC, false};
+        TPMessage message = {idInfo};
 
         message.appendUint8(Pong);
 
