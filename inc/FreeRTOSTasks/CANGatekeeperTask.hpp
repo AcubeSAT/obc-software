@@ -85,12 +85,12 @@ public:
             if (taskShouldYield) {
                 taskYIELD();
             }
+        } else {
+            status = xQueueSendToBack(outgoingQueue, &message, 0);
         }
 
-        status = xQueueSendToBack(outgoingQueue, &message, 0);
-
         if (status == errQUEUE_FULL) {
-            LOG_ERROR << "Tried sending while outgoing queue is full!";
+            LOG_ERROR << "Tried sending CAN Message while outgoing queue is full!";
         }
     }
 
