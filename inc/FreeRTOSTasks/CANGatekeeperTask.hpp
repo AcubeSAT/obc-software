@@ -97,6 +97,10 @@ public:
     /**
      * Adds a CAN::Frame to the incomingQueue.
      * If the queue is full the message is lost.
+     *
+     * @note This function is designed to be used from within the ISR of a CAN Message Receipt. Thus, it uses
+     * freeRTOS's ISR-Specific functions.
+     *
      * @param message The incoming CAN::Frame.
      */
     inline void addToIncoming(const CAN::Frame &message) {
