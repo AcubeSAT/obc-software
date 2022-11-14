@@ -45,13 +45,12 @@
 void WDT_Initialize( void )
 {
 
-    WDT_REGS->WDT_MR = WDT_MR_WDD (4095) | WDT_MR_WDV(4095) \
-               | WDT_MR_WDRSTEN_Msk;
+    WDT_REGS->WDT_MR = WDT_MR_WDD (4095U) | WDT_MR_WDV(4095U) \
+ | WDT_MR_WDRSTEN_Msk;
 
 }
 
-void WDT_Clear(void)
-{
+void WDT_Clear(void) {
     WDT_REGS->WDT_CR = (WDT_CR_KEY_PASSWD | WDT_CR_WDRSTT_Msk);
 }
 

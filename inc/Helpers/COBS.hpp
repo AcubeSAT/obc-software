@@ -1,7 +1,7 @@
 #ifndef OBC_SOFTWARE_COBS_HPP
 #define OBC_SOFTWARE_COBS_HPP
 
-#include <etl/cstring.h>
+#include <etl/string.h>
 #include "cobs.h"
 
 template<int MaxLength>
