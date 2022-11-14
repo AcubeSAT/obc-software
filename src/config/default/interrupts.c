@@ -89,12 +89,12 @@ extern void RTT_Handler                ( void ) __attribute__((weak, alias("Dumm
 extern void WDT_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PMC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void EFC_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void UART0_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void UART1_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOA_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOB_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOC_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void USART0_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
+extern void USART1_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void USART2_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOD_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PIOE_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -178,13 +178,13 @@ const H3DeviceVectors exception_table=
     .pfnWDT_Handler                = WDT_Handler,
     .pfnPMC_Handler                = PMC_Handler,
     .pfnEFC_Handler                = EFC_Handler,
-    .pfnUART0_Handler              = UART0_Handler,
+    .pfnUART0_Handler              = UART0_InterruptHandler,
     .pfnUART1_Handler              = UART1_Handler,
     .pfnPIOA_Handler               = PIOA_Handler,
     .pfnPIOB_Handler               = PIOB_Handler,
     .pfnPIOC_Handler               = PIOC_Handler,
     .pfnUSART0_Handler             = USART0_Handler,
-    .pfnUSART1_Handler             = USART1_InterruptHandler,
+    .pfnUSART1_Handler             = USART1_Handler,
     .pfnUSART2_Handler             = USART2_Handler,
     .pfnPIOD_Handler               = PIOD_Handler,
     .pfnPIOE_Handler               = PIOE_Handler,

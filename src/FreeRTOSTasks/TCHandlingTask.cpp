@@ -11,19 +11,19 @@ TCHandlingTask::TCHandlingTask() : Task("TCHandling") {
                                             &messageQueue);
     configASSERT(messageQueueHandle);
 
-    USART1_ReadCallbackRegister([](uintptr_t object) -> void {
+    UART0_ReadCallbackRegister([](uintptr_t object) -> void {
         TCHandlingTask *task = reinterpret_cast<TCHandlingTask * >(object);
 
-        if (USART1_ReadCountGet() == 0) {
-            USART_ERROR usartError = USART1_ErrorGet();
+        if (UART0_ReadCountGet() == 0) {
+            UART_ERROR uartError = UART0_ErrorGet();
         } else {
             task->ingress();
         }
 
-        USART1_Read(&(task->byteIn), sizeof(this->byteIn));
+        UART0_Read(&(task->byteIn), sizeof(this->byteIn));
     }, reinterpret_cast<uintptr_t>(this));
 
-    USART1_Read(&byteIn, sizeof(byteIn));
+    UART0_Read(&byteIn, sizeof(byteIn));
 }
 
 void TCHandlingTask::resetInput() {

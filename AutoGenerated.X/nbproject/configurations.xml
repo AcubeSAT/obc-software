@@ -127,6 +127,7 @@
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/utmi.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/usbhs.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/fuses.h</itemPath>
+            <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/sdramc.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f2" displayName="instance" projectFiles="true">
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/wdt.h</itemPath>
@@ -186,6 +187,7 @@
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/twihs0.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/pioa.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/fuses.h</itemPath>
+            <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/sdramc.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f3" displayName="pio" projectFiles="true">
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/pio/samv71q21b.h</itemPath>
@@ -308,7 +310,7 @@
         <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/twihs2.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/usart1.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/uart0.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/GraphSettings.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/settings.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/project.yml</itemPath>
@@ -316,7 +318,6 @@
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/default/harmony-manifest-success.yml</itemPath>
       <itemPath>../src/config/default/harmony-manifest-failure.yml</itemPath>
-      <itemPath>../src/config/default/pin_configurations.csv</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>

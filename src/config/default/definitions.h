@@ -49,6 +49,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include "peripheral/afec/plib_afec0.h"
+#include "peripheral/uart/plib_uart0.h"
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/pio/plib_pio.h"
 #include "peripheral/nvic/plib_nvic.h"
@@ -59,7 +60,6 @@
 #include "peripheral/efc/plib_efc.h"
 #include "peripheral/twihs/master/plib_twihs2_master.h"
 #include "peripheral/rtc/plib_rtc.h"
-#include "peripheral/usart/plib_usart1.h"
 #include "system/int/sys_int.h"
 #include "system/cache/sys_cache.h"
 #include "osal/osal.h"

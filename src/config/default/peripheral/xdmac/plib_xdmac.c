@@ -123,7 +123,7 @@ void XDMAC_Initialize( void )
 
     /* Configure Channel 0 */
     XDMAC_REGS->XDMAC_CHID[0].XDMAC_CC =  (XDMAC_CC_TYPE_PER_TRAN |
-                                            XDMAC_CC_PERID(9U) |
+                                            XDMAC_CC_PERID(20U) |
                                             XDMAC_CC_DSYNC_MEM2PER |
                                             XDMAC_CC_SWREQ_HWR_CONNECTED |
                                             XDMAC_CC_DAM_FIXED_AM |
@@ -139,7 +139,7 @@ void XDMAC_Initialize( void )
 
     /* Configure Channel 1 */
     XDMAC_REGS->XDMAC_CHID[1].XDMAC_CC =  (XDMAC_CC_TYPE_PER_TRAN |
-                                            XDMAC_CC_PERID(10U) |
+                                            XDMAC_CC_PERID(21U) |
                                             XDMAC_CC_DSYNC_PER2MEM |
                                             XDMAC_CC_SWREQ_HWR_CONNECTED |
                                             XDMAC_CC_DAM_INCREMENTED_AM |
