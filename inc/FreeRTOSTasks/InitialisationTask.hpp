@@ -1,6 +1,14 @@
 #pragma once
 
 #include "Task.hpp"
+#include "LCLDefinitions.hpp"
+#include "HousekeepingTask.hpp"
+#include "UpdateParametersTask.hpp"
+#include "TimeBasedSchedulingTask.hpp"
+#include "StatisticsReportingTask.hpp"
+#include "CANTransmitTask.hpp"
+#include "TCHandlingTask.hpp"
+#include "TaskInitialization.hpp"
 
 /**
  * FreeRTOS task to execute the proper initialisations.
@@ -17,17 +25,27 @@ public:
       */
     void execute();
 
-    InitialisationTask() : Task("Housekeeping") {}
+    InitialisationTask() : Task("InitialisationTask") {}
 
     /**
      * Create freeRTOS Task
      */
     void createTask() {
-        taskHandle = xTaskCreateStatic(vClassTask<InitialisationTask>, this->TaskName,
+        taskHandle = xTaskCreateStatic(vClassTask < InitialisationTask > , this->TaskName,
                                        InitialisationTask::TaskStackDepth,
-                          this, configMAX_PRIORITIES, this->taskStack,
-                          &(this->taskBuffer));
+                                       this, configMAX_PRIORITIES, this->taskStack,
+                                       &(this->taskBuffer));
     }
+
+    /**
+     *
+     */
+    void initialisePeripherals();
+
+    /**
+     *
+     */
+    void initialisePeriodicTasks();
 
 };
 

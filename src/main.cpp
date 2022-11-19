@@ -4,15 +4,6 @@
 #include "list.h"
 #include "task.h"
 #include "definitions.h"
-#include "OBC_Definitions.hpp"
-#include "TaskInitialization.hpp"
-#include "HousekeepingTask.hpp"
-#include "UpdateParametersTask.hpp"
-#include "TimeBasedSchedulingTask.hpp"
-#include "StatisticsReportingTask.hpp"
-#include "CANTransmitTask.hpp"
-#include "TCHandlingTask.hpp"
-#include "LCLDefinitions.hpp"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -32,23 +23,6 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
-
-    LCLDefinitions::turnOnLCLs();
-    initializeTasks();
-
-    housekeepingTask.emplace();
-    timeBasedSchedulingTask.emplace();
-    statisticsReportingTask.emplace();
-    updateParametersTask.emplace();
-    canTransmitTask.emplace();
-    tcHandlingTask.emplace();
-
-    updateParametersTask->createTask();
-    statisticsReportingTask->createTask();
-    housekeepingTask->createTask();
-    timeBasedSchedulingTask->createTask();
-    tcHandlingTask->createTask();
-    canTransmitTask->createTask();
 
     vTaskStartScheduler();
 

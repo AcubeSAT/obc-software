@@ -13,8 +13,8 @@ namespace LCLDefinitions {
     static inline constexpr uint8_t NumberOfProtectedDevices = 4;
 
     inline static etl::map<ProtectedDevices, LCL, NumberOfProtectedDevices> lclMap = {
-            {NANDFlash, LCL({PWM_CHANNEL_0_MASK, PWM_CHANNEL_0, LCL_NAND_RST_PIN,
-                             LCL_NAND_SET_PIN})},
+            {NANDFlash, LCL(
+                    {PWM_CHANNEL_0_MASK, PWM_CHANNEL_0, LCL_NAND_RST_PIN, LCL_NAND_SET_PIN})},
             {MRAM,      LCL(
                     {PWM_CHANNEL_1_MASK, PWM_CHANNEL_1, LCL_MRAM_RST_PIN, LCL_MRAM_SET_PIN})},
             {CAN1,      LCL(
