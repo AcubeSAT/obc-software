@@ -147,8 +147,9 @@ void SYS_Initialize ( void* data )
     XDMAC_Initialize();
 
 	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
+	WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk;	// Disable WDT
 
-	WDT_Initialize();
+//	WDT_Initialize();
 
 
     PWM0_Initialize();
