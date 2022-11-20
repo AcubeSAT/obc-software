@@ -151,6 +151,8 @@ void SYS_Initialize ( void* data )
 	WDT_Initialize();
 
 
+    PWM0_Initialize();
+
     MCAN1_Initialize();
 
 	TWIHS2_Initialize();

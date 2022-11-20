@@ -67,6 +67,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '150000000'}
+  - type: Integer
+    attributes: {id: CLK_MAIN_XTAL}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '16000000'}
   - type: KeyValueSet
     attributes: {id: COMPILER_CHOICE}
     children:
@@ -154,7 +161,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: '32000'}
+        attributes: {value: '32768'}
   - type: Integer
     attributes: {id: ICM_CLOCK_FREQUENCY}
     children:
@@ -462,7 +469,28 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: '32000'}
+        attributes: {value: '32768'}
+  - type: String
+    attributes: {id: PCK1_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32768'}
+  - type: String
+    attributes: {id: PCK2_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32768'}
+  - type: String
+    attributes: {id: PCK3_CLOCK_FREQUENCY}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '32768'}
   - type: String
     attributes: {id: PCK4_CLOCK_FREQUENCY}
     children:
@@ -3347,13 +3375,41 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '48'}
+  - type: Boolean
+    attributes: {id: PMC_CKGR_MOR_MOSCSEL}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'false'}
+  - type: Boolean
+    attributes: {id: PMC_CKGR_MOR_MOSCXTEN}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'false'}
+  - type: Integer
+    attributes: {id: PMC_CKGR_PLLAR_DIVA}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
+  - type: Integer
+    attributes: {id: PMC_CKGR_PLLAR_MULA}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '25'}
   - type: Hex
     attributes: {id: PMC_PCER0}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '537074816'}
+        attributes: {id: core, value: '2684558464'}
   - type: Hex
     attributes: {id: PMC_PCER1}
     children:
@@ -3431,6 +3487,13 @@ children:
       children:
       - type: User
         attributes: {value: '16'}
+  - type: Boolean
+    attributes: {id: PWM0_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: 'true'}
   - type: Integer
     attributes: {id: PWM0_CLOCK_FREQUENCY}
     children:
@@ -3516,6 +3579,13 @@ children:
       - type: Dynamic
         attributes: {id: core, value: '150000000'}
   - type: Integer
+    attributes: {id: SLOW_CLK_FREQ}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '32768'}
+  - type: Integer
     attributes: {id: SMC_CLOCK_FREQUENCY}
     children:
     - type: Values
@@ -3543,6 +3613,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '150000000'}
+  - type: Boolean
+    attributes: {id: SUPC_CR_XTALSEL}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
   - type: String
     attributes: {id: SYSTICK_CLOCK_FREQUENCY}
     children:
@@ -3607,6 +3684,10 @@ children:
     children:
     - type: Attributes
       children:
+      - type: Float
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '55.92405'}
       - type: Boolean
         attributes: {id: readOnly}
         children:
@@ -3824,6 +3905,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
+  - type: Combo
+    attributes: {id: UTMI_CKTRIM_FREQ}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: XTAL16}
   - type: Boolean
     attributes: {id: WDT_INTERRUPT_ENABLE}
     children:
