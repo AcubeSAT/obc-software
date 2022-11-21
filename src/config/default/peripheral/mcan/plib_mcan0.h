@@ -5,7 +5,7 @@
     Microchip Technology Inc.
 
   File Name:
-    plib_mcan1.h
+    plib_mcan0.h
 
   Summary:
     MCAN PLIB interface declarations.
@@ -44,8 +44,8 @@
 *******************************************************************************/
 //DOM-IGNORE-END
 
-#ifndef PLIB_MCAN1_H
-#define PLIB_MCAN1_H
+#ifndef PLIB_MCAN0_H
+#define PLIB_MCAN0_H
 
 // *****************************************************************************
 // *****************************************************************************
@@ -73,48 +73,48 @@
 // Section: Data Types
 // *****************************************************************************
 // *****************************************************************************
-/* MCAN1 Message RAM Configuration Size */
-#define MCAN1_RX_FIFO0_ELEMENT_SIZE       72U
-#define MCAN1_RX_FIFO0_SIZE               1440U
-#define MCAN1_RX_FIFO1_ELEMENT_SIZE       72U
-#define MCAN1_RX_FIFO1_SIZE               720U
-#define MCAN1_TX_FIFO_BUFFER_ELEMENT_SIZE 72U
-#define MCAN1_TX_FIFO_BUFFER_SIZE         720U
-#define MCAN1_TX_EVENT_FIFO_SIZE          80U
-#define MCAN1_STD_MSG_ID_FILTER_SIZE      4U
+/* MCAN0 Message RAM Configuration Size */
+#define MCAN0_RX_FIFO0_ELEMENT_SIZE       72U
+#define MCAN0_RX_FIFO0_SIZE               1440U
+#define MCAN0_RX_FIFO1_ELEMENT_SIZE       72U
+#define MCAN0_RX_FIFO1_SIZE               720U
+#define MCAN0_TX_FIFO_BUFFER_ELEMENT_SIZE 72U
+#define MCAN0_TX_FIFO_BUFFER_SIZE         720U
+#define MCAN0_TX_EVENT_FIFO_SIZE          80U
+#define MCAN0_STD_MSG_ID_FILTER_SIZE      4U
 
-/* MCAN1_MESSAGE_RAM_CONFIG_SIZE to be used by application or driver
+/* MCAN0_MESSAGE_RAM_CONFIG_SIZE to be used by application or driver
    for allocating buffer from non-cached contiguous memory */
-#define MCAN1_MESSAGE_RAM_CONFIG_SIZE     2964U
+#define MCAN0_MESSAGE_RAM_CONFIG_SIZE     2964U
 
 // *****************************************************************************
 // *****************************************************************************
 // Section: Interface Routines
 // *****************************************************************************
 // *****************************************************************************
-void MCAN1_Initialize(void);
-bool MCAN1_MessageTransmitFifo(uint8_t numberOfMessage, MCAN_TX_BUFFER *txBuffer);
-uint8_t MCAN1_TxFifoFreeLevelGet(void);
-bool MCAN1_TxBufferIsBusy(uint8_t bufferNumber);
-bool MCAN1_TxEventFifoRead(uint8_t numberOfTxEvent, MCAN_TX_EVENT_FIFO *txEventFifo);
-bool MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_NUM rxFifoNum, uint8_t numberOfMessage, MCAN_RX_BUFFER *rxBuffer);
-MCAN_ERROR MCAN1_ErrorGet(void);
-void MCAN1_ErrorCountGet(uint8_t *txErrorCount, uint8_t *rxErrorCount);
-void MCAN1_MessageRAMConfigSet(uint8_t *msgRAMConfigBaseAddress);
-bool MCAN1_StandardFilterElementSet(uint8_t filterNumber, mcan_sidfe_registers_t *stdMsgIDFilterElement);
-bool MCAN1_StandardFilterElementGet(uint8_t filterNumber, mcan_sidfe_registers_t *stdMsgIDFilterElement);
-void MCAN1_SleepModeEnter(void);
-void MCAN1_SleepModeExit(void);
-void MCAN1_TxFifoCallbackRegister(MCAN_TX_FIFO_CALLBACK callback, uintptr_t contextHandle);
-void MCAN1_TxEventFifoCallbackRegister(MCAN_TX_EVENT_FIFO_CALLBACK callback, uintptr_t contextHandle);
-void MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_NUM rxFifoNum, MCAN_RX_FIFO_CALLBACK callback, uintptr_t contextHandle);
+void MCAN0_Initialize(void);
+bool MCAN0_MessageTransmitFifo(uint8_t numberOfMessage, MCAN_TX_BUFFER *txBuffer);
+uint8_t MCAN0_TxFifoFreeLevelGet(void);
+bool MCAN0_TxBufferIsBusy(uint8_t bufferNumber);
+bool MCAN0_TxEventFifoRead(uint8_t numberOfTxEvent, MCAN_TX_EVENT_FIFO *txEventFifo);
+bool MCAN0_MessageReceiveFifo(MCAN_RX_FIFO_NUM rxFifoNum, uint8_t numberOfMessage, MCAN_RX_BUFFER *rxBuffer);
+MCAN_ERROR MCAN0_ErrorGet(void);
+void MCAN0_ErrorCountGet(uint8_t *txErrorCount, uint8_t *rxErrorCount);
+void MCAN0_MessageRAMConfigSet(uint8_t *msgRAMConfigBaseAddress);
+bool MCAN0_StandardFilterElementSet(uint8_t filterNumber, mcan_sidfe_registers_t *stdMsgIDFilterElement);
+bool MCAN0_StandardFilterElementGet(uint8_t filterNumber, mcan_sidfe_registers_t *stdMsgIDFilterElement);
+void MCAN0_SleepModeEnter(void);
+void MCAN0_SleepModeExit(void);
+void MCAN0_TxFifoCallbackRegister(MCAN_TX_FIFO_CALLBACK callback, uintptr_t contextHandle);
+void MCAN0_TxEventFifoCallbackRegister(MCAN_TX_EVENT_FIFO_CALLBACK callback, uintptr_t contextHandle);
+void MCAN0_RxFifoCallbackRegister(MCAN_RX_FIFO_NUM rxFifoNum, MCAN_RX_FIFO_CALLBACK callback, uintptr_t contextHandle);
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
     }
 #endif
 // DOM-IGNORE-END
 
-#endif // PLIB_MCAN1_H
+#endif // PLIB_MCAN0_H
 
 /*******************************************************************************
  End of File

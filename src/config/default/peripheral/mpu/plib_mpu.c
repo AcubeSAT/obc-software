@@ -1,20 +1,20 @@
 /*******************************************************************************
- System Interrupts File
+  MPU PLIB Implementation
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    interrupt.h
+    plib_mpu.h
 
   Summary:
-    Interrupt vectors mapping
+    MPU PLIB Source File
 
   Description:
-    This file contains declarations of device vectors used by Harmony 3
- *******************************************************************************/
+    None
 
-// DOM-IGNORE-BEGIN
+*******************************************************************************/
+
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -36,39 +36,52 @@
 * FULLEST EXTENT ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
- *******************************************************************************/
-// DOM-IGNORE-END
+*******************************************************************************/
 
-#ifndef INTERRUPTS_H
-#define INTERRUPTS_H
-
-// *****************************************************************************
-// *****************************************************************************
-// Section: Included Files
-// *****************************************************************************
-// *****************************************************************************
-#include <stdint.h>
-
+#include "plib_mpu.h"
+#include "plib_mpu_local.h"
 
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Handler Routines
+// Section: MPU Implementation
 // *****************************************************************************
 // *****************************************************************************
 
-void Reset_Handler (void);
-void NonMaskableInt_Handler (void);
-void HardFault_Handler (void);
-void SysTick_Handler (void);
-void RTC_InterruptHandler (void);
-void UART0_InterruptHandler (void);
-void AFEC0_InterruptHandler (void);
-void MCAN0_INT0_InterruptHandler (void);
-void MCAN1_INT0_InterruptHandler (void);
-void TWIHS2_InterruptHandler (void);
-void XDMAC_InterruptHandler (void);
+void MPU_Initialize(void)
+{
+    /*** Disable MPU            ***/
+    MPU->CTRL = 0;
+
+    /*** Configure MPU Regions  ***/
+
+    /* Region 0 Name: SRAM_NOCACHE, Base Address: 0x2045f000, Size: 8KB  */
+    MPU->RBAR = MPU_REGION(0, 0x2045f000);
+    MPU->RASR = MPU_REGION_SIZE(12) | MPU_RASR_AP(MPU_RASR_AP_READWRITE_Val) | MPU_ATTR_NORMAL \
+                | MPU_ATTR_ENABLE | MPU_ATTR_EXECUTE_NEVER ;
 
 
 
-#endif // INTERRUPTS_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* Enable Memory Management Fault */
+    SCB->SHCSR |= (SCB_SHCSR_MEMFAULTENA_Msk);
+
+    /* Enable MPU */
+    MPU->CTRL = MPU_CTRL_ENABLE_Msk  | MPU_CTRL_PRIVDEFENA_Msk;
+
+    __DSB();
+    __ISB();
+}
+
