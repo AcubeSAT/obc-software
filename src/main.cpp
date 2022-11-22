@@ -36,7 +36,7 @@ extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 //    initializeTasks();
 //
-//    housekeepingTask.emplace();
+    housekeepingTask.emplace();
 //    timeBasedSchedulingTask.emplace();
 //    statisticsReportingTask.emplace();
 //    updateParametersTask.emplace();
@@ -46,15 +46,13 @@ extern "C" void main_cpp() {
 //
 //    updateParametersTask->createTask();
 //    statisticsReportingTask->createTask();
-//    housekeepingTask->createTask();
+    housekeepingTask->createTask();
 //    timeBasedSchedulingTask->createTask();
 //    tcHandlingTask->createTask();
 //    canGatekeeperTask->createTask();
 //    canTestTask->createTask();
     uartGatekeeperTask.emplace();
-    mcuTemperatureTask.emplace();
     uartGatekeeperTask->createTask();
-    mcuTemperatureTask->createTask();
 
     vTaskStartScheduler();
 
