@@ -38,7 +38,7 @@ StaticTask_t task1Buffer;
 
 void Task1(void *pvParameters) {
     while(true) {
-        PIO_PinToggle(PIO_PIN_PA31);
+        PIO_PinToggle(USR_GPIO_PIN);
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
