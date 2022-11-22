@@ -14,7 +14,7 @@
 #include "CANTestTask.hpp"
 #include "TCHandlingTask.hpp"
 #include "UARTGatekeeperTask.hpp"
-#include "TimeKeepingTask.hpp"
+#include "MCUTemperatureTask.hpp"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -52,9 +52,9 @@ extern "C" void main_cpp() {
 //    canGatekeeperTask->createTask();
 //    canTestTask->createTask();
     uartGatekeeperTask.emplace();
-    timeKeepingTask.emplace();
+    mcuTemperatureTask.emplace();
     uartGatekeeperTask->createTask();
-    timeKeepingTask->createTask();
+    mcuTemperatureTask->createTask();
 
     vTaskStartScheduler();
 
