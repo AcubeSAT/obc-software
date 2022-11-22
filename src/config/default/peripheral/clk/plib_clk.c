@@ -27,6 +27,22 @@
 
 
 
+/*********************************************************************************
+Initialize Slow Clock (SLCK)
+*********************************************************************************/
+
+static void CLK_SlowClockInitialize(void)
+{
+    /* 32KHz Crystal Oscillator is selected as the Slow Clock (SLCK) source.
+       Enable 32KHz Crystal Oscillator  */
+    SUPC_REGS->SUPC_CR |= SUPC_CR_KEY_PASSWD | SUPC_CR_XTALSEL_CRYSTAL_SEL;
+
+    /* Wait until the 32K Crystal oscillator clock is ready and
+       Slow Clock (SLCK) is switched to 32KHz Oscillator */
+    while (!(SUPC_REGS->SUPC_SR & SUPC_SR_OSCSEL_Msk))
+    {
+    }
+}
 
 
 
@@ -101,6 +117,8 @@ Clock Initialize
 void CLOCK_Initialize( void )
 {
 
+    /* Initialize Slow Clock */
+    CLK_SlowClockInitialize();
 
 
     /* Initialize PLLA */
@@ -116,6 +134,6 @@ void CLOCK_Initialize( void )
     CLK_ProgrammableClockInitialize();
 
     /* Enable Peripheral Clock */
-    PMC_REGS->PMC_PCER0=0x20031c80;
+    PMC_REGS->PMC_PCER0=0xa0031c80;
     PMC_REGS->PMC_PCER1=0x4000228;
 }

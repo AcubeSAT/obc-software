@@ -139,10 +139,6 @@ void SYS_Initialize ( void* data )
 
 
 
-    AFEC0_Initialize();
-
-	UART0_Initialize();
-
 	SYSTICK_TimerInitialize();
     XDMAC_Initialize();
 
@@ -151,13 +147,19 @@ void SYS_Initialize ( void* data )
 	WDT_Initialize();
 
 
+    PWM0_Initialize();
+
+	RTC_Initialize();
+
+    AFEC0_Initialize();
+
+	UART0_Initialize();
+
     MCAN0_Initialize();
 
     MCAN1_Initialize();
 
 	TWIHS2_Initialize();
-
-	RTC_Initialize();
 
 
 

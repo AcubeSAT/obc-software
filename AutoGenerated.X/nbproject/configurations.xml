@@ -308,6 +308,7 @@
         <itemPath>../src/config/default/default.mhc/HarmonyCore.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/mcan0.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/mcan1.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/pwm0.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/twihs2.yml</itemPath>
