@@ -14,6 +14,7 @@
 #include "CANTestTask.hpp"
 #include "TCHandlingTask.hpp"
 #include "UARTGatekeeperTask.hpp"
+#include "TimeKeepingTask.hpp"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -30,19 +31,6 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 }
 
 #endif
-
-const static inline uint16_t Task1StackDepth = 2000;
-
-StackType_t taskStack[Task1StackDepth];
-
-StaticTask_t task1Buffer;
-
-void Task1(void *pvParameters) {
-    while(true) {
-        LOG_DEBUG << "Hello, world!";
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-}
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
@@ -64,10 +52,11 @@ extern "C" void main_cpp() {
 //    canGatekeeperTask->createTask();
 //    canTestTask->createTask();
     uartGatekeeperTask.emplace();
+    timeKeepingTask.emplace();
     uartGatekeeperTask->createTask();
-    xTaskCreateStatic(Task1, "Task1",
-                      2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
-                      &task1Buffer);    vTaskStartScheduler();
+    timeKeepingTask->createTask();
+
+    vTaskStartScheduler();
 
     while (true) {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
