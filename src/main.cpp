@@ -13,6 +13,7 @@
 #include "CANGatekeeperTask.hpp"
 #include "CANTestTask.hpp"
 #include "TCHandlingTask.hpp"
+#include "UARTGatekeeperTask.hpp"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -38,7 +39,7 @@ StaticTask_t task1Buffer;
 
 void Task1(void *pvParameters) {
     while(true) {
-        PIO_PinToggle(PIO_PIN_PA31);
+        LOG_DEBUG << "Hello, world!";
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -62,7 +63,8 @@ extern "C" void main_cpp() {
 //    tcHandlingTask->createTask();
 //    canGatekeeperTask->createTask();
 //    canTestTask->createTask();
-
+    uartGatekeeperTask.emplace();
+    uartGatekeeperTask->createTask();
     xTaskCreateStatic(Task1, "Task1",
                       2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
                       &task1Buffer);    vTaskStartScheduler();
