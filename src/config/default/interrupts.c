@@ -135,7 +135,6 @@ extern void TRNG_Handler               ( void ) __attribute__((weak, alias("Dumm
 extern void ISI_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void PWM1_Handler               ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void FPU_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
-extern void SDRAMC_Handler             ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void RSWDT_Handler              ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void CCW_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
 extern void CCF_Handler                ( void ) __attribute__((weak, alias("Dummy_Handler")));
@@ -229,7 +228,6 @@ const H3DeviceVectors exception_table=
     .pfnISI_Handler                = ISI_Handler,
     .pfnPWM1_Handler               = PWM1_Handler,
     .pfnFPU_Handler                = FPU_Handler,
-    .pfnSDRAMC_Handler             = SDRAMC_Handler,
     .pfnRSWDT_Handler              = RSWDT_Handler,
     .pfnCCW_Handler                = CCW_Handler,
     .pfnCCF_Handler                = CCF_Handler,
