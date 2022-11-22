@@ -35,23 +35,23 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 //    initializeTasks();
-//
+
     housekeepingTask.emplace();
 //    timeBasedSchedulingTask.emplace();
-//    statisticsReportingTask.emplace();
-//    updateParametersTask.emplace();
-//    canGatekeeperTask.emplace();
-//    canTestTask.emplace();
+    statisticsReportingTask.emplace();
+    updateParametersTask.emplace();
+    canGatekeeperTask.emplace();
+    canTestTask.emplace();
 //    tcHandlingTask.emplace();
-//
-//    updateParametersTask->createTask();
-//    statisticsReportingTask->createTask();
+    uartGatekeeperTask.emplace();
+
+    updateParametersTask->createTask();
+    statisticsReportingTask->createTask();
     housekeepingTask->createTask();
 //    timeBasedSchedulingTask->createTask();
 //    tcHandlingTask->createTask();
-//    canGatekeeperTask->createTask();
-//    canTestTask->createTask();
-    uartGatekeeperTask.emplace();
+    canGatekeeperTask->createTask();
+    canTestTask->createTask();
     uartGatekeeperTask->createTask();
 
     vTaskStartScheduler();
