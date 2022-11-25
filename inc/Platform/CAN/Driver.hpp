@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include "ECSS_Definitions.hpp"
-#include "Frame.hpp"
+#include "CAN/Frame.hpp"
 #include "peripheral/mcan/plib_mcan1.h"
 #include "peripheral/mcan/plib_mcan0.h"
 
