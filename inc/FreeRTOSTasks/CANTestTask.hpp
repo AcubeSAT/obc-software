@@ -2,6 +2,7 @@
 #define OBC_SOFTWARE_CANTESTTASK_HPP
 
 #include "CAN/Driver.hpp"
+#include "pio.h"
 #include "Task.hpp"
 
 class CANTestTask : public Task {
@@ -14,7 +15,10 @@ public:
 
     void execute();
 
-    CANTestTask() : Task("CAN Test") {}
+    CANTestTask() : Task("CAN Test") {
+        PIO_PinWrite(PIO_PIN_PA11, false); //CAN_SILENT_1
+        PIO_PinWrite(PIO_PIN_PD17, false); //CAN_SILENT_2
+    }
 
     /**
      * Create freeRTOS Task
