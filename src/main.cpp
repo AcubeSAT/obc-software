@@ -38,36 +38,45 @@ StackType_t taskStack[Task1StackDepth];
 StaticTask_t task1Buffer;
 
 void Task1(void *pvParameters) {
-    PIO_PinWrite(LCL_NAND_RST_PIN, true); // RESET
-    PIO_PinWrite(LCL_NAND_SET_PIN, true); // SET
+
+    PIO_PinWrite(LCL_NAND_RST_PIN, true); // break point 1 here, before any LCL init code runs
+    PIO_PinWrite(LCL_NAND_SET_PIN, true);
     PWM0_ChannelsStart(PWM_CHANNEL_0_MASK);
-    PIO_PinWrite(LCL_NAND_SET_PIN, false); // enable set
-    vTaskDelay(pdMS_TO_TICKS(100)); // any better ideas?
-    PIO_PinWrite(LCL_NAND_SET_PIN, true); // disable set
 
-    PIO_PinWrite(LCL_MRAM_RST_PIN, true); // RESET
-    PIO_PinWrite(LCL_MRAM_SET_PIN, true); // SET
-    PWM0_ChannelsStart(PWM_CHANNEL_1_MASK);
-    PIO_PinWrite(LCL_MRAM_SET_PIN, false); // enable set
-    vTaskDelay(pdMS_TO_TICKS(100)); // any better ideas?
-    PIO_PinWrite(LCL_MRAM_SET_PIN, true); // disable set
 
-    PIO_PinWrite(LCL_CAN_2_RST_PIN, true); // RESET
-    PIO_PinWrite(LCL_CAN_2_SET_PIN, true); // SET
-    PWM0_ChannelsStart(PWM_CHANNEL_2_MASK);
-    PIO_PinWrite(LCL_CAN_2_SET_PIN, false); // enable set
-    vTaskDelay(pdMS_TO_TICKS(100)); // any better ideas?
-    PIO_PinWrite(LCL_CAN_2_SET_PIN, true); // disable set
+//    PWM0_ChannelsStart(PWM_CHANNEL_0_MASK);
+    PIO_PinWrite(LCL_NAND_SET_PIN, false); // break point 2, before this runs
+    vTaskDelay(pdMS_TO_TICKS(100));
+    PIO_PinWrite(LCL_NAND_SET_PIN, true);
 
-    PIO_PinWrite(LCL_CAN_1_RST_PIN, true); // RESET
-    PIO_PinWrite(LCL_CAN_1_SET_PIN, true); // SET
-    PWM0_ChannelsStart(PWM_CHANNEL_3_MASK);
-    PIO_PinWrite(LCL_CAN_1_SET_PIN, false); // enable set
-    vTaskDelay(pdMS_TO_TICKS(100)); // any better ideas?
-    PIO_PinWrite(LCL_CAN_1_SET_PIN, true); // disable set
+    PWM0_ChannelsStop(PWM_CHANNEL_0_MASK); // break point 3, before this runs
+
+    PIO_PinWrite(LCL_NAND_RST_PIN, true); // break point 4, before this runs
+
+
+//    PIO_PinWrite(LCL_MRAM_RST_PIN, true); // RESET
+//    PIO_PinWrite(LCL_MRAM_SET_PIN, true); // SET
+//    PWM0_ChannelsStart(PWM_CHANNEL_1_MASK);
+//    PIO_PinWrite(LCL_MRAM_SET_PIN, false); // enable set
+//    vTaskDelay(pdMS_TO_TICKS(100)); // any better ideas?
+//    PIO_PinWrite(LCL_MRAM_SET_PIN, true); // disable set
+//
+//    PIO_PinWrite(LCL_CAN_2_RST_PIN, true); // RESET
+//    PIO_PinWrite(LCL_CAN_2_SET_PIN, true); // SET
+//    PWM0_ChannelsStart(PWM_CHANNEL_2_MASK);
+//    PIO_PinWrite(LCL_CAN_2_SET_PIN, false); // enable set
+//    vTaskDelay(pdMS_TO_TICKS(100)); // any better ideas?
+//    PIO_PinWrite(LCL_CAN_2_SET_PIN, true); // disable set
+//
+//    PIO_PinWrite(LCL_CAN_1_RST_PIN, true); // RESET
+//    PIO_PinWrite(LCL_CAN_1_SET_PIN, true); // SET
+//    PWM0_ChannelsStart(PWM_CHANNEL_3_MASK);
+//    PIO_PinWrite(LCL_CAN_1_SET_PIN, false); // enable set
+//    vTaskDelay(pdMS_TO_TICKS(100)); // any better ideas?
+//    PIO_PinWrite(LCL_CAN_1_SET_PIN, true); // disable set
 
     while (true) {
-        PIO_PinToggle(PIO_PIN_PA30);
+        PIO_PinToggle(PIO_PIN_PA30); // break point 5, before this runs
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
@@ -92,6 +101,7 @@ extern "C" void main_cpp() {
     xTaskCreateStatic(Task1, "Task1",
                       2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
                       &task1Buffer);
+
     vTaskStartScheduler();
 
     while (true) {
