@@ -81,7 +81,7 @@ void AFEC0_Initialize(void)
 
     /* Offset */
     AFEC0_REGS->AFEC_CSELR = (uint32_t)AFEC_CH11;
-    AFEC0_REGS->AFEC_COCR = 512U;
+    AFEC0_REGS->AFEC_COCR = 516U;
 
 
     /* Enable interrupt */
