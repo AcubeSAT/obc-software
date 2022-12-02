@@ -471,6 +471,27 @@ children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
   - type: Boolean
+    attributes: {id: NVIC_31_0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: String
+    attributes: {id: NVIC_31_0_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: PWM0_Handler}
+  - type: Boolean
+    attributes: {id: NVIC_31_0_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: Boolean
     attributes: {id: NVIC_35_0_ENABLE}
     children:
     - type: Values
@@ -3562,7 +3583,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '2684558464'}
+        attributes: {id: core, value: '2684558976'}
   - type: Hex
     attributes: {id: PMC_PCER1}
     children:
@@ -3654,6 +3675,34 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '150000000'}
+  - type: Boolean
+    attributes: {id: PWM0_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: 'false'}
+  - type: Boolean
+    attributes: {id: PWM0_INTERRUPT_ENABLE_UPDATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: PWM0_INTERRUPT_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_Handler}
+  - type: Boolean
+    attributes: {id: PWM0_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: 'false'}
   - type: Integer
     attributes: {id: PWM1_CLOCK_FREQUENCY}
     children:
@@ -3725,19 +3774,19 @@ children:
       - type: Dynamic
         attributes: {id: rtc, value: 'true'}
   - type: Integer
-    attributes: {id: SDRAMC_CLOCK_FREQUENCY}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: core, value: '150000000'}
-  - type: Integer
     attributes: {id: SLOW_CLK_FREQ}
     children:
     - type: Values
       children:
       - type: Dynamic
         attributes: {id: core, value: '32768'}
+  - type: Boolean
+    attributes: {id: SMC_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: 'true'}
   - type: Integer
     attributes: {id: SMC_CLOCK_FREQUENCY}
     children:

@@ -63,6 +63,7 @@
 static MCAN_TX_FIFO_CALLBACK_OBJ mcan1TxFifoCallbackObj;
 static MCAN_TX_EVENT_FIFO_CALLBACK_OBJ mcan1TxEventFifoCallbackObj;
 static MCAN_RX_FIFO_CALLBACK_OBJ mcan1RxFifoCallbackObj[2];
+static MCAN_CALLBACK_OBJ mcan1CallbackObj;
 static MCAN_OBJ mcan1Obj;
 
 static const mcan_sidfe_registers_t mcan1StdFilter[] =
@@ -123,7 +124,10 @@ void MCAN1_Initialize(void)
     MCAN1_REGS->MCAN_GFC = MCAN_GFC_ANFS_RX_FIFO_1 | MCAN_GFC_ANFE(2);
 
     /* Set the operation mode */
-    MCAN1_REGS->MCAN_CCCR = MCAN_CCCR_INIT_DISABLED | MCAN_CCCR_FDOE_ENABLED | MCAN_CCCR_BRSE_ENABLED;
+    MCAN1_REGS->MCAN_CCCR |= MCAN_CCCR_FDOE_ENABLED | MCAN_CCCR_BRSE_ENABLED;
+
+
+    MCAN1_REGS->MCAN_CCCR &= ~MCAN_CCCR_INIT_Msk;
     while ((MCAN1_REGS->MCAN_CCCR & MCAN_CCCR_INIT_Msk) == MCAN_CCCR_INIT_Msk)
     {
         /* Wait for initialization complete */
@@ -136,7 +140,14 @@ void MCAN1_Initialize(void)
     MCAN1_REGS->MCAN_ILE = MCAN_ILE_EINT0_Msk;
 
     /* Enable MCAN interrupts */
-    MCAN1_REGS->MCAN_IE = MCAN_IE_BOE_Msk | MCAN_IE_TFEE_Msk | MCAN_IE_TEFNE_Msk | MCAN_IE_RF0NE_Msk | MCAN_IE_RF1NE_Msk;
+    MCAN1_REGS->MCAN_IE = MCAN_IE_BOE_Msk | MCAN_IE_ARAE_Msk | MCAN_IE_PEDE_Msk | MCAN_IE_PEAE_Msk | MCAN_IE_WDIE_Msk
+                                      | MCAN_IE_EWE_Msk | MCAN_IE_EPE_Msk | MCAN_IE_ELOE_Msk
+                                       | MCAN_IE_TFEE_Msk
+                                       | MCAN_IE_TEFNE_Msk | MCAN_IE_TEFLE_Msk | MCAN_IE_TEFFE_Msk | MCAN_IE_TCFE_Msk | MCAN_IE_HPME_Msk
+                                       | MCAN_IE_RF0NE_Msk | MCAN_IE_RF0LE_Msk | MCAN_IE_RF0FE_Msk
+                                       | MCAN_IE_RF1NE_Msk | MCAN_IE_RF1LE_Msk | MCAN_IE_RF1FE_Msk
+                                      
+                                      | MCAN_IE_MRAFE_Msk;
 
     memset(&mcan1Obj.msgRAMConfig, 0x00, sizeof(MCAN_MSG_RAM_CONFIG));
 }
@@ -417,8 +428,7 @@ MCAN_ERROR MCAN1_ErrorGet(void)
 
     if ((MCAN1_REGS->MCAN_CCCR & MCAN_CCCR_INIT_Msk) == MCAN_CCCR_INIT_Msk)
     {
-        MCAN1_REGS->MCAN_CCCR |= MCAN_CCCR_CCE_Msk;
-        MCAN1_REGS->MCAN_CCCR = MCAN_CCCR_INIT_DISABLED | MCAN_CCCR_FDOE_ENABLED | MCAN_CCCR_BRSE_ENABLED;
+        MCAN1_REGS->MCAN_CCCR &= ~MCAN_CCCR_INIT_Msk;
         while ((MCAN1_REGS->MCAN_CCCR & MCAN_CCCR_INIT_Msk) == MCAN_CCCR_INIT_Msk)
         {
             /* Wait for initialization complete */
@@ -477,7 +487,7 @@ void MCAN1_MessageRAMConfigSet(uint8_t *msgRAMConfigBaseAddress)
     memset((void*)msgRAMConfigBaseAddress, 0x00, MCAN1_MESSAGE_RAM_CONFIG_SIZE);
 
     /* Set MCAN CCCR Init for Message RAM Configuration */
-    MCAN1_REGS->MCAN_CCCR = MCAN_CCCR_INIT_ENABLED;
+    MCAN1_REGS->MCAN_CCCR |= MCAN_CCCR_INIT_ENABLED;
     while ((MCAN1_REGS->MCAN_CCCR & MCAN_CCCR_INIT_Msk) != MCAN_CCCR_INIT_Msk)
     {
         /* Wait for configuration complete */
@@ -527,7 +537,7 @@ void MCAN1_MessageRAMConfigSet(uint8_t *msgRAMConfigBaseAddress)
     (void)offset;
 
     /* Complete Message RAM Configuration by clearing MCAN CCCR Init */
-    MCAN1_REGS->MCAN_CCCR = MCAN_CCCR_INIT_DISABLED | MCAN_CCCR_FDOE_ENABLED | MCAN_CCCR_BRSE_ENABLED;
+    MCAN1_REGS->MCAN_CCCR &= ~MCAN_CCCR_INIT_Msk;
     while ((MCAN1_REGS->MCAN_CCCR & MCAN_CCCR_INIT_Msk) == MCAN_CCCR_INIT_Msk)
     {
         /* Wait for configuration complete */
@@ -722,6 +732,36 @@ void MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_NUM rxFifoNum, MCAN_RX_FIFO_CALLB
 
 // *****************************************************************************
 /* Function:
+    void MCAN1_CallbackRegister(MCAN_CALLBACK callback, uintptr_t contextHandle)
+
+   Summary:
+    Sets the pointer to the function (and it's context) to be called when the
+    given MCAN's transfer events occur.
+
+   Precondition:
+    MCAN1_Initialize must have been called for the associated MCAN instance.
+
+   Parameters:
+    callback  - A pointer to a function with a calling signature defined
+    by the MCAN_CALLBACK data type.
+
+    contextHandle - A value (usually a pointer) passed (unused) into the function
+    identified by the callback parameter.
+
+   Returns:
+    None.
+*/
+void MCAN1_CallbackRegister(MCAN_CALLBACK callback, uintptr_t contextHandle)
+{
+    if (callback != NULL)
+    {
+        mcan1CallbackObj.callback = callback;
+        mcan1CallbackObj.context = contextHandle;
+    }
+}
+
+// *****************************************************************************
+/* Function:
     void MCAN1_INT0_InterruptHandler(void)
 
    Summary:
@@ -752,10 +792,13 @@ void MCAN1_INT0_InterruptHandler(void)
 
     uint32_t ir = MCAN1_REGS->MCAN_IR;
 
-    /* Check if error occurred */
-    if ((ir & MCAN_IR_BO_Msk) != 0U)
+    if ((ir & (~(MCAN_IR_RF0N_Msk | MCAN_IR_RF1N_Msk | MCAN_IR_TFE_Msk | MCAN_IR_TEFN_Msk))) != 0U)
     {
-        MCAN1_REGS->MCAN_IR = MCAN_IR_BO_Msk;
+        MCAN1_REGS->MCAN_IR = (ir & (~(MCAN_IR_RF0N_Msk | MCAN_IR_RF1N_Msk | MCAN_IR_TFE_Msk | MCAN_IR_TEFN_Msk)));
+        if (mcan1CallbackObj.callback != NULL)
+        {
+            mcan1CallbackObj.callback(ir, mcan1CallbackObj.context);
+        }
     }
     /* New Message in Rx FIFO 0 */
     if ((ir & MCAN_IR_RF0N_Msk) != 0U)

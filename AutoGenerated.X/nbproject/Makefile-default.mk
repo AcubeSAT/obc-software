@@ -57,20 +57,20 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=../src/config/default/peripheral/afec/plib_afec0.c ../src/config/default/peripheral/clk/plib_clk.c ../src/config/default/peripheral/efc/plib_efc.c ../src/config/default/peripheral/mcan/plib_mcan1.c ../src/config/default/peripheral/nvic/plib_nvic.c ../src/config/default/peripheral/pio/plib_pio.c ../src/config/default/peripheral/rtc/plib_rtc.c ../src/config/default/peripheral/systick/plib_systick.c ../src/config/default/peripheral/twihs/master/plib_twihs2_master.c ../src/config/default/peripheral/usart/plib_usart1.c ../src/config/default/peripheral/wdt/plib_wdt.c ../src/config/default/peripheral/xdmac/plib_xdmac.c ../src/config/default/stdio/gcc_monitor.c ../src/config/default/stdio/xc32_monitor.c ../src/config/default/system/cache/sys_cache.c ../src/config/default/system/int/src/sys_int.c ../src/config/default/system/time/src/sys_time.c ../src/config/default/initialization.c ../src/config/default/interrupts.c ../src/config/default/exceptions.c ../src/config/default/libc_syscalls.c ../src/config/default/tasks.c ../src/config/default/startup_gcc.c ../src/config/default/startup_xc32.c ../src/main.c ../src/app.c
+SOURCEFILES_QUOTED_IF_SPACED=../src/config/default/peripheral/afec/plib_afec0.c ../src/config/default/peripheral/clk/plib_clk.c ../src/config/default/peripheral/efc/plib_efc.c ../src/config/default/peripheral/mcan/plib_mcan1.c ../src/config/default/peripheral/nvic/plib_nvic.c ../src/config/default/peripheral/pio/plib_pio.c ../src/config/default/peripheral/rtc/plib_rtc.c ../src/config/default/peripheral/systick/plib_systick.c ../src/config/default/peripheral/twihs/master/plib_twihs2_master.c ../src/config/default/peripheral/wdt/plib_wdt.c ../src/config/default/peripheral/xdmac/plib_xdmac.c ../src/config/default/stdio/gcc_monitor.c ../src/config/default/stdio/xc32_monitor.c ../src/config/default/system/cache/sys_cache.c ../src/config/default/system/int/src/sys_int.c ../src/config/default/system/time/src/sys_time.c ../src/config/default/initialization.c ../src/config/default/interrupts.c ../src/config/default/exceptions.c ../src/config/default/libc_syscalls.c ../src/config/default/tasks.c ../src/config/default/startup_gcc.c ../src/config/default/startup_xc32.c ../src/main.c ../src/app.c ../src/config/default/peripheral/mpu/plib_mpu.c ../src/config/default/peripheral/pwm/plib_pwm0.c ../src/config/default/peripheral/smc/plib_smc.c ../src/config/default/peripheral/uart/plib_uart0.c ../src/config/default/peripheral/mcan/plib_mcan0.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1865065685/plib_afec0.o ${OBJECTDIR}/_ext/60165520/plib_clk.o ${OBJECTDIR}/_ext/60167248/plib_efc.o ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o ${OBJECTDIR}/_ext/1865468468/plib_nvic.o ${OBJECTDIR}/_ext/60177924/plib_pio.o ${OBJECTDIR}/_ext/60180175/plib_rtc.o ${OBJECTDIR}/_ext/1827571544/plib_systick.o ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o ${OBJECTDIR}/_ext/2001315827/plib_usart1.o ${OBJECTDIR}/_ext/60184501/plib_wdt.o ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o ${OBJECTDIR}/_ext/163028504/gcc_monitor.o ${OBJECTDIR}/_ext/163028504/xc32_monitor.o ${OBJECTDIR}/_ext/1014039709/sys_cache.o ${OBJECTDIR}/_ext/1881668453/sys_int.o ${OBJECTDIR}/_ext/101884895/sys_time.o ${OBJECTDIR}/_ext/1171490990/initialization.o ${OBJECTDIR}/_ext/1171490990/interrupts.o ${OBJECTDIR}/_ext/1171490990/exceptions.o ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o ${OBJECTDIR}/_ext/1171490990/tasks.o ${OBJECTDIR}/_ext/1171490990/startup_gcc.o ${OBJECTDIR}/_ext/1171490990/startup_xc32.o ${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1360937237/app.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1865065685/plib_afec0.o.d ${OBJECTDIR}/_ext/60165520/plib_clk.o.d ${OBJECTDIR}/_ext/60167248/plib_efc.o.d ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o.d ${OBJECTDIR}/_ext/1865468468/plib_nvic.o.d ${OBJECTDIR}/_ext/60177924/plib_pio.o.d ${OBJECTDIR}/_ext/60180175/plib_rtc.o.d ${OBJECTDIR}/_ext/1827571544/plib_systick.o.d ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o.d ${OBJECTDIR}/_ext/2001315827/plib_usart1.o.d ${OBJECTDIR}/_ext/60184501/plib_wdt.o.d ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o.d ${OBJECTDIR}/_ext/163028504/gcc_monitor.o.d ${OBJECTDIR}/_ext/163028504/xc32_monitor.o.d ${OBJECTDIR}/_ext/1014039709/sys_cache.o.d ${OBJECTDIR}/_ext/1881668453/sys_int.o.d ${OBJECTDIR}/_ext/101884895/sys_time.o.d ${OBJECTDIR}/_ext/1171490990/initialization.o.d ${OBJECTDIR}/_ext/1171490990/interrupts.o.d ${OBJECTDIR}/_ext/1171490990/exceptions.o.d ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o.d ${OBJECTDIR}/_ext/1171490990/tasks.o.d ${OBJECTDIR}/_ext/1171490990/startup_gcc.o.d ${OBJECTDIR}/_ext/1171490990/startup_xc32.o.d ${OBJECTDIR}/_ext/1360937237/main.o.d ${OBJECTDIR}/_ext/1360937237/app.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1865065685/plib_afec0.o ${OBJECTDIR}/_ext/60165520/plib_clk.o ${OBJECTDIR}/_ext/60167248/plib_efc.o ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o ${OBJECTDIR}/_ext/1865468468/plib_nvic.o ${OBJECTDIR}/_ext/60177924/plib_pio.o ${OBJECTDIR}/_ext/60180175/plib_rtc.o ${OBJECTDIR}/_ext/1827571544/plib_systick.o ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o ${OBJECTDIR}/_ext/60184501/plib_wdt.o ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o ${OBJECTDIR}/_ext/163028504/gcc_monitor.o ${OBJECTDIR}/_ext/163028504/xc32_monitor.o ${OBJECTDIR}/_ext/1014039709/sys_cache.o ${OBJECTDIR}/_ext/1881668453/sys_int.o ${OBJECTDIR}/_ext/101884895/sys_time.o ${OBJECTDIR}/_ext/1171490990/initialization.o ${OBJECTDIR}/_ext/1171490990/interrupts.o ${OBJECTDIR}/_ext/1171490990/exceptions.o ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o ${OBJECTDIR}/_ext/1171490990/tasks.o ${OBJECTDIR}/_ext/1171490990/startup_gcc.o ${OBJECTDIR}/_ext/1171490990/startup_xc32.o ${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1360937237/app.o ${OBJECTDIR}/_ext/60175264/plib_mpu.o ${OBJECTDIR}/_ext/60178356/plib_pwm0.o ${OBJECTDIR}/_ext/60180919/plib_smc.o ${OBJECTDIR}/_ext/1865657120/plib_uart0.o ${OBJECTDIR}/_ext/1865420181/plib_mcan0.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1865065685/plib_afec0.o.d ${OBJECTDIR}/_ext/60165520/plib_clk.o.d ${OBJECTDIR}/_ext/60167248/plib_efc.o.d ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o.d ${OBJECTDIR}/_ext/1865468468/plib_nvic.o.d ${OBJECTDIR}/_ext/60177924/plib_pio.o.d ${OBJECTDIR}/_ext/60180175/plib_rtc.o.d ${OBJECTDIR}/_ext/1827571544/plib_systick.o.d ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o.d ${OBJECTDIR}/_ext/60184501/plib_wdt.o.d ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o.d ${OBJECTDIR}/_ext/163028504/gcc_monitor.o.d ${OBJECTDIR}/_ext/163028504/xc32_monitor.o.d ${OBJECTDIR}/_ext/1014039709/sys_cache.o.d ${OBJECTDIR}/_ext/1881668453/sys_int.o.d ${OBJECTDIR}/_ext/101884895/sys_time.o.d ${OBJECTDIR}/_ext/1171490990/initialization.o.d ${OBJECTDIR}/_ext/1171490990/interrupts.o.d ${OBJECTDIR}/_ext/1171490990/exceptions.o.d ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o.d ${OBJECTDIR}/_ext/1171490990/tasks.o.d ${OBJECTDIR}/_ext/1171490990/startup_gcc.o.d ${OBJECTDIR}/_ext/1171490990/startup_xc32.o.d ${OBJECTDIR}/_ext/1360937237/main.o.d ${OBJECTDIR}/_ext/1360937237/app.o.d ${OBJECTDIR}/_ext/60175264/plib_mpu.o.d ${OBJECTDIR}/_ext/60178356/plib_pwm0.o.d ${OBJECTDIR}/_ext/60180919/plib_smc.o.d ${OBJECTDIR}/_ext/1865657120/plib_uart0.o.d ${OBJECTDIR}/_ext/1865420181/plib_mcan0.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1865065685/plib_afec0.o ${OBJECTDIR}/_ext/60165520/plib_clk.o ${OBJECTDIR}/_ext/60167248/plib_efc.o ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o ${OBJECTDIR}/_ext/1865468468/plib_nvic.o ${OBJECTDIR}/_ext/60177924/plib_pio.o ${OBJECTDIR}/_ext/60180175/plib_rtc.o ${OBJECTDIR}/_ext/1827571544/plib_systick.o ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o ${OBJECTDIR}/_ext/2001315827/plib_usart1.o ${OBJECTDIR}/_ext/60184501/plib_wdt.o ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o ${OBJECTDIR}/_ext/163028504/gcc_monitor.o ${OBJECTDIR}/_ext/163028504/xc32_monitor.o ${OBJECTDIR}/_ext/1014039709/sys_cache.o ${OBJECTDIR}/_ext/1881668453/sys_int.o ${OBJECTDIR}/_ext/101884895/sys_time.o ${OBJECTDIR}/_ext/1171490990/initialization.o ${OBJECTDIR}/_ext/1171490990/interrupts.o ${OBJECTDIR}/_ext/1171490990/exceptions.o ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o ${OBJECTDIR}/_ext/1171490990/tasks.o ${OBJECTDIR}/_ext/1171490990/startup_gcc.o ${OBJECTDIR}/_ext/1171490990/startup_xc32.o ${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1360937237/app.o
+OBJECTFILES=${OBJECTDIR}/_ext/1865065685/plib_afec0.o ${OBJECTDIR}/_ext/60165520/plib_clk.o ${OBJECTDIR}/_ext/60167248/plib_efc.o ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o ${OBJECTDIR}/_ext/1865468468/plib_nvic.o ${OBJECTDIR}/_ext/60177924/plib_pio.o ${OBJECTDIR}/_ext/60180175/plib_rtc.o ${OBJECTDIR}/_ext/1827571544/plib_systick.o ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o ${OBJECTDIR}/_ext/60184501/plib_wdt.o ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o ${OBJECTDIR}/_ext/163028504/gcc_monitor.o ${OBJECTDIR}/_ext/163028504/xc32_monitor.o ${OBJECTDIR}/_ext/1014039709/sys_cache.o ${OBJECTDIR}/_ext/1881668453/sys_int.o ${OBJECTDIR}/_ext/101884895/sys_time.o ${OBJECTDIR}/_ext/1171490990/initialization.o ${OBJECTDIR}/_ext/1171490990/interrupts.o ${OBJECTDIR}/_ext/1171490990/exceptions.o ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o ${OBJECTDIR}/_ext/1171490990/tasks.o ${OBJECTDIR}/_ext/1171490990/startup_gcc.o ${OBJECTDIR}/_ext/1171490990/startup_xc32.o ${OBJECTDIR}/_ext/1360937237/main.o ${OBJECTDIR}/_ext/1360937237/app.o ${OBJECTDIR}/_ext/60175264/plib_mpu.o ${OBJECTDIR}/_ext/60178356/plib_pwm0.o ${OBJECTDIR}/_ext/60180919/plib_smc.o ${OBJECTDIR}/_ext/1865657120/plib_uart0.o ${OBJECTDIR}/_ext/1865420181/plib_mcan0.o
 
 # Source Files
-SOURCEFILES=../src/config/default/peripheral/afec/plib_afec0.c ../src/config/default/peripheral/clk/plib_clk.c ../src/config/default/peripheral/efc/plib_efc.c ../src/config/default/peripheral/mcan/plib_mcan1.c ../src/config/default/peripheral/nvic/plib_nvic.c ../src/config/default/peripheral/pio/plib_pio.c ../src/config/default/peripheral/rtc/plib_rtc.c ../src/config/default/peripheral/systick/plib_systick.c ../src/config/default/peripheral/twihs/master/plib_twihs2_master.c ../src/config/default/peripheral/usart/plib_usart1.c ../src/config/default/peripheral/wdt/plib_wdt.c ../src/config/default/peripheral/xdmac/plib_xdmac.c ../src/config/default/stdio/gcc_monitor.c ../src/config/default/stdio/xc32_monitor.c ../src/config/default/system/cache/sys_cache.c ../src/config/default/system/int/src/sys_int.c ../src/config/default/system/time/src/sys_time.c ../src/config/default/initialization.c ../src/config/default/interrupts.c ../src/config/default/exceptions.c ../src/config/default/libc_syscalls.c ../src/config/default/tasks.c ../src/config/default/startup_gcc.c ../src/config/default/startup_xc32.c ../src/main.c ../src/app.c
+SOURCEFILES=../src/config/default/peripheral/afec/plib_afec0.c ../src/config/default/peripheral/clk/plib_clk.c ../src/config/default/peripheral/efc/plib_efc.c ../src/config/default/peripheral/mcan/plib_mcan1.c ../src/config/default/peripheral/nvic/plib_nvic.c ../src/config/default/peripheral/pio/plib_pio.c ../src/config/default/peripheral/rtc/plib_rtc.c ../src/config/default/peripheral/systick/plib_systick.c ../src/config/default/peripheral/twihs/master/plib_twihs2_master.c ../src/config/default/peripheral/wdt/plib_wdt.c ../src/config/default/peripheral/xdmac/plib_xdmac.c ../src/config/default/stdio/gcc_monitor.c ../src/config/default/stdio/xc32_monitor.c ../src/config/default/system/cache/sys_cache.c ../src/config/default/system/int/src/sys_int.c ../src/config/default/system/time/src/sys_time.c ../src/config/default/initialization.c ../src/config/default/interrupts.c ../src/config/default/exceptions.c ../src/config/default/libc_syscalls.c ../src/config/default/tasks.c ../src/config/default/startup_gcc.c ../src/config/default/startup_xc32.c ../src/main.c ../src/app.c ../src/config/default/peripheral/mpu/plib_mpu.c ../src/config/default/peripheral/pwm/plib_pwm0.c ../src/config/default/peripheral/smc/plib_smc.c ../src/config/default/peripheral/uart/plib_uart0.c ../src/config/default/peripheral/mcan/plib_mcan0.c
 
 # Pack Options 
-PACK_COMMON_OPTIONS=
+PACK_COMMON_OPTIONS=-I "${DFP_DIR}/samv71b/include"  -I "${CMSIS_DIR}/CMSIS/Core/Include"
 
 
 
@@ -109,318 +109,366 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/_ext/1865065685/plib_afec0.o: ../src/config/default/peripheral/afec/plib_afec0.c  .generated_files/flags/default/532a79933461b077e315db767618e85ab4e8a1f4 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1865065685/plib_afec0.o: ../src/config/default/peripheral/afec/plib_afec0.c  .generated_files/flags/default/8487b0a7081f4de832966525ebad25aa47d5ba1a .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1865065685" 
 	@${RM} ${OBJECTDIR}/_ext/1865065685/plib_afec0.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1865065685/plib_afec0.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1865065685/plib_afec0.o.d" -o ${OBJECTDIR}/_ext/1865065685/plib_afec0.o ../src/config/default/peripheral/afec/plib_afec0.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/60165520/plib_clk.o: ../src/config/default/peripheral/clk/plib_clk.c  .generated_files/flags/default/c0db6c70aee121717409f4b827bd8c369cda5a8b .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/60165520/plib_clk.o: ../src/config/default/peripheral/clk/plib_clk.c  .generated_files/flags/default/9614292e2000cac30eb16172719a46116425ae90 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/60165520" 
 	@${RM} ${OBJECTDIR}/_ext/60165520/plib_clk.o.d 
 	@${RM} ${OBJECTDIR}/_ext/60165520/plib_clk.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60165520/plib_clk.o.d" -o ${OBJECTDIR}/_ext/60165520/plib_clk.o ../src/config/default/peripheral/clk/plib_clk.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/60167248/plib_efc.o: ../src/config/default/peripheral/efc/plib_efc.c  .generated_files/flags/default/f585cadc3bc87fd8afb959b4b52b27fc539faef1 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/60167248/plib_efc.o: ../src/config/default/peripheral/efc/plib_efc.c  .generated_files/flags/default/a8436937c69f6e7567e67cc9e5d79c485a51112f .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/60167248" 
 	@${RM} ${OBJECTDIR}/_ext/60167248/plib_efc.o.d 
 	@${RM} ${OBJECTDIR}/_ext/60167248/plib_efc.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60167248/plib_efc.o.d" -o ${OBJECTDIR}/_ext/60167248/plib_efc.o ../src/config/default/peripheral/efc/plib_efc.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1865420181/plib_mcan1.o: ../src/config/default/peripheral/mcan/plib_mcan1.c  .generated_files/flags/default/1814a901f3ab5abb2b9c9e0108a6ec09dfc4cdc9 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1865420181/plib_mcan1.o: ../src/config/default/peripheral/mcan/plib_mcan1.c  .generated_files/flags/default/5a5244079ec06051694a3bef5c306376eba0b06e .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1865420181" 
 	@${RM} ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1865420181/plib_mcan1.o.d" -o ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o ../src/config/default/peripheral/mcan/plib_mcan1.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1865468468/plib_nvic.o: ../src/config/default/peripheral/nvic/plib_nvic.c  .generated_files/flags/default/f088eed63c41008c172e986ff33f7871662e4f72 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1865468468/plib_nvic.o: ../src/config/default/peripheral/nvic/plib_nvic.c  .generated_files/flags/default/a767d7a7c402a364865613254836f3c428b03b85 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1865468468" 
 	@${RM} ${OBJECTDIR}/_ext/1865468468/plib_nvic.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1865468468/plib_nvic.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1865468468/plib_nvic.o.d" -o ${OBJECTDIR}/_ext/1865468468/plib_nvic.o ../src/config/default/peripheral/nvic/plib_nvic.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/60177924/plib_pio.o: ../src/config/default/peripheral/pio/plib_pio.c  .generated_files/flags/default/c7795f1be4936877da737355862cfa7888ea5af2 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/60177924/plib_pio.o: ../src/config/default/peripheral/pio/plib_pio.c  .generated_files/flags/default/e11dfd9b2ce4ad3e30402938388a77bd86f19b19 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/60177924" 
 	@${RM} ${OBJECTDIR}/_ext/60177924/plib_pio.o.d 
 	@${RM} ${OBJECTDIR}/_ext/60177924/plib_pio.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60177924/plib_pio.o.d" -o ${OBJECTDIR}/_ext/60177924/plib_pio.o ../src/config/default/peripheral/pio/plib_pio.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/60180175/plib_rtc.o: ../src/config/default/peripheral/rtc/plib_rtc.c  .generated_files/flags/default/59ece1243e5fbfc2a874b47b959ca0fdc82f051d .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/60180175/plib_rtc.o: ../src/config/default/peripheral/rtc/plib_rtc.c  .generated_files/flags/default/843eb931ae4e88210fc299c568c75d20f139c5ba .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/60180175" 
 	@${RM} ${OBJECTDIR}/_ext/60180175/plib_rtc.o.d 
 	@${RM} ${OBJECTDIR}/_ext/60180175/plib_rtc.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60180175/plib_rtc.o.d" -o ${OBJECTDIR}/_ext/60180175/plib_rtc.o ../src/config/default/peripheral/rtc/plib_rtc.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1827571544/plib_systick.o: ../src/config/default/peripheral/systick/plib_systick.c  .generated_files/flags/default/ae572a48838ddce6137776f6b23266735598b97c .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1827571544/plib_systick.o: ../src/config/default/peripheral/systick/plib_systick.c  .generated_files/flags/default/1c33358f43bbed0e0945e4b2b21417e127c11a35 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1827571544" 
 	@${RM} ${OBJECTDIR}/_ext/1827571544/plib_systick.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1827571544/plib_systick.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1827571544/plib_systick.o.d" -o ${OBJECTDIR}/_ext/1827571544/plib_systick.o ../src/config/default/peripheral/systick/plib_systick.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o: ../src/config/default/peripheral/twihs/master/plib_twihs2_master.c  .generated_files/flags/default/2ea55504a51705ef67b15913804df2aa425b84a2 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o: ../src/config/default/peripheral/twihs/master/plib_twihs2_master.c  .generated_files/flags/default/823a3bdd4febf999d1f005c7b5f6be3cc8dc6874 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/621496242" 
 	@${RM} ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o.d 
 	@${RM} ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o.d" -o ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o ../src/config/default/peripheral/twihs/master/plib_twihs2_master.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/2001315827/plib_usart1.o: ../src/config/default/peripheral/usart/plib_usart1.c  .generated_files/flags/default/77c02d1b096cd18044f3de98304ac1b288e7aee8 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
-	@${MKDIR} "${OBJECTDIR}/_ext/2001315827" 
-	@${RM} ${OBJECTDIR}/_ext/2001315827/plib_usart1.o.d 
-	@${RM} ${OBJECTDIR}/_ext/2001315827/plib_usart1.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/2001315827/plib_usart1.o.d" -o ${OBJECTDIR}/_ext/2001315827/plib_usart1.o ../src/config/default/peripheral/usart/plib_usart1.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
-	
-${OBJECTDIR}/_ext/60184501/plib_wdt.o: ../src/config/default/peripheral/wdt/plib_wdt.c  .generated_files/flags/default/6b2dad352d00c75b7c194885651bf825476d3922 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/60184501/plib_wdt.o: ../src/config/default/peripheral/wdt/plib_wdt.c  .generated_files/flags/default/983cd46fe16c9d9fbcca2aa5c6adb0cee1089835 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/60184501" 
 	@${RM} ${OBJECTDIR}/_ext/60184501/plib_wdt.o.d 
 	@${RM} ${OBJECTDIR}/_ext/60184501/plib_wdt.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60184501/plib_wdt.o.d" -o ${OBJECTDIR}/_ext/60184501/plib_wdt.o ../src/config/default/peripheral/wdt/plib_wdt.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/2003650513/plib_xdmac.o: ../src/config/default/peripheral/xdmac/plib_xdmac.c  .generated_files/flags/default/60fc9f4ab57b024ac989f30bc512b4101f8b212a .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/2003650513/plib_xdmac.o: ../src/config/default/peripheral/xdmac/plib_xdmac.c  .generated_files/flags/default/14079d79e51bff44b062e19c90bac4400d62154 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/2003650513" 
 	@${RM} ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o.d 
 	@${RM} ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/2003650513/plib_xdmac.o.d" -o ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o ../src/config/default/peripheral/xdmac/plib_xdmac.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/163028504/gcc_monitor.o: ../src/config/default/stdio/gcc_monitor.c  .generated_files/flags/default/f895fe5ab0afbcd7d77f3905f4fa1c7170660d8a .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/163028504/gcc_monitor.o: ../src/config/default/stdio/gcc_monitor.c  .generated_files/flags/default/95a549992924635405f5104045ecdf54ef00e9af .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/163028504" 
 	@${RM} ${OBJECTDIR}/_ext/163028504/gcc_monitor.o.d 
 	@${RM} ${OBJECTDIR}/_ext/163028504/gcc_monitor.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/163028504/gcc_monitor.o.d" -o ${OBJECTDIR}/_ext/163028504/gcc_monitor.o ../src/config/default/stdio/gcc_monitor.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/163028504/xc32_monitor.o: ../src/config/default/stdio/xc32_monitor.c  .generated_files/flags/default/5bb00ae12834b25e7fbab7bf240edd5da0735273 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/163028504/xc32_monitor.o: ../src/config/default/stdio/xc32_monitor.c  .generated_files/flags/default/fe3eaa7c1263c21413e430aaffab068159133dbd .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/163028504" 
 	@${RM} ${OBJECTDIR}/_ext/163028504/xc32_monitor.o.d 
 	@${RM} ${OBJECTDIR}/_ext/163028504/xc32_monitor.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/163028504/xc32_monitor.o.d" -o ${OBJECTDIR}/_ext/163028504/xc32_monitor.o ../src/config/default/stdio/xc32_monitor.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1014039709/sys_cache.o: ../src/config/default/system/cache/sys_cache.c  .generated_files/flags/default/b1e50d8b683522cc65589033c234957065e0a729 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1014039709/sys_cache.o: ../src/config/default/system/cache/sys_cache.c  .generated_files/flags/default/8a292a065138dcd4e58cd0e1ddf2feb71c647b1 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1014039709" 
 	@${RM} ${OBJECTDIR}/_ext/1014039709/sys_cache.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1014039709/sys_cache.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1014039709/sys_cache.o.d" -o ${OBJECTDIR}/_ext/1014039709/sys_cache.o ../src/config/default/system/cache/sys_cache.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1881668453/sys_int.o: ../src/config/default/system/int/src/sys_int.c  .generated_files/flags/default/55fb54df848cb9c99bb731e43ccfb2be7cb70e94 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1881668453/sys_int.o: ../src/config/default/system/int/src/sys_int.c  .generated_files/flags/default/883edf13fe794a51dbab4a48c4fd9c8fb01ffd54 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1881668453" 
 	@${RM} ${OBJECTDIR}/_ext/1881668453/sys_int.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1881668453/sys_int.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1881668453/sys_int.o.d" -o ${OBJECTDIR}/_ext/1881668453/sys_int.o ../src/config/default/system/int/src/sys_int.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/101884895/sys_time.o: ../src/config/default/system/time/src/sys_time.c  .generated_files/flags/default/70e723de99be4b66e330c2dcf44df1cc23c6b83c .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/101884895/sys_time.o: ../src/config/default/system/time/src/sys_time.c  .generated_files/flags/default/7c0895343fa577607e42c496dfeb649d2dc5a955 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/101884895" 
 	@${RM} ${OBJECTDIR}/_ext/101884895/sys_time.o.d 
 	@${RM} ${OBJECTDIR}/_ext/101884895/sys_time.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/101884895/sys_time.o.d" -o ${OBJECTDIR}/_ext/101884895/sys_time.o ../src/config/default/system/time/src/sys_time.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/initialization.o: ../src/config/default/initialization.c  .generated_files/flags/default/452c98f02d66854e4d3f9c94b564b066f904da9a .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/initialization.o: ../src/config/default/initialization.c  .generated_files/flags/default/3af73c8bc6011fd49f43b47a9e8137109f83a00c .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/initialization.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/initialization.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/initialization.o.d" -o ${OBJECTDIR}/_ext/1171490990/initialization.o ../src/config/default/initialization.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/interrupts.o: ../src/config/default/interrupts.c  .generated_files/flags/default/be2552680e5419a8dc72b3bc3283744846be856f .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/interrupts.o: ../src/config/default/interrupts.c  .generated_files/flags/default/7ca38e9d126442018473363ec546d69dbeeb4699 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/interrupts.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/interrupts.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/interrupts.o.d" -o ${OBJECTDIR}/_ext/1171490990/interrupts.o ../src/config/default/interrupts.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/exceptions.o: ../src/config/default/exceptions.c  .generated_files/flags/default/b7b92ca6fefbe87bbcad814fe745a6a456203cec .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/exceptions.o: ../src/config/default/exceptions.c  .generated_files/flags/default/44119ccf638831140600f476c244749ceb8cef5a .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/exceptions.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/exceptions.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/exceptions.o.d" -o ${OBJECTDIR}/_ext/1171490990/exceptions.o ../src/config/default/exceptions.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/libc_syscalls.o: ../src/config/default/libc_syscalls.c  .generated_files/flags/default/e9ab74f8eb49fb8dc632019933032670597498ba .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/libc_syscalls.o: ../src/config/default/libc_syscalls.c  .generated_files/flags/default/b0e247d684a45fa042c9ad0f075d73e5e7ea1bed .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/libc_syscalls.o.d" -o ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o ../src/config/default/libc_syscalls.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/tasks.o: ../src/config/default/tasks.c  .generated_files/flags/default/a42c72e1fc7edf310978a5499cb43a9d13101b6c .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/tasks.o: ../src/config/default/tasks.c  .generated_files/flags/default/4543e3906030fe04e14e78cb4ff295109b242223 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/tasks.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/tasks.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/tasks.o.d" -o ${OBJECTDIR}/_ext/1171490990/tasks.o ../src/config/default/tasks.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/startup_gcc.o: ../src/config/default/startup_gcc.c  .generated_files/flags/default/e9d13a4ac3ea7ec76d3959e68d1945fb429c744b .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/startup_gcc.o: ../src/config/default/startup_gcc.c  .generated_files/flags/default/3cd03f4821ba3628a768a355d69c1ac02b76e592 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/startup_gcc.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/startup_gcc.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/startup_gcc.o.d" -o ${OBJECTDIR}/_ext/1171490990/startup_gcc.o ../src/config/default/startup_gcc.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/startup_xc32.o: ../src/config/default/startup_xc32.c  .generated_files/flags/default/31e8e51d4d6167ebe1e501313330ef8ce410c818 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/startup_xc32.o: ../src/config/default/startup_xc32.c  .generated_files/flags/default/4db9953f9bf164e2679bec0c798a00a3ac2ce259 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/startup_xc32.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/startup_xc32.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/startup_xc32.o.d" -o ${OBJECTDIR}/_ext/1171490990/startup_xc32.o ../src/config/default/startup_xc32.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  .generated_files/flags/default/83b88606d1e2ff528e2ac2e00c43cd8467c7ea63 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  .generated_files/flags/default/e041e9cce37f6473b460f693e8fc3b84c9777336 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1360937237" 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/main.o.d" -o ${OBJECTDIR}/_ext/1360937237/main.o ../src/main.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1360937237/app.o: ../src/app.c  .generated_files/flags/default/7a7b0018db6f8c62cbb7c3b78bfd583198134652 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1360937237/app.o: ../src/app.c  .generated_files/flags/default/90a7f0b68c36d11f7cdff9d537a63ef75d8dd3c .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1360937237" 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/app.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/app.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/app.o.d" -o ${OBJECTDIR}/_ext/1360937237/app.o ../src/app.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
+${OBJECTDIR}/_ext/60175264/plib_mpu.o: ../src/config/default/peripheral/mpu/plib_mpu.c  .generated_files/flags/default/db47f81a74f761fa71d7a57e822c4d4eecb3e9b6 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
+	@${MKDIR} "${OBJECTDIR}/_ext/60175264" 
+	@${RM} ${OBJECTDIR}/_ext/60175264/plib_mpu.o.d 
+	@${RM} ${OBJECTDIR}/_ext/60175264/plib_mpu.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60175264/plib_mpu.o.d" -o ${OBJECTDIR}/_ext/60175264/plib_mpu.o ../src/config/default/peripheral/mpu/plib_mpu.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/_ext/60178356/plib_pwm0.o: ../src/config/default/peripheral/pwm/plib_pwm0.c  .generated_files/flags/default/6b21767a65ab68617f376944620d71387095d833 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
+	@${MKDIR} "${OBJECTDIR}/_ext/60178356" 
+	@${RM} ${OBJECTDIR}/_ext/60178356/plib_pwm0.o.d 
+	@${RM} ${OBJECTDIR}/_ext/60178356/plib_pwm0.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60178356/plib_pwm0.o.d" -o ${OBJECTDIR}/_ext/60178356/plib_pwm0.o ../src/config/default/peripheral/pwm/plib_pwm0.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/_ext/60180919/plib_smc.o: ../src/config/default/peripheral/smc/plib_smc.c  .generated_files/flags/default/789344fb1fb93d4a8b17437a2afae9f1589cf6f9 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
+	@${MKDIR} "${OBJECTDIR}/_ext/60180919" 
+	@${RM} ${OBJECTDIR}/_ext/60180919/plib_smc.o.d 
+	@${RM} ${OBJECTDIR}/_ext/60180919/plib_smc.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60180919/plib_smc.o.d" -o ${OBJECTDIR}/_ext/60180919/plib_smc.o ../src/config/default/peripheral/smc/plib_smc.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/_ext/1865657120/plib_uart0.o: ../src/config/default/peripheral/uart/plib_uart0.c  .generated_files/flags/default/a1d82f44ddf8fd9ad3469eb5fd38a3de59e0c7a2 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
+	@${MKDIR} "${OBJECTDIR}/_ext/1865657120" 
+	@${RM} ${OBJECTDIR}/_ext/1865657120/plib_uart0.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1865657120/plib_uart0.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1865657120/plib_uart0.o.d" -o ${OBJECTDIR}/_ext/1865657120/plib_uart0.o ../src/config/default/peripheral/uart/plib_uart0.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/_ext/1865420181/plib_mcan0.o: ../src/config/default/peripheral/mcan/plib_mcan0.c  .generated_files/flags/default/6cb66d8072396420c61598a45f0ee4d3fd55ee68 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
+	@${MKDIR} "${OBJECTDIR}/_ext/1865420181" 
+	@${RM} ${OBJECTDIR}/_ext/1865420181/plib_mcan0.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1865420181/plib_mcan0.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7 -g -D__DEBUG  -gdwarf-2  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1865420181/plib_mcan0.o.d" -o ${OBJECTDIR}/_ext/1865420181/plib_mcan0.o ../src/config/default/peripheral/mcan/plib_mcan0.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
 else
-${OBJECTDIR}/_ext/1865065685/plib_afec0.o: ../src/config/default/peripheral/afec/plib_afec0.c  .generated_files/flags/default/3f4f3e8feb16d220a3d2c608d54ebae016d28693 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1865065685/plib_afec0.o: ../src/config/default/peripheral/afec/plib_afec0.c  .generated_files/flags/default/4702b3700de00c1f45319c69ae9f1abda058cd2c .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1865065685" 
 	@${RM} ${OBJECTDIR}/_ext/1865065685/plib_afec0.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1865065685/plib_afec0.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1865065685/plib_afec0.o.d" -o ${OBJECTDIR}/_ext/1865065685/plib_afec0.o ../src/config/default/peripheral/afec/plib_afec0.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/60165520/plib_clk.o: ../src/config/default/peripheral/clk/plib_clk.c  .generated_files/flags/default/1f0f3de69209c8cb6e0165d0fba31d33b845b2a6 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/60165520/plib_clk.o: ../src/config/default/peripheral/clk/plib_clk.c  .generated_files/flags/default/f4e678e27f2bfe30353d593a9ed31286adda3bf5 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/60165520" 
 	@${RM} ${OBJECTDIR}/_ext/60165520/plib_clk.o.d 
 	@${RM} ${OBJECTDIR}/_ext/60165520/plib_clk.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60165520/plib_clk.o.d" -o ${OBJECTDIR}/_ext/60165520/plib_clk.o ../src/config/default/peripheral/clk/plib_clk.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/60167248/plib_efc.o: ../src/config/default/peripheral/efc/plib_efc.c  .generated_files/flags/default/e5861ca7dc1fcb58a8a4f22debe1568a491e7d6e .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/60167248/plib_efc.o: ../src/config/default/peripheral/efc/plib_efc.c  .generated_files/flags/default/c39d64b92fcb713ec3babecc34fb4ff7d54020b8 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/60167248" 
 	@${RM} ${OBJECTDIR}/_ext/60167248/plib_efc.o.d 
 	@${RM} ${OBJECTDIR}/_ext/60167248/plib_efc.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60167248/plib_efc.o.d" -o ${OBJECTDIR}/_ext/60167248/plib_efc.o ../src/config/default/peripheral/efc/plib_efc.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1865420181/plib_mcan1.o: ../src/config/default/peripheral/mcan/plib_mcan1.c  .generated_files/flags/default/14a6d398e277c5eb3a2c476fdf17e96b71c281a .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1865420181/plib_mcan1.o: ../src/config/default/peripheral/mcan/plib_mcan1.c  .generated_files/flags/default/c7dfd1a2e943547b606d4409c919fe7290aea13e .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1865420181" 
 	@${RM} ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1865420181/plib_mcan1.o.d" -o ${OBJECTDIR}/_ext/1865420181/plib_mcan1.o ../src/config/default/peripheral/mcan/plib_mcan1.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1865468468/plib_nvic.o: ../src/config/default/peripheral/nvic/plib_nvic.c  .generated_files/flags/default/d414149ed50c68d7d976a09b2a16a9f555e00308 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1865468468/plib_nvic.o: ../src/config/default/peripheral/nvic/plib_nvic.c  .generated_files/flags/default/9342f84e0b4e7a23bb9ad14ddfc810c3515190e8 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1865468468" 
 	@${RM} ${OBJECTDIR}/_ext/1865468468/plib_nvic.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1865468468/plib_nvic.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1865468468/plib_nvic.o.d" -o ${OBJECTDIR}/_ext/1865468468/plib_nvic.o ../src/config/default/peripheral/nvic/plib_nvic.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/60177924/plib_pio.o: ../src/config/default/peripheral/pio/plib_pio.c  .generated_files/flags/default/af9611c2c2dbe28d480525424ab59a41e7c99d4d .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/60177924/plib_pio.o: ../src/config/default/peripheral/pio/plib_pio.c  .generated_files/flags/default/edc0dec0fb2459c5a340b25b96973f5ea6180b24 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/60177924" 
 	@${RM} ${OBJECTDIR}/_ext/60177924/plib_pio.o.d 
 	@${RM} ${OBJECTDIR}/_ext/60177924/plib_pio.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60177924/plib_pio.o.d" -o ${OBJECTDIR}/_ext/60177924/plib_pio.o ../src/config/default/peripheral/pio/plib_pio.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/60180175/plib_rtc.o: ../src/config/default/peripheral/rtc/plib_rtc.c  .generated_files/flags/default/a4a2f33b14b4b7163881f89413a39eee3c179d82 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/60180175/plib_rtc.o: ../src/config/default/peripheral/rtc/plib_rtc.c  .generated_files/flags/default/67dcb5547cfc4ef4697738285e06e5103451ca4c .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/60180175" 
 	@${RM} ${OBJECTDIR}/_ext/60180175/plib_rtc.o.d 
 	@${RM} ${OBJECTDIR}/_ext/60180175/plib_rtc.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60180175/plib_rtc.o.d" -o ${OBJECTDIR}/_ext/60180175/plib_rtc.o ../src/config/default/peripheral/rtc/plib_rtc.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1827571544/plib_systick.o: ../src/config/default/peripheral/systick/plib_systick.c  .generated_files/flags/default/941373f75ce42d458285b5cf89241d7fb1ca70cd .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1827571544/plib_systick.o: ../src/config/default/peripheral/systick/plib_systick.c  .generated_files/flags/default/ac306445ed174ef8facff7ea2f0612ce8b7fc09a .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1827571544" 
 	@${RM} ${OBJECTDIR}/_ext/1827571544/plib_systick.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1827571544/plib_systick.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1827571544/plib_systick.o.d" -o ${OBJECTDIR}/_ext/1827571544/plib_systick.o ../src/config/default/peripheral/systick/plib_systick.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o: ../src/config/default/peripheral/twihs/master/plib_twihs2_master.c  .generated_files/flags/default/2fe1d0ad628a3384b3c894730017311bb639115f .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o: ../src/config/default/peripheral/twihs/master/plib_twihs2_master.c  .generated_files/flags/default/426000b13024db60a43909a5609db1239ee4f925 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/621496242" 
 	@${RM} ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o.d 
 	@${RM} ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o.d" -o ${OBJECTDIR}/_ext/621496242/plib_twihs2_master.o ../src/config/default/peripheral/twihs/master/plib_twihs2_master.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/2001315827/plib_usart1.o: ../src/config/default/peripheral/usart/plib_usart1.c  .generated_files/flags/default/2b6ec5068f4692dbfe74d032fbd56b312262ee26 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
-	@${MKDIR} "${OBJECTDIR}/_ext/2001315827" 
-	@${RM} ${OBJECTDIR}/_ext/2001315827/plib_usart1.o.d 
-	@${RM} ${OBJECTDIR}/_ext/2001315827/plib_usart1.o 
-	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/2001315827/plib_usart1.o.d" -o ${OBJECTDIR}/_ext/2001315827/plib_usart1.o ../src/config/default/peripheral/usart/plib_usart1.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
-	
-${OBJECTDIR}/_ext/60184501/plib_wdt.o: ../src/config/default/peripheral/wdt/plib_wdt.c  .generated_files/flags/default/390c8d12633070df0a5dc6ea2eefd7201a4d6675 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/60184501/plib_wdt.o: ../src/config/default/peripheral/wdt/plib_wdt.c  .generated_files/flags/default/772dd84b4293dfe1676e2ed3de33e80d32dc6913 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/60184501" 
 	@${RM} ${OBJECTDIR}/_ext/60184501/plib_wdt.o.d 
 	@${RM} ${OBJECTDIR}/_ext/60184501/plib_wdt.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60184501/plib_wdt.o.d" -o ${OBJECTDIR}/_ext/60184501/plib_wdt.o ../src/config/default/peripheral/wdt/plib_wdt.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/2003650513/plib_xdmac.o: ../src/config/default/peripheral/xdmac/plib_xdmac.c  .generated_files/flags/default/367e11824b4e3dc39d6aa0a124248c5d167c919c .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/2003650513/plib_xdmac.o: ../src/config/default/peripheral/xdmac/plib_xdmac.c  .generated_files/flags/default/7a8f9075c611fe1b8bd586d9de4d98009ee2afc6 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/2003650513" 
 	@${RM} ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o.d 
 	@${RM} ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/2003650513/plib_xdmac.o.d" -o ${OBJECTDIR}/_ext/2003650513/plib_xdmac.o ../src/config/default/peripheral/xdmac/plib_xdmac.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/163028504/gcc_monitor.o: ../src/config/default/stdio/gcc_monitor.c  .generated_files/flags/default/fcbda706765f00f492c9ae5f4b7e1fabf9023abd .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/163028504/gcc_monitor.o: ../src/config/default/stdio/gcc_monitor.c  .generated_files/flags/default/4e4ec04e3284585dfd69d7fa51fbb3bb6d2f40bd .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/163028504" 
 	@${RM} ${OBJECTDIR}/_ext/163028504/gcc_monitor.o.d 
 	@${RM} ${OBJECTDIR}/_ext/163028504/gcc_monitor.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/163028504/gcc_monitor.o.d" -o ${OBJECTDIR}/_ext/163028504/gcc_monitor.o ../src/config/default/stdio/gcc_monitor.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/163028504/xc32_monitor.o: ../src/config/default/stdio/xc32_monitor.c  .generated_files/flags/default/2cefe8a526982cbdf9aecd610a6d136060ebb831 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/163028504/xc32_monitor.o: ../src/config/default/stdio/xc32_monitor.c  .generated_files/flags/default/1a65f0d4e64c5f9c5bb7932779aeedb770c4f34f .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/163028504" 
 	@${RM} ${OBJECTDIR}/_ext/163028504/xc32_monitor.o.d 
 	@${RM} ${OBJECTDIR}/_ext/163028504/xc32_monitor.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/163028504/xc32_monitor.o.d" -o ${OBJECTDIR}/_ext/163028504/xc32_monitor.o ../src/config/default/stdio/xc32_monitor.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1014039709/sys_cache.o: ../src/config/default/system/cache/sys_cache.c  .generated_files/flags/default/e20256ebef80c4db90103b210c2c375bfe00f9c1 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1014039709/sys_cache.o: ../src/config/default/system/cache/sys_cache.c  .generated_files/flags/default/6fe4e4443e4dcfc223fd2dbc418d6080c0910191 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1014039709" 
 	@${RM} ${OBJECTDIR}/_ext/1014039709/sys_cache.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1014039709/sys_cache.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1014039709/sys_cache.o.d" -o ${OBJECTDIR}/_ext/1014039709/sys_cache.o ../src/config/default/system/cache/sys_cache.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1881668453/sys_int.o: ../src/config/default/system/int/src/sys_int.c  .generated_files/flags/default/f6d5dd03838a3ad641c0fbab4b20a32f4a7f7bb0 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1881668453/sys_int.o: ../src/config/default/system/int/src/sys_int.c  .generated_files/flags/default/8e3e9974a5d8e5117b77e5c71fb06d129bb6e2f2 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1881668453" 
 	@${RM} ${OBJECTDIR}/_ext/1881668453/sys_int.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1881668453/sys_int.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1881668453/sys_int.o.d" -o ${OBJECTDIR}/_ext/1881668453/sys_int.o ../src/config/default/system/int/src/sys_int.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/101884895/sys_time.o: ../src/config/default/system/time/src/sys_time.c  .generated_files/flags/default/8616af733ef0545d088d4d628071e4e07b4bf2f .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/101884895/sys_time.o: ../src/config/default/system/time/src/sys_time.c  .generated_files/flags/default/79db0571a979a202f90a3dd2c4a5c76755cde86f .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/101884895" 
 	@${RM} ${OBJECTDIR}/_ext/101884895/sys_time.o.d 
 	@${RM} ${OBJECTDIR}/_ext/101884895/sys_time.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/101884895/sys_time.o.d" -o ${OBJECTDIR}/_ext/101884895/sys_time.o ../src/config/default/system/time/src/sys_time.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/initialization.o: ../src/config/default/initialization.c  .generated_files/flags/default/36182701f9e28ae6b5c8f946a087b03c810bddd1 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/initialization.o: ../src/config/default/initialization.c  .generated_files/flags/default/3bffaf2436ffb3bc1e966b6c6badbc275dc2336 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/initialization.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/initialization.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/initialization.o.d" -o ${OBJECTDIR}/_ext/1171490990/initialization.o ../src/config/default/initialization.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/interrupts.o: ../src/config/default/interrupts.c  .generated_files/flags/default/a1cbbebb4b44dcffa77ed671cc78941668f59e23 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/interrupts.o: ../src/config/default/interrupts.c  .generated_files/flags/default/fd9e212aee0a8b98ac58cf0ebeb524e05592d966 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/interrupts.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/interrupts.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/interrupts.o.d" -o ${OBJECTDIR}/_ext/1171490990/interrupts.o ../src/config/default/interrupts.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/exceptions.o: ../src/config/default/exceptions.c  .generated_files/flags/default/bb44773ac70dd2315ed67456d6c4006e872b2cf9 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/exceptions.o: ../src/config/default/exceptions.c  .generated_files/flags/default/196eb32283d1bb27c197d709066223d583748dc8 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/exceptions.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/exceptions.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/exceptions.o.d" -o ${OBJECTDIR}/_ext/1171490990/exceptions.o ../src/config/default/exceptions.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/libc_syscalls.o: ../src/config/default/libc_syscalls.c  .generated_files/flags/default/2f9b7a96da0d4afa993fb7acff9879921a11b6c1 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/libc_syscalls.o: ../src/config/default/libc_syscalls.c  .generated_files/flags/default/8bd5634e1a3ef2bd564d08e75d1f851265c44685 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/libc_syscalls.o.d" -o ${OBJECTDIR}/_ext/1171490990/libc_syscalls.o ../src/config/default/libc_syscalls.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/tasks.o: ../src/config/default/tasks.c  .generated_files/flags/default/52f3a43bf3bffce74afacd215a255089943c7d3a .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/tasks.o: ../src/config/default/tasks.c  .generated_files/flags/default/66f581250027110b19f399d3b738551f8bc03698 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/tasks.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/tasks.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/tasks.o.d" -o ${OBJECTDIR}/_ext/1171490990/tasks.o ../src/config/default/tasks.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/startup_gcc.o: ../src/config/default/startup_gcc.c  .generated_files/flags/default/d3396e4d58f3417dcb65ec2c4ad0a11fefcead .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/startup_gcc.o: ../src/config/default/startup_gcc.c  .generated_files/flags/default/bce2cbe1212edf13fc36d3cb5084bc621d6ed487 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/startup_gcc.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/startup_gcc.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/startup_gcc.o.d" -o ${OBJECTDIR}/_ext/1171490990/startup_gcc.o ../src/config/default/startup_gcc.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1171490990/startup_xc32.o: ../src/config/default/startup_xc32.c  .generated_files/flags/default/c04fb4ddd0241ce54dc43a84290ce3790b2d451 .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1171490990/startup_xc32.o: ../src/config/default/startup_xc32.c  .generated_files/flags/default/bfedde932559796a071052decf7c3101db6c6e67 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1171490990" 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/startup_xc32.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1171490990/startup_xc32.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1171490990/startup_xc32.o.d" -o ${OBJECTDIR}/_ext/1171490990/startup_xc32.o ../src/config/default/startup_xc32.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  .generated_files/flags/default/bf57107d0a7f859479f8cd4fad486f2feb8b242d .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1360937237/main.o: ../src/main.c  .generated_files/flags/default/30e6d0b7705f77e4f8aa3633bbba6e2b0cc76348 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1360937237" 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/main.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/main.o.d" -o ${OBJECTDIR}/_ext/1360937237/main.o ../src/main.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
-${OBJECTDIR}/_ext/1360937237/app.o: ../src/app.c  .generated_files/flags/default/2c59178071a462f6eca154c5abe4f9bb4576e57d .generated_files/flags/default/49b7bfe10dcf6079d79f4fef45d6fc682c6e5b92
+${OBJECTDIR}/_ext/1360937237/app.o: ../src/app.c  .generated_files/flags/default/13399fb4eb00e151222fbc7d5ca64cac5cbdb078 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
 	@${MKDIR} "${OBJECTDIR}/_ext/1360937237" 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/app.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1360937237/app.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1360937237/app.o.d" -o ${OBJECTDIR}/_ext/1360937237/app.o ../src/app.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/_ext/60175264/plib_mpu.o: ../src/config/default/peripheral/mpu/plib_mpu.c  .generated_files/flags/default/b35aef7b93674f5de5f612f421230edd28275996 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
+	@${MKDIR} "${OBJECTDIR}/_ext/60175264" 
+	@${RM} ${OBJECTDIR}/_ext/60175264/plib_mpu.o.d 
+	@${RM} ${OBJECTDIR}/_ext/60175264/plib_mpu.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60175264/plib_mpu.o.d" -o ${OBJECTDIR}/_ext/60175264/plib_mpu.o ../src/config/default/peripheral/mpu/plib_mpu.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/_ext/60178356/plib_pwm0.o: ../src/config/default/peripheral/pwm/plib_pwm0.c  .generated_files/flags/default/57de46ca41d8f16f6517aebfe12a97a0c7aac0be .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
+	@${MKDIR} "${OBJECTDIR}/_ext/60178356" 
+	@${RM} ${OBJECTDIR}/_ext/60178356/plib_pwm0.o.d 
+	@${RM} ${OBJECTDIR}/_ext/60178356/plib_pwm0.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60178356/plib_pwm0.o.d" -o ${OBJECTDIR}/_ext/60178356/plib_pwm0.o ../src/config/default/peripheral/pwm/plib_pwm0.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/_ext/60180919/plib_smc.o: ../src/config/default/peripheral/smc/plib_smc.c  .generated_files/flags/default/452a07384e1ae1b531fdf641daa9d78685e09d1c .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
+	@${MKDIR} "${OBJECTDIR}/_ext/60180919" 
+	@${RM} ${OBJECTDIR}/_ext/60180919/plib_smc.o.d 
+	@${RM} ${OBJECTDIR}/_ext/60180919/plib_smc.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/60180919/plib_smc.o.d" -o ${OBJECTDIR}/_ext/60180919/plib_smc.o ../src/config/default/peripheral/smc/plib_smc.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/_ext/1865657120/plib_uart0.o: ../src/config/default/peripheral/uart/plib_uart0.c  .generated_files/flags/default/1b38d93931591705fdedcaba924aa34d488bdbf9 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
+	@${MKDIR} "${OBJECTDIR}/_ext/1865657120" 
+	@${RM} ${OBJECTDIR}/_ext/1865657120/plib_uart0.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1865657120/plib_uart0.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1865657120/plib_uart0.o.d" -o ${OBJECTDIR}/_ext/1865657120/plib_uart0.o ../src/config/default/peripheral/uart/plib_uart0.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
+	
+${OBJECTDIR}/_ext/1865420181/plib_mcan0.o: ../src/config/default/peripheral/mcan/plib_mcan0.c  .generated_files/flags/default/afdff0977e38c717257e1150bf7528f623041f96 .generated_files/flags/default/f59a0add661a1cc957e622f44f8bd929697f5b24
+	@${MKDIR} "${OBJECTDIR}/_ext/1865420181" 
+	@${RM} ${OBJECTDIR}/_ext/1865420181/plib_mcan0.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1865420181/plib_mcan0.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -mcpu=cortex-m7  -x c -c -D__$(MP_PROCESSOR_OPTION)__  -mthumb -I "../src" -I "../src/config/default" -I "../src/packs/ATSAMV71Q21B_DFP" ${PACK_COMMON_OPTIONS}  -Os -ffunction-sections -mlong-calls -Wall -MP -MMD -MF "${OBJECTDIR}/_ext/1865420181/plib_mcan0.o.d" -o ${OBJECTDIR}/_ext/1865420181/plib_mcan0.o ../src/config/default/peripheral/mcan/plib_mcan0.c  -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD) 
 	
 endif
 

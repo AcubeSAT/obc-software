@@ -25,6 +25,11 @@
             <logicalFolder name="f12" displayName="mcan" projectFiles="true">
               <itemPath>../src/config/default/peripheral/mcan/plib_mcan_common.h</itemPath>
               <itemPath>../src/config/default/peripheral/mcan/plib_mcan1.h</itemPath>
+              <itemPath>../src/config/default/peripheral/mcan/plib_mcan0.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f6" displayName="mpu" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/mpu/plib_mpu.h</itemPath>
+              <itemPath>../src/config/default/peripheral/mpu/plib_mpu_local.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="nvic" projectFiles="true">
               <itemPath>../src/config/default/peripheral/nvic/plib_nvic.h</itemPath>
@@ -32,9 +37,16 @@
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/default/peripheral/pio/plib_pio.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f13" displayName="pwm" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/pwm/plib_pwm0.h</itemPath>
+              <itemPath>../src/config/default/peripheral/pwm/plib_pwm_common.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f9" displayName="rtc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc_common.h</itemPath>
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f14" displayName="smc" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/smc/plib_smc.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f4" displayName="systick" projectFiles="true">
               <itemPath>../src/config/default/peripheral/systick/plib_systick.h</itemPath>
@@ -45,9 +57,9 @@
                 <itemPath>../src/config/default/peripheral/twihs/master/plib_twihs2_master.h</itemPath>
               </logicalFolder>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="usart" projectFiles="true">
-              <itemPath>../src/config/default/peripheral/usart/plib_usart_common.h</itemPath>
-              <itemPath>../src/config/default/peripheral/usart/plib_usart1.h</itemPath>
+            <logicalFolder name="f15" displayName="uart" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/uart/plib_uart_common.h</itemPath>
+              <itemPath>../src/config/default/peripheral/uart/plib_uart0.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f11" displayName="wdt" projectFiles="true">
               <itemPath>../src/config/default/peripheral/wdt/plib_wdt.h</itemPath>
@@ -127,7 +139,6 @@
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/utmi.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/usbhs.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/fuses.h</itemPath>
-            <itemPath>../src/packs/ATSAMV71Q21B_DFP/component/sdramc.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f2" displayName="instance" projectFiles="true">
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/wdt.h</itemPath>
@@ -187,7 +198,6 @@
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/twihs0.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/pioa.h</itemPath>
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/fuses.h</itemPath>
-            <itemPath>../src/packs/ATSAMV71Q21B_DFP/instance/sdramc.h</itemPath>
           </logicalFolder>
           <logicalFolder name="f3" displayName="pio" projectFiles="true">
             <itemPath>../src/packs/ATSAMV71Q21B_DFP/pio/samv71q21b.h</itemPath>
@@ -241,6 +251,10 @@
             </logicalFolder>
             <logicalFolder name="f12" displayName="mcan" projectFiles="true">
               <itemPath>../src/config/default/peripheral/mcan/plib_mcan1.c</itemPath>
+              <itemPath>../src/config/default/peripheral/mcan/plib_mcan0.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f6" displayName="mpu" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/mpu/plib_mpu.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f3" displayName="nvic" projectFiles="true">
               <itemPath>../src/config/default/peripheral/nvic/plib_nvic.c</itemPath>
@@ -248,8 +262,14 @@
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/default/peripheral/pio/plib_pio.c</itemPath>
             </logicalFolder>
+            <logicalFolder name="f13" displayName="pwm" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/pwm/plib_pwm0.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="f9" displayName="rtc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f14" displayName="smc" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/smc/plib_smc.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f4" displayName="systick" projectFiles="true">
               <itemPath>../src/config/default/peripheral/systick/plib_systick.c</itemPath>
@@ -259,8 +279,8 @@
                 <itemPath>../src/config/default/peripheral/twihs/master/plib_twihs2_master.c</itemPath>
               </logicalFolder>
             </logicalFolder>
-            <logicalFolder name="f6" displayName="usart" projectFiles="true">
-              <itemPath>../src/config/default/peripheral/usart/plib_usart1.c</itemPath>
+            <logicalFolder name="f15" displayName="uart" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/uart/plib_uart0.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f11" displayName="wdt" projectFiles="true">
               <itemPath>../src/config/default/peripheral/wdt/plib_wdt.c</itemPath>
@@ -300,26 +320,28 @@
                    displayName="Important Files"
                    projectFiles="false">
       <logicalFolder name="f1" displayName="default.mhc" projectFiles="true">
-        <itemPath>../src/config/default/default.mhc/afec0.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/cmsis.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/core.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/dfp.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/efc.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/HarmonyCore.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/mcan0.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/mcan1.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/pwm0.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/smc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/twihs2.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/uart0.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/HarmonyCore.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/dfp.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/settings.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/mcan0.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/core.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/efc.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/pwm0.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/project.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/uart0.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/mcan1.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/cmsis.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/afec0.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>
       </logicalFolder>
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/default/harmony-manifest-success.yml</itemPath>
       <itemPath>../src/config/default/harmony-manifest-failure.yml</itemPath>
+      <itemPath>../src/config/default/pin_configurations.csv</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -335,7 +357,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>EdbgTool</platformTool>
         <languageToolchain>ARM</languageToolchain>
-        <languageToolchainVersion>11.1.0</languageToolchainVersion>
+        <languageToolchainVersion>9.2.1</languageToolchainVersion>
         <platform>2</platform>
       </toolsSet>
       <packs>
