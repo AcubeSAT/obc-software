@@ -90,6 +90,7 @@ include_directories(lib/SEGGER/RTT)
 include_directories(lib/SEGGER/Config)
 include_directories(lib/cobs-c)
 include_directories(lib/atsam-component-drivers/MCP9808/inc)
+include_directories(lib/atsam-component-drivers/NANDFlash/Inc)
 add_subdirectory(lib/cross-platform-software)
 
 file(GLOB_RECURSE DRIVER_SOURCES "lib/atsam-component-drivers/MCP9808/*.cpp")
