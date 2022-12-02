@@ -61,7 +61,7 @@ void SMC_Initialize( void )
 
 
 
-
+    MATRIX_REGS->CCFG_SMCNFCS = 8;
 
     /* Chip Select CS3 Timings */
     /* Setup SMC SETUP register */
