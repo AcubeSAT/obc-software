@@ -106,7 +106,7 @@ void CAN::Driver::mcan1RxFifo0Callback(uint8_t numberOfMessages, uintptr_t conte
     }
 
     for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
-        memset(&rxFifo0, 0x0, (numberOfMessages * MCAN1_RX_FIFO0_ELEMENT_SIZE));
+        memset(&rxFifo0, 0x0, (numberOfMessages * sizeof(MCAN_RX_BUFFER)));
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_0, 1, &rxFifo0)) {
             if (rxFifo0.data[0] >> 4 == CAN::TPProtocol::Frame::Single) {
                 logMessage(rxFifo0, Main);
@@ -133,7 +133,7 @@ void CAN::Driver::mcan1RxFifo1Callback(uint8_t numberOfMessages, uintptr_t conte
     }
 
     for (size_t messageNumber = 0; messageNumber < numberOfMessages; messageNumber++) {
-        memset(&rxFifo1, 0x0, MCAN1_RX_FIFO0_ELEMENT_SIZE);
+        memset(&rxFifo1, 0x0, sizeof(MCAN_RX_BUFFER));
         if (MCAN1_MessageReceiveFifo(MCAN_RX_FIFO_1, 1, &rxFifo1)) {
             logMessage(rxFifo1, Main);
             CAN::Application::parseMessage(getFrame(rxFifo1));
@@ -144,7 +144,7 @@ void CAN::Driver::mcan1RxFifo1Callback(uint8_t numberOfMessages, uintptr_t conte
 void CAN::Driver::send(const CAN::Frame &message) {
     using namespace CAN;
 
-    memset(&Driver::txFifo, 0, MCAN1_TX_FIFO_BUFFER_ELEMENT_SIZE);
+    memset(&Driver::txFifo, 0, sizeof(MCAN_TX_BUFFER));
 
     Driver::txFifo.brs = 1;
     Driver::txFifo.fdf = 1;
