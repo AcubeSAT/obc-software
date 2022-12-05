@@ -43,8 +43,6 @@ void Task1(void *pvParameters) {
     PIO_PinWrite(LCL_NAND_SET_PIN, true);
     PWM0_ChannelsStart(PWM_CHANNEL_0_MASK);
 
-
-//    PWM0_ChannelsStart(PWM_CHANNEL_0_MASK);
     PIO_PinWrite(LCL_NAND_SET_PIN, false); // break point 2, before this runs
     vTaskDelay(pdMS_TO_TICKS(100));
     PIO_PinWrite(LCL_NAND_SET_PIN, true);
@@ -53,30 +51,12 @@ void Task1(void *pvParameters) {
 
     PIO_PinWrite(LCL_NAND_RST_PIN, false); // break point 4, before this runs
 
+    PIO_PinWrite(LCL_NAND_RST_PIN, true); // break point 5, before this runs
 
-//    PIO_PinWrite(LCL_MRAM_RST_PIN, true); // RESET
-//    PIO_PinWrite(LCL_MRAM_SET_PIN, true); // SET
-//    PWM0_ChannelsStart(PWM_CHANNEL_1_MASK);
-//    PIO_PinWrite(LCL_MRAM_SET_PIN, false); // enable set
-//    vTaskDelay(pdMS_TO_TICKS(100)); // any better ideas?
-//    PIO_PinWrite(LCL_MRAM_SET_PIN, true); // disable set
-//
-//    PIO_PinWrite(LCL_CAN_2_RST_PIN, true); // RESET
-//    PIO_PinWrite(LCL_CAN_2_SET_PIN, true); // SET
-//    PWM0_ChannelsStart(PWM_CHANNEL_2_MASK);
-//    PIO_PinWrite(LCL_CAN_2_SET_PIN, false); // enable set
-//    vTaskDelay(pdMS_TO_TICKS(100)); // any better ideas?
-//    PIO_PinWrite(LCL_CAN_2_SET_PIN, true); // disable set
-//
-//    PIO_PinWrite(LCL_CAN_1_RST_PIN, true); // RESET
-//    PIO_PinWrite(LCL_CAN_1_SET_PIN, true); // SET
-//    PWM0_ChannelsStart(PWM_CHANNEL_3_MASK);
-//    PIO_PinWrite(LCL_CAN_1_SET_PIN, false); // enable set
-//    vTaskDelay(pdMS_TO_TICKS(100)); // any better ideas?
-//    PIO_PinWrite(LCL_CAN_1_SET_PIN, true); // disable set
+    PWM0_ChannelsStart(PWM_CHANNEL_0_MASK); // break point 6, before this runs
 
     while (true) {
-        PIO_PinToggle(PIO_PIN_PA30); // break point 5, before this runs
+        PIO_PinToggle(PIO_PIN_PA30); // break point 7, before this runs
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
