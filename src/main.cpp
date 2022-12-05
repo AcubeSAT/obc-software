@@ -51,7 +51,7 @@ void Task1(void *pvParameters) {
 
     PWM0_ChannelsStop(PWM_CHANNEL_0_MASK); // break point 3, before this runs
 
-    PIO_PinWrite(LCL_NAND_RST_PIN, true); // break point 4, before this runs
+    PIO_PinWrite(LCL_NAND_RST_PIN, false); // break point 4, before this runs
 
 
 //    PIO_PinWrite(LCL_MRAM_RST_PIN, true); // RESET
