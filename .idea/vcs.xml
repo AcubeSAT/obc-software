@@ -5,5 +5,10 @@
     <mapping directory="$PROJECT_DIR$/lib/atsam-component-drivers" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/cobs-c" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lib/cross-platform-software" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/cross-platform-software/lib/ecss-services" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/cross-platform-software/lib/ecss-services/ci/page_style/doxygen_dark_theme" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/cross-platform-software/lib/ecss-services/lib/Catch2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/cross-platform-software/lib/ecss-services/lib/etl" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/cross-platform-software/lib/ecss-services/lib/logger" vcs="Git" />
   </component>
 </project>

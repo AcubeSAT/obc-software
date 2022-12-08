@@ -298,10 +298,6 @@
 #define OBC_UART_TX_Get()               ((PIOA_REGS->PIO_PDSR >> 10) & 0x1)
 #define OBC_UART_TX_PIN                  PIO_PIN_PA10
 
-/*** Macros for MEM_NAND_ENABLE_1 pin ***/
-#define MEM_NAND_ENABLE_1_Get()               ((PIOD_REGS->PIO_PDSR >> 19) & 0x1)
-#define MEM_NAND_ENABLE_1_PIN                  PIO_PIN_PD19
-
 /*** Macros for MEM_NAND_BUSY_1 pin ***/
 #define MEM_NAND_BUSY_1_Set()               (PIOA_REGS->PIO_SODR = (1<<12))
 #define MEM_NAND_BUSY_1_Clear()             (PIOA_REGS->PIO_CODR = (1<<12))

@@ -14,6 +14,12 @@ children:
   - type: KeyValueSet
     attributes: {id: SMC_BAT_CS1}
     children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
     - type: Values
       children:
       - type: Dynamic
@@ -39,12 +45,19 @@ children:
       - type: Dynamic
         attributes: {id: smc, value: '0'}
   - type: Boolean
-    attributes: {id: SMC_CHIP_SELECT3}
+    attributes: {id: SMC_CHIP_SELECT1}
     children:
     - type: Values
       children:
       - type: User
         attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: SMC_CHIP_SELECT3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'false'}
   - type: KeyValueSet
     attributes: {id: SMC_DATA_BUS_CS0}
     children:
@@ -59,6 +72,8 @@ children:
       children:
       - type: Dynamic
         attributes: {id: smc, value: '1'}
+      - type: User
+        attributes: {value: '0'}
   - type: KeyValueSet
     attributes: {id: SMC_DATA_BUS_CS2}
     children:
@@ -111,12 +126,26 @@ children:
       - type: Dynamic
         attributes: {id: smc, value: '0'}
   - type: Integer
+    attributes: {id: SMC_NWE_PULSE_CS1}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '8'}
+  - type: Integer
     attributes: {id: SMC_NWE_PULSE_CS3}
     children:
     - type: Values
       children:
       - type: User
         attributes: {value: '8'}
+  - type: Integer
+    attributes: {id: SMC_NWE_SETUP_CS1}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '3'}
   - type: Integer
     attributes: {id: SMC_NWE_SETUP_CS3}
     children:

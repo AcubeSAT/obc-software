@@ -2674,21 +2674,21 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: MEM_NAND_ENABLE_1}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_67_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_NCS3}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_67_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: A}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_68_FUNCTION_NAME}
     children:
@@ -2723,21 +2723,21 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: MEM_NAND_ENABLE_2}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_69_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_NCS1}
   - type: String
     attributes: {id: PIN_69_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_NCS1/SDCS}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_6_DIR}
     children:
@@ -3486,7 +3486,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '411570672'}
+        attributes: {id: core, value: '411308528'}
   - type: Hex
     attributes: {id: PIOD_SODR_VALUE}
     children:
