@@ -65,8 +65,10 @@ void Task1(void *pvParameters) {
 
     PWM0_ChannelDutySet(PWM_CHANNEL_0, 7500); // break point 10, // before this runs
 
+    PWM0_ChannelDutySet(PWM_CHANNEL_0, 0); // break point 11, // before this runs
+
     while (true) {
-        PIO_PinToggle(PIO_PIN_PA30); // break point 11, before this runs
+        PIO_PinToggle(PIO_PIN_PA30); // break point 12, before this runs
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
