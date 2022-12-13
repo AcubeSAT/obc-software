@@ -2674,21 +2674,21 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: GPIO_PD19}
   - type: String
     attributes: {id: PIN_67_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: GPIO}
   - type: String
     attributes: {id: PIN_67_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: GPIO}
   - type: String
     attributes: {id: PIN_68_FUNCTION_NAME}
     children:

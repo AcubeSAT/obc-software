@@ -54,7 +54,7 @@
 64,PA11,CAN_SILENT_1,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
 65,PD20,MEM_NAND_BUSY_2,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 66,PA10,OBC_UART_TX,UART0_UTXD0,n/a,n/a,No,Disabled,No,No,Disabled,Low
-67,PD19,,Available,In,,,,,,,
+67,PD19,GPIO_PD19,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 68,PA12,MEM_NAND_BUSY_1,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 69,PD18,,EBI_NCS1,n/a,n/a,No,Disabled,No,No,Disabled,Low
 70,PA27,MEM_NAND_WR_PROT,GPIO,Out,Low,No,Disabled,No,No,Disabled,Low

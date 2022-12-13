@@ -60,7 +60,7 @@ void SMC_Initialize( void )
 {
 
 
-
+    MATRIX_REGS->CCFG_SMCNFCS = 8;
     /* Chip Select CS1 Timings */
     /* Setup SMC SETUP register */
     SMC_REGS->SMC_CS_NUMBER[1].SMC_SETUP= SMC_SETUP_NWE_SETUP(3U) | SMC_SETUP_NCS_WR_SETUP(16U) | SMC_SETUP_NRD_SETUP(16U) | SMC_SETUP_NCS_RD_SETUP(16U);

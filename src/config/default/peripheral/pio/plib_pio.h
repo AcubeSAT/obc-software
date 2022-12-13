@@ -298,6 +298,15 @@
 #define OBC_UART_TX_Get()               ((PIOA_REGS->PIO_PDSR >> 10) & 0x1)
 #define OBC_UART_TX_PIN                  PIO_PIN_PA10
 
+/*** Macros for GPIO_PD19 pin ***/
+#define GPIO_PD19_Set()               (PIOD_REGS->PIO_SODR = (1<<19))
+#define GPIO_PD19_Clear()             (PIOD_REGS->PIO_CODR = (1<<19))
+#define GPIO_PD19_Toggle()            (PIOD_REGS->PIO_ODSR ^= (1<<19))
+#define GPIO_PD19_OutputEnable()      (PIOD_REGS->PIO_OER = (1<<19))
+#define GPIO_PD19_InputEnable()       (PIOD_REGS->PIO_ODR = (1<<19))
+#define GPIO_PD19_Get()               ((PIOD_REGS->PIO_PDSR >> 19) & 0x1)
+#define GPIO_PD19_PIN                  PIO_PIN_PD19
+
 /*** Macros for MEM_NAND_BUSY_1 pin ***/
 #define MEM_NAND_BUSY_1_Set()               (PIOA_REGS->PIO_SODR = (1<<12))
 #define MEM_NAND_BUSY_1_Clear()             (PIOA_REGS->PIO_CODR = (1<<12))
