@@ -32,12 +32,29 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 #endif
 
+const static inline uint16_t Task1StackDepth = 2000;
+StackType_t taskStack[Task1StackDepth];
+StaticTask_t task1Buffer;
+
+void CANLCLInit(void *pvParameters) {
+    PIO_PinWrite(LCL_CAN_2_RST_PIN, true); // break point 1 here, before any LCL init code runs
+    PIO_PinWrite(LCL_CAN_2_SET_PIN, true);
+    PWM0_ChannelsStart(PWM_CHANNEL_2_MASK);
+
+    PIO_PinWrite(LCL_CAN_2_SET_PIN, false); // break point 2, before this runs
+    vTaskDelay(pdMS_TO_TICKS(100));
+    PIO_PinWrite(LCL_CAN_2_SET_PIN, true);
+}
+
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 //    initializeTasks();
 //
 //    housekeepingTask.emplace();
     uartGatekeeperTask.emplace();
+    xTaskCreateStatic(CANLCLInit, "CAN LCL Init",
+                      2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
+                      &task1Buffer);
 //    timeBasedSchedulingTask.emplace();
 //    statisticsReportingTask.emplace();
 //    updateParametersTask.emplace();
