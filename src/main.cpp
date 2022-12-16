@@ -31,6 +31,70 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 #endif
 
+/********************************* MRAM Code */
+#define MRAM_BASE_ADDRESS         (0x60000000) // NCS0 base address
+static void accessMRAMTest1() {
+    uint32_t i;
+    uint8_t *ptr = (uint8_t *) MRAM_BASE_ADDRESS;
+    for (i = 0; i < 10 * 1024; ++i) {
+        if (i & 1) {
+            ptr[i] = 0x96;
+        } else {
+            ptr[i] = 0x55;
+        }
+    }
+    for (i = 0; i < 10 * 1024; ++i) {
+        if (i & 1) {
+            if (ptr[i] != 0x96) {
+                LOG_DEBUG << "Wrong value in address = " << i;
+            }
+            else {
+                LOG_DEBUG << "Correct value in address = " << i;
+            }
+        } else {
+            if (ptr[i] != 0x55) {
+                LOG_DEBUG << "Wrong value in address = " << i;
+            }
+            else {
+                LOG_DEBUG << "Correct value in address = " << i;
+            }
+        }
+    }
+}
+
+static void accessMRAMTest2()
+{
+    uint32_t i;
+    uint32_t *ptr = (uint32_t *) MRAM_BASE_ADDRESS;
+
+    for (i = 0; i < 10 * 1024; i+=4) {
+        if (i & 1) {
+            ptr[i] = i;
+        } else {
+            ptr[i] = 0xEFBEADDE;
+        }
+    }
+    for (i = 0; i < 10 * 1024; ++i) {
+        if (i & 1) {
+            if (ptr[i] != i) {
+                LOG_DEBUG << "Wrong value in address = " << i;
+            }
+            else {
+                LOG_DEBUG << "Correct value in address = " << i;
+            }
+        } else {
+            if (ptr[i] != 0xEFBEADDE) {
+                LOG_DEBUG << "Wrong value in address = " << i;
+            }
+            else {
+                LOG_DEBUG << "Correct value in address = " << i;
+            }
+        }
+    }
+}
+
+/********************************* MRAM Code */
+
 const static inline uint16_t Task1StackDepth = 2000;
 
 StackType_t taskStack[Task1StackDepth];
@@ -39,37 +103,12 @@ StaticTask_t task1Buffer;
 
 void Task1(void *pvParameters) {
 
-    PIO_PinWrite(LCL_NAND_RST_PIN, true); // break point 1 here, before any LCL init code runs
-    PIO_PinWrite(LCL_NAND_SET_PIN, true);
-    PWM0_ChannelsStart(PWM_CHANNEL_0_MASK);
+    accessMRAMTest1(); // write 1 byte at a time
 
-    PIO_PinWrite(LCL_NAND_SET_PIN, false); // break point 2, before this runs
-    vTaskDelay(pdMS_TO_TICKS(100));
-    PIO_PinWrite(LCL_NAND_SET_PIN, true);
-
-    PWM0_ChannelsStop(PWM_CHANNEL_0_MASK); // break point 3, before this runs
-
-    PIO_PinWrite(LCL_NAND_RST_PIN, false); // break point 4, before this runs
-
-    PIO_PinWrite(LCL_NAND_RST_PIN, true); // break point 5, before this runs
-
-    PWM0_ChannelsStart(PWM_CHANNEL_0_MASK); // break point 6, before this runs
-
-    PIO_PinWrite(LCL_NAND_SET_PIN, false); // break point 7, before this runs
-    vTaskDelay(pdMS_TO_TICKS(100));
-    PIO_PinWrite(LCL_NAND_SET_PIN, true);
-
-    PWM0_ChannelDutySet(PWM_CHANNEL_0, PWM0_ChannelPeriodGet(PWM_CHANNEL_0)); // break point 8, before this runs
-
-    PWM0_ChannelDutySet(PWM_CHANNEL_0, 15000); // break point 9, before this runs, period = 15000
-
-    PWM0_ChannelDutySet(PWM_CHANNEL_0, 7500); // break point 10, // before this runs
-
-    PWM0_ChannelDutySet(PWM_CHANNEL_0, 0); // break point 11, // before this runs
+    // TODO: recheck this test
+    accessMRAMTest2(); // write 1 word at a time
 
     while (true) {
-        PIO_PinToggle(PIO_PIN_PA30); // break point 12, before this runs
-        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 
@@ -93,6 +132,7 @@ extern "C" void main_cpp() {
     xTaskCreateStatic(Task1, "Task1",
                       2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
                       &task1Buffer);
+    uartGatekeeperTask->createTask();
 
     vTaskStartScheduler();
 
