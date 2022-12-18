@@ -18,7 +18,7 @@ void CANGatekeeperTask::execute() {
     CAN::Frame message = {};
 
     while (true) {
-        message.empty();
+
         xQueueReceive(outgoingQueue, &message, portMAX_DELAY);
 
         CAN::Driver::send(message);

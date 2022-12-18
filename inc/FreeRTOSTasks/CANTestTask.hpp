@@ -8,7 +8,7 @@ class CANTestTask : public Task {
 private:
 
 public:
-    const static inline uint16_t TaskStackDepth = 1500;
+    const static inline uint16_t TaskStackDepth = 3000;
 
     StackType_t taskStack[TaskStackDepth];
 

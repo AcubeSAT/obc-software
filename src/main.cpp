@@ -37,28 +37,30 @@ extern "C" void main_cpp() {
     uartGatekeeperTask.emplace();
 //    timeKeepingTask.emplace();
 //    ambientTemperatureTask.emplace();
-    watchdogTask.emplace();
+//    watchdogTask.emplace();
 //    mcuTemperatureTask.emplace();
     housekeepingTask.emplace();
 //    timeBasedSchedulingTask.emplace();
-    statisticsReportingTask.emplace();
-    updateParametersTask.emplace();
-    canTestTask.emplace();
+//    statisticsReportingTask.emplace();
+//    updateParametersTask.emplace();
+
 //    tcHandlingTask.emplace();
     canGatekeeperTask.emplace();
+    canTestTask.emplace();
 
-    updateParametersTask->createTask();
-    statisticsReportingTask->createTask();
+  //  updateParametersTask->createTask();
+ //   statisticsReportingTask->createTask();
     housekeepingTask->createTask();
 //    timeBasedSchedulingTask->createTask();
 //    tcHandlingTask->createTask();
-    canTestTask->createTask();
+
     canGatekeeperTask->createTask();
+    canTestTask->createTask();
 //    ambientTemperatureTask->createTask();
 //    mcuTemperatureTask->createTask();
 //    timeKeepingTask->createTask();
     uartGatekeeperTask->createTask();
-    watchdogTask->createTask();
+ //   watchdogTask->createTask();
 
     vTaskStartScheduler();
 

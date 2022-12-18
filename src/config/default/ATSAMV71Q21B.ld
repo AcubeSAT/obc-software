@@ -38,7 +38,7 @@ ENTRY(Reset_Handler)
 MEMORY
 {
   rom      (rx)  : ORIGIN = 0x00400000, LENGTH = 0x00200000
-  ram      (rwx) : ORIGIN = 0x20400000, LENGTH = 0x00060000
+  ram      (rwx) : ORIGIN = 0x20400000, LENGTH = 0x0005e000
   ram_nocache (rwx) : ORIGIN = 0x2045E000, LENGTH = 0x2000
 }
 

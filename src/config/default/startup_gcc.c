@@ -105,7 +105,8 @@ void Reset_Handler(void)
 
         /* Initialize the C library */
         __libc_init_array();
-
+        //MPU->CTRL = MPU_CTRL_ENABLE_Msk  | MPU_CTRL_PRIVDEFENA_Msk;
+        MPU_Initialize();
         /* Branch to main function */
         main();
 

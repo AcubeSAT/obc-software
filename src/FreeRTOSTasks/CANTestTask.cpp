@@ -7,7 +7,7 @@ void CANTestTask::execute() {
     /**
      * Simple 64 byte message sending
      */
-    message.id = 0x45A;
+    message.id = 0x10A;
     for (uint8_t idx = 0; idx < CAN::Frame::MaxDataLength; idx++) {
         message.data.push_back(idx);
     }
