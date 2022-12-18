@@ -16,7 +16,7 @@
 #include "UARTGatekeeperTask.hpp"
 #include "WatchdogTask.hpp"
 
-#define IDLE_TASK_SIZE 4000
+#define IDLE_TASK_SIZE 100
 
 #if configSUPPORT_STATIC_ALLOCATION
 /* static memory allocation for the IDLE task */
@@ -35,6 +35,7 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 const static inline uint16_t Task1StackDepth = 2000;
 StackType_t taskStack[Task1StackDepth];
 StaticTask_t task1Buffer;
+TaskHandle_t taskHandle1;
 
 void CANLCLInit(void *pvParameters) {
     PIO_PinWrite(LCL_CAN_2_RST_PIN, true); // break point 1 here, before any LCL init code runs
@@ -44,6 +45,8 @@ void CANLCLInit(void *pvParameters) {
     PIO_PinWrite(LCL_CAN_2_SET_PIN, false); // break point 2, before this runs
     vTaskDelay(pdMS_TO_TICKS(100));
     PIO_PinWrite(LCL_CAN_2_SET_PIN, true);
+
+    vTaskSuspend(taskHandle1);
 }
 
 extern "C" void main_cpp() {
@@ -52,7 +55,7 @@ extern "C" void main_cpp() {
 //
 //    housekeepingTask.emplace();
     uartGatekeeperTask.emplace();
-    xTaskCreateStatic(CANLCLInit, "CAN LCL Init",
+    taskHandle1 = xTaskCreateStatic(CANLCLInit, "CAN LCL Init",
                       2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
                       &task1Buffer);
 //    timeBasedSchedulingTask.emplace();
@@ -67,9 +70,9 @@ extern "C" void main_cpp() {
 //    housekeepingTask->createTask();
 //    timeBasedSchedulingTask->createTask();
 //    tcHandlingTask->createTask();
+    uartGatekeeperTask->createTask();
     canGatekeeperTask->createTask();
     canTestTask->createTask();
-    uartGatekeeperTask->createTask();
 
     vTaskStartScheduler();
 
