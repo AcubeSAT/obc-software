@@ -86,6 +86,8 @@ void UART0_WriteCallbackRegister( UART_CALLBACK callback, uintptr_t context );
 void UART0_ReadCallbackRegister( UART_CALLBACK callback, uintptr_t context );
 
 
+bool UART0_TransmitComplete( void );
+
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 

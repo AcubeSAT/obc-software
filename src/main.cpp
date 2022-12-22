@@ -32,7 +32,7 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 #endif
 
 /********************************* MRAM Code */
-#define MRAM_BASE_ADDRESS         (0x60000000) // NCS0 base address
+#define MRAM_BASE_ADDRESS         (0x61000000) // NCS1 base address
 static void accessMRAMTest1() {
     uint32_t i;
     uint8_t *ptr = (uint8_t *) MRAM_BASE_ADDRESS;
@@ -103,12 +103,22 @@ StaticTask_t task1Buffer;
 
 void Task1(void *pvParameters) {
 
-    accessMRAMTest1(); // write 1 byte at a time
 
     // TODO: recheck this test
-    accessMRAMTest2(); // write 1 word at a time
+//    accessMRAMTest2(); // write 1 word at a time
 
     while (true) {
+//        uint32_t i;
+//        uint8_t *ptr = (uint8_t *) MRAM_BASE_ADDRESS;
+//        for (i = 0; i < 10 * 1024; ++i) {
+//            if (i & 1) {
+//                ptr[i] = 0x96;
+//            } else {
+//                ptr[i] = 0x55;
+//            }
+//        }
+        accessMRAMTest1(); // write 1 byte at a time
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
@@ -132,7 +142,7 @@ extern "C" void main_cpp() {
     xTaskCreateStatic(Task1, "Task1",
                       2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
                       &task1Buffer);
-    uartGatekeeperTask->createTask();
+//    uartGatekeeperTask->createTask();
 
     vTaskStartScheduler();
 

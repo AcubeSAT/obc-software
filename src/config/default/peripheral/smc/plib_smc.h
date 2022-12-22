@@ -1,20 +1,32 @@
-/*******************************************************************************
-  NVIC PLIB Implementation
-
+/*******************************************************************
   Company:
     Microchip Technology Inc.
+    Memory System Service SMC Initialization File
 
   File Name:
-    plib_nvic.c
+    plib_smc.h
 
   Summary:
-    NVIC PLIB Source File
+    Static Memory Controller (SMC) peripheral library interface.
+	This file contains the source code to initialize the SMC controller
 
-  Description:
-    None
+  Description
+    This file defines the interface to the SMC peripheral library.  This 
+    library provides access to and control of the associated peripheral 
+    instance.
 
+  Remarks:
+    This header is for documentation only.  The actual smc<x> headers will be
+    generated as required by the MCC (where <x> is the peripheral instance 
+    number).
+
+    Every interface symbol has a lower-case 'x' in it following the "SMC" 
+    abbreviation.  This 'x' will be replaced by the peripheral instance number
+    in the generated headers.  These are the actual functions that should be
+    used.
 *******************************************************************************/
 
+// DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -37,77 +49,38 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
+// DOM-IGNORE-END
 
-#include "device.h"
-#include "plib_nvic.h"
+#ifndef _PLIB_SMC_H
+#define _PLIB_SMC_H
 
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: NVIC Implementation
+// Section: Include Files
 // *****************************************************************************
 // *****************************************************************************
 
-void NVIC_Initialize( void )
-{
-    /* Priority 0 to 7 and no sub-priority. 0 is the highest priority */
-    NVIC_SetPriorityGrouping( 0x00 );
+// *****************************************************************************
+// *****************************************************************************
+// Section: Interface Routines
+// *****************************************************************************
+// *****************************************************************************
 
-    /* Enable NVIC Controller */
-    __DMB();
-    __enable_irq();
+void SMC_Initialize( void );
 
-    /* Enable the interrupt sources and configure the priorities as configured
-     * from within the "Interrupt Manager" of MHC. */
-    NVIC_SetPriority(RTC_IRQn, 7);
-    NVIC_EnableIRQ(RTC_IRQn);
-    NVIC_SetPriority(UART0_IRQn, 7);
-    NVIC_EnableIRQ(UART0_IRQn);
-    NVIC_SetPriority(AFEC0_IRQn, 7);
-    NVIC_EnableIRQ(AFEC0_IRQn);
-    NVIC_SetPriority(MCAN1_INT0_IRQn, 7);
-    NVIC_EnableIRQ(MCAN1_INT0_IRQn);
-    NVIC_SetPriority(TWIHS2_IRQn, 7);
-    NVIC_EnableIRQ(TWIHS2_IRQn);
-    NVIC_SetPriority(XDMAC_IRQn, 7);
-    NVIC_EnableIRQ(XDMAC_IRQn);
-
-    /* Enable Usage fault */
-    SCB->SHCSR |= (SCB_SHCSR_USGFAULTENA_Msk);
-    /* Trap divide by zero */
-    SCB->CCR   |= SCB_CCR_DIV_0_TRP_Msk;
-
-    /* Enable Bus fault */
-    SCB->SHCSR |= (SCB_SHCSR_BUSFAULTENA_Msk);
-
+#ifdef __cplusplus // Provide C++ Compatibility
 }
+#endif
 
-void NVIC_INT_Enable( void )
-{
-    __DMB();
-    __enable_irq();
-}
+#endif // _PLIB_SMC_H
 
-bool NVIC_INT_Disable( void )
-{
-    bool processorStatus = (__get_PRIMASK() == 0U);
-
-    __disable_irq();
-    __DMB();
-
-    return processorStatus;
-}
-
-void NVIC_INT_Restore( bool state )
-{
-    if( state == true )
-    {
-        __DMB();
-        __enable_irq();
-    }
-    else
-    {
-        __disable_irq();
-        __DMB();
-    }
-}
+/*******************************************************************************
+ End of File
+*/
