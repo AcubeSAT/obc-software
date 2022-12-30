@@ -102,7 +102,12 @@ StackType_t taskStack[Task1StackDepth];
 StaticTask_t task1Buffer;
 
 void Task1(void *pvParameters) {
-
+    PIO_PinWrite(LCL_MRAM_RST_PIN, true);
+    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
+    PWM0_ChannelsStart(PWM_CHANNEL_1_MASK);
+    PIO_PinWrite(LCL_MRAM_SET_PIN, false);
+    vTaskDelay(pdMS_TO_TICKS(10));
+    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
 
     // TODO: recheck this test
 //    accessMRAMTest2(); // write 1 word at a time
