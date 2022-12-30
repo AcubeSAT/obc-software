@@ -51,6 +51,7 @@
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/pio/plib_pio.h"
 #include "peripheral/nvic/plib_nvic.h"
+#include "peripheral/mpu/plib_mpu.h"
 #include "peripheral/systick/plib_systick.h"
 #include "peripheral/xdmac/plib_xdmac.h"
 #include "peripheral/wdt/plib_wdt.h"

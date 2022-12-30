@@ -129,13 +129,13 @@ void PWM0_Initialize (void)
 /* Start the PWM generation */
 void PWM0_ChannelsStart (PWM_CHANNEL_MASK channelMask)
 {
-    PWM0_REGS->PWM_ENA = (uint32_t)channelMask;
+    PWM0_REGS->PWM_ENA = channelMask;
 }
 
 /* Stop the PWM generation */
 void PWM0_ChannelsStop (PWM_CHANNEL_MASK channelMask)
 {
-    PWM0_REGS->PWM_DIS = (uint32_t)channelMask;
+    PWM0_REGS->PWM_DIS = channelMask;
 }
 
 /* configure PWM period */
@@ -153,7 +153,7 @@ uint16_t PWM0_ChannelPeriodGet (PWM_CHANNEL_NUM channel)
 /* Configure dead time */
 void PWM0_ChannelDeadTimeSet (PWM_CHANNEL_NUM channel, uint16_t deadtime_high, uint16_t deadtime_low)
 {
-    PWM0_REGS->PWM_CH_NUM[channel].PWM_DTUPD = (((uint32_t)deadtime_low << PWM_DT_DTL_Pos) | deadtime_high);
+    PWM0_REGS->PWM_CH_NUM[channel].PWM_DTUPD = ((deadtime_low << PWM_DT_DTL_Pos) | deadtime_high);
 }
 
 /* Configure compare unit value */
@@ -165,13 +165,13 @@ void PWM0_CompareValueSet (PWM_COMPARE cmp_unit, uint16_t cmp_value)
 /* Enable counter event */
 void PWM0_ChannelCounterEventEnable (PWM_CHANNEL_MASK channelMask)
 {
-    PWM0_REGS->PWM_IER1 = (uint32_t)channelMask;
+    PWM0_REGS->PWM_IER1 = channelMask;
 }
 
 /* Disable counter event */
 void PWM0_ChannelCounterEventDisable (PWM_CHANNEL_MASK channelMask)
 {
-    PWM0_REGS->PWM_IDR1 = (uint32_t)channelMask;
+    PWM0_REGS->PWM_IDR1 = channelMask;
 }
 
 
@@ -184,29 +184,29 @@ void PWM0_SyncUpdateEnable (void)
 /* Clear the fault status */
 void PWM0_FaultStatusClear(PWM_FAULT_ID fault_id)
 {
-    PWM0_REGS->PWM_FCR = 0x1UL << (uint32_t)fault_id;
+    PWM0_REGS->PWM_FCR = 0x1U << fault_id;
 }
 
 /* Override PWM outputs */
 void PWM0_ChannelOverrideEnable(PWM_CHANNEL_NUM channel)
 {
-    PWM0_REGS->PWM_OS &= ~((1UL << (uint32_t)channel) | (1UL << ((uint32_t)channel + 16U)));
-
+    PWM0_REGS->PWM_OS &= ~((1 << channel) | (1 << (channel + 16)));
+    PWM0_REGS->PWM_OS |= ((0 << channel) | (0 << (channel + 16)));
 }
 
 /* Disable override of PWM outputs */
 void PWM0_ChannelOverrideDisable(PWM_CHANNEL_NUM channel)
 {
-    PWM0_REGS->PWM_OS |= ((1UL << (uint32_t)channel) | (1UL << ((uint32_t)channel + 16U)));
+    PWM0_REGS->PWM_OS |= ((1 << channel) | (1 << (channel + 16)));
 }
 
 
 /* Check the status of counter event */
 bool PWM0_ChannelCounterEventStatusGet (PWM_CHANNEL_NUM channel)
 {
-    bool pwm_status;
-    pwm_status = (bool)(((PWM0_REGS->PWM_ISR1 >> (uint32_t)channel) & 0x1U) != 0U);
-    return pwm_status;
+    bool status;
+    status = (PWM0_REGS->PWM_ISR1 >> channel) & 0x1U;
+    return status;
 }
 
 /**

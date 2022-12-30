@@ -1,14 +1,14 @@
 /*******************************************************************************
-  UART0 PLIB
+  MPU PLIB Header
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_uart0.h
+    plib_mpu.h
 
   Summary:
-    UART0 PLIB Header File
+    MPU PLIB Header File
 
   Description:
     None
@@ -38,10 +38,8 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#ifndef PLIB_UART0_H
-#define PLIB_UART0_H
-
-#include "plib_uart_common.h"
+#ifndef PLIB_MPU_H
+#define PLIB_MPU_H
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
@@ -57,33 +55,10 @@
 // *****************************************************************************
 // *****************************************************************************
 
-#define UART0_FrequencyGet()    (uint32_t)(150000000UL)
+/****************************** MPU API *********************************/
 
-/****************************** UART0 API *********************************/
+void MPU_Initialize( void );
 
-void UART0_Initialize( void );
-
-UART_ERROR UART0_ErrorGet( void );
-
-bool UART0_SerialSetup( UART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
-
-bool UART0_Write( void *buffer, const size_t size );
-
-bool UART0_Read( void *buffer, const size_t size );
-
-bool UART0_WriteIsBusy( void );
-
-bool UART0_ReadIsBusy( void );
-
-size_t UART0_WriteCountGet( void );
-
-size_t UART0_ReadCountGet( void );
-
-bool UART0_ReadAbort(void);
-
-void UART0_WriteCallbackRegister( UART_CALLBACK callback, uintptr_t context );
-
-void UART0_ReadCallbackRegister( UART_CALLBACK callback, uintptr_t context );
 
 
 // DOM-IGNORE-BEGIN
@@ -92,6 +67,7 @@ void UART0_ReadCallbackRegister( UART_CALLBACK callback, uintptr_t context );
     }
 
 #endif
-
 // DOM-IGNORE-END
-#endif // PLIB_UART0_H
+#endif // PLIB_MPU_H
+
+

@@ -39,6 +39,7 @@ MEMORY
 {
   rom      (rx)  : ORIGIN = 0x00400000, LENGTH = 0x00200000
   ram      (rwx) : ORIGIN = 0x20400000, LENGTH = 0x00060000
+  EBI_SMC  (rwx) : ORIGIN = 0x60000000, LENGTH = 0x200000
 }
 
 
@@ -140,6 +141,15 @@ _sstack = .;
 . = ALIGN(8);
 _stack = .;
 } > ram
+
+.EBI_SMC (NOLOAD):
+{
+. = ALIGN(4);
+_s_EBI_SMC = .;
+*(.EBI_SMC)
+. = ALIGN(4);
+_e_EBI_SMC = .;
+} > EBI_SMC
 
 . = ALIGN(4);
 _end = . ;

@@ -1,14 +1,14 @@
 /*******************************************************************************
-  UART0 PLIB
+  MPU PLIB Implementation
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_uart0.h
+    plib_mpu.h
 
   Summary:
-    UART0 PLIB Header File
+    MPU PLIB Source File
 
   Description:
     None
@@ -38,60 +38,50 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#ifndef PLIB_UART0_H
-#define PLIB_UART0_H
+#include "plib_mpu.h"
+#include "plib_mpu_local.h"
 
-#include "plib_uart_common.h"
-
-// DOM-IGNORE-BEGIN
-#ifdef __cplusplus  // Provide C++ Compatibility
-
-    extern "C" {
-
-#endif
-// DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Interface
+// Section: MPU Implementation
 // *****************************************************************************
 // *****************************************************************************
 
-#define UART0_FrequencyGet()    (uint32_t)(150000000UL)
+void MPU_Initialize(void)
+{
+    /*** Disable MPU            ***/
+    MPU->CTRL = 0;
 
-/****************************** UART0 API *********************************/
+    /*** Configure MPU Regions  ***/
 
-void UART0_Initialize( void );
-
-UART_ERROR UART0_ErrorGet( void );
-
-bool UART0_SerialSetup( UART_SERIAL_SETUP *setup, uint32_t srcClkFreq );
-
-bool UART0_Write( void *buffer, const size_t size );
-
-bool UART0_Read( void *buffer, const size_t size );
-
-bool UART0_WriteIsBusy( void );
-
-bool UART0_ReadIsBusy( void );
-
-size_t UART0_WriteCountGet( void );
-
-size_t UART0_ReadCountGet( void );
-
-bool UART0_ReadAbort(void);
-
-void UART0_WriteCallbackRegister( UART_CALLBACK callback, uintptr_t context );
-
-void UART0_ReadCallbackRegister( UART_CALLBACK callback, uintptr_t context );
+    /* Region 0 Name: EBI_SMC, Base Address: 0x60000000, Size: 2MB  */
+    MPU->RBAR = MPU_REGION(0, 0x60000000);
+    MPU->RASR = MPU_REGION_SIZE(20) | MPU_RASR_AP(MPU_RASR_AP_READWRITE_Val) | MPU_ATTR_STRONGLY_ORDERED \
+                | MPU_ATTR_ENABLE | MPU_ATTR_EXECUTE_NEVER | MPU_ATTR_SHAREABLE;
 
 
-// DOM-IGNORE-BEGIN
-#ifdef __cplusplus  // Provide C++ Compatibility
 
-    }
 
-#endif
 
-// DOM-IGNORE-END
-#endif // PLIB_UART0_H
+
+
+
+
+
+
+
+
+
+
+
+    /* Enable Memory Management Fault */
+    SCB->SHCSR |= (SCB_SHCSR_MEMFAULTENA_Msk);
+
+    /* Enable MPU */
+    MPU->CTRL = MPU_CTRL_ENABLE_Msk  | MPU_CTRL_PRIVDEFENA_Msk;
+
+    __DSB();
+    __ISB();
+}
+
