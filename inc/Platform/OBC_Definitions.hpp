@@ -53,6 +53,11 @@ inline const uint8_t ReferenceTemperature = 25;
 inline const uint8_t UARTQueueSize = 5;
 
 /**
+ * Used to control COBS Encoding for Log Messages in the UART Gatekeeper task.
+ */
+inline const bool LogsAreCOBSEncoded = false;
+
+/**
  * The typical voltage output of the DAC of the AFEC channel at 25 Celsius
  */
 inline const uint16_t TypicalVoltageAt25 = 720;
