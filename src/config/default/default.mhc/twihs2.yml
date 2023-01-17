@@ -32,5 +32,12 @@ children:
       children:
       - type: Dynamic
         attributes: {id: twihs2, value: '192'}
+  - type: Integer
+    attributes: {id: TWIHS_TIMEOUT_COUNT_VAL}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: twihs2, value: '60000'}
 - type: ElementPosition
   attributes: {x: '615', y: '137', id: twihs2}

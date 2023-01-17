@@ -1,6 +1,6 @@
 format_version: v1.0
 type: UniqueComponent
-attributes: {id: mcan1}
+attributes: {id: mcan0}
 children:
 - type: Symbols
   children:
@@ -11,48 +11,34 @@ children:
       children:
       - type: User
         attributes: {value: 'true'}
-  - type: Boolean
-    attributes: {id: AUTO_NOMINAL_BIT_TIMING_CALCULATION}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: 'false'}
   - type: Integer
     attributes: {id: CALCULATED_DATA_BITRATE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '500'}
+        attributes: {id: mcan0, value: '500'}
   - type: String
     attributes: {id: CALCULATED_DATA_ERRORRATE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '0.000'}
+        attributes: {id: mcan0, value: '0.000'}
   - type: Integer
     attributes: {id: CALCULATED_NOMINAL_BITRATE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '500'}
+        attributes: {id: mcan0, value: '500'}
   - type: String
     attributes: {id: CALCULATED_NOMINAL_ERRORRATE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '0.000'}
-  - type: Integer
-    attributes: {id: DATA_BITRATE}
-    children:
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: '500'}
+        attributes: {id: mcan0, value: '0.000'}
   - type: Menu
     attributes: {id: DATA_BIT_TIMING_CALCULATION}
     children:
@@ -74,14 +60,14 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '96.0'}
+        attributes: {id: mcan0, value: '96.0'}
   - type: String
     attributes: {id: DATA_TIME_QUANTA_PERIOD}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '80.000'}
+        attributes: {id: mcan0, value: '80.000'}
   - type: Integer
     attributes: {id: DBTP_DBRP}
     children:
@@ -94,37 +80,35 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '3'}
+        attributes: {id: mcan0, value: '3'}
   - type: Integer
     attributes: {id: DBTP_DSJW}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '1'}
-      - type: User
-        attributes: {value: '7'}
+        attributes: {id: mcan0, value: '1'}
   - type: Integer
     attributes: {id: DBTP_DTSEG1}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '23'}
+        attributes: {id: mcan0, value: '23'}
   - type: Integer
     attributes: {id: DBTP_DTSEG2}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '1'}
+        attributes: {id: mcan0, value: '1'}
   - type: Integer
     attributes: {id: DBTP_TOTAL_TIME_QUANTA}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '25'}
+        attributes: {id: mcan0, value: '25'}
   - type: Integer
     attributes: {id: FILTERS_STD}
     children:
@@ -147,7 +131,7 @@ children:
       - type: User
         attributes: {value: 'true'}
   - type: Menu
-    attributes: {id: MCAN1_STD_FILTER1}
+    attributes: {id: MCAN0_STD_FILTER1}
     children:
     - type: Attributes
       children:
@@ -159,15 +143,24 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+  - type: Comment
+    attributes: {id: MCAN0_STD_FILTER1_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
   - type: Hex
-    attributes: {id: MCAN1_STD_FILTER1_SFID1}
+    attributes: {id: MCAN0_STD_FILTER1_SFID1}
     children:
     - type: Values
       children:
       - type: User
         attributes: {value: '896'}
   - type: Hex
-    attributes: {id: MCAN1_STD_FILTER1_SFID2}
+    attributes: {id: MCAN0_STD_FILTER1_SFID2}
     children:
     - type: Values
       children:
@@ -179,7 +172,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '50000000'}
+        attributes: {id: mcan0, value: '50000000'}
   - type: Comment
     attributes: {id: MCAN_CORE_CLOCK_INVALID_COMMENT}
     children:
@@ -188,7 +181,7 @@ children:
       - type: String
         attributes: {id: text}
         children:
-        - {type: Value, value: Warning!!! MCAN1 Clock Frequency is too high for required
+        - {type: Value, value: Warning!!! MCAN0 Clock Frequency is too high for required
             Data Bit Timing}
       - type: Boolean
         attributes: {id: visible}
@@ -213,16 +206,12 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: 'true'}
+        attributes: {id: mcan0, value: 'true'}
   - type: Comment
     attributes: {id: MCAN_NOMINAL_ERRORRATE_COMMENT}
     children:
     - type: Attributes
       children:
-      - type: String
-        attributes: {id: text}
-        children:
-        - {type: Value, value: Warning!!! Error 1.010%}
       - type: Boolean
         attributes: {id: visible}
         children:
@@ -251,16 +240,8 @@ children:
   - type: Integer
     attributes: {id: NBTP_NBRP}
     children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: readOnly}
-        children:
-        - {type: Value, value: 'false'}
     - type: Values
       children:
-      - type: Dynamic
-        attributes: {id: mcan1, value: '0'}
       - type: User
         attributes: {value: '4'}
   - type: Integer
@@ -269,50 +250,35 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '5'}
+        attributes: {id: mcan0, value: '5'}
   - type: Integer
     attributes: {id: NBTP_NTSEG1}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '14'}
+        attributes: {id: mcan0, value: '14'}
   - type: Integer
     attributes: {id: NBTP_NTSEG2}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '5'}
+        attributes: {id: mcan0, value: '5'}
   - type: Integer
     attributes: {id: NBTP_TOTAL_TIME_QUANTA}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '20'}
-  - type: Float
-    attributes: {id: NOMINAL_SAMPLE_POINT}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: readOnly}
-        children:
-        - {type: Value, value: 'false'}
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: mcan1, value: '99.0'}
-      - type: User
-        attributes: {value: '75.0'}
+        attributes: {id: mcan0, value: '20'}
   - type: String
     attributes: {id: NOMINAL_TIME_QUANTA_PERIOD}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '100.000'}
+        attributes: {id: mcan0, value: '100.000'}
   - type: KeyValueSet
     attributes: {id: RXF0_BYTES_CFG}
     children:
@@ -339,7 +305,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '0'}
+        attributes: {id: mcan0, value: '0'}
   - type: KeyValueSet
     attributes: {id: RXF1_BYTES_CFG}
     children:
@@ -366,7 +332,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '0'}
+        attributes: {id: mcan0, value: '0'}
   - type: KeyValueSet
     attributes: {id: RX_BUFFER_BYTES_CFG}
     children:
@@ -402,7 +368,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: mcan1, value: '0'}
+        attributes: {id: mcan0, value: '0'}
   - type: File
     attributes: {id: instHeaderFile}
     children:
@@ -422,4 +388,4 @@ children:
         children:
         - {type: Value, value: ../peripheral/mcan_11273/templates/plib_mcan_interrupt.c.ftl}
 - type: ElementPosition
-  attributes: {x: '36', y: '180', id: mcan1}
+  attributes: {x: '36', y: '260', id: mcan0}

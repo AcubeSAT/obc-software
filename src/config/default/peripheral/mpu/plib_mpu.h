@@ -1,14 +1,14 @@
 /*******************************************************************************
-  NVIC PLIB Implementation
+  MPU PLIB Header
 
   Company:
     Microchip Technology Inc.
 
   File Name:
-    plib_nvic.c
+    plib_mpu.h
 
   Summary:
-    NVIC PLIB Source File
+    MPU PLIB Header File
 
   Description:
     None
@@ -38,78 +38,36 @@
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
 
-#include "device.h"
-#include "plib_nvic.h"
+#ifndef PLIB_MPU_H
+#define PLIB_MPU_H
 
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
+// DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: NVIC Implementation
+// Section: Interface
 // *****************************************************************************
 // *****************************************************************************
 
-void NVIC_Initialize( void )
-{
-    /* Priority 0 to 7 and no sub-priority. 0 is the highest priority */
-    NVIC_SetPriorityGrouping( 0x00 );
+/****************************** MPU API *********************************/
 
-    /* Enable NVIC Controller */
-    __DMB();
-    __enable_irq();
+void MPU_Initialize( void );
 
-    /* Enable the interrupt sources and configure the priorities as configured
-     * from within the "Interrupt Manager" of MHC. */
-    NVIC_SetPriority(RTC_IRQn, 7);
-    NVIC_EnableIRQ(RTC_IRQn);
-    NVIC_SetPriority(USART1_IRQn, 7);
-    NVIC_EnableIRQ(USART1_IRQn);
-    NVIC_SetPriority(AFEC0_IRQn, 7);
-    NVIC_EnableIRQ(AFEC0_IRQn);
-    NVIC_SetPriority(MCAN0_INT0_IRQn, 7);
-    NVIC_EnableIRQ(MCAN0_INT0_IRQn);
-    NVIC_SetPriority(MCAN1_INT0_IRQn, 7);
-    NVIC_EnableIRQ(MCAN1_INT0_IRQn);
-    NVIC_SetPriority(TWIHS2_IRQn, 7);
-    NVIC_EnableIRQ(TWIHS2_IRQn);
-    NVIC_SetPriority(XDMAC_IRQn, 7);
-    NVIC_EnableIRQ(XDMAC_IRQn);
 
-    /* Enable Usage fault */
-    SCB->SHCSR |= (SCB_SHCSR_USGFAULTENA_Msk);
-    /* Trap divide by zero */
-    SCB->CCR   |= SCB_CCR_DIV_0_TRP_Msk;
 
-    /* Enable Bus fault */
-    SCB->SHCSR |= (SCB_SHCSR_BUSFAULTENA_Msk);
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
 
-}
-
-void NVIC_INT_Enable( void )
-{
-    __DMB();
-    __enable_irq();
-}
-
-bool NVIC_INT_Disable( void )
-{
-    bool processorStatus = (__get_PRIMASK() == 0U);
-
-    __disable_irq();
-    __DMB();
-
-    return processorStatus;
-}
-
-void NVIC_INT_Restore( bool state )
-{
-    if( state == true )
-    {
-        __DMB();
-        __enable_irq();
     }
-    else
-    {
-        __disable_irq();
-        __DMB();
-    }
-}
+
+#endif
+// DOM-IGNORE-END
+#endif // PLIB_MPU_H
+
+
