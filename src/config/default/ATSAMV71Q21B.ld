@@ -39,6 +39,7 @@ MEMORY
 {
   rom      (rx)  : ORIGIN = 0x00400000, LENGTH = 0x00200000
   ram      (rwx) : ORIGIN = 0x20400000, LENGTH = 0x00060000
+  ram_nocache (rwx) : ORIGIN = 0x2045E000, LENGTH = 0x2000
 }
 
 
@@ -140,6 +141,16 @@ _sstack = .;
 . = ALIGN(8);
 _stack = .;
 } > ram
+
+/* non cacheable area for CAN */
+.ram_nocache (NOLOAD):
+{
+. = ALIGN(4);
+_s_ram_nocache = .;
+*(.ram_nocache)
+. = ALIGN(4);
+_e_ram_nocache = .;
+} > ram_nocache
 
 . = ALIGN(4);
 _end = . ;

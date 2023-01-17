@@ -10,7 +10,6 @@
 #include "UpdateParametersTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
-#include "CANTransmitTask.hpp"
 #include "TCHandlingTask.hpp"
 
 #define IDLE_TASK_SIZE 4000
@@ -37,7 +36,6 @@ extern "C" void main_cpp() {
     timeBasedSchedulingTask.emplace();
     statisticsReportingTask.emplace();
     updateParametersTask.emplace();
-    canTransmitTask.emplace();
     tcHandlingTask.emplace();
 
     updateParametersTask->createTask();
@@ -45,7 +43,6 @@ extern "C" void main_cpp() {
     housekeepingTask->createTask();
     timeBasedSchedulingTask->createTask();
     tcHandlingTask->createTask();
-    canTransmitTask->createTask();
 
     vTaskStartScheduler();
 
@@ -53,6 +50,4 @@ extern "C" void main_cpp() {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
         SYS_Tasks();
     }
-
-    return;
 }
