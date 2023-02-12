@@ -1,20 +1,32 @@
-/*******************************************************************************
-  MPU PLIB Implementation
-
+/*******************************************************************
   Company:
     Microchip Technology Inc.
+    Memory System Service SMC Initialization File
 
   File Name:
-    plib_mpu.h
+    plib_smc.h
 
   Summary:
-    MPU PLIB Source File
+    Static Memory Controller (SMC) peripheral library interface.
+	This file contains the source code to initialize the SMC controller
 
-  Description:
-    None
+  Description
+    This file defines the interface to the SMC peripheral library.  This 
+    library provides access to and control of the associated peripheral 
+    instance.
 
+  Remarks:
+    This header is for documentation only.  The actual smc<x> headers will be
+    generated as required by the MCC (where <x> is the peripheral instance 
+    number).
+
+    Every interface symbol has a lower-case 'x' in it following the "SMC" 
+    abbreviation.  This 'x' will be replaced by the peripheral instance number
+    in the generated headers.  These are the actual functions that should be
+    used.
 *******************************************************************************/
 
+// DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -37,51 +49,38 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
+// DOM-IGNORE-END
 
-#include "plib_mpu.h"
-#include "plib_mpu_local.h"
+#ifndef _PLIB_SMC_H
+#define _PLIB_SMC_H
 
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus  // Provide C++ Compatibility
+
+    extern "C" {
+
+#endif
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: MPU Implementation
+// Section: Include Files
 // *****************************************************************************
 // *****************************************************************************
 
-void MPU_Initialize(void)
-{
-    /*** Disable MPU            ***/
-    MPU->CTRL = 0;
+// *****************************************************************************
+// *****************************************************************************
+// Section: Interface Routines
+// *****************************************************************************
+// *****************************************************************************
 
-    /*** Configure MPU Regions  ***/
+void SMC_Initialize( void );
 
-    /* Region 0 Name: SRAM_NOCACHE, Base Address: 0x2045f000, Size: 8KB  */
-    MPU->RBAR = MPU_REGION(0U, 0x2045f000U);
-    MPU->RASR = MPU_REGION_SIZE(12U) | MPU_RASR_AP(MPU_RASR_AP_READWRITE_Val) | MPU_ATTR_NORMAL \
-                | MPU_ATTR_ENABLE | MPU_ATTR_EXECUTE_NEVER ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* Enable Memory Management Fault */
-    SCB->SHCSR |= (SCB_SHCSR_MEMFAULTENA_Msk);
-
-    /* Enable MPU */
-    MPU->CTRL = MPU_CTRL_ENABLE_Msk  | MPU_CTRL_PRIVDEFENA_Msk;
-
-    __DSB();
-    __ISB();
+#ifdef __cplusplus // Provide C++ Compatibility
 }
+#endif
 
+#endif // _PLIB_SMC_H
+
+/*******************************************************************************
+ End of File
+*/

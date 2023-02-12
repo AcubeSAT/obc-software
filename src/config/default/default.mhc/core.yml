@@ -370,6 +370,57 @@ children:
         attributes: {id: core, value: '4'}
       - type: User
         attributes: {value: '5'}
+  - type: KeyValueSet
+    attributes: {id: MPU_Region_1_Access}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '3'}
+  - type: Hex
+    attributes: {id: MPU_Region_1_Address}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '1610612736'}
+  - type: Boolean
+    attributes: {id: MPU_Region_1_Execute}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: MPU_Region_1_Length}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 512MB}
+  - type: Boolean
+    attributes: {id: MPU_Region_1_Share}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: KeyValueSet
+    attributes: {id: MPU_Region_1_Size}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '23'}
+      - type: User
+        attributes: {value: '24'}
+  - type: KeyValueSet
+    attributes: {id: MPU_Region_1_Type}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '0'}
   - type: String
     attributes: {id: MPU_Region_Name0}
     children:
@@ -384,6 +435,20 @@ children:
       children:
       - type: User
         attributes: {value: SRAM}
+  - type: String
+    attributes: {id: MPU_Region_Name1}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: EBI_SMC}
+  - type: Combo
+    attributes: {id: MPU_Region_Name1_Options}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: EBI_SMC}
   - type: File
     attributes: {id: MPU_SYSTEM_DEFINITIONS_H}
     children:
@@ -470,6 +535,27 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: 'true'}
+  - type: Boolean
+    attributes: {id: NVIC_31_0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
+  - type: String
+    attributes: {id: NVIC_31_0_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: PWM0_Handler}
+  - type: Boolean
+    attributes: {id: NVIC_31_0_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'false'}
   - type: Boolean
     attributes: {id: NVIC_35_0_ENABLE}
     children:
@@ -2653,21 +2739,21 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: MEM_NAND_ENABLE_1}
+        attributes: {value: NAND BUSY}
   - type: String
     attributes: {id: PIN_67_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_NCS3}
+        attributes: {value: GPIO}
   - type: String
     attributes: {id: PIN_67_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: A}
+        attributes: {value: GPIO}
   - type: String
     attributes: {id: PIN_68_FUNCTION_NAME}
     children:
@@ -2702,21 +2788,21 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: MEM_NAND_ENABLE_2}
+        attributes: {value: NAND ENABLE}
   - type: String
     attributes: {id: PIN_69_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_NCS1}
   - type: String
     attributes: {id: PIN_69_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_NCS1/SDCS}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_6_DIR}
     children:
@@ -3465,7 +3551,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '411570672'}
+        attributes: {id: core, value: '411308528'}
   - type: Hex
     attributes: {id: PIOD_SODR_VALUE}
     children:
@@ -3562,7 +3648,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '2684558464'}
+        attributes: {id: core, value: '2684558976'}
   - type: Hex
     attributes: {id: PMC_PCER1}
     children:
@@ -3654,6 +3740,34 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '150000000'}
+  - type: Boolean
+    attributes: {id: PWM0_INTERRUPT_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: 'false'}
+  - type: Boolean
+    attributes: {id: PWM0_INTERRUPT_ENABLE_UPDATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: 'true'}
+  - type: String
+    attributes: {id: PWM0_INTERRUPT_HANDLER}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_Handler}
+  - type: Boolean
+    attributes: {id: PWM0_INTERRUPT_HANDLER_LOCK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: 'false'}
   - type: Integer
     attributes: {id: PWM1_CLOCK_FREQUENCY}
     children:
@@ -3725,19 +3839,19 @@ children:
       - type: Dynamic
         attributes: {id: rtc, value: 'true'}
   - type: Integer
-    attributes: {id: SDRAMC_CLOCK_FREQUENCY}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: core, value: '150000000'}
-  - type: Integer
     attributes: {id: SLOW_CLK_FREQ}
     children:
     - type: Values
       children:
       - type: Dynamic
         attributes: {id: core, value: '32768'}
+  - type: Boolean
+    attributes: {id: SMC_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: 'true'}
   - type: Integer
     attributes: {id: SMC_CLOCK_FREQUENCY}
     children:
@@ -4445,4 +4559,4 @@ children:
         children:
         - {type: Value, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '240', y: '20', id: core}
+  attributes: {x: '236', y: '17', id: core}

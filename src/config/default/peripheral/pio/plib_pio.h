@@ -298,9 +298,14 @@
 #define OBC_UART_TX_Get()               ((PIOA_REGS->PIO_PDSR >> 10) & 0x1)
 #define OBC_UART_TX_PIN                  PIO_PIN_PA10
 
-/*** Macros for MEM_NAND_ENABLE_1 pin ***/
-#define MEM_NAND_ENABLE_1_Get()               ((PIOD_REGS->PIO_PDSR >> 19) & 0x1)
-#define MEM_NAND_ENABLE_1_PIN                  PIO_PIN_PD19
+/*** Macros for NAND BUSY pin ***/
+#define NAND BUSY_Set()               (PIOD_REGS->PIO_SODR = (1<<19))
+#define NAND BUSY_Clear()             (PIOD_REGS->PIO_CODR = (1<<19))
+#define NAND BUSY_Toggle()            (PIOD_REGS->PIO_ODSR ^= (1<<19))
+#define NAND BUSY_OutputEnable()      (PIOD_REGS->PIO_OER = (1<<19))
+#define NAND BUSY_InputEnable()       (PIOD_REGS->PIO_ODR = (1<<19))
+#define NAND BUSY_Get()               ((PIOD_REGS->PIO_PDSR >> 19) & 0x1)
+#define NAND BUSY_PIN                  PIO_PIN_PD19
 
 /*** Macros for MEM_NAND_BUSY_1 pin ***/
 #define MEM_NAND_BUSY_1_Set()               (PIOA_REGS->PIO_SODR = (1<<12))
@@ -310,6 +315,10 @@
 #define MEM_NAND_BUSY_1_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<12))
 #define MEM_NAND_BUSY_1_Get()               ((PIOA_REGS->PIO_PDSR >> 12) & 0x1)
 #define MEM_NAND_BUSY_1_PIN                  PIO_PIN_PA12
+
+/*** Macros for NAND ENABLE pin ***/
+#define NAND ENABLE_Get()               ((PIOD_REGS->PIO_PDSR >> 18) & 0x1)
+#define NAND ENABLE_PIN                  PIO_PIN_PD18
 
 /*** Macros for MEM_NAND_WR_PROT pin ***/
 #define MEM_NAND_WR_PROT_Set()               (PIOA_REGS->PIO_SODR = (1<<27))

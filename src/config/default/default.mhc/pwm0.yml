@@ -461,6 +461,15 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+  - type: Menu
+    attributes: {id: PWM_COMPARE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
   - type: Integer
     attributes: {id: PWM_COMP_0_CMPV_CV}
     children:
@@ -540,6 +549,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: pwm0, value: PWM0_ChannelPeriodGet}
+  - type: Hex
+    attributes: {id: PWM_IER1_REG}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: '0'}
   - type: String
     attributes: {id: PWM_OUTPUT_DISABLE_API}
     children:
