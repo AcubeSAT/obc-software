@@ -473,7 +473,7 @@ namespace PlatformParameters {
     inline Parameter<float> obcMCUTemperature(0);
     inline Parameter<float> obcMCUInputVoltage(0);
 
-    inline Parameter<uint32_t> obcMCUBootCounter(0);
+    inline Parameter<uint16_t> obcMCUBootCounter(0);
     inline Parameter<uint32_t> obcFlashInt(0);
     inline Parameter<uint32_t> obcSRAMInt(0);
     inline Parameter<uint32_t> obcMRAM(0);
@@ -482,8 +482,8 @@ namespace PlatformParameters {
     inline Parameter<Time::DefaultCUC> obcMCUTime(Time::DefaultCUC(0));
 
     inline Parameter<uint16_t> obcSpacecraftTimeRef(0); // enum
-    inline Parameter<uint16_t> obcOperationalMode(0); // enum
-    inline Parameter<uint16_t> obcMemoryPartition(0); // enum
+    inline Parameter<uint8_t> obcOperationalMode(0); // enum
+    inline Parameter<bool> obcMemoryPartition(0); // enum
 
     inline Parameter<uint32_t> obcReconfigurationTimer(0);
     inline Parameter<uint16_t> obcLastFailedEvent(0);
@@ -493,9 +493,9 @@ namespace PlatformParameters {
     inline Parameter<float> obcCANBUSLoad2(0);
 
     inline Parameter<CAN::Driver::ActiveBus> obcCANBUSActive(CAN::Driver::Main); // enum
-    inline Parameter<uint16_t> obcMCUFDIR(0); // enum
+    inline Parameter<bool> obcMCUFDIR(0); // enum
 
-    inline Parameter<float> obcMCURestartSafeModeThreshold(0);
+    inline Parameter<uint8_t> obcMCURestartSafeModeThreshold(0);
     inline Parameter<float> obcNANDFLASHLCLThreshold(0);
     inline Parameter<float> obcMRAMLCLThreshold(0);
     inline Parameter<float> obcNANDFLASHON(0);
