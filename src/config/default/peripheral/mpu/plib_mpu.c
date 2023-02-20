@@ -55,8 +55,8 @@ void MPU_Initialize(void)
 
     /*** Configure MPU Regions  ***/
 
-    /* Region 0 Name: EBI_SMC, Base Address: 0x60000000, Size: 2MB  */
-    MPU->RBAR = MPU_REGION(0U, 0x60000000U);
+    /* Region 0 Name: EBI_SMC, Base Address: 0x61000000, Size: 2MB  */
+    MPU->RBAR = MPU_REGION(0U, 0x61000000U);
     MPU->RASR = MPU_REGION_SIZE(20U) | MPU_RASR_AP(MPU_RASR_AP_READWRITE_Val) | MPU_ATTR_STRONGLY_ORDERED \
                 | MPU_ATTR_ENABLE | MPU_ATTR_EXECUTE_NEVER | MPU_ATTR_SHAREABLE;
 

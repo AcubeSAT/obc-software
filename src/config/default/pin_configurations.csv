@@ -54,7 +54,7 @@
 64,PA11,CAN_SILENT_1,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
 65,PD20,MEM_NAND_BUSY_2,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 66,PA10,OBC_UART_TX,UART0_UTXD0,n/a,n/a,No,Disabled,No,No,Disabled,Low
-67,PD19,MEM_NAND_ENABLE_1,EBI_NCS3,n/a,n/a,No,Disabled,No,No,Disabled,Low
+67,PD19,,Available,In,,,,,,,
 68,PA12,MEM_NAND_BUSY_1,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 69,PD18,MEM_NAND_ENABLE_2,EBI_NCS1,n/a,n/a,No,Disabled,No,No,Disabled,Low
 70,PA27,MEM_NAND_WR_PROT,GPIO,Out,Low,No,Disabled,No,No,Disabled,Low
@@ -77,7 +77,7 @@
 92,PD12,CAN_TX_2,MCAN1_CANTX1,n/a,n/a,No,Disabled,No,No,Disabled,Low
 93,PA2,,Available,In,,,,,,,
 94,PC11,MEM_MRAM_OUT_ENABLE,EBI_NRD,n/a,n/a,No,Disabled,No,No,Disabled,Low
-97,PC14,MEM_MRAM_ENABLE,EBI_NCS0,n/a,n/a,No,Disabled,No,No,Disabled,Low
+97,PC14,,Available,In,,,,,,,
 98,PD11,,Available,In,,,,,,,
 99,PA1,MEM_A18,EBI_A18,n/a,n/a,No,Disabled,No,No,Disabled,Low
 100,PC16,MEM_NAND_ADDR_ENABLE,EBI_A21/NANDALE,n/a,n/a,No,Disabled,No,No,Disabled,Low
