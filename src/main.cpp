@@ -41,6 +41,7 @@ void nandTest1() {
         nandDie1.nandSendData(0x11);
         nandDie1.nandSendAddress(0x11);
         nandDie1.nandSendCommand(0x11);
+        uint8_t a = nandDie1.nandReadData();
         vTaskDelay(pdMS_TO_TICKS(50));
     }
 
@@ -49,13 +50,7 @@ void nandTest1() {
 void nandTest2() {
     MT29F nandDie1(SMC::NCS1, PIO_PIN_PA11);
 
-    for(int i = 0; i < 10; i++) {
-        nandDie1.nandSendData(0x11);
-        nandDie1.nandSendAddress(0x11);
-        nandDie1.nandSendCommand(0x11);
-        vTaskDelay(pdMS_TO_TICKS(50));
-    }
-
+    nandDie1.readID();
 }
 
 
