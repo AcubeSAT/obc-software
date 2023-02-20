@@ -14,6 +14,8 @@
 #include "TCHandlingTask.hpp"
 #include "plib_pio.h"
 #include "peripheral/pwm/plib_pwm0.h"
+#include "NANDFlash.h"
+//#include "SMC.h"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -31,69 +33,33 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 #endif
 
-/********************************* MRAM Code */
-#define MRAM_BASE_ADDRESS         (0x61000000) // NCS1 base address
-static void accessMRAMTest1() {
-    uint32_t i;
-    uint8_t *ptr = (uint8_t *) MRAM_BASE_ADDRESS;
-    for (i = 0; i < 10 * 1024; ++i) {
-        if (i & 1) {
-            ptr[i] = 0x96;
-        } else {
-            ptr[i] = 0x55;
-        }
+/********************************* NAND Code */
+void nandTest1() {
+    MT29F nandDie1(SMC::NCS1, PIO_PIN_PA11);
+
+    for(int i = 0; i < 10; i++) {
+        nandDie1.nandSendData(0x11);
+        nandDie1.nandSendAddress(0x11);
+        nandDie1.nandSendCommand(0x11);
+        vTaskDelay(pdMS_TO_TICKS(50));
     }
-    for (i = 0; i < 10 * 1024; ++i) {
-        if (i & 1) {
-            if (ptr[i] != 0x96) {
-                LOG_DEBUG << "Wrong value in address = " << i;
-            }
-            else {
-                LOG_DEBUG << "Correct value in address = " << i;
-            }
-        } else {
-            if (ptr[i] != 0x55) {
-                LOG_DEBUG << "Wrong value in address = " << i;
-            }
-            else {
-                LOG_DEBUG << "Correct value in address = " << i;
-            }
-        }
-    }
+
 }
 
-static void accessMRAMTest2()
-{
-    uint32_t i;
-    uint32_t *ptr = (uint32_t *) MRAM_BASE_ADDRESS;
+void nandTest2() {
+    MT29F nandDie1(SMC::NCS1, PIO_PIN_PA11);
 
-    for (i = 0; i < 10 * 1024; i+=4) {
-        if (i & 1) {
-            ptr[i] = i;
-        } else {
-            ptr[i] = 0xEFBEADDE;
-        }
+    for(int i = 0; i < 10; i++) {
+        nandDie1.nandSendData(0x11);
+        nandDie1.nandSendAddress(0x11);
+        nandDie1.nandSendCommand(0x11);
+        vTaskDelay(pdMS_TO_TICKS(50));
     }
-    for (i = 0; i < 10 * 1024; ++i) {
-        if (i & 1) {
-            if (ptr[i] != i) {
-                LOG_DEBUG << "Wrong value in address = " << i;
-            }
-            else {
-                LOG_DEBUG << "Correct value in address = " << i;
-            }
-        } else {
-            if (ptr[i] != 0xEFBEADDE) {
-                LOG_DEBUG << "Wrong value in address = " << i;
-            }
-            else {
-                LOG_DEBUG << "Correct value in address = " << i;
-            }
-        }
-    }
+
 }
 
-/********************************* MRAM Code */
+
+/********************************* NAND Code */
 
 const static inline uint16_t Task1StackDepth = 2000;
 
@@ -122,14 +88,16 @@ void Task1(void *pvParameters) {
 //                ptr[i] = 0x55;
 //            }
 //        }
-        accessMRAMTest1(); // write 1 byte at a time
+        nandTest1(); // write 1 byte at a time
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        nandTest2(); // write 1 byte at a time
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
-//    initializeTasks();
+    initializeTasks();
 
 //    housekeepingTask.emplace();
 //    timeBasedSchedulingTask.emplace();
