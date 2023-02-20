@@ -3012,14 +3012,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_NANDOE}
   - type: String
     attributes: {id: PIN_86_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_87_DIR}
     children:
@@ -3110,14 +3110,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_NANDWE}
   - type: String
     attributes: {id: PIN_90_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_91_FUNCTION_NAME}
     children:
@@ -3404,7 +3404,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '4294924799'}
+        attributes: {id: core, value: '4294926335'}
   - type: Hex
     attributes: {id: PIOC_SODR_VALUE}
     children:
@@ -3768,13 +3768,6 @@ children:
       children:
       - type: Dynamic
         attributes: {id: rtc, value: 'true'}
-  - type: Integer
-    attributes: {id: SDRAMC_CLOCK_FREQUENCY}
-    children:
-    - type: Values
-      children:
-      - type: Dynamic
-        attributes: {id: core, value: '150000000'}
   - type: Integer
     attributes: {id: SLOW_CLK_FREQ}
     children:
