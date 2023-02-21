@@ -35,7 +35,7 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 /********************************* NAND Code */
 void nandTest1() {
-    MT29F nandDie1(SMC::NCS1, PIO_PIN_PA11);
+    MT29F nandDie1(SMC::NCS1, NAND_RB_2_PIN);
 
     for(int i = 0; i < 10; i++) {
         nandDie1.sendData(0x11);
@@ -48,7 +48,7 @@ void nandTest1() {
 }
 
 void nandTest2() {
-    MT29F nandDie1(SMC::NCS1, PIO_PIN_PA11);
+    MT29F nandDie1(SMC::NCS1, NAND_RB_2_PIN);
 
     nandDie1.readNANDID();
 }

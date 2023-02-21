@@ -51,7 +51,7 @@
 60,PD22,LCL_CAN_2_SET,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
 62,PA26,LCL_CAN_2_RST,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
 63,PD21,CAN_FAULT_1,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
-64,PA11,CAN_SILENT_1,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
+64,PA11,NAND_RB_2,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 65,PD20,MEM_NAND_BUSY_2,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 66,PA10,OBC_UART_TX,UART0_UTXD0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 67,PD19,,Available,In,,,,,,,

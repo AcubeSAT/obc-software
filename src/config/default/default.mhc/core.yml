@@ -2559,14 +2559,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: Out}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_64_FUNCTION_NAME}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: CAN_SILENT_1}
+        attributes: {value: NAND_RB_2}
   - type: String
     attributes: {id: PIN_64_FUNCTION_TYPE}
     children:
@@ -2580,7 +2580,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: High}
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_64_PERIPHERAL_FUNCTION}
     children:
@@ -3301,7 +3301,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '214067200'}
+        attributes: {id: core, value: '214065152'}
   - type: Hex
     attributes: {id: PIOA_PDR_VALUE}
     children:
@@ -3315,7 +3315,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '67241984'}
+        attributes: {id: core, value: '67239936'}
   - type: Hex
     attributes: {id: PIOB_ABCDSR1_VALUE}
     children:

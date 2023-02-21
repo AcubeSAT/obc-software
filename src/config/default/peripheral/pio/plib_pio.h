@@ -296,14 +296,14 @@
 #define CAN_FAULT_1_Get()               ((PIOD_REGS->PIO_PDSR >> 21) & 0x1)
 #define CAN_FAULT_1_PIN                  PIO_PIN_PD21
 
-/*** Macros for CAN_SILENT_1 pin ***/
-#define CAN_SILENT_1_Set()               (PIOA_REGS->PIO_SODR = (1<<11))
-#define CAN_SILENT_1_Clear()             (PIOA_REGS->PIO_CODR = (1<<11))
-#define CAN_SILENT_1_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<11))
-#define CAN_SILENT_1_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<11))
-#define CAN_SILENT_1_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<11))
-#define CAN_SILENT_1_Get()               ((PIOA_REGS->PIO_PDSR >> 11) & 0x1)
-#define CAN_SILENT_1_PIN                  PIO_PIN_PA11
+/*** Macros for NAND_RB_2 pin ***/
+#define NAND_RB_2_Set()               (PIOA_REGS->PIO_SODR = (1<<11))
+#define NAND_RB_2_Clear()             (PIOA_REGS->PIO_CODR = (1<<11))
+#define NAND_RB_2_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<11))
+#define NAND_RB_2_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<11))
+#define NAND_RB_2_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<11))
+#define NAND_RB_2_Get()               ((PIOA_REGS->PIO_PDSR >> 11) & 0x1)
+#define NAND_RB_2_PIN                  PIO_PIN_PA11
 
 /*** Macros for MEM_NAND_BUSY_2 pin ***/
 #define MEM_NAND_BUSY_2_Set()               (PIOD_REGS->PIO_SODR = (1<<20))
