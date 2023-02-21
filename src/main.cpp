@@ -14,7 +14,8 @@
 #include "TCHandlingTask.hpp"
 #include "plib_pio.h"
 #include "peripheral/pwm/plib_pwm0.h"
-#include "NANDFlash.h"
+#include "MR4A08BUYS45.hpp"
+//#include "NANDFlash.h"
 //#include "SMC.h"
 
 #define IDLE_TASK_SIZE 4000
@@ -34,23 +35,29 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 #endif
 
 /********************************* NAND Code */
-void nandTest1() {
-    MT29F nandDie1(SMC::NCS1, NAND_RB_2_PIN);
+void mramTest1() {
 
-    for(int i = 0; i < 10; i++) {
-        nandDie1.sendData(0x11);
-        nandDie1.sendAddress(0x11);
-        nandDie1.sendCommand(0x11);
-        uint8_t a = nandDie1.readData();
-        vTaskDelay(pdMS_TO_TICKS(50));
+    MRAM mram(SMC::NCS1);
+
+    for(int i = 3; i < 32; i+=4) {
+        LOG_DEBUG << mram.mramReadByte(i);
+        vTaskDelay(pdMS_TO_TICKS(150));
     }
 
 }
 
-void nandTest2() {
-    MT29F nandDie1(SMC::NCS1, NAND_RB_2_PIN);
+void mramTest2() {
 
-    nandDie1.readNANDID();
+    MRAM mram(SMC::NCS1);
+    for(int i = 0,j=0; i < 32; i+=4,j++) {
+        mram.mramWriteByte(i, j);
+    }
+
+    for(int i = 3; i < 32; i+=4) {
+        LOG_DEBUG << mram.mramReadByte(i);
+        vTaskDelay(pdMS_TO_TICKS(150));
+    }
+
 }
 
 
@@ -71,9 +78,9 @@ void Task1(void *pvParameters) {
 //    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
 
     while (true) {
-        nandTest1();
+        mramTest1();
         vTaskDelay(pdMS_TO_TICKS(500));
-        nandTest2();
+        mramTest2();
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
@@ -96,7 +103,7 @@ extern "C" void main_cpp() {
 //    tcHandlingTask->createTask();
 //    canTransmitTask->createTask();
     xTaskCreateStatic(Task1, "Task1",
-                      5000, NULL, tskIDLE_PRIORITY + 2, taskStack,
+                      2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
                       &task1Buffer);
 //    uartGatekeeperTask->createTask();
 
