@@ -38,10 +38,10 @@ void nandTest1() {
     MT29F nandDie1(SMC::NCS1, PIO_PIN_PA11);
 
     for(int i = 0; i < 10; i++) {
-        nandDie1.nandSendData(0x11);
-        nandDie1.nandSendAddress(0x11);
-        nandDie1.nandSendCommand(0x11);
-        uint8_t a = nandDie1.nandReadData();
+        nandDie1.sendData(0x11);
+        nandDie1.sendAddress(0x11);
+        nandDie1.sendCommand(0x11);
+        uint8_t a = nandDie1.readData();
         vTaskDelay(pdMS_TO_TICKS(50));
     }
 
@@ -50,7 +50,7 @@ void nandTest1() {
 void nandTest2() {
     MT29F nandDie1(SMC::NCS1, PIO_PIN_PA11);
 
-    nandDie1.readID();
+    nandDie1.readNANDID();
 }
 
 
@@ -63,30 +63,18 @@ StackType_t taskStack[Task1StackDepth];
 StaticTask_t task1Buffer;
 
 void Task1(void *pvParameters) {
-    PIO_PinWrite(LCL_MRAM_RST_PIN, true);
-    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
-    PWM0_ChannelsStart(PWM_CHANNEL_1_MASK);
-    PIO_PinWrite(LCL_MRAM_SET_PIN, false);
-    vTaskDelay(pdMS_TO_TICKS(10));
-    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
-
-    // TODO: recheck this test
-//    accessMRAMTest2(); // write 1 word at a time
+//    PIO_PinWrite(LCL_MRAM_RST_PIN, true);
+//    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
+//    PWM0_ChannelsStart(PWM_CHANNEL_1_MASK);
+//    PIO_PinWrite(LCL_MRAM_SET_PIN, false);
+//    vTaskDelay(pdMS_TO_TICKS(10));
+//    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
 
     while (true) {
-//        uint32_t i;
-//        uint8_t *ptr = (uint8_t *) MRAM_BASE_ADDRESS;
-//        for (i = 0; i < 10 * 1024; ++i) {
-//            if (i & 1) {
-//                ptr[i] = 0x96;
-//            } else {
-//                ptr[i] = 0x55;
-//            }
-//        }
-        nandTest1(); // write 1 byte at a time
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        nandTest2(); // write 1 byte at a time
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        nandTest1();
+        vTaskDelay(pdMS_TO_TICKS(500));
+        nandTest2();
+        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 
@@ -108,7 +96,7 @@ extern "C" void main_cpp() {
 //    tcHandlingTask->createTask();
 //    canTransmitTask->createTask();
     xTaskCreateStatic(Task1, "Task1",
-                      2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
+                      5000, NULL, tskIDLE_PRIORITY + 2, taskStack,
                       &task1Buffer);
 //    uartGatekeeperTask->createTask();
 
