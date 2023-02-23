@@ -64,14 +64,25 @@ void mramTest3() {
 
     MRAM mram(SMC::NCS1);
     for(int i = 0,j=80000; i < 32; i++,j++) {
-        mram.mramWriteByte(i, j);
+        mram.mramWriteWord(i, j);
     }
 
-    for(int i = 3; i < 32; i+=4) {
+    for(int i = 0; i < 32; i++) {
         LOG_DEBUG << mram.mramReadByte(i);
         vTaskDelay(pdMS_TO_TICKS(150));
     }
 
+}
+
+void mramTest4() {
+    MRAM mram(SMC::NCS1);
+    mram.mramWriteByte(524290, 193); // 2^19 + 2 => address > 2^21
+    for(int i = 0; i < 524288; i++) {
+        if(mram.mramReadByte(i) == 193) {
+            LOG_DEBUG << "found in address " << i;
+        }
+        vTaskDelay(pdMS_TO_TICKS(10));
+    }
 }
 
 
@@ -98,7 +109,7 @@ void Task1(void *pvParameters) {
         vTaskDelay(pdMS_TO_TICKS(500));
         mramTest3();
         vTaskDelay(pdMS_TO_TICKS(500));
-
+        mramTest4();
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
