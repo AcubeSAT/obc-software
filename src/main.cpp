@@ -60,6 +60,20 @@ void mramTest2() {
 
 }
 
+void mramTest3() {
+
+    MRAM mram(SMC::NCS1);
+    for(int i = 0,j=80000; i < 32; i++,j++) {
+        mram.mramWriteByte(i, j);
+    }
+
+    for(int i = 3; i < 32; i+=4) {
+        LOG_DEBUG << mram.mramReadByte(i);
+        vTaskDelay(pdMS_TO_TICKS(150));
+    }
+
+}
+
 
 /********************************* NAND Code */
 
@@ -81,6 +95,10 @@ void Task1(void *pvParameters) {
         mramTest1();
         vTaskDelay(pdMS_TO_TICKS(500));
         mramTest2();
+        vTaskDelay(pdMS_TO_TICKS(500));
+        mramTest3();
+        vTaskDelay(pdMS_TO_TICKS(500));
+
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
