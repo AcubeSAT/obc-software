@@ -42,7 +42,7 @@ void mramTest1() {
     volatile uint8_t * volatile mramBuffer = reinterpret_cast<volatile uint8_t * volatile> (EBI_CS1_ADDR);
 
     for(uint32_t i = 0; i < 2097152; i++) {
-        mramBuffer[i] = 3;
+        mramBuffer[i] = 27;
     }
 
     for(uint32_t i = 0; i < 32; i++) {
@@ -54,11 +54,11 @@ void mramTest1() {
 void mramTest2() {
 
     MRAM mram(SMC::NCS1);
-    for(int i = 0,j=0; i < 32; i+=4,j++) {
-        mram.mramWriteByte(i, j);
+    for(uint32_t i = 0; i < 2097152; i++) {
+        mram.mramWriteByte(i, 28);
     }
 
-    for(int i = 3; i < 32; i+=4) {
+    for(uint32_t i = 0; i < 32; i++) {
         LOG_DEBUG << mram.mramReadByte(i);
         vTaskDelay(pdMS_TO_TICKS(150));
     }
@@ -110,8 +110,8 @@ void Task1(void *pvParameters) {
     while (true) {
         mramTest1();
         vTaskDelay(pdMS_TO_TICKS(500));
-//        mramTest2();
-//        vTaskDelay(pdMS_TO_TICKS(500));
+        mramTest2();
+        vTaskDelay(pdMS_TO_TICKS(500));
 //        mramTest3();
 //        vTaskDelay(pdMS_TO_TICKS(500));
 //        mramTest4();
