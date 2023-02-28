@@ -37,13 +37,18 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 /********************************* NAND Code */
 void mramTest1() {
 
-    MRAM mram(SMC::NCS1);
+//    MRAM mram(SMC::NCS1);
 
-    for(int i = 3; i < 32; i+=4) {
-        LOG_DEBUG << mram.mramReadByte(i);
-        vTaskDelay(pdMS_TO_TICKS(150));
+    volatile uint8_t * volatile mramBuffer = reinterpret_cast<volatile uint8_t * volatile> (EBI_CS1_ADDR);
+
+    for(uint32_t i = 0; i < 2097152; i++) {
+        mramBuffer[i] = 3;
     }
 
+    for(uint32_t i = 0; i < 32; i++) {
+        LOG_DEBUG << mramBuffer[i];
+        vTaskDelay(pdMS_TO_TICKS(150));
+    }
 }
 
 void mramTest2() {
@@ -105,12 +110,12 @@ void Task1(void *pvParameters) {
     while (true) {
         mramTest1();
         vTaskDelay(pdMS_TO_TICKS(500));
-        mramTest2();
-        vTaskDelay(pdMS_TO_TICKS(500));
-        mramTest3();
-        vTaskDelay(pdMS_TO_TICKS(500));
-        mramTest4();
-        vTaskDelay(pdMS_TO_TICKS(500));
+//        mramTest2();
+//        vTaskDelay(pdMS_TO_TICKS(500));
+//        mramTest3();
+//        vTaskDelay(pdMS_TO_TICKS(500));
+//        mramTest4();
+//        vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
 
