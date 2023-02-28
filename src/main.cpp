@@ -65,18 +65,13 @@ void mramTest2() {
 
 }
 
+void writeAddressWithPioPins() {
+
+}
+
 void mramTest3() {
-
-    MRAM mram(SMC::NCS1);
-    for(int i = 0,j=80000; i < 32; i++,j++) {
-        mram.mramWriteWord(i, j);
-    }
-
-    for(int i = 0; i < 32; i++) {
-        LOG_DEBUG << mram.mramReadByte(i);
-        vTaskDelay(pdMS_TO_TICKS(150));
-    }
-
+    writeAddressWithPioPins();
+    *(reinterpret_cast<volatile uint8_t * volatile>(EBI_CS1_ADDR)) = 29;
 }
 
 void mramTest4() {
@@ -112,8 +107,8 @@ void Task1(void *pvParameters) {
         vTaskDelay(pdMS_TO_TICKS(500));
         mramTest2();
         vTaskDelay(pdMS_TO_TICKS(500));
-//        mramTest3();
-//        vTaskDelay(pdMS_TO_TICKS(500));
+        mramTest3();
+        vTaskDelay(pdMS_TO_TICKS(500));
 //        mramTest4();
 //        vTaskDelay(pdMS_TO_TICKS(500));
     }
