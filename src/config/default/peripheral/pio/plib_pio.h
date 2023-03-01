@@ -124,6 +124,10 @@
 #define MEM_A15_Get()               ((PIOA_REGS->PIO_PDSR >> 19) & 0x1)
 #define MEM_A15_PIN                  PIO_PIN_PA19
 
+/*** Macros for MEM_A14 pin ***/
+#define MEM_A14_Get()               ((PIOA_REGS->PIO_PDSR >> 18) & 0x1)
+#define MEM_A14_PIN                  PIO_PIN_PA18
+
 /*** Macros for LCL_NAND_SET pin ***/
 #define LCL_NAND_SET_Set()               (PIOA_REGS->PIO_SODR = (1<<17))
 #define LCL_NAND_SET_Clear()             (PIOA_REGS->PIO_CODR = (1<<17))

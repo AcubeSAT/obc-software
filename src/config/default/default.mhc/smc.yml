@@ -153,6 +153,13 @@ children:
       - type: Dynamic
         attributes: {id: smc, value: '0'}
   - type: Integer
+    attributes: {id: SMC_NWE_CYCLE_CS1}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '10'}
+  - type: Integer
     attributes: {id: SMC_NWE_PULSE_CS1}
     children:
     - type: Values

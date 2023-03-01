@@ -1649,7 +1649,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: MEM_A14}
   - type: String
     attributes: {id: PIN_24_FUNCTION_TYPE}
     children:

@@ -18,7 +18,7 @@
 21,PB0,LCL_PWM_NAND,PWM0_PWMH0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 22,PA20,MEM_A16,EBI_A16,n/a,n/a,No,Disabled,No,No,Disabled,Low
 23,PA19,MEM_A15,EBI_A15,n/a,n/a,No,Disabled,No,No,Disabled,Low
-24,PA18,,EBI_A14,n/a,n/a,No,Disabled,No,No,Disabled,Low
+24,PA18,MEM_A14,EBI_A14,n/a,n/a,No,Disabled,No,No,Disabled,Low
 25,PA17,LCL_NAND_SET,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
 26,PB2,CAN_TX_1,MCAN0_CANTX0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 27,PE4,LCL_NAND_RST,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
