@@ -47,7 +47,7 @@
 56,PA24,,USART1_RTS1,n/a,n/a,No,Disabled,No,No,Disabled,Low
 57,PD23,,Available,In,,,,,,,
 58,PC5,,Available,In,,,,,,,
-59,PA25,,USART1_CTS1,n/a,n/a,No,Disabled,No,No,Disabled,Low
+59,PA25,GPIO_PA25,GPIO,Out,Low,No,Disabled,No,No,Disabled,Low
 60,PD22,,Available,In,,,,,,,
 62,PA26,,USART1_DCD1,n/a,n/a,No,Disabled,No,No,Disabled,Low
 63,PD21,,Available,In,,,,,,,
@@ -112,4 +112,4 @@
 133,PC25,,Available,In,,,,,,,
 141,PB8,,Available,In,,,,,,,
 142,PB9,,Available,In,,,,,,,
-144,PB13,,Available,In,,,,,,,
+144,PB13,GPIO_PB13,GPIO,Out,Low,No,Disabled,No,No,Disabled,Low

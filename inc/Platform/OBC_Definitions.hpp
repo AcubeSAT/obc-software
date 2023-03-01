@@ -71,7 +71,7 @@ namespace CAN {
     /**
      * The ID for the current node as described in DDJF_OBDH
      */
-    inline const uint8_t NodeID = 0x1;
+    inline const uint8_t NodeID = 0x2;
 
     /**
      * The maximum of the length of the queue for incoming/outgoing CAN frames.

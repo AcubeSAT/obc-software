@@ -4,7 +4,7 @@
 
 CANGatekeeperTask::CANGatekeeperTask() : Task("CANGatekeeperTask") {
     CAN::Driver::initialize();
-
+    CAN::Driver::toggleActiveBus(CAN::Driver::Redundant);
     outgoingQueue = xQueueCreateStatic(CAN::FrameQueueSize, sizeof(CAN::Frame), outgoingQueueStorageArea,
                                        &outgoingQueueBuffer);
     vQueueAddToRegistry(outgoingQueue, "CAN Outgoing");

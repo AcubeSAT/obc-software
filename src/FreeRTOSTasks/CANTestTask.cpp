@@ -2,6 +2,9 @@
 #include "CANGatekeeperTask.hpp"
 
 void CANTestTask::execute() {
+    PIO_PinWrite(PIO_PIN_PA25, false);
+    PIO_PinWrite(PIO_PIN_PB13, false);
+    CAN::Driver::toggleActiveBus(CAN::Driver::Redundant);
     CAN::Frame message = {};
 
     /**
@@ -37,8 +40,8 @@ void CANTestTask::execute() {
      * Log messages utilizing multiple messages
      */
 //     while (true) {
-//         const String<LoggerMaxMessageSize> logString = "This is a log message going from the development board to the eqm that consists of more than 64 chars";
-//         CAN::Application::createLogMessage(CAN::Application::NodeIDs::OBC, false, logString, false);
+//         const String<LoggerMaxMessageSize> logString = "Dev board";
+//         CAN::Application::createLogMessage(CAN::Application::NodeIDs::OBC, true, logString, false);
 //         vTaskDelay(pdMS_TO_TICKS(1000));
 //     }
 }
