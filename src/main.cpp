@@ -47,6 +47,10 @@ void CANLCLInit(void *pvParameters) {
     PIO_PinWrite(LCL_CAN_2_SET_PIN, true);
 
     vTaskSuspend(taskHandle1);
+
+    while(true) {
+
+    }
 }
 
 extern "C" void main_cpp() {
