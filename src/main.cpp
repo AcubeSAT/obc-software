@@ -47,7 +47,7 @@ void mramTest1() {
 
     for(uint32_t i = 0; i < 32; i++) {
         LOG_DEBUG << mramBuffer[i];
-        vTaskDelay(pdMS_TO_TICKS(50));
+        vTaskDelay(pdMS_TO_TICKS(150));
     }
 }
 
@@ -60,34 +60,17 @@ void mramTest2() {
 
     for(uint32_t i = 0; i < 32; i++) {
         LOG_DEBUG << mram.mramReadByte(i);
-        vTaskDelay(pdMS_TO_TICKS(50));
+        vTaskDelay(pdMS_TO_TICKS(150));
     }
 
 }
 
-void mramTest3() {
-    PIO_PinWrite(A0_PIN, false);
-    PIO_PinWrite(A1_PIN, false);
-    PIO_PinWrite(A2_PIN, false);
-    PIO_PinWrite(A3_PIN, false);
-    PIO_PinWrite(A4_PIN, false);
-    PIO_PinWrite(A5_PIN, false);
-    PIO_PinWrite(A6_PIN, false);
-    PIO_PinWrite(A7_PIN, false);
-    PIO_PinWrite(A8_PIN, false);
-    PIO_PinWrite(A9_PIN, false);
-    PIO_PinWrite(A10_PIN, false);
-    PIO_PinWrite(A11_PIN, false);
-    PIO_PinWrite(A12_PIN, false);
-    PIO_PinWrite(A13_PIN, false);
-    PIO_PinWrite(A14_PIN, false);
-    PIO_PinWrite(A15_PIN, false);
-    PIO_PinWrite(A16_PIN, false);
-    PIO_PinWrite(A17_PIN, false);
-    PIO_PinWrite(A18_PIN, false);
-    PIO_PinWrite(A19_PIN, false);
-    PIO_PinWrite(A20_PIN, false);
+void writeAddressWithPioPins() {
 
+}
+
+void mramTest3() {
+    writeAddressWithPioPins();
     *(reinterpret_cast<volatile uint8_t * volatile>(EBI_CS1_ADDR)) = 29;
 }
 
@@ -120,10 +103,10 @@ void Task1(void *pvParameters) {
 //    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
 
     while (true) {
-//        mramTest1();
-//        vTaskDelay(pdMS_TO_TICKS(500));
-//        mramTest2();
-//        vTaskDelay(pdMS_TO_TICKS(500));
+        mramTest1();
+        vTaskDelay(pdMS_TO_TICKS(500));
+        mramTest2();
+        vTaskDelay(pdMS_TO_TICKS(500));
         mramTest3();
         vTaskDelay(pdMS_TO_TICKS(500));
 //        mramTest4();
