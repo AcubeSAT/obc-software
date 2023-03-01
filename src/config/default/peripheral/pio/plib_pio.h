@@ -66,25 +66,50 @@
 #define MEM_D0_Get()               ((PIOC_REGS->PIO_PDSR >> 0) & 0x1)
 #define MEM_D0_PIN                  PIO_PIN_PC0
 
-/*** Macros for MEM_A9 pin ***/
-#define MEM_A9_Get()               ((PIOC_REGS->PIO_PDSR >> 27) & 0x1)
-#define MEM_A9_PIN                  PIO_PIN_PC27
+/*** Macros for A9 pin ***/
+#define A9_Set()               (PIOC_REGS->PIO_SODR = (1<<27))
+#define A9_Clear()             (PIOC_REGS->PIO_CODR = (1<<27))
+#define A9_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<27))
+#define A9_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<27))
+#define A9_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<27))
+#define A9_Get()               ((PIOC_REGS->PIO_PDSR >> 27) & 0x1)
+#define A9_PIN                  PIO_PIN_PC27
 
-/*** Macros for MEM_A8 pin ***/
-#define MEM_A8_Get()               ((PIOC_REGS->PIO_PDSR >> 26) & 0x1)
-#define MEM_A8_PIN                  PIO_PIN_PC26
+/*** Macros for A8 pin ***/
+#define A8_Set()               (PIOC_REGS->PIO_SODR = (1<<26))
+#define A8_Clear()             (PIOC_REGS->PIO_CODR = (1<<26))
+#define A8_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<26))
+#define A8_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<26))
+#define A8_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<26))
+#define A8_Get()               ((PIOC_REGS->PIO_PDSR >> 26) & 0x1)
+#define A8_PIN                  PIO_PIN_PC26
 
-/*** Macros for MEM_A13 pin ***/
-#define MEM_A13_Get()               ((PIOC_REGS->PIO_PDSR >> 31) & 0x1)
-#define MEM_A13_PIN                  PIO_PIN_PC31
+/*** Macros for A13 pin ***/
+#define A13_Set()               (PIOC_REGS->PIO_SODR = (1<<31))
+#define A13_Clear()             (PIOC_REGS->PIO_CODR = (1<<31))
+#define A13_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<31))
+#define A13_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<31))
+#define A13_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<31))
+#define A13_Get()               ((PIOC_REGS->PIO_PDSR >> 31) & 0x1)
+#define A13_PIN                  PIO_PIN_PC31
 
-/*** Macros for MEM_A12 pin ***/
-#define MEM_A12_Get()               ((PIOC_REGS->PIO_PDSR >> 30) & 0x1)
-#define MEM_A12_PIN                  PIO_PIN_PC30
+/*** Macros for A12 pin ***/
+#define A12_Set()               (PIOC_REGS->PIO_SODR = (1<<30))
+#define A12_Clear()             (PIOC_REGS->PIO_CODR = (1<<30))
+#define A12_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<30))
+#define A12_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<30))
+#define A12_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<30))
+#define A12_Get()               ((PIOC_REGS->PIO_PDSR >> 30) & 0x1)
+#define A12_PIN                  PIO_PIN_PC30
 
-/*** Macros for MEM_A11 pin ***/
-#define MEM_A11_Get()               ((PIOC_REGS->PIO_PDSR >> 29) & 0x1)
-#define MEM_A11_PIN                  PIO_PIN_PC29
+/*** Macros for A11 pin ***/
+#define A11_Set()               (PIOC_REGS->PIO_SODR = (1<<29))
+#define A11_Clear()             (PIOC_REGS->PIO_CODR = (1<<29))
+#define A11_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<29))
+#define A11_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<29))
+#define A11_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<29))
+#define A11_Get()               ((PIOC_REGS->PIO_PDSR >> 29) & 0x1)
+#define A11_PIN                  PIO_PIN_PC29
 
 /*** Macros for CAN_RX_2 pin ***/
 #define CAN_RX_2_Get()               ((PIOC_REGS->PIO_PDSR >> 12) & 0x1)
@@ -116,13 +141,32 @@
 #define LCL_PWM_NAND_Get()               ((PIOB_REGS->PIO_PDSR >> 0) & 0x1)
 #define LCL_PWM_NAND_PIN                  PIO_PIN_PB0
 
-/*** Macros for MEM_A16 pin ***/
-#define MEM_A16_Get()               ((PIOA_REGS->PIO_PDSR >> 20) & 0x1)
-#define MEM_A16_PIN                  PIO_PIN_PA20
+/*** Macros for A16 pin ***/
+#define A16_Set()               (PIOA_REGS->PIO_SODR = (1<<20))
+#define A16_Clear()             (PIOA_REGS->PIO_CODR = (1<<20))
+#define A16_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<20))
+#define A16_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<20))
+#define A16_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<20))
+#define A16_Get()               ((PIOA_REGS->PIO_PDSR >> 20) & 0x1)
+#define A16_PIN                  PIO_PIN_PA20
 
-/*** Macros for MEM_A15 pin ***/
-#define MEM_A15_Get()               ((PIOA_REGS->PIO_PDSR >> 19) & 0x1)
-#define MEM_A15_PIN                  PIO_PIN_PA19
+/*** Macros for A15 pin ***/
+#define A15_Set()               (PIOA_REGS->PIO_SODR = (1<<19))
+#define A15_Clear()             (PIOA_REGS->PIO_CODR = (1<<19))
+#define A15_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<19))
+#define A15_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<19))
+#define A15_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<19))
+#define A15_Get()               ((PIOA_REGS->PIO_PDSR >> 19) & 0x1)
+#define A15_PIN                  PIO_PIN_PA19
+
+/*** Macros for A14 pin ***/
+#define A14_Set()               (PIOA_REGS->PIO_SODR = (1<<18))
+#define A14_Clear()             (PIOA_REGS->PIO_CODR = (1<<18))
+#define A14_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<18))
+#define A14_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<18))
+#define A14_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<18))
+#define A14_Get()               ((PIOA_REGS->PIO_PDSR >> 18) & 0x1)
+#define A14_PIN                  PIO_PIN_PA18
 
 /*** Macros for LCL_NAND_SET pin ***/
 #define LCL_NAND_SET_Set()               (PIOA_REGS->PIO_SODR = (1<<17))
@@ -210,9 +254,14 @@
 #define ADM_DEPLOY_1_Get()               ((PIOA_REGS->PIO_PDSR >> 13) & 0x1)
 #define ADM_DEPLOY_1_PIN                  PIO_PIN_PA13
 
-/*** Macros for MEM_A19 pin ***/
-#define MEM_A19_Get()               ((PIOA_REGS->PIO_PDSR >> 23) & 0x1)
-#define MEM_A19_PIN                  PIO_PIN_PA23
+/*** Macros for A19 pin ***/
+#define A19_Set()               (PIOA_REGS->PIO_SODR = (1<<23))
+#define A19_Clear()             (PIOA_REGS->PIO_CODR = (1<<23))
+#define A19_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<23))
+#define A19_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<23))
+#define A19_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<23))
+#define A19_Get()               ((PIOA_REGS->PIO_PDSR >> 23) & 0x1)
+#define A19_PIN                  PIO_PIN_PA23
 
 /*** Macros for I2C_MTQ_SDA pin ***/
 #define I2C_MTQ_SDA_Get()               ((PIOD_REGS->PIO_PDSR >> 27) & 0x1)
@@ -253,9 +302,14 @@
 #define LCL_CAN_1_RST_Get()               ((PIOD_REGS->PIO_PDSR >> 24) & 0x1)
 #define LCL_CAN_1_RST_PIN                  PIO_PIN_PD24
 
-/*** Macros for MEM_A20 pin ***/
-#define MEM_A20_Get()               ((PIOA_REGS->PIO_PDSR >> 24) & 0x1)
-#define MEM_A20_PIN                  PIO_PIN_PA24
+/*** Macros for A20 pin ***/
+#define A20_Set()               (PIOA_REGS->PIO_SODR = (1<<24))
+#define A20_Clear()             (PIOA_REGS->PIO_CODR = (1<<24))
+#define A20_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<24))
+#define A20_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<24))
+#define A20_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<24))
+#define A20_Get()               ((PIOA_REGS->PIO_PDSR >> 24) & 0x1)
+#define A20_PIN                  PIO_PIN_PA24
 
 /*** Macros for LCL_PWM_CAN_1 pin ***/
 #define LCL_PWM_CAN_1_Get()               ((PIOD_REGS->PIO_PDSR >> 23) & 0x1)
@@ -366,9 +420,14 @@
 #define OBC_UART_RX_Get()               ((PIOA_REGS->PIO_PDSR >> 9) & 0x1)
 #define OBC_UART_RX_PIN                  PIO_PIN_PA9
 
-/*** Macros for MEM_A10 pin ***/
-#define MEM_A10_Get()               ((PIOC_REGS->PIO_PDSR >> 28) & 0x1)
-#define MEM_A10_PIN                  PIO_PIN_PC28
+/*** Macros for A10 pin ***/
+#define A10_Set()               (PIOC_REGS->PIO_SODR = (1<<28))
+#define A10_Clear()             (PIOC_REGS->PIO_CODR = (1<<28))
+#define A10_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<28))
+#define A10_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<28))
+#define A10_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<28))
+#define A10_Get()               ((PIOC_REGS->PIO_PDSR >> 28) & 0x1)
+#define A10_PIN                  PIO_PIN_PC28
 
 /*** Macros for I2C_SCK_PANELS pin ***/
 #define I2C_SCK_PANELS_Get()               ((PIOA_REGS->PIO_PDSR >> 4) & 0x1)
@@ -394,17 +453,27 @@
 #define MEM_MRAM_OUT_ENABLE_Get()               ((PIOC_REGS->PIO_PDSR >> 11) & 0x1)
 #define MEM_MRAM_OUT_ENABLE_PIN                  PIO_PIN_PC11
 
-/*** Macros for MEM_A18 pin ***/
-#define MEM_A18_Get()               ((PIOA_REGS->PIO_PDSR >> 1) & 0x1)
-#define MEM_A18_PIN                  PIO_PIN_PA1
+/*** Macros for A18 pin ***/
+#define A18_Set()               (PIOA_REGS->PIO_SODR = (1<<1))
+#define A18_Clear()             (PIOA_REGS->PIO_CODR = (1<<1))
+#define A18_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<1))
+#define A18_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<1))
+#define A18_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<1))
+#define A18_Get()               ((PIOA_REGS->PIO_PDSR >> 1) & 0x1)
+#define A18_PIN                  PIO_PIN_PA1
 
 /*** Macros for MEM_NAND_ADDR_ENABLE pin ***/
 #define MEM_NAND_ADDR_ENABLE_Get()               ((PIOC_REGS->PIO_PDSR >> 16) & 0x1)
 #define MEM_NAND_ADDR_ENABLE_PIN                  PIO_PIN_PC16
 
-/*** Macros for MEM_A17 pin ***/
-#define MEM_A17_Get()               ((PIOA_REGS->PIO_PDSR >> 0) & 0x1)
-#define MEM_A17_PIN                  PIO_PIN_PA0
+/*** Macros for A17 pin ***/
+#define A17_Set()               (PIOA_REGS->PIO_SODR = (1<<0))
+#define A17_Clear()             (PIOA_REGS->PIO_CODR = (1<<0))
+#define A17_Toggle()            (PIOA_REGS->PIO_ODSR ^= (1<<0))
+#define A17_OutputEnable()      (PIOA_REGS->PIO_OER = (1<<0))
+#define A17_InputEnable()       (PIOA_REGS->PIO_ODR = (1<<0))
+#define A17_Get()               ((PIOA_REGS->PIO_PDSR >> 0) & 0x1)
+#define A17_PIN                  PIO_PIN_PA0
 
 /*** Macros for MEM_NAND_CMD_ENABLE pin ***/
 #define MEM_NAND_CMD_ENABLE_Get()               ((PIOC_REGS->PIO_PDSR >> 17) & 0x1)
@@ -427,9 +496,14 @@
 #define ADM_DEPLOY_4_Get()               ((PIOD_REGS->PIO_PDSR >> 9) & 0x1)
 #define ADM_DEPLOY_4_PIN                  PIO_PIN_PD9
 
-/*** Macros for MEM_A0 pin ***/
-#define MEM_A0_Get()               ((PIOC_REGS->PIO_PDSR >> 18) & 0x1)
-#define MEM_A0_PIN                  PIO_PIN_PC18
+/*** Macros for A0 pin ***/
+#define A0_Set()               (PIOC_REGS->PIO_SODR = (1<<18))
+#define A0_Clear()             (PIOC_REGS->PIO_CODR = (1<<18))
+#define A0_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<18))
+#define A0_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<18))
+#define A0_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<18))
+#define A0_Get()               ((PIOC_REGS->PIO_PDSR >> 18) & 0x1)
+#define A0_PIN                  PIO_PIN_PC18
 
 /*** Macros for MCU_TRACECLK pin ***/
 #define MCU_TRACECLK_Get()               ((PIOD_REGS->PIO_PDSR >> 8) & 0x1)
@@ -444,9 +518,14 @@
 #define USR_GPIO_Get()               ((PIOA_REGS->PIO_PDSR >> 30) & 0x1)
 #define USR_GPIO_PIN                  PIO_PIN_PA30
 
-/*** Macros for MEM_A1 pin ***/
-#define MEM_A1_Get()               ((PIOC_REGS->PIO_PDSR >> 19) & 0x1)
-#define MEM_A1_PIN                  PIO_PIN_PC19
+/*** Macros for A1 pin ***/
+#define A1_Set()               (PIOC_REGS->PIO_SODR = (1<<19))
+#define A1_Clear()             (PIOC_REGS->PIO_CODR = (1<<19))
+#define A1_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<19))
+#define A1_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<19))
+#define A1_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<19))
+#define A1_Get()               ((PIOC_REGS->PIO_PDSR >> 19) & 0x1)
+#define A1_PIN                  PIO_PIN_PC19
 
 /*** Macros for USR_GPIO_PWM pin ***/
 #define USR_GPIO_PWM_Get()               ((PIOA_REGS->PIO_PDSR >> 31) & 0x1)
@@ -456,21 +535,36 @@
 #define MCU_TRACED_3_Get()               ((PIOD_REGS->PIO_PDSR >> 7) & 0x1)
 #define MCU_TRACED_3_PIN                  PIO_PIN_PD7
 
-/*** Macros for MEM_A2 pin ***/
-#define MEM_A2_Get()               ((PIOC_REGS->PIO_PDSR >> 20) & 0x1)
-#define MEM_A2_PIN                  PIO_PIN_PC20
+/*** Macros for A2 pin ***/
+#define A2_Set()               (PIOC_REGS->PIO_SODR = (1<<20))
+#define A2_Clear()             (PIOC_REGS->PIO_CODR = (1<<20))
+#define A2_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<20))
+#define A2_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<20))
+#define A2_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<20))
+#define A2_Get()               ((PIOC_REGS->PIO_PDSR >> 20) & 0x1)
+#define A2_PIN                  PIO_PIN_PC20
 
 /*** Macros for MCU_TRACED_2 pin ***/
 #define MCU_TRACED_2_Get()               ((PIOD_REGS->PIO_PDSR >> 6) & 0x1)
 #define MCU_TRACED_2_PIN                  PIO_PIN_PD6
 
-/*** Macros for MEM_A3 pin ***/
-#define MEM_A3_Get()               ((PIOC_REGS->PIO_PDSR >> 21) & 0x1)
-#define MEM_A3_PIN                  PIO_PIN_PC21
+/*** Macros for A3 pin ***/
+#define A3_Set()               (PIOC_REGS->PIO_SODR = (1<<21))
+#define A3_Clear()             (PIOC_REGS->PIO_CODR = (1<<21))
+#define A3_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<21))
+#define A3_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<21))
+#define A3_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<21))
+#define A3_Get()               ((PIOC_REGS->PIO_PDSR >> 21) & 0x1)
+#define A3_PIN                  PIO_PIN_PC21
 
-/*** Macros for MEM_A4 pin ***/
-#define MEM_A4_Get()               ((PIOC_REGS->PIO_PDSR >> 22) & 0x1)
-#define MEM_A4_PIN                  PIO_PIN_PC22
+/*** Macros for A4 pin ***/
+#define A4_Set()               (PIOC_REGS->PIO_SODR = (1<<22))
+#define A4_Clear()             (PIOC_REGS->PIO_CODR = (1<<22))
+#define A4_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<22))
+#define A4_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<22))
+#define A4_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<22))
+#define A4_Get()               ((PIOC_REGS->PIO_PDSR >> 22) & 0x1)
+#define A4_PIN                  PIO_PIN_PC22
 
 /*** Macros for MCU_TRACED_1 pin ***/
 #define MCU_TRACED_1_Get()               ((PIOD_REGS->PIO_PDSR >> 5) & 0x1)
@@ -480,17 +574,32 @@
 #define MCU_TRACED_0_Get()               ((PIOD_REGS->PIO_PDSR >> 4) & 0x1)
 #define MCU_TRACED_0_PIN                  PIO_PIN_PD4
 
-/*** Macros for MEM_A5 pin ***/
-#define MEM_A5_Get()               ((PIOC_REGS->PIO_PDSR >> 23) & 0x1)
-#define MEM_A5_PIN                  PIO_PIN_PC23
+/*** Macros for A5 pin ***/
+#define A5_Set()               (PIOC_REGS->PIO_SODR = (1<<23))
+#define A5_Clear()             (PIOC_REGS->PIO_CODR = (1<<23))
+#define A5_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<23))
+#define A5_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<23))
+#define A5_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<23))
+#define A5_Get()               ((PIOC_REGS->PIO_PDSR >> 23) & 0x1)
+#define A5_PIN                  PIO_PIN_PC23
 
-/*** Macros for MEM_A6 pin ***/
-#define MEM_A6_Get()               ((PIOC_REGS->PIO_PDSR >> 24) & 0x1)
-#define MEM_A6_PIN                  PIO_PIN_PC24
+/*** Macros for A6 pin ***/
+#define A6_Set()               (PIOC_REGS->PIO_SODR = (1<<24))
+#define A6_Clear()             (PIOC_REGS->PIO_CODR = (1<<24))
+#define A6_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<24))
+#define A6_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<24))
+#define A6_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<24))
+#define A6_Get()               ((PIOC_REGS->PIO_PDSR >> 24) & 0x1)
+#define A6_PIN                  PIO_PIN_PC24
 
-/*** Macros for MEM_A7 pin ***/
-#define MEM_A7_Get()               ((PIOC_REGS->PIO_PDSR >> 25) & 0x1)
-#define MEM_A7_PIN                  PIO_PIN_PC25
+/*** Macros for A7 pin ***/
+#define A7_Set()               (PIOC_REGS->PIO_SODR = (1<<25))
+#define A7_Clear()             (PIOC_REGS->PIO_CODR = (1<<25))
+#define A7_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<25))
+#define A7_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<25))
+#define A7_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<25))
+#define A7_Get()               ((PIOC_REGS->PIO_PDSR >> 25) & 0x1)
+#define A7_PIN                  PIO_PIN_PC25
 
 /*** Macros for GND pin ***/
 #define GND_Get()               ((PIOB_REGS->PIO_PDSR >> 8) & 0x1)
