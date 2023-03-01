@@ -1,20 +1,21 @@
 /*******************************************************************************
-  MPU PLIB Implementation
-
-  Company:
+ Interface definition of RTT PLIB.
+ 
+ Company:
     Microchip Technology Inc.
-
-  File Name:
-    plib_mpu.h
-
-  Summary:
-    MPU PLIB Source File
-
-  Description:
-    None
-
+    
+ File Name:
+    plib_rtt.h
+    
+ Summary:
+    Interface definition of RTT Plib.
+    
+ Description:
+    This file defines the interface for the RTT Plib.
+    It allows user to start, stop and configure the on-chip real time timer.
 *******************************************************************************/
 
+// DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -37,55 +38,33 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
+// DOM-IGNORE-END
 
-#include "plib_mpu.h"
-#include "plib_mpu_local.h"
+#ifndef RTT_H    // Guards against multiple inclusion
+#define RTT_H
 
+#include <stdint.h>
+#include <stddef.h>
+#include "plib_rtt_common.h"
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: MPU Implementation
-// *****************************************************************************
-// *****************************************************************************
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus // Provide C++ Compatibility
+    extern "C" {
+#endif
+// DOM-IGNORE-END
 
-void MPU_Initialize(void)
-{
-    /*** Disable MPU            ***/
-    MPU->CTRL = 0;
+void RTT_Initialize(void);
+void RTT_Enable(void);
+void RTT_Disable(void);
+void RTT_PrescalarUpdate(uint16_t prescale);
 
-    /*** Configure MPU Regions  ***/
+uint32_t RTT_TimerValueGet(void);
+uint32_t RTT_FrequencyGet(void); 
 
-    /* Region 0 Name: SRAM_NOCACHE, Base Address: 0x2045f000, Size: 8KB  */
-    MPU->RBAR = MPU_REGION(0U, 0x2045f000U);
-    MPU->RASR = MPU_REGION_SIZE(12U) | MPU_RASR_AP(MPU_RASR_AP_READWRITE_Val) | MPU_ATTR_NORMAL \
-                | MPU_ATTR_ENABLE | MPU_ATTR_EXECUTE_NEVER ;
-
-    /* Region 1 Name: EBI_SMC, Base Address: 0x60000000, Size: 2MB  */
-    MPU->RBAR = MPU_REGION(1U, 0x60000000U);
-    MPU->RASR = MPU_REGION_SIZE(20U) | MPU_RASR_AP(MPU_RASR_AP_READWRITE_Val) | MPU_ATTR_STRONGLY_ORDERED \
-                | MPU_ATTR_ENABLE | MPU_ATTR_EXECUTE_NEVER | MPU_ATTR_SHAREABLE;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* Enable Memory Management Fault */
-    SCB->SHCSR |= (SCB_SHCSR_MEMFAULTENA_Msk);
-
-    /* Enable MPU */
-    MPU->CTRL = MPU_CTRL_ENABLE_Msk  | MPU_CTRL_PRIVDEFENA_Msk;
-
-    __DSB();
-    __ISB();
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus // Provide C++ Compatibility
 }
+#endif
+// DOM-IGNORE-END
 
+#endif

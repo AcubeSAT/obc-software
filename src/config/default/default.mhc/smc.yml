@@ -45,12 +45,19 @@ children:
       - type: Dynamic
         attributes: {id: smc, value: '0'}
   - type: Boolean
-    attributes: {id: SMC_CHIP_SELECT1}
+    attributes: {id: SMC_CHIP_SELECT0}
     children:
     - type: Values
       children:
       - type: User
         attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: SMC_CHIP_SELECT1}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'false'}
   - type: Boolean
     attributes: {id: SMC_CHIP_SELECT3}
     children:
@@ -91,12 +98,61 @@ children:
       - type: User
         attributes: {value: '0'}
   - type: Integer
+    attributes: {id: SMC_NCS_RD_PULSE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7'}
+  - type: Integer
+    attributes: {id: SMC_NCS_RD_SETUP_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
+  - type: Integer
+    attributes: {id: SMC_NCS_WR_PULSE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7'}
+  - type: Integer
+    attributes: {id: SMC_NCS_WR_SETUP_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
+  - type: Integer
     attributes: {id: SMC_NCS_WR_SETUP_CS3}
     children:
     - type: Values
       children:
       - type: User
         attributes: {value: '16'}
+  - type: Integer
+    attributes: {id: SMC_NRD_CYCLE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '10'}
+  - type: Integer
+    attributes: {id: SMC_NRD_PULSE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '3'}
+  - type: Integer
+    attributes: {id: SMC_NRD_SETUP_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '5'}
   - type: KeyValueSet
     attributes: {id: SMC_NWAIT_MODE_CS0}
     children:
@@ -126,6 +182,20 @@ children:
       - type: Dynamic
         attributes: {id: smc, value: '0'}
   - type: Integer
+    attributes: {id: SMC_NWE_CYCLE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '10'}
+  - type: Integer
+    attributes: {id: SMC_NWE_PULSE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '6'}
+  - type: Integer
     attributes: {id: SMC_NWE_PULSE_CS1}
     children:
     - type: Values
@@ -139,6 +209,13 @@ children:
       children:
       - type: User
         attributes: {value: '8'}
+  - type: Integer
+    attributes: {id: SMC_NWE_SETUP_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '2'}
   - type: Integer
     attributes: {id: SMC_NWE_SETUP_CS1}
     children:

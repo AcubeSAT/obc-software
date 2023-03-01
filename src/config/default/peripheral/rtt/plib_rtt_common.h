@@ -1,20 +1,21 @@
 /*******************************************************************************
-  MPU PLIB Implementation
-
-  Company:
+ Interface definition of RTT PLIB.
+ 
+ Company:
     Microchip Technology Inc.
-
-  File Name:
-    plib_mpu.h
-
-  Summary:
-    MPU PLIB Source File
-
-  Description:
-    None
-
+    
+ File Name:
+    plib_rtt_common.h
+    
+ Summary:
+    Interface definition of rtt Plib.
+    
+ Description:
+    This file defines the interface for the rtt Plib.
+    It allows user to start, stop and configure the on-chip real time timer.
 *******************************************************************************/
 
+// DOM-IGNORE-BEGIN
 /*******************************************************************************
 * Copyright (C) 2018 Microchip Technology Inc. and its subsidiaries.
 *
@@ -37,55 +38,44 @@
 * ANY WAY RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
 * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
 *******************************************************************************/
+// DOM-IGNORE-END
 
-#include "plib_mpu.h"
-#include "plib_mpu_local.h"
+#ifndef PLIB_RTT_COMMON_H    // Guards against multiple inclusion
+#define PLIB_RTT_COMMON_H
+
+#include <stdint.h>
+#include <stddef.h>
+
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus // Provide C++ Compatibility
+    extern "C" {
+#endif
+// DOM-IGNORE-END
 
 
-// *****************************************************************************
-// *****************************************************************************
-// Section: MPU Implementation
-// *****************************************************************************
-// *****************************************************************************
-
-void MPU_Initialize(void)
+typedef enum
 {
-    /*** Disable MPU            ***/
-    MPU->CTRL = 0;
+    RTT_PERIODIC = 0x20000,     //Periodic interrupt
+    RTT_ALARM     = 0x10000,     // One time Alarm
 
-    /*** Configure MPU Regions  ***/
+    /* Force the compiler to reserve 32-bit memory for enum */
+    RTT_INTERRUPT_INVALID = 0xFFFFFFFF
+}RTT_INTERRUPT_TYPE;
 
-    /* Region 0 Name: SRAM_NOCACHE, Base Address: 0x2045f000, Size: 8KB  */
-    MPU->RBAR = MPU_REGION(0U, 0x2045f000U);
-    MPU->RASR = MPU_REGION_SIZE(12U) | MPU_RASR_AP(MPU_RASR_AP_READWRITE_Val) | MPU_ATTR_NORMAL \
-                | MPU_ATTR_ENABLE | MPU_ATTR_EXECUTE_NEVER ;
+typedef void (*RTT_CALLBACK)(RTT_INTERRUPT_TYPE type, uintptr_t context);
 
-    /* Region 1 Name: EBI_SMC, Base Address: 0x60000000, Size: 2MB  */
-    MPU->RBAR = MPU_REGION(1U, 0x60000000U);
-    MPU->RASR = MPU_REGION_SIZE(20U) | MPU_RASR_AP(MPU_RASR_AP_READWRITE_Val) | MPU_ATTR_STRONGLY_ORDERED \
-                | MPU_ATTR_ENABLE | MPU_ATTR_EXECUTE_NEVER | MPU_ATTR_SHAREABLE;
-
-
+typedef struct
+{
+    RTT_CALLBACK          callback;
+    uintptr_t             context;
+} RTT_OBJECT ;
 
 
 
-
-
-
-
-
-
-
-
-
-
-    /* Enable Memory Management Fault */
-    SCB->SHCSR |= (SCB_SHCSR_MEMFAULTENA_Msk);
-
-    /* Enable MPU */
-    MPU->CTRL = MPU_CTRL_ENABLE_Msk  | MPU_CTRL_PRIVDEFENA_Msk;
-
-    __DSB();
-    __ISB();
+// DOM-IGNORE-BEGIN
+#ifdef __cplusplus // Provide C++ Compatibility
 }
+#endif
+// DOM-IGNORE-END
 
+#endif

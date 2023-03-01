@@ -66,9 +66,25 @@
 #define MEM_D0_Get()               ((PIOC_REGS->PIO_PDSR >> 0) & 0x1)
 #define MEM_D0_PIN                  PIO_PIN_PC0
 
+/*** Macros for MEM_A9 pin ***/
+#define MEM_A9_Get()               ((PIOC_REGS->PIO_PDSR >> 27) & 0x1)
+#define MEM_A9_PIN                  PIO_PIN_PC27
+
+/*** Macros for MEM_A8 pin ***/
+#define MEM_A8_Get()               ((PIOC_REGS->PIO_PDSR >> 26) & 0x1)
+#define MEM_A8_PIN                  PIO_PIN_PC26
+
+/*** Macros for MEM_A13 pin ***/
+#define MEM_A13_Get()               ((PIOC_REGS->PIO_PDSR >> 31) & 0x1)
+#define MEM_A13_PIN                  PIO_PIN_PC31
+
 /*** Macros for MEM_A12 pin ***/
 #define MEM_A12_Get()               ((PIOC_REGS->PIO_PDSR >> 30) & 0x1)
 #define MEM_A12_PIN                  PIO_PIN_PC30
+
+/*** Macros for MEM_A11 pin ***/
+#define MEM_A11_Get()               ((PIOC_REGS->PIO_PDSR >> 29) & 0x1)
+#define MEM_A11_PIN                  PIO_PIN_PC29
 
 /*** Macros for CAN_RX_2 pin ***/
 #define CAN_RX_2_Get()               ((PIOC_REGS->PIO_PDSR >> 12) & 0x1)
@@ -100,9 +116,17 @@
 #define LCL_PWM_NAND_Get()               ((PIOB_REGS->PIO_PDSR >> 0) & 0x1)
 #define LCL_PWM_NAND_PIN                  PIO_PIN_PB0
 
+/*** Macros for MEM_A16 pin ***/
+#define MEM_A16_Get()               ((PIOA_REGS->PIO_PDSR >> 20) & 0x1)
+#define MEM_A16_PIN                  PIO_PIN_PA20
+
 /*** Macros for MEM_A15 pin ***/
 #define MEM_A15_Get()               ((PIOA_REGS->PIO_PDSR >> 19) & 0x1)
 #define MEM_A15_PIN                  PIO_PIN_PA19
+
+/*** Macros for MEM_A14 pin ***/
+#define MEM_A14_Get()               ((PIOA_REGS->PIO_PDSR >> 18) & 0x1)
+#define MEM_A14_PIN                  PIO_PIN_PA18
 
 /*** Macros for LCL_NAND_SET pin ***/
 #define LCL_NAND_SET_Set()               (PIOA_REGS->PIO_SODR = (1<<17))
@@ -351,6 +375,10 @@
 #define OBC_UART_RX_Get()               ((PIOA_REGS->PIO_PDSR >> 9) & 0x1)
 #define OBC_UART_RX_PIN                  PIO_PIN_PA9
 
+/*** Macros for MEM_A10 pin ***/
+#define MEM_A10_Get()               ((PIOC_REGS->PIO_PDSR >> 28) & 0x1)
+#define MEM_A10_PIN                  PIO_PIN_PC28
+
 /*** Macros for I2C_SCK_PANELS pin ***/
 #define I2C_SCK_PANELS_Get()               ((PIOA_REGS->PIO_PDSR >> 4) & 0x1)
 #define I2C_SCK_PANELS_PIN                  PIO_PIN_PA4
@@ -395,6 +423,10 @@
 #define MEM_NAND_ADDR_ENABLE_Get()               ((PIOC_REGS->PIO_PDSR >> 16) & 0x1)
 #define MEM_NAND_ADDR_ENABLE_PIN                  PIO_PIN_PC16
 
+/*** Macros for MEM_A17 pin ***/
+#define MEM_A17_Get()               ((PIOA_REGS->PIO_PDSR >> 0) & 0x1)
+#define MEM_A17_PIN                  PIO_PIN_PA0
+
 /*** Macros for MEM_NAND_CMD_ENABLE pin ***/
 #define MEM_NAND_CMD_ENABLE_Get()               ((PIOC_REGS->PIO_PDSR >> 17) & 0x1)
 #define MEM_NAND_CMD_ENABLE_PIN                  PIO_PIN_PC17
@@ -415,6 +447,10 @@
 #define ADM_DEPLOY_4_InputEnable()       (PIOD_REGS->PIO_ODR = (1<<9))
 #define ADM_DEPLOY_4_Get()               ((PIOD_REGS->PIO_PDSR >> 9) & 0x1)
 #define ADM_DEPLOY_4_PIN                  PIO_PIN_PD9
+
+/*** Macros for MEM_A0 pin ***/
+#define MEM_A0_Get()               ((PIOC_REGS->PIO_PDSR >> 18) & 0x1)
+#define MEM_A0_PIN                  PIO_PIN_PC18
 
 /*** Macros for MCU_TRACECLK pin ***/
 #define MCU_TRACECLK_Get()               ((PIOD_REGS->PIO_PDSR >> 8) & 0x1)
@@ -441,9 +477,21 @@
 #define MCU_TRACED_3_Get()               ((PIOD_REGS->PIO_PDSR >> 7) & 0x1)
 #define MCU_TRACED_3_PIN                  PIO_PIN_PD7
 
+/*** Macros for MEM_A2 pin ***/
+#define MEM_A2_Get()               ((PIOC_REGS->PIO_PDSR >> 20) & 0x1)
+#define MEM_A2_PIN                  PIO_PIN_PC20
+
 /*** Macros for MCU_TRACED_2 pin ***/
 #define MCU_TRACED_2_Get()               ((PIOD_REGS->PIO_PDSR >> 6) & 0x1)
 #define MCU_TRACED_2_PIN                  PIO_PIN_PD6
+
+/*** Macros for MEM_A3 pin ***/
+#define MEM_A3_Get()               ((PIOC_REGS->PIO_PDSR >> 21) & 0x1)
+#define MEM_A3_PIN                  PIO_PIN_PC21
+
+/*** Macros for MEM_A4 pin ***/
+#define MEM_A4_Get()               ((PIOC_REGS->PIO_PDSR >> 22) & 0x1)
+#define MEM_A4_PIN                  PIO_PIN_PC22
 
 /*** Macros for MCU_TRACED_1 pin ***/
 #define MCU_TRACED_1_Get()               ((PIOD_REGS->PIO_PDSR >> 5) & 0x1)
@@ -452,6 +500,18 @@
 /*** Macros for MCU_TRACED_0 pin ***/
 #define MCU_TRACED_0_Get()               ((PIOD_REGS->PIO_PDSR >> 4) & 0x1)
 #define MCU_TRACED_0_PIN                  PIO_PIN_PD4
+
+/*** Macros for MEM_A5 pin ***/
+#define MEM_A5_Get()               ((PIOC_REGS->PIO_PDSR >> 23) & 0x1)
+#define MEM_A5_PIN                  PIO_PIN_PC23
+
+/*** Macros for MEM_A6 pin ***/
+#define MEM_A6_Get()               ((PIOC_REGS->PIO_PDSR >> 24) & 0x1)
+#define MEM_A6_PIN                  PIO_PIN_PC24
+
+/*** Macros for MEM_A7 pin ***/
+#define MEM_A7_Get()               ((PIOC_REGS->PIO_PDSR >> 25) & 0x1)
+#define MEM_A7_PIN                  PIO_PIN_PC25
 
 /*** Macros for GND pin ***/
 #define GND_Get()               ((PIOB_REGS->PIO_PDSR >> 8) & 0x1)

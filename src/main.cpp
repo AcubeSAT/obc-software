@@ -13,6 +13,8 @@
 #include "CANGatekeeperTask.hpp"
 #include "CANTestTask.hpp"
 #include "TCHandlingTask.hpp"
+#include "MR4A08BUYS45.hpp"
+#include "SMC.hpp"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -29,6 +31,45 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 }
 
 #endif
+
+const static inline uint16_t Task1StackDepth = 2000;
+
+StackType_t taskStack[Task1StackDepth];
+
+StaticTask_t task1Buffer;
+
+void mramTest2() {
+
+    MRAM mram(SMC::NCS0);
+    for(uint32_t i = 0; i < 32; i++) {
+        mram.mramWriteByte(i, 69);
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
+
+    for(uint32_t i = 0; i < 32; i++) {
+        LOG_DEBUG << mram.mramReadByte(i);
+        vTaskDelay(pdMS_TO_TICKS(150));
+    }
+
+}
+
+void Task1(void *pvParameters) {
+    PIO_PinWrite(LCL_MRAM_RST_PIN, true);
+    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
+    PWM0_ChannelsStart(PWM_CHANNEL_1_MASK);
+    PIO_PinWrite(LCL_MRAM_SET_PIN, false);
+    vTaskDelay(pdMS_TO_TICKS(10));
+    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
+
+    while (true) {
+        mramTest2();
+        vTaskDelay(pdMS_TO_TICKS(500));
+//        mramTest3();
+//        vTaskDelay(pdMS_TO_TICKS(500));
+//        mramTest4();
+//        vTaskDelay(pdMS_TO_TICKS(500));
+    }
+}
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
@@ -48,11 +89,13 @@ extern "C" void main_cpp() {
 //    tcHandlingTask->createTask();
 //    canTransmitTask->createTask();
     uartGatekeeperTask.emplace();
-    nandInitializeTask.emplace();
+//    nandInitializeTask.emplace();
 
     uartGatekeeperTask->createTask();
-    nandInitializeTask->createTask();
-
+//    nandInitializeTask->createTask();
+    xTaskCreateStatic(Task1, "Task1",
+                      2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
+                      &task1Buffer);
 
     vTaskStartScheduler();
 
