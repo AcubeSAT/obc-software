@@ -4,7 +4,7 @@
 
 
 project: obc-software-nand-test
-creation_date: 2023-02-12T00:04:37.550+02:00[Europe/Athens]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
+creation_date: 2023-02-28T22:26:41.808+02:00[Europe/Athens]    # ISO 8601 format: https://www.w3.org/TR/NOTE-datetime
 operating_system: Linux
 mhc_mode: IDE            # [IDE|Standalone|Headless]
 mhc_version: v3.8.5

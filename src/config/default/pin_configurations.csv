@@ -80,10 +80,10 @@
 97,PC14,MEM_MRAM_ENABLE,EBI_NCS0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 98,PD11,,Available,In,,,,,,,
 99,PA1,MEM_A18,EBI_A18,n/a,n/a,No,Disabled,No,No,Disabled,Low
-100,PC16,MEM_NAND_ADDR_ENABLE,EBI_A21/NANDALE,n/a,n/a,No,Disabled,No,No,Disabled,Low
+100,PC16,MEM_NAND_ADDR_ENABLE,EBI_A21/NANDALE,n/a,n/a,No,Disabled,No,No,Disabled,High
 101,PD10,,Available,In,,,,,,,
 102,PA0,MEM_A17,Available,In,,,,,,,
-103,PC17,MEM_NAND_CMD_ENABLE,EBI_A22/NANDCLE,n/a,n/a,No,Disabled,No,No,Disabled,Low
+103,PC17,MEM_NAND_CMD_ENABLE,EBI_A22/NANDCLE,n/a,n/a,No,Disabled,No,No,Disabled,High
 105,PB4,I2C_SDA_SENS,TWIHS1_TWD1,n/a,n/a,No,Disabled,No,No,Disabled,Low
 106,PD15,,Available,In,,,,,,,
 108,PD29,,Available,In,,,,,,,

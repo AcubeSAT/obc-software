@@ -123,7 +123,7 @@ void PIO_Initialize ( void )
     /* Initialize PORTC pin state */
     ((pio_registers_t*)PIO_PORT_C)->PIO_ODSR = 0xa000;
     /* PORTC drive control */
-    ((pio_registers_t*)PIO_PORT_C)->PIO_DRIVER = 0x0;
+    ((pio_registers_t*)PIO_PORT_C)->PIO_DRIVER = 0x30000;
 
     /************************ PIO D Initialization ************************/
     /* PORTD Peripheral Function Selection */
