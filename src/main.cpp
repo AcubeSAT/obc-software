@@ -38,16 +38,32 @@ StackType_t taskStack[Task1StackDepth];
 
 StaticTask_t task1Buffer;
 
-void mramTest2() {
+void mramTest1() {
 
     MRAM mram(SMC::NCS0);
+//    for(uint32_t i = 0; i < 32; i++) {
+//        mram.mramWriteByte(i, 69);
+//        vTaskDelay(pdMS_TO_TICKS(1));
+//    }
+
     for(uint32_t i = 0; i < 32; i++) {
-        mram.mramWriteByte(i, 69);
+        LOG_DEBUG << mram.mramReadByte(i);
+        vTaskDelay(pdMS_TO_TICKS(150));
+    }
+
+}
+
+void mramTest2() {
+
+    volatile uint8_t * volatile mramBuffer = reinterpret_cast<volatile uint8_t * volatile>(EBI_CS0_ADDR);
+
+    for(uint32_t i = 0; i < 32; i++) {
+        mramBuffer[i] = i+5;
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
     for(uint32_t i = 0; i < 32; i++) {
-        LOG_DEBUG << mram.mramReadByte(i);
+        LOG_DEBUG << mramBuffer[i];
         vTaskDelay(pdMS_TO_TICKS(150));
     }
 
@@ -62,10 +78,10 @@ void Task1(void *pvParameters) {
     PIO_PinWrite(LCL_MRAM_SET_PIN, true);
 
     while (true) {
+        mramTest1();
+        vTaskDelay(pdMS_TO_TICKS(500));
         mramTest2();
         vTaskDelay(pdMS_TO_TICKS(500));
-//        mramTest3();
-//        vTaskDelay(pdMS_TO_TICKS(500));
 //        mramTest4();
 //        vTaskDelay(pdMS_TO_TICKS(500));
     }
