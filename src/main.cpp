@@ -87,6 +87,25 @@ void mramTest3() {
 
 }
 
+void mramTest4() {
+    LOG_DEBUG << "MRAM Test 4";
+    vTaskDelay(pdMS_TO_TICKS(150));
+
+    volatile uint32_t * volatile mramBuffer = reinterpret_cast<volatile uint32_t * volatile>
+            (EBI_CS0_ADDR);
+
+    for(uint32_t i = 0; i < 10; i++) {
+        mramBuffer[i] = i+1000;
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
+
+    for(uint32_t i = 0; i < 10; i++) {
+        LOG_DEBUG << "Position = " << i << " ,value = " << mramBuffer[i];
+        vTaskDelay(pdMS_TO_TICKS(150));
+    }
+
+}
+
 void Task1(void *pvParameters) {
     PIO_PinWrite(LCL_MRAM_RST_PIN, true);
     PIO_PinWrite(LCL_MRAM_SET_PIN, true);
@@ -101,6 +120,8 @@ void Task1(void *pvParameters) {
         mramTest2();
         vTaskDelay(pdMS_TO_TICKS(500));
         mramTest3();
+        vTaskDelay(pdMS_TO_TICKS(500));
+        mramTest4();
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 }
