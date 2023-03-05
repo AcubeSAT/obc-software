@@ -324,7 +324,7 @@ typedef struct
     uint32_t anmf:1;
 
     /* Data field */
-    uint8_t data[8];
+    uint8_t data[64];
 
 } MCAN_RX_BUFFER;
 
@@ -367,7 +367,7 @@ typedef struct
     uint32_t mm:8;
 
     /* Data field */
-    uint8_t data[8];
+    uint8_t data[64];
 
 } MCAN_TX_BUFFER;
 
