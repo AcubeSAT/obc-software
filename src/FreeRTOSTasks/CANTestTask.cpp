@@ -4,7 +4,7 @@
 void CANTestTask::execute() {
     PIO_PinWrite(PIO_PIN_PA25, false);
     PIO_PinWrite(PIO_PIN_PB13, false);
-    CAN::Driver::toggleActiveBus(CAN::Driver::Redundant);
+    CAN::Application::switchBus(CAN::Driver::Redundant);
     CAN::Frame message = {};
 
     /**
