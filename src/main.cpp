@@ -73,7 +73,7 @@ void mramTest3() {
     LOG_DEBUG << "MRAM Test 3";
     vTaskDelay(pdMS_TO_TICKS(150));
 
-    volatile uint8_t * volatile mramBuffer = reinterpret_cast<volatile uint8_t * volatile>(EBI_CS0_ADDR);
+    volatile uint8_t * mramBuffer = reinterpret_cast<volatile uint8_t *>(EBI_CS0_ADDR);
 
     for(uint32_t i = 0; i < 32; i++) {
         mramBuffer[i] = i+17;
@@ -91,16 +91,15 @@ void mramTest4() {
     LOG_DEBUG << "MRAM Test 4";
     vTaskDelay(pdMS_TO_TICKS(150));
 
-    volatile uint32_t * volatile mramBuffer = reinterpret_cast<volatile uint32_t * volatile>
-            (EBI_CS0_ADDR);
+    volatile uint32_t * mramBuffer = reinterpret_cast<volatile uint32_t * >(EBI_CS0_ADDR);
 
-    for(uint32_t i = 0; i < 10; i++) {
+    for(uint32_t i = 50; i < 60; i++) {
         mramBuffer[i] = i+2000;
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
-    for(uint32_t i = 0; i < 10; i++) {
-        LOG_DEBUG << "Position = " << i << " ,value = " << mramBuffer[i];
+    for(uint32_t i = 50; i < 60; i++) {
+        LOG_DEBUG << "Position = " << i*4 << " ,value = " << mramBuffer[i];
         vTaskDelay(pdMS_TO_TICKS(150));
     }
 
