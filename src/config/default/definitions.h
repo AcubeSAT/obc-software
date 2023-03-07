@@ -54,7 +54,6 @@
 #include "peripheral/mpu/plib_mpu.h"
 #include "peripheral/systick/plib_systick.h"
 #include "peripheral/xdmac/plib_xdmac.h"
-#include "peripheral/wdt/plib_wdt.h"
 #include "peripheral/pwm/plib_pwm0.h"
 #include "peripheral/efc/plib_efc.h"
 #include "peripheral/rtc/plib_rtc.h"

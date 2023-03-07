@@ -55,10 +55,6 @@ void MPU_Initialize(void)
 
     /*** Configure MPU Regions  ***/
 
-    /* Region 0 Name: SRAM_NOCACHE, Base Address: 0x2045f000, Size: 8KB  */
-    MPU->RBAR = MPU_REGION(0U, 0x2045f000U);
-    MPU->RASR = MPU_REGION_SIZE(12U) | MPU_RASR_AP(MPU_RASR_AP_READWRITE_Val) | MPU_ATTR_NORMAL \
-                | MPU_ATTR_ENABLE | MPU_ATTR_EXECUTE_NEVER ;
 
     /* Region 1 Name: EBI_SMC, Base Address: 0x60000000, Size: 2MB  */
     MPU->RBAR = MPU_REGION(1U, 0x60000000U);

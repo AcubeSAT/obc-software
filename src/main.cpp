@@ -76,7 +76,7 @@ void mramTest3() {
     volatile uint8_t * volatile mramBuffer = reinterpret_cast<volatile uint8_t * volatile>(EBI_CS0_ADDR);
 
     for(uint32_t i = 0; i < 32; i++) {
-        mramBuffer[i] = i+5;
+        mramBuffer[i] = i+17;
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
@@ -95,7 +95,7 @@ void mramTest4() {
             (EBI_CS0_ADDR);
 
     for(uint32_t i = 0; i < 10; i++) {
-        mramBuffer[i] = i+1000;
+        mramBuffer[i] = i+2000;
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
