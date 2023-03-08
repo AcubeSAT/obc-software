@@ -23,7 +23,8 @@
 static StaticTask_t xIdleTaskTCBBuffer;
 static StackType_t xIdleStack[IDLE_TASK_SIZE];
 
-extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer,
+extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
+                                              StackType_t **ppxIdleTaskStackBuffer,
                                               uint32_t *pulIdleTaskStackSize) {
     *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
     *ppxIdleTaskStackBuffer = &xIdleStack[0];
@@ -44,7 +45,7 @@ void mramTest1() {
 
     MRAM mram(SMC::NCS0);
 
-    for(uint32_t i = 0; i < 32; i++) {
+    for (uint32_t i = 0; i < 32; i++) {
         LOG_DEBUG << "Position = " << i << " ,value = " << mram.mramReadByte(i);
         vTaskDelay(pdMS_TO_TICKS(150));
     }
@@ -57,12 +58,12 @@ void mramTest2() {
 
     MRAM mram(SMC::NCS0);
 
-    for(uint32_t i = 0; i < 32; i++) {
-        mram.mramWriteByte(i, i+1);
+    for (uint32_t i = 0; i < 32; i++) {
+        mram.mramWriteByte(i, i + 1);
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
-    for(uint32_t i = 0; i < 32; i++) {
+    for (uint32_t i = 0; i < 32; i++) {
         LOG_DEBUG << "Position = " << i << " ,value = " << mram.mramReadByte(i);
         vTaskDelay(pdMS_TO_TICKS(150));
     }
@@ -73,14 +74,14 @@ void mramTest3() {
     LOG_DEBUG << "MRAM Test 3";
     vTaskDelay(pdMS_TO_TICKS(150));
 
-    volatile uint8_t * mramBuffer = reinterpret_cast<volatile uint8_t *>(EBI_CS0_ADDR);
+    volatile uint8_t *mramBuffer = reinterpret_cast<volatile uint8_t *>(EBI_CS0_ADDR);
 
-    for(uint32_t i = 0; i < 32; i++) {
-        mramBuffer[i] = i+17;
+    for (uint32_t i = 0; i < 32; i++) {
+        mramBuffer[i] = i + 17;
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
-    for(uint32_t i = 0; i < 32; i++) {
+    for (uint32_t i = 0; i < 32; i++) {
         LOG_DEBUG << "Position = " << i << " ,value = " << mramBuffer[i];
         vTaskDelay(pdMS_TO_TICKS(150));
     }
@@ -91,15 +92,15 @@ void mramTest4() {
     LOG_DEBUG << "MRAM Test 4";
     vTaskDelay(pdMS_TO_TICKS(150));
 
-    volatile uint32_t * mramBuffer = reinterpret_cast<volatile uint32_t * >(EBI_CS0_ADDR);
+    volatile uint32_t *mramBuffer = reinterpret_cast<volatile uint32_t * >(EBI_CS0_ADDR);
 
-    for(uint32_t i = 50; i < 60; i++) {
-        mramBuffer[i] = i+2000;
+    for (uint32_t i = 50; i < 60; i++) {
+        mramBuffer[i] = i + 2000;
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
-    for(uint32_t i = 50; i < 60; i++) {
-        LOG_DEBUG << "Position = " << i*4 << " ,value = " << mramBuffer[i];
+    for (uint32_t i = 50; i < 60; i++) {
+        LOG_DEBUG << "Position = " << i * 4 << " ,value = " << mramBuffer[i];
         vTaskDelay(pdMS_TO_TICKS(150));
     }
 
