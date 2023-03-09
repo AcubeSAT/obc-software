@@ -38,6 +38,14 @@ StaticTask_t task1Buffer;
 TaskHandle_t taskHandle1;
 
 void CANLCLInit(void *pvParameters) {
+    PIO_PinWrite(LCL_CAN_1_RST_PIN, true); // break point 1 here, before any LCL init code runs
+    PIO_PinWrite(LCL_CAN_1_SET_PIN, true);
+    PWM0_ChannelsStart(PWM_CHANNEL_3_MASK);
+
+    PIO_PinWrite(LCL_CAN_1_SET_PIN, false); // break point 2, before this runs
+    vTaskDelay(pdMS_TO_TICKS(100));
+    PIO_PinWrite(LCL_CAN_1_SET_PIN, true);
+
     PIO_PinWrite(LCL_CAN_2_RST_PIN, true); // break point 1 here, before any LCL init code runs
     PIO_PinWrite(LCL_CAN_2_SET_PIN, true);
     PWM0_ChannelsStart(PWM_CHANNEL_2_MASK);
