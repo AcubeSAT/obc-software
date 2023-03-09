@@ -92,18 +92,23 @@ void mramTest4() {
     LOG_DEBUG << "MRAM Test 4";
     vTaskDelay(pdMS_TO_TICKS(150));
 
-    volatile uint32_t *mramBuffer = reinterpret_cast<volatile uint32_t * >(EBI_CS0_ADDR);
+    volatile uint32_t *mramWordBuffer = reinterpret_cast<volatile uint32_t * >(EBI_CS0_ADDR);
+    volatile uint8_t *mramByteBuffer = reinterpret_cast<volatile uint8_t * >(EBI_CS0_ADDR);
 
-    for (uint32_t i = 50; i < 60; i++) {
-        mramBuffer[i] = i + 2000;
+    for (uint32_t i = 0; i < 3; i++) {
+        mramWordBuffer[i] = i + 2000;
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 
-    for (uint32_t i = 50; i < 60; i++) {
-        LOG_DEBUG << "Position = " << i * 4 << " ,value = " << mramBuffer[i];
+    for (uint32_t i = 0; i < 20; i++) {
+        LOG_DEBUG << "Byte: Position = " << i << " ,value = " << mramByteBuffer[i];
         vTaskDelay(pdMS_TO_TICKS(150));
     }
 
+    for (uint32_t i = 0; i < 5; i++) {
+        LOG_DEBUG << "Word: Position = " << i << " ,value = " << mramWordBuffer[i];
+        vTaskDelay(pdMS_TO_TICKS(150));
+    }
 }
 
 void Task1(void *pvParameters) {
@@ -115,12 +120,12 @@ void Task1(void *pvParameters) {
     PIO_PinWrite(LCL_MRAM_SET_PIN, true);
 
     while (true) {
-        mramTest1();
-        vTaskDelay(pdMS_TO_TICKS(500));
-        mramTest2();
-        vTaskDelay(pdMS_TO_TICKS(500));
-        mramTest3();
-        vTaskDelay(pdMS_TO_TICKS(500));
+//        mramTest1();
+//        vTaskDelay(pdMS_TO_TICKS(500));
+//        mramTest2();
+//        vTaskDelay(pdMS_TO_TICKS(500));
+//        mramTest3();
+//        vTaskDelay(pdMS_TO_TICKS(500));
         mramTest4();
         vTaskDelay(pdMS_TO_TICKS(500));
     }
