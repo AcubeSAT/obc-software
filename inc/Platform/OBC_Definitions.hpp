@@ -67,28 +67,6 @@ inline const uint8_t MaxUsartTCSize = 64;
  */
 inline const uint8_t TCQueueCapacity = 10;
 
-namespace CAN {
-    /**
-     * The ID for the current node as described in DDJF_OBDH
-     */
-    inline const uint8_t NodeID = 0x0;
-
-    /**
-     * The maximum of the length of the queue for incoming/outgoing CAN frames.
-     */
-    inline const uint8_t FrameQueueSize = 20;
-
-    /**
-     * The maximum size for the data field of a CAN-TP message.
-     */
-    inline const uint16_t TPMessageMaximumSize = 256;
-
-    /**
-     * The maximum numbers of parameters, function arguments etc. inside a single CAN-TP Message.
-     */
-    inline const uint8_t TPMessageMaximumArguments = 10;
-}
-
 inline String<LogSource::MaximumLettersInSubsystemName> LogSource::currentSubsystem = "OBC";
 
 #endif //OBC_SOFTWARE_OBC_DEFINITIONS_HPP
