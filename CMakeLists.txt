@@ -97,7 +97,7 @@ file(GLOB_RECURSE SOURCES "src/*.c" "src/*.cpp" "lib/SEGGER/RTT/*.c" "AutoGenera
 file(GLOB_RECURSE FREERTOS_SOURCES "lib/FreeRTOS/*.c")
 
 
-add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${EXTRA_SOURCES} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
+add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
 
 
 add_subdirectory(lib/cross-platform-software/lib/ecss-services EXCLUDE_FROM_ALL)
