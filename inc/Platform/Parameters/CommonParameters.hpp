@@ -2,7 +2,7 @@
 
 #include "Helpers/Parameter.hpp"
 #include "OBC_Definitions.hpp"
-#include "PlatformParameters.hpp"
+#include "AcubeSATParameters.hpp"
 
 namespace CommonParameters {
     inline auto &boardTemperature1 = AcubeSATParameters::obcPCBTemperature1;

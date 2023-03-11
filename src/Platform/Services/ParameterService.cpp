@@ -3,7 +3,7 @@
 #ifdef SERVICE_PARAMETER
 
 #include "Services/ParameterService.hpp"
-#include "PlatformParameters.hpp"
+#include "AcubeSATParameters.hpp"
 
 void ParameterService::initializeParameterMap() {
     parameters = {{AcubeSATParameters::OBCMCUTemperature,                                    AcubeSATParameters::obcMCUTemperature},

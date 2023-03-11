@@ -1,7 +1,7 @@
 #ifndef ECSS_SERVICES_HOUSEKEEPINGPARAMETERS_HPP
 #define ECSS_SERVICES_HOUSEKEEPINGPARAMETERS_HPP
 
-#include "PlatformParameters.hpp"
+#include "AcubeSATParameters.hpp"
 #include "Services/HousekeepingService.hpp"
 
 namespace HousekeepingStructures {

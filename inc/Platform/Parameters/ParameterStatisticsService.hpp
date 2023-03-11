@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Services/ParameterStatisticsService.hpp"
-#include "PlatformParameters.hpp"
+#include "AcubeSATParameters.hpp"
 
 namespace ParameterStatistics {
     using namespace AcubeSATParameters;
