@@ -23,3 +23,8 @@ namespace CAN {
      */
     inline const uint8_t TPMessageMaximumArguments = 10;
 }
+
+/**
+ * Used to control COBS Encoding for Log Messages in the UART Gatekeeper task.
+ */
+inline const bool LogsAreCOBSEncoded = false;
