@@ -154,7 +154,7 @@ void CAN::Driver::send(const CAN::Frame &message) {
 
     std::copy(message.data.begin(), message.data.end(), Driver::txFifo.data);
 
-    if (PlatformParameters::obcCANBUSActive.getValue() == Main) {
+    if (AcubeSATParameters::obcCANBUSActive.getValue() == Main) {
         MCAN1_MessageTransmitFifo(1, &Driver::txFifo);
     } else {
         MCAN0_MessageTransmitFifo(1, &Driver::txFifo);
@@ -206,5 +206,5 @@ void CAN::Driver::initialize() {
     MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_0, CAN::Driver::mcan1RxFifo0Callback, CAN::Driver::Receive);
     MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_1, CAN::Driver::mcan1RxFifo1Callback, CAN::Driver::Receive);
 
-    toggleActiveBus(PlatformParameters::obcCANBUSActive.getValue());
+    toggleActiveBus(AcubeSATParameters::obcCANBUSActive.getValue());
 }

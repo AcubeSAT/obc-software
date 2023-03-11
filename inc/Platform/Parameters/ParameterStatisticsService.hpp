@@ -4,7 +4,7 @@
 #include "PlatformParameters.hpp"
 
 namespace ParameterStatistics {
-    using namespace PlatformParameters;
+    using namespace AcubeSATParameters;
     /**
      * The number of Statistic instances that will be created
      */

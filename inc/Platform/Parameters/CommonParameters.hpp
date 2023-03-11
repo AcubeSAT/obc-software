@@ -5,10 +5,10 @@
 #include "PlatformParameters.hpp"
 
 namespace CommonParameters {
-    inline auto &boardTemperature1 = PlatformParameters::obcPCBTemperature1;
-    inline auto &mcuTemperature = PlatformParameters::obcMCUTemperature;
-    inline auto &time = PlatformParameters::obcMCUTime;
-    inline auto &useRTT = PlatformParameters::obcUseRTT;
-    inline auto &useUART = PlatformParameters::obcUseUART;
-    inline auto &useCAN = PlatformParameters::obcUseCAN;
+    inline auto &boardTemperature1 = AcubeSATParameters::obcPCBTemperature1;
+    inline auto &mcuTemperature = AcubeSATParameters::obcMCUTemperature;
+    inline auto &time = AcubeSATParameters::obcOnBoardTime;
+    inline auto &useRTT = AcubeSATParameters::obcUseRTT;
+    inline auto &useUART = AcubeSATParameters::obcUseUART;
+    inline auto &useCAN = AcubeSATParameters::obcUseCAN;
 }
