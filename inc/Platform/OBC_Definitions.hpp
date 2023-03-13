@@ -3,7 +3,7 @@
 
 #include <cstdint>
 #include "Logger_Definitions.hpp"
-#include "Parameters.hpp"
+#include "Definitions.hpp"
 
 /**
  * @defgroup Definitions of OBC_SOFTWARE Defined Constants

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "plib_pio.h"
+
 #define MCP9808_TWI_PORT 2
 
 namespace CAN {
@@ -22,6 +24,13 @@ namespace CAN {
      * The maximum numbers of parameters, function arguments etc. inside a single CAN-TP Message.
      */
     inline const uint8_t TPMessageMaximumArguments = 10;
+
+    /**
+     * CAN_SILENT pins for each CAN transceiver.
+     */
+    inline const PIO_PIN CAN_SILENT_1 = PIO_PIN_NONE;
+
+    inline const PIO_PIN CAN_SILENT_2 = PIO_PIN_NONE;
 }
 
 /**
