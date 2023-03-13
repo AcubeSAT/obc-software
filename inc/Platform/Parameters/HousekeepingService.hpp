@@ -1,11 +1,11 @@
 #ifndef ECSS_SERVICES_HOUSEKEEPINGPARAMETERS_HPP
 #define ECSS_SERVICES_HOUSEKEEPINGPARAMETERS_HPP
 
-#include "PlatformParameters.hpp"
+#include "AcubeSATParameters.hpp"
 #include "Services/HousekeepingService.hpp"
 
 namespace HousekeepingStructures {
-    using namespace PlatformParameters;
+    using namespace AcubeSATParameters;
 
     static etl::array <HousekeepingStructure, ECSSMaxHousekeepingStructures> structures = {
             {
@@ -24,11 +24,10 @@ namespace HousekeepingStructures {
                       OBCMRAMLCLThreshold,
                       OBCNANDFLASHON,
                       OBCMRAMON,
-                      AvailableHeap,
                       OBCUseCAN,
                       OBCUseUART,
                       OBCUseRTT,
-                      OBCMCUTime}},
+                      OBCOnBoardTime}},
                     // OBC Mission Database parameters monitored every 3 sec
                     {1, 3000, true,
                      {OBCPCBTemperature1,
@@ -45,8 +44,8 @@ namespace HousekeepingStructures {
                      {OBCMCUInputVoltage,
                       OBCFlashInt,
                       OBCSRAMInt,
-                      OBCMRAM,
-                      OBCNAND,
+                      OBCAvailableMRAM,
+                      OBCAvailableNAND,
                       OBCCANBUSLoad1,
                       OBCCANBUSLoad2,
                       OBCCANBUSActive,
@@ -63,9 +62,9 @@ namespace HousekeepingStructures {
                      {ADCSMagnetometerRawX,
                       ADCSMagnetometerRawY,
                       ADCSMagnetometerRawZ,
-                      ADCSGyroscopeX,
-                      ADCSGyroscopeY,
-                      ADCSGyroscopeZ}},
+                      ADCSGyroscopeRateX,
+                      ADCSGyroscopeRateY,
+                      ADCSGyroscopeRateZ}},
                     // ADCS Parameters that will be monitored every 3 seconds in the campaign
                     {4, 3000, true,
                      {ADCSMagnetometerFrequency,
@@ -80,16 +79,16 @@ namespace HousekeepingStructures {
                       ADCSBoardTemperature2,
                       ADCSMCUTemperature,
                       ADCSBootCounter,
-                      ADCSMCUOnBoardTime,
+                      ADCSOnBoardTime,
                       ADCSSystick}},
                     // ADCS Parameters that might not be used
                     {5, 5000, false,
                      {ADCSMagnetometerSignX,
                       ADCSMagnetometerSignY,
                       ADCSMagnetometerSignZ,
-                      ADCSGyroscopeX,
-                      ADCSGyroscopeY,
-                      ADCSGyroscopeZ,
+                      ADCSGyroscopeRateX,
+                      ADCSGyroscopeRateY,
+                      ADCSGyroscopeRateZ,
                       ADCSGyroBiasX,
                       ADCSGyroBiasY,
                       ADCSGyroBiasZ,
