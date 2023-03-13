@@ -32,3 +32,4 @@ namespace CAN {
 
     inline const PIO_PIN CAN_SILENT_2 = PIO_PIN_NONE;
 }
+
