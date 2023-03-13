@@ -7,7 +7,6 @@
 #include "OBC_Definitions.hpp"
 #include "TaskInitialization.hpp"
 #include "HousekeepingTask.hpp"
-#include "UpdateParametersTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
 #include "TCHandlingTask.hpp"
@@ -35,10 +34,8 @@ extern "C" void main_cpp() {
     housekeepingTask.emplace();
     timeBasedSchedulingTask.emplace();
     statisticsReportingTask.emplace();
-    updateParametersTask.emplace();
     tcHandlingTask.emplace();
 
-    updateParametersTask->createTask();
     statisticsReportingTask->createTask();
     housekeepingTask->createTask();
     timeBasedSchedulingTask->createTask();
