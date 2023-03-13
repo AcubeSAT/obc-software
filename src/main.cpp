@@ -55,31 +55,33 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 /********************************* NAND Code */
 
-//const static inline uint16_t Task1StackDepth = 2000;
-//
-//StackType_t taskStack[Task1StackDepth];
-//
-//StaticTask_t task1Buffer;
+const static inline uint16_t Task1StackDepth = 2000;
 
-//void Task1(void *pvParameters) {
-//    PIO_PinWrite(LCL_MRAM_RST_PIN, true);
-//    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
-//    PWM0_ChannelsStart(PWM_CHANNEL_1_MASK);
-//    PIO_PinWrite(LCL_MRAM_SET_PIN, false);
-//    vTaskDelay(pdMS_TO_TICKS(10));
-//    PIO_PinWrite(LCL_MRAM_SET_PIN, true);
+StackType_t taskStack[Task1StackDepth];
+
+StaticTask_t task1Buffer;
+
+void Task1(void *pvParameters) {
+    PIO_PinWrite(LCL_NAND_SET_PIN,true);
+    PIO_PinWrite(LCL_NAND_RST_PIN,true);
+    PWM0_ChannelsStart(PWM_CHANNEL_0_MASK);
+
+    PIO_PinWrite(LCL_NAND_SET_PIN, false);
+    vTaskDelay(pdMS_TO_TICKS(10));
+    PIO_PinWrite(LCL_NAND_SET_PIN, true);
 //
-//    while (true) {
-//        nandTest1();
-//        vTaskDelay(pdMS_TO_TICKS(500));
-//        nandTest2();
-//        vTaskDelay(pdMS_TO_TICKS(500));
-//    }
-//}
+    while (true) {
+////        nandTest1();
+////        vTaskDelay(pdMS_TO_TICKS(500));
+////        nandTest2();
+        vTaskSuspend(NULL);
+    }
+}
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
-    initializeTasks();
+   // initializeTasks();
+
 
 //    housekeepingTask.emplace();
 //    timeBasedSchedulingTask.emplace();
@@ -87,6 +89,7 @@ extern "C" void main_cpp() {
 //    updateParametersTask.emplace();
 //    canTransmitTask.emplace();
 //    tcHandlingTask.emplace();
+    uartGatekeeperTask.emplace();
     nandInitializeTask.emplace();
 //
 //    updateParametersTask->createTask();
@@ -95,10 +98,10 @@ extern "C" void main_cpp() {
 //    timeBasedSchedulingTask->createTask();
 //    tcHandlingTask->createTask();
 //    canTransmitTask->createTask();
-//    xTaskCreateStatic(Task1, "Task1",
-//                      5000, NULL, tskIDLE_PRIORITY + 2, taskStack,
-//                      &task1Buffer);
-//    uartGatekeeperTask->createTask();
+    xTaskCreateStatic(Task1, "Task1",
+                      2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
+                      &task1Buffer);
+    uartGatekeeperTask->createTask();
     nandInitializeTask->createTask();
 
 

@@ -298,6 +298,15 @@ children:
         children:
         - {type: Value, value: 'true'}
   - type: Menu
+    attributes: {id: MPU_MENU_1}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Menu
     attributes: {id: MPU_MENU_CONF}
     children:
     - type: Attributes
@@ -384,6 +393,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '1610612736'}
+  - type: Boolean
+    attributes: {id: MPU_Region_1_Enable}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
   - type: Boolean
     attributes: {id: MPU_Region_1_Execute}
     children:
@@ -2753,21 +2769,28 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: NAND BUSY}
+        attributes: {value: NAND_ENABLE_1}
   - type: String
     attributes: {id: PIN_67_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: EBI_NCS3}
   - type: String
     attributes: {id: PIN_67_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: GPIO}
+        attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_68_DIR}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: ''}
   - type: String
     attributes: {id: PIN_68_FUNCTION_NAME}
     children:
@@ -2802,7 +2825,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: NAND ENABLE}
+        attributes: {value: NAND_ENABLE_2}
   - type: String
     attributes: {id: PIN_69_FUNCTION_TYPE}
     children:
@@ -2873,6 +2896,13 @@ children:
       children:
       - type: User
         attributes: {value: GPIO}
+  - type: String
+    attributes: {id: PIN_70_LAT}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: High}
   - type: String
     attributes: {id: PIN_70_PERIPHERAL_FUNCTION}
     children:
@@ -3005,14 +3035,14 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: ''}
+        attributes: {value: EBI_A10}
   - type: String
     attributes: {id: PIN_76_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_A10/SDA8}
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_77_FUNCTION_NAME}
     children:
@@ -3425,7 +3455,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '67241984'}
+        attributes: {id: core, value: '201459712'}
   - type: Hex
     attributes: {id: PIOB_ABCDSR1_VALUE}
     children:
@@ -3523,7 +3553,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '1074487295'}
+        attributes: {id: core, value: '1342922751'}
   - type: Hex
     attributes: {id: PIOC_SODR_VALUE}
     children:
@@ -3572,7 +3602,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '411308528'}
+        attributes: {id: core, value: '411832816'}
   - type: Hex
     attributes: {id: PIOD_SODR_VALUE}
     children:

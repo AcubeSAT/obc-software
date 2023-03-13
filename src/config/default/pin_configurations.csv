@@ -54,15 +54,15 @@
 64,PA11,CAN_SILENT_1,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
 65,PD20,MEM_NAND_BUSY_2,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 66,PA10,OBC_UART_TX,UART0_UTXD0,n/a,n/a,No,Disabled,No,No,Disabled,Low
-67,PD19,NAND BUSY,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
+67,PD19,NAND_ENABLE_1,EBI_NCS3,n/a,n/a,No,Disabled,No,No,Disabled,Low
 68,PA12,MEM_NAND_BUSY_1,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
-69,PD18,NAND ENABLE,EBI_NCS1,n/a,n/a,No,Disabled,No,No,Disabled,Low
-70,PA27,MEM_NAND_WR_PROT,GPIO,Out,Low,No,Disabled,No,No,Disabled,Low
+69,PD18,NAND_ENABLE_2,EBI_NCS1,n/a,n/a,No,Disabled,No,No,Disabled,Low
+70,PA27,MEM_NAND_WR_PROT,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
 71,PD28,I2C_MTQ_SCK,TWIHS2_TWCK2,n/a,n/a,No,Disabled,No,No,Disabled,Low
 73,PA5,CAN_FAULT_2,GPIO,In,n/a,No,Disabled,No,No,Disabled,Low
 74,PD17,CAN_SILENT_2,GPIO,Out,High,No,Disabled,No,No,Disabled,Low
 75,PA9,OBC_UART_RX,UART0_URXD0,n/a,n/a,No,Disabled,No,No,Disabled,Low
-76,PC28,MEM_A10,Available,In,,,,,,,
+76,PC28,MEM_A10,EBI_A10,n/a,n/a,No,Disabled,No,No,Disabled,Low
 77,PA4,I2C_SCK_PANELS,TWIHS0_TWCK0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 78,PD16,,Available,In,,,,,,,
 79,PB6,MCU_SWDIO,ICE_TMS/SWDIO,n/a,n/a,No,Disabled,No,No,Disabled,Low
