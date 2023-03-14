@@ -4,6 +4,8 @@
 
 #define MCP9808_TWI_PORT 2
 
+#define UART_PERIPHERAL_REGISTER USART1_REGS->US_THR
+
 namespace CAN {
     /**
      * The ID for the current node as described in DDJF_OBDH
