@@ -7,12 +7,11 @@
 #include "OBC_Definitions.hpp"
 #include "TaskInitialization.hpp"
 #include "HousekeepingTask.hpp"
-#include "UpdateParametersTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
 #include "TCHandlingTask.hpp"
 
-#define IDLE_TASK_SIZE 4000
+#define IDLE_TASK_SIZE 100
 
 #if configSUPPORT_STATIC_ALLOCATION
 /* static memory allocation for the IDLE task */
@@ -35,10 +34,8 @@ extern "C" void main_cpp() {
     housekeepingTask.emplace();
     timeBasedSchedulingTask.emplace();
     statisticsReportingTask.emplace();
-    updateParametersTask.emplace();
     tcHandlingTask.emplace();
 
-    updateParametersTask->createTask();
     statisticsReportingTask->createTask();
     housekeepingTask->createTask();
     timeBasedSchedulingTask->createTask();
