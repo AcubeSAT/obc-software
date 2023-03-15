@@ -13,7 +13,10 @@ void NANDInitializeTask::execute() {
             LOG_DEBUG << "The status of the 1st LUN (die) is: " << status;
             vTaskSuspend(NULL);
         }
-        else vTaskDelay(DelayMs);
+        else {
+            LOG_DEBUG << "Failed to reset NAND";
+            vTaskDelay(DelayMs);
+        }
     }
 
 }

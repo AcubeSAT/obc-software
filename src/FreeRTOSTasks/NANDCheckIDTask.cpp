@@ -16,6 +16,7 @@ void NANDCheckIDTask::execute() {
             }
         }
         else{
+            LOG_DEBUG << "Wrong ID";
             mt29f.resetNAND();
             vTaskDelay(DelayMs);
         }
