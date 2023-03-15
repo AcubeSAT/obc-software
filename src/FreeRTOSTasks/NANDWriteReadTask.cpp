@@ -20,6 +20,7 @@ void NANDWriteReadTask::execute() {
             } else break;
         }
 
+        vTaskDelay(pdMS_TO_TICKS(10));
 
         /* READ */
         uint8_t *data_read = 0;
