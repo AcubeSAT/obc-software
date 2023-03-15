@@ -91,9 +91,9 @@ extern "C" void main_cpp() {
 //    tcHandlingTask.emplace();
     uartGatekeeperTask.emplace();
 //    nandInitializeTask.emplace();
-//    nandCheckIDTask.emplace();
+    nandCheckIDTask.emplace();
 //    nandWriteReadTask.emplace();
-    nandEraseBlockTask.emplace();
+//    nandEraseBlockTask.emplace();
 //
 //    updateParametersTask->createTask();
 //    statisticsReportingTask->createTask();
@@ -106,9 +106,9 @@ extern "C" void main_cpp() {
 //                      &task1Buffer);
     uartGatekeeperTask->createTask();
 //    nandInitializeTask->createTask();
-//    nandCheckIDTask->createTask();
+    nandCheckIDTask->createTask();
 //    nandWriteReadTask->createTask();
-    nandEraseBlockTask->createTask();
+//    nandEraseBlockTask->createTask();
 
 
     vTaskStartScheduler();

@@ -19,7 +19,7 @@ void NANDEraseBlockTask::execute() {
         vTaskDelay(pdMS_TO_TICKS(10));
 
         /* READ */
-        uint8_t *data_read = 0;
+        uint8_t data_read[20] = {};
 
         while (1) {
             bool success = mt29f.readNAND(data_read, 0, 0, 19);

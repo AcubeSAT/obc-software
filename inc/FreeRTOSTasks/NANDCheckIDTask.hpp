@@ -10,8 +10,6 @@ class NANDCheckIDTask : public Task {
 private:
     const uint16_t DelayMs = 1000;
 
-    uint8_t* id = nullptr;
-
     const static inline uint16_t TaskStackDepth = 1000;
 
     StackType_t taskStack[TaskStackDepth];

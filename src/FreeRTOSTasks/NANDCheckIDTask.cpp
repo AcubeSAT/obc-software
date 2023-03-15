@@ -7,6 +7,7 @@ void NANDCheckIDTask::execute() {
 
     while (1) {
         if(mt29f.isNANDAlive()) {
+            uint8_t id[8] = {};
             mt29f.readNANDID(id);
             LOG_DEBUG << "The ID of the NAND Flash is: ";
             vTaskDelay(pdMS_TO_TICKS(500));
@@ -18,7 +19,7 @@ void NANDCheckIDTask::execute() {
         else{
             LOG_DEBUG << "Wrong ID";
             mt29f.resetNAND();
-            vTaskDelay(DelayMs);
         }
+        vTaskDelay(DelayMs);
     }
 }

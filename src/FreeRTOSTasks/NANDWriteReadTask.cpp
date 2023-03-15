@@ -7,23 +7,23 @@ void NANDWriteReadTask::execute() {
     while (1) {
 
         /* WRITE */
-        uint8_t *data_write = {};
+        uint8_t data_write[20] = {};
         for (uint8_t i = 0; i < 20; i++) {
             data_write[i] = i + 1;
         }
 
         while (1) {
-            bool success = mt29f.writeNAND(0, 0, data_write);
+            bool success = mt29f.writeNAND(0, 0, 20, data_write);
             if (success == 0) {
                 LOG_DEBUG << "Failed to write";
                 vTaskDelay(pdMS_TO_TICKS(100));
             } else break;
         }
 
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(100));
 
         /* READ */
-        uint8_t *data_read = 0;
+        uint8_t data_read[20] = {};
 
         while (1) {
             bool success = mt29f.readNAND(data_read, 0, 0, 19);
