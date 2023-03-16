@@ -5,9 +5,12 @@ The software runs on the Microchip ATSAMV71Q21B Microcontroller Unit, which is a
 We use FreeRTOS to handle the tasking of the MCU.
 More information regarding OBC can be found [here](https://gitlab.com/groups/acubesat/obc/-/wikis/home).
 
-There is the `env-tests` branch that contains the test code, to be used in the Environmental Tests campaign.
+## Build
 
-## conan
+After cloning the repo, run the command `git submodule update --init --recursive` to clone the submodules.
+If cloning `COBS` throws a permission/access error, setup an SSH key in GitHub to fix it.
+
+### Conan
 
 To build, you first have to cd `cmake-build-debug` (or to the respective CMake build dir) and run `conan install .. 
 --build=missing`. If you're using CLion and don't see `cmake-build-debug`, you have to `Reload CMake project` to have it generated. 
