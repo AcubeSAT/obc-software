@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Definitions.hpp"
 #include "plib_pio.h"
 
 #define MCP9808_TWI_PORT 2
@@ -10,7 +11,7 @@ namespace CAN {
     /**
      * The ID for the current node as described in DDJF_OBDH
      */
-    inline const uint8_t NodeID = 0x0;
+    inline const CAN::NodeIDs NodeID = OBC;
 
     /**
      * The maximum of the length of the queue for incoming/outgoing CAN frames.
