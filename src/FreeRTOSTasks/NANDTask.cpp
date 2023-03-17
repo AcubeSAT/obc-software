@@ -1,4 +1,6 @@
 #include "NANDTask.hpp"
+#include <etl/to_string.h>
+#include <etl/String.hpp>
 
 
 void NANDTask::execute() {
@@ -34,16 +36,16 @@ void NANDTask::execute() {
                 if (mt29f.isNANDAlive()) {
                     uint8_t id[8] = {};
                     mt29f.readNANDID(id);
-                    LOG_DEBUG << "The ID of the NAND Flash is:";
-                    vTaskDelay(pdMS_TO_TICKS(150));
-                    for (int i = 0; i < 8; i++) {
-                        LOG_DEBUG << id[i];
-                        vTaskDelay(pdMS_TO_TICKS(100));
+                    std::string stringID = "";
+                    for (unsigned int i = 0; i < 8; i++) {
+                        stringID.append(std::to_string(id[i]));
+                        stringID.append(" ");
                     }
+                    LOG_DEBUG << "The ID of the NAND Flash is: " << stringID;
                     vTaskDelay(DelayMs);
                     break;
                 } else {
-                    LOG_DEBUG << "Wrong ID";
+                    LOG_DEBUG << "Wrong NAND ID";
                     mt29f.resetNAND();
                     vTaskDelay(DelayMs);
                     failed_tries++;
@@ -64,7 +66,7 @@ void NANDTask::execute() {
             while (1) {
                 bool success = mt29f.writeNAND(0, 0, 20, data_write);
                 if (success == 0) {
-                    LOG_DEBUG << "Failed to write";
+                    LOG_DEBUG << "Failed to write NAND";
                     vTaskDelay(pdMS_TO_TICKS(100));
                     if (mt29f.errorHandler()) {
                         LOG_DEBUG << "NAND is alive";
@@ -90,18 +92,16 @@ void NANDTask::execute() {
             while (1) {
                 bool success = mt29f.readNAND(data_read, 0, 0, 19);
                 if (success) {
-                    LOG_DEBUG << "Start reading after writing:";
-                    vTaskDelay(pdMS_TO_TICKS(100));
-
-                    for (uint8_t i = 0; i < 20; i++) {
-
-                        LOG_DEBUG << data_read[i];
-
-                        vTaskDelay(pdMS_TO_TICKS(100));
+                    std::string stringReadWrite = "";
+                    for (unsigned int i = 0; i < 20; i++) {
+                        stringReadWrite.append(std::to_string(data_read[i]));
+                        stringReadWrite.append(" ");
                     }
+                    LOG_DEBUG << "Read NAND after writing: " << stringReadWrite;
+                    vTaskDelay(pdMS_TO_TICKS(100));
                     break;
                 } else {
-                    LOG_DEBUG << "Failed to read";
+                    LOG_DEBUG << "Failed to read NAND";
                     vTaskDelay(pdMS_TO_TICKS(100));
                     if (mt29f.errorHandler()) {
                         LOG_DEBUG << "NAND is alive";
@@ -138,18 +138,16 @@ void NANDTask::execute() {
             while (1) {
                 bool success = mt29f.readNAND(data_read, 0, 0, 19);
                 if (success) {
-                    LOG_DEBUG << "Start reading after erasing:";
-                    vTaskDelay(pdMS_TO_TICKS(200));
-
-                    for (uint8_t i = 0; i < 20; i++) {
-
-                        LOG_DEBUG << data_read[i];
-
-                        vTaskDelay(pdMS_TO_TICKS(100));
+                    std::string stringReadErase = "";
+                    for (unsigned int i = 0; i < 20; i++) {
+                        stringReadErase.append(std::to_string(data_read[i]));
+                        stringReadErase.append(" ");
                     }
+                    LOG_DEBUG << "Read NAND after erasing: " << stringReadErase;
+                    vTaskDelay(pdMS_TO_TICKS(200));
                     break;
                 } else {
-                    LOG_DEBUG << "Failed to read";
+                    LOG_DEBUG << "Failed to read NAND";
                     vTaskDelay(pdMS_TO_TICKS(100));
                     failed_tries++;
                     if (failed_tries > 4) {
