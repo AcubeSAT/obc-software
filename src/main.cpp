@@ -14,7 +14,6 @@
 #include "TCHandlingTask.hpp"
 #include "plib_pio.h"
 #include "peripheral/pwm/plib_pwm0.h"
-//#include "SMC.h"
 
 #define IDLE_TASK_SIZE 4000
 
@@ -90,10 +89,7 @@ extern "C" void main_cpp() {
 //    canTransmitTask.emplace();
 //    tcHandlingTask.emplace();
     uartGatekeeperTask.emplace();
-//    nandInitializeTask.emplace();
-    nandCheckIDTask.emplace();
-//    nandWriteReadTask.emplace();
-//    nandEraseBlockTask.emplace();
+    nandTask.emplace();
 //
 //    updateParametersTask->createTask();
 //    statisticsReportingTask->createTask();
@@ -105,10 +101,7 @@ extern "C" void main_cpp() {
 //                      2000, NULL, tskIDLE_PRIORITY + 2, taskStack,
 //                      &task1Buffer);
     uartGatekeeperTask->createTask();
-//    nandInitializeTask->createTask();
-    nandCheckIDTask->createTask();
-//    nandWriteReadTask->createTask();
-//    nandEraseBlockTask->createTask();
+    nandTask->createTask();
 
 
     vTaskStartScheduler();
