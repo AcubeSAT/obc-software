@@ -66,6 +66,7 @@ void UsageFault_Handler (void);
 void DebugMonitor_Handler (void);
 void SysTick_Handler (void);
 void RTC_InterruptHandler (void);
+void RTT_InterruptHandler (void);
 void USART1_InterruptHandler (void);
 void AFEC0_InterruptHandler (void);
 void MCAN0_INT0_InterruptHandler (void);

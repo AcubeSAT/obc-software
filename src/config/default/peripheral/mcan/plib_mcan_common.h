@@ -231,7 +231,7 @@ typedef void (*MCAN_TX_EVENT_FIFO_CALLBACK) (uint8_t numberOfTxEvent, uintptr_t 
    Remarks:
     None.
 */
-typedef void (*MCAN_RX_FIFO_CALLBACK)(uint8_t numberOfMessage, uintptr_t contextHandle);
+typedef void (*MCAN_RX_FIFO_CALLBACK) (uint8_t numberOfMessage, uintptr_t contextHandle);
 
 // *****************************************************************************
 /* MCAN Callback
@@ -245,7 +245,7 @@ typedef void (*MCAN_RX_FIFO_CALLBACK)(uint8_t numberOfMessage, uintptr_t context
    Remarks:
     None.
 */
-typedef void (*MCAN_CALLBACK)(uint32_t interruptStatus, uintptr_t contextHandle);
+typedef void (*MCAN_CALLBACK) (uint32_t interruptStatus, uintptr_t contextHandle);
 
 // *****************************************************************************
 /* MCAN Message RAM Configuration
@@ -484,7 +484,8 @@ typedef struct
    Remarks:
     None.
 */
-typedef struct {
+typedef struct
+{
     /* Transfer Event Callback */
     MCAN_RX_FIFO_CALLBACK callback;
 
@@ -504,7 +505,8 @@ typedef struct {
    Remarks:
     None.
 */
-typedef struct {
+typedef struct
+{
     /* MCAN Interrupt Status Callback */
     MCAN_CALLBACK callback;
 

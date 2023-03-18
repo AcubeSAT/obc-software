@@ -41,6 +41,10 @@
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc_common.h</itemPath>
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f14" displayName="rtt" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/rtt/plib_rtt_common.h</itemPath>
+              <itemPath>../src/config/default/peripheral/rtt/plib_rtt.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f4" displayName="systick" projectFiles="true">
               <itemPath>../src/config/default/peripheral/systick/plib_systick.h</itemPath>
             </logicalFolder>
@@ -258,6 +262,9 @@
             <logicalFolder name="f9" displayName="rtc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc.c</itemPath>
             </logicalFolder>
+            <logicalFolder name="f14" displayName="rtt" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/rtt/plib_rtt.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="f4" displayName="systick" projectFiles="true">
               <itemPath>../src/config/default/peripheral/systick/plib_systick.c</itemPath>
             </logicalFolder>
@@ -316,6 +323,7 @@
         <itemPath>../src/config/default/default.mhc/mcan0.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/mcan1.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/rtt.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/twihs2.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/usart1.yml</itemPath>
@@ -342,7 +350,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>EdbgTool</platformTool>
         <languageToolchain>ARM</languageToolchain>
-        <languageToolchainVersion>11.1.0</languageToolchainVersion>
+        <languageToolchainVersion>12.2.0</languageToolchainVersion>
         <platform>2</platform>
       </toolsSet>
       <packs>

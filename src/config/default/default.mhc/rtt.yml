@@ -1,0 +1,55 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: rtt}
+children:
+- type: Symbols
+  children:
+  - type: Boolean
+    attributes: {id: rttALMIEN}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'false'}
+  - type: Boolean
+    attributes: {id: rttINCIEN}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: rttRTC1HZ}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Integer
+    attributes: {id: rttRTPRES}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: rtt, value: '0'}
+  - type: Comment
+    attributes: {id: rttResolution}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: 'RTT Counter Clock Resolution: 1000 ms'}
+- type: ElementPosition
+  attributes: {x: '198', y: '241', id: rtt}
