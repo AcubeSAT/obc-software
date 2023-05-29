@@ -10,23 +10,26 @@ More information regarding OBC can be found [here](https://gitlab.com/groups/acu
 After cloning the repo, run the command `git submodule update --init --recursive` to clone the submodules.
 If cloning `COBS` throws a permission/access error, setup an SSH key in GitHub to fix it.
 
+If you're using CLion, you need to add in CMake options (File -> Settings -> Build, Execution, Deployment -> CMake ->
+CMake Options) this `-DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release`.
+
+If you just cmake from cli, just add the same flags in your command.
+
+
 ### Conan
 
-To build, you first have to cd `cmake-build-debug` (or to the respective CMake build dir) and run `conan install .. 
---build=missing`. If you're using CLion and don't see `cmake-build-debug`, you have to `Reload CMake project` to have it generated. 
-After you've run `conan install ..` you can `Reload CMake project` and build as per usual.
+To build, you need to follow these steps:
+- First run `conan profile detect --force`: Generates default profile detecting GCC. However, for this project, you need to set up
+    the correct architecture. Find where `conan` sets up profiles (probably `~/.conan2/profiles`), run `cp default arm` 
+    in that folder, and edit the `arm` file. You need to change the `arch` entry to `arch=armv7`.
+- Then run `conan install . --output-folder=cmake-build-debug --build=missing -pr arm`. If you're using CLion and don't see `cmake-build-debug`, you have to `Reload CMake project` to have it generated. 
+After you've run `conan install...` you can `Reload CMake project` and build as per usual.
 
 <details>
 <summary>Getting conan</summary>
 
 You can install [conan](https://conan.io/) following the instructions from
-[here](https://docs.conan.io/en/latest/installation.html). Just to be safe, you can follow the standard procedure from 
-[here](https://docs.conan.io/en/latest/getting_started.html):
-
-- `conan profile new default --detect`: Generates default profile detecting GCC and sets old ABI. This step and the 
-  one below is needed to [manage the GCC >=5 ABI](https://docs.conan.io/en/latest/howtos/manage_gcc_abi.html#manage-gcc-abi)
-- `conan profile update settings.compiler.libcxx=libstdc++11 default`: Sets `libcxx` to C++11 ABI
-
+[here](https://docs.conan.io/2/installation.html).:
 </details>
 
 ## Implemented Software
