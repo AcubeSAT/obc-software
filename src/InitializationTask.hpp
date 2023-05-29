@@ -26,13 +26,12 @@ public:
 
     StackType_t taskStack[TaskStackDepth];
 
-
     InitializationTask() : Task("Initialization") {}
 
     void execute();
 
     void createTask() {
-        xTaskCreateStatic(vClassTask<HousekeepingTask>, this->TaskName, HousekeepingTask::TaskStackDepth,
+        xTaskCreateStatic(vClassTask<InitializationTask>, this->TaskName, InitializationTask::TaskStackDepth,
                           this, configMAX_PRIORITIES - 1, this->taskStack,
                           &(this->taskBuffer));
     }
