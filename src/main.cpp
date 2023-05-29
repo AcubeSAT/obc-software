@@ -1,15 +1,3 @@
-#include "main.h"
-#include "FreeRTOS.h"
-#include "queue.h"
-#include "list.h"
-#include "task.h"
-#include "definitions.h"
-#include "OBC_Definitions.hpp"
-#include "TaskInitialization.hpp"
-#include "HousekeepingTask.hpp"
-#include "TimeBasedSchedulingTask.hpp"
-#include "StatisticsReportingTask.hpp"
-#include "TCHandlingTask.hpp"
 #include "InitializationTask.hpp"
 
 #define IDLE_TASK_SIZE 100
