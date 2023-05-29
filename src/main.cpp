@@ -10,6 +10,7 @@
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
 #include "TCHandlingTask.hpp"
+#include "InitializationTask.hpp"
 
 #define IDLE_TASK_SIZE 100
 
@@ -29,17 +30,9 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
-    initializeTasks();
 
-    housekeepingTask.emplace();
-    timeBasedSchedulingTask.emplace();
-    statisticsReportingTask.emplace();
-    tcHandlingTask.emplace();
-
-    statisticsReportingTask->createTask();
-    housekeepingTask->createTask();
-    timeBasedSchedulingTask->createTask();
-    tcHandlingTask->createTask();
+    class InitializationTask initializationTask;
+    initializationTask.execute();
 
     vTaskStartScheduler();
 

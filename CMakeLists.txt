@@ -16,7 +16,7 @@ set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
 set(CMAKE_OBJDUMP arm-none-eabi-objdump)
 set(SIZE arm-none-eabi-size)
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld)
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld src/InitializationTask.cpp src/InitializationTask.hpp)
 
 SET(FPU_FLAGS "-mfloat-abi=hard -mfpu=fpv5-d16")
 add_definitions(-DARM_MATH_CM7 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1)
@@ -32,8 +32,8 @@ SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T ${LINK
 add_compile_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wno-psabi)
 add_link_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16)
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()
+#include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+#conan_basic_setup()
 
 include_directories(.)
 include_directories(inc)
