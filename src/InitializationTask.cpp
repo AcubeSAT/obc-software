@@ -1,7 +1,7 @@
 //
 // Created by giorgos on 5/29/23.
 //
-#include "InitializationTask.hpp"
+#include "src/config/default/InitializationTask.hpp"
 
 void InitializationTask::execute()
 {

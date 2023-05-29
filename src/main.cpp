@@ -1,4 +1,4 @@
-#include "InitializationTask.hpp"
+#include "src/config/default/InitializationTask.hpp"
 
 #define IDLE_TASK_SIZE 100
 
