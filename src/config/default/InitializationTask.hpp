@@ -1,6 +1,3 @@
-//
-// Created by giorgos on 5/29/23.
-//
 #include "main.h"
 #include "FreeRTOS.h"
 #include "queue.h"
@@ -13,20 +10,18 @@
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
 #include "TCHandlingTask.hpp"
-
 #include "Task.hpp"
 
 #ifndef OBC_SOFTWARE_INITIALIZATIONTASK_HPP
 #define OBC_SOFTWARE_INITIALIZATIONTASK_HPP
 
-class InitializationTask: public Task
-{
+class InitializationTask: public Task {
 public:
-    const static inline uint16_t TaskStackDepth = 0;
+    const static inline uint16_t TaskStackDepth = 8300;
 
     StackType_t taskStack[TaskStackDepth];
 
-    InitializationTask() : Task("Initialization") {}
+    InitializationTask() : Task("InitializationTask") {}
 
     void execute();
 
