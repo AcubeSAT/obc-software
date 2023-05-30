@@ -4,7 +4,7 @@
 void InitializationTask::execute()
 {
     initializeTasks();
-    
+
     housekeepingTask.emplace();
     timeBasedSchedulingTask.emplace();
     statisticsReportingTask.emplace();
