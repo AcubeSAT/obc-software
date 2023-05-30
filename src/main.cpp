@@ -19,13 +19,13 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 
-    class InitializationTask initializationTask;
-    initializationTask.execute();
-
     vTaskStartScheduler();
 
     while (true) {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
+
         SYS_Tasks();
     }
 }
+
+

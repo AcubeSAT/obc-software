@@ -22,7 +22,7 @@
 class InitializationTask: public Task
 {
 public:
-    const static inline uint16_t TaskStackDepth = 1024;
+    const static inline uint16_t TaskStackDepth = 0;
 
     StackType_t taskStack[TaskStackDepth];
 
@@ -35,10 +35,8 @@ public:
                           this, configMAX_PRIORITIES - 1, this->taskStack,
                           &(this->taskBuffer));
     }
-
 };
-
-inline std::optional<InitializationTask> InitializationTask;
+//inline std::optional<InitializationTask> InitializationTask;
 
 
 #endif //OBC_SOFTWARE_INITIALIZATIONTASK_HPP
