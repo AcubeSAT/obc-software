@@ -19,6 +19,8 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 
+    InitializationTask.emplace();
+
     InitializationTask->createTask();
 
     vTaskStartScheduler();
