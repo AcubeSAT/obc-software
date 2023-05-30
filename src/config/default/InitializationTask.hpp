@@ -36,7 +36,8 @@ public:
                           &(this->taskBuffer));
     }
 };
-//inline std::optional<InitializationTask> InitializationTask;
+
+inline std::optional<InitializationTask> InitializationTask;
 
 
 #endif //OBC_SOFTWARE_INITIALIZATIONTASK_HPP

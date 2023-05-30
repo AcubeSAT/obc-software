@@ -20,7 +20,7 @@ void InitializationTask::execute()
     uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
 
     uxHighWaterMark = uxTaskGetStackHighWaterMark(NULL);
-    etl::string<14> mystring = "High Water Mark:";
+    etl::string<17> mystring = "High Water Mark:";
     etl::to_string(uxHighWaterMark, mystring, true);
     LOG_DEBUG << mystring.data();
 
