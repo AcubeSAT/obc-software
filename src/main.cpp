@@ -1,3 +1,9 @@
+#include "main.h"
+#include "FreeRTOS.h"
+#include "queue.h"
+#include "list.h"
+#include "task.h"
+#include "definitions.h"
 #include "InitializationTask.hpp"
 
 #define IDLE_TASK_SIZE 100
