@@ -1,12 +1,5 @@
-#ifndef OBC_SOFTWARE_INITIALIZATIONTASK_HPP
-#define OBC_SOFTWARE_INITIALIZATIONTASK_HPP
+#pragma once
 
-#include "main.h"
-#include "FreeRTOS.h"
-#include "queue.h"
-#include "list.h"
-#include "task.h"
-#include "definitions.h"
 #include "OBC_Definitions.hpp"
 #include "TaskInitialization.hpp"
 #include "HousekeepingTask.hpp"
@@ -33,6 +26,3 @@ public:
 };
 
 inline std::optional<InitializationTask> initializationTask;
-
-
-#endif //OBC_SOFTWARE_INITIALIZATIONTASK_HPP
