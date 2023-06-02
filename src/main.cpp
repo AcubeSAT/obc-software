@@ -4,12 +4,7 @@
 #include "list.h"
 #include "task.h"
 #include "definitions.h"
-#include "OBC_Definitions.hpp"
-#include "TaskInitialization.hpp"
-#include "HousekeepingTask.hpp"
-#include "TimeBasedSchedulingTask.hpp"
-#include "StatisticsReportingTask.hpp"
-#include "TCHandlingTask.hpp"
+#include "InitializationTask.hpp"
 
 #define IDLE_TASK_SIZE 100
 
@@ -29,17 +24,10 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
-    initializeTasks();
+    initializationTask.emplace();
 
-    housekeepingTask.emplace();
-    timeBasedSchedulingTask.emplace();
-    statisticsReportingTask.emplace();
-    tcHandlingTask.emplace();
+    initializationTask->createTask();
 
-    statisticsReportingTask->createTask();
-    housekeepingTask->createTask();
-    timeBasedSchedulingTask->createTask();
-    tcHandlingTask->createTask();
 
     vTaskStartScheduler();
 
@@ -48,3 +36,4 @@ extern "C" void main_cpp() {
         SYS_Tasks();
     }
 }
+
