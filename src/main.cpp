@@ -27,8 +27,6 @@ extern "C" void main_cpp() {
 
     while (true) {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
-
-
         SYS_Tasks();
     }
 }
