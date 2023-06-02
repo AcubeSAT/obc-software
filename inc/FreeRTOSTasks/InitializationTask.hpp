@@ -1,3 +1,6 @@
+#ifndef OBC_SOFTWARE_INITIALIZATIONTASK_HPP
+#define OBC_SOFTWARE_INITIALIZATIONTASK_HPP
+
 #include "main.h"
 #include "FreeRTOS.h"
 #include "queue.h"
@@ -11,9 +14,6 @@
 #include "StatisticsReportingTask.hpp"
 #include "TCHandlingTask.hpp"
 #include "Task.hpp"
-
-#ifndef OBC_SOFTWARE_INITIALIZATIONTASK_HPP
-#define OBC_SOFTWARE_INITIALIZATIONTASK_HPP
 
 class InitializationTask: public Task {
 public:
