@@ -24,6 +24,7 @@ To build, you need to follow these steps:
     in that folder, and edit the `arm` file. You need to change the `arch` entry to `arch=armv7`.
 - Then run `conan install . --output-folder=cmake-build-debug --build=missing -pr arm`. If you're using CLion and don't see `cmake-build-debug`, you have to `Reload CMake project` to have it generated. 
 After you've run `conan install...` you can `Reload CMake project` and build as per usual.
+- Make sure you followed the steps under the `Build` section
 
 <details>
 <summary>Getting conan</summary>

@@ -32,6 +32,7 @@ SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T ${LINK
 add_compile_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wno-psabi)
 add_link_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16)
 
+set(CMAKE_PREFIX_PATH "${PROJECT_SOURCE_DIR}/cmake-build-debug")
 find_package(etl CONFIG REQUIRED)
 
 include_directories(.)
