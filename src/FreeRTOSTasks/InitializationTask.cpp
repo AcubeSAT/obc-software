@@ -1,4 +1,3 @@
-
 #include "InitializationTask.hpp"
 
 void InitializationTask::execute() {
