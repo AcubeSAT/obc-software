@@ -32,7 +32,7 @@ public:
     }
 };
 
-inline std::optional<InitializationTask> InitializationTask;
+inline std::optional<InitializationTask> initializationTask;
 
 
 #endif //OBC_SOFTWARE_INITIALIZATIONTASK_HPP

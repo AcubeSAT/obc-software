@@ -1,4 +1,4 @@
-#include "src/config/default/InitializationTask.hpp"
+#include "InitializationTask.hpp"
 
 #define IDLE_TASK_SIZE 100
 
@@ -18,9 +18,9 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
-    InitializationTask.emplace();
+    initializationTask.emplace();
 
-    InitializationTask->createTask();
+    initializationTask->createTask();
 
 
     vTaskStartScheduler();
