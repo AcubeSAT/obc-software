@@ -1,6 +1,3 @@
 [submodule "lib/atsam-component-drivers"]
 	path = lib/atsam-component-drivers
 	url = https://gitlab.com/acubesat/obc/atsam-component-drivers.git
-[submodule "lib/cross-platform-software"]
-	path = lib/cross-platform-software
-	url = https://gitlab.com/acubesat/obc/cross-platform-software
