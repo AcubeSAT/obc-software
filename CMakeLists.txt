@@ -1,38 +1,24 @@
-SET(CMAKE_SYSTEM_NAME Generic)
-SET(CMAKE_SYSTEM_VERSION 1)
 cmake_minimum_required(VERSION 3.19.2)
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_C_STANDARD 11)
 
-# specify cross compilers and tools
-SET(CMAKE_C_COMPILER_WORKS 1)
-SET(CMAKE_C_COMPILER arm-none-eabi-gcc)
-SET(CMAKE_CXX_COMPILER_WORKS 1)
-SET(CMAKE_CXX_COMPILER arm-none-eabi-g++)
 project(OBC_SOFTWARE C CXX ASM)
-set(CMAKE_ASM_COMPILER arm-none-eabi-gcc)
-set(CMAKE_AR arm-none-eabi-ar)
-set(CMAKE_OBJCOPY arm-none-eabi-objcopy)
-set(CMAKE_OBJDUMP arm-none-eabi-objdump)
-set(SIZE arm-none-eabi-size)
 
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld)
 
-SET(FPU_FLAGS "-mfloat-abi=hard -mfpu=fpv5-d16")
+#SET(FPU_FLAGS "-mfloat-abi=hard -mfpu=fpv5-d16")
 add_definitions(-DARM_MATH_CM7 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1)
+#SET(COMMON_FLAGS
+#        "-mcpu=cortex-m7 ${FPU_FLAGS} -mthumb -mthumb-interwork -ffunction-sections -fdata-sections \
+#    -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs")
 
-SET(COMMON_FLAGS
-        "-mcpu=cortex-m7 ${FPU_FLAGS} -mthumb -mthumb-interwork -ffunction-sections -fdata-sections \
-    -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs")
+#SET(CMAKE_CXX_FLAGS_INIT "${COMMON_FLAGS} -std=c++11")
+#SET(CMAKE_C_FLAGS_INIT "${COMMON_FLAGS} -std=gnu99")
+#SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT}")
 
-SET(CMAKE_CXX_FLAGS_INIT "${COMMON_FLAGS} -std=c++11")
-SET(CMAKE_C_FLAGS_INIT "${COMMON_FLAGS} -std=gnu99")
-SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT}")
-
-add_compile_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wno-psabi)
-add_link_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16)
+#add_compile_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16 -Wno-psabi)
+#add_link_options(-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT} -mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv4-sp-d16)
 
 #set(CMAKE_PREFIX_PATH "${PROJECT_SOURCE_DIR}/cmake-build-debug")
+
 find_package(etl CONFIG REQUIRED)
 find_package(logger CONFIG REQUIRED COMPONENTS log_common)
 find_package(ecss-services CONFIG REQUIRED)
