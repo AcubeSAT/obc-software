@@ -5,6 +5,7 @@
 #include "task.h"
 #include "definitions.h"
 #include "InitializationTask.hpp"
+#include "FreeRTOSHandlers.hpp"
 
 #define IDLE_TASK_SIZE 100
 
