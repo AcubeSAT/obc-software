@@ -12,4 +12,4 @@ children:
       - type: User
         attributes: {value: FREQ1HZ}
 - type: ElementPosition
-  attributes: {x: '190', y: '60', id: rtc}
+  attributes: {x: '197', y: '66', id: rtc}

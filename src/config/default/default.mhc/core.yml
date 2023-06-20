@@ -758,6 +758,20 @@ children:
       - type: User
         attributes: {value: A}
   - type: String
+    attributes: {id: PIN_14_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: AFEC1_AD6}
+  - type: String
+    attributes: {id: PIN_14_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Alternate}
+  - type: String
     attributes: {id: PIN_17_FUNCTION_TYPE}
     children:
     - type: Values
@@ -780,6 +794,20 @@ children:
         attributes: {value: RTC_RTCOUT0}
   - type: String
     attributes: {id: PIN_21_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Alternate}
+  - type: String
+    attributes: {id: PIN_23_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: AFEC0_AD8}
+  - type: String
+    attributes: {id: PIN_23_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:

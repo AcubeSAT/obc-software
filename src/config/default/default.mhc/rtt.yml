@@ -5,6 +5,13 @@ children:
 - type: Symbols
   children:
   - type: Boolean
+    attributes: {id: rttALMIEN}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
     attributes: {id: rttRTC1HZ}
     children:
     - type: Values
@@ -38,4 +45,4 @@ children:
         children:
         - {type: Value, value: 'RTT Counter Clock Resolution: 1000 ms'}
 - type: ElementPosition
-  attributes: {x: '206', y: '275', id: rtt}
+  attributes: {x: '250', y: '280', id: rtt}

@@ -3798,6 +3798,8 @@ static void prvCheckTasksWaitingTermination( void )
 
 	static configSTACK_DEPTH_TYPE prvTaskCheckFreeStackSpace( const uint8_t * pucStackByte )
 	{
+//    {
+//    }
 	uint32_t ulCount = 0U;
 
 		while( *pucStackByte == ( uint8_t ) tskSTACK_FILL_BYTE )
