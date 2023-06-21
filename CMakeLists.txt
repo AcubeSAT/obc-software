@@ -83,7 +83,7 @@ file(GLOB_RECURSE FREERTOS_SOURCES "lib/FreeRTOS/*.c")
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
 
-target_link_libraries(${PROJECT_NAME}.elf PRIVATE common etl log_common)
+target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross etl log_common)
 
 set(CMAKE_EXE_LINKER_FLAGS
         "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
