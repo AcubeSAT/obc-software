@@ -6,7 +6,7 @@ from conan.tools.files import copy
 from conan.tools.scm import Git
 
 
-class OBCSWRecipe(ConanFile):
+class OBCSoftwareRecipe(ConanFile):
     name = "obc-sw"
     version = "1.0"
     revision_mode = "scm"
@@ -42,9 +42,10 @@ class OBCSWRecipe(ConanFile):
         # if self.comp
         git = Git(self)
         git.clone(url="https://gitlab.com/acubesat/obc/cross-platform-software", target="lib/")
-        # Please, be aware that using the head of the branch instead of an immutable tag
-        # or commit is not a good practice in general
-        git.checkout("main")
+
+        git = Git(self)
+        git.clone(url="https://gitlab.com/acubesat/obc/atsam-component-drivers", target="lib/")
+
         cmake = CMake(self)
         cmake.configure()
         cmake.build()

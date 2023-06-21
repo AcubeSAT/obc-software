@@ -1,7 +1,7 @@
 
 [settings]
 arch=armv7
-build_type=Release
+build_type=Debug
 compiler=gcc
 compiler.cppstd=gnu17
 compiler.libcxx=libstdc++11
@@ -17,4 +17,4 @@ CXXFLAGS=-std=c++11
 [conf]
 tools.build:cxxflags=["-mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv5-d16"]
 tools.build:cflags=["-mcpu=cortex-m7 -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv5-d16"]
-
+tools.build:exelinkflags=["-Wl,-gc-sections"]

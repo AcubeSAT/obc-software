@@ -1,3 +1,0 @@
-[submodule "lib/atsam-component-drivers"]
-	path = lib/atsam-component-drivers
-	url = https://gitlab.com/acubesat/obc/atsam-component-drivers.git
