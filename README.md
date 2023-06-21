@@ -7,7 +7,9 @@ More information regarding OBC can be found [here](https://gitlab.com/groups/acu
 
 ## Build
 
-After cloning the repo, run the command `git submodule update --init --recursive` to clone the submodules.
+After cloning the repo, run the command `conan source .` to clone the needed repositories, which currently are:
+- [cross-platform-software](https://gitlab.com/acubesat/obc/cross-platform-software)
+- [atsam-component-drivers](https://gitlab.com/acubesat/obc/atsam-component-drivers)
 If cloning `COBS` throws a permission/access error, setup an SSH key in GitHub to fix it.
 
 If you're using CLion, you need to add in CMake options (File -> Settings -> Build, Execution, Deployment -> CMake ->

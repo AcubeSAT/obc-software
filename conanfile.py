@@ -31,6 +31,13 @@ class OBCSoftwareRecipe(ConanFile):
         if self.settings.os == "Windows":
             del self.options.fPIC
 
+    def source(self):
+        git = Git(self)
+        git.clone(url="https://gitlab.com/acubesat/obc/cross-platform-software", target=join(str(self.source_folder), "lib/cross-platform-software"))
+        self.run("cd lib/cross-platform-software && git submodule update --init --recursive")
+        git = Git(self)
+        git.clone(url="https://gitlab.com/acubesat/obc/atsam-component-drivers", target=join(str(self.source_folder), "lib/atsam-component-drivers"))
+
     def layout(self):
         cmake_layout(self)
 
@@ -39,13 +46,6 @@ class OBCSoftwareRecipe(ConanFile):
         tc.generate()
 
     def build(self):
-        # if self.comp
-        git = Git(self)
-        git.clone(url="https://gitlab.com/acubesat/obc/cross-platform-software", target="lib/")
-        git.checkout("conan-package")
-        git = Git(self)
-        git.clone(url="https://gitlab.com/acubesat/obc/atsam-component-drivers", target="lib/")
-
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
