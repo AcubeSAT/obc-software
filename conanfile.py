@@ -39,11 +39,11 @@ class OBCSWRecipe(ConanFile):
         tc.generate()
 
     def build(self):
-        git = Git(self)
-        git.clone(url="https://gitlab.com/acubesat/obc/cross-platform-software", target="lib/")
-        # Please, be aware that using the head of the branch instead of an immutable tag
-        # or commit is not a good practice in general
-        git.checkout("main")
+        # git = Git(self)
+        # git.clone(url="https://gitlab.com/acubesat/obc/cross-platform-software", target="lib/")
+        # # Please, be aware that using the head of the branch instead of an immutable tag
+        # # or commit is not a good practice in general
+        # git.checkout("main")
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
