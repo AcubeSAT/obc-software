@@ -39,6 +39,7 @@ class OBCSWRecipe(ConanFile):
         tc.generate()
 
     def build(self):
+        # if self.comp
         git = Git(self)
         git.clone(url="https://gitlab.com/acubesat/obc/cross-platform-software", target="lib/")
         # Please, be aware that using the head of the branch instead of an immutable tag
