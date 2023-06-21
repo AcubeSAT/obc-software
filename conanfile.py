@@ -42,7 +42,7 @@ class OBCSoftwareRecipe(ConanFile):
         # if self.comp
         git = Git(self)
         git.clone(url="https://gitlab.com/acubesat/obc/cross-platform-software", target="lib/")
-
+        git.checkout("conan-package")
         git = Git(self)
         git.clone(url="https://gitlab.com/acubesat/obc/atsam-component-drivers", target="lib/")
 
