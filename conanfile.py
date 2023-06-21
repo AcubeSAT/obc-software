@@ -33,10 +33,10 @@ class OBCSoftwareRecipe(ConanFile):
 
     def source(self):
         git = Git(self)
-        git.clone(url="https://gitlab.com/acubesat/obc/cross-platform-software", target=join(str(self.source_folder), "lib/cross-platform-software"))
+        git.clone(url="git@gitlab.com:acubesat/obc/cross-platform-software.git", target=join(str(self.source_folder), "lib/cross-platform-software"))
         self.run("cd lib/cross-platform-software && git submodule update --init --recursive")
         git = Git(self)
-        git.clone(url="https://gitlab.com/acubesat/obc/atsam-component-drivers", target=join(str(self.source_folder), "lib/atsam-component-drivers"))
+        git.clone(url="git@gitlab.com:acubesat/obc/atsam-component-drivers.git", target=join(str(self.source_folder), "lib/atsam-component-drivers"))
 
     def layout(self):
         cmake_layout(self)
