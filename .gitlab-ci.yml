@@ -7,6 +7,7 @@ build-job:
   script:
     - apt-get install -y gcc-arm-none-eabi gdb-arm-none-eabi
     - mkdir conan-build
+    - conan profile detect --force
     - conan remote add conan https://artifactory.spacedot.gr/artifactory/api/conan/conan
     - conan remote login -p $CONAN_PASSWORD conan $CONAN_USER
     - conan install . --output-folder conan-build --build=missing -pr conan-arm-profile
