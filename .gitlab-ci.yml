@@ -15,5 +15,5 @@ build-job:
     - cd lib && git clone https://gitlab.com/acubesat/obc/cross-platform-software.git && git clone https://gitlab.com/acubesat/obc/atsam-component-drivers.git && cd ..
     - cd .. && git clone https://gitlab.com/acubesat/obc/logger.git && cd logger && git checkout old-gcc-fix && conan create . --build="*"
     - conan install . --output-folder conan-build --build=missing -pr conan-arm-profile
-    - cmake . -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS="-specs=nosys.specs" -DCMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -fdiagnostics-color=always -specs=nosys.specs" -DCMAKE_TOOLCHAIN_FILE=conan-build/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="arm-none-eabi-g++" -DCMAKE_C_COMPILER="arm-none-eabi-gcc"
+    - cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS="-specs=nosys.specs" -DCMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -fdiagnostics-color=always -specs=nosys.specs" -DCMAKE_TOOLCHAIN_FILE=conan-build/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="arm-none-eabi-g++" -DCMAKE_C_COMPILER="arm-none-eabi-gcc"
     - make -j$(nproc)
