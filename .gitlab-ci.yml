@@ -13,7 +13,7 @@ build-job:
     - conan remote add conan https://artifactory.spacedot.gr/artifactory/api/conan/conan
     - conan remote login -p $CONAN_PASSWORD conan $CONAN_USER
     - cd lib && git clone https://gitlab.com/acubesat/obc/cross-platform-software.git && git clone https://gitlab.com/acubesat/obc/atsam-component-drivers.git && cd ..
-    - cd .. && git clone https://gitlab.com/acubesat/obc/logger.git && git checkout old-gcc-fix && conan create . --build="*"
+    - cd .. && git clone https://gitlab.com/acubesat/obc/logger.git && cd logger && git checkout old-gcc-fix && conan create . --build="*"
     - conan install . --output-folder conan-build --build=missing -pr conan-arm-profile
     - cmake . -DCMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -fdiagnostics-color=always" -DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc"`.
     - make -j$(nproc)
