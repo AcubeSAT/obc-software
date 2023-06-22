@@ -1,7 +1,7 @@
 from os.path import join
 
 from conan import ConanFile
-from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
+from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 from conan.tools.files import copy
 from conan.tools.scm import Git
 
@@ -46,6 +46,7 @@ class OBCSoftwareRecipe(ConanFile):
         tc.generate()
 
     def build(self):
+        print("building")
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
