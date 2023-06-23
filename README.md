@@ -34,7 +34,6 @@ need to:
 To build, you need to follow these steps:
 - First run `conan profile detect --force`: Generates default profile detecting GCC. However, for this project, you need to set up
     the correct architecture. Find where `conan` sets up profiles (probably `~/.conan2/profiles`) and run `cp conan-arm-profile ~/.conan2/profiles` (or another directory if conan2 stores the profiles elsewhere) in this project's folder.
-    in that folder, and edit the `arm` file. You need to change the `arch` entry to `arch=armv7`.
 - Then run `conan install . --output-folder=cmake-build-debug --build="*" -u -pr conan-arm-profile`. If you're using CLion and don't see `cmake-build-debug`, you have to `Reload CMake project` to have it generated. 
 After you've run `conan install...` you can `Reload CMake project` and build as per usual.
 - Make sure you followed the steps under the `Build` section
