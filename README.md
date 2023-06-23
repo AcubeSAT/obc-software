@@ -27,7 +27,7 @@ need to:
   credentials, and you should login at least once) and add the
   remote to your conan remotes. To do that run the following two commands
   `conan remote add conan https://artifactory.spacedot.gr/artifactory/api/conan/conan` and
-  `conan remote login -r conan $YOUR_USERNAME`, which will prompt you to add your password.
+  `conan remote login conan $YOUR_USERNAME`, which will prompt you to add your password.
 - or, clone the repo on your own, and package it locally use `conan create . --build=missing` in the root of the repo.
 - or, clone the repo on your own and add it as a submodule in the `lib` folderr, and make the necessary CMakeLists.txt changes.
   txt changes to include it in the build.
