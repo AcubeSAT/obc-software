@@ -6,6 +6,7 @@ set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld)
 
 add_definitions(-DARM_MATH_CM7 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1)
 
+set(CMAKE_PREFIX_PATH "${PROJECT_SOURCE_DIR}/cmake-build-debug/build/Release/generators/")
 find_package(etl CONFIG REQUIRED)
 find_package(logger CONFIG REQUIRED COMPONENTS log_common)
 find_package(ecss-services CONFIG REQUIRED COMPONENTS common)
