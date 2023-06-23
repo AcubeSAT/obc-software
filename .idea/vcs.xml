@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/atsam-component-drivers" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lib/cross-platform-software" vcs="Git" />
   </component>
 </project>
