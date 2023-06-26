@@ -46,8 +46,8 @@ class OBCSoftwareRecipe(ConanFile):
         tc.generate()
 
     def build(self):
-        print("building")
         cmake = CMake(self)
+        tc.variables["LINKER_SCRIPT"] = "${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld"
         cmake.configure()
         cmake.build()
 
