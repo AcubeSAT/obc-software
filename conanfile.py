@@ -43,10 +43,10 @@ class OBCSoftwareRecipe(ConanFile):
 
     def generate(self):
         tc = CMakeToolchain(self)
+        tc.variables["NO_SYSTEM_INCLUDE"] = True
         tc.generate()
 
     def build(self):
-        print("building")
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
