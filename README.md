@@ -21,20 +21,19 @@ If you just cmake from cli, just add the same flags in your command.
 This repository uses [conan 2.0](https://conan.io/) to manage dependencies.
 
 #### AcubeSAT Conan Packages
-One of the packages ([logger](https://gitlab.com/acubesat/obc/logger)) is hosted on a private repository, so you
+Some of the Conan packages are hosted on a private repository, so you
 need to:
 - have access to the [repository](https://artifactory.spacedot.gr) (if you're already on GitLab, it's the same
   credentials, and you should login at least once) and add the
   remote to your conan remotes. To do that run the following two commands
   `conan remote add conan https://artifactory.spacedot.gr/artifactory/api/conan/conan` and
-  `conan remote login -r conan $YOUR_USERNAME`, which will prompt you to add your password.
+  `conan remote login conan $YOUR_USERNAME`, which will prompt you to add your password.
 - or, clone the repo on your own, and package it locally use `conan create . --build=missing` in the root of the repo.
-- or, clone the repo on your own and add it as a submodule in the `lib` folderr, and make the necessary CMakeLists.
+- or, clone the repo on your own and add it as a submodule in the `lib` folder, and make the necessary CMakeLists.
   txt changes to include it in the build.
 To build, you need to follow these steps:
 - First run `conan profile detect --force`: Generates default profile detecting GCC. However, for this project, you need to set up
-    the correct architecture. Find where `conan` sets up profiles (probably `~/.conan2/profiles`), run `cp default arm` 
-    in that folder, and edit the `arm` file. You need to change the `arch` entry to `arch=armv7`.
+    the correct architecture. Find where `conan` sets up profiles (probably `~/.conan2/profiles`) and run `cp conan-arm-profile ~/.conan2/profiles` (or another directory if conan2 stores the profiles elsewhere) in this project's folder.
 - Then run `conan install . --output-folder=cmake-build-debug --build="*" -u -pr conan-arm-profile`. If you're using CLion and don't see `cmake-build-debug`, you have to `Reload CMake project` to have it generated. 
 After you've run `conan install...` you can `Reload CMake project` and build as per usual.
 - Make sure you followed the steps under the `Build` section
