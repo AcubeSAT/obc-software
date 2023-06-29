@@ -1,0 +1,9 @@
+{
+    "version": 4,
+    "vendor": {
+        "conan": {}
+    },
+    "include": [
+        "/home/jimisk/obc-software/cmake-build-debug/CMakePresets.json"
+    ]
+}
