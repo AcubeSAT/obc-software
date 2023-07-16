@@ -1,6 +1,6 @@
 [settings]
 arch=armv7
-build_type=Release
+build_type=Debug
 compiler=gcc
 compiler.cppstd=gnu17
 compiler.libcxx=libstdc++11
