@@ -5,6 +5,7 @@ project(OBC_SOFTWARE C CXX ASM)
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld)
 
 add_definitions(-DARM_MATH_CM7 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1)
+SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT}")
 
 find_package(etl CONFIG REQUIRED)
 find_package(logger CONFIG REQUIRED COMPONENTS log_common)
@@ -71,6 +72,6 @@ add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${FREERTOS_SOURCE
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross etl log_common)
 
 set(CMAKE_EXE_LINKER_FLAGS
-        "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
+        "${CMAKE_EXE_LINKER_FLAGS_INIT} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
 
 add_compile_definitions(LOGLEVEL_TRACE)
