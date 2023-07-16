@@ -19,5 +19,6 @@ build-arm:
     - cd ..
     - cd .. 
     - conan install . --output-folder conan-build --build=missing -pr conan-arm-profile
-    - cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=conan-build/build/Release/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="arm-none-eabi-g++" -DCMAKE_C_COMPILER="arm-none-eabi-gcc"
+    - cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=conan-build/build/Debug/generators/conan_toolchain.cmake
+    - -DCMAKE_CXX_COMPILER="arm-none-eabi-g++" -DCMAKE_C_COMPILER="arm-none-eabi-gcc"
     - make -j$(nproc)
