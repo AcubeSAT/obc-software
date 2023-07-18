@@ -21,14 +21,14 @@ If you just cmake from cli, just add the same flags in your command.
 This repository uses [conan 2.0](https://conan.io/) to manage dependencies.
 
 #### AcubeSAT Conan Packages
-Some of the Conan packages are hosted on a private repository, so you
-need to:
+Some of the Conan packages ([logger](https://gitlab.com/acubesat/obc/logger) and [ecss-services](https://gitlab.com/acubesat/obc/ecss-services)) are hosted on a private repository, so you
+need to either:
 - have access to the [repository](https://artifactory.spacedot.gr) (if you're already on GitLab, it's the same
   credentials, and you should login at least once) and add the
   remote to your conan remotes. To do that run the following two commands
   `conan remote add conan https://artifactory.spacedot.gr/artifactory/api/conan/conan` and
   `conan remote login conan $YOUR_USERNAME`, which will prompt you to add your password.
-- or, clone the repo on your own, and package it locally use `conan create . --build=missing` in the root of the repo.
+- or, clone the repo on your own, and package it locally use `conan create . --build=missing` in the root of the repo. This way, you don't need to add the remote repository, as conan will add it in local cache.
 - or, clone the repo on your own and add it as a submodule in the `lib` folder, and make the necessary CMakeLists.
   txt changes to include it in the build.
 To build, you need to follow these steps:
