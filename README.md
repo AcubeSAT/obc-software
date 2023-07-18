@@ -17,6 +17,8 @@ CMake Options) this `-DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/genera
 
 If you just cmake from cli, just add the same flags in your command.
 
+To be able to build, however, you need to install the required `conan` packages. See the `Conan` section for more info.
+
 ### Conan
 This repository uses [conan 2.0](https://conan.io/) to manage dependencies.
 
@@ -31,8 +33,10 @@ need to either:
 - or, clone the repo on your own, and package it locally use `conan create . --build=missing` in the root of the repo. This way, you don't need to add the remote repository, as conan will add it in local cache.
 - or, clone the repo on your own and add it as a submodule in the `lib` folder, and make the necessary CMakeLists.
   txt changes to include it in the build.
-To build, you need to follow these steps:
-- First run `conan profile detect --force`: Generates default profile detecting GCC. However, for this project, you need to set up
+
+To install the necessary packages, you need to follow these steps:
+- Make sure you performed one of the `AcubeSAT Conan Packages` sections teps
+- Run `conan profile detect --force`: Generates default profile detecting GCC. However, for this project, you need to set up
     the correct architecture. Find where `conan` sets up profiles (probably `~/.conan2/profiles`) and run `cp conan-arm-profile ~/.conan2/profiles` (or another directory if conan2 stores the profiles elsewhere) in this project's folder.
 - Then run `conan install . --output-folder=cmake-build-debug --build="*" -u -pr conan-arm-profile`. If you're using CLion and don't see `cmake-build-debug`, you have to `Reload CMake project` to have it generated. 
 After you've run `conan install...` you can `Reload CMake project` and build as per usual.
