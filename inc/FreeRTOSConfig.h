@@ -52,9 +52,8 @@
  * the respective platform. This number was chosen by copying the demo of SAMV71 FreeRTOSConfig
  */
 #define configMINIMAL_STACK_SIZE				( ( uint16_t ) 1000 )
-#define configSUPPORT_DYNAMIC_ALLOCATION        1
+#define configSUPPORT_DYNAMIC_ALLOCATION        0
 #define configSUPPORT_STATIC_ALLOCATION         1
-#define configTOTAL_HEAP_SIZE                   ( ( size_t ) 40980 )
 #define configMAX_TASK_NAME_LEN                 ( 16 )
 #define configUSE_16_BIT_TICKS                  0
 #define configIDLE_SHOULD_YIELD                 1
@@ -62,7 +61,7 @@
 #define configUSE_RECURSIVE_MUTEXES             0
 #define configUSE_COUNTING_SEMAPHORES           1
 #define configUSE_TASK_NOTIFICATIONS            1
-#define configQUEUE_REGISTRY_SIZE               0
+#define configQUEUE_REGISTRY_SIZE               5
 #define configUSE_QUEUE_SETS                    0
 #define configUSE_TIME_SLICING                  1
 #define configUSE_NEWLIB_REENTRANT              0
@@ -72,13 +71,14 @@
 /* Hook function related definitions. */
 #define configUSE_IDLE_HOOK                     2
 #define configUSE_TICK_HOOK                     0
-#define configCHECK_FOR_STACK_OVERFLOW          0
+#define configCHECK_FOR_STACK_OVERFLOW          2
 #define configUSE_MALLOC_FAILED_HOOK            1
 
 /* Run time and task stats gathering related definitions. */
 #define configGENERATE_RUN_TIME_STATS           0
 #define configUSE_TRACE_FACILITY                0
 #define configUSE_STATS_FORMATTING_FUNCTIONS    0
+#define configRECORD_STACK_HIGH_ADDRESS         1
 
 /* Co-routine related definitions. */
 #define configUSE_CO_ROUTINES                   0
