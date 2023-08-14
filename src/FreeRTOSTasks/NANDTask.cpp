@@ -58,9 +58,10 @@ void NANDTask::execute() {
 
         uint32_t writePosition = rand() % (1105920 * 10);
         LOG_DEBUG << "Write address is: " << writePosition;
+        constexpr MT29F::Structure pos{};
 
         for (failedTries = 0; failedTries < 3;) {
-            bool success = mt29f.writeNAND(0, writePosition,20, dataWrite);
+            bool success = mt29f.abstractWriteNAND<20,pos,MT29F::POS>(dataWrite);
             if (!success) {
                 LOG_DEBUG << "Failed to write NAND";
                 if (mt29f.errorHandler()) {
@@ -76,81 +77,80 @@ void NANDTask::execute() {
             }
         }
 
-
-        /* READ */
-        etl::array<uint8_t, 20> dataRead = {};
-
-        for (failedTries = 0; failedTries < 3;) {
+//
+//        /* READ */
+//        etl::array<uint8_t, 20> dataRead = {};
+//
+//        for (failedTries = 0; failedTries < 3;) {
 //            bool success = mt29f.readNAND(dataRead, 0, writePosition, 20);
-                bool success = true;
-                if (success) {
-                etl::string<100> stringReadWrite = "";
-                for (uint8_t i = 0; i < 20; i++) {
-                    etl::to_string(dataRead[i], stringReadWrite, true);
-                    stringReadWrite.append(" ");
-                }
-
-                // check if write-read was correct
-                if (etl::equal(dataRead.begin(), dataRead.end(), dataWrite.begin())) {
-                    LOG_INFO << "NAND read and write test succeeded";
-                } else {
-                    LOG_INFO << "NAND read and write test failed";
-                    LOG_DEBUG << "NAND read: " << stringReadWrite.c_str();
-                }
-
-                break;
-            } else {
-                LOG_ERROR << "Failed to read NAND";
-                if (mt29f.errorHandler()) {
-                    LOG_INFO << "NAND is alive";
-                } else {
-                    LOG_INFO << "NAND is not responding";
-//                    nandLCL.enableLCL();
-                }
-                failedTries++;
-            }
-        }
-        /* ERASE */
-        uint8_t block = writePosition / 1105920;
-        for (failedTries = 0; failedTries < 3;) {
-            uint8_t success = mt29f.eraseBlock(0, block);
-            if (!success) {
-                LOG_ERROR << "Failed to erase NAND block";
-                failedTries++;
-            } else {
-                vTaskDelay(pdMS_TO_TICKS(10));
-                break;
-            }
-        }
-
-        etl::array<uint8_t,20> dataErase = {};
-        for (uint8_t i = 0; i < 20; i++) {
-            dataErase[i] = 255;
-        }
-
-        /* READ */
-        for (failedTries = 0; failedTries < 3;) {
-            bool success = mt29f.readNAND(dataRead, 0, writePosition, 20u);
-            if (success) {
-                etl::string<100> stringReadErase = "";
-                for (uint8_t i = 0; i < 20; i++) {
-                    etl::to_string(dataRead[i], stringReadErase, true);
-                    stringReadErase.append(" ");
-                }
-                if (etl::equal(dataRead.begin(), dataRead.end(), dataWrite.begin())) {
-                    LOG_INFO << "NAND erase test failed";
-                } else if (!etl::equal(dataRead.begin(), dataRead.end(), dataErase.begin())) {
-                    LOG_INFO << "NAND erase test failed";
-                    LOG_DEBUG << "Read NAND after erasing: " << stringReadErase.c_str();
-                } else {
-                    LOG_INFO << "NAND erase test succeeded";
-                }
-                break;
-            } else {
-                LOG_ERROR << "Failed to read NAND";
-                failedTries++;
-            }
-        }
+//            if (success) {
+//            etl::string<100> stringReadWrite = "";
+//            for (uint8_t i = 0; i < 20; i++) {
+//                etl::to_string(dataRead[i], stringReadWrite, true);
+//                stringReadWrite.append(" ");
+//            }
+//
+//            // check if write-read was correct
+//            if (etl::equal(dataRead.begin(), dataRead.end(), dataWrite.begin())) {
+//                LOG_INFO << "NAND read and write test succeeded";
+//            } else {
+//                LOG_INFO << "NAND read and write test failed";
+//                LOG_DEBUG << "NAND read: " << stringReadWrite.c_str();
+//            }
+//
+//            break;
+//            } else {
+//                LOG_ERROR << "Failed to read NAND";
+//                if (mt29f.errorHandler()) {
+//                    LOG_INFO << "NAND is alive";
+//                } else {
+//                    LOG_INFO << "NAND is not responding";
+////                    nandLCL.enableLCL();
+//                }
+//                failedTries++;
+//            }
+//        }
+//        /* ERASE */
+//        uint8_t block = writePosition / 1105920;
+//        for (failedTries = 0; failedTries < 3;) {
+//            uint8_t success = mt29f.eraseBlock(0, block);
+//            if (!success) {
+//                LOG_ERROR << "Failed to erase NAND block";
+//                failedTries++;
+//            } else {
+//                vTaskDelay(pdMS_TO_TICKS(10));
+//                break;
+//            }
+//        }
+//
+//        etl::array<uint8_t,20> dataErase = {};
+//        for (uint8_t i = 0; i < 20; i++) {
+//            dataErase[i] = 255;
+//        }
+//
+//        /* READ */
+//        for (failedTries = 0; failedTries < 3;) {
+//            bool success = mt29f.readNAND(dataRead, 0, writePosition, 20u);
+//            if (success) {
+//                etl::string<100> stringReadErase = "";
+//                for (uint8_t i = 0; i < 20; i++) {
+//                    etl::to_string(dataRead[i], stringReadErase, true);
+//                    stringReadErase.append(" ");
+//                }
+//                if (etl::equal(dataRead.begin(), dataRead.end(), dataWrite.begin())) {
+//                    LOG_INFO << "NAND erase test failed";
+//                } else if (!etl::equal(dataRead.begin(), dataRead.end(), dataErase.begin())) {
+//                    LOG_INFO << "NAND erase test failed";
+//                    LOG_DEBUG << "Read NAND after erasing: " << stringReadErase.c_str();
+//                } else {
+//                    LOG_INFO << "NAND erase test succeeded";
+//                }
+//                break;
+//            } else {
+//                LOG_ERROR << "Failed to read NAND";
+//                failedTries++;
+//            }
+//        }
 
 //        vTaskResume(MRAMTask::mramTaskHandle);
 //        vTaskSuspend(NULL);

@@ -10,5 +10,5 @@ settings:
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'
   CMSISPath: ./dev_packs/arm/CMSIS/5.8.0
-  MERGE_STRATEGY: OVERWRITE
+  MERGE_STRATEGY: USER_ALL
   DFPPath: ./dev_packs/Microchip/SAMV71_DFP/4.9.117/samv71b/atdf/ATSAMV71Q21B.atdf

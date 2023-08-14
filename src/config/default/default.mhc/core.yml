@@ -3121,26 +3121,40 @@ children:
       - type: User
         attributes: {value: ''}
   - type: String
+    attributes: {id: PIN_82_DIR}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Out}
+  - type: String
     attributes: {id: PIN_82_FUNCTION_NAME}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: MEM_MRAM_WR_ENABLE}
+        attributes: {value: GPIO_PC8}
   - type: String
     attributes: {id: PIN_82_FUNCTION_TYPE}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: EBI_NWR0/NWE}
+        attributes: {value: GPIO}
+  - type: String
+    attributes: {id: PIN_82_PD}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'True'}
   - type: String
     attributes: {id: PIN_82_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
       - type: User
-        attributes: {value: A}
+        attributes: {value: GPIO}
   - type: String
     attributes: {id: PIN_86_FUNCTION_NAME}
     children:
@@ -3546,14 +3560,21 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '40960'}
+        attributes: {id: core, value: '41216'}
   - type: Hex
     attributes: {id: PIOC_PDR_VALUE}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '1342922751'}
+        attributes: {id: core, value: '1342922495'}
+  - type: Hex
+    attributes: {id: PIOC_PPDEN_VALUE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: core, value: '256'}
   - type: Hex
     attributes: {id: PIOC_SODR_VALUE}
     children:

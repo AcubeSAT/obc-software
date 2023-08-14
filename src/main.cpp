@@ -14,6 +14,7 @@
 #include "TCHandlingTask.hpp"
 #include "NANDTask.hpp"
 #include "FreeRTOSHandlers.hpp"
+#include "LittleFSTask.hpp"
 
 
 #define IDLE_TASK_SIZE 200

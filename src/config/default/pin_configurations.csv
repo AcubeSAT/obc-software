@@ -66,7 +66,7 @@
 77,PA4,I2C_SCK_PANELS,TWIHS0_TWCK0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 78,PD16,,Available,In,,,,,,,
 79,PB6,MCU_SWDIO,ICE_TMS/SWDIO,n/a,n/a,No,Disabled,No,No,Disabled,Low
-82,PC8,MEM_MRAM_WR_ENABLE,EBI_NWR0/NWE,n/a,n/a,No,Disabled,No,No,Disabled,Low
+82,PC8,GPIO_PC8,GPIO,Out,Low,No,Disabled,No,Yes,Disabled,Low
 84,PD14,,Available,In,,,,,,,
 86,PC9,MEM_NAND_OUT_ENABLE,EBI_NANDOE,n/a,n/a,No,Disabled,No,No,Disabled,Low
 87,PB12,,Available,In,,,,,,,

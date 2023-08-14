@@ -362,9 +362,14 @@
 #define MCU_SWDIO_Get()               ((PIOB_REGS->PIO_PDSR >> 6) & 0x1)
 #define MCU_SWDIO_PIN                  PIO_PIN_PB6
 
-/*** Macros for MEM_MRAM_WR_ENABLE pin ***/
-#define MEM_MRAM_WR_ENABLE_Get()               ((PIOC_REGS->PIO_PDSR >> 8) & 0x1)
-#define MEM_MRAM_WR_ENABLE_PIN                  PIO_PIN_PC8
+/*** Macros for GPIO_PC8 pin ***/
+#define GPIO_PC8_Set()               (PIOC_REGS->PIO_SODR = (1<<8))
+#define GPIO_PC8_Clear()             (PIOC_REGS->PIO_CODR = (1<<8))
+#define GPIO_PC8_Toggle()            (PIOC_REGS->PIO_ODSR ^= (1<<8))
+#define GPIO_PC8_OutputEnable()      (PIOC_REGS->PIO_OER = (1<<8))
+#define GPIO_PC8_InputEnable()       (PIOC_REGS->PIO_ODR = (1<<8))
+#define GPIO_PC8_Get()               ((PIOC_REGS->PIO_PDSR >> 8) & 0x1)
+#define GPIO_PC8_PIN                  PIO_PIN_PC8
 
 /*** Macros for MEM_NAND_OUT_ENABLE pin ***/
 #define MEM_NAND_OUT_ENABLE_Get()               ((PIOC_REGS->PIO_PDSR >> 9) & 0x1)
