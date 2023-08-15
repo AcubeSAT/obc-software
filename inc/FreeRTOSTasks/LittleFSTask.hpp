@@ -13,8 +13,6 @@ private:
 
     StackType_t taskStack[TaskStackDepth];
 
-    LittleFS littleFs;
-
 public:
 
     void execute();
