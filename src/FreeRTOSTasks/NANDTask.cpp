@@ -51,31 +51,31 @@ void NANDTask::execute() {
 
 
         /* WRITE */
-        etl::array<uint8_t,20> dataWrite = {};
-        for (uint8_t i = 0; i < 20; i++) {
-            dataWrite[i] = i + 1;
-        }
-
-        uint32_t writePosition = rand() % (1105920 * 10);
-        LOG_DEBUG << "Write address is: " << writePosition;
-        constexpr MT29F::Structure pos{};
-
-        for (failedTries = 0; failedTries < 3;) {
-            bool success = mt29f.abstractWriteNAND<20,pos,MT29F::POS>(dataWrite);
-            if (!success) {
-                LOG_DEBUG << "Failed to write NAND";
-                if (mt29f.errorHandler()) {
-                    LOG_DEBUG << "NAND is alive";
-                } else {
-                    LOG_DEBUG << "NAND is not responding";
-//                    nandLCL.enableLCL();
-                }
-                failedTries++;
-            } else {
-                vTaskDelay(pdMS_TO_TICKS(10));
-                break;
-            }
-        }
+//        etl::array<uint8_t,20> dataWrite = {};
+//        for (uint8_t i = 0; i < 20; i++) {
+//            dataWrite[i] = i + 1;
+//        }
+//
+//        uint32_t writePosition = rand() % (1105920 * 10);
+//        LOG_DEBUG << "Write address is: " << writePosition;
+//        constexpr MT29F::Structure pos{};
+//
+//        for (failedTries = 0; failedTries < 3;) {
+//            bool success = mt29f.abstractWriteNAND<20,pos,MT29F::POS>(dataWrite);
+//            if (!success) {
+//                LOG_DEBUG << "Failed to write NAND";
+//                if (mt29f.errorHandler()) {
+//                    LOG_DEBUG << "NAND is alive";
+//                } else {
+//                    LOG_DEBUG << "NAND is not responding";
+////                    nandLCL.enableLCL();
+//                }
+//                failedTries++;
+//            } else {
+//                vTaskDelay(pdMS_TO_TICKS(10));
+//                break;
+//            }
+//        }
 
 //
 //        /* READ */

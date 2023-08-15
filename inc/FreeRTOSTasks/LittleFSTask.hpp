@@ -15,23 +15,6 @@ private:
 
     LittleFS littleFs;
 
-
-    const struct lfs_config cfg = {
-            // block device operations
-            .read = {},
-//            .prog  = &MT29F::abstactWriteNAND,
-//            .erase = &MT29F::eraseBlock,
-//            .sync  = ,
-            // block device configuration
-            .read_size = 16,
-            .prog_size = 16,
-            .block_size = 4096,
-            .block_count = 128,
-            .block_cycles = 500,
-            .cache_size = 16,
-            .lookahead_size = 16
-    };
-
 public:
 
     void execute();

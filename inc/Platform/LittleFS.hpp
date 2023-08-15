@@ -21,7 +21,15 @@ private:
                 int ret = nand.abstractReadNAND(pos, MT29F::PAGE_BLOCK, etl::span<uint8_t>(static_cast<uint8_t*>(buffer), size), size);
                 return ret;
             },
-//            .prog  = &MT29F::abstactWriteNAND,
+            .prog  = [](const struct lfs_config *c, lfs_block_t block,
+                        lfs_off_t off, const void *buffer, lfs_size_t size){
+                MT29F::Structure *pos{};
+                pos->block = block;
+                pos->page = off;
+                MT29F nand(SMC::NCS3, MEM_NAND_BUSY_1_PIN, MEM_NAND_WR_ENABLE_PIN);
+
+                int ret = nand.abstractWriteNAND(pos, MT29F::PAGE_BLOCK, etl::span<const uint8_t>(static_cast<const uint8_t*>(buffer), size), size);
+                return ret;},
 //            .erase = &MT29F::eraseBlock,
 //            .sync  = ,
             // block device configuration
