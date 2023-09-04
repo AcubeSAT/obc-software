@@ -7,6 +7,8 @@
 
 #define UART_PERIPHERAL_REGISTER USART1_REGS->US_THR
 
+#define UART_Initialize USART1_Initialize
+
 namespace CAN {
     /**
      * The ID for the current node as described in DDJF_OBDH
