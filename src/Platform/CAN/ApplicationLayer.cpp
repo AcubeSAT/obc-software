@@ -6,8 +6,8 @@
 
 namespace CAN::Application {
     Driver::ActiveBus switchBus(Driver::ActiveBus newBus) {
-        AcubeSATParameters::obcCANBUSActive.setValue(newBus);
-        return AcubeSATParameters::obcCANBUSActive.getValue();
+        PeakSatParameters::obcCANBUSActive.setValue(newBus);
+        return PeakSatParameters::obcCANBUSActive.getValue();
     }
 
     void sendPingMessage(NodeIDs destinationAddress, bool isMulticast) {
@@ -32,7 +32,7 @@ namespace CAN::Application {
 
     void sendBusSwitchoverMessage() {
         Driver::ActiveBus newBus = Driver::Redundant;
-        if (AcubeSATParameters::obcCANBUSActive.getValue() == Driver::Redundant) {
+        if (PeakSatParameters::obcCANBUSActive.getValue() == Driver::Redundant) {
             newBus = Driver::Main;
         }
 

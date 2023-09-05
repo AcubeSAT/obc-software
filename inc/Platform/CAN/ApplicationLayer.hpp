@@ -8,7 +8,7 @@
 #include "Logger_Definitions.hpp"
 #include "Message.hpp"
 #include "Peripheral_Definitions.hpp"
-#include "AcubeSATParameters.hpp"
+#include "PeakSatParameters.hpp"
 #include "TPMessage.hpp"
 #include "Definitions.hpp"
 

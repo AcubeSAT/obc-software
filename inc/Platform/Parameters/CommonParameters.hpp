@@ -2,13 +2,13 @@
 
 #include "Helpers/Parameter.hpp"
 #include "OBC_Definitions.hpp"
-#include "AcubeSATParameters.hpp"
+#include "PeakSatParameters.hpp"
 
 namespace CommonParameters {
-    inline auto &boardTemperature1 = AcubeSATParameters::obcPCBTemperature1;
-    inline auto &mcuTemperature = AcubeSATParameters::obcMCUTemperature;
-    inline auto &time = AcubeSATParameters::obcOnBoardTime;
-    inline auto &useRTT = AcubeSATParameters::obcUseRTT;
-    inline auto &useUART = AcubeSATParameters::obcUseUART;
-    inline auto &useCAN = AcubeSATParameters::obcUseCAN;
+    inline auto &boardTemperature1 = PeakSatParameters::obcPCBTemperature1;
+    inline auto &mcuTemperature = PeakSatParameters::obcMCUTemperature;
+    inline auto &time = PeakSatParameters::obcOnBoardTime;
+    inline auto &useRTT = PeakSatParameters::obcUseRTT;
+    inline auto &useUART = PeakSatParameters::obcUseUART;
+    inline auto &useCAN = PeakSatParameters::obcUseCAN;
 }

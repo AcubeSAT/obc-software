@@ -6,7 +6,7 @@
 #include "BootCounter.hpp"
 #include "definitions.h"
 #include "Logger.hpp"
-#include "AcubeSATParameters.hpp"
+#include "PeakSatParameters.hpp"
 #include "CommonParameters.hpp"
 #include "Definitions.hpp"
 
