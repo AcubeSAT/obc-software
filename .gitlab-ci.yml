@@ -5,6 +5,7 @@ build-arm:
   image: spacedot/build-base
   stage: build
   script:
+    - apt-get clean all
     - apt-get update
     - apt-get install -y gcc-arm-none-eabi gdb-arm-none-eabi
     - arm-none-eabi-g++ --version
