@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Services/ParameterStatisticsService.hpp"
-#include "AcubeSATParameters.hpp"
+#include "PeakSatParameters.hpp"
 
 namespace ParameterStatistics {
-    using namespace AcubeSATParameters;
+    using namespace PeakSatParameters;
     /**
      * The number of Statistic instances that will be created
      */
