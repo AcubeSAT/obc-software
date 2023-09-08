@@ -342,7 +342,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>EdbgTool</platformTool>
         <languageToolchain>ARM</languageToolchain>
-        <languageToolchainVersion>10.3.1</languageToolchainVersion>
+        <languageToolchainVersion>11.1.0</languageToolchainVersion>
         <platform>2</platform>
       </toolsSet>
       <packs>
