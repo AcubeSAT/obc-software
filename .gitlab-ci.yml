@@ -7,6 +7,7 @@ build-arm:
   script:
     - apt-get install -y gcc-arm-none-eabi gdb-arm-none-eabi
     - arm-none-eabi-g++ --version
+    - arm-none-eabi-gcc --version
     - mkdir conan-build
     - conan profile detect --force
     - cp conan-arm-profile /root/.conan2/profiles/
