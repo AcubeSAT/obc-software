@@ -11,6 +11,11 @@ find_package(etl CONFIG REQUIRED)
 find_package(logger CONFIG REQUIRED COMPONENTS log_common)
 find_package(ecss-services CONFIG REQUIRED COMPONENTS common)
 
+set(ECSS_CONFIGURATION "${PROJECT_SOURCE_DIR}/inc/Platform/" CACHE PATH
+        "The include directory for the platform-specific ECSS configuration headers"
+        )
+include_directories(${ECSS_CONFIGURATION})
+
 include_directories(.)
 include_directories(inc)
 include_directories(inc/Platform)
