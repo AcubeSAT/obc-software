@@ -2,7 +2,7 @@ stages:
   - build
 
 build-arm:
-  image: spacedot/build-base
+  image: spacedot/build-arm
   stage: build
   script:
     - apt-get install -y gcc-arm-none-eabi gdb-arm-none-eabi
