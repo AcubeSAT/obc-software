@@ -2,12 +2,9 @@ stages:
   - build
 
 build-arm:
-  image: spacedot/build-base
+  image: spacedot/build-arm
   stage: build
   script:
-    - apt-get update
-    - apt-get install -y gcc-arm-none-eabi gdb-arm-none-eabi
-    - arm-none-eabi-g++ --version
     - mkdir conan-build
     - conan profile detect --force
     - cp conan-arm-profile /root/.conan2/profiles/

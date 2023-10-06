@@ -73,7 +73,7 @@ void ParameterService::initializeParameterMap() {
                   {AcubeSATParameters::SURADFET,                                             AcubeSATParameters::suRadfet},
                   {AcubeSATParameters::SUPumpFlowRate1,                                      AcubeSATParameters::suPumpFlowRate1},
                   {AcubeSATParameters::SUPumpFlowRate2,                                      AcubeSATParameters::suPumpFlowRate2},
-                  {AcubeSATParameters::SUControlChamberValve1,                               AcubeSATParameters::suCcontrolChamberValve1},
+                  {AcubeSATParameters::SUControlChamberValve1,                               AcubeSATParameters::suControlChamberValve1},
                   {AcubeSATParameters::SUControlChamberValve2,                               AcubeSATParameters::suControlChamberValve2},
                   {AcubeSATParameters::SUControlChamberValve3,                               AcubeSATParameters::suControlChamberValve3},
                   {AcubeSATParameters::SUControlSandwitchValve1,                             AcubeSATParameters::suControlSandwitchValve1},
