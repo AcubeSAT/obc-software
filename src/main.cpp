@@ -4,10 +4,18 @@
 #include "list.h"
 #include "task.h"
 #include "definitions.h"
-#include "InitializationTask.hpp"
-#include "FreeRTOSHandlers.hpp"
+#include "OBC_Definitions.hpp"
+#include "TaskInitialization.hpp"
+#include "HousekeepingTask.hpp"
+#include "UpdateParametersTask.hpp"
+#include "TimeBasedSchedulingTask.hpp"
+#include "StatisticsReportingTask.hpp"
+#include "CANTransmitTask.hpp"
+#include "TCHandlingTask.hpp"
+#include "SEGGER_RTT.h"
+#include "SEGGER_SYSVIEW.h"
 
-#define IDLE_TASK_SIZE 100
+#define IDLE_TASK_SIZE 4000
 
 #if configSUPPORT_STATIC_ALLOCATION
 /* static memory allocation for the IDLE task */
@@ -27,6 +35,10 @@ extern "C" void main_cpp() {
     SYS_Initialize(NULL);
     initializationTask.emplace();
     initializeTasks();
+    SEGGER_RTT_Init();
+    SEGGER_SYSVIEW_Conf();
+
+    traceSTART();
     SEGGER_RTT_Init();
     SEGGER_SYSVIEW_Conf();
 
