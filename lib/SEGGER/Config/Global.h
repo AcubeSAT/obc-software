@@ -59,7 +59,7 @@ Revision: $Rev: 12501 $
 #ifndef GLOBAL_H            // Guard against multiple inclusion
 #define GLOBAL_H
 
-#define U8    unsigned char
+#define MY_U8    unsigned char
 #define I8    signed char
 #define U16   unsigned short
 #define I16   signed short

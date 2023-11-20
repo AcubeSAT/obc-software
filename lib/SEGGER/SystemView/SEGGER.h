@@ -179,7 +179,7 @@ typedef struct SEGGER_PRINTF_FORMATTER {
 
 typedef struct {
   U32 (*pfGetHPTimestamp)(void);          // Mandatory, pfGetHPTimestamp
-  int (*pfGetUID)        (U8 abUID[16]);  // Optional,  pfGetUID
+  int (*pfGetUID)        (MY_U8 abUID[16]);  // Optional,  pfGetUID
 } SEGGER_BSP_API;
 
 /*********************************************************************
@@ -229,7 +229,7 @@ void SEGGER_PRINTF_AddHTMLFormatter   (void);
 //
 // BSP abstraction API.
 //
-int  SEGGER_BSP_GetUID  (U8 abUID[16]);
+int  SEGGER_BSP_GetUID  (MY_U8 abUID[16]);
 int  SEGGER_BSP_GetUID32(U32* pUID);
 void SEGGER_BSP_SetAPI  (const SEGGER_BSP_API* pAPI);
 void SEGGER_BSP_SeedUID (void);

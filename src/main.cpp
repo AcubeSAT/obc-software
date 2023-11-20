@@ -4,14 +4,8 @@
 #include "list.h"
 #include "task.h"
 #include "definitions.h"
-#include "OBC_Definitions.hpp"
-#include "TaskInitialization.hpp"
-#include "HousekeepingTask.hpp"
-#include "UpdateParametersTask.hpp"
-#include "TimeBasedSchedulingTask.hpp"
-#include "StatisticsReportingTask.hpp"
-#include "CANTransmitTask.hpp"
-#include "TCHandlingTask.hpp"
+#include "InitializationTask.hpp"
+#include "FreeRTOSHandlers.hpp"
 #include "SEGGER_RTT.h"
 #include "SEGGER_SYSVIEW.h"
 
@@ -34,18 +28,12 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
     initializationTask.emplace();
-    initializeTasks();
-    SEGGER_RTT_Init();
-    SEGGER_SYSVIEW_Conf();
-
-    traceSTART();
-    SEGGER_RTT_Init();
-    SEGGER_SYSVIEW_Conf();
-
-    traceSTART();
 
     initializationTask->createTask();
 
+    traceSTART();
+    SEGGER_RTT_Init();
+    SEGGER_SYSVIEW_Conf();
 
     vTaskStartScheduler();
 
