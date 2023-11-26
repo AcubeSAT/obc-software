@@ -56,7 +56,7 @@ Revision: $Rev: 18102 $
 #define SEGGER_H
 
 #include <stdarg.h>         // For va_list.
-#include "Global.h"         // Type definitions: U8, U16, U32, I8, I16, I32
+#include "Global.h"         // Type definitions: MY_U8, U16, U32, I8, I16, I32
 
 #if defined(__cplusplus)
 extern "C" {     /* Make sure we have C-declarations in C++ programs */

@@ -50,7 +50,7 @@ File    : Global.h
 Purpose : Global types
           In case your application already has a Global.h, you should
           merge the files. In order to use Segger code, the types
-          U8, U16, U32, I8, I16, I32 need to be defined in Global.h;
+          MY_U8, U16, U32, I8, I16, I32 need to be defined in Global.h;
           additional definitions do not hurt.
 Revision: $Rev: 12501 $
 ---------------------------END-OF-HEADER------------------------------

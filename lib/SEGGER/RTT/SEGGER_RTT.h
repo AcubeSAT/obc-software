@@ -276,10 +276,10 @@ Revision: $Rev: 25842 $
 
 //
 // Determine how much we must pad the control block to make it a multiple of a cache line in size
-// Assuming: U8 = 1B
+// Assuming: MY_U8 = 1B
 //           U16 = 2B
 //           U32 = 4B
-//           U8/U16/U32* = 4B
+//           MY_U8/U16/U32* = 4B
 //
 #if SEGGER_RTT_CPU_CACHE_LINE_SIZE    // Avoid division by zero in case we do not have any cache
   #define SEGGER_RTT__ROUND_UP_2_CACHE_LINE_SIZE(NumBytes) (((NumBytes + SEGGER_RTT_CPU_CACHE_LINE_SIZE - 1) / SEGGER_RTT_CPU_CACHE_LINE_SIZE) * SEGGER_RTT_CPU_CACHE_LINE_SIZE)
