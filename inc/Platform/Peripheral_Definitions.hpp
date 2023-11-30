@@ -7,6 +7,7 @@
 
 #define UART_PERIPHERAL_REGISTER USART1_REGS->US_THR
 #define UART_Initialize USART1_Initialize
+#define USART 1
 
 namespace CAN {
     /**
