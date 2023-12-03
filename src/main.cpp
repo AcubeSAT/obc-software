@@ -27,19 +27,19 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
-    initializationTask.emplace();
-
-    initializationTask->createTask();
 
     traceSTART();
     SEGGER_RTT_Init();
     SEGGER_SYSVIEW_Conf();
-
+    SEGGER_SYSVIEW_Start();
+    initializationTask.emplace();
+    initializationTask->createTask();
     vTaskStartScheduler();
 
     while (true) {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
         SYS_Tasks();
     }
+    SEGGER_SYSVIEW_Stop();
 }
 

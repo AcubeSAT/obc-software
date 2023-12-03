@@ -3,7 +3,7 @@
 *                        The Embedded Experts                        *
 **********************************************************************
 *                                                                    *
-*            (c) 1995 - 2021 SEGGER Microcontroller GmbH             *
+*            (c) 1995 - 2023 SEGGER Microcontroller GmbH             *
 *                                                                    *
 *       www.segger.com     Support: support@segger.com               *
 *                                                                    *
@@ -42,7 +42,7 @@
 *                                                                    *
 **********************************************************************
 *                                                                    *
-*       SystemView version: 3.32                                    *
+*       SystemView version: 3.52a                                    *
 *                                                                    *
 **********************************************************************
 -------------------------- END-OF-HEADER -----------------------------
@@ -85,14 +85,14 @@ extern "C" {
 #define SEGGER_SYSVIEW_CORE_CM3     2 // Cortex-M3/M4/M7
 #define SEGGER_SYSVIEW_CORE_RX      3 // Renesas RX
 #ifndef SEGGER_SYSVIEW_CORE
-  #if (defined __SES_ARM) || (defined __CROSSWORKS_ARM) || (defined __SEGGER_CC__) || (defined __GNUC__) || (defined __clang__)
-    #if (defined __ARM_ARCH_6M__) || (defined __ARM_ARCH_8M_BASE__)
-      #define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_CM0
-    #elif (defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7EM__) || defined(__ARM_ARCH_8M_MAIN__))
-      #define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_CM3
-    #endif
-  #elif defined(__ICCARM__)
-    #if (defined (__ARM6M__)          && (__CORE__ == __ARM6M__))          \
+#if (defined __SES_ARM) || (defined __CROSSWORKS_ARM) || (defined __SEGGER_CC__) || (defined __GNUC__) || (defined __clang__)
+#if (defined __ARM_ARCH_6M__) || (defined __ARM_ARCH_8M_BASE__)
+#define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_CM0
+#elif (defined(__ARM_ARCH_7M__) || defined(__ARM_ARCH_7EM__) || defined(__ARM_ARCH_8M_MAIN__))
+#define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_CM3
+#endif
+#elif defined(__ICCARM__)
+#if (defined (__ARM6M__)          && (__CORE__ == __ARM6M__))          \
      || (defined (__ARM8M_BASELINE__) && (__CORE__ == __ARM8M_BASELINE__))
       #define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_CM0
     #elif (defined (__ARM7EM__)         && (__CORE__ == __ARM7EM__))         \
@@ -117,11 +117,11 @@ extern "C" {
     #define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_RX
   #elif defined(__RX)
     #define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_RX
-  #endif
+#endif
 
-  #ifndef   SEGGER_SYSVIEW_CORE
-    #define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_OTHER
-  #endif
+#ifndef   SEGGER_SYSVIEW_CORE
+#define SEGGER_SYSVIEW_CORE SEGGER_SYSVIEW_CORE_OTHER
+#endif
 #endif
 
 
@@ -143,7 +143,7 @@ extern "C" {
 *    Convenience define to be used for SEGGER_SYSVIEW_SendSysDesc().
 */
 #ifndef   SEGGER_SYSVIEW_APP_NAME
-  #define SEGGER_SYSVIEW_APP_NAME                 "SystemView-enabled Application"
+#define SEGGER_SYSVIEW_APP_NAME                 "SystemView-enabled Application"
 #endif
 
 /*********************************************************************
@@ -158,7 +158,7 @@ extern "C" {
 *    Convenience define to be used for SEGGER_SYSVIEW_SendSysDesc().
 */
 #ifndef   SEGGER_SYSVIEW_DEVICE_NAME
-  #define SEGGER_SYSVIEW_DEVICE_NAME              "undefined device"
+#define SEGGER_SYSVIEW_DEVICE_NAME              "undefined device"
 #endif
 
 /*********************************************************************
@@ -177,10 +177,10 @@ extern "C" {
 *    ARMv6M: Read ICSR[5:0] (active vector)
 */
 #ifndef SEGGER_SYSVIEW_GET_INTERRUPT_ID
-  #if SEGGER_SYSVIEW_CORE == SEGGER_SYSVIEW_CORE_CM3
-    #define SEGGER_SYSVIEW_GET_INTERRUPT_ID()     ((*(U32*)(0xE000ED04)) & 0x1FF)         // Get the currently active interrupt Id. (i.e. read Cortex-M ICSR[8:0] = active vector)
-  #elif SEGGER_SYSVIEW_CORE == SEGGER_SYSVIEW_CORE_CM0
-    #if defined(__ICCARM__)
+#if SEGGER_SYSVIEW_CORE == SEGGER_SYSVIEW_CORE_CM3
+#define SEGGER_SYSVIEW_GET_INTERRUPT_ID()     ((*(U32*)(0xE000ED04)) & 0x1FF)         // Get the currently active interrupt Id. (i.e. read Cortex-M ICSR[8:0] = active vector)
+#elif SEGGER_SYSVIEW_CORE == SEGGER_SYSVIEW_CORE_CM0
+#if defined(__ICCARM__)
       #if (__VER__ > 6010000)
         #define SEGGER_SYSVIEW_GET_INTERRUPT_ID() (__get_IPSR())                          // Workaround for IAR, which might do a byte-access to 0xE000ED04. Read IPSR instead.
       #else
@@ -191,7 +191,7 @@ extern "C" {
     #endif
   #else
     #define SEGGER_SYSVIEW_GET_INTERRUPT_ID()     SEGGER_SYSVIEW_X_GetInterruptId()       // Get the currently active interrupt Id from the user-provided function.
-  #endif
+#endif
 #endif
 
 /*********************************************************************
@@ -211,11 +211,11 @@ extern "C" {
 *    SEGGER_SYSVIEW_Init().
 */
 #ifndef SEGGER_SYSVIEW_GET_TIMESTAMP
-  #if defined (SEGGER_SYSVIEW_CORE) && (SEGGER_SYSVIEW_CORE == SEGGER_SYSVIEW_CORE_CM3)
-    #define SEGGER_SYSVIEW_GET_TIMESTAMP()        (*(U32 *)(0xE0001004))                  // Retrieve a system timestamp. Cortex-M cycle counter.
-  #else
-    #define SEGGER_SYSVIEW_GET_TIMESTAMP()        SEGGER_SYSVIEW_X_GetTimestamp()         // Retrieve a system timestamp via user-defined function
-  #endif
+#if defined (SEGGER_SYSVIEW_CORE) && (SEGGER_SYSVIEW_CORE == SEGGER_SYSVIEW_CORE_CM3)
+#define SEGGER_SYSVIEW_GET_TIMESTAMP()        (*(U32 *)(0xE0001004))                  // Retrieve a system timestamp. Cortex-M cycle counter.
+#else
+#define SEGGER_SYSVIEW_GET_TIMESTAMP()        SEGGER_SYSVIEW_X_GetTimestamp()         // Retrieve a system timestamp via user-defined function
+#endif
 #endif
 
 /*********************************************************************
@@ -231,7 +231,7 @@ extern "C" {
 */
 // Define number of valid bits low-order delivered by clock source.
 #ifndef   SEGGER_SYSVIEW_TIMESTAMP_BITS
-  #define SEGGER_SYSVIEW_TIMESTAMP_BITS           32
+#define SEGGER_SYSVIEW_TIMESTAMP_BITS           32
 #endif
 
 /*********************************************************************
@@ -246,13 +246,13 @@ extern "C" {
 *    Value has to be lower than SEGGER_RTT_MAX_NUM_UP_BUFFERS.
 */
 #ifndef   SEGGER_SYSVIEW_RTT_CHANNEL
-  #define SEGGER_SYSVIEW_RTT_CHANNEL              0
+#define SEGGER_SYSVIEW_RTT_CHANNEL              0
 #endif
 // Sanity check of RTT channel
 #if (SEGGER_SYSVIEW_RTT_CHANNEL == 0) && (SEGGER_RTT_MAX_NUM_UP_BUFFERS < 2)
-  #error "SEGGER_RTT_MAX_NUM_UP_BUFFERS in SEGGER_RTT_Conf.h has to be > 1!"
+#error "SEGGER_RTT_MAX_NUM_UP_BUFFERS in SEGGER_RTT_Conf.h has to be > 1!"
 #elif (SEGGER_SYSVIEW_RTT_CHANNEL >= SEGGER_RTT_MAX_NUM_UP_BUFFERS)
-  #error "SEGGER_RTT_MAX_NUM_UP_BUFFERS  in SEGGER_RTT_Conf.h has to be > SEGGER_SYSVIEW_RTT_CHANNEL!"
+#error "SEGGER_RTT_MAX_NUM_UP_BUFFERS  in SEGGER_RTT_Conf.h has to be > SEGGER_SYSVIEW_RTT_CHANNEL!"
 #endif
 
 /*********************************************************************
@@ -265,7 +265,7 @@ extern "C" {
 *    1024
 */
 #ifndef   SEGGER_SYSVIEW_RTT_BUFFER_SIZE
-  #define SEGGER_SYSVIEW_RTT_BUFFER_SIZE          1024
+#define SEGGER_SYSVIEW_RTT_BUFFER_SIZE          1024
 #endif
 
 /*********************************************************************
@@ -281,7 +281,7 @@ extern "C" {
 *    this section for the SystemView RTT Buffer, too.
 */
 #if !(defined SEGGER_SYSVIEW_SECTION) && (defined SEGGER_RTT_SECTION)
-  #define SEGGER_SYSVIEW_SECTION                  SEGGER_RTT_SECTION
+#define SEGGER_SYSVIEW_SECTION                  SEGGER_RTT_SECTION
 #endif
 
 /*********************************************************************
@@ -297,7 +297,7 @@ extern "C" {
 *    RTT buffer can be aligned accordingly.
 */
 #ifndef SEGGER_SYSVIEW_CPU_CACHE_LINE_SIZE
-  #define SEGGER_SYSVIEW_CPU_CACHE_LINE_SIZE      0
+#define SEGGER_SYSVIEW_CPU_CACHE_LINE_SIZE      0
 #endif
 
 /*********************************************************************
@@ -314,7 +314,7 @@ extern "C" {
 *    Should be the lowest RAM address of the system.
 */
 #ifndef   SEGGER_SYSVIEW_ID_BASE
-  #define SEGGER_SYSVIEW_ID_BASE                  0
+#define SEGGER_SYSVIEW_ID_BASE                  0
 #endif
 
 /*********************************************************************
@@ -331,7 +331,7 @@ extern "C" {
 *    e.g. 2 when Ids are 4 byte aligned.
 */
 #ifndef   SEGGER_SYSVIEW_ID_SHIFT
-  #define SEGGER_SYSVIEW_ID_SHIFT                 0
+#define SEGGER_SYSVIEW_ID_SHIFT                 0
 #endif
 
 /*********************************************************************
@@ -346,7 +346,7 @@ extern "C" {
 *    16
 */
 #ifndef   SEGGER_SYSVIEW_MAX_ARGUMENTS
-  #define SEGGER_SYSVIEW_MAX_ARGUMENTS            16
+#define SEGGER_SYSVIEW_MAX_ARGUMENTS            16
 #endif
 
 /*********************************************************************
@@ -360,7 +360,7 @@ extern "C" {
 *    128
 */
 #ifndef   SEGGER_SYSVIEW_MAX_STRING_LEN
-  #define SEGGER_SYSVIEW_MAX_STRING_LEN           128
+#define SEGGER_SYSVIEW_MAX_STRING_LEN           128
 #endif
 
 /*********************************************************************
@@ -373,7 +373,7 @@ extern "C" {
 *    1
 */
 #ifndef   SEGGER_SYSVIEW_SUPPORT_LONG_ID
-  #define SEGGER_SYSVIEW_SUPPORT_LONG_ID          1
+#define SEGGER_SYSVIEW_SUPPORT_LONG_ID          1
 #endif
 
 /*********************************************************************
@@ -386,7 +386,7 @@ extern "C" {
 *    0
 */
 #ifndef   SEGGER_SYSVIEW_SUPPORT_LONG_DATA
-  #define SEGGER_SYSVIEW_SUPPORT_LONG_DATA        0
+#define SEGGER_SYSVIEW_SUPPORT_LONG_DATA        0
 #endif
 
 /*********************************************************************
@@ -401,7 +401,7 @@ extern "C" {
 *    0: Disabled.
 */
 #ifndef   SEGGER_SYSVIEW_PRINTF_IMPLICIT_FORMAT
-  #define SEGGER_SYSVIEW_PRINTF_IMPLICIT_FORMAT   0
+#define SEGGER_SYSVIEW_PRINTF_IMPLICIT_FORMAT   0
 #endif
 
 /*********************************************************************
@@ -417,7 +417,7 @@ extern "C" {
 *    such as in embOS configuration to enable Cortex-M cycle counter.
 */
 #ifndef   SEGGER_SYSVIEW_USE_INTERNAL_RECORDER
-  #define SEGGER_SYSVIEW_USE_INTERNAL_RECORDER    0
+#define SEGGER_SYSVIEW_USE_INTERNAL_RECORDER    0
 #endif
 
 /*********************************************************************
@@ -432,7 +432,7 @@ extern "C" {
 *    1: Enabled
 */
 #ifndef   SEGGER_SYSVIEW_CAN_RESTART
-  #define SEGGER_SYSVIEW_CAN_RESTART              1
+#define SEGGER_SYSVIEW_CAN_RESTART              1
 #endif
 
 /*********************************************************************
@@ -448,7 +448,7 @@ extern "C" {
 *    such as in embOS configuration.
 */
 #ifndef   SEGGER_SYSVIEW_START_ON_INIT
-  #define SEGGER_SYSVIEW_START_ON_INIT            0
+#define SEGGER_SYSVIEW_START_ON_INIT            0
 #endif
 
 /*********************************************************************
@@ -469,7 +469,7 @@ extern "C" {
 *    is locked when writing the packet to the RTT buffer.
 */
 #ifndef   SEGGER_SYSVIEW_USE_STATIC_BUFFER
-  #define SEGGER_SYSVIEW_USE_STATIC_BUFFER        1
+#define SEGGER_SYSVIEW_USE_STATIC_BUFFER        1
 #endif
 
 /*********************************************************************
@@ -485,7 +485,7 @@ extern "C" {
 *    length and the maximum number of arguments.
 */
 #ifndef   SEGGER_SYSVIEW_MAX_PACKET_SIZE
-  #define SEGGER_SYSVIEW_MAX_PACKET_SIZE          (SEGGER_SYSVIEW_INFO_SIZE + SEGGER_SYSVIEW_MAX_STRING_LEN + 2 * SEGGER_SYSVIEW_QUANTA_U32 + SEGGER_SYSVIEW_MAX_ARGUMENTS * SEGGER_SYSVIEW_QUANTA_U32)
+#define SEGGER_SYSVIEW_MAX_PACKET_SIZE          (SEGGER_SYSVIEW_INFO_SIZE + SEGGER_SYSVIEW_MAX_STRING_LEN + 2 * SEGGER_SYSVIEW_QUANTA_U32 + SEGGER_SYSVIEW_MAX_ARGUMENTS * SEGGER_SYSVIEW_QUANTA_U32)
 #endif
 
 /*********************************************************************
@@ -502,7 +502,7 @@ extern "C" {
 *    https://www.segger.com/products/development-tools/systemview/technology/post-mortem-mode
 */
 #ifndef   SEGGER_SYSVIEW_POST_MORTEM_MODE
-  #define SEGGER_SYSVIEW_POST_MORTEM_MODE         0
+#define SEGGER_SYSVIEW_POST_MORTEM_MODE         0
 #endif
 
 /*********************************************************************
@@ -521,7 +521,7 @@ extern "C" {
 *    https://www.segger.com/products/development-tools/systemview/technology/post-mortem-mode
 */
 #ifndef   SEGGER_SYSVIEW_SYNC_PERIOD_SHIFT
-  #define SEGGER_SYSVIEW_SYNC_PERIOD_SHIFT        8
+#define SEGGER_SYSVIEW_SYNC_PERIOD_SHIFT        8
 #endif
 
 /*********************************************************************
@@ -537,7 +537,7 @@ extern "C" {
 *    such as to enable transmission via UART or notify IP task.
 */
 #ifndef   SEGGER_SYSVIEW_ON_EVENT_RECORDED
-  #define SEGGER_SYSVIEW_ON_EVENT_RECORDED(NumBytes)
+#define SEGGER_SYSVIEW_ON_EVENT_RECORDED(NumBytes)
 #endif
 
 /*********************************************************************
@@ -554,7 +554,7 @@ extern "C" {
 *    data.
 */
 #ifndef   SEGGER_SYSVIEW_LOCK
-  #define SEGGER_SYSVIEW_LOCK()                   SEGGER_RTT_LOCK()
+#define SEGGER_SYSVIEW_LOCK()                   SEGGER_RTT_LOCK()
 #endif
 
 /*********************************************************************
@@ -567,7 +567,7 @@ extern "C" {
 *    Use RTT Unlocking mechanism (defined by SEGGER_RTT_UNLOCK()).
 */
 #ifndef   SEGGER_SYSVIEW_UNLOCK
-  #define SEGGER_SYSVIEW_UNLOCK()                 SEGGER_RTT_UNLOCK()
+#define SEGGER_SYSVIEW_UNLOCK()                 SEGGER_RTT_UNLOCK()
 #endif
 
 #ifdef __cplusplus

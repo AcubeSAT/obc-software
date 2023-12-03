@@ -3,7 +3,7 @@
 *                        The Embedded Experts                        *
 **********************************************************************
 *                                                                    *
-*            (c) 1995 - 2021 SEGGER Microcontroller GmbH             *
+*            (c) 1995 - 2023 SEGGER Microcontroller GmbH             *
 *                                                                    *
 *       www.segger.com     Support: support@segger.com               *
 *                                                                    *
@@ -42,7 +42,7 @@
 *                                                                    *
 **********************************************************************
 *                                                                    *
-*       SystemView version: 3.32                                    *
+*       SystemView version: 3.52a                                    *
 *                                                                    *
 **********************************************************************
 ----------------------------------------------------------------------
@@ -77,10 +77,10 @@ Revision: $Rev: 12501 $
 // support C99 and its long type.
 //
 #ifdef CC_NO_LONG_SUPPORT
-  #define PTR_ADDR  U32
+#define PTR_ADDR  U32
 #else  // Supports long type.
 #if defined(_WIN32) && !defined(__clang__) && !defined(__MINGW32__)
-  //
+//
   // Microsoft VC6 compiler related
   //
   #define U64   unsigned __int64
@@ -93,18 +93,18 @@ Revision: $Rev: 12501 $
     #define U64_C(x) x##ULL
   #endif
 #else
-  //
-  // C99 compliant compiler
-  //
-  #define U64   unsigned long long
-  #define I64   signed long long
-  #define U64_C(x) x##ULL
+//
+// C99 compliant compiler
+//
+#define U64   unsigned long long
+#define I64   signed long long
+#define U64_C(x) x##ULL
 #endif
 
 #if (defined(_WIN64) || defined(__LP64__))  // 64-bit symbols used by Visual Studio and GCC, maybe others as well.
-  #define PTR_ADDR  U64
+#define PTR_ADDR  U64
 #else
-  #define PTR_ADDR  U32
+#define PTR_ADDR  U32
 #endif
 #endif  // Supports long type.
 

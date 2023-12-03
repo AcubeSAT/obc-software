@@ -3,7 +3,7 @@
 *                        The Embedded Experts                        *
 **********************************************************************
 *                                                                    *
-*            (c) 1995 - 2021 SEGGER Microcontroller GmbH             *
+*            (c) 1995 - 2023 SEGGER Microcontroller GmbH             *
 *                                                                    *
 *       www.segger.com     Support: support@segger.com               *
 *                                                                    *
@@ -42,7 +42,7 @@
 *                                                                    *
 **********************************************************************
 *                                                                    *
-*       SystemView version: 3.32                                    *
+*       SystemView version: 3.52a                                    *
 *                                                                    *
 **********************************************************************
 -------------------------- END-OF-HEADER -----------------------------
@@ -62,11 +62,11 @@ Revision: $Rev: 7947 $
 typedef struct SYSVIEW_FREERTOS_TASK_STATUS SYSVIEW_FREERTOS_TASK_STATUS;
 
 struct SYSVIEW_FREERTOS_TASK_STATUS {
-  U32         xHandle;
-  const char* pcTaskName;
-  unsigned    uxCurrentPriority;
-  U32         pxStack;
-  unsigned    uStackHighWaterMark;
+    U32         xHandle;
+    const char* pcTaskName;
+    unsigned    uxCurrentPriority;
+    U32         pxStack;
+    unsigned    uStackHighWaterMark;
 };
 
 static SYSVIEW_FREERTOS_TASK_STATUS _aTasks[SYSVIEW_FREERTOS_MAX_NOF_TASKS];
@@ -82,14 +82,14 @@ static unsigned _NumTasks;
 *    functions to send the entire task list to the host.
 */
 static void _cbSendTaskList(void) {
-  unsigned n;
+    unsigned n;
 
-  for (n = 0; n < _NumTasks; n++) {
+    for (n = 0; n < _NumTasks; n++) {
 #if INCLUDE_uxTaskGetStackHighWaterMark // Report Task Stack High Watermark
-    _aTasks[n].uStackHighWaterMark = uxTaskGetStackHighWaterMark((TaskHandle_t)_aTasks[n].xHandle);
+        _aTasks[n].uStackHighWaterMark = uxTaskGetStackHighWaterMark((TaskHandle_t)_aTasks[n].xHandle);
 #endif
-    SYSVIEW_SendTaskInfo((U32)_aTasks[n].xHandle, _aTasks[n].pcTaskName, (unsigned)_aTasks[n].uxCurrentPriority, (U32)_aTasks[n].pxStack, (unsigned)_aTasks[n].uStackHighWaterMark);
-  }
+        SYSVIEW_SendTaskInfo((U32)_aTasks[n].xHandle, _aTasks[n].pcTaskName, (unsigned)_aTasks[n].uxCurrentPriority, (U32)_aTasks[n].pxStack, (unsigned)_aTasks[n].uStackHighWaterMark);
+    }
 }
 
 /*********************************************************************
@@ -102,12 +102,12 @@ static void _cbSendTaskList(void) {
 *    current system time in micro seconds.
 */
 static U64 _cbGetTime(void) {
-  U64 Time;
+    U64 Time;
 
-  Time = xTaskGetTickCountFromISR();
-  Time *= portTICK_PERIOD_MS;
-  Time *= 1000;
-  return Time;
+    Time = xTaskGetTickCountFromISR();
+    Time *= portTICK_PERIOD_MS;
+    Time *= 1000;
+    return Time;
 }
 
 /*********************************************************************
@@ -124,25 +124,25 @@ static U64 _cbGetTime(void) {
 *    Add a task to the internal list and record its information.
 */
 void SYSVIEW_AddTask(U32 xHandle, const char* pcTaskName, unsigned uxCurrentPriority, U32  pxStack, unsigned uStackHighWaterMark) {
-  
-  if (memcmp(pcTaskName, "IDLE", 5) == 0) {
-    return;
-  }
-  
-  if (_NumTasks >= SYSVIEW_FREERTOS_MAX_NOF_TASKS) {
-    SEGGER_SYSVIEW_Warn("SYSTEMVIEW: Could not record task information. Maximum number of tasks reached.");
-    return;
-  }
 
-  _aTasks[_NumTasks].xHandle = xHandle;
-  _aTasks[_NumTasks].pcTaskName = pcTaskName;
-  _aTasks[_NumTasks].uxCurrentPriority = uxCurrentPriority;
-  _aTasks[_NumTasks].pxStack = pxStack;
-  _aTasks[_NumTasks].uStackHighWaterMark = uStackHighWaterMark;
+    if (memcmp(pcTaskName, "IDLE", 5) == 0) {
+        return;
+    }
 
-  _NumTasks++;
+    if (_NumTasks >= SYSVIEW_FREERTOS_MAX_NOF_TASKS) {
+        SEGGER_SYSVIEW_Warn("SYSTEMVIEW: Could not record task information. Maximum number of tasks reached.");
+        return;
+    }
 
-  SYSVIEW_SendTaskInfo(xHandle, pcTaskName,uxCurrentPriority, pxStack, uStackHighWaterMark);
+    _aTasks[_NumTasks].xHandle = xHandle;
+    _aTasks[_NumTasks].pcTaskName = pcTaskName;
+    _aTasks[_NumTasks].uxCurrentPriority = uxCurrentPriority;
+    _aTasks[_NumTasks].pxStack = pxStack;
+    _aTasks[_NumTasks].uStackHighWaterMark = uStackHighWaterMark;
+
+    _NumTasks++;
+
+    SYSVIEW_SendTaskInfo(xHandle, pcTaskName,uxCurrentPriority, pxStack, uStackHighWaterMark);
 
 }
 
@@ -154,27 +154,27 @@ void SYSVIEW_AddTask(U32 xHandle, const char* pcTaskName, unsigned uxCurrentPrio
 *    Update a task in the internal list and record its information.
 */
 void SYSVIEW_UpdateTask(U32 xHandle, const char* pcTaskName, unsigned uxCurrentPriority, U32 pxStack, unsigned uStackHighWaterMark) {
-  unsigned n;
-  
-  if (memcmp(pcTaskName, "IDLE", 5) == 0) {
-    return;
-  }
+    unsigned n;
 
-  for (n = 0; n < _NumTasks; n++) {
-    if (_aTasks[n].xHandle == xHandle) {
-      break;
+    if (memcmp(pcTaskName, "IDLE", 5) == 0) {
+        return;
     }
-  }
-  if (n < _NumTasks) {
-    _aTasks[n].pcTaskName = pcTaskName;
-    _aTasks[n].uxCurrentPriority = uxCurrentPriority;
-    _aTasks[n].pxStack = pxStack;
-    _aTasks[n].uStackHighWaterMark = uStackHighWaterMark;
 
-    SYSVIEW_SendTaskInfo(xHandle, pcTaskName, uxCurrentPriority, pxStack, uStackHighWaterMark);
-  } else {
-    SYSVIEW_AddTask(xHandle, pcTaskName, uxCurrentPriority, pxStack, uStackHighWaterMark);
-  }
+    for (n = 0; n < _NumTasks; n++) {
+        if (_aTasks[n].xHandle == xHandle) {
+            break;
+        }
+    }
+    if (n < _NumTasks) {
+        _aTasks[n].pcTaskName = pcTaskName;
+        _aTasks[n].uxCurrentPriority = uxCurrentPriority;
+        _aTasks[n].pxStack = pxStack;
+        _aTasks[n].uStackHighWaterMark = uStackHighWaterMark;
+
+        SYSVIEW_SendTaskInfo(xHandle, pcTaskName, uxCurrentPriority, pxStack, uStackHighWaterMark);
+    } else {
+        SYSVIEW_AddTask(xHandle, pcTaskName, uxCurrentPriority, pxStack, uStackHighWaterMark);
+    }
 }
 
 /*********************************************************************
@@ -185,37 +185,37 @@ void SYSVIEW_UpdateTask(U32 xHandle, const char* pcTaskName, unsigned uxCurrentP
 *    Delete a task from the internal list.
 */
 void SYSVIEW_DeleteTask(U32 xHandle) {
-  unsigned n;
-  
-  if (_NumTasks == 0) {
-    return; // Early out
-  }  
-  for (n = 0; n < _NumTasks; n++) {
-    if (_aTasks[n].xHandle == xHandle) {
-      break;
+    unsigned n;
+
+    if (_NumTasks == 0) {
+        return; // Early out
     }
-  }
-  if (n == (_NumTasks - 1)) {  
-    //
-    // Task is last item in list.
-    // Simply zero the item and decrement number of tasks.
-    //
-    memset(&_aTasks[n], 0, sizeof(_aTasks[n]));
-    _NumTasks--;
-  } else if (n < _NumTasks) {
-    //
-    // Task is in the middle of the list.
-    // Move last item to current position and decrement number of tasks.
-    // Order of tasks does not really matter, so no need to move all following items.
-    //
-    _aTasks[n].xHandle             = _aTasks[_NumTasks - 1].xHandle;
-    _aTasks[n].pcTaskName          = _aTasks[_NumTasks - 1].pcTaskName;
-    _aTasks[n].uxCurrentPriority   = _aTasks[_NumTasks - 1].uxCurrentPriority;
-    _aTasks[n].pxStack             = _aTasks[_NumTasks - 1].pxStack;
-    _aTasks[n].uStackHighWaterMark = _aTasks[_NumTasks - 1].uStackHighWaterMark;
-    memset(&_aTasks[_NumTasks - 1], 0, sizeof(_aTasks[_NumTasks - 1]));
-    _NumTasks--;
-  }
+    for (n = 0; n < _NumTasks; n++) {
+        if (_aTasks[n].xHandle == xHandle) {
+            break;
+        }
+    }
+    if (n == (_NumTasks - 1)) {
+        //
+        // Task is last item in list.
+        // Simply zero the item and decrement number of tasks.
+        //
+        memset(&_aTasks[n], 0, sizeof(_aTasks[n]));
+        _NumTasks--;
+    } else if (n < _NumTasks) {
+        //
+        // Task is in the middle of the list.
+        // Move last item to current position and decrement number of tasks.
+        // Order of tasks does not really matter, so no need to move all following items.
+        //
+        _aTasks[n].xHandle             = _aTasks[_NumTasks - 1].xHandle;
+        _aTasks[n].pcTaskName          = _aTasks[_NumTasks - 1].pcTaskName;
+        _aTasks[n].uxCurrentPriority   = _aTasks[_NumTasks - 1].uxCurrentPriority;
+        _aTasks[n].pxStack             = _aTasks[_NumTasks - 1].pxStack;
+        _aTasks[n].uStackHighWaterMark = _aTasks[_NumTasks - 1].uStackHighWaterMark;
+        memset(&_aTasks[_NumTasks - 1], 0, sizeof(_aTasks[_NumTasks - 1]));
+        _NumTasks--;
+    }
 }
 
 /*********************************************************************
@@ -226,15 +226,15 @@ void SYSVIEW_DeleteTask(U32 xHandle) {
 *    Record task information.
 */
 void SYSVIEW_SendTaskInfo(U32 TaskID, const char* sName, unsigned Prio, U32 StackBase, unsigned StackSize) {
-  SEGGER_SYSVIEW_TASKINFO TaskInfo;
+    SEGGER_SYSVIEW_TASKINFO TaskInfo;
 
-  memset(&TaskInfo, 0, sizeof(TaskInfo)); // Fill all elements with 0 to allow extending the structure in future version without breaking the code
-  TaskInfo.TaskID     = TaskID;
-  TaskInfo.sName      = sName;
-  TaskInfo.Prio       = Prio;
-  TaskInfo.StackBase  = StackBase;
-  TaskInfo.StackSize  = StackSize;
-  SEGGER_SYSVIEW_SendTaskInfo(&TaskInfo);
+    memset(&TaskInfo, 0, sizeof(TaskInfo)); // Fill all elements with 0 to allow extending the structure in future version without breaking the code
+    TaskInfo.TaskID     = TaskID;
+    TaskInfo.sName      = sName;
+    TaskInfo.Prio       = Prio;
+    TaskInfo.StackBase  = StackBase;
+    TaskInfo.StackSize  = StackSize;
+    SEGGER_SYSVIEW_SendTaskInfo(&TaskInfo);
 }
 
 /*********************************************************************
@@ -245,8 +245,8 @@ void SYSVIEW_SendTaskInfo(U32 TaskID, const char* sName, unsigned Prio, U32 Stac
 */
 // Callbacks provided to SYSTEMVIEW by FreeRTOS
 const SEGGER_SYSVIEW_OS_API SYSVIEW_X_OS_TraceAPI = {
-  _cbGetTime,
-  _cbSendTaskList,
+        _cbGetTime,
+        _cbSendTaskList,
 };
 
 /*************************** End of file ****************************/

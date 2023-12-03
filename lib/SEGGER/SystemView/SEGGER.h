@@ -3,7 +3,7 @@
 *                        The Embedded Experts                        *
 **********************************************************************
 *                                                                    *
-*            (c) 1995 - 2021 SEGGER Microcontroller GmbH             *
+*            (c) 1995 - 2023 SEGGER Microcontroller GmbH             *
 *                                                                    *
 *       www.segger.com     Support: support@segger.com               *
 *                                                                    *
@@ -42,7 +42,7 @@
 *                                                                    *
 **********************************************************************
 *                                                                    *
-*       SystemView version: 3.32                                    *
+*       SystemView version: 3.52a                                    *
 *                                                                    *
 **********************************************************************
 ----------------------------------------------------------------------
@@ -70,25 +70,25 @@ extern "C" {     /* Make sure we have C-declarations in C++ programs */
 */
 
 #ifndef INLINE
-  #if (defined(__ICCARM__) || defined(__RX) || defined(__ICCRX__))
-    //
+#if (defined(__ICCARM__) || defined(__RX) || defined(__ICCRX__))
+//
     // Other known compilers.
     //
     #define INLINE  inline
-  #else
-    #if (defined(_WIN32) && !defined(__clang__))
-      //
+#else
+#if (defined(_WIN32) && !defined(__clang__))
+//
       // Microsoft VC6 and newer.
       // Force inlining without cost checking.
       //
       #define INLINE  __forceinline
-    #elif defined(__GNUC__) || defined(__clang__)
-      //
-      // Force inlining with GCC + clang
-      //
-      #define INLINE inline __attribute__((always_inline))
-    #elif (defined(__CC_ARM))
-      //
+#elif defined(__GNUC__) || defined(__clang__)
+//
+// Force inlining with GCC + clang
+//
+#define INLINE inline __attribute__((always_inline))
+#elif (defined(__CC_ARM))
+//
       // Force inlining with ARMCC (Keil)
       //
       #define INLINE  __inline
@@ -97,8 +97,8 @@ extern "C" {     /* Make sure we have C-declarations in C++ programs */
       // Unknown compilers.
       //
       #define INLINE
-    #endif
-  #endif
+#endif
+#endif
 #endif
 
 /*********************************************************************
@@ -113,7 +113,7 @@ extern "C" {     /* Make sure we have C-declarations in C++ programs */
 #define SEGGER_MAX(a,b)            (((a) > (b)) ? (a) : (b))
 
 #ifndef   SEGGER_USE_PARA                   // Some compiler complain about unused parameters.
-  #define SEGGER_USE_PARA(Para) (void)Para  // This works for most compilers.
+#define SEGGER_USE_PARA(Para) (void)Para  // This works for most compilers.
 #endif
 
 #define SEGGER_ADDR2PTR(Type, Addr)  (/*lint -e(923) -e(9078)*/((Type*)((PTR_ADDR)(Addr))))    // Allow cast from address to pointer.
@@ -143,43 +143,43 @@ extern "C" {     /* Make sure we have C-declarations in C++ programs */
 */
 
 typedef struct {
-  char* pBuffer;
-  int   BufferSize;
-  int   Cnt;
+    char* pBuffer;
+    int   BufferSize;
+    int   Cnt;
 } SEGGER_BUFFER_DESC;
 
 typedef struct {
-  unsigned int CacheLineSize;                             // 0: No Cache. Most Systems such as ARM9 use a 32 bytes cache line size.
-  void (*pfDMB)       (void);                             // Optional DMB function for Data Memory Barrier to make sure all memory operations are completed.
-  void (*pfClean)     (void *p, unsigned long NumBytes);  // Optional clean function for cached memory.
-  void (*pfInvalidate)(void *p, unsigned long NumBytes);  // Optional invalidate function for cached memory.
+    unsigned int CacheLineSize;                             // 0: No Cache. Most Systems such as ARM9 use a 32 bytes cache line size.
+    void (*pfDMB)       (void);                             // Optional DMB function for Data Memory Barrier to make sure all memory operations are completed.
+    void (*pfClean)     (void *p, unsigned long NumBytes);  // Optional clean function for cached memory.
+    void (*pfInvalidate)(void *p, unsigned long NumBytes);  // Optional invalidate function for cached memory.
 } SEGGER_CACHE_CONFIG;
 
 typedef struct SEGGER_SNPRINTF_CONTEXT_struct SEGGER_SNPRINTF_CONTEXT;
 
 struct SEGGER_SNPRINTF_CONTEXT_struct {
-  void*               pContext;                       // Application specific context.
-  SEGGER_BUFFER_DESC* pBufferDesc;                    // Buffer descriptor to use for output.
-  void (*pfFlush)(SEGGER_SNPRINTF_CONTEXT* pContext); // Callback executed once the buffer is full. Callback decides if the buffer gets cleared to store more or not.
+    void*               pContext;                       // Application specific context.
+    SEGGER_BUFFER_DESC* pBufferDesc;                    // Buffer descriptor to use for output.
+    void (*pfFlush)(SEGGER_SNPRINTF_CONTEXT* pContext); // Callback executed once the buffer is full. Callback decides if the buffer gets cleared to store more or not.
 };
 
 typedef struct {
-  void (*pfStoreChar)       (SEGGER_BUFFER_DESC* pBufferDesc, SEGGER_SNPRINTF_CONTEXT* pContext, char c);
-  int  (*pfPrintUnsigned)   (SEGGER_BUFFER_DESC* pBufferDesc, SEGGER_SNPRINTF_CONTEXT* pContext, U32 v, unsigned Base, char Flags, int Width, int Precision);
-  int  (*pfPrintInt)        (SEGGER_BUFFER_DESC* pBufferDesc, SEGGER_SNPRINTF_CONTEXT* pContext, I32 v, unsigned Base, char Flags, int Width, int Precision);
+    void (*pfStoreChar)       (SEGGER_BUFFER_DESC* pBufferDesc, SEGGER_SNPRINTF_CONTEXT* pContext, char c);
+    int  (*pfPrintUnsigned)   (SEGGER_BUFFER_DESC* pBufferDesc, SEGGER_SNPRINTF_CONTEXT* pContext, U32 v, unsigned Base, char Flags, int Width, int Precision);
+    int  (*pfPrintInt)        (SEGGER_BUFFER_DESC* pBufferDesc, SEGGER_SNPRINTF_CONTEXT* pContext, I32 v, unsigned Base, char Flags, int Width, int Precision);
 } SEGGER_PRINTF_API;
 
 typedef void (*SEGGER_pFormatter)(SEGGER_BUFFER_DESC* pBufferDesc, SEGGER_SNPRINTF_CONTEXT* pContext, const SEGGER_PRINTF_API* pApi, va_list* pParamList, char Lead, int Width, int Precision);
 
 typedef struct SEGGER_PRINTF_FORMATTER {
-  struct SEGGER_PRINTF_FORMATTER* pNext;              // Pointer to next formatter.
-  SEGGER_pFormatter               pfFormatter;        // Formatter function.
-  char                            Specifier;          // Format specifier.
+    struct SEGGER_PRINTF_FORMATTER* pNext;              // Pointer to next formatter.
+    SEGGER_pFormatter               pfFormatter;        // Formatter function.
+    char                            Specifier;          // Format specifier.
 } SEGGER_PRINTF_FORMATTER;
 
 typedef struct {
-  U32 (*pfGetHPTimestamp)(void);          // Mandatory, pfGetHPTimestamp
-  int (*pfGetUID)        (MY_U8 abUID[16]);  // Optional,  pfGetUID
+    U32 (*pfGetHPTimestamp)(void);          // Mandatory, pfGetHPTimestamp
+    int (*pfGetUID)        (MY_U8 abUID[16]);  // Optional,  pfGetUID
 } SEGGER_BSP_API;
 
 /*********************************************************************

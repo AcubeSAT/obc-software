@@ -3,7 +3,7 @@
 *                        The Embedded Experts                        *
 **********************************************************************
 *                                                                    *
-*            (c) 1995 - 2021 SEGGER Microcontroller GmbH             *
+*            (c) 1995 - 2023 SEGGER Microcontroller GmbH             *
 *                                                                    *
 *       www.segger.com     Support: support@segger.com               *
 *                                                                    *
@@ -42,13 +42,13 @@
 *                                                                    *
 **********************************************************************
 *                                                                    *
-*       SystemView version: 3.32                                    *
+*       SystemView version: 3.52a                                    *
 *                                                                    *
 **********************************************************************
 ---------------------------END-OF-HEADER------------------------------
 File    : SEGGER_RTT_Syscalls_GCC.c
 Purpose : Low-level functions for using printf() via RTT in GCC.
-          To use RTT for printf output, include this file in your 
+          To use RTT for printf output, include this file in your
           application.
 Revision: $Rev: 24316 $
 ----------------------------------------------------------------------
@@ -98,9 +98,9 @@ _ssize_t _write_r(struct _reent *r, int file, const void *ptr, size_t len);
 *   Write data via RTT.
 */
 _ssize_t _write(int file, const void *ptr, size_t len) {
-  (void) file;  /* Not used, avoid warning */
-  SEGGER_RTT_Write(0, ptr, len);
-  return len;
+    (void) file;  /* Not used, avoid warning */
+    SEGGER_RTT_Write(0, ptr, len);
+    return len;
 }
 
 /*********************************************************************
@@ -114,10 +114,10 @@ _ssize_t _write(int file, const void *ptr, size_t len) {
 *   Write data via RTT.
 */
 _ssize_t _write_r(struct _reent *r, int file, const void *ptr, size_t len) {
-  (void) file;  /* Not used, avoid warning */
-  (void) r;     /* Not used, avoid warning */
-  SEGGER_RTT_Write(0, ptr, len);
-  return len;
+    (void) file;  /* Not used, avoid warning */
+    (void) r;     /* Not used, avoid warning */
+    SEGGER_RTT_Write(0, ptr, len);
+    return len;
 }
 
 #endif
