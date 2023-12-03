@@ -40,6 +40,5 @@ extern "C" void main_cpp() {
         /* Maintain state machines of all polled MPLAB Harmony modules. */
         SYS_Tasks();
     }
-    SEGGER_SYSVIEW_Stop();
 }
 
