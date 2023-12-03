@@ -30,7 +30,7 @@
 #define INC_TASK_H
 
 #ifndef INC_FREERTOS_H
-	#error "include FreeRTOS.h must appear in source files before include task.h"
+#error "include FreeRTOS.h must appear in source files before include task.h"
 #endif
 
 #include "list.h"
@@ -78,22 +78,22 @@ typedef BaseType_t (*TaskHookFunction_t)( void * );
 /* Task states returned by eTaskGetState. */
 typedef enum
 {
-	eRunning = 0,	/* A task is querying the state of itself, so must be running. */
-	eReady,			/* The task being queried is in a read or pending ready list. */
-	eBlocked,		/* The task being queried is in the Blocked state. */
-	eSuspended,		/* The task being queried is in the Suspended state, or is in the Blocked state with an infinite time out. */
-	eDeleted,		/* The task being queried has been deleted, but its TCB has not yet been freed. */
-	eInvalid		/* Used as an 'invalid state' value. */
+    eRunning = 0,	/* A task is querying the state of itself, so must be running. */
+    eReady,			/* The task being queried is in a read or pending ready list. */
+    eBlocked,		/* The task being queried is in the Blocked state. */
+    eSuspended,		/* The task being queried is in the Suspended state, or is in the Blocked state with an infinite time out. */
+    eDeleted,		/* The task being queried has been deleted, but its TCB has not yet been freed. */
+    eInvalid		/* Used as an 'invalid state' value. */
 } eTaskState;
 
 /* Actions that can be performed when vTaskNotify() is called. */
 typedef enum
 {
-	eNoAction = 0,				/* Notify the task without updating its notify value. */
-	eSetBits,					/* Set bits in the task's notification value. */
-	eIncrement,					/* Increment the task's notification value. */
-	eSetValueWithOverwrite,		/* Set the task's notification value to a specific value even if the previous value has not yet been read by the task. */
-	eSetValueWithoutOverwrite	/* Set the task's notification value if the previous value has been read by the task. */
+    eNoAction = 0,				/* Notify the task without updating its notify value. */
+    eSetBits,					/* Set bits in the task's notification value. */
+    eIncrement,					/* Increment the task's notification value. */
+    eSetValueWithOverwrite,		/* Set the task's notification value to a specific value even if the previous value has not yet been read by the task. */
+    eSetValueWithoutOverwrite	/* Set the task's notification value if the previous value has been read by the task. */
 } eNotifyAction;
 
 /*
@@ -101,8 +101,8 @@ typedef enum
  */
 typedef struct xTIME_OUT
 {
-	BaseType_t xOverflowCount;
-	TickType_t xTimeOnEntering;
+    BaseType_t xOverflowCount;
+    TickType_t xTimeOnEntering;
 } TimeOut_t;
 
 /*
@@ -110,9 +110,9 @@ typedef struct xTIME_OUT
  */
 typedef struct xMEMORY_REGION
 {
-	void *pvBaseAddress;
-	uint32_t ulLengthInBytes;
-	uint32_t ulParameters;
+    void *pvBaseAddress;
+    uint32_t ulLengthInBytes;
+    uint32_t ulParameters;
 } MemoryRegion_t;
 
 /*
@@ -120,39 +120,39 @@ typedef struct xMEMORY_REGION
  */
 typedef struct xTASK_PARAMETERS
 {
-	TaskFunction_t pvTaskCode;
-	const char * const pcName;	/*lint !e971 Unqualified char types are allowed for strings and single characters only. */
-	configSTACK_DEPTH_TYPE usStackDepth;
-	void *pvParameters;
-	UBaseType_t uxPriority;
-	StackType_t *puxStackBuffer;
-	MemoryRegion_t xRegions[ portNUM_CONFIGURABLE_REGIONS ];
-	#if ( ( portUSING_MPU_WRAPPERS == 1 ) && ( configSUPPORT_STATIC_ALLOCATION == 1 ) )
-		StaticTask_t * const pxTaskBuffer;
-	#endif
+    TaskFunction_t pvTaskCode;
+    const char * const pcName;	/*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+    configSTACK_DEPTH_TYPE usStackDepth;
+    void *pvParameters;
+    UBaseType_t uxPriority;
+    StackType_t *puxStackBuffer;
+    MemoryRegion_t xRegions[ portNUM_CONFIGURABLE_REGIONS ];
+#if ( ( portUSING_MPU_WRAPPERS == 1 ) && ( configSUPPORT_STATIC_ALLOCATION == 1 ) )
+    StaticTask_t * const pxTaskBuffer;
+#endif
 } TaskParameters_t;
 
 /* Used with the uxTaskGetSystemState() function to return the state of each task
 in the system. */
 typedef struct xTASK_STATUS
 {
-	TaskHandle_t xHandle;			/* The handle of the task to which the rest of the information in the structure relates. */
-	const char *pcTaskName;			/* A pointer to the task's name.  This value will be invalid if the task was deleted since the structure was populated! */ /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
-	UBaseType_t xTaskNumber;		/* A number unique to the task. */
-	eTaskState eCurrentState;		/* The state in which the task existed when the structure was populated. */
-	UBaseType_t uxCurrentPriority;	/* The priority at which the task was running (may be inherited) when the structure was populated. */
-	UBaseType_t uxBasePriority;		/* The priority to which the task will return if the task's current priority has been inherited to avoid unbounded priority inversion when obtaining a mutex.  Only valid if configUSE_MUTEXES is defined as 1 in FreeRTOSConfig.h. */
-	uint32_t ulRunTimeCounter;		/* The total run time allocated to the task so far, as defined by the run time stats clock.  See http://www.freertos.org/rtos-run-time-stats.html.  Only valid when configGENERATE_RUN_TIME_STATS is defined as 1 in FreeRTOSConfig.h. */
-	StackType_t *pxStackBase;		/* Points to the lowest address of the task's stack area. */
-	configSTACK_DEPTH_TYPE usStackHighWaterMark;	/* The minimum amount of stack space that has remained for the task since the task was created.  The closer this value is to zero the closer the task has come to overflowing its stack. */
+    TaskHandle_t xHandle;			/* The handle of the task to which the rest of the information in the structure relates. */
+    const char *pcTaskName;			/* A pointer to the task's name.  This value will be invalid if the task was deleted since the structure was populated! */ /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+    UBaseType_t xTaskNumber;		/* A number unique to the task. */
+    eTaskState eCurrentState;		/* The state in which the task existed when the structure was populated. */
+    UBaseType_t uxCurrentPriority;	/* The priority at which the task was running (may be inherited) when the structure was populated. */
+    UBaseType_t uxBasePriority;		/* The priority to which the task will return if the task's current priority has been inherited to avoid unbounded priority inversion when obtaining a mutex.  Only valid if configUSE_MUTEXES is defined as 1 in FreeRTOSConfig.h. */
+    uint32_t ulRunTimeCounter;		/* The total run time allocated to the task so far, as defined by the run time stats clock.  See http://www.freertos.org/rtos-run-time-stats.html.  Only valid when configGENERATE_RUN_TIME_STATS is defined as 1 in FreeRTOSConfig.h. */
+    StackType_t *pxStackBase;		/* Points to the lowest address of the task's stack area. */
+    configSTACK_DEPTH_TYPE usStackHighWaterMark;	/* The minimum amount of stack space that has remained for the task since the task was created.  The closer this value is to zero the closer the task has come to overflowing its stack. */
 } TaskStatus_t;
 
 /* Possible return values for eTaskConfirmSleepModeStatus(). */
 typedef enum
 {
-	eAbortSleep = 0,		/* A task has been made ready or a context switch pended since portSUPPORESS_TICKS_AND_SLEEP() was called - abort entering a sleep mode. */
-	eStandardSleep,			/* Enter a sleep mode that will not last any longer than the expected idle time. */
-	eNoTasksWaitingTimeout	/* No tasks are waiting for a timeout so it is safe to enter a sleep mode that can only be exited by an external interrupt. */
+    eAbortSleep = 0,		/* A task has been made ready or a context switch pended since portSUPPORESS_TICKS_AND_SLEEP() was called - abort entering a sleep mode. */
+    eStandardSleep,			/* Enter a sleep mode that will not last any longer than the expected idle time. */
+    eNoTasksWaitingTimeout	/* No tasks are waiting for a timeout so it is safe to enter a sleep mode that can only be exited by an external interrupt. */
 } eSleepModeStatus;
 
 /**
@@ -327,7 +327,7 @@ is used in assert() statements. */
  * \ingroup Tasks
  */
 #if( configSUPPORT_DYNAMIC_ALLOCATION == 1 )
-	BaseType_t xTaskCreate(	TaskFunction_t pxTaskCode,
+BaseType_t xTaskCreate(	TaskFunction_t pxTaskCode,
 							const char * const pcName,	/*lint !e971 Unqualified char types are allowed for strings and single characters only. */
 							const configSTACK_DEPTH_TYPE usStackDepth,
 							void * const pvParameters,
@@ -443,13 +443,13 @@ is used in assert() statements. */
  * \ingroup Tasks
  */
 #if( configSUPPORT_STATIC_ALLOCATION == 1 )
-	TaskHandle_t xTaskCreateStatic(	TaskFunction_t pxTaskCode,
-									const char * const pcName, /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
-									const uint32_t ulStackDepth,
-									void * const pvParameters,
-									UBaseType_t uxPriority,
-									StackType_t * const puxStackBuffer,
-									StaticTask_t * const pxTaskBuffer ) PRIVILEGED_FUNCTION;
+TaskHandle_t xTaskCreateStatic(	TaskFunction_t pxTaskCode,
+                                   const char * const pcName, /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+                                   const uint32_t ulStackDepth,
+                                   void * const pvParameters,
+                                   UBaseType_t uxPriority,
+                                   StackType_t * const puxStackBuffer,
+                                   StaticTask_t * const pxTaskBuffer ) PRIVILEGED_FUNCTION;
 #endif /* configSUPPORT_STATIC_ALLOCATION */
 
 /**
@@ -525,7 +525,7 @@ TaskHandle_t xHandle;
  * \ingroup Tasks
  */
 #if( portUSING_MPU_WRAPPERS == 1 )
-	BaseType_t xTaskCreateRestricted( const TaskParameters_t * const pxTaskDefinition, TaskHandle_t *pxCreatedTask ) PRIVILEGED_FUNCTION;
+BaseType_t xTaskCreateRestricted( const TaskParameters_t * const pxTaskDefinition, TaskHandle_t *pxCreatedTask ) PRIVILEGED_FUNCTION;
 #endif
 
 /**
@@ -613,7 +613,7 @@ TaskHandle_t xHandle;
  * \ingroup Tasks
  */
 #if( ( portUSING_MPU_WRAPPERS == 1 ) && ( configSUPPORT_STATIC_ALLOCATION == 1 ) )
-	BaseType_t xTaskCreateRestrictedStatic( const TaskParameters_t * const pxTaskDefinition, TaskHandle_t *pxCreatedTask ) PRIVILEGED_FUNCTION;
+BaseType_t xTaskCreateRestrictedStatic( const TaskParameters_t * const pxTaskDefinition, TaskHandle_t *pxCreatedTask ) PRIVILEGED_FUNCTION;
 #endif
 
 /**
@@ -1494,8 +1494,8 @@ fixed by simply guarding against the inclusion of these two prototypes unless
 they are explicitly required by the configUSE_APPLICATION_TASK_TAG configuration
 constant. */
 #ifdef configUSE_APPLICATION_TASK_TAG
-	#if configUSE_APPLICATION_TASK_TAG == 1
-		/**
+#if configUSE_APPLICATION_TASK_TAG == 1
+/**
 		 * task.h
 		 * <pre>void vTaskSetApplicationTaskTag( TaskHandle_t xTask, TaskHookFunction_t pxHookFunction );</pre>
 		 *
@@ -1523,12 +1523,12 @@ constant. */
 		 * be called from an interrupt service routine.
 		 */
 		TaskHookFunction_t xTaskGetApplicationTaskTagFromISR( TaskHandle_t xTask ) PRIVILEGED_FUNCTION;
-	#endif /* configUSE_APPLICATION_TASK_TAG ==1 */
+#endif /* configUSE_APPLICATION_TASK_TAG ==1 */
 #endif /* ifdef configUSE_APPLICATION_TASK_TAG */
 
 #if( configNUM_THREAD_LOCAL_STORAGE_POINTERS > 0 )
 
-	/* Each task contains an array of pointers that is dimensioned by the
+/* Each task contains an array of pointers that is dimensioned by the
 	configNUM_THREAD_LOCAL_STORAGE_POINTERS setting in FreeRTOSConfig.h.  The
 	kernel does not use the pointers itself, so the application writer can use
 	the pointers for any purpose they wish.  The following two functions are
