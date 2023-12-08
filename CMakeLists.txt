@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.19.2)
 
 project(OBC_SOFTWARE C CXX ASM)
 
+set(CMAKE_ASM_FLAGS ${CMAKE_C_FLAGS})
 set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld)
 
 add_definitions(-DARM_MATH_CM7 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1)
@@ -74,7 +75,6 @@ target_include_directories(RTT PUBLIC "lib/SEGGER/RTT/" "lib/SEGGER/Config/")
 target_sources(RTT PRIVATE
         "lib/SEGGER/RTT/SEGGER_RTT_ASM_ARMv7M.S"
         "lib/SEGGER/RTT/SEGGER_RTT.c"
-        "lib/SEGGER/RTT/SEGGER_RTT.h"
         "lib/SEGGER/RTT/SEGGER_RTT_printf.c"
         "lib/SEGGER/RTT/SEGGER_RTT_Syscalls_GCC.c"
 )
@@ -83,9 +83,6 @@ add_library(SystemView STATIC)
 target_include_directories(SystemView PUBLIC "lib/SEGGER/SystemView/")
 target_sources(SystemView PRIVATE
         "lib/SEGGER/SystemView/SEGGER_SYSVIEW.c"
-        "lib/SEGGER/SystemView/SEGGER_SYSVIEW.h"
-        "lib/SEGGER/SystemView/SEGGER_SYSVIEW_ConfDefaults.h"
-        "lib/SEGGER/SystemView/SEGGER_SYSVIEW_FreeRTOS.h"
         "lib/SEGGER/SystemView/SEGGER_SYSVIEW_FreeRTOS.c"
         "lib/SEGGER/Config/SEGGER_SYSVIEW_Config_FreeRTOS.c"
 )

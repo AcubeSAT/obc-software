@@ -303,16 +303,16 @@ void SEGGER_SYSVIEW_HeapFree                      (void* pHeap, void* pUserData)
 
 void SEGGER_SYSVIEW_NameResource                  (U32 ResourceId, const char* sName);
 
-int  SEGGER_SYSVIEW_SendPacket                    (MY_U8* pPacket, MY_U8* pPayloadEnd, unsigned int EventId);
+int  SEGGER_SYSVIEW_SendPacket                    (U8* pPacket, U8* pPayloadEnd, unsigned int EventId);
 
 /*********************************************************************
 *
 *       Event parameter encoding functions
 */
-MY_U8*  SEGGER_SYSVIEW_EncodeU32                     (MY_U8* pPayload, U32 Value);
-MY_U8*  SEGGER_SYSVIEW_EncodeData                    (MY_U8* pPayload, const char* pSrc, unsigned int Len);
-MY_U8*  SEGGER_SYSVIEW_EncodeString                  (MY_U8* pPayload, const char* s, unsigned int MaxLen);
-MY_U8*  SEGGER_SYSVIEW_EncodeId                      (MY_U8* pPayload, U32 Id);
+U8*  SEGGER_SYSVIEW_EncodeU32                     (U8* pPayload, U32 Value);
+U8*  SEGGER_SYSVIEW_EncodeData                    (U8* pPayload, const char* pSrc, unsigned int Len);
+U8*  SEGGER_SYSVIEW_EncodeString                  (U8* pPayload, const char* s, unsigned int MaxLen);
+U8*  SEGGER_SYSVIEW_EncodeId                      (U8* pPayload, U32 Id);
 U32  SEGGER_SYSVIEW_ShrinkId                      (U32 Id);
 
 
@@ -322,7 +322,7 @@ U32  SEGGER_SYSVIEW_ShrinkId                      (U32 Id);
 */
 void SEGGER_SYSVIEW_RegisterModule                (SEGGER_SYSVIEW_MODULE* pModule);
 void SEGGER_SYSVIEW_RecordModuleDescription       (const SEGGER_SYSVIEW_MODULE* pModule, const char* sDescription);
-void SEGGER_SYSVIEW_SendModule                    (MY_U8 ModuleId);
+void SEGGER_SYSVIEW_SendModule                    (U8 ModuleId);
 void SEGGER_SYSVIEW_SendModuleDescription         (void);
 void SEGGER_SYSVIEW_SendNumModules                (void);
 
