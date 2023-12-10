@@ -275,4 +275,4 @@ children:
         children:
         - {type: Value, value: 'true'}
 - type: ElementPosition
-  attributes: {x: '600', y: '20', id: HarmonyCore}
+  attributes: {x: '599', y: '18', id: HarmonyCore}
