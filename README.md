@@ -26,8 +26,8 @@ For more detailed installation instructions, including how to integrate with a m
    </details>
 2. Clone the repository and enter the directory:
    ```shell
-   git clone https://gitlab.com/acubesat/obc/ecss-services.git
-   cd ecss-services
+   git clone git@gitlab.com:acubesat/obc/obc-software.git
+   cd obc-software
    ```
 3. (If you haven't already) create a conan profile for your system:
    ```shell
@@ -39,12 +39,15 @@ For more detailed installation instructions, including how to integrate with a m
    ```
 5. Download all dependencies and build the project through conan:
    ```shell
-   conan build . --output-folder=build --build=missing --update --settings=build_type=Debug
+   conan install . --output-folder=cmake-build-debug --build="*" -u -pr conan-arm-profile
    ```
-6. Run the tests or the produced executable:
+6. Download all submodules:
    ```shell
-   build/Debug/tests
-   build/Debug/x86_services
+   conan source .
+   ```
+7. Build the project:
+   ```shell
+   cmake --build cmake-build-debug
    ```
 
 ### From CLion
@@ -52,10 +55,10 @@ For more detailed installation instructions, including how to integrate with a m
 CLion will automatically try to set up a CMake project for you. However, without the conan packages installed, this
 will quickly fail. Follow these steps to set up the conan project:
 
-1. Follow steps 1-4 from the CLI instructions above.
+1. Follow steps 1-6 from the CLI instructions above.
 2. Add the following to the CMake Options (File -> Settings -> Build, Execution, Deployment -> CMake -> CMake Options):
-   ```shell
-   --preset=cmake-build-debug-debug
+   ```
+   -DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc" and conan install 
    ```
 3. If your CMake project doesn't reload automatically, reload it manually (Tools -> CMake -> Reload CMake Project).
 
