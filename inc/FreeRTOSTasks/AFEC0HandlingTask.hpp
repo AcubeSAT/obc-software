@@ -25,7 +25,7 @@ public:
     }
 
 private:
-    const uint16_t delayMs = 3000;
+    const uint16_t delayMs = 10000;
 
     const static inline uint16_t TaskStackDepth = 10000;
 
