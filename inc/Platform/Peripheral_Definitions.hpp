@@ -8,6 +8,11 @@
 #define UART_PERIPHERAL_REGISTER USART1_REGS->US_THR
 #define UART_Initialize USART1_Initialize
 
+#define TC_HANDLING_UART_ReadCallbackRegister USART1_ReadCallbackRegister
+#define TC_HANDLING_UART_ReadCountGet USART1_ReadCountGet
+#define TC_HANDLING_UART_ErrorGet USART1_ErrorGet
+#define TC_HANDLING_UART_Read USART1_Read
+
 namespace CAN {
     /**
      * The ID for the current node as described in DDJF_OBDH
