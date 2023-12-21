@@ -1,7 +1,7 @@
 #include "InitializationTask.hpp"
 
 void InitializationTask::execute() {
-        //initializeTasks();
+        initializeTasks();
         housekeepingTask.emplace();
         timeBasedSchedulingTask.emplace();
         statisticsReportingTask.emplace();
