@@ -14,9 +14,8 @@ void AFEC0HandlingTask::execute() {
         AFEC0_ConversionStart();
 
         if (ulTaskNotifyTake(pdTRUE, maxDelay) != pdTRUE) {
+            LOG_ERROR << "AFEC Handler 0: Task notification was not received!";
             AFEC0_Initialize();
-        } else {
-            LOG_DEBUG << "Task notification was not received!";
         }
 
         vTaskDelay(pdMS_TO_TICKS(delayMs));

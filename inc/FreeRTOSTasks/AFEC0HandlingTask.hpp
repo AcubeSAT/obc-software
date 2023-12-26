@@ -25,7 +25,7 @@ public:
     }
 
 private:
-    const uint16_t delayMs = 10000;
+    const uint16_t delayMs = 2000;
 
     const static inline uint16_t TaskStackDepth = 10000;
 
@@ -36,7 +36,6 @@ private:
      * The number 1000ms was considered a good value arbitrarily
      */
     TickType_t maxDelay = pdMS_TO_TICKS(1000);
-
 };
 
 inline std::optional<AFEC0HandlingTask> afec0HandlingTask;
