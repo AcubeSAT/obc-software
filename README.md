@@ -45,11 +45,16 @@ For more detailed installation instructions, including how to integrate with a m
    ```shell
    conan source .
    ```
-7. Build the project:
+7. Add CMake flags:
    ```shell
-   cmake --build cmake-build-debug
+   cmake -B cmake-build-debug/build/Debug -DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc" -DCMAKE_BUILD_TYPE=Debug .
    ```
 
+8. Build the project:
+   ```shell
+   cd cmake-build-debug/build/Debug
+   make
+   ```
 ### From CLion
 
 CLion will automatically try to set up a CMake project for you. However, without the conan packages installed, this
@@ -58,7 +63,7 @@ will quickly fail. Follow these steps to set up the conan project:
 1. Follow steps 1-6 from the CLI instructions above.
 2. Add the following to the CMake Options (File -> Settings -> Build, Execution, Deployment -> CMake -> CMake Options):
    ```
-   -DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc" and conan install 
+   -DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc"
    ```
 3. If your CMake project doesn't reload automatically, reload it manually (Tools -> CMake -> Reload CMake Project).
 
