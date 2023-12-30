@@ -6,42 +6,68 @@ We use FreeRTOS to handle the tasking of the MCU.
 More information regarding OBC can be found [here](https://gitlab.com/groups/acubesat/obc/-/wikis/home).
 
 ## Build
+The `obc-software` repository can be built without any access to specialised hardware. We provide build
+instructions for Linux (or WSL) command-line, and the CLion IDE.
 
-After cloning the repo, run the command `conan source .` to clone the needed repositories, which currently are:
-- [cross-platform-software](https://gitlab.com/acubesat/obc/cross-platform-software)
-- [atsam-component-drivers](https://gitlab.com/acubesat/obc/atsam-component-drivers)
-If cloning `COBS` throws a permission/access error, setup an SSH key in GitHub to fix it.
+The dependencies of this repository are managed through the [conan](https://conan.io/) package manager, with repositories
+from [ConanCenter](https://conan.io/center/) and [SpaceDot's packages](https://artifactory.spacedot.gr).
 
-If you're using CLion, you need to add in CMake options (File -> Settings -> Build, Execution, Deployment -> CMake ->
-CMake Options) this `-DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc"`.
+For more detailed installation instructions, including how to integrate with a microcontroller, visit the
+[corresponding documentation page](https://acubesat.gitlab.io/obc/ecss-services/docs/md_docs_installation.html).
 
-If you just cmake from cli, just add the same flags in your command.
+### From the Command Line (CLI)
 
-To be able to build, however, you need to install the required `conan` packages. See the `Conan` section for more info.
+1. Install a modern C++ compiler, CMake, and Conan.  
+   CMake >= 3.23 and Conan >= 2.0 are recommended.
+   <details>
+   <summary>Getting conan</summary>
 
-### Conan
-This repository uses [conan 2.0](https://conan.io/) to manage dependencies.
+   You can install [conan](https://conan.io/) following the instructions [from here](https://docs.conan.io/2/installation.html).
+   </details>
+2. Clone the repository and enter the directory:
+   ```shell
+   git clone git@gitlab.com:acubesat/obc/obc-software.git
+   cd obc-software
+   ```
+3. (If you haven't already) create a conan profile for your system:
+   ```shell
+   conan profile detect
+   ```
+4. (If you haven't already) add the SpaceDot repository to conan:
+   ```shell
+   conan remote add spacedot https://artifactory.spacedot.gr/artifactory/api/conan/conan
+   ```
+5. Download all dependencies and build the project through conan:
+   ```shell
+   conan install . --output-folder=cmake-build-debug --build="*" -u -pr conan-arm-profile
+   ```
+6. Download all submodules:
+   ```shell
+   conan source .
+   ```
+7. Add CMake flags:
+   ```shell
+   cmake -B cmake-build-debug/build/Debug -DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc" -DCMAKE_BUILD_TYPE=Debug .
+   ```
+8. Build the project:
+   ```shell
+   cd cmake-build-debug/build/Debug
+   make
+   ```
+### From CLion
 
-#### AcubeSAT Conan Packages
-Some of the Conan packages ([logger](https://gitlab.com/acubesat/obc/logger) and [ecss-services](https://gitlab.com/acubesat/obc/ecss-services)) are hosted on a private repository, so you
-need to either:
-- have access to the [repository](https://artifactory.spacedot.gr) (if you're already on GitLab, it's the same
-  credentials, and you should login at least once) and add the
-  remote to your conan remotes. To do that run the following two commands
-  `conan remote add conan https://artifactory.spacedot.gr/artifactory/api/conan/conan` and
-  `conan remote login conan $YOUR_USERNAME`, which will prompt you to add your password.
-- or, clone the repo on your own, and package it locally use `conan create . --build=missing` in the root of the repo. This way, you don't need to add the remote repository, as conan will add it in local cache.
-- or, clone the repo on your own and add it as a submodule in the `lib` folder, and make the necessary CMakeLists.
-  txt changes to include it in the build.
+CLion will automatically try to set up a CMake project for you. However, without the conan packages installed, this
+will quickly fail. Follow these steps to set up the conan project:
 
-To install the necessary packages, you need to follow these steps:
-- Make sure you performed one of the `AcubeSAT Conan Packages` sections teps
-- Run `conan profile detect --force`: Generates default profile detecting GCC. However, for this project, you need to set up
-    the correct architecture. Find where `conan` sets up profiles (probably `~/.conan2/profiles`) and run `cp conan-arm-profile ~/.conan2/profiles` (or another directory if conan2 stores the profiles elsewhere) in this project's folder.
-- Then run `conan install . --output-folder=cmake-build-debug --build="*" -u -pr conan-arm-profile`. If you're using CLion and don't see `cmake-build-debug`, you have to `Reload CMake project` to have it generated. 
-After you've run `conan install...` you can `Reload CMake project` and build as per usual.
-- Make sure you followed the steps under the `Build` section
-- If the *Imported target "common" included non-existent path* appears, just delete the `cmake-build-debug` folder and redo the `conan install...` command
+1. Follow steps 1-6 from the CLI instructions above.
+2. Add the following to the CMake Options (File -> Settings -> Build, Execution, Deployment -> CMake -> CMake Options):
+   ```
+   -DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc"
+   ```
+3. If your CMake project doesn't reload automatically, reload it manually (Tools -> CMake -> Reload CMake Project).
+
+We do not recommend using a Conan plugin for your IDE, as it may tamper with the default configuration for this repository.
+
 
 <details>
 <summary>Getting conan</summary>
