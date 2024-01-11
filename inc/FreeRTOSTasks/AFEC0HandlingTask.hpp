@@ -19,7 +19,7 @@ public:
     AFEC0HandlingTask();
 
     void createTask() {
-        AFEC0HandlingTaskHandle = xTaskCreateStatic(vClassTask < AFEC0HandlingTask > , this->TaskName,
+        AFEC0HandlingTaskHandle = xTaskCreateStatic(vClassTask<AFEC0HandlingTask>, this->TaskName,
                                                     AFEC0HandlingTask::TaskStackDepth, this, tskIDLE_PRIORITY + 2,
                                                     this->taskStack, &(this->taskBuffer));
     }
