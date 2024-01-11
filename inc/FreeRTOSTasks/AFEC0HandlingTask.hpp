@@ -25,7 +25,7 @@ public:
     }
 
 private:
-    const uint16_t delayMs = 2000;
+    const uint16_t DelayMs = 2000;
 
     const static inline uint16_t TaskStackDepth = 10000;
 
@@ -35,7 +35,7 @@ private:
      * This variable is used to store the maximum time the task should wait for the notification in ticks.
      * The number 1000ms was considered a good value arbitrarily
      */
-    TickType_t maxDelay = pdMS_TO_TICKS(1000);
+    TickType_t MaxDelay = pdMS_TO_TICKS(1000);
 };
 
 inline std::optional<AFEC0HandlingTask> afec0HandlingTask;

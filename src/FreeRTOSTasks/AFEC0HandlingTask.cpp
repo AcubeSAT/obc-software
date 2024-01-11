@@ -13,7 +13,7 @@ void AFEC0HandlingTask::execute() {
     while (true) {
         AFEC0_ConversionStart();
 
-        if (ulTaskNotifyTake(pdTRUE, maxDelay) != pdTRUE) {
+        if (ulTaskNotifyTake(pdTRUE, MaxDelay) != pdTRUE) {
             LOG_ERROR << "AFEC Handler 0: Task notification was not received!";
             AFEC0_Initialize();
         }
