@@ -6,6 +6,7 @@
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
 #include "Task.hpp"
+#include "AFEC0HandlingTask.hpp"
 
 class InitializationTask: public Task {
 public:
