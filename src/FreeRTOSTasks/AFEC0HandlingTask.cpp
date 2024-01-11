@@ -18,6 +18,6 @@ void AFEC0HandlingTask::execute() {
             AFEC0_Initialize();
         }
 
-        vTaskDelay(pdMS_TO_TICKS(delayMs));
+        vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 }
