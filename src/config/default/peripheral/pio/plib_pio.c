@@ -89,8 +89,8 @@ void PIO_Initialize ( void )
     ((pio_registers_t*)PIO_PORT_B)->PIO_ABCDSR[0]= 0x10;
     ((pio_registers_t*)PIO_PORT_B)->PIO_ABCDSR[1]= 0x10;
     /* PORTB PIO Disable and Peripheral Enable*/
-    ((pio_registers_t*)PIO_PORT_B)->PIO_PDR = 0x1c;
-    ((pio_registers_t*)PIO_PORT_B)->PIO_PER = ~0x1c;
+    ((pio_registers_t*)PIO_PORT_B)->PIO_PDR = 0x1f;
+    ((pio_registers_t*)PIO_PORT_B)->PIO_PER = ~0x1f;
     ((pio_registers_t*)PIO_PORT_B)->PIO_MDDR = 0xFFFFFFFFU;
     /* PORTB Pull Up Enable/Disable as per MHC selection */
     ((pio_registers_t*)PIO_PORT_B)->PIO_PUDR = 0xFFFFFFFFU;
@@ -133,8 +133,8 @@ void PIO_Initialize ( void )
     ((pio_registers_t*)PIO_PORT_D)->PIO_ABCDSR[0]= 0x0;
     ((pio_registers_t*)PIO_PORT_D)->PIO_ABCDSR[1]= 0x18000000;
     /* PORTD PIO Disable and Peripheral Enable*/
-    ((pio_registers_t*)PIO_PORT_D)->PIO_PDR = 0x18000000;
-    ((pio_registers_t*)PIO_PORT_D)->PIO_PER = ~0x18000000;
+    ((pio_registers_t*)PIO_PORT_D)->PIO_PDR = 0x18c00000;
+    ((pio_registers_t*)PIO_PORT_D)->PIO_PER = ~0x18c00000;
     ((pio_registers_t*)PIO_PORT_D)->PIO_MDDR = 0xFFFFFFFFU;
     /* PORTD Pull Up Enable/Disable as per MHC selection */
     ((pio_registers_t*)PIO_PORT_D)->PIO_PUDR = 0xFFFFFFFFU;

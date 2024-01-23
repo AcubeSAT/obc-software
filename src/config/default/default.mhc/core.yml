@@ -113,6 +113,13 @@ children:
       children:
       - type: User
         attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: DACC_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: dacc, value: 'true'}
   - type: Integer
     attributes: {id: DACC_CLOCK_FREQUENCY}
     children:
@@ -737,6 +744,20 @@ children:
       - type: User
         attributes: {value: A}
   - type: String
+    attributes: {id: PIN_144_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: DACC_DAC0}
+  - type: String
+    attributes: {id: PIN_144_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Alternate}
+  - type: String
     attributes: {id: PIN_17_FUNCTION_TYPE}
     children:
     - type: Values
@@ -750,6 +771,48 @@ children:
       children:
       - type: User
         attributes: {value: C}
+  - type: String
+    attributes: {id: PIN_1_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: DACC_DAC1}
+  - type: String
+    attributes: {id: PIN_1_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: Alternate}
+  - type: String
+    attributes: {id: PIN_20_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: PWM0_PWMH1}
+  - type: String
+    attributes: {id: PIN_20_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_21_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: PWM0_PWMH0}
+  - type: String
+    attributes: {id: PIN_21_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
   - type: String
     attributes: {id: PIN_26_FUNCTION_TYPE}
     children:
@@ -849,6 +912,20 @@ children:
       - type: User
         attributes: {value: A}
   - type: String
+    attributes: {id: PIN_57_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: PWM0_PWMH3}
+  - type: String
+    attributes: {id: PIN_57_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
     attributes: {id: PIN_59_FUNCTION_TYPE}
     children:
     - type: Values
@@ -857,6 +934,20 @@ children:
         attributes: {value: USART1_CTS1}
   - type: String
     attributes: {id: PIN_59_PERIPHERAL_FUNCTION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: A}
+  - type: String
+    attributes: {id: PIN_60_FUNCTION_TYPE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: PWM0_PWMH2}
+  - type: String
+    attributes: {id: PIN_60_PERIPHERAL_FUNCTION}
     children:
     - type: Values
       children:
@@ -1008,7 +1099,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '28'}
+        attributes: {id: core, value: '31'}
   - type: Hex
     attributes: {id: PIOC_ABCDSR1_VALUE}
     children:
@@ -1078,7 +1169,7 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '402653184'}
+        attributes: {id: core, value: '415236096'}
   - type: Boolean
     attributes: {id: PIOE_CLOCK_ENABLE}
     children:
@@ -1133,14 +1224,14 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '537091072'}
+        attributes: {id: core, value: '3758316544'}
   - type: Hex
     attributes: {id: PMC_PCER1}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: core, value: '67109416'}
+        attributes: {id: core, value: '335544872'}
   - type: Combo
     attributes: {id: PMC_PCK5_CSS}
     children:
@@ -1197,6 +1288,13 @@ children:
       children:
       - type: User
         attributes: {value: '16'}
+  - type: Boolean
+    attributes: {id: PWM0_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: 'true'}
   - type: Integer
     attributes: {id: PWM0_CLOCK_FREQUENCY}
     children:
@@ -1204,6 +1302,13 @@ children:
       children:
       - type: Dynamic
         attributes: {id: core, value: '150000000'}
+  - type: Boolean
+    attributes: {id: PWM1_CLOCK_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm1, value: 'true'}
   - type: Integer
     attributes: {id: PWM1_CLOCK_FREQUENCY}
     children:

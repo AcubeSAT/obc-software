@@ -1,5 +1,5 @@
 "Pin Number","Pin ID","Custom Name","Function","Direction","Latch","Open Drain","PIO Interrupt","Pull Up","Pull Down","Glitch/Debounce Filter",Drive Strength
-1,PD0,,Available,In,,,,,,,
+1,PD0,,DACC_DAC1,n/a,n/a,No,Disabled,No,No,Disabled,Low
 2,PD31,,Available,In,,,,,,,
 4,PE0,,Available,In,,,,,,,
 6,PE1,,Available,In,,,,,,,
@@ -14,8 +14,8 @@
 17,PC12,,MCAN1_CANRX1,n/a,n/a,No,Disabled,No,No,Disabled,Low
 18,PC15,,Available,In,,,,,,,
 19,PC13,,Available,In,,,,,,,
-20,PB1,,Available,In,,,,,,,
-21,PB0,,Available,In,,,,,,,
+20,PB1,,PWM0_PWMH1,n/a,n/a,No,Disabled,No,No,Disabled,Low
+21,PB0,,PWM0_PWMH0,n/a,n/a,No,Disabled,No,No,Disabled,Low
 22,PA20,,Available,In,,,,,,,
 23,PA19,,Available,In,,,,,,,
 24,PA18,,Available,In,,,,,,,
@@ -45,10 +45,10 @@
 54,PC6,,Available,In,,,,,,,
 55,PD24,,Available,In,,,,,,,
 56,PA24,,USART1_RTS1,n/a,n/a,No,Disabled,No,No,Disabled,Low
-57,PD23,,Available,In,,,,,,,
+57,PD23,,PWM0_PWMH3,n/a,n/a,No,Disabled,No,No,Disabled,Low
 58,PC5,,Available,In,,,,,,,
 59,PA25,,USART1_CTS1,n/a,n/a,No,Disabled,No,No,Disabled,Low
-60,PD22,,Available,In,,,,,,,
+60,PD22,,PWM0_PWMH2,n/a,n/a,No,Disabled,No,No,Disabled,Low
 62,PA26,,USART1_DCD1,n/a,n/a,No,Disabled,No,No,Disabled,Low
 63,PD21,,Available,In,,,,,,,
 64,PA11,,Available,In,,,,,,,
@@ -112,4 +112,4 @@
 133,PC25,,Available,In,,,,,,,
 141,PB8,,Available,In,,,,,,,
 142,PB9,,Available,In,,,,,,,
-144,PB13,,Available,In,,,,,,,
+144,PB13,,DACC_DAC0,n/a,n/a,No,Disabled,No,No,Disabled,Low

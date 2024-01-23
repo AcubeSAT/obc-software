@@ -19,6 +19,10 @@
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
               <itemPath>../src/config/default/peripheral/clk/plib_clk.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f15" displayName="dacc" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/dacc/plib_dacc_common.h</itemPath>
+              <itemPath>../src/config/default/peripheral/dacc/plib_dacc.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f5" displayName="efc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/efc/plib_efc.h</itemPath>
             </logicalFolder>
@@ -36,6 +40,11 @@
             </logicalFolder>
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/default/peripheral/pio/plib_pio.h</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f14" displayName="pwm" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/pwm/plib_pwm1.h</itemPath>
+              <itemPath>../src/config/default/peripheral/pwm/plib_pwm_common.h</itemPath>
+              <itemPath>../src/config/default/peripheral/pwm/plib_pwm0.h</itemPath>
             </logicalFolder>
             <logicalFolder name="f9" displayName="rtc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc_common.h</itemPath>
@@ -239,6 +248,9 @@
             <logicalFolder name="f1" displayName="clk" projectFiles="true">
               <itemPath>../src/config/default/peripheral/clk/plib_clk.c</itemPath>
             </logicalFolder>
+            <logicalFolder name="f15" displayName="dacc" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/dacc/plib_dacc.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="f5" displayName="efc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/efc/plib_efc.c</itemPath>
             </logicalFolder>
@@ -254,6 +266,10 @@
             </logicalFolder>
             <logicalFolder name="f2" displayName="pio" projectFiles="true">
               <itemPath>../src/config/default/peripheral/pio/plib_pio.c</itemPath>
+            </logicalFolder>
+            <logicalFolder name="f14" displayName="pwm" projectFiles="true">
+              <itemPath>../src/config/default/peripheral/pwm/plib_pwm1.c</itemPath>
+              <itemPath>../src/config/default/peripheral/pwm/plib_pwm0.c</itemPath>
             </logicalFolder>
             <logicalFolder name="f9" displayName="rtc" projectFiles="true">
               <itemPath>../src/config/default/peripheral/rtc/plib_rtc.c</itemPath>
@@ -308,20 +324,23 @@
                    projectFiles="false">
       <logicalFolder name="f1" displayName="default.mhc" projectFiles="true">
         <itemPath>../src/config/default/default.mhc/HarmonyCore.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/mcan1.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/usart1.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/afec0.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/dfp.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/cmsis.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/project.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/dacc.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/usart1.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/core.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/mcan1.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/dfp.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/pwm1.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/afec0.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/rtc.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/settings.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/twihs2.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/efc.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/core.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/GraphSettings.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/pwm0.yml</itemPath>
         <itemPath>../src/config/default/default.mhc/mcan0.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/settings.yml</itemPath>
-        <itemPath>../src/config/default/default.mhc/sys_time.yml</itemPath>
+        <itemPath>../src/config/default/default.mhc/cmsis.yml</itemPath>
       </logicalFolder>
       <itemPath>Makefile</itemPath>
       <itemPath>../src/config/default/harmony-manifest-success.yml</itemPath>

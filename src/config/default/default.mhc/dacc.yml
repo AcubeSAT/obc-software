@@ -1,0 +1,57 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: dacc}
+children:
+- type: Symbols
+  children:
+  - type: KeyValueSet
+    attributes: {id: CONVERSION_MODE_CH0}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: dacc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: CONVERSION_MODE_CH1}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: dacc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: DACC_ACR_IBCTLCH0}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: dacc, value: '2'}
+  - type: KeyValueSet
+    attributes: {id: DACC_ACR_IBCTLCH1}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: dacc, value: '2'}
+  - type: Boolean
+    attributes: {id: DACC_CHER_CH0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: DACC_CHER_CH1}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: DACC_MR_DIFF}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: dacc, value: '0'}
+- type: ElementPosition
+  attributes: {x: '214', y: '279', id: dacc}

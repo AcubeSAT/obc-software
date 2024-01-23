@@ -48,7 +48,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
-#include "peripheral/afec/plib_afec0.h"
+#include "peripheral/pwm/plib_pwm1.h"
 #include "peripheral/clk/plib_clk.h"
 #include "peripheral/pio/plib_pio.h"
 #include "peripheral/nvic/plib_nvic.h"
@@ -56,17 +56,20 @@
 #include "peripheral/systick/plib_systick.h"
 #include "peripheral/xdmac/plib_xdmac.h"
 #include "peripheral/wdt/plib_wdt.h"
+#include "peripheral/pwm/plib_pwm0.h"
+#include "peripheral/dacc/plib_dacc.h"
+#include "peripheral/efc/plib_efc.h"
+#include "peripheral/rtc/plib_rtc.h"
+#include "system/time/sys_time.h"
+#include "peripheral/afec/plib_afec0.h"
 #include "peripheral/mcan/plib_mcan0.h"
 #include "peripheral/mcan/plib_mcan1.h"
-#include "peripheral/efc/plib_efc.h"
 #include "peripheral/twihs/master/plib_twihs2_master.h"
-#include "peripheral/rtc/plib_rtc.h"
 #include "peripheral/usart/plib_usart1.h"
 #include "system/int/sys_int.h"
 #include "system/cache/sys_cache.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
-#include "system/time/sys_time.h"
 #include "app.h"
 
 
