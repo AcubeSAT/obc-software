@@ -55,4 +55,4 @@ class OBCSoftwareRecipe(ConanFile):
     def requirements(self):
         self.requires("etl/20.37.2")
         self.requires("logger/1.0")
-        self.requires("ecss-services/1.0")
+        self.requires("ecss-services/1.1")
