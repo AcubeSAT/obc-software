@@ -2,13 +2,15 @@
 
 void HousekeepingTask::execute() {
     auto &housekeeping = Services.housekeeping;
-    uint32_t nextCollection = 0;
-    uint32_t timeBeforeDelay = 0;
+    Time::DefaultCUC nextCollection(0);
+    Time::DefaultCUC timeBeforeDelay(0);
+    Time::DefaultCUC TaskGetTickCountCUC(pdTICKS_TO_S(xTaskGetTickCount()));
+
     TickType_t xLastWakeTime = xTaskGetTickCount();
 
     while (true) {
-        nextCollection = housekeeping.reportPendingStructures(xTaskGetTickCount(), timeBeforeDelay, nextCollection);
-        timeBeforeDelay = xTaskGetTickCount();
-        vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(nextCollection));
+        nextCollection = housekeeping.reportPendingStructures(TaskGetTickCountCUC, timeBeforeDelay, nextCollection);
+        timeBeforeDelay = TaskGetTickCountCUC;
+        vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(nextCollection.formatAsBytes()));
     }
 }
