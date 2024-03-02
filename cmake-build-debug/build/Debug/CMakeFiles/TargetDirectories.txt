@@ -1,0 +1,6 @@
+/home/evangelia/clionProjects/obc-software-new/cmake-build-debug/build/Debug/CMakeFiles/OBC_SOFTWARE.elf.dir
+/home/evangelia/clionProjects/obc-software-new/cmake-build-debug/build/Debug/CMakeFiles/edit_cache.dir
+/home/evangelia/clionProjects/obc-software-new/cmake-build-debug/build/Debug/CMakeFiles/rebuild_cache.dir
+/home/evangelia/clionProjects/obc-software-new/cmake-build-debug/build/Debug/lib/cross-platform-software/CMakeFiles/common_cross.dir
+/home/evangelia/clionProjects/obc-software-new/cmake-build-debug/build/Debug/lib/cross-platform-software/CMakeFiles/edit_cache.dir
+/home/evangelia/clionProjects/obc-software-new/cmake-build-debug/build/Debug/lib/cross-platform-software/CMakeFiles/rebuild_cache.dir

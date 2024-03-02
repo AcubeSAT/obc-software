@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/common_cross.dir/lib/cobs-c/cobs.c.obj"
+  "CMakeFiles/common_cross.dir/lib/cobs-c/cobs.c.obj.d"
+  "CMakeFiles/common_cross.dir/lib/cobs-c/cobsr.c.obj"
+  "CMakeFiles/common_cross.dir/lib/cobs-c/cobsr.c.obj.d"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/AmbientTemperatureTask.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/AmbientTemperatureTask.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/CANGatekeeperTask.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/CANGatekeeperTask.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/CANTestTask.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/CANTestTask.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/MCUTemperatureTask.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/MCUTemperatureTask.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/TCHandlingTask.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/TCHandlingTask.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/TimeKeepingTask.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/TimeKeepingTask.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/UARTGatekeeperTask.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/WatchdogTask.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/FreeRTOSTasks/WatchdogTask.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/Platform/CAN/ApplicationLayer.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/Platform/CAN/ApplicationLayer.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/Platform/CAN/Driver.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/Platform/CAN/Driver.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/Platform/CAN/TPProtocol.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/Platform/CAN/TPProtocol.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/Platform/Logger.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/Platform/Logger.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/Platform/Parameters/BootCounter.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/Platform/Parameters/BootCounter.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/Platform/TaskInitialization.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/Platform/TaskInitialization.cpp.obj.d"
+  "CMakeFiles/common_cross.dir/src/Platform/TimeGetter.cpp.obj"
+  "CMakeFiles/common_cross.dir/src/Platform/TimeGetter.cpp.obj.d"
+  "libcommon_cross.a"
+  "libcommon_cross.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang C CXX)
+  include(CMakeFiles/common_cross.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

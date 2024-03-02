@@ -1,0 +1,1 @@
+. "/home/evangelia/clionProjects/obc-software-new/cmake-build-debug/build/Debug/generators/deactivate_conanbuildenv-debug-armv7.sh"
