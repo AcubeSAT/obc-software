@@ -15,8 +15,8 @@ class heater {
 
 public:
 
-    /*This function initializes given instance of PWM periphral with the values configured in MCC GUI.
-     * This initializes all the selected channels of given peripheal in MCC GUI.
+    /*This function initializes given instance of PWM peripheral with the values configured in MCC GUI.
+     * This initializes all the selected channels of given peripheral in MCC GUI.
      * This function must be called before any other PWM function is called.
      * This function should only be called once during system initialization.*/
     static void initializeHeater() {
@@ -32,12 +32,27 @@ public:
     static void stopHeater() {
         PWM0_ChannelsStop(PWM_CHANNEL_2_MASK);
     }
-    float dutyCycle =
-            (dutyValue / period) * 100; //duty cycle value determines the percentage of the ON time of waveform.
+
+    //sets the Duty of PWM
+    void setDutyPercentage(float dutyValuePercentage) {
+        PWM0_ChannelDutySet(PWM_CHANNEL_2, convertDutyCycleToMilliseconds(dutyValuePercentage));
+    }
+
+    /* dutyValue() takes the duty cycle percentage of the waveform as an argument
+     * and returns the on-time of the waveform in milliseconds.
+     */
+    float convertDutyCycleToMilliseconds(float dutyCyclePercentage) {
+        return period * (dutyCyclePercentage / 100.0f);
+    }
+
 
 private:
     const float period = PWM0_ChannelPeriodGet(PWM_CHANNEL_2);   // equals to the period of the waveform in milliseconds
-    float dutyValue; // equals to the ON time of waveform in milliseconds
+
+    /* max electrical input . At the time being, I am not sure if this is needed.
+     * If it is, we should probably initialize the maxPower to the power supply voltage
+     * that we are going to use for the Heater
+     */
     const float maxPower;  // max electrical input
 
 };
