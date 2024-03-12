@@ -10,7 +10,6 @@
 
 class HeaterTask : public Task {
 private:
-    const uint16_t delayMs = 500;
 
     const static inline uint16_t TaskStackDepth = 2000;
 
@@ -27,7 +26,7 @@ public:
      */
     void createTask() {
         xTaskCreateStatic(vClassTask<HeaterTask>, this->TaskName, HeaterTask::TaskStackDepth,
-                          this, configMAX_PRIORITIES -1, this->taskStack,
+                          this, tskIDLE_PRIORITY + 2 , this->taskStack,
                           &(this->taskBuffer));
     }
 

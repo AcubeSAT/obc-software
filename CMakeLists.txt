@@ -25,6 +25,8 @@ include_directories(src/config/default/peripheral/efc)
 include_directories(src/config/default/peripheral/nvic)
 include_directories(src/config/default/peripheral/pio)
 include_directories(src/config/default/peripheral/rtc)
+include_directories(src/config/default/peripheral/pwm)
+
 include_directories(src/config/default/peripheral/systick)
 include_directories(src/config/default/peripheral/twihs/master)
 include_directories(src/config/default/system)
