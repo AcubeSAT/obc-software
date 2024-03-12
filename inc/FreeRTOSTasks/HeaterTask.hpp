@@ -27,7 +27,7 @@ public:
      */
     void createTask() {
         xTaskCreateStatic(vClassTask<HeaterTask>, this->TaskName, HeaterTask::TaskStackDepth,
-                          this, configMAX_PRIORITIES +2, this->taskStack,
+                          this, configMAX_PRIORITIES -1, this->taskStack,
                           &(this->taskBuffer));
     }
 

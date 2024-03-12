@@ -2,6 +2,7 @@
 
 #include "OBC_Definitions.hpp"
 #include "TaskInitialization.hpp"
+#include "HeaterTask.hpp"
 #include "HousekeepingTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
