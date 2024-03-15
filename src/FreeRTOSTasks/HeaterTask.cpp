@@ -8,6 +8,7 @@
 
 void HeaterTask::execute() {
 
+    PWM0_Initialize();
     PWM0_ChannelsStart(PWM_CHANNEL_2_MASK);
     vTaskDelay(pdMS_TO_TICKS(100));
 
