@@ -110,6 +110,14 @@ void AFEC0_ChannelGainSet(AFEC_CHANNEL_NUM channel, AFEC_CHANNEL_GAIN gain);
 
 void AFEC0_ChannelOffsetSet(AFEC_CHANNEL_NUM channel, uint16_t offset);
 
+void AFEC0_ComparatorChannelSet(AFEC_CHANNEL_NUM channel);
+
+void AFEC0_CompareAllChannelsEnable(void);
+
+void AFEC0_CompareAllChannelsDisable(void);
+
+void AFEC0_ComparatorModeSet(AFEC_COMPARATOR_MODE cmpMode);
+
 void AFEC0_CallbackRegister(AFEC_CALLBACK callback, uintptr_t context);
 // *****************************************************************************
 

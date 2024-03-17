@@ -57,6 +57,7 @@
 
 #include <stddef.h>
 #include <stdbool.h>
+#include <device.h>
 
 
 // DOM-IGNORE-BEGIN
@@ -74,8 +75,8 @@ extern "C" {
 // *****************************************************************************
 // *****************************************************************************
 
-
-typedef enum {
+typedef enum
+{
     AFEC_CH0_MASK = (1U << 0U),
     AFEC_CH1_MASK = (1U << 1U),
     AFEC_CH2_MASK = (1U << 2U),
@@ -88,11 +89,11 @@ typedef enum {
     AFEC_CH9_MASK = (1U << 9U),
     AFEC_CH10_MASK = (1U << 10U),
     AFEC_CH11_MASK = (1U << 11U)
-
-} AFEC_CHANNEL_MASK;
+}AFEC_CHANNEL_MASK;
 // *****************************************************************************
 
-typedef enum {
+typedef enum
+{
     AFEC_CH0 = 0U,
     AFEC_CH1,
     AFEC_CH2,
@@ -105,17 +106,19 @@ typedef enum {
     AFEC_CH9,
     AFEC_CH10,
     AFEC_CH11
-} AFEC_CHANNEL_NUM;
+}AFEC_CHANNEL_NUM;
 // *****************************************************************************
 
-typedef enum {
+typedef enum
+{
     AFEC_CHANNEL_GAIN_X1,
     AFEC_CHANNEL_GAIN_X2,
     AFEC_CHANNEL_GAIN_X4
-} AFEC_CHANNEL_GAIN;
+}AFEC_CHANNEL_GAIN;
 // *****************************************************************************
 
-typedef enum {
+typedef enum
+{
     AFEC_INTERRUPT_EOC_0_MASK = (1U << 0U),
     AFEC_INTERRUPT_EOC_1_MASK = (1U << 1U),
     AFEC_INTERRUPT_EOC_2_MASK = (1U << 2U),
@@ -127,19 +130,30 @@ typedef enum {
     AFEC_INTERRUPT_EOC_8_MASK = (1U << 8U),
     AFEC_INTERRUPT_EOC_9_MASK = (1U << 9U),
     AFEC_INTERRUPT_EOC_10_MASK = (1U << 10U),
-    AFEC_INTERRUPT_EOC_11_MASK = (1U << 11U)
-} AFEC_INTERRUPT_MASK;
+    AFEC_INTERRUPT_EOC_11_MASK = (1U << 11U),
+    AFEC_INTERRUPT_COMPE_MASK = (1U << 26U)
+}AFEC_INTERRUPT_MASK;
 
+// *****************************************************************************
+
+typedef enum
+{
+    AFEC_COMPARATOR_MODE_LOW = AFEC_EMR_CMPMODE_LOW,
+    AFEC_COMPARATOR_MODE_HIGH = AFEC_EMR_CMPMODE_HIGH,
+    AFEC_COMPARATOR_MODE_IN = AFEC_EMR_CMPMODE_IN,
+    AFEC_COMPARATOR_MODE_OUT = AFEC_EMR_CMPMODE_OUT
+}AFEC_COMPARATOR_MODE;
 
 // *****************************************************************************
 
 typedef void (*AFEC_CALLBACK)(uint32_t status, uintptr_t context);
 // *****************************************************************************
 
-typedef struct {
+typedef struct
+{
     AFEC_CALLBACK callback_fn;
     uintptr_t context;
-} AFEC_CALLBACK_OBJECT;
+}AFEC_CALLBACK_OBJECT;
 
 
 

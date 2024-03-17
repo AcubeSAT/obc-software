@@ -56,6 +56,11 @@
 #include "peripheral/systick/plib_systick.h"
 #include "peripheral/xdmac/plib_xdmac.h"
 #include "peripheral/wdt/plib_wdt.h"
+#include "peripheral/pwm/plib_pwm0.h"
+#include "peripheral/efc/plib_efc.h"
+#include "peripheral/rtc/plib_rtc.h"
+#include "system/time/sys_time.h"
+#include "peripheral/afec/plib_afec0.h"
 #include "peripheral/mcan/plib_mcan0.h"
 #include "peripheral/mcan/plib_mcan1.h"
 #include "peripheral/efc/plib_efc.h"
@@ -78,6 +83,12 @@ extern "C" {
 
 #endif
 // DOM-IGNORE-END
+
+/* Device Information */
+#define DEVICE_NAME			 "ATSAMV71Q21B"
+#define DEVICE_ARCH			 "CORTEX-M7"
+#define DEVICE_FAMILY		 "SAMV"
+#define DEVICE_SERIES		 "SAMV71"
 
 /* CPU clock frequency */
 #define CPU_CLOCK_FREQUENCY 300000000

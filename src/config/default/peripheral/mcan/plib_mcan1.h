@@ -73,6 +73,8 @@
 // Section: Data Types
 // *****************************************************************************
 // *****************************************************************************
+#define MCAN1_CLOCK_FREQUENCY    50000000U
+
 /* MCAN1 Message RAM Configuration Size */
 #define MCAN1_RX_FIFO0_ELEMENT_SIZE       72U
 #define MCAN1_RX_FIFO0_SIZE               1440U
@@ -105,6 +107,8 @@ bool MCAN1_StandardFilterElementSet(uint8_t filterNumber, mcan_sidfe_registers_t
 bool MCAN1_StandardFilterElementGet(uint8_t filterNumber, mcan_sidfe_registers_t *stdMsgIDFilterElement);
 void MCAN1_SleepModeEnter(void);
 void MCAN1_SleepModeExit(void);
+bool MCAN1_BitTimingCalculationGet(MCAN_BIT_TIMING_SETUP *setup, MCAN_BIT_TIMING *bitTiming);
+bool MCAN1_BitTimingSet(MCAN_BIT_TIMING *bitTiming);
 void MCAN1_TxFifoCallbackRegister(MCAN_TX_FIFO_CALLBACK callback, uintptr_t contextHandle);
 void MCAN1_TxEventFifoCallbackRegister(MCAN_TX_EVENT_FIFO_CALLBACK callback, uintptr_t contextHandle);
 void MCAN1_RxFifoCallbackRegister(MCAN_RX_FIFO_NUM rxFifoNum, MCAN_RX_FIFO_CALLBACK callback, uintptr_t contextHandle);

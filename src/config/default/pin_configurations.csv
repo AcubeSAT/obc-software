@@ -94,7 +94,7 @@
 113,PD8,,Available,In,,,,,,,
 114,PA6,,Available,In,,,,,,,
 116,PA30,,Available,In,,,,,,,
-117,PC19,,Available,In,,,,,,,
+117,PC19,,PWM0_PWMH2,n/a,n/a,No,Disabled,No,No,Disabled,Low
 118,PA31,,Available,In,,,,,,,
 119,PD7,,Available,In,,,,,,,
 120,PC20,,Available,In,,,,,,,

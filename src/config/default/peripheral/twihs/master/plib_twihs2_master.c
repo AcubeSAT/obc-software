@@ -49,6 +49,7 @@
 
 #include "device.h"
 #include "plib_twihs2_master.h"
+#include "interrupts.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -56,7 +57,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
-static TWIHS_OBJ twihs2Obj;
+volatile static TWIHS_OBJ twihs2Obj;
 
 // *****************************************************************************
 // *****************************************************************************
@@ -78,6 +79,9 @@ void TWIHS2_Initialize( void )
     // Starts the transfer by clearing the transmit hold register
     TWIHS2_REGS->TWIHS_CR = TWIHS_CR_THRCLR_Msk;
 
+    // Disable TXRDY, TXCOMP and RXRDY interrupts
+    TWIHS2_REGS->TWIHS_IDR = TWIHS_IDR_TXCOMP_Msk | TWIHS_IDR_TXRDY_Msk | TWIHS_IDR_RXRDY_Msk;
+
     // Enables interrupt on nack and arbitration lost
     TWIHS2_REGS->TWIHS_IER = TWIHS_IER_NACK_Msk | TWIHS_IER_ARBLST_Msk;
 
@@ -98,7 +102,7 @@ static void TWIHS2_InitiateRead( void )
     /* When a single data byte read is performed,
      * the START and STOP bits must be set at the same time
      */
-    if(twihs2Obj.readSize == 1)
+    if(twihs2Obj.readSize == 1U)
     {
         TWIHS2_REGS->TWIHS_CR = TWIHS_CR_START_Msk | TWIHS_CR_STOP_Msk;
     }
@@ -112,15 +116,17 @@ static void TWIHS2_InitiateRead( void )
     TWIHS2_REGS->TWIHS_IER = TWIHS_IER_RXRDY_Msk | TWIHS_IER_TXCOMP_Msk;
 }
 
-static void TWIHS2_InitiateTransfer( uint16_t address, bool type )
+static bool TWIHS2_InitiateTransfer( uint16_t address, bool type )
 {
+    uint32_t timeoutCntr = 60000;
+
     // 10-bit Slave Address
-    if( address > 0x007F )
+    if( address > 0x007FU )
     {
-        TWIHS2_REGS->TWIHS_MMR = TWIHS_MMR_DADR((address & 0x00007F00) >> 8) | TWIHS_MMR_IADRSZ(1);
+        TWIHS2_REGS->TWIHS_MMR = TWIHS_MMR_DADR(((uint32_t)address & 0x00007F00U) >> 8U) | TWIHS_MMR_IADRSZ(1);
 
         // Set internal address
-        TWIHS2_REGS->TWIHS_IADR = TWIHS_IADR_IADR(address & 0x000000FF );
+        TWIHS2_REGS->TWIHS_IADR = TWIHS_IADR_IADR((uint32_t)address & 0x000000FFU );
     }
     // 7-bit Slave Address
     else
@@ -135,16 +141,17 @@ static void TWIHS2_InitiateTransfer( uint16_t address, bool type )
     if(type == false)
     {
         // Single Byte Write
-        if( twihs2Obj.writeSize == 1 )
+        if( twihs2Obj.writeSize == 1U )
         {
             // Single Byte write only
-            if( twihs2Obj.readSize == 0 )
+            if( twihs2Obj.readSize == 0U )
             {
                 // Load last byte in transmit register, issue stop condition
                 // Generate TXCOMP interrupt after STOP condition has been sent
                 twihs2Obj.state = TWIHS_STATE_WAIT_FOR_TXCOMP;
 
-                TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[twihs2Obj.writeCount++]);
+                TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[0]);
+                twihs2Obj.writeCount++;
                 TWIHS2_REGS->TWIHS_CR = TWIHS_CR_STOP_Msk;
                 TWIHS2_REGS->TWIHS_IER = TWIHS_IER_TXCOMP_Msk;
             }
@@ -154,12 +161,25 @@ static void TWIHS2_InitiateTransfer( uint16_t address, bool type )
                 // START bit must be set before the byte is shifted out. Hence disabled interrupt
                 __disable_irq();
 
-                TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[twihs2Obj.writeCount++]);
+                TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[0]);
+                twihs2Obj.writeCount++;
 
                 // Wait for control byte to be transferred before initiating repeat start for read
-                while((TWIHS2_REGS->TWIHS_SR & (TWIHS_SR_TXCOMP_Msk | TWIHS_SR_TXRDY_Msk)) != 0);
+                while((TWIHS2_REGS->TWIHS_SR & (TWIHS_SR_TXCOMP_Msk | TWIHS_SR_TXRDY_Msk)) != 0U)
+                {
+                    /* Do Nothing */
+                }
 
-                while((TWIHS2_REGS->TWIHS_SR & (TWIHS_SR_TXRDY_Msk)) == 0);
+                while((TWIHS2_REGS->TWIHS_SR & (TWIHS_SR_TXRDY_Msk)) == 0U)
+                {
+                    if (timeoutCntr == 0U)
+                    {
+                        twihs2Obj.error = TWIHS_BUS_ERROR;
+                        __enable_irq();
+                        return false;
+                    }
+                    timeoutCntr--;
+                }
 
                 type = true;
             }
@@ -169,7 +189,8 @@ static void TWIHS2_InitiateTransfer( uint16_t address, bool type )
         {
             twihs2Obj.state = TWIHS_STATE_TRANSFER_WRITE;
 
-            TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[twihs2Obj.writeCount++]);
+            TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[0]);
+            twihs2Obj.writeCount++;
 
             TWIHS2_REGS->TWIHS_IER = TWIHS_IDR_TXRDY_Msk | TWIHS_IER_TXCOMP_Msk;
         }
@@ -179,6 +200,7 @@ static void TWIHS2_InitiateTransfer( uint16_t address, bool type )
     {
         TWIHS2_InitiateRead();
     }
+    return true;
 }
 
 void TWIHS2_CallbackRegister( TWIHS_CALLBACK callback, uintptr_t contextHandle )
@@ -204,11 +226,29 @@ bool TWIHS2_IsBusy( void )
     }
 }
 
+void TWIHS2_TransferAbort( void )
+{
+    twihs2Obj.error = TWIHS_ERROR_NONE;
+
+    // Reset the PLib objects and Interrupts
+    twihs2Obj.state = TWIHS_STATE_IDLE;
+    TWIHS2_REGS->TWIHS_IDR = TWIHS_IDR_TXCOMP_Msk | TWIHS_IDR_TXRDY_Msk | TWIHS_IDR_RXRDY_Msk;
+
+    // Disable and Enable I2C Master
+    TWIHS2_REGS->TWIHS_CR = TWIHS_CR_MSDIS_Msk;
+    TWIHS2_REGS->TWIHS_CR = TWIHS_CR_MSEN_Msk;
+}
+
 bool TWIHS2_Read( uint16_t address, uint8_t *pdata, size_t length )
 {
     // Check for ongoing transfer
     if( twihs2Obj.state != TWIHS_STATE_IDLE )
     {
+        return false;
+    }
+    if ((TWIHS2_REGS->TWIHS_SR & (TWIHS_SR_SDA_Msk | TWIHS_SR_SCL_Msk)) != (TWIHS_SR_SDA_Msk | TWIHS_SR_SCL_Msk))
+    {
+        twihs2Obj.error = TWIHS_BUS_ERROR;
         return false;
     }
 
@@ -219,9 +259,7 @@ bool TWIHS2_Read( uint16_t address, uint8_t *pdata, size_t length )
     twihs2Obj.writeSize = 0;
     twihs2Obj.error = TWIHS_ERROR_NONE;
 
-    TWIHS2_InitiateTransfer(address, true);
-
-    return true;
+    return TWIHS2_InitiateTransfer(address, true);
 }
 
 bool TWIHS2_Write( uint16_t address, uint8_t *pdata, size_t length )
@@ -229,6 +267,11 @@ bool TWIHS2_Write( uint16_t address, uint8_t *pdata, size_t length )
     // Check for ongoing transfer
     if( twihs2Obj.state != TWIHS_STATE_IDLE )
     {
+        return false;
+    }
+    if ((TWIHS2_REGS->TWIHS_SR & (TWIHS_SR_SDA_Msk | TWIHS_SR_SCL_Msk)) != (TWIHS_SR_SDA_Msk | TWIHS_SR_SCL_Msk))
+    {
+        twihs2Obj.error = TWIHS_BUS_ERROR;
         return false;
     }
 
@@ -239,9 +282,7 @@ bool TWIHS2_Write( uint16_t address, uint8_t *pdata, size_t length )
     twihs2Obj.writeSize = length;
     twihs2Obj.error = TWIHS_ERROR_NONE;
 
-    TWIHS2_InitiateTransfer(address, false);
-
-    return true;
+    return TWIHS2_InitiateTransfer(address, false);
 }
 
 bool TWIHS2_WriteRead( uint16_t address, uint8_t *wdata, size_t wlength, uint8_t *rdata, size_t rlength )
@@ -252,6 +293,11 @@ bool TWIHS2_WriteRead( uint16_t address, uint8_t *wdata, size_t wlength, uint8_t
     {
         return false;
     }
+    if ((TWIHS2_REGS->TWIHS_SR & (TWIHS_SR_SDA_Msk | TWIHS_SR_SCL_Msk)) != (TWIHS_SR_SDA_Msk | TWIHS_SR_SCL_Msk))
+    {
+        twihs2Obj.error = TWIHS_BUS_ERROR;
+        return false;
+    }
 
     twihs2Obj.address = address;
     twihs2Obj.readBuffer = rdata;
@@ -260,9 +306,7 @@ bool TWIHS2_WriteRead( uint16_t address, uint8_t *wdata, size_t wlength, uint8_t
     twihs2Obj.writeSize = wlength;
     twihs2Obj.error = TWIHS_ERROR_NONE;
 
-    TWIHS2_InitiateTransfer(address, false);
-
-    return true;
+    return TWIHS2_InitiateTransfer(address, false);
 }
 
 TWIHS_ERROR TWIHS2_ErrorGet( void )
@@ -290,12 +334,12 @@ bool TWIHS2_TransferSetup( TWIHS_TRANSFER_SETUP* setup, uint32_t srcClkFreq )
     i2cClkSpeed = setup->clkSpeed;
 
     /* Maximum I2C clock speed in Master mode cannot be greater than 400 KHz */
-    if (i2cClkSpeed > 4000000)
+    if (i2cClkSpeed > 4000000U)
     {
         return false;
     }
 
-    if(srcClkFreq == 0)
+    if(srcClkFreq == 0U)
     {
         srcClkFreq = 150000000;
     }
@@ -304,16 +348,16 @@ bool TWIHS2_TransferSetup( TWIHS_TRANSFER_SETUP* setup, uint32_t srcClkFreq )
        Fix the CKDIV value and see if CLDIV (or CHDIV) fits into the 8-bit register. */
 
     /* Calculate CLDIV with CKDIV set to 0 */
-    cldiv = (srcClkFreq /(2 * i2cClkSpeed)) - 3;
+    cldiv = (srcClkFreq /(2U * i2cClkSpeed)) - 3U;
 
     /* CLDIV must fit within 8-bits and CKDIV must fit within 3-bits */
-    while ((cldiv > 255) && (ckdiv < 7))
+    while ((cldiv > 255U) && (ckdiv < 7U))
     {
         ckdiv++;
-        cldiv /= 2;
+        cldiv /= 2U;
     }
 
-    if (cldiv > 255)
+    if (cldiv > 255U)
     {
         /* Could not generate CLDIV and CKDIV register values for the requested baud rate */
         return false;
@@ -325,21 +369,22 @@ bool TWIHS2_TransferSetup( TWIHS_TRANSFER_SETUP* setup, uint32_t srcClkFreq )
     return true;
 }
 
-void TWIHS2_InterruptHandler( void )
+void __attribute__((used)) TWIHS2_InterruptHandler( void )
 {
     uint32_t status;
+    uintptr_t context = twihs2Obj.context;
 
     // Read the peripheral status
     status = TWIHS2_REGS->TWIHS_SR;
 
     /* checks if Slave has Nacked */
-    if( status & TWIHS_SR_NACK_Msk )
+    if(( status & TWIHS_SR_NACK_Msk ) != 0U)
     {
         twihs2Obj.state = TWIHS_STATE_ERROR;
         twihs2Obj.error = TWIHS_ERROR_NACK;
     }
 
-    if( status & TWIHS_SR_TXCOMP_Msk )
+    if(( status & TWIHS_SR_TXCOMP_Msk ) != 0U)
     {
         /* Disable and Enable I2C Master */
         TWIHS2_REGS->TWIHS_CR = TWIHS_CR_MSDIS_Msk;
@@ -350,7 +395,7 @@ void TWIHS2_InterruptHandler( void )
     }
 
     /* checks if the arbitration is lost in multi-master scenario */
-    if( status & TWIHS_SR_ARBLST_Msk )
+    if(( status & TWIHS_SR_ARBLST_Msk ) != 0U)
     {
         /* Re-initiate the transfer if arbitration is lost in
          * between of the transfer
@@ -364,15 +409,15 @@ void TWIHS2_InterruptHandler( void )
         {
             case TWIHS_STATE_ADDR_SEND:
             {
-                if (twihs2Obj.writeSize != 0 )
+                if (twihs2Obj.writeSize != 0U )
                 {
                     // Initiate Write transfer
-                    TWIHS2_InitiateTransfer(twihs2Obj.address, false);
+                    (void) TWIHS2_InitiateTransfer(twihs2Obj.address, false);
                 }
                 else
                 {
                     // Initiate Read transfer
-                    TWIHS2_InitiateTransfer(twihs2Obj.address, true);
+                     (void) TWIHS2_InitiateTransfer(twihs2Obj.address, true);
                 }
             }
             break;
@@ -380,30 +425,35 @@ void TWIHS2_InterruptHandler( void )
             case TWIHS_STATE_TRANSFER_WRITE:
             {
                 /* checks if master is ready to transmit */
-                if( status & TWIHS_SR_TXRDY_Msk )
+                if(( status & TWIHS_SR_TXRDY_Msk ) != 0U)
                 {
+                    size_t writeCount = twihs2Obj.writeCount;
+                    bool lastByteWrPending = (writeCount == (twihs2Obj.writeSize -1U));
+
                     // Write Last Byte and then initiate read transfer
-                    if( ( twihs2Obj.writeCount == (twihs2Obj.writeSize -1) ) && ( twihs2Obj.readSize != 0 ))
+                    if(( twihs2Obj.readSize != 0U ) && (lastByteWrPending))
                     {
                         // START bit must be set before the last byte is shifted out to generate repeat start. Hence disabled interrupt
                         __disable_irq();
                         TWIHS2_REGS->TWIHS_IDR = TWIHS_IDR_TXRDY_Msk;
-                        TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[twihs2Obj.writeCount++]);
+                        TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[writeCount]);
+                        writeCount++;
                         TWIHS2_InitiateRead();
                     }
                     // Write Last byte and then issue STOP condition
-                    else if ( twihs2Obj.writeCount == (twihs2Obj.writeSize -1))
+                    else if ( writeCount == (twihs2Obj.writeSize -1U))
                     {
                         // Load last byte in transmit register, issue stop condition
                         // Generate TXCOMP interrupt after STOP condition has been sent
-                        TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[twihs2Obj.writeCount++]);
+                        TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[writeCount]);
+                        writeCount++;
                         TWIHS2_REGS->TWIHS_CR = TWIHS_CR_STOP_Msk;
                         TWIHS2_REGS->TWIHS_IDR = TWIHS_IDR_TXRDY_Msk;
 
                         /* Check TXCOMP to confirm if STOP condition has been sent, otherwise wait for TXCOMP interrupt */
                         status = TWIHS2_REGS->TWIHS_SR;
 
-                        if( status & TWIHS_SR_TXCOMP_Msk )
+                        if(( status & TWIHS_SR_TXCOMP_Msk ) != 0U)
                         {
                             twihs2Obj.state = TWIHS_STATE_TRANSFER_DONE;
                         }
@@ -415,11 +465,15 @@ void TWIHS2_InterruptHandler( void )
                     // Write next byte
                     else
                     {
-                        TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[twihs2Obj.writeCount++]);
+                        TWIHS2_REGS->TWIHS_THR = TWIHS_THR_TXDATA(twihs2Obj.writeBuffer[writeCount]);
+                        writeCount++;
                     }
+
+                    twihs2Obj.writeCount = writeCount;
 
                     // Dummy read to ensure that TXRDY bit is cleared
                     status = TWIHS2_REGS->TWIHS_SR;
+                    (void) status;
                 }
 
                 break;
@@ -428,26 +482,29 @@ void TWIHS2_InterruptHandler( void )
             case TWIHS_STATE_TRANSFER_READ:
             {
                 /* checks if master has received the data */
-                if( status & TWIHS_SR_RXRDY_Msk )
+                if(( status & TWIHS_SR_RXRDY_Msk ) != 0U)
                 {
+                    size_t readCount = twihs2Obj.readCount;
+
                     // Set the STOP (or START) bit before reading the TWIHS_RHR on the next-to-last access
-                    if(  twihs2Obj.readCount == (twihs2Obj.readSize - 2) )
+                    if(  readCount == (twihs2Obj.readSize - 2U) )
                     {
                         TWIHS2_REGS->TWIHS_CR = TWIHS_CR_STOP_Msk;
                     }
 
                     /* read the received data */
-                    twihs2Obj.readBuffer[twihs2Obj.readCount++] = (uint8_t)(TWIHS2_REGS->TWIHS_RHR & TWIHS_RHR_RXDATA_Msk);
+                    twihs2Obj.readBuffer[readCount] = (uint8_t)(TWIHS2_REGS->TWIHS_RHR & TWIHS_RHR_RXDATA_Msk);
+                    readCount++;
 
                     /* checks if transmission has reached at the end */
-                    if( twihs2Obj.readCount == twihs2Obj.readSize )
+                    if( readCount == twihs2Obj.readSize )
                     {
                         /* Disable the RXRDY interrupt*/
                         TWIHS2_REGS->TWIHS_IDR = TWIHS_IDR_RXRDY_Msk;
 
                         /* Check TXCOMP to confirm if STOP condition has been sent, otherwise wait for TXCOMP interrupt */
                         status = TWIHS2_REGS->TWIHS_SR;
-                        if( status & TWIHS_SR_TXCOMP_Msk )
+                        if(( status & TWIHS_SR_TXCOMP_Msk ) != 0U)
                         {
                             twihs2Obj.state = TWIHS_STATE_TRANSFER_DONE;
                         }
@@ -456,13 +513,15 @@ void TWIHS2_InterruptHandler( void )
                             twihs2Obj.state = TWIHS_STATE_WAIT_FOR_TXCOMP;
                         }
                     }
+
+                    twihs2Obj.readCount = readCount;
                 }
                 break;
             }
 
             case TWIHS_STATE_WAIT_FOR_TXCOMP:
             {
-                if( status & TWIHS_SR_TXCOMP_Msk )
+                if(( status & TWIHS_SR_TXCOMP_Msk ) != 0U)
                 {
                     twihs2Obj.state = TWIHS_STATE_TRANSFER_DONE;
                 }
@@ -471,6 +530,7 @@ void TWIHS2_InterruptHandler( void )
 
             default:
             {
+                /* Do Nothing */
                 break;
             }
         }
@@ -487,7 +547,7 @@ void TWIHS2_InterruptHandler( void )
 
         if ( twihs2Obj.callback != NULL )
         {
-            twihs2Obj.callback( twihs2Obj.context );
+            twihs2Obj.callback( context );
         }
     }
     // check for completion of transfer
@@ -505,7 +565,7 @@ void TWIHS2_InterruptHandler( void )
 
         if ( twihs2Obj.callback != NULL )
         {
-            twihs2Obj.callback( twihs2Obj.context );
+            twihs2Obj.callback( context );
         }
     }
 

@@ -73,7 +73,7 @@ static uint16_t gSysTimeTokenCount = 1;
 static inline uint16_t SYS_TIME_UPDATE_TOKEN(uint16_t token)
 {
     token++;
-    if (token >= _SYS_TIME_HANDLE_TOKEN_MAX)
+    if (token >= SYS_TIME_HANDLE_TOKEN_MAX)
     {
         token = 1;
     }
@@ -83,7 +83,7 @@ static inline uint16_t SYS_TIME_UPDATE_TOKEN(uint16_t token)
 
 static inline uint32_t  SYS_TIME_MAKE_HANDLE(uint16_t token, uint16_t index)
 {
-    return ((token) << 16 | (index));
+    return ((uint32_t)(token) << 16 | (uint32_t)(index));
 }
 
 static bool SYS_TIME_ResourceLock(void)
@@ -92,15 +92,15 @@ static bool SYS_TIME_ResourceLock(void)
        context of the timer system service. But we must make
        sure that if we are inside interrupt, then we should
        not modify the mutex. */
-    if (gSystemCounterObj.interruptNestingCount == 0)
+    if (gSystemCounterObj.interruptNestingCount == 0U)
     {
         /* Acquire mutex only if not in interrupt context.
          * Additionally, disable the interrupt to prevent it from modifying the
          * shared resources asynchronously */
 
-        if(OSAL_MUTEX_Lock(&gSystemCounterObj.timerMutex, OSAL_WAIT_FOREVER) == OSAL_RESULT_TRUE)
+        if(OSAL_MUTEX_Lock(&gSystemCounterObj.timerMutex, OSAL_WAIT_FOREVER) == OSAL_RESULT_SUCCESS)
         {
-            gSystemCounterObj.timePlib->timerInterruptDisable();
+            gSystemCounterObj.hwTimerIntStatus = gSystemCounterObj.timePlib->timerInterruptDisable();
             return true;
         }
         else
@@ -119,14 +119,14 @@ static bool SYS_TIME_ResourceLock(void)
 
 static void SYS_TIME_ResourceUnlock(void)
 {
-    gSystemCounterObj.timePlib->timerInterruptEnable();
+    gSystemCounterObj.timePlib->timerInterruptRestore(gSystemCounterObj.hwTimerIntStatus);
 
-    if(gSystemCounterObj.interruptNestingCount == 0)
+    if(gSystemCounterObj.interruptNestingCount == 0U)
     {
         /* Mutex is never acquired from the interrupt context and hence should
          * never be released if in interrupt context.
          */
-        OSAL_MUTEX_Unlock(&gSystemCounterObj.timerMutex);
+        (void) OSAL_MUTEX_Unlock(&gSystemCounterObj.timerMutex);
     }
 }
 
@@ -134,14 +134,14 @@ static SYS_TIME_TIMER_OBJ* SYS_TIME_GetTimerObject(SYS_TIME_HANDLE handle)
 {
     SYS_TIME_TIMER_OBJ* timerObj = (SYS_TIME_TIMER_OBJ*)NULL;
 
-    if ((handle != SYS_TIME_HANDLE_INVALID) && (handle != 0))
+    if ((handle != SYS_TIME_HANDLE_INVALID) && (handle != 0U))
     {
         /* Make sure the index is within the bounds */
-        if ((handle & _SYS_TIME_INDEX_MASK) < SYS_TIME_MAX_TIMERS)
+        if ((handle & SYS_TIME_INDEX_MASK) < (uint32_t)SYS_TIME_MAX_TIMERS)
         {
             /* The timer index is the contained in the lower 16 bits of the buffer
              * handle */
-            timerObj = &timers[handle & _SYS_TIME_INDEX_MASK];
+            timerObj = &timers[handle & SYS_TIME_INDEX_MASK];
 
             /* Make sure the timer handle is still active */
             if ((timerObj->tmrHandle == handle) && (timerObj->inUse == true))
@@ -151,38 +151,6 @@ static SYS_TIME_TIMER_OBJ* SYS_TIME_GetTimerObject(SYS_TIME_HANDLE handle)
         }
     }
     return NULL;
-}
-
-static uint32_t SYS_TIME_Counter32Update(uint8_t* isSwCounter32Oveflow)
-{
-    SYS_TIME_COUNTER_OBJ* counterObj = (SYS_TIME_COUNTER_OBJ *)&gSystemCounterObj;
-    uint32_t prevSwCounter32Bit = counterObj->swCounter64Low;
-    uint32_t newSwCounter32Bit;
-
-    *isSwCounter32Oveflow = false;
-
-    newSwCounter32Bit = prevSwCounter32Bit + 1;
-
-    if (newSwCounter32Bit < prevSwCounter32Bit)
-    {
-        *isSwCounter32Oveflow = true;
-    }
-
-    return newSwCounter32Bit;
-}
-
-static void SYS_TIME_Counter64Update(void)
-{
-    SYS_TIME_COUNTER_OBJ* counterObj = (SYS_TIME_COUNTER_OBJ *)&gSystemCounterObj;
-    uint8_t isSwCounter32Oveflow = false;
-
-    counterObj->swCounter64Low = SYS_TIME_Counter32Update(&isSwCounter32Oveflow);
-
-    if (isSwCounter32Oveflow == true)
-    {
-        /* Update high counter for 64 bit on each 32 bit counter overflow */
-        counterObj->swCounter64High++;
-    }
 }
 
 static void SYS_TIME_RemoveFromList(SYS_TIME_TIMER_OBJ* delTimer)
@@ -278,7 +246,7 @@ static void SYS_TIME_AddToList(SYS_TIME_TIMER_OBJ* newTimer)
         }
 
         /* Update the relative times */
-        newTimer->relativeTimePending = newTimerTime - total_time;
+        newTimer->relativeTimePending = newTimerTime - (uint32_t)total_time;
         if (newTimer->tmrNext != NULL)
         {
             /* Subtract the new timers time from the next timer in the list */
@@ -332,7 +300,7 @@ static void SYS_TIME_ClientNotify(void)
 
     while (tmrActive != NULL)
     {
-        if(tmrActive->relativeTimePending == 0)
+        if(tmrActive->relativeTimePending == 0U)
         {
             tmrActive->tmrElapsedFlag = true;
             tmrActive->tmrElapsed = true;
@@ -340,7 +308,7 @@ static void SYS_TIME_ClientNotify(void)
             if ((tmrActive->type == SYS_TIME_SINGLE) && (tmrActive->callback != NULL))
             {
                 /* Destroy single shot timer for which the callback is registered */
-                SYS_TIME_TimerDestroy(tmrActive->tmrHandle);
+                (void) SYS_TIME_TimerDestroy(tmrActive->tmrHandle);
             }
             else
             {
@@ -376,7 +344,7 @@ static void SYS_TIME_UpdateTime(void)
     /* Decrement the counter of the timer at the head of the list */
     tmr = counterObj->tmrActive;
 
-    if ((tmr != NULL) && (tmr->relativeTimePending > 0))
+    if ((tmr != NULL) && (tmr->relativeTimePending > 0U))
     {
         tmr->relativeTimePending--;
     }
@@ -385,7 +353,7 @@ static void SYS_TIME_UpdateTime(void)
     SYS_TIME_ClientNotify();
 
     /* Add the removed timers back into the linked list if the timer type is periodic. */
-    for ( i = 0; i < SYS_TIME_MAX_TIMERS; i++)
+    for ( i = 0U; i < (uint32_t)SYS_TIME_MAX_TIMERS; i++)
     {
         /* tmrElapsed is cleared anytime a timer is stopped, started, reloaded
          * or destroyed. tmrElapsedFlag is cleared when the application reads
@@ -410,7 +378,7 @@ static void SYS_TIME_PLIBCallback(uint32_t status, uintptr_t context)
     SYS_TIME_COUNTER_OBJ* counterObj = (SYS_TIME_COUNTER_OBJ *)&gSystemCounterObj;
     SYS_TIME_TIMER_OBJ* tmrActive = counterObj->tmrActive;
 
-    SYS_TIME_Counter64Update();
+    counterObj->swCounter64++;
 
     if (tmrActive != NULL)
     {
@@ -439,9 +407,10 @@ static SYS_TIME_HANDLE SYS_TIME_TimerObjectCreate(
     {
         return tmrHandle;
     }
-    if((gSystemCounterObj.status == SYS_STATUS_READY) && (period > 0) && (period >= count))
+    if((gSystemCounterObj.status == SYS_STATUS_READY) && (period > 0U) && (period >= count))
     {
-        for(tmr = timers; tmr < &timers[SYS_TIME_MAX_TIMERS]; tmr++, tmrObjIndex++)
+        tmr = timers;
+        while(tmr < &timers[SYS_TIME_MAX_TIMERS])
         {
             if(tmr->inUse == false)
             {
@@ -456,7 +425,7 @@ static SYS_TIME_HANDLE SYS_TIME_TimerObjectCreate(
                 tmr->relativeTimePending = period - count;
 
                 /* Assign a handle to this request. The timer handle must be unique. */
-                tmr->tmrHandle = (SYS_TIME_HANDLE) SYS_TIME_MAKE_HANDLE(gSysTimeTokenCount, tmrObjIndex);
+                tmr->tmrHandle = (SYS_TIME_HANDLE) SYS_TIME_MAKE_HANDLE(gSysTimeTokenCount, (uint16_t)tmrObjIndex);
 
                 /* Update the token number. */
                 gSysTimeTokenCount = SYS_TIME_UPDATE_TOKEN(gSysTimeTokenCount);
@@ -464,6 +433,8 @@ static SYS_TIME_HANDLE SYS_TIME_TimerObjectCreate(
                 tmrHandle = tmr->tmrHandle;
                 break;
             }
+            tmr++;
+            tmrObjIndex++;
         }
     }
 
@@ -471,23 +442,25 @@ static SYS_TIME_HANDLE SYS_TIME_TimerObjectCreate(
     return tmrHandle;
 }
 
-static void SYS_TIME_CounterInit(SYS_MODULE_INIT* init)
+/* MISRA C-2012 Rule 11.3 deviated:1 Deviation record ID -  H3_MISRAC_2012_R_11_3_DR_1 */
+static void SYS_TIME_CounterInit(const SYS_MODULE_INIT* init)
 {
     SYS_TIME_COUNTER_OBJ* counterObj = (SYS_TIME_COUNTER_OBJ *)&gSystemCounterObj;
-    SYS_TIME_INIT* initData = (SYS_TIME_INIT *)init;
+    const SYS_TIME_INIT* initData = (const SYS_TIME_INIT *)init;
 
     counterObj->timePlib = initData->timePlib;
     counterObj->hwTimerTickFreq = (uint32_t)SYS_TIME_TICK_FREQ_IN_HZ;
     counterObj->hwTimerIntNum = initData->hwTimerIntNum;
 
-    counterObj->swCounter64Low = 0;
-    counterObj->swCounter64High = 0;
+    counterObj->swCounter64 = 0;
     counterObj->tmrActive = NULL;
     counterObj->interruptNestingCount = 0;
 
     counterObj->timePlib->timerCallbackSet(SYS_TIME_PLIBCallback, 0);
     counterObj->timePlib->timerStart();
 }
+
+/* MISRAC 2012 deviation block end */
 
 // *****************************************************************************
 // *****************************************************************************
@@ -496,18 +469,18 @@ static void SYS_TIME_CounterInit(SYS_MODULE_INIT* init)
 // *****************************************************************************
 SYS_MODULE_OBJ SYS_TIME_Initialize( const SYS_MODULE_INDEX index, const SYS_MODULE_INIT * const init )
 {
-    if(init == 0 || index != SYS_TIME_INDEX_0)
+    if(init == NULL || index != (uint32_t)SYS_TIME_INDEX_0)
     {
         return SYS_MODULE_OBJ_INVALID;
     }
     /* Create mutex to guard from multiple contesting threads */
-    if(OSAL_MUTEX_Create(&gSystemCounterObj.timerMutex) != OSAL_RESULT_TRUE)
+    if(OSAL_MUTEX_Create(&gSystemCounterObj.timerMutex) != OSAL_RESULT_SUCCESS)
     {
         return SYS_MODULE_OBJ_INVALID;
     }
 
-    SYS_TIME_CounterInit((SYS_MODULE_INIT *)init);
-    memset(timers, 0, sizeof(timers));
+    SYS_TIME_CounterInit((const SYS_MODULE_INIT *)init);
+    (void) memset(timers, 0, sizeof(timers));
 
     gSystemCounterObj.status = SYS_STATUS_READY;
 
@@ -525,8 +498,8 @@ void SYS_TIME_Deinitialize ( SYS_MODULE_OBJ object )
 
     counterObj->timePlib->timerStop();
 
-    memset(&timers, 0, sizeof(timers));
-    memset(&gSystemCounterObj, 0, sizeof(gSystemCounterObj));
+    (void) memset(&timers, 0, sizeof(timers));
+    (void) memset(&gSystemCounterObj, 0, sizeof(gSystemCounterObj));
 
     counterObj->status = SYS_STATUS_UNINITIALIZED;
 
@@ -560,19 +533,13 @@ uint64_t SYS_TIME_Counter64Get ( void )
 {
     SYS_TIME_COUNTER_OBJ * counterObj = (SYS_TIME_COUNTER_OBJ *)&gSystemCounterObj;
     uint64_t counter64 = 0;
-    uint32_t counter32 = 0;
+    bool interruptState;
 
-    if (SYS_TIME_ResourceLock() == false)
-    {
-        return counter64;
-    }
+	interruptState = SYS_INT_Disable();
 
-    counter32 = counterObj->swCounter64Low;
-    counter64 = counterObj->swCounter64High;
+    counter64 = counterObj->swCounter64;
 
-    counter64 = ((counter64 << 32) + counter32);
-
-    SYS_TIME_ResourceUnlock();
+    SYS_INT_Restore(interruptState);
 
     return counter64;
 }
@@ -588,40 +555,45 @@ uint32_t SYS_TIME_CounterGet ( void )
 
 void SYS_TIME_CounterSet ( uint32_t count )
 {
-    if (SYS_TIME_ResourceLock() == false)
-    {
-        return;
-    }
+    bool interruptState;
 
-    gSystemCounterObj.swCounter64Low = count;
-    gSystemCounterObj.swCounter64High = 0;
+	interruptState = SYS_INT_Disable();
 
-    SYS_TIME_ResourceUnlock();
+    gSystemCounterObj.swCounter64 = count;
+
+    SYS_INT_Restore(interruptState);
 }
+
+/* MISRA C-2012 Rule 10.8 deviated:2 Deviation record ID -  H3_MISRAC_2012_R_10_8_DR_1 */
 
 uint32_t  SYS_TIME_CountToUS ( uint32_t count )
 {
-    return (uint32_t) (((uint64_t)count * 1000000) / gSystemCounterObj.hwTimerTickFreq);
+    return (uint32_t) (((uint64_t)count * 1000000u) / gSystemCounterObj.hwTimerTickFreq);
 }
 
 uint32_t  SYS_TIME_CountToMS ( uint32_t count )
 {
-    return (uint32_t) (((uint64_t)count * 1000) / gSystemCounterObj.hwTimerTickFreq);
+    return (uint32_t) (((uint64_t)count * 1000u) / gSystemCounterObj.hwTimerTickFreq);
 }
+
+/* MISRA C-2012 Rule 10.1 deviated:2 Deviation record ID -  H3_MISRAC_2012_R_10_1_DR_1 */
+
+/* MISRAC 2012 deviation block end */
 
 uint32_t SYS_TIME_USToCount ( uint32_t us )
 {
-    uint32_t count = (((uint64_t)us * gSystemCounterObj.hwTimerTickFreq) / 1000000);
+    uint32_t count = (uint32_t)(((uint64_t)us * gSystemCounterObj.hwTimerTickFreq) / 1000000UL);
 
     return count;
 }
 
 uint32_t SYS_TIME_MSToCount ( uint32_t ms )
 {
-    uint32_t count = (((uint64_t)ms * gSystemCounterObj.hwTimerTickFreq) / 1000);
+    uint32_t count = (uint32_t)(((uint64_t)ms * gSystemCounterObj.hwTimerTickFreq) / 1000UL);
 
     return count;
 }
+/* MISRAC 2012 deviation block end */
 
 // *****************************************************************************
 // *****************************************************************************
@@ -673,7 +645,7 @@ SYS_TIME_RESULT SYS_TIME_TimerReload(
 
     tmr = SYS_TIME_GetTimerObject(handle);
 
-    if((tmr != NULL) && (period > 0) && (period >= count))
+    if((tmr != NULL) && (period > 0U) && (period >= count))
     {
         /* Temporarily remove the timer from the list. Update and then add it back */
         SYS_TIME_RemoveFromList(tmr);
@@ -742,7 +714,7 @@ SYS_TIME_RESULT SYS_TIME_TimerStart(SYS_TIME_HANDLE handle)
              * callback where relativeTimePending is 0. For this reason, if the
              * relativeTimePending is 0, it is reloaded with the requested time.
              */
-            if (tmr->relativeTimePending == 0)
+            if (tmr->relativeTimePending == 0U)
             {
                 tmr->relativeTimePending = tmr->requestedTime;
             }
@@ -847,7 +819,7 @@ SYS_TIME_RESULT SYS_TIME_DelayUS ( uint32_t us, SYS_TIME_HANDLE* handle )
 {
     SYS_TIME_RESULT result = SYS_TIME_ERROR;
 
-    if ((handle == NULL) || (us == 0))
+    if ((handle == NULL) || (us == 0U))
     {
         return result;
     }
@@ -855,7 +827,7 @@ SYS_TIME_RESULT SYS_TIME_DelayUS ( uint32_t us, SYS_TIME_HANDLE* handle )
     *handle = SYS_TIME_TimerObjectCreate(0, SYS_TIME_USToCount(us), NULL, 0, SYS_TIME_SINGLE);
     if(*handle != SYS_TIME_HANDLE_INVALID)
     {
-        SYS_TIME_TimerStart(*handle);
+       (void) SYS_TIME_TimerStart(*handle);
         result = SYS_TIME_SUCCESS;
     }
 
@@ -866,7 +838,7 @@ SYS_TIME_RESULT SYS_TIME_DelayMS ( uint32_t ms, SYS_TIME_HANDLE* handle )
 {
     SYS_TIME_RESULT result = SYS_TIME_ERROR;
 
-    if ((handle == NULL) || (ms == 0))
+    if ((handle == NULL) || (ms == 0U))
     {
         return result;
     }
@@ -874,7 +846,7 @@ SYS_TIME_RESULT SYS_TIME_DelayMS ( uint32_t ms, SYS_TIME_HANDLE* handle )
     *handle = SYS_TIME_TimerObjectCreate(0, SYS_TIME_MSToCount(ms), NULL, 0, SYS_TIME_SINGLE);
     if(*handle != SYS_TIME_HANDLE_INVALID)
     {
-        SYS_TIME_TimerStart(*handle);
+        (void) SYS_TIME_TimerStart(*handle);
         result = SYS_TIME_SUCCESS;
     }
 
@@ -910,12 +882,12 @@ SYS_TIME_HANDLE SYS_TIME_CallbackRegisterUS ( SYS_TIME_CALLBACK callback, uintpt
         return handle;
     }
 
-    if (us != 0)
+    if (us != 0U)
     {
         handle = SYS_TIME_TimerObjectCreate(0, SYS_TIME_USToCount(us), callback, context, type);
         if(handle != SYS_TIME_HANDLE_INVALID)
         {
-            SYS_TIME_TimerStart(handle);
+            (void) SYS_TIME_TimerStart(handle);
         }
     }
 
@@ -932,12 +904,12 @@ SYS_TIME_HANDLE SYS_TIME_CallbackRegisterMS ( SYS_TIME_CALLBACK callback, uintpt
         return handle;
     }
 
-    if (ms != 0)
+    if (ms != 0U)
     {
         handle = SYS_TIME_TimerObjectCreate(0, SYS_TIME_MSToCount(ms), callback, context, type);
         if(handle != SYS_TIME_HANDLE_INVALID)
         {
-            SYS_TIME_TimerStart(handle);
+            (void) SYS_TIME_TimerStart(handle);
         }
     }
 
