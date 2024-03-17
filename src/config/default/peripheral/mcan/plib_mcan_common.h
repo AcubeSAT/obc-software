@@ -50,7 +50,7 @@
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 
-    extern "C" {
+extern "C" {
 
 #endif
 // DOM-IGNORE-END
@@ -61,7 +61,7 @@
 // *****************************************************************************
 // *****************************************************************************
 
- // *****************************************************************************
+// *****************************************************************************
 /* MCAN Transfer Errors
 
    Summary:
@@ -231,7 +231,7 @@ typedef void (*MCAN_TX_EVENT_FIFO_CALLBACK) (uint8_t numberOfTxEvent, uintptr_t 
    Remarks:
     None.
 */
-typedef void (*MCAN_RX_FIFO_CALLBACK)(uint8_t numberOfMessage, uintptr_t contextHandle);
+typedef void (*MCAN_RX_FIFO_CALLBACK) (uint8_t numberOfMessage, uintptr_t contextHandle);
 
 // *****************************************************************************
 /* MCAN Callback
@@ -245,7 +245,7 @@ typedef void (*MCAN_RX_FIFO_CALLBACK)(uint8_t numberOfMessage, uintptr_t context
    Remarks:
     None.
 */
-typedef void (*MCAN_CALLBACK)(uint32_t interruptStatus, uintptr_t contextHandle);
+typedef void (*MCAN_CALLBACK) (uint32_t interruptStatus, uintptr_t contextHandle);
 
 // *****************************************************************************
 /* MCAN Message RAM Configuration
@@ -300,28 +300,28 @@ typedef struct
 typedef struct
 {
     /* Identifier */
-    uint32_t id:29;
+    unsigned int id:29;
     /* Remote Transmission Request */
-    uint32_t rtr:1;
+    unsigned int rtr:1;
     /* Extended Identifier */
-    uint32_t xtd:1;
+    unsigned int xtd:1;
     /* Error State Indicator */
-    uint32_t esi:1;
+    unsigned int esi:1;
 
     /* Rx Timestamp */
-    uint32_t rxts:16;
+    unsigned int rxts:16;
     /* Data Length Code */
-    uint32_t dlc:4;
+    unsigned int dlc:4;
     /* Bit Rate Switching */
-    uint32_t brs:1;
+    unsigned int brs:1;
     /* FD Format */
-    uint32_t fdf:1;
+    unsigned int fdf:1;
     /* Reserved */
-    uint32_t :2;
+    unsigned int :2;
     /* Filter Index */
-    uint32_t fidx:7;
+    unsigned int fidx:7;
     /* Accepted Non-matching Frame */
-    uint32_t anmf:1;
+    unsigned int anmf:1;
 
     /* Data field */
     uint8_t data[64];
@@ -343,28 +343,28 @@ typedef struct
 typedef struct
 {
     /* Identifier */
-    uint32_t id:29;
+    unsigned int id:29;
     /* Remote Transmission Request */
-    uint32_t rtr:1;
+    unsigned int rtr:1;
     /* Extended Identifier */
-    uint32_t xtd:1;
+    unsigned int xtd:1;
     /* Error State Indicator */
-    uint32_t esi:1;
+    unsigned int esi:1;
 
     /* Reserved */
-    uint32_t :16;
+    unsigned int :16;
     /* Data Length Code */
-    uint32_t dlc:4;
+    unsigned int dlc:4;
     /* Bit Rate Switching */
-    uint32_t brs:1;
+    unsigned int brs:1;
     /* FD Format */
-    uint32_t fdf:1;
+    unsigned int fdf:1;
     /* Reserved */
-    uint32_t :1;
+    unsigned int :1;
     /* Event FIFO Control */
-    uint32_t efc:1;
+    unsigned int efc:1;
     /* Message Marker */
-    uint32_t mm:8;
+    unsigned int mm:8;
 
     /* Data field */
     uint8_t data[64];
@@ -386,28 +386,151 @@ typedef struct
 typedef struct
 {
     /* Identifier */
-    uint32_t id:29;
+    unsigned int id:29;
     /* Remote Transmission Request */
-    uint32_t rtr:1;
+    unsigned int rtr:1;
     /* Extended Identifier */
-    uint32_t xtd:1;
+    unsigned int xtd:1;
     /* Error State Indicator */
-    uint32_t esi:1;
+    unsigned int esi:1;
 
     /* Tx Timestamp */
-    uint32_t txts:16;
+    unsigned int txts:16;
     /* Data Length Code */
-    uint32_t dlc:4;
+    unsigned int dlc:4;
     /* Bit Rate Switch */
-    uint32_t brs:1;
+    unsigned int brs:1;
     /* FD Format */
-    uint32_t fdf:1;
+    unsigned int fdf:1;
     /* Event Type */
-    uint32_t et:2;
+    unsigned int et:2;
     /* Message Marker */
-    uint32_t mm:8;
+    unsigned int mm:8;
 
 } MCAN_TX_EVENT_FIFO;
+
+// *****************************************************************************
+/* MCAN Nominal Bit Timing Parameters
+
+   Summary:
+    MCAN Nominal Bit Timing Parameter structure.
+
+   Description:
+    This data structure defines Nominal Bit Timing Parameters.
+
+   Remarks:
+    None.
+*/
+typedef struct
+{
+    /* Nominal Time segment after sample point */
+    uint8_t nominalTimeSegment2;
+
+    /* Nominal Time segment before sample point */
+    uint8_t nominalTimeSegment1;
+
+    /* Nominal Baud Rate Prescaler */
+    uint16_t nominalPrescaler;
+
+    /* Nominal Syncronization Jump Width */
+    uint8_t nominalSJW;
+
+} MCAN_NOMINAL_BIT_TIMING;
+
+// *****************************************************************************
+/* MCAN Data Bit Timing Parameters
+
+   Summary:
+    MCAN Data Bit Timing Parameter structure.
+
+   Description:
+    This data structure defines Data Bit Timing Parameters.
+
+   Remarks:
+    None.
+*/
+typedef struct
+{
+    /* Data Time segment after sample point */
+    uint8_t dataTimeSegment2;
+
+    /* Data Time segment before sample point */
+    uint8_t dataTimeSegment1;
+
+    /* Data Baud Rate Prescaler */
+    uint8_t dataPrescaler;
+
+    /* Data Syncronization Jump Width */
+    uint8_t dataSJW;
+
+} MCAN_DATA_BIT_TIMING;
+
+// *****************************************************************************
+/* MCAN Bit Timing Parameters
+
+   Summary:
+    MCAN Bit Timing Parameter structure.
+
+   Description:
+    This data structure defines Bit Timing Parameters.
+
+   Remarks:
+    None.
+*/
+typedef struct
+{
+    /* Nominal bit timing set flag */
+    bool nominalBitTimingSet;
+
+    /* Nominal bit timing parameters */
+    MCAN_NOMINAL_BIT_TIMING nominalBitTiming;
+
+    /* Data bit timing set flag */
+    bool dataBitTimingSet;
+
+    /* Data bit timing parameters */
+    MCAN_DATA_BIT_TIMING dataBitTiming;
+} MCAN_BIT_TIMING;
+
+// *****************************************************************************
+/* MCAN Bit Timing Setup
+
+   Summary:
+    MCAN Bit Timing Setup structure.
+
+   Description:
+    This data structure defines Bit Timing Setup parameters.
+
+   Remarks:
+    None.
+*/
+typedef struct
+{
+    /* Nominal bit timing set flag */
+    bool nominalBitTimingSet;
+
+    /* Nominal bit rate */
+    uint32_t nominalBitRate;
+
+    /* Nominal Sample Point */
+    float nominalSamplePoint;
+
+    /* Nominal Baud Rate Prescaler */
+    uint16_t nominalPrescaler;
+
+    /* Data bit timing set flag */
+    bool dataBitTimingSet;
+
+    /* Data bit rate */
+    uint32_t dataBitRate;
+
+    /* Data Sample Point */
+    float dataSamplePoint;
+
+    /* Data Baud Rate Prescaler */
+    uint8_t dataPrescaler;
+
+} MCAN_BIT_TIMING_SETUP;
 
 // *****************************************************************************
 /* MCAN Tx FIFO Callback Object
@@ -484,7 +607,8 @@ typedef struct
    Remarks:
     None.
 */
-typedef struct {
+typedef struct
+{
     /* Transfer Event Callback */
     MCAN_RX_FIFO_CALLBACK callback;
 
@@ -504,7 +628,8 @@ typedef struct {
    Remarks:
     None.
 */
-typedef struct {
+typedef struct
+{
     /* MCAN Interrupt Status Callback */
     MCAN_CALLBACK callback;
 
