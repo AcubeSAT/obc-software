@@ -43,7 +43,7 @@
 #include "plib_systick.h"
 #include "peripheral/nvic/plib_nvic.h"
 
-static SYSTICK_OBJECT systick;
+volatile static SYSTICK_OBJECT systick;
 
 void SYSTICK_TimerInitialize ( void )
 {
@@ -81,7 +81,7 @@ void SYSTICK_TimerPeriodSet ( uint32_t period )
 
 uint32_t SYSTICK_TimerPeriodGet ( void )
 {
-        return(SysTick->LOAD);
+    return(SysTick->LOAD);
 }
 
 uint32_t SYSTICK_TimerCounterGet ( void )
@@ -96,66 +96,74 @@ uint32_t SYSTICK_TimerFrequencyGet ( void )
 
 void SYSTICK_DelayMs ( uint32_t delay_ms)
 {
-   uint32_t elapsedCount=0U, delayCount;
-   uint32_t deltaCount, oldCount, newCount, period;
+    uint32_t elapsedCount=0U, delayCount;
+    uint32_t deltaCount, oldCount, newCount, period;
 
-   period = SysTick->LOAD + 1U;
+    period = SysTick->LOAD + 1U;
 
-   /* Calculate the count for the given delay */
-   delayCount=(SYSTICK_FREQ/1000U)*delay_ms;
+    /* Calculate the count for the given delay */
+    delayCount=(SYSTICK_FREQ/1000U)*delay_ms;
 
-   if((SysTick->CTRL & SysTick_CTRL_ENABLE_Msk) == SysTick_CTRL_ENABLE_Msk)
-   {
-       oldCount = SysTick->VAL;
+    if((SysTick->CTRL & SysTick_CTRL_ENABLE_Msk) == SysTick_CTRL_ENABLE_Msk)
+    {
+        oldCount = SysTick->VAL;
 
-       while (elapsedCount < delayCount)
-       {
-           newCount = SysTick->VAL;
-           deltaCount = oldCount - newCount;
+        while (elapsedCount < delayCount)
+        {
+            newCount = SysTick->VAL;
+            deltaCount = oldCount - newCount;
 
-           if(newCount > oldCount)
-           {
-               deltaCount = period - newCount + oldCount;
-           }
+            if(newCount > oldCount)
+            {
+                deltaCount = period - newCount + oldCount;
+            }
 
-           oldCount = newCount;
-           elapsedCount = elapsedCount + deltaCount;
-       }
-   }
+            oldCount = newCount;
+            elapsedCount = elapsedCount + deltaCount;
+        }
+    }
 }
 
 void SYSTICK_DelayUs ( uint32_t delay_us)
 {
-   uint32_t elapsedCount=0U, delayCount;
-   uint32_t deltaCount, oldCount, newCount, period;
+    uint32_t elapsedCount=0U, delayCount;
+    uint32_t deltaCount, oldCount, newCount, period;
 
-   period = SysTick->LOAD + 1U;
+    period = SysTick->LOAD + 1U;
 
     /* Calculate the count for the given delay */
-   delayCount=(SYSTICK_FREQ/1000000U)*delay_us;
+    delayCount=(SYSTICK_FREQ/1000000U)*delay_us;
 
-   if((SysTick->CTRL & SysTick_CTRL_ENABLE_Msk) == SysTick_CTRL_ENABLE_Msk)
-   {
-       oldCount = SysTick->VAL;
+    if((SysTick->CTRL & SysTick_CTRL_ENABLE_Msk) == SysTick_CTRL_ENABLE_Msk)
+    {
+        oldCount = SysTick->VAL;
 
-       while (elapsedCount < delayCount)
-       {
-           newCount = SysTick->VAL;
-           deltaCount = oldCount - newCount;
+        while (elapsedCount < delayCount)
+        {
+            newCount = SysTick->VAL;
+            deltaCount = oldCount - newCount;
 
-           if(newCount > oldCount)
-           {
-               deltaCount = period - newCount + oldCount;
-           }
+            if(newCount > oldCount)
+            {
+                deltaCount = period - newCount + oldCount;
+            }
 
-           oldCount = newCount;
-           elapsedCount = elapsedCount + deltaCount;
-       }
-   }
+            oldCount = newCount;
+            elapsedCount = elapsedCount + deltaCount;
+        }
+    }
 }
-void SYSTICK_TimerInterruptDisable ( void )
+bool SYSTICK_TimerInterruptDisable ( void )
 {
+    bool interruptStatus = false;
+
+    if ((SysTick->CTRL & SysTick_CTRL_TICKINT_Msk) != 0U)
+    {
+        interruptStatus = true;
+    }
     SysTick->CTRL = 0x05U;
+
+    return interruptStatus;
 }
 
 void SYSTICK_TimerInterruptEnable ( void )
@@ -164,7 +172,7 @@ void SYSTICK_TimerInterruptEnable ( void )
     bool interruptState = NVIC_INT_Disable();
 
     SysTick->CTRL = 0x07U;
-    if(SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk)
+    if((SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) != 0U)
     {
         SCB->ICSR |= SCB_ICSR_PENDSTSET_Msk;
     }
@@ -172,12 +180,47 @@ void SYSTICK_TimerInterruptEnable ( void )
     NVIC_INT_Restore(interruptState);
 }
 
+void SYSTICK_TimerInterruptRestore ( bool interruptStatus )
+{
+    if (interruptStatus == true)
+    {
+        SYSTICK_TimerInterruptEnable();
+    }
+}
 
 
+
+uint32_t SYSTICK_GetTickCounter(void)
+{
+    return systick.tickCounter;
+}
+
+void SYSTICK_StartTimeOut (SYSTICK_TIMEOUT* timeout, uint32_t delay_ms)
+{
+    timeout->start = SYSTICK_GetTickCounter();
+    timeout->count = (delay_ms*1000U)/SYSTICK_INTERRUPT_PERIOD_IN_US;
+}
+
+void SYSTICK_ResetTimeOut (SYSTICK_TIMEOUT* timeout)
+{
+    timeout->start = SYSTICK_GetTickCounter();
+}
+
+bool SYSTICK_IsTimeoutReached (SYSTICK_TIMEOUT* timeout)
+{
+    bool valTimeout  = true;
+    if ((SYSTICK_GetTickCounter() - timeout->start) < timeout->count)
+    {
+        valTimeout = false;
+    }
+
+    return valTimeout;
+
+}
 void SYSTICK_TimerCallbackSet ( SYSTICK_CALLBACK callback, uintptr_t context )
 {
-   systick.callback = callback;
-   systick.context = context;
+    systick.callback = callback;
+    systick.context = context;
 }
 
 //void SysTick_Handler(void)
