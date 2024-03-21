@@ -44,7 +44,6 @@
 .mxproject
 /Debug/
 core
-cmake-build-debug/
 
 # Generated files
 Inc/version.h
