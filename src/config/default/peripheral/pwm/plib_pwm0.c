@@ -70,7 +70,7 @@ void PWM0_Initialize (void)
                     | PWM_CMR_CES_SINGLE_EVENT | (PWM_CMR_DTE_Msk);
 
     /* PWM period */
-    PWM0_REGS->PWM_CH_NUM[2].PWM_CPRD = 7500U;
+    PWM0_REGS->PWM_CH_NUM[2].PWM_CPRD = 3750U;
 
     /* PWM duty cycle */
     PWM0_REGS->PWM_CH_NUM[2].PWM_CDTY = 3750U;

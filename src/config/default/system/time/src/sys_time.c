@@ -859,7 +859,7 @@ bool SYS_TIME_DelayIsComplete ( SYS_TIME_HANDLE handle )
 
     if(true == SYS_TIME_TimerPeriodHasExpired(handle))
     {
-        SYS_TIME_TimerDestroy(handle);
+       (void) SYS_TIME_TimerDestroy(handle);
         status = true;
     }
 
