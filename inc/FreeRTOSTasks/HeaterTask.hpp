@@ -1,9 +1,4 @@
-//
-// Created by evangelia on 3/21/24.
-//
-
-#ifndef OBC_SOFTWARE_HEATERTASK_HPP
-#define OBC_SOFTWARE_HEATERTASK_HPP
+#pragma
 
 #include "Task.hpp"
 
@@ -33,6 +28,3 @@ public:
 };
 
 inline std::optional<HeaterTask> heaterTask;
-
-
-#endif //OBC_SOFTWARE_HEATERTASK_HPP
