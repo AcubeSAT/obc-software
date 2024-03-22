@@ -183,6 +183,7 @@ To integrate Harmony3 with CLion, follow the steps below:
 **Note:** To close Harmony, simply click on the 'x' in the corner. Never click on the red button in CLion, as it will interrupt the procedure and the script will stop without running the rest of the commands.
 
 #### To integrate the MELD diff tool into MPLAB Harmony3, follow these steps:
-1. Open Harmony3.
+1. Run the command `sudo apt install meld` in a terminal.
+2. Open Harmony3.
 2. Navigate to File -> Preferences -> Diff.
 3. In the 'Diff Tool Command' section, enter `/usr/bin/meld {0} {1}`
