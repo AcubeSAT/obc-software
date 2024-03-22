@@ -153,3 +153,31 @@ WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk;
 ```
 
 in `initialization.c`. It's on line 148 at the time of writing. You should also uncomment `WDT_Initialize()` below that.
+
+### Integrate MPLAB Harmony3 to CLION
+To integrate Harmony3 with CLion, follow the steps below:
+
+1. Ensure you have downloaded Harmony3.
+2. Open CLion.
+3. Go to `Main Menu(three lines on the top left)`->`file`->`Settings` -> `Tools` -> `External Tools` -> `Add`.
+4. A pop-up will appear as shown below:
+5. Fill out the sections as shown in the image:
+   - Name: Harmony3
+   - Description: Harmony Configurator
+   - Program: /bin/bash
+   - Arguments: ./Harmony3_Configurator.sh "path/to/Harmony3/mhc" as seen above (**note**: don't use `$HOME/` or `~/` as the argument will not pass correctly.)
+   - Working directory: \$ProjectFileDir\$
+6. Click `OK` -> `Apply` -> `OK`.
+7. Right-click on the main toolbar at the top.
+8. Click on `Customize Toolbar...`.
+9. Click on the `+` at the top of the pop-up window.
+10. Click on `Add Action...`.
+11. Choose `External Tools` -> `External Tools` -> `Harmony3` (You can choose an icon for your new action in the `Icon` section or leave the default).
+12. Click `OK`.
+13. Move the Harmony3 icon using your mouse to the left, right, or center of the bar.
+14. Click `OK`
+15. You should now see an icon like the picture below.
+    ![image](/uploads/842899053cc3158678f1aa9987b13f12/image.png)
+16. To use it, simply click on it.
+
+**Note:** To close Harmony, simply click on the 'x' in the corner. Never click on the red button in CLion, as it will interrupt the procedure and the script will stop without running the rest of the commands.
