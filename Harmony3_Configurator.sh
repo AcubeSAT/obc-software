@@ -27,3 +27,4 @@ cd $path
 rm -rf cmake-build-debug
 mv ./firmware/* ./
 rm -rf firmware
+rm ./src/config/default/startup_xc32.c
