@@ -137,28 +137,29 @@ void SYS_Initialize ( void* data )
     EFC_Initialize();
   
     CLOCK_Initialize();
-    PIO_Initialize();
+	PIO_Initialize();
 
 
 
-    AFEC0_Initialize();
-
-    SYSTICK_TimerInitialize();
+	SYSTICK_TimerInitialize();
     XDMAC_Initialize();
 
-    RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;    // Disable RSWDT
-    WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk;    // Disable WDT
+	RSWDT_REGS->RSWDT_MR = RSWDT_MR_WDDIS_Msk;	// Disable RSWDT 
 
-//    WDT_Initialize();
+	WDT_Initialize();
 
+
+    PWM0_Initialize();
+
+	RTC_Initialize();
+
+    AFEC0_Initialize();
 
     MCAN0_Initialize();
 
     MCAN1_Initialize();
 
-    TWIHS2_Initialize();
-
-    RTC_Initialize();
+	TWIHS2_Initialize();
 
     USART1_Initialize();
 

@@ -21,6 +21,8 @@ endif()
 if(NOT TARGET etl)
     add_library(etl INTERFACE IMPORTED)
     set_property(TARGET etl PROPERTY INTERFACE_LINK_LIBRARIES etl::etl)
+else()
+    message(WARNING "Target name 'etl' already exists.")
 endif()
 # Load the debug and release library finders
 get_filename_component(_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)

@@ -18,7 +18,7 @@ endif()
 
 
 # Cross building
-set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_SYSTEM_NAME baremetal)
 set(CMAKE_SYSTEM_PROCESSOR armv7)
 
 
@@ -64,17 +64,17 @@ endif()
 set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
 
 # Definition of CMAKE_MODULE_PATH
-list(PREPEND CMAKE_MODULE_PATH "/home/evangelia/.conan2/p/etl6c223ef7b76d0/p/lib/cmake")
+list(PREPEND CMAKE_MODULE_PATH "/home/ktsoupos/.conan2/p/etl6c223ef7b76d0/p/lib/cmake")
 # the generators folder (where conan generates files, like this toolchain)
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
 # Definition of CMAKE_PREFIX_PATH, CMAKE_XXXXX_PATH
 # The explicitly defined "builddirs" of "host" context dependencies must be in PREFIX_PATH
-list(PREPEND CMAKE_PREFIX_PATH "/home/evangelia/.conan2/p/etl6c223ef7b76d0/p/lib/cmake")
+list(PREPEND CMAKE_PREFIX_PATH "/home/ktsoupos/.conan2/p/etl6c223ef7b76d0/p/lib/cmake")
 # The Conan local "generators" folder, where this toolchain is saved.
 list(PREPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_LIST_DIR} )
-list(PREPEND CMAKE_LIBRARY_PATH "${CMAKE_CURRENT_LIST_DIR}/../../../Debug/." "/home/evangelia/.conan2/p/b/loggee09719fc9d37d/p/lib")
-list(PREPEND CMAKE_INCLUDE_PATH "/home/evangelia/clionProjects/ecss-services-new/inc" "/home/evangelia/.conan2/p/b/loggee09719fc9d37d/p/inc" "/home/evangelia/.conan2/p/etl6c223ef7b76d0/p/include")
+list(PREPEND CMAKE_LIBRARY_PATH "/home/ktsoupos/.conan2/p/ecss-388a2fb519b10/p/lib" "/home/ktsoupos/.conan2/p/logged8c4bb7ac4e76/p/lib")
+list(PREPEND CMAKE_INCLUDE_PATH "/home/ktsoupos/.conan2/p/ecss-388a2fb519b10/p/inc" "/home/ktsoupos/.conan2/p/logged8c4bb7ac4e76/p/inc" "/home/ktsoupos/.conan2/p/etl6c223ef7b76d0/p/include")
 
 if(NOT DEFINED CMAKE_FIND_ROOT_PATH_MODE_PACKAGE OR CMAKE_FIND_ROOT_PATH_MODE_PACKAGE STREQUAL "ONLY")
     set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE "BOTH")
@@ -91,9 +91,9 @@ endif()
 
 
 if (DEFINED ENV{PKG_CONFIG_PATH})
-set(ENV{PKG_CONFIG_PATH} "${CMAKE_CURRENT_LIST_DIR}:$ENV{PKG_CONFIG_PATH}")
+set(ENV{PKG_CONFIG_PATH} "/home/ktsoupos/CLionProjects/obc-software-PWM/cmake-build-debug/build/Debug/generators:$ENV{PKG_CONFIG_PATH}")
 else()
-set(ENV{PKG_CONFIG_PATH} "${CMAKE_CURRENT_LIST_DIR}:")
+set(ENV{PKG_CONFIG_PATH} "/home/ktsoupos/CLionProjects/obc-software-PWM/cmake-build-debug/build/Debug/generators:")
 endif()
 
 

@@ -9,11 +9,11 @@ set(etl_FIND_MODE "NO_MODULE")
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(ecss-services_PACKAGE_FOLDER_DEBUG "/home/evangelia/clionProjects/obc-software-new/cmake-build-debug")
+set(ecss-services_PACKAGE_FOLDER_DEBUG "/home/ktsoupos/.conan2/p/ecss-388a2fb519b10/p")
 set(ecss-services_BUILD_MODULES_PATHS_DEBUG )
 
 
-set(ecss-services_INCLUDE_DIRS_DEBUG "/home/evangelia/clionProjects/ecss-services-new/inc")
+set(ecss-services_INCLUDE_DIRS_DEBUG "${ecss-services_PACKAGE_FOLDER_DEBUG}/inc")
 set(ecss-services_RES_DIRS_DEBUG )
 set(ecss-services_DEFINITIONS_DEBUG )
 set(ecss-services_SHARED_LINK_FLAGS_DEBUG )
@@ -22,7 +22,7 @@ set(ecss-services_OBJECTS_DEBUG )
 set(ecss-services_COMPILE_DEFINITIONS_DEBUG )
 set(ecss-services_COMPILE_OPTIONS_C_DEBUG )
 set(ecss-services_COMPILE_OPTIONS_CXX_DEBUG )
-set(ecss-services_LIB_DIRS_DEBUG "${ecss-services_PACKAGE_FOLDER_DEBUG}/Debug/.")
+set(ecss-services_LIB_DIRS_DEBUG "${ecss-services_PACKAGE_FOLDER_DEBUG}/lib")
 set(ecss-services_BIN_DIRS_DEBUG )
 set(ecss-services_LIBRARY_TYPE_DEBUG STATIC)
 set(ecss-services_IS_HOST_WINDOWS_DEBUG 0)

@@ -1,1 +1,1 @@
-. "/home/evangelia/clionProjects/obc-software-new/cmake-build-debug/build/Debug/generators/conanbuildenv-debug-armv7.sh"
+. "/home/ktsoupos/CLionProjects/obc-software-PWM/cmake-build-debug/build/Debug/generators/conanbuildenv-debug-armv7.sh"
