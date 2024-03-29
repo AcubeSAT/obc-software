@@ -1,1 +1,1 @@
-. "/home/ktsoupos/CLionProjects/obc-software-PWM/cmake-build-debug/build/Debug/generators/deactivate_conanrunenv-debug-armv7.sh"
+. "/home/evangelia/clionProjects/obc-software-harmony-changed/cmake-build-debug/build/Debug/generators/deactivate_conanrunenv-debug-armv7.sh"

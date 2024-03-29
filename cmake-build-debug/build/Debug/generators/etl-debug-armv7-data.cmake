@@ -6,7 +6,7 @@ set(etl_FIND_DEPENDENCY_NAMES "")
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(etl_PACKAGE_FOLDER_DEBUG "/home/ktsoupos/.conan2/p/etl6c223ef7b76d0/p")
+set(etl_PACKAGE_FOLDER_DEBUG "/home/evangelia/.conan2/p/etl6c223ef7b76d0/p")
 set(etl_BUILD_MODULES_PATHS_DEBUG )
 
 

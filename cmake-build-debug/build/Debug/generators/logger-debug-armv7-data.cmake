@@ -9,7 +9,7 @@ set(etl_FIND_MODE "NO_MODULE")
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(logger_PACKAGE_FOLDER_DEBUG "/home/ktsoupos/.conan2/p/logged8c4bb7ac4e76/p")
+set(logger_PACKAGE_FOLDER_DEBUG "/home/evangelia/.conan2/p/b/loggef34fb593939b2/p")
 set(logger_BUILD_MODULES_PATHS_DEBUG )
 
 

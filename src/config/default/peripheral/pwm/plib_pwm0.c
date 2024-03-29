@@ -66,14 +66,14 @@ void PWM0_Initialize (void)
     /************** Channel 2 *************************/
     /* PWM channel mode configurations */
     PWM0_REGS->PWM_CH_NUM[2].PWM_CMR = PWM_CMR_CPRE_MCK | PWM_CMR_CALG_CENTER_ALIGNED
-                    | PWM_CMR_CPOL_LOW_POLARITY | PWM_CMR_UPDS_UPDATE_AT_PERIOD \
+                    | PWM_CMR_CPOL_HIGH_POLARITY | PWM_CMR_UPDS_UPDATE_AT_PERIOD \
                     | PWM_CMR_CES_SINGLE_EVENT | (PWM_CMR_DTE_Msk);
 
     /* PWM period */
     PWM0_REGS->PWM_CH_NUM[2].PWM_CPRD = 7500U;
 
     /* PWM duty cycle */
-    PWM0_REGS->PWM_CH_NUM[2].PWM_CDTY = 3750U;
+    PWM0_REGS->PWM_CH_NUM[2].PWM_CDTY = 7000U;
     /* Dead time */
     PWM0_REGS->PWM_CH_NUM[2].PWM_DT = (100U << PWM_DT_DTL_Pos) | (100U);
          

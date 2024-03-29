@@ -18,8 +18,8 @@
                 "CMAKE_POLICY_DEFAULT_CMP0091": "NEW",
                 "CMAKE_BUILD_TYPE": "Debug"
             },
-            "toolchainFile": "/home/ktsoupos/CLionProjects/obc-software-PWM/cmake-build-debug/build/Debug/generators/conan_toolchain.cmake",
-            "binaryDir": "/home/ktsoupos/CLionProjects/obc-software-PWM/cmake-build-debug/build/Debug"
+            "toolchainFile": "/home/evangelia/clionProjects/obc-software-harmony-changed/cmake-build-debug/build/Debug/generators/conan_toolchain.cmake",
+            "binaryDir": "/home/evangelia/clionProjects/obc-software-harmony-changed/cmake-build-debug/build/Debug"
         }
     ],
     "buildPresets": [
