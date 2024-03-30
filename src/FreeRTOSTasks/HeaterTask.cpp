@@ -1,8 +1,3 @@
-//
-// Created by evangelia on 3/12/24.
-//
-
-
 #include "FreeRTOSTasks/HeaterTask.hpp"
 #include "peripheral/pwm/plib_pwm0.h"
 

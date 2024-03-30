@@ -1,15 +1,6 @@
-//
-// Created by evangelia on 3/4/24.
-//
-
 #pragma once
 
-
 #include "peripheral/pwm/plib_pwm0.h"
-
-#ifndef OBC_SOFTWARE_HEATER_H
-#define OBC_SOFTWARE_HEATER_H
-
 
 class heater {
 
@@ -56,6 +47,3 @@ private:
     const float maxPower;  // max electrical input
 
 };
-
-
-#endif //OBC_SOFTWARE_HEATER_H
