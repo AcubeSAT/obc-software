@@ -8,12 +8,6 @@ public:
     //constructor
     Heater() {};
 
-    /*This function initializes given instance of PWM peripheral with the values configured in MCC GUI.
-     * This initializes all the selected channels of given peripheral in MCC GUI.
-     * This function must be called before any other PWM function is called.
-     * This function should only be called once during system initialization.*/
-    static void initializeHeater();
-
     //This function disables the 2nd channel of the PWM0
     static void startHeater();
 

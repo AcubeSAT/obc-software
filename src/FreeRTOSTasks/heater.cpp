@@ -2,9 +2,6 @@
 
 #include "peripheral/pwm/plib_pwm0.h"
 #include "peripheral/pwm/plib_pwm1.h"
-void Heater::initializeHeater() {
-    PWM0_Initialize();
-}
 
 //This function disables the 2nd channel of the PWM0
 void Heater::startHeater() {
