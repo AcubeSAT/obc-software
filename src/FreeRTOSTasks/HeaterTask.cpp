@@ -1,10 +1,16 @@
 #include "FreeRTOSTasks/HeaterTask.hpp"
-#include "peripheral/pwm/plib_pwm0.h"
+#include "inc/FreeRTOSTasks/heater.hpp"
+
 
 void HeaterTask::execute() {
 
-    PWM0_Initialize();
-    PWM0_ChannelsStart(PWM_CHANNEL_2_MASK);
-    vTaskDelay(pdMS_TO_TICKS(100));
+    heater Myheater;
+    Myheater.startHeater();
+    Myheater.setDutyPercentage(30);
+
+    while (true) {
+
+        vTaskDelay(pdMS_TO_TICKS(5000));
+    }
 
 }

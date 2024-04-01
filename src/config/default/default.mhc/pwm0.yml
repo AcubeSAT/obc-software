@@ -48,7 +48,7 @@ children:
     - type: Values
       children:
       - type: User
-        attributes: {value: '7000'}
+        attributes: {value: '3250'}
   - type: KeyValueSet
     attributes: {id: PWM_CH_2_CMR_CALG}
     children:

@@ -73,7 +73,7 @@ void PWM0_Initialize (void)
     PWM0_REGS->PWM_CH_NUM[2].PWM_CPRD = 7500U;
 
     /* PWM duty cycle */
-    PWM0_REGS->PWM_CH_NUM[2].PWM_CDTY = 7000U;
+    PWM0_REGS->PWM_CH_NUM[2].PWM_CDTY = 3250U;
     /* Dead time */
     PWM0_REGS->PWM_CH_NUM[2].PWM_DT = (100U << PWM_DT_DTL_Pos) | (100U);
          
