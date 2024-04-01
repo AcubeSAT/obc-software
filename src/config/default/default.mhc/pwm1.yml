@@ -1,6 +1,6 @@
 format_version: v1.0
 type: UniqueComponent
-attributes: {id: pwm0}
+attributes: {id: pwm1}
 children:
 - type: Symbols
   children:
@@ -10,14 +10,14 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM0_IRQn}
+        attributes: {id: pwm1, value: PWM1_IRQn}
   - type: String
     attributes: {id: PWM_CALLBACK_API}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM0_CallbackRegister}
+        attributes: {id: pwm1, value: PWM1_CallbackRegister}
   - type: Integer
     attributes: {id: PWM_CH_0_CDTY}
     children:
@@ -220,10 +220,6 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: '3250'}
   - type: KeyValueSet
     attributes: {id: PWM_CH_2_CMR_CALG}
     children:
@@ -242,10 +238,6 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
-    - type: Values
-      children:
-      - type: User
-        attributes: {value: '1'}
   - type: KeyValueSet
     attributes: {id: PWM_CH_2_CMR_CPRE}
     children:
@@ -421,6 +413,15 @@ children:
         attributes: {id: visible}
         children:
         - {type: Value, value: 'true'}
+  - type: Comment
+    attributes: {id: PWM_CLK_ENABLE_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
   - type: Menu
     attributes: {id: PWM_COMPARE}
     children:
@@ -436,76 +437,76 @@ children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM0_ChannelPeriodGet}
+        attributes: {id: pwm1, value: PWM1_ChannelPeriodGet}
   - type: Hex
     attributes: {id: PWM_IER1_REG}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: '0'}
+        attributes: {id: pwm1, value: '0'}
   - type: String
     attributes: {id: PWM_OUTPUT_DISABLE_API}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM0_ChannelOverrideDisable}
+        attributes: {id: pwm1, value: PWM1_ChannelOverrideDisable}
   - type: String
     attributes: {id: PWM_OUTPUT_ENABLE_API}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM0_ChannelOverrideEnable}
+        attributes: {id: pwm1, value: PWM1_ChannelOverrideEnable}
   - type: Hex
     attributes: {id: PWM_PH_MASK}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: '7'}
+        attributes: {id: pwm1, value: '7'}
   - type: String
     attributes: {id: PWM_PH_U}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM_CHANNEL_0}
+        attributes: {id: pwm1, value: PWM_CHANNEL_0}
   - type: String
     attributes: {id: PWM_PH_V}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM_CHANNEL_1}
+        attributes: {id: pwm1, value: PWM_CHANNEL_1}
   - type: String
     attributes: {id: PWM_PH_W}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM_CHANNEL_2}
+        attributes: {id: pwm1, value: PWM_CHANNEL_2}
   - type: String
     attributes: {id: PWM_SET_DUTY_API}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM0_ChannelDutySet}
+        attributes: {id: pwm1, value: PWM1_ChannelDutySet}
   - type: String
     attributes: {id: PWM_START_API}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM0_ChannelsStart}
+        attributes: {id: pwm1, value: PWM1_ChannelsStart}
   - type: String
     attributes: {id: PWM_STOP_API}
     children:
     - type: Values
       children:
       - type: Dynamic
-        attributes: {id: pwm0, value: PWM0_ChannelsStop}
+        attributes: {id: pwm1, value: PWM1_ChannelsStop}
 - type: ElementPosition
-  attributes: {x: '390', y: '220', id: pwm0}
+  attributes: {x: '530', y: '220', id: pwm1}

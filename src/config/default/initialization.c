@@ -141,6 +141,8 @@ void SYS_Initialize ( void* data )
 
 
 
+    PWM1_Initialize();
+
 	SYSTICK_TimerInitialize();
     XDMAC_Initialize();
 
