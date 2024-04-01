@@ -2,11 +2,11 @@
 
 #include <cstdint>
 
-class heater {
+class Heater {
 
 public:
     //constructor
-    heater() {};
+    Heater() {};
 
     /*This function initializes given instance of PWM peripheral with the values configured in MCC GUI.
      * This initializes all the selected channels of given peripheral in MCC GUI.
