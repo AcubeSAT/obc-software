@@ -1,7 +1,7 @@
-#include "inc/FreeRTOSTasks/Heater.hpp"
+#include "inc/FreeRTOSTasks/heater.hpp"
+
 #include "peripheral/pwm/plib_pwm0.h"
 #include "peripheral/pwm/plib_pwm1.h"
-
 void Heater::initializeHeater() {
     PWM0_Initialize();
 }
