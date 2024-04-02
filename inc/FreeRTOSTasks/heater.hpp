@@ -5,7 +5,8 @@
 class Heater {
 
 public:
-    /**Different instances of the constructor
+    /**
+     * Different instances of the constructor
      * we can construct a heater either initializing a period value
      * or taking the default period value
      */
@@ -14,23 +15,28 @@ public:
     Heater();
 
 
-    /**This function disables the 2nd channel of the PWM0
+    /**
+     * This function disables the 2nd channel of the PWM0
      *
      */
     static void startHeater();
 
-    /**This function enables the 2nd channel of the PWM0
+    /**
+     * This function enables the 2nd channel of the PWM0
      *
      */
     static void stopHeater();
 
-    /**sets the Duty of PWM
+    /**
+     * sets the Duty of PWM
      *
      * @param dutyCyclePercentage
      */
     void setDutyPercentage(uint8_t dutyCyclePercentage);
 
-    /** dutyValue() takes the duty cycle percentage of the waveform as an argument
+    /**
+     *
+     * @return dutyValue() takes the duty cycle percentage of the waveform as an argument
      * and returns the on-time of the waveform in ticks.
      * Only allows for values between 0 and 100
      */
@@ -38,12 +44,14 @@ public:
 
 private:
 
-    /** the period of the waveform in ticks
+    /**
+     * the period of the waveform in ticks
      *
      */
     uint16_t period;
 
-    /** the duty Cycle Percentage (== heater On Time / period)
+    /**
+     * the duty Cycle Percentage (== heater On Time / period)
      *
      */
     uint8_t dutyCyclePercentage;
