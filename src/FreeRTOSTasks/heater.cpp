@@ -1,5 +1,5 @@
+//#include <stdexcept>
 #include "inc/FreeRTOSTasks/heater.hpp"
-
 #include "peripheral/pwm/plib_pwm0.h"
 #include "peripheral/pwm/plib_pwm1.h"
 
@@ -26,8 +26,4 @@ void Heater::setDutyPercentage(uint8_t dutyCyclePercentage) {
 
 uint16_t Heater::convertDutyCyclePercentageToTicks(uint8_t dutyCyclePercentage) {
     return period * (dutyCyclePercentage / 100);
-}
-
-void Heater::setHeaterPeriod(uint16_t periodInTicks){
-    PWM0_ChannelPeriodSet(PWM_CHANNEL_2, periodInTicks);
 }

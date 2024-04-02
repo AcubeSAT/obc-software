@@ -35,9 +35,6 @@ public:
      */
     uint16_t convertDutyCyclePercentageToTicks(uint8_t dutyCyclePercentage);
 
-    void setHeaterPeriod(uint16_t periodInTicks);
-
-
 private:
 
     /** the period of the waveform in ticks
@@ -45,4 +42,8 @@ private:
      */
     uint16_t period;
 
+    /** the duty Cycle Percentage (== heater On Time / period)
+     *
+     */
+    uint8_t dutyCyclePercentage;
 };
