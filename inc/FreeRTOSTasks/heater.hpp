@@ -33,7 +33,7 @@ public:
     /** dutyValue() takes the duty cycle percentage of the waveform as an argument
      * and returns the on-time of the waveform in ticks.
      */
-    uint16_t convertDutyCyclePercentageToTicks(uint8_t dutyCyclePercentage);
+    uint16_t convertDutyCyclePercentageToTicks();
 
 private:
 

@@ -6,7 +6,7 @@ void HeaterTask::execute() {
 
     Heater Myheater;
     Myheater.startHeater();
-    Myheater.setDutyPercentage(30);
+    Myheater.setDutyPercentage(150);
 
     while (true) {
 

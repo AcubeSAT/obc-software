@@ -1,4 +1,5 @@
-//#include <stdexcept>
+#include <stdexcept>
+#include <iostream>
 #include "inc/FreeRTOSTasks/heater.hpp"
 #include "peripheral/pwm/plib_pwm0.h"
 #include "peripheral/pwm/plib_pwm1.h"
@@ -21,9 +22,16 @@ void Heater::stopHeater() {
 }
 
 void Heater::setDutyPercentage(uint8_t dutyCyclePercentage) {
-    PWM0_ChannelDutySet(PWM_CHANNEL_2, convertDutyCyclePercentageToTicks(dutyCyclePercentage));
+    try {
+        if (dutyCyclePercentage <= 100 && dutyCyclePercentage >= 0)
+            PWM0_ChannelDutySet(PWM_CHANNEL_2, convertDutyCyclePercentageToTicks());
+        else
+            throw std::invalid_argument("Duty cycle percentage must be between 0 and 100.");
+    }
+    catch (const std::invalid_argument &e) {
+        std::cerr << e.what() << std::endl;
+    }
 }
-
-uint16_t Heater::convertDutyCyclePercentageToTicks(uint8_t dutyCyclePercentage) {
+uint16_t Heater::convertDutyCyclePercentageToTicks() {
     return period * (dutyCyclePercentage / 100);
 }
