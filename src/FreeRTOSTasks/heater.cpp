@@ -22,16 +22,12 @@ void Heater::stopHeater() {
 }
 
 void Heater::setDutyPercentage(uint8_t dutyCyclePercentage) {
-    try {
-        if (dutyCyclePercentage <= 100 && dutyCyclePercentage >= 0)
-            PWM0_ChannelDutySet(PWM_CHANNEL_2, convertDutyCyclePercentageToTicks());
-        else
-            throw std::invalid_argument("Duty cycle percentage must be between 0 and 100.");
-    }
-    catch (const std::invalid_argument &e) {
-        std::cerr << e.what() << std::endl;
-    }
+    if (dutyCyclePercentage <= 100 && dutyCyclePercentage >= 0)
+        PWM0_ChannelDutySet(PWM_CHANNEL_2, convertDutyCyclePercentageToTicks());
+    else
+        std::cerr <<"Duty cycle percentage must be between 0 and 100." << std::endl;
 }
+
 uint16_t Heater::convertDutyCyclePercentageToTicks() {
     return period * (dutyCyclePercentage / 100);
 }
