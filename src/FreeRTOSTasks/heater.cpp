@@ -3,26 +3,31 @@
 #include "peripheral/pwm/plib_pwm0.h"
 #include "peripheral/pwm/plib_pwm1.h"
 
-//This function disables the 2nd channel of the PWM0
+Heater::Heater() {
+    period = PWM0_ChannelPeriodGet(PWM_CHANNEL_2);
+}
+
+Heater::Heater(uint16_t period) {
+    PWM0_ChannelPeriodSet(PWM_CHANNEL_2, period);
+    this->period = period;
+}
+
 void Heater::startHeater() {
     PWM0_ChannelsStart(PWM_CHANNEL_2_MASK);
 }
 
-//This function enables the 2nd channel of the PWM0
 void Heater::stopHeater() {
     PWM0_ChannelsStop(PWM_CHANNEL_2_MASK);
 }
 
-//sets the Duty of PWM
-void Heater::setDutyPercentage(float dutyValuePercentage) {
-    PWM0_ChannelDutySet(PWM_CHANNEL_2, convertDutyCycleToMilliseconds(dutyValuePercentage));
+void Heater::setDutyPercentage(uint8_t dutyCyclePercentage) {
+    PWM0_ChannelDutySet(PWM_CHANNEL_2, convertDutyCyclePercentageToTicks(dutyCyclePercentage));
 }
 
-/* dutyValue() takes the duty cycle percentage of the waveform as an argument
- * and returns the on-time of the waveform in ticks.
- */
-float Heater::convertDutyCycleToMilliseconds(float dutyCyclePercentage) {
+uint16_t Heater::convertDutyCyclePercentageToTicks(uint8_t dutyCyclePercentage) {
     return period * (dutyCyclePercentage / 100);
 }
 
-float Heater::period = PWM0_ChannelPeriodGet(PWM_CHANNEL_2);   // equals to the period of the waveform in ticks
+void Heater::setHeaterPeriod(uint16_t periodInTicks){
+    PWM0_ChannelPeriodSet(PWM_CHANNEL_2, periodInTicks);
+}
