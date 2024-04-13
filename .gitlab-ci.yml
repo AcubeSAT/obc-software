@@ -1,5 +1,6 @@
 stages:
   - build
+  - static-analysis
 
 build-arm:
   image: spacedot/build-arm
@@ -13,9 +14,26 @@ build-arm:
     - cd lib
     - git clone https://gitlab.com/acubesat/obc/cross-platform-software.git
     - git clone https://gitlab.com/acubesat/obc/atsam-component-drivers.git
-    - cd cross-platform-software && git submodule update --init --recursive 
+    - cd cross-platform-software && git submodule update --init --recursive
     - cd ..
-    - cd .. 
+    - cd ..
     - conan install . --output-folder conan-build --build=missing -pr conan-arm-profile
     - cmake . -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=conan-build/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="arm-none-eabi-g++" -DCMAKE_C_COMPILER="arm-none-eabi-gcc"
     - make -j$(nproc)
+
+cppcheck:
+  image: spacedot/cppcheck:2.8
+  stage: static-analysis
+  before_script:
+    - cppcheck --version
+  script:
+    - cd $CI_PROJECT_DIR
+    - cppcheck --enable=all --addon=misra --suppressions-list=./ci/suppressions.txt --force --inline-suppr --error-exitcode=1 \
+      -j $(nproc) --xml --xml-version=2 2>report.xml -I ./inc ./src -i ./src/config -i src/packs -i .src/app.c -i ./src/app.h
+  after_script:
+    - mkdir cppcheck-html-report
+    - cppcheck-htmlreport --source-dir=. --title=html-report --file=report.xml --report-dir=cppcheck-html-report
+  artifacts:
+    when: always
+    paths:
+      - ./cppcheck-html-report
