@@ -69,7 +69,7 @@ clang-analyzer:
     - cd ..
     - cd ..
     - conan install . --output-folder conan-build --build=missing -pr conan-arm-profile
-    - scan-build cmake ./ -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_TOOLCHAIN_FILE=conan-build/Release/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+    - scan-build cmake ./ -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_TOOLCHAIN_FILE=conan-build/Debug/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Debug
     - scan-build -o ./scan-build-html-report make
   artifacts:
     paths:
