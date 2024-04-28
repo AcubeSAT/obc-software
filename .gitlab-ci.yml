@@ -41,7 +41,7 @@ cppcheck:
 
 doxygen:
   image: spacedot/doxygen:1.9.4-4-awesomecss-1.6.0
-  stage: analyze
+  stage: static-analysis
   script:
     - cd $CI_PROJECT_DIR
     - doxygen
@@ -51,7 +51,7 @@ doxygen:
 
 clang-analyzer:
   image: spacedot/clang-tools:13.0.0-html-1.4.1
-  stage: analyze
+  stage: static-analysis
   before_script:
     - mkdir scan-build-html-report
   script:
