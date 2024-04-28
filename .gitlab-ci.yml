@@ -29,8 +29,7 @@ cppcheck:
   script:
     - cd $CI_PROJECT_DIR
     - cppcheck --enable=all --addon=misra --suppressions-list=./ci/suppressions.txt --force --inline-suppr --error-exitcode=1 \
-      -j $(nproc) --xml --xml-version=2 2>report.xml -I ./inc ./src -i ./src/config -i ./src/packs -i ./src/app.c \
-      -i ./src/app.h -i ./inc/main.h
+      -j $(nproc) --xml --xml-version=2 2>report.xml -I ./inc ./src -i ./src/config -i ./src/packs -i ./src/app.c -i ./src/app.h -i ./inc/main.h
   after_script:
     - mkdir cppcheck-html-report
     - cppcheck-htmlreport --source-dir=. --title=html-report --file=report.xml --report-dir=cppcheck-html-report
