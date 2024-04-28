@@ -77,7 +77,7 @@ clang-analyzer:
 
 clang-tidy:
   image: spacedot/clang-tools:13.0.0-html-1.4.1
-  stage: analyze
+  stage: static-analysis
   script:
     - cd $CI_PROJECT_DIR
     - conan profile detect --force
