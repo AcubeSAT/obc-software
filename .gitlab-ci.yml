@@ -29,7 +29,8 @@ cppcheck:
   script:
     - cd $CI_PROJECT_DIR
     - cppcheck --enable=all --addon=misra --suppressions-list=./ci/suppressions.txt --force --inline-suppr --error-exitcode=1 \
-      -j $(nproc) --xml --xml-version=2 2>report.xml -I ./inc ./src -i ./src/config -i ./src/packs -i ./src/app.c -i ./src/app.h
+      -j $(nproc) --xml --xml-version=2 2>report.xml -I ./inc ./src -i ./src/config -i ./src/packs -i ./src/app.c \
+      -i ./src/app.h -i ./inc/main.h
   after_script:
     - mkdir cppcheck-html-report
     - cppcheck-htmlreport --source-dir=. --title=html-report --file=report.xml --report-dir=cppcheck-html-report
@@ -37,3 +38,32 @@ cppcheck:
     when: always
     paths:
       - ./cppcheck-html-report
+
+doxygen:
+  image: spacedot/doxygen:1.9.4-4-awesomecss-1.6.0
+  stage: analyze
+  script:
+    - cd $CI_PROJECT_DIR
+    - doxygen
+  artifacts:
+    paths:
+      - ./docs/html
+
+clang-analyzer:
+  image: spacedot/clang-tools:13.0.0-html-1.4.1
+  stage: analyze
+  before_script:
+    - mkdir scan-build-html-report
+  script:
+    - cd $CI_PROJECT_DIR
+    - cp conan-arm-profile /root/.conan2/profiles/
+    - conan profile detect --force
+    - mkdir conan-build
+    - conan remote add conan https://artifactory.spacedot.gr/artifactory/api/conan/conan
+    - conan remote login -p $CONAN_PASSWORD conan $CONAN_USER
+    - conan install . --output-folder conan-build --build=missing -pr conan-arm-profile
+    - scan-build cmake ./ -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_TOOLCHAIN_FILE=conan-build/Release/generators/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
+    - scan-build -o ./scan-build-html-report make
+  artifacts:
+    paths:
+      - ./scan-build-html-report
