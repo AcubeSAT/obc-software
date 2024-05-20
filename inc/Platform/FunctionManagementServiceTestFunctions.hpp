@@ -1,6 +1,7 @@
 #pragma once
 
 #ifdef SERVICE_FUNCTION
+#include "Services/FunctionManagementService.hpp"
 
 /**
  * This file includes functions that are used for testing the FunctionManagementService integration in embedded systems.
@@ -9,8 +10,8 @@
  * the FunctionManagementService, and through a TC (subsequently).
  */
 void testCustomLogFunction(String<ECSSFunctionMaxArgLength> a) {
-    LOG_DEBUG << "Custom log function called with its first argument: " << a[0] << std::endl;
-    LOG_DEBUG << "Custom log function called with its second argument: " << a[1] << std::endl;
+    LOG_DEBUG << "Custom log function called with its first argument: " << a[0];
+    LOG_DEBUG << "Custom log function called with its second argument: " << a[1];
 }
 
 #endif
