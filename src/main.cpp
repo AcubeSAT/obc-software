@@ -1,5 +1,6 @@
 #include "main.h"
 #include "FreeRTOS.h"
+#include "Logger.hpp"
 #include "queue.h"
 #include "list.h"
 #include "task.h"
