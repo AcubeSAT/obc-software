@@ -5,8 +5,8 @@
 #include "HousekeepingTask.hpp"
 #include "TimeBasedSchedulingTask.hpp"
 #include "StatisticsReportingTask.hpp"
-#include "TCHandlingTask.hpp"
 #include "Task.hpp"
+#include "AFEC0HandlingTask.hpp"
 
 class InitializationTask: public Task {
 public:

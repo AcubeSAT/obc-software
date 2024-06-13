@@ -42,7 +42,7 @@ definition here is not suitable for your application. */
 #endif
 
 #ifndef pdTICKS_TO_S
-#define pdTICKS_TO_S( xTicks ) ( ( TickType_t ) ( ( ( TickType_t ) ( xTicks ) ) / ( TickType_t ) configTICK_RATE_HZ ) )
+    #define pdTICKS_TO_S( xTicks ) ( ( TickType_t ) ( ( ( TickType_t ) ( xTicks ) ) / ( TickType_t ) configTICK_RATE_HZ ) )
 #endif
 
 #define pdFALSE			( ( BaseType_t ) 0 )

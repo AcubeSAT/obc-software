@@ -15,9 +15,9 @@ class OBCSoftwareRecipe(ConanFile):
     # Optional metadata
     license = "MIT"
     author = "SpaceDot - AcubeSAT, acubesat.obc@spacedot.gr"
-    url = "gitlab.com/acubesat/obc/ecss-services"
-    description = "ECSS Services implementation for the AcubeSAT nanosatellite"
-    topics = ("satellite", "acubesat", "obc", "obc-software")
+    url = "gitlab.com/acubesat/obc/obc-software"
+    description = "Software for the OBC subsystem of the AcubeSAT nanosatellite."
+    topics = ("satellite", "acubesat", "obc", "obc-software", "embedded")
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
