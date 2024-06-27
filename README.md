@@ -6,68 +6,25 @@ We use FreeRTOS to handle the tasking of the MCU.
 More information regarding OBC can be found [here](https://gitlab.com/groups/acubesat/obc/-/wikis/home).
 
 ## Build
-The `obc-software` repository can be built without any access to specialised hardware. We provide build
-instructions for Linux (or WSL) command-line, and the CLion IDE.
 
-The dependencies of this repository are managed through the [conan](https://conan.io/) package manager, with repositories
-from [ConanCenter](https://conan.io/center/) and [SpaceDot's packages](https://artifactory.spacedot.gr).
+After cloning the repo, run the command `git submodule update --init --recursive` to clone the submodules.
+If cloning `COBS` throws a permission/access error, setup an SSH key in GitHub to fix it.
 
-For more detailed installation instructions, including how to integrate with a microcontroller, visit the
-[corresponding documentation page](https://acubesat.gitlab.io/obc/ecss-services/docs/md_docs_installation.html).
+If you're using CLion, you need to add in CMake options (File -> Settings -> Build, Execution, Deployment -> CMake ->
+CMake Options) this `-DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release`.
 
-### From the Command Line (CLI)
+If you just cmake from cli, just add the same flags in your command.
 
-1. Install a modern C++ compiler, CMake, and Conan.  
-   CMake >= 3.23 and Conan >= 2.0 are recommended.
-   <details>
-   <summary>Getting conan</summary>
 
-   You can install [conan](https://conan.io/) following the instructions [from here](https://docs.conan.io/2/installation.html).
-   </details>
-2. Clone the repository and enter the directory:
-   ```shell
-   git clone git@gitlab.com:acubesat/obc/obc-software.git
-   cd obc-software
-   ```
-3. (If you haven't already) create a conan profile for your system:
-   ```shell
-   conan profile detect
-   ```
-4. (If you haven't already) add the SpaceDot repository to conan:
-   ```shell
-   conan remote add spacedot https://artifactory.spacedot.gr/artifactory/api/conan/conan
-   ```
-5. Download all dependencies and build the project through conan:
-   ```shell
-   conan install . --output-folder=cmake-build-debug --build="*" -u -pr conan-arm-profile
-   ```
-6. Download all submodules:
-   ```shell
-   conan source .
-   ```
-7. Add CMake flags:
-   ```shell
-   cmake -B cmake-build-debug/build/Debug -DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc" -DCMAKE_BUILD_TYPE=Debug .
-   ```
-8. Build the project:
-   ```shell
-   cd cmake-build-debug/build/Debug
-   make
-   ```
-### From CLion
+### Conan
 
-CLion will automatically try to set up a CMake project for you. However, without the conan packages installed, this
-will quickly fail. Follow these steps to set up the conan project:
-
-1. Follow steps 1-6 from the CLI instructions above.
-2. Add the following to the CMake Options (File -> Settings -> Build, Execution, Deployment -> CMake -> CMake Options):
-   ```
-   -DCMAKE_TOOLCHAIN_FILE=cmake-build-debug/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="/usr/bin/arm-none-eabi-g++" -DCMAKE_C_COMPILER="/usr/bin/arm-none-eabi-gcc"
-   ```
-3. If your CMake project doesn't reload automatically, reload it manually (Tools -> CMake -> Reload CMake Project).
-
-We do not recommend using a Conan plugin for your IDE, as it may tamper with the default configuration for this repository.
-
+To build, you need to follow these steps:
+- First run `conan profile detect --force`: Generates default profile detecting GCC. However, for this project, you need to set up
+  the correct architecture. Find where `conan` sets up profiles (probably `~/.conan2/profiles`), run `cp default arm`
+  in that folder, and edit the `arm` file. You need to change the `arch` entry to `arch=armv7`.
+- Then run `conan install . --output-folder=cmake-build-debug --build=missing -pr arm`. If you're using CLion and don't see `cmake-build-debug`, you have to `Reload CMake project` to have it generated.
+  After you've run `conan install...` you can `Reload CMake project` and build as per usual.
+- Make sure you followed the steps under the `Build` section
 
 <details>
 <summary>Getting conan</summary>
@@ -153,37 +110,3 @@ WDT_REGS->WDT_MR = WDT_MR_WDDIS_Msk;
 ```
 
 in `initialization.c`. It's on line 148 at the time of writing. You should also uncomment `WDT_Initialize()` below that.
-
-### Integrate MPLAB Harmony3 to CLION
-To integrate Harmony3 with CLion, follow the steps below:
-
-1. Ensure you have downloaded Harmony3.
-2. Open CLion.
-3. Go to `Main Menu(three lines on the top left)`->`file`->`Settings` -> `Tools` -> `External Tools` -> `Add`.
-4. A pop-up will appear as shown below:
-5. Fill out the sections as shown below:
-   - Name: Harmony3
-   - Description: Harmony Configurator
-   - Program: /bin/bash
-   - Arguments: ./Harmony3_Configurator.sh "path/to/Harmony3/mhc" as seen above (**note**: don't use `$HOME/` or `~/` as the argument will not pass correctly.)
-   - Working directory: \$ProjectFileDir\$
-6. Click `OK` -> `Apply` -> `OK`.
-7. Right-click on the main toolbar at the top.
-8. Click on `Customize Toolbar...`.
-9. Click on the `+` at the top of the pop-up window.
-10. Click on `Add Action...`.
-11. Choose `External Tools` -> `External Tools` -> `Harmony3` (You can choose an icon for your new action in the `Icon` section or leave the default).
-12. Click `OK`.
-13. Move the Harmony3 icon using your mouse to the left, right, or center of the bar.
-14. Click `OK`
-15. You should now see an icon like the picture below.
-    ![image](/uploads/842899053cc3158678f1aa9987b13f12/image.png)
-16. To use it, simply click on it.
-
-**Note:** To close Harmony, simply click on the 'x' in the corner. Never click on the red button in CLion, as it will interrupt the procedure and the script will stop without running the rest of the commands.
-
-#### To integrate the MELD diff tool into MPLAB Harmony3, follow these steps:
-1. Run the command `sudo apt install meld` in a terminal.
-2. Open Harmony3.
-2. Navigate to File -> Preferences -> Diff.
-3. In the 'Diff Tool Command' section, enter `/usr/bin/meld {0} {1}`
