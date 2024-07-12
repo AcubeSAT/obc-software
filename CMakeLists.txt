@@ -74,8 +74,8 @@ include_directories(lib/ecss-services/lib/etl/include)
 include_directories(lib/ecss-services/lib/logger/inc)
 include_directories(lib/SEGGER/RTT)
 include_directories(lib/SEGGER/Config)
-include_directories(lib/SEGGER/SystemView)
 include_directories(lib/SEGGER/Patch)
+include_directories(lib/SEGGER/SystemView)
 include_directories(lib/cobs-c)
 include_directories(lib/logger)
 include_directories(lib/atsam-component-drivers/MCP9808/inc)
@@ -107,7 +107,6 @@ target_sources(SystemView PRIVATE
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
 
 target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross log_common RTT SystemView)
-
 set(CMAKE_EXE_LINKER_FLAGS
         "${CMAKE_EXE_LINKER_FLAGS_INIT} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
 
