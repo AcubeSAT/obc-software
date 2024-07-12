@@ -113,7 +113,10 @@ target_sources(SystemView PRIVATE
 )
 
 add_subdirectory(lib/ecss-services EXCLUDE_FROM_ALL)
-#target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross)
+add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
+
+target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross)
+
 
 set(CMAKE_EXE_LINKER_FLAGS
         "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")
