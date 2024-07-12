@@ -28,7 +28,6 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
 
-    traceSTART();
     SEGGER_RTT_Init();
     SEGGER_SYSVIEW_Conf();
     SEGGER_SYSVIEW_Start();
