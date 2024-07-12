@@ -1,6 +1,15 @@
+[submodule "lib/cobs-c"]
+	path = lib/cobs-c
+	url = https://github.com/cmcqueen/cobs-c.git
 [submodule "lib/atsam-component-drivers"]
 	path = lib/atsam-component-drivers
 	url = https://gitlab.com/acubesat/obc/atsam-component-drivers.git
 [submodule "lib/cross-platform-software"]
 	path = lib/cross-platform-software
 	url = https://gitlab.com/acubesat/obc/cross-platform-software
+[submodule "lib/ecss-services"]
+    path = lib/ecss-services
+    url = git@gitlab.com:acubesat/obc/ecss-services.git
+[submodule "lib/logger"]
+    path = lib/logger
+    url = git@gitlab.com:acubesat/obc/logger.git
