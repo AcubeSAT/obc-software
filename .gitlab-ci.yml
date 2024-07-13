@@ -41,15 +41,10 @@ test-hw:
       - .cache/pip
 
   before_script:
-    - apk add build-base
     - python -V
     - g++ --version
     - cat /etc/*-release
     - python -c 'print("\033[94mHello!")'
-    - apk add make --no-cache
-    - ls
-    - ls /root
-    - pwd
     - git clone https://gitlab.com/acubesat/obc/hil-tests
     - mv /root/*.pack hil-tests
     - cd hil-tests
