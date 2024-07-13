@@ -34,20 +34,20 @@ class OBCSoftwareRecipe(ConanFile):
 
     def source(self):
         repos = [
-            {"url": "git@gitlab.com:acubesat/obc/cross-platform-software.git", "path": "lib/cross-platform-software"},
-            {"url": "git@gitlab.com:acubesat/obc/atsam-component-drivers.git", "path": "lib/atsam-component-drivers"}
+            {"url": "git@gitlab.com:acubesat/obc/cross-platform-software.git", "path": "cross-platform-software"},
+            {"url": "git@gitlab.com:acubesat/obc/atsam-component-drivers.git", "path": "atsam-component-drivers"}
         ]
 
         for repo in repos:
-            repo_path = os.path.join(self.source_folder, repo["path"])
-            mkdir(self, repo_path)
-            git = Git(self, repo_path)
-            if not os.listdir(repo_path):
+            repo_path = os.path.join(repo["path"])
+            git = Git(self, "lib")
+            if not repo_path in os.listdir("lib"):
                 git.clone(repo["url"])
             else:
-                git.checkout()
-            with chdir(self, repo_path):
-                git.run("submodule update --init --recursive")
+                git = Git(self, "lib/"+repo_path)
+                git.run("pull")
+            git = Git(self, "lib/"+repo_path)
+            git.run("submodule update --init --recursive")
     def layout(self):
         cmake_layout(self)
 
