@@ -41,7 +41,8 @@ class OBCSoftwareRecipe(ConanFile):
         self.run("cd lib/cross-platform-software && ls && git submodule update --init --recursive")
         if not os.path.exists(join(str(self.source_folder), "lib/atsam-component-drivers")):
             git.clone(url="git@gitlab.com:acubesat/obc/atsam-component-drivers.git", target=join(str(self.source_folder), "lib/atsam-component-drivers"))
-
+        else:
+            self.run("cd lib/atsam-component-drivers && git pull")
     def layout(self):
         cmake_layout(self)
 
