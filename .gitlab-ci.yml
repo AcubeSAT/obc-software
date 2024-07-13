@@ -41,7 +41,8 @@ test-hw:
       - .cache/pip
 
   before_script:
-    - python -V
+    - apt-get update && apt-get install --yes --no-install-recommends binutils cmake make python3
+    - python3 -V
     - g++ --version
     - cat /etc/*-release
     - python -c 'print("\033[94mHello!")'
