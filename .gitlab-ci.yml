@@ -42,7 +42,9 @@ test-hw:
 
   before_script:
     - apt-get update && apt-get install --yes --no-install-recommends binutils cmake make python3
-    - git clone https://gitlab.com/acubesat/obc/hil-tests
-    - mv /root/*.pack hil-tests
+    - git clone https://gitlab.com/acubesat/obc/hil-tests --branch atsamv71q21
+    - cd hil-tests
+    - wget https://packs.download.microchip.com/Microchip.SAMV71_DFP.4.5.82.pack
+
   script:
-    - python3 test.py -b ./OBC_SOFTWARE.elf -s /dev/ttyACM0
+    - python test.py -b /root/OBC_SOFTWARE.elf -s /dev/ttyACM0
