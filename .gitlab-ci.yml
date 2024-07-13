@@ -42,14 +42,7 @@ test-hw:
 
   before_script:
     - apt-get update && apt-get install --yes --no-install-recommends binutils cmake make python3
-    - python3 -V
-    - g++ --version
-    - cat /etc/*-release
-    - python -c 'print("\033[94mHello!")'
     - git clone https://gitlab.com/acubesat/obc/hil-tests
     - mv /root/*.pack hil-tests
-    - cd hil-tests
   script:
-    - make -j4
-    - cd ..
-    - python test.py -b ./OBC_SOFTWARE.elf -s /dev/ttyACM0
+    - python3 test.py -b ./OBC_SOFTWARE.elf -s /dev/ttyACM0
