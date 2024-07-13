@@ -38,7 +38,7 @@ class OBCSoftwareRecipe(ConanFile):
             git.clone(url="git@gitlab.com:acubesat/obc/cross-platform-software.git", target=join(str(self.source_folder), "lib/cross-platform-software"))
         else:
             self.run("cd lib/cross-platform-software && git pull")
-        self.run("cd lib/cross-platform-software && ls && git submodule update --init --recursive")
+        self.run("cd lib/cross-platform-software && git submodule update --init --recursive")
         if not os.path.exists(join(str(self.source_folder), "lib/atsam-component-drivers")):
             git.clone(url="git@gitlab.com:acubesat/obc/atsam-component-drivers.git", target=join(str(self.source_folder), "lib/atsam-component-drivers"))
         else:
