@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
 
 build-arm:
   image: spacedot/build-arm
@@ -19,3 +20,40 @@ build-arm:
     - conan install . --output-folder conan-build --build=missing -pr conan-arm-profile
     - cmake . -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=conan-build/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="arm-none-eabi-g++" -DCMAKE_C_COMPILER="arm-none-eabi-gcc"
     - make -j$(nproc)
+  artifacts:
+    when: always
+    paths:
+      - conan-build/OBC_SOFTWARE.elf
+
+test-hw:
+  image: spacedot/build-arm
+  variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+    GIT_SUBMODULE_STRATEGY: normal
+    TERM: xterm-color
+    CLICOLOR_FORCE: 1 # Necessary for cmake to output colours
+    PYTHONIOENCODING: utf-8
+
+  # Global caching directive for pip
+  cache:
+    key: "$CI_JOB_NAME-$CI_COMMIT_REF_SLUG"
+    paths:
+      - .cache/pip
+
+  before_script:
+    - apk add build-base
+    - python -V
+    - g++ --version
+    - cat /etc/*-release
+    - python -c 'print("\033[94mHello!")'
+    - apk add make --no-cache
+    - ls
+    - ls /root
+    - pwd
+    - git clone https://gitlab.com/acubesat/obc/hil-tests
+    - mv /root/*.pack hil-tests
+    - cd hil-tests
+  script:
+    - make -j4
+    - cd ..
+    - python test.py -b .OBC_SOFTWARE.elf -s /dev/ttyACM0
