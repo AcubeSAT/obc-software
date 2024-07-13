@@ -23,7 +23,7 @@ build-arm:
   artifacts:
     when: always
     paths:
-      - conan-build/OBC_SOFTWARE.elf
+      - OBC_SOFTWARE.elf
 
 test-hw:
   image: spacedot/build-arm
@@ -56,4 +56,4 @@ test-hw:
   script:
     - make -j4
     - cd ..
-    - python test.py -b .OBC_SOFTWARE.elf -s /dev/ttyACM0
+    - python test.py -b ./OBC_SOFTWARE.elf -s /dev/ttyACM0
