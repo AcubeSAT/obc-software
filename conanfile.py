@@ -5,7 +5,7 @@ from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 from conan.tools.files import copy
 from conan.tools.scm import Git
-
+from conan.tools.files import get, chdir, mkdir
 
 class OBCSoftwareRecipe(ConanFile):
     name = "obc-sw"
@@ -33,12 +33,21 @@ class OBCSoftwareRecipe(ConanFile):
             del self.options.fPIC
 
     def source(self):
-        git = Git(self)
-        git.clone(url="git@gitlab.com:acubesat/obc/cross-platform-software.git", target=join(str(self.source_folder), "lib/cross-platform-software"))
-        self.run("cd lib/cross-platform-software && git submodule update --init --recursive")
-        git = Git(self)
-        git.clone(url="git@gitlab.com:acubesat/obc/atsam-component-drivers.git", target=join(str(self.source_folder), "lib/atsam-component-drivers"))
+        repos = [
+            {"url": "git@gitlab.com:acubesat/obc/cross-platform-software.git", "path": "cross-platform-software"},
+            {"url": "git@gitlab.com:acubesat/obc/atsam-component-drivers.git", "path": "atsam-component-drivers"}
+        ]
 
+        for repo in repos:
+            repo_path = os.path.join(repo["path"])
+            git = Git(self, "lib")
+            if not repo_path in os.listdir("lib"):
+                git.clone(repo["url"])
+            else:
+                git = Git(self, "lib/"+repo_path)
+                git.run("pull")
+            git = Git(self, "lib/"+repo_path)
+            git.run("submodule update --init --recursive")
     def layout(self):
         cmake_layout(self)
 
