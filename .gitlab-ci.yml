@@ -4,8 +4,6 @@ stages:
 
 build-arm:
   image: spacedot/build-arm
-  services:
-    - docker:dind
   stage: build
   script:
     - mkdir conan-build
