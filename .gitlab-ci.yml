@@ -5,6 +5,8 @@ stages:
 build-arm:
   image: spacedot/build-arm
   stage: build
+  before_script:
+    - ls /root/
   script:
     - mkdir conan-build
     - conan profile detect --force
