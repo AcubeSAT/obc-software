@@ -1,0 +1,6 @@
+pack:
+  - ./Microchip.SAMV71_DFP.4.5.82.pack
+
+target_override:  atsamv71q21b
+dap_protocol: swd
+fast_program: true
