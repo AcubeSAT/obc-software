@@ -55,5 +55,7 @@ if __name__ == '__main__':
                     if line.startswith(b"@RETURN"):
                         return_value = int(line.split(b' ', 2)[1])
                         break
+                if time.time() - start_time >= 60:
+                    return_value = 0
 
             exit(return_value)
