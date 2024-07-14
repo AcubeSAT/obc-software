@@ -42,7 +42,7 @@ test-hw:
 
   before_script:
     - apt-get update && apt-get install --yes --no-install-recommends wget binutils cmake make python3 python3-pip
-    - pip3 install pyserial pyusb pyocd==0.36.0 pytest serial=3.5 --break-system-packages
+    - pip3 install pyserial pyusb pyocd==0.36.0 pytest serial==3.5 --break-system-packages
     - git clone https://gitlab.com/acubesat/obc/hil-tests --branch atsamv71q21
     - cd hil-tests
     - wget https://packs.download.microchip.com/Microchip.SAMV71_DFP.4.5.82.pack
