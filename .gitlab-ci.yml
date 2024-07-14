@@ -2,13 +2,6 @@ stages:
   - build
   - test
 
-variables:
-  DOCKER_HOST: tcp://docker:2375/
-  DOCKER_TLS_CERTDIR: ""
-  DOCKER_DRIVER: overlay2
-  DOCKER_PULL_POLICY: if-not-present
-  DOCKER_CONFIG: /dev/null
-
 build-arm:
   image: spacedot/build-arm
   stage: build
@@ -48,7 +41,7 @@ test-hw:
       - .cache/pip
 
   before_script:
-    - apt-get update && apt-get install --yes --no-install-recommends wget binutils cmake make python3
+    - apt-get update && apt-get install --yes --no-install-recommends wget binutils cmake make python3 pyocd serial
     - git clone https://gitlab.com/acubesat/obc/hil-tests --branch atsamv71q21
     - cd hil-tests
     - wget https://packs.download.microchip.com/Microchip.SAMV71_DFP.4.5.82.pack
