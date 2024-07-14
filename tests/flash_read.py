@@ -18,7 +18,8 @@ if __name__ == '__main__':
     # Set-up argument parser
     parser = argparse.ArgumentParser(description='Perform Hardware-In-The-Loop Tests')
     parser.add_argument("--binary", '-b', type=str, help="Binary file to upload to the MCU")
-    parser.add_argument("--serial_port", '-s', type=str, help="Serial port to read test result data")
+    parser.add_argument("--serial_port", '-s', type=str, nargs='?', default="ttyACM0", help="Serial port to read test result data")
+    parser.add_argument("--alternate_port", '-a', type=str, default="ttyACM1", help="Alternate serial port to try if the primary fails")
     parser.add_argument('--baudrate', '-r', default=1000000)
     parser.add_argument("--unique-id", '-i', default=None)
     args = parser.parse_args()
@@ -36,9 +37,20 @@ if __name__ == '__main__':
             FileProgrammer(session).program(args.binary)
 
         if args.serial_port is not None:
+            serial_ports = [args.serial_port, args.alternate_port]
+            serial_connection = None
+            for port in serial_ports:
+                try:
+                    serial_connection = serial.Serial(port, args.baudrate, timeout=1, rtscts=True)
+                    break  # Successfully connected, exit the loop
+                except serial.SerialException:
+                    logging.debug(f"Failed to connect to {port}. Trying next available port...")
+            else:
+                logging.error("Unable to connect to any specified serial ports.")
+                sys.exit(1)
             # Connect to the device via serial
             return_value = 1
-            with serial.Serial(args.serial_port, args.baudrate, rtscts=True) as ser:
+            with serial_connection as ser:
                 time.sleep(0.1)
                 ser.reset_input_buffer()
 
