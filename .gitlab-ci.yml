@@ -1,10 +1,6 @@
 stages:
   - build
   - test
-services:
-  - name: docker:dind
-    entrypoint: ["dockerd-entrypoint.sh"]
-    command: ["--host=unix:///var/run/docker.sock"]
 
 variables:
   DOCKER_HOST: tcp://docker:2375/
