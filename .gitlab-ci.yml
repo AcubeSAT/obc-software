@@ -1,12 +1,21 @@
 stages:
   - build
   - test
+services:
+  - name: docker:dind
+    entrypoint: ["dockerd-entrypoint.sh"]
+    command: ["--host=unix:///var/run/docker.sock"]
+
+variables:
+  DOCKER_HOST: tcp://docker:2375/
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: overlay2
+  DOCKER_PULL_POLICY: if-not-present
+  DOCKER_CONFIG: /dev/null
 
 build-arm:
   image: spacedot/build-arm
   stage: build
-  before_script:
-    - ls /root/
   script:
     - mkdir conan-build
     - conan profile detect --force
