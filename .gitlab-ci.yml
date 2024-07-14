@@ -49,4 +49,4 @@ test-hw:
 
   script:
     - python3 -c "import serial; print(serial.VERSION)"
-    - python3 test.py -b ../OBC_SOFTWARE.elf -s /dev/ttyACM0 -i AT -r 115200
+    - python3 test.py -b ../OBC_SOFTWARE.elf -s /dev/ttyACM1 -i AT -r 115200
