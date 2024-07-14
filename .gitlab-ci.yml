@@ -48,5 +48,7 @@ test-hw:
     - wget https://packs.download.microchip.com/Microchip.SAMV71_DFP.4.5.82.pack
 
   script:
-    - find . -name "OBC_SOFTWARE" -exec cp {} /root/OBC_SOFTWARE.elf \;
-    - python3 test.py -b /root/OBC_SOFTWARE.elf -s /dev/ttyACM0 -i AT
+    - find . -name "OBC_SOFTWARE"
+    - ls
+    - ls ..
+    - python3 test.py -b BC_SOFTWARE.elf -s /dev/ttyACM0 -i AT
