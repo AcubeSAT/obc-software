@@ -47,5 +47,5 @@ test-hw:
     - wget https://packs.download.microchip.com/Microchip.SAMV71_DFP.4.5.82.pack
 
   script:
-    - ls /dev/ttyACM*
+    - ls /dev/tty*
     - python3 test.py -b /root/OBC_SOFTWARE.elf -s /dev/ttyACM0
