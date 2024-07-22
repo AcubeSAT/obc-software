@@ -1,12 +1,27 @@
 #include "definitions.h"
 #include <iostream>
+#include <catch2/catch_all.hpp>
+#include "main.h"
+#include "definitions.h"
+#include "InitializationTask.hpp"
+#include "FreeRTOSHandlers.hpp"
 
-#define CATCH_CONFIG_RUNNER
-#define CATCH_CONFIG_NO_POSIX_SIGNALS
-#define CATCH_CONFIG_FAST_COMPILE
-#define CATCH_CONFIG_ENABLE_BENCHMARKING
-//#define CATCH_CONFIG_DISABLE_EXCEPTIONS
-#include "catch2/catch.hpp"
+#define IDLE_TASK_SIZE 100
+
+#if configSUPPORT_STATIC_ALLOCATION
+/* static memory allocation for the IDLE task */
+static StaticTask_t xIdleTaskTCBBuffer;
+static StackType_t xIdleStack[IDLE_TASK_SIZE];
+
+extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer,
+                                              uint32_t *pulIdleTaskStackSize) {
+    *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
+    *ppxIdleTaskStackBuffer = &xIdleStack[0];
+    *pulIdleTaskStackSize = IDLE_TASK_SIZE;
+}
+
+#endif
+
 
 extern "C" {
 
@@ -22,7 +37,7 @@ void main_cpp() {
     // This is the equivalent of passing command-line argument
     auto configData = Catch::ConfigData();
     configData.showDurations = Catch::ShowDurations::Always;
-    configData.useColour = Catch::UseColour::Yes;
+//    configData.useColour = Catch::UseColour::Yes;
     session.useConfigData(configData);
 
     std::cout << "[" << SYSTICK_TimerCounterGet() << "] Running tests..." << std::endl;

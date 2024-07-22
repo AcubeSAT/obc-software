@@ -71,7 +71,7 @@ file(GLOB_RECURSE FREERTOS_SOURCES "lib/FreeRTOS/*.c")
 #add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
 
 #target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross etl log_common)
-find_package(Catch2 CONFIG)
+find_package(Catch2 CONFIG )
 IF(Catch2_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/tests")
     file(GLOB test_main_SRC "tests/*.cpp")
 #    file(GLOB test_SRC "test/**/*.cpp")
@@ -80,7 +80,7 @@ IF(Catch2_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/tests")
             ${SOURCES} ${LINKER_SCRIPT} ${FREERTOS_SOURCES} ${DRIVER_SOURCES}
 #            ${test_SRC})
     )
-    target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross etl log_common Catch2::Catch2WithMain)
+    target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross etl log_common Catch2::Catch2)
 ENDIF()
 set(CMAKE_EXE_LINKER_FLAGS
         "${CMAKE_EXE_LINKER_FLAGS_INIT} -Wl,-Map=${PROJECT_BINARY_DIR}/${PROJECT_NAME}.map")

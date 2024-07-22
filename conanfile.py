@@ -51,9 +51,12 @@ class OBCSoftwareRecipe(ConanFile):
     def layout(self):
         cmake_layout(self)
 
+
     def generate(self):
+        print("hi3")
         tc = CMakeToolchain(self)
         tc.variables["NO_SYSTEM_INCLUDE"] = True
+        tc.preprocessor_definitions["CATCH_INTERNAL_CONFIG_NO_POSIX_SIGNALS"] = "1"
         tc.generate()
 
     def build(self):
@@ -63,7 +66,8 @@ class OBCSoftwareRecipe(ConanFile):
         cmake.build()
 
     def requirements(self):
+        print("hi2")
         self.requires("etl/20.37.2")
         self.requires("logger/1.0")
         self.requires("ecss-services/1.1")
-        self.requires("catch2/3.3.1", build="cmake")
+        self.requires("catch2/3.3.1")

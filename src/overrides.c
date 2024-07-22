@@ -4,7 +4,6 @@
 #include "definitions.h"
 
 #include <sys/types.h>
-#include <sys/time.h>
 
 /**
  * _gettimeofday() is used by gettimeofday() of newlib, which is used by the
@@ -46,9 +45,9 @@ int _write(int file, char *ptr, int len)
     if (file == 1 || file == 2) { // stdout, stderr
         while (1) {
             // Wait until buffer is free
-            while (USART1_WriteFreeBufferCountGet() < len) {
-                SYSTICK_DelayMs(1);
-            }
+//            while (USART1_WriteFreeBufferCountGet() < len) {
+//                SYSTICK_DelayMs(1);
+//            }
             size_t bytesWritten = USART1_Write((uint8_t *) ptr, len);
             if (bytesWritten < len) {
                 // Could not write the entire data to the queue (probably because the queue is full).
@@ -62,6 +61,3 @@ int _write(int file, char *ptr, int len)
     }
     return len;
 }
-//
-// Created by athanasios on 18/7/2024.
-//
