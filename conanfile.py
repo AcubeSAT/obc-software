@@ -31,11 +31,6 @@ class OBCSoftwareRecipe(ConanFile):
     def config_options(self):
         if self.settings.os == "Windows":
             del self.options.fPIC
-    def package_info(self):
-        self.cpp_info.defines.append("CATCH_CONFIG_NO_POSIX_SIGNALS")
-        self.cpp_info.defines.append("CATCH_CONFIG_RUNNER")
-        self.cpp_info.defines.append("CATCH_CONFIG_FAST_COMPILE")
-        self.cpp_info.defines.append("CATCH_CONFIG_ENABLE_BENCHMARKING")
 
     def source(self):
         repos = [
@@ -63,6 +58,7 @@ class OBCSoftwareRecipe(ConanFile):
 
     def build(self):
         cmake = CMake(self)
+        print("hi1")
         cmake.configure()
         cmake.build()
 
@@ -70,4 +66,4 @@ class OBCSoftwareRecipe(ConanFile):
         self.requires("etl/20.37.2")
         self.requires("logger/1.0")
         self.requires("ecss-services/1.1")
-        self.requires("catch2/3.3.1")
+        self.requires("catch2/3.3.1", build="cmake")

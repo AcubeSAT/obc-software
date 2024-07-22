@@ -69,7 +69,7 @@ file(GLOB_RECURSE SOURCES "src/*.c" "src/*.cpp" "lib/SEGGER/RTT/*.c" "AutoGenera
 file(GLOB_RECURSE FREERTOS_SOURCES "lib/FreeRTOS/*.c")
 
 #add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT} ${FREERTOS_SOURCES} ${DRIVER_SOURCES})
-conan
+
 #target_link_libraries(${PROJECT_NAME}.elf PRIVATE common common_cross etl log_common)
 find_package(Catch2 CONFIG)
 IF(Catch2_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/tests")
