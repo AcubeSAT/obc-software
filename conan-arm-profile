@@ -16,5 +16,5 @@ CXX=/usr/bin/arm-none-eabi-g++
 [conf]
 tools.build:cxxflags=["-mcpu=cortex-m7 -lc -lg_nano -lnosys -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv5-d16 -lc_nano"]
 tools.build:cflags=["-mcpu=cortex-m7 -lc -lg_nano -lnosys -mthumb -mthumb-interwork -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0 -specs=nosys.specs -specs=nano.specs -mfloat-abi=hard -mfpu=fpv5-d16 -lc_nano"]
-tools.build:exelinkflags=["-Wl,-gc-sections,-lc,-lg_nano,-lnosys,-lc_nano"]
+tools.build:exelinkflags=["-Wl,-gc-sections"]
 tools.build:defines=["CATCH_CONFIG_NO_POSIX_SIGNALS"]

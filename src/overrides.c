@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <sys/time.h>
 
 #include "definitions.h"
@@ -60,4 +59,8 @@ int _write(int file, char *ptr, int len)
         }
     }
     return len;
+}
+
+void __ssputws_r(void) {
+    // Stub function
 }
