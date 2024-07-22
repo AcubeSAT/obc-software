@@ -19,6 +19,7 @@ build-arm:
     - cd .. 
     - conan install . --output-folder conan-build --build=missing -pr conan-arm-profile
     - cmake . -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=conan-build/build/Debug/generators/conan_toolchain.cmake -DCMAKE_CXX_COMPILER="arm-none-eabi-g++" -DCMAKE_C_COMPILER="arm-none-eabi-gcc"
+    - ls
     - cmake --build conan-build --target OBC_SOFTWARE.elf
   artifacts:
     when: always
