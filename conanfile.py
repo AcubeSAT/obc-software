@@ -57,6 +57,7 @@ class OBCSoftwareRecipe(ConanFile):
         tc = CMakeToolchain(self)
         tc.variables["NO_SYSTEM_INCLUDE"] = True
         tc.preprocessor_definitions["CATCH_INTERNAL_CONFIG_NO_POSIX_SIGNALS"] = "1"
+        tc.preprocessor_definitions["CATCH_CONFIG_NOSTDOUT"] = "1"
         tc.generate()
 
     def build(self):
