@@ -1,3 +1,8 @@
+# PyOCD configuration file, allowing the flashing through OCD & Python of an .elf file to an ATSAMV71Q21 MCU Dev Board
+# 1.  `pack` defines the path of the target device configuration file (.pack)
+# 2. target_override sets the actual target name
+# 3. sets the debugger protocol (swd)
+# 4. fast_program checks with CRC whether the same data are flashed
 pack:
   - ./Microchip.SAMV71_DFP.4.5.82.pack
 
