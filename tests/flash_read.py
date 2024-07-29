@@ -10,7 +10,6 @@ import sys
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-
 """
 Code that flashes a .elf file to the target and then reads the serial port for the test results.
 """
