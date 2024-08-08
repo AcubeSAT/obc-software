@@ -22,7 +22,7 @@ class OBCSoftwareRecipe(ConanFile):
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = {"shared": False, "fPIC": False, "ecss-services/*:ecss_config_file_path": os.path.abspath("inc/Platform/")}
+    default_options = {"shared": False, "fPIC": False, "ecss-services/*:platform_definitions_path": os.path.abspath("inc/Platform/")}
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "src/*", "inc/*", "lib/*"
@@ -64,4 +64,4 @@ class OBCSoftwareRecipe(ConanFile):
     def requirements(self):
         self.requires("etl/20.37.2")
         self.requires("logger/1.0")
-        self.requires("ecss-services/1.1")
+        self.requires("ecss-services/1.2")
