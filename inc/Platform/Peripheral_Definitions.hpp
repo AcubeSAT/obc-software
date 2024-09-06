@@ -12,6 +12,7 @@
 #define TC_HANDLING_UART_ReadCountGet USART1_ReadCountGet
 #define TC_HANDLING_UART_ErrorGet USART1_ErrorGet
 #define TC_HANDLING_UART_Read USART1_Read
+#define TC_HANDLING_UART_ERROR USART_ERROR
 
 namespace CAN {
     /**
