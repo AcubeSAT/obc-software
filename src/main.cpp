@@ -6,6 +6,7 @@
 #include "definitions.h"
 #include "InitializationTask.hpp"
 #include "FreeRTOSHandlers.hpp"
+#include "OBTtoADCSTask.hpp"
 
 #define IDLE_TASK_SIZE 100
 
@@ -26,9 +27,11 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
     initializationTask.emplace();
+    OBTtoADCSTask.emplace();
+
 
     initializationTask->createTask();
-
+    OBTtoADCSTask->createTask();
 
     vTaskStartScheduler();
 
