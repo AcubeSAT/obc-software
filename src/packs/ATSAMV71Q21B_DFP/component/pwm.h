@@ -20,6 +20,11 @@
  *
  */
 
+typedef enum {
+  LEVEL_0 = 0,
+  LEVEL_1 = 1,
+  } pwm_level_t;
+
 /* file generated from device description version 2020-11-26T11:15:04Z */
 #ifndef _SAMV71_PWM_COMPONENT_H_
 #define _SAMV71_PWM_COMPONENT_H_
@@ -1515,6 +1520,14 @@ typedef struct
 
 #define PWM_CMP_NUMBER _U_(8)
 
+typedef enum
+{
+  PWM_CHANNEL_0,
+  PWM_CHANNEL_1,
+  PWM_CHANNEL_2,
+  PWM_CHANNEL_3
+}PWM_CHANNEL_NUM;
+
 #define PWM_CH_NUM_NUMBER _U_(4)
 
 /** \brief PWM register API structure */
@@ -1563,7 +1576,7 @@ typedef struct
   __I   uint8_t                        Reserved6[0x44];
         pwm_cmp_registers_t            PWM_CMP[PWM_CMP_NUMBER]; /**< Offset: 0x130 PWM Comparison 0 Value Register */
   __I   uint8_t                        Reserved7[0x50];
-        pwm_ch_num_registers_t         PWM_CH_NUM[PWM_CH_NUM_NUMBER]; /**< Offset: 0x200 PWM Channel Mode Register */
+        pwm_ch_num_registers_t         PWM_CHANNEL_NUM[PWM_CH_NUM_NUMBER]; /**< Offset: 0x200 PWM Channel Mode Register */
   __I   uint8_t                        Reserved8[0x180];
   __O   uint32_t                       PWM_CMUPD0;         /**< Offset: 0x400 ( /W  32) PWM Channel Mode Update Register (ch_num = 0) */
   __I   uint8_t                        Reserved9[0x1C];
