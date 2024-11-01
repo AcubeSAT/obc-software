@@ -20,10 +20,6 @@
  *
  */
 
-typedef enum {
-  LEVEL_0 = 0,
-  LEVEL_1 = 1,
-  } pwm_level_t;
 
 /* file generated from device description version 2020-11-26T11:15:04Z */
 #ifndef _SAMV71_PWM_COMPONENT_H_
