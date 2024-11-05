@@ -1,6 +1,5 @@
 #pragma once
 
-#include "CAN/Driver.hpp"
 #include "Task.hpp"
 
 class TimeSyncTask : public Task {
@@ -26,4 +25,3 @@ public:
 };
 
 inline std::optional<TimeSyncTask> TimeSyncTask;
-
