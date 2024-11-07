@@ -3,7 +3,6 @@
 
 
 void TimeSyncTask::execute() {
-    CAN::Application::switchBus(CAN::Driver::Main);
 
     while (true) {
 
