@@ -6,6 +6,8 @@ class TimeSyncTask : public Task {
 private:
 
 public:
+    const int TimeSyncPeriod = 10000;
+
     const static inline uint16_t TaskStackDepth = 2300;
 
     StackType_t taskStack[TaskStackDepth];

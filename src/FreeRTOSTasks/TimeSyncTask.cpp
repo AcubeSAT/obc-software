@@ -6,11 +6,10 @@ void TimeSyncTask::execute() {
 
     while (true) {
 
-        using namespace AcubeSATParameters;
 
         CAN::Application::sendUTCTimeMessage();
 
-        vTaskDelay(pdMS_TO_TICKS(2000));
+        vTaskDelay(pdMS_TO_TICKS(TimeSyncPeriod));
     }
 
 }
