@@ -7,6 +7,8 @@
 #include "StatisticsReportingTask.hpp"
 #include "Task.hpp"
 #include "AFEC0HandlingTask.hpp"
+#include "TimeSyncTask.hpp"
+
 
 class InitializationTask: public Task {
 public:

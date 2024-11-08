@@ -1,6 +1,5 @@
 #include "InitializationTask.hpp"
 
-#include "TimeSyncTask.hpp"
 
 void InitializationTask::execute() {
         initializeTasks();
