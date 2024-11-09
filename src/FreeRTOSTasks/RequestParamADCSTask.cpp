@@ -13,6 +13,7 @@ void RequestParamADCSTask::execute() {
     while (true) {
         using namespace AcubeSATParameters;
 
+        /* Extra parameters*/
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSUseRTT}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSUseUART}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSUseCAN}, false);
