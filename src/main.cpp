@@ -7,7 +7,6 @@
 #include "InitializationTask.hpp"
 #include "FreeRTOSHandlers.hpp"
 
-
 #define IDLE_TASK_SIZE 100
 
 #if configSUPPORT_STATIC_ALLOCATION

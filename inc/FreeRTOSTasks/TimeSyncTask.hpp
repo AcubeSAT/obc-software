@@ -3,7 +3,6 @@
 #include "Task.hpp"
 
 class TimeSyncTask : public Task {
-private:
 
 public:
     const int TimeSyncPeriod = 10000;
@@ -13,7 +12,6 @@ public:
     StackType_t taskStack[TaskStackDepth];
 
     void execute();
-
 
     TimeSyncTask() : Task("TimeSyncTask") {}
 
@@ -26,4 +24,4 @@ public:
     }
 };
 
-inline std::optional<TimeSyncTask> TimeSyncTask;
+inline std::optional<TimeSyncTask> timeSyncTask;

@@ -1,19 +1,18 @@
 #include "InitializationTask.hpp"
 
-
 void InitializationTask::execute() {
         initializeTasks();
         housekeepingTask.emplace();
         timeBasedSchedulingTask.emplace();
         statisticsReportingTask.emplace();
         afec0HandlingTask.emplace();
-        TimeSyncTask.emplace();
+        timeSyncTask.emplace();
 
         statisticsReportingTask->createTask();
         housekeepingTask->createTask();
         timeBasedSchedulingTask->createTask();
         afec0HandlingTask->createTask();
-        TimeSyncTask->createTask();
+        timeSyncTask->createTask();
 
         vTaskSuspend(NULL);
 }
