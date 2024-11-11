@@ -2,9 +2,7 @@ cmake_minimum_required(VERSION 3.19.2)
 
 project(OBC_SOFTWARE C CXX ASM)
 
-set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld
-        inc/FreeRTOSTasks/RequestParamADCSTask.hpp
-        src/FreeRTOSTasks/RequestParamADCSTask.cpp)
+set(LINKER_SCRIPT ${CMAKE_SOURCE_DIR}/src/config/default/ATSAMV71Q21B.ld)
 
 add_definitions(-DARM_MATH_CM7 -DARM_MATH_MATRIX_CHECK -DARM_MATH_ROUNDING -D__FPU_PRESENT=1)
 SET(CMAKE_EXE_LINKER_FLAGS_INIT "-Wl,-gc-sections,--print-memory-usage -T ${LINKER_SCRIPT}")
