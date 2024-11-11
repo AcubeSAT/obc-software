@@ -8,6 +8,7 @@
 #include "Task.hpp"
 #include "AFEC0HandlingTask.hpp"
 #include "TimeSyncTask.hpp"
+#include "TimeRequestUponResetTask.hpp"
 
 
 class InitializationTask: public Task {

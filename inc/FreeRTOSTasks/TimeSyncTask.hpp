@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Task.hpp"
+#include  "ApplicationLayer.hpp"
 
 class TimeSyncTask : public Task {
 
@@ -10,11 +11,12 @@ public:
     const static inline uint16_t TaskStackDepth = 2300;
 
     StackType_t taskStack[TaskStackDepth];
+    TaskHandle_t TimeSyncTaskHandle = NULL;
 
     void execute();
 
     TimeSyncTask() : Task("TimeSyncTask") {}
-
+    
     /**
      * Create freeRTOS Task
      */
@@ -25,3 +27,4 @@ public:
 };
 
 inline std::optional<TimeSyncTask> timeSyncTask;
+
