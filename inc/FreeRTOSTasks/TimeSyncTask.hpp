@@ -7,16 +7,16 @@ class TimeSyncTask : public Task {
 
 public:
     const int TimeSyncPeriod = 10000;
+    int static inline timeRequested = 0;
 
     const static inline uint16_t TaskStackDepth = 2300;
 
     StackType_t taskStack[TaskStackDepth];
-    TaskHandle_t TimeSyncTaskHandle = NULL;
 
     void execute();
 
     TimeSyncTask() : Task("TimeSyncTask") {}
-    
+
     /**
      * Create freeRTOS Task
      */
