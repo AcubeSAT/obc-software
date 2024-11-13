@@ -13,13 +13,13 @@ void RequestParamADCSTask::execute() {
     while (true) {
         using namespace AcubeSATParameters;
 
-        /* Extra parameters*/
+        /* ID11 to ID13 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSUseRTT}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSUseUART}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSUseCAN}, false);
 
 
-        /* ID000 until ID012 */
+        /* ID000 to ID012 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSXBodyFrameRegardingOrbitFrame}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSYBodyFrameRegardingOrbitFrame}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSZBodyFrameRegardingOrbitFrame}, false);
@@ -35,8 +35,7 @@ void RequestParamADCSTask::execute() {
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSQuaternionOrbitFrameToBodyVectorElem3}, false);
 
 
-        /*  Contains RM3100 Magnetometer Parameters */
-        /* ID013 until ID042 */
+        /* ID013 to ID042 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerRawX}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerRawY}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerRawZ}, false);
@@ -72,9 +71,7 @@ void RequestParamADCSTask::execute() {
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFineSunSensorCalculatedZ}, false);
 
 
-        /*  Contains ADXRS453 Gyroscope Parameters in every axis
-         *  Contains ADXRS453 Gyroscope register values */
-        /* ID043 until ID057 */
+        /* ID043 to ID057 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroscopeRateX}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroscopeRateY}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroscopeRateZ}, false);
@@ -107,8 +104,7 @@ void RequestParamADCSTask::execute() {
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroZFAULT0Register}, false);
 
 
-        /*  Contains Magnetorquer Parameters */
-        /* ID058 until ID063 */
+        /* ID058 to ID063 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerOnXAxisHBridgePolarity}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerOnYAxisHBridgePolarity}, false);
 
@@ -120,7 +116,7 @@ void RequestParamADCSTask::execute() {
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerOnZAxisOnOff}, false);
 
 
-        /* ID064 until ID072 */
+        /* ID064 to ID072 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGainBdotXAxis}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGainBdotYAxis}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGainBdotZAxis}, false);
@@ -132,7 +128,7 @@ void RequestParamADCSTask::execute() {
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGainDerivativePDZAxis}, false);
 
 
-        /* ID073 until ID079  +2 ADCS Gyroscope temperature */
+        /* ID073 to ID079 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSiMQTBoardCoilXTemperatureSensor}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSiMQTBoardCoilYTemperatureSensor}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSiMQTBoardCoilZTemperatureSensor}, false);
@@ -144,7 +140,7 @@ void RequestParamADCSTask::execute() {
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSBoardTemperature2}, false);
 
 
-        /* ID080 until ID095 */
+        /* ID080 to ID095 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMode}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSTLE}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSInitialKalmanQuaternionECIFrameToBodyScalar}, false);
@@ -166,7 +162,7 @@ void RequestParamADCSTask::execute() {
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSTimeGST_JD}, false);
 
 
-        /* ID096 until ID114 */
+        /* ID096 to ID114 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesQ1}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesQ2}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesQ3}, false);
@@ -192,7 +188,7 @@ void RequestParamADCSTask::execute() {
 
 
 
-        /* ID115 until ID124 */
+        /* ID115 to ID124 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesPInitial1}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesPInitial2}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesPInitial3}, false);
@@ -205,7 +201,7 @@ void RequestParamADCSTask::execute() {
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesPInitial10}, false);
         
 
-        /* ID125 until ID173 */
+        /* ID125 to ID173 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSReactionWheelOn}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSReactionWheelAngularVelocity}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerAxisAssignment}, false);
@@ -266,13 +262,13 @@ void RequestParamADCSTask::execute() {
 
 
 
-        /* ID174 until ID176 */
+        /* ID174 to ID176 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroBiasX}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroBiasY}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroBiasZ}, false);
 
 
-        /* ID177 until ID202 */
+        /* ID177 to ID202 */
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSatellitePositionLatitude}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSatellitePositionLongitude}, false);
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSatellitePositionHeight}, false);
