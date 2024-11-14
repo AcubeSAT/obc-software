@@ -27,8 +27,8 @@ extern "C" void main_cpp() {
     SYS_Initialize(NULL);
     initializationTask.emplace();
 
-
     initializationTask->createTask();
+
 
     vTaskStartScheduler();
 

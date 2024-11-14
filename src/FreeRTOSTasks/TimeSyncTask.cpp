@@ -2,14 +2,13 @@
 
 void TimeSyncTask::execute() {
     while (true) {
-        if(timeRequested == 0) {
-            CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS,false,{AcubeSATParameters::ADCSOnBoardTime},false);
+        if (timeRequested == false) {
+            CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,
+                                                             {AcubeSATParameters::ADCSOnBoardTime}, false);
             vTaskDelay(pdMS_TO_TICKS(TimeSyncPeriod));
-        }
-        else {
+        } else {
             CAN::Application::sendUTCTimeMessage();
             vTaskDelay(pdMS_TO_TICKS(TimeSyncPeriod));
         }
     }
-
 }

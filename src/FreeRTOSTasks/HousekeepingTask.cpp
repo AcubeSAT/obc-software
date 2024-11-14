@@ -7,7 +7,6 @@ void HousekeepingTask::execute() {
     TickType_t xLastWakeTime = xTaskGetTickCount();
     Time::DefaultCUC TaskGetTickCountCUC(pdTICKS_TO_S(xTaskGetTickCount()));
     while (true) {
-        LOG_DEBUG << "Bootcounter is " << AcubeSATParameters::OBCMCUBootCounter;
         nextCollection = housekeeping.reportPendingStructures(TaskGetTickCountCUC, timeBeforeDelay, nextCollection);
         timeBeforeDelay = TaskGetTickCountCUC;
         vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(nextCollection.formatAsBytes()));

@@ -4,10 +4,11 @@
 #include  "ApplicationLayer.hpp"
 
 class TimeSyncTask : public Task {
+private:
+    bool timeRequested = false;
 
 public:
     const int TimeSyncPeriod = 10000;
-    int static inline timeRequested = 0;
 
     const static inline uint16_t TaskStackDepth = 2300;
 
@@ -15,16 +16,20 @@ public:
 
     void execute();
 
-    TimeSyncTask() : Task("TimeSyncTask") {}
+    TimeSyncTask() : Task("TimeSyncTask") {
+    }
+
+    void setTimeRequested(bool requested) {
+        timeRequested = requested;
+    }
 
     /**
      * Create freeRTOS Task
      */
     void createTask() {
-        xTaskCreateStatic(vClassTask < TimeSyncTask > , this->TaskName, TimeSyncTask::TaskStackDepth, this,
-                         tskIDLE_PRIORITY+1, this->taskStack, &(this->taskBuffer));
+        xTaskCreateStatic(vClassTask<TimeSyncTask>, this->TaskName, TimeSyncTask::TaskStackDepth, this,
+                          tskIDLE_PRIORITY, this->taskStack, &(this->taskBuffer));
     }
 };
 
 inline std::optional<TimeSyncTask> timeSyncTask;
-
