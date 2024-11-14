@@ -1,0 +1,26 @@
+#include "CAN/Driver.hpp"
+#include "Task.hpp"
+
+class requestParamADCSTask : public Task {
+private:
+
+public:
+    const static inline uint16_t TaskStackDepth = 2300;
+
+    StackType_t taskStack[TaskStackDepth];
+
+    void execute();
+
+    requestParamADCSTask() : Task("CAN Test") {}
+
+    /**
+     * Create freeRTOS Task
+     */
+
+     void createTask() {
+        xTaskCreateStatic(vClassTask < requestParamADCSTask > , this->TaskName, requestParamADCSTask::TaskStackDepth, this,
+                        tskIDLE_PRIORITY+2, this->taskStack, &(this->taskBuffer));
+    }
+};
+
+inline std::optional<requestParamADCSTask> requestParamADCSTask;

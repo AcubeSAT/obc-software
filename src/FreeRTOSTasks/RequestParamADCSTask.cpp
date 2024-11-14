@@ -1,18 +1,13 @@
-#include "RequestParamADCSTask.hpp"
+#include "requestParamADCSTask.hpp"
 #include "CANGatekeeperTask.hpp"
 #include "TimeKeepingTask.hpp"
 #include "AcubeSATParameters.hpp"
 
-void RequestParamADCSTask::execute() {
-    CAN::Application::switchBus(CAN::Driver::Main);
-    CAN::Frame frame = {CAN::NodeID};
-    for (auto i = 0; i < CAN::Frame::MaxDataLength; i++) {
-        frame.data.at(i) = i;
-    }
+void requestParamADCSTask::execute() {
+
+    using namespace AcubeSATParameters;
 
     while (true) {
-        using namespace AcubeSATParameters;
-
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSUseRTT,
             ADCSUseUART,
@@ -306,11 +301,6 @@ void RequestParamADCSTask::execute() {
             ADCSFLASHInt}, false);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSRAMInt}, false);
-
-
-
-
-        //canGatekeeperTask->send(frame);
 
         vTaskDelay(pdMS_TO_TICKS(5000));
     }
