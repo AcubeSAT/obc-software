@@ -9,7 +9,6 @@
 #include "AFEC0HandlingTask.hpp"
 #include "TimeSyncTask.hpp"
 
-
 class InitializationTask: public Task {
 public:
     const static inline uint16_t TaskStackDepth = 8300;
