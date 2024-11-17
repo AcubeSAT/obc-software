@@ -30,7 +30,6 @@ void requestParamADCSTask::execute() {
                 ADCSMagnetometerRawZ,
                 ADCSMagnetometerFrequency}, false);
 
-        //vTaskDelay(pdMS_TO_TICKS(100));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerCycleCountX,
             ADCSMagnetometerCycleCountY,
@@ -55,7 +54,6 @@ void requestParamADCSTask::execute() {
             ADCSFineSunSensorFilteredTopRight,
             ADCSFineSunSensorFilteredBottomLeft}, false);
 
-        //vTaskDelay(pdMS_TO_TICKS(100));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFineSunSensorFilteredBottomRight,
             ADCSFineSunSensorAngularAlphaAngle,
@@ -79,8 +77,6 @@ void requestParamADCSTask::execute() {
             ADCSGyroYLOCS1TRegister,
             ADCSGyroYLOCS0TRegister,
             ADCSGyroYHICST1Register}, false);
-
-        //vTaskDelay(pdMS_TO_TICKS(100));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroYHICST0Register,
@@ -106,8 +102,6 @@ void requestParamADCSTask::execute() {
             ADCSMagnetorquerOnZAxisOnOff,
             ADCSGainBdotXAxis}, false);
 
-        //vTaskDelay(pdMS_TO_TICKS(150));
-
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGainBdotYAxis,
             ADCSGainBdotZAxis,
@@ -132,7 +126,6 @@ void requestParamADCSTask::execute() {
             ADCSTLE,
             ADCSInitialKalmanQuaternionECIFrameToBodyScalar}, false);
 
-        //vTaskDelay(pdMS_TO_TICKS(150));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem1,
             ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem2,
@@ -156,8 +149,6 @@ void requestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesQ5,
             ADCSDeterminationInitialMatricesQ6,
             ADCSDeterminationInitialMatricesQ7}, false);
-
-        //vTaskDelay(pdMS_TO_TICKS(100));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesQ8,
@@ -183,7 +174,6 @@ void requestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesPInitial7,
             ADCSDeterminationInitialMatricesPInitial8}, false);
 
-        //vTaskDelay(pdMS_TO_TICKS(100));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesPInitial9,
             ADCSDeterminationInitialMatricesPInitial10,
@@ -207,8 +197,6 @@ void requestParamADCSTask::execute() {
             ADCSFrameAxisSignECIToOrbit_Z,
             ADCSFrameAxisSignNEDToECEF_X,
             ADCSFrameAxisSignNEDToECEF_Y}, false);
-
-        //vTaskDelay(pdMS_TO_TICKS(100));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFrameAxisSignNEDToECEF_Z,
@@ -234,8 +222,6 @@ void requestParamADCSTask::execute() {
             ADCSMagnetorquerDutyCycle,
             ADCSMagnetorquerCurrentX}, false);
 
-        //vTaskDelay(pdMS_TO_TICKS(100));
-
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerCurrentY,
             ADCSMagnetorquerCurrentZ,
@@ -260,7 +246,6 @@ void requestParamADCSTask::execute() {
             ADCSSatellitePositionECIX,
             ADCSSatellitePositionECIY}, false);
 
-        //vTaskDelay(pdMS_TO_TICKS(100));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSatellitePositionECIZ,
             ADCSSatelliteLinearVelocityECIX,
@@ -285,7 +270,6 @@ void requestParamADCSTask::execute() {
             ADCSDutyCycleControl,
             ADCSDutyCycleOther}, false);
 
-        //vTaskDelay(pdMS_TO_TICKS(50));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDesatInitialAngularVelocityParam,
             ADCSMCUTemperature,
@@ -300,7 +284,7 @@ void requestParamADCSTask::execute() {
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSRAMInt}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(5000));
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 
 }
