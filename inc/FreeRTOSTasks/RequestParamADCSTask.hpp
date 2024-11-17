@@ -1,6 +1,8 @@
 #include "CAN/Driver.hpp"
 #include "Task.hpp"
 
+using namespace AcubeSATParameters;
+
 class requestParamADCSTask : public Task {
 private:
 
