@@ -3,10 +3,11 @@
 void TimeSyncTask::execute() {
     while (true) {
         if (timeRequested == false) {
-            CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,
-                                                             {AcubeSATParameters::ADCSOnBoardTime}, false);
-            vTaskDelay(pdMS_TO_TICKS(TimeSyncPeriod));
+          vTaskDelay(pdMS_TO_TICKS(1000));
+            CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{AcubeSATParameters::ADCSOnBoardTime}, false);
+            ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
         } else {
+            vTaskDelay(pdMS_TO_TICKS(100));
             CAN::Application::sendUTCTimeMessage();
             vTaskDelay(pdMS_TO_TICKS(TimeSyncPeriod));
         }

@@ -27,7 +27,7 @@ public:
      * Create freeRTOS Task
      */
     void createTask() {
-        xTaskCreateStatic(vClassTask<TimeSyncTask>, this->TaskName, TimeSyncTask::TaskStackDepth, this,
+        this->taskHandle = xTaskCreateStatic(vClassTask<TimeSyncTask>, this->TaskName, TimeSyncTask::TaskStackDepth, this,
                           tskIDLE_PRIORITY, this->taskStack, &(this->taskBuffer));
     }
 };
