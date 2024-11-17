@@ -11,7 +11,7 @@ public:
 
     void execute();
 
-    requestParamADCSTask() : Task("CAN Test") {}
+    requestParamADCSTask() : Task() {}
 
     /**
      * Create freeRTOS Task
