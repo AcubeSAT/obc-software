@@ -37,11 +37,11 @@ ENTRY(Reset_Handler)
 /* Memory Spaces Definitions */
 MEMORY
 {
-  rom      (rx)  : ORIGIN = 0x00400000, LENGTH = 0x00200000
+  rom      (rx)  : ORIGIN = 0x00400000, LENGTH = 0x1F0000  /* 1984KB for program */
+  settings (rx)  : ORIGIN = 0x005F0000, LENGTH = 0x10000   /* 64KB for settings */
   ram      (rwx) : ORIGIN = 0x20400000, LENGTH = 0x00060000
   ram_nocache (rwx) : ORIGIN = 0x2045E000, LENGTH = 0x2000
 }
-
 
 /* The stack size used by the application. NOTE: you need to adjust according to your application. */
 STACK_SIZE = DEFINED(STACK_SIZE) ? STACK_SIZE : DEFINED(__stack_size__) ? __stack_size__ : 0x8000;
@@ -152,7 +152,18 @@ _s_ram_nocache = .;
 _e_ram_nocache = .;
 } > ram_nocache
 
-. = ALIGN(4);
-_end = . ;
-end = _end;
+
+
+    .settings :
+    {
+        . = ALIGN(4);
+        _settings_start = .;
+        KEEP(*(.settings))
+        . = ALIGN(4);
+        _settings_end = .;
+    } > settings
+
+    . = ALIGN(4);
+    _end = . ;
+    end = _end;
 }

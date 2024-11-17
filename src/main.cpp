@@ -29,7 +29,6 @@ extern "C" void main_cpp() {
 
     initializationTask->createTask();
 
-
     vTaskStartScheduler();
 
     while (true) {
