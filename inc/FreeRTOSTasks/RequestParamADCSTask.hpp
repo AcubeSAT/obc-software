@@ -21,7 +21,7 @@ public:
 
      void createTask() {
         xTaskCreateStatic(vClassTask < requestParamADCSTask > , this->TaskName, requestParamADCSTask::TaskStackDepth, this,
-                        tskIDLE_PRIORITY+2, this->taskStack, &(this->taskBuffer));
+                        tskIDLE_PRIORITY  +  2, this->taskStack, &(this->taskBuffer));
     }
 };
 
