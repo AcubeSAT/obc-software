@@ -187,3 +187,19 @@ To integrate Harmony3 with CLion, follow the steps below:
 2. Open Harmony3.
 2. Navigate to File -> Preferences -> Diff.
 3. In the 'Diff Tool Command' section, enter `/usr/bin/meld {0} {1}`
+
+## Dev Container
+To avoid installing the dependencies manually, or install any packages locally, we provide a dev container.
+You can still interact with the project in the usual way, but all dependencies will be installed in the container.
+**Reminder:** To correctly clone git repos through conan, you'll need to set the SSH key in the container.
+
+### VSCode
+You can install the dev-containers extension from the marketplace. It should automatically detect the `devcontainer.json` file in the projects root directory.
+
+### Cursor
+Cursor doesn't support dev-containers extension yet. To use the dev-container, you can need to:
+1. Install the dev-container CLI by running `npm install -g devcontainer`
+2. Run `devcontainer build --workspace-folder .` in the terminal in the project root directory.
+3. To get into the container's shell, run `devcontainer exec --workspace-folder . /bin/bash`.
+
+Everything should be ready to go from there.
