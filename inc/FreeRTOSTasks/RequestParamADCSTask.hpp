@@ -13,7 +13,7 @@ public:
 
     void execute();
 
-    RequestParamADCSTask() : Task() {}
+    RequestParamADCSTask() : Task("") {}
 
     /**
      * Create freeRTOS Task
