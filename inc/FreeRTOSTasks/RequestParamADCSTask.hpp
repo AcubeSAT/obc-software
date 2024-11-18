@@ -3,7 +3,7 @@
 
 using namespace AcubeSATParameters;
 
-class requestParamADCSTask : public Task {
+class RequestParamADCSTask : public Task {
 private:
 
 public:
@@ -13,16 +13,16 @@ public:
 
     void execute();
 
-    requestParamADCSTask() : Task() {}
+    RequestParamADCSTask() : Task() {}
 
     /**
      * Create freeRTOS Task
      */
 
      void createTask() {
-        xTaskCreateStatic(vClassTask < requestParamADCSTask > , this->TaskName, requestParamADCSTask::TaskStackDepth, this,
+        xTaskCreateStatic(vClassTask < RequestParamADCSTask > , this->TaskName, RequestParamADCSTask::TaskStackDepth, this,
                         tskIDLE_PRIORITY  +  2, this->taskStack, &(this->taskBuffer));
     }
 };
 
-inline std::optional<requestParamADCSTask> requestParamADCSTask;
+inline std::optional<RequestParamADCSTask> requestParamADCSTask;

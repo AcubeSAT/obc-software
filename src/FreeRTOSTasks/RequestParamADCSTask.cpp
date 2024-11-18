@@ -1,9 +1,9 @@
-#include "requestParamADCSTask.hpp"
+#include "RequestParamADCSTask.hpp"
 #include "CANGatekeeperTask.hpp"
 #include "TimeKeepingTask.hpp"
 #include "AcubeSATParameters.hpp"
 
-void requestParamADCSTask::execute() {
+void RequestParamADCSTask::execute() {
 
     while (true) {
 

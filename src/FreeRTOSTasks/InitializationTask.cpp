@@ -1,4 +1,5 @@
 #include "InitializationTask.hpp"
+#include "RequestParamADCSTask.hpp"
 
 void InitializationTask::execute() {
         initializeTasks();
