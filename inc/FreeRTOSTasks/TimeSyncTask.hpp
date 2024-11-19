@@ -19,8 +19,8 @@ public:
     TimeSyncTask() : Task("TimeSyncTask") {
     }
 
-    void setTimeRequested(bool requested) {
-        timeRequested = requested;
+    void setTimeRequested(bool timeRequested) {
+        this->timeRequested = timeRequested;
     }
 
     /**
