@@ -4,8 +4,7 @@ static void updateTimeOnReset(const Time::DefaultCUC& time){
     if (timeSyncTask.has_value()) {
         Time::DefaultCUC time1 = time;
         UTCTimestamp utc = time1.toUTCtimestamp();
-        const int MonthOffset = -1;
-        tm now{utc.second, utc.minute, utc.hour, utc.day, utc.month + MonthOffset, utc.year, 0, 0, 0};
+        tm now{utc.second, utc.minute, utc.hour, utc.day, utc.month + CAN::Application::MonthOffset, utc.year, 0, 0, 0};
         RTC_TimeSet(&now);
         timeSyncTask->setTimeRequested(true);
         xTaskNotifyGive(timeSyncTask->taskHandle);
