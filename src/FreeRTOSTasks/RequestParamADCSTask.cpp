@@ -284,7 +284,7 @@ void RequestParamADCSTask::execute() {
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSRAMInt}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(1000));
+        vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
 
 }

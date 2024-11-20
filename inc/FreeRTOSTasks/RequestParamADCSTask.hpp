@@ -4,6 +4,8 @@
 using namespace AcubeSATParameters;
 
 class RequestParamADCSTask : public Task {
+private:
+    const uint16_t DelayMs = 60000;
 public:
     const static inline uint16_t TaskStackDepth = 2300;
 
