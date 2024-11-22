@@ -10,7 +10,7 @@ private:
 public:
     const int TimeSyncPeriod = 10000;
 
-    const static inline uint16_t TaskStackDepth = 2300;
+    const static inline uint16_t TaskStackDepth = 800;
 
     StackType_t taskStack[TaskStackDepth];
 
