@@ -1,7 +1,7 @@
 #include  "TimeSyncTask.hpp"
 
 static void updateTimeOnReset(const Time::DefaultCUC& constAdcsCurrentTime) {
-    if (timeSyncTask.has_value()) {
+    if (timeSyncTask->taskHandle != nullptr) {
         Time::DefaultCUC adcsCurrentTime = constAdcsCurrentTime;
         UTCTimestamp utc = adcsCurrentTime.toUTCtimestamp();
         tm currentTime{
@@ -16,14 +16,14 @@ static void updateTimeOnReset(const Time::DefaultCUC& constAdcsCurrentTime) {
 
 void TimeSyncTask::execute() {
     while (true) {
-        if (timeRequested == false) {
-            vTaskDelay(pdMS_TO_TICKS(1000));
+        if (not timeRequested) {
+            vTaskDelay(pdMS_TO_TICKS(TimeRequestDelay));
             AcubeSATParameters::adcsOnBoardTime.setNotifier(updateTimeOnReset,false);
             CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{AcubeSATParameters::ADCSOnBoardTime}, false);
             timeSyncTask->setTimeRequested(true);
             ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
         } else {
-            vTaskDelay(pdMS_TO_TICKS(100));
+            vTaskDelay(pdMS_TO_TICKS(TimeSendDelay));
             CAN::Application::sendUTCTimeMessage();
             vTaskDelay(pdMS_TO_TICKS(TimeSyncPeriod));
         }
