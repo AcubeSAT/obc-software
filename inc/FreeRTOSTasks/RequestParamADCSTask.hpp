@@ -13,7 +13,7 @@ public:
 
     void execute();
 
-    RequestParamADCSTask() : Task("") {}
+    RequestParamADCSTask() : Task("OBC Request Parameters from ADCS through CAN") {}
 
     /**
      * Create freeRTOS Task
