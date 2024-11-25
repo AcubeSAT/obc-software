@@ -18,8 +18,6 @@ void RequestParamADCSTask::execute() {
             ADCSAngularVelocityOnZ,
             ADCSBDotXAxis}, false);
 
-        CAN::TPMessage message = {};
-        CAN::Application::parseSendParametersMessage(message);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSBDotYAxis,
                 ADCSBDotZAxis,
@@ -32,8 +30,6 @@ void RequestParamADCSTask::execute() {
                 ADCSMagnetometerRawZ,
                 ADCSMagnetometerFrequency}, false);
 
-        CAN::TPMessage message1 = {};
-        CAN::Application::parseSendParametersMessage(message1);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerCycleCountX,
             ADCSMagnetometerCycleCountY,
@@ -45,9 +41,6 @@ void RequestParamADCSTask::execute() {
             ADCSMagnetometerISISFilteredXAxis,
             ADCSMagnetometerISISFilteredYAxis,
             ADCSMagnetometerISISFilteredZAxis}, false);
-
-        CAN::TPMessage message2 = {};
-        CAN::Application::parseSendParametersMessage(message2);
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerISISRawXAxis,
@@ -61,8 +54,6 @@ void RequestParamADCSTask::execute() {
             ADCSFineSunSensorFilteredTopRight,
             ADCSFineSunSensorFilteredBottomLeft}, false);
 
-        CAN::TPMessage message3 = {};
-        CAN::Application::parseSendParametersMessage(message3);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFineSunSensorFilteredBottomRight,
             ADCSFineSunSensorAngularAlphaAngle,
@@ -75,8 +66,6 @@ void RequestParamADCSTask::execute() {
             ADCSGyroscopeRateZ,
             ADCSGyroXLOCS1TRegister}, false);
 
-        CAN::TPMessage message25 = {};
-        CAN::Application::parseSendParametersMessage(message25);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroXLOCS0TRegister,
             ADCSGyroXHICST1Register,
@@ -89,8 +78,6 @@ void RequestParamADCSTask::execute() {
             ADCSGyroYLOCS0TRegister,
             ADCSGyroYHICST1Register}, false);
 
-        CAN::TPMessage message4 = {};
-        CAN::Application::parseSendParametersMessage(message4);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroYHICST0Register,
             ADCSGyroYQUAD1Register,
@@ -103,8 +90,6 @@ void RequestParamADCSTask::execute() {
             ADCSGyroZHICST0Register,
             ADCSGyroZQUAD1Register}, false);
 
-        CAN::TPMessage message5 = {};
-        CAN::Application::parseSendParametersMessage(message5);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroZQUAD0Register,
             ADCSGyroZFAULT1Register,
@@ -117,8 +102,6 @@ void RequestParamADCSTask::execute() {
             ADCSMagnetorquerOnZAxisOnOff,
             ADCSGainBdotXAxis}, false);
 
-        CAN::TPMessage message6 = {};
-        CAN::Application::parseSendParametersMessage(message6);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGainBdotYAxis,
             ADCSGainBdotZAxis,
@@ -131,8 +114,6 @@ void RequestParamADCSTask::execute() {
             ADCSiMQTBoardCoilXTemperatureSensor,
             ADCSiMQTBoardCoilYTemperatureSensor}, false);
 
-        CAN::TPMessage message7 = {};
-        CAN::Application::parseSendParametersMessage(message7);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSiMQTBoardCoilZTemperatureSensor,
             ADCSiMQTBoardExtraTemperatureSensor,
@@ -145,8 +126,6 @@ void RequestParamADCSTask::execute() {
             ADCSTLE,
             ADCSInitialKalmanQuaternionECIFrameToBodyScalar}, false);
 
-        CAN::TPMessage message8 = {};
-        CAN::Application::parseSendParametersMessage(message8);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem1,
             ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem2,
@@ -159,8 +138,6 @@ void RequestParamADCSTask::execute() {
             ADCSSGP4OrbitalElementsArgumentPerigee,
             ADCSSGP4OrbitalElementsRAAN}, false);
 
-        CAN::TPMessage message9 = {};
-        CAN::Application::parseSendParametersMessage(message9);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSGP4OrbitalElementsInclination,
             ADCSSGP4OrbitalElementsMeanAnomaly,
@@ -173,8 +150,6 @@ void RequestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesQ6,
             ADCSDeterminationInitialMatricesQ7}, false);
 
-        CAN::TPMessage message10 = {};
-        CAN::Application::parseSendParametersMessage(message10);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesQ8,
             ADCSDeterminationInitialMatricesQ9,
@@ -187,8 +162,6 @@ void RequestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesR6,
             ADCSDeterminationInitialMatricesR7}, false);
 
-        CAN::TPMessage message11 = {};
-        CAN::Application::parseSendParametersMessage(message11);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesR8,
             ADCSDeterminationInitialMatricesR9,
@@ -201,8 +174,6 @@ void RequestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesPInitial7,
             ADCSDeterminationInitialMatricesPInitial8}, false);
 
-        CAN::TPMessage message12 = {};
-        CAN::Application::parseSendParametersMessage(message12);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesPInitial9,
             ADCSDeterminationInitialMatricesPInitial10,
@@ -215,8 +186,6 @@ void RequestParamADCSTask::execute() {
             ADCSTransformationAxisZAssignment,
             ADCSMagnetometerAxisAssignment}, false);
 
-        CAN::TPMessage message13 = {};
-        CAN::Application::parseSendParametersMessage(message13);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSunSensorAxisAssignment,
             ADCSGyroscopeAxisAssignment,
@@ -229,8 +198,6 @@ void RequestParamADCSTask::execute() {
             ADCSFrameAxisSignNEDToECEF_X,
             ADCSFrameAxisSignNEDToECEF_Y}, false);
 
-        CAN::TPMessage message14 = {};
-        CAN::Application::parseSendParametersMessage(message14);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFrameAxisSignNEDToECEF_Z,
             ADCSMagnetometerSignX,
@@ -243,8 +210,6 @@ void RequestParamADCSTask::execute() {
             ADCSGyroSignY,
             ADCSGyroSignZ}, false);
 
-        CAN::TPMessage message15 = {};
-        CAN::Application::parseSendParametersMessage(message15);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDetumblingNominalThresholds,
             ADCSNominalDetumblingThresholds,
@@ -257,8 +222,6 @@ void RequestParamADCSTask::execute() {
             ADCSMagnetorquerDutyCycle,
             ADCSMagnetorquerCurrentX}, false);
 
-        CAN::TPMessage message16 = {};
-        CAN::Application::parseSendParametersMessage(message16);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerCurrentY,
             ADCSMagnetorquerCurrentZ,
@@ -271,8 +234,6 @@ void RequestParamADCSTask::execute() {
             ADCSDesiredQuaternionVectorElem3,
             ADCSAngularVelocityDesiredX}, false);
 
-        CAN::TPMessage message17 = {};
-        CAN::Application::parseSendParametersMessage(message17);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSAngularVelocityDesiredY,
             ADCSAngularVelocityDesiredZ,
@@ -285,8 +246,6 @@ void RequestParamADCSTask::execute() {
             ADCSSatellitePositionECIX,
             ADCSSatellitePositionECIY}, false);
 
-        CAN::TPMessage message18 = {};
-        CAN::Application::parseSendParametersMessage(message18);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSatellitePositionECIZ,
             ADCSSatelliteLinearVelocityECIX,
@@ -299,8 +258,6 @@ void RequestParamADCSTask::execute() {
             ADCSMagneticFieldECIY,
             ADCSMagneticFieldECIZ}, false);
 
-        CAN::TPMessage message19 = {};
-        CAN::Application::parseSendParametersMessage(message19);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSunPositionECIX,
             ADCSSunPositionECIY,
@@ -313,8 +270,6 @@ void RequestParamADCSTask::execute() {
             ADCSDutyCycleControl,
             ADCSDutyCycleOther}, false);
 
-        CAN::TPMessage message20 = {};
-        CAN::Application::parseSendParametersMessage(message20);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDesatInitialAngularVelocityParam,
             ADCSMCUTemperature,
@@ -327,13 +282,8 @@ void RequestParamADCSTask::execute() {
             ADCSProgramFlashScrubbingFrequency,
             ADCSFLASHInt}, false);
 
-        CAN::TPMessage message21 = {};
-        CAN::Application::parseSendParametersMessage(message21);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSRAMInt}, false);
-
-        CAN::TPMessage message22 = {};
-        CAN::Application::parseSendParametersMessage(message22);
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
