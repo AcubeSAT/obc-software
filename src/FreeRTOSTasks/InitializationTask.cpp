@@ -2,6 +2,7 @@
 
 void InitializationTask::execute() {
         initializeTasks();
+        initializeAmbientTemperatureTask();
         housekeepingTask.emplace();
         timeBasedSchedulingTask.emplace();
         statisticsReportingTask.emplace();
