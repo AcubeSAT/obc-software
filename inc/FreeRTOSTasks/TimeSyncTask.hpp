@@ -3,6 +3,15 @@
 #include "Task.hpp"
 #include "ApplicationLayer.hpp"
 
+/* timeSyncTask: As of now, (some features have to change or get added) checks if OBC has requested the on board time
+ * from the ADCS. If not, it sets a notifier at the adcsOnBoardTime. Then it request the adcsOnBoardTime from ADCS and
+ * puts itself into the blocked state. If the time is requested then it sends a UTCTimeMessage which will get parsed
+ * from the other subsystems so they will sync with the OBC.
+ *
+ *  adcsOnBoardTime Notifier: When adcsOnBoardTime gets updated, OBC sets the on board time through RTC, gives a notify
+ *  to the timeSyncTask and unsets itself.
+ */
+
 class TimeSyncTask : public Task {
 private:
     bool timeRequested = false;
@@ -36,12 +45,3 @@ public:
 };
 
 inline std::optional<TimeSyncTask> timeSyncTask;
-
-/* timeSyncTask: As of now, (some features have to change or get added) checks if OBC has requested the on board time
- * from the ADCS. If not, it sets a notifier at the adcsOnBoardTime. Then it request the adcsOnBoardTime from ADCS and
- * puts itself into the blocked state. If the time is requested then it sends a UTCTimeMessage which will get parsed
- * from the other subsystems so they will sync with the OBC.
- *
- *  adcsOnBoardTime Notifier: When adcsOnBoardTime gets updated, OBC sets the on board time through RTC, gives a notify
- *  to the timeSyncTask and unsets itself.
- */
