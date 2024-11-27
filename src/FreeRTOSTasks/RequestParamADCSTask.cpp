@@ -1,4 +1,7 @@
 #include "RequestParamADCSTask.hpp"
+
+#include <interrupts.h>
+
 #include "CANGatekeeperTask.hpp"
 #include "TimeKeepingTask.hpp"
 #include "AcubeSATParameters.hpp"
@@ -18,6 +21,10 @@ void RequestParamADCSTask::execute() {
             ADCSAngularVelocityOnZ,
             ADCSBDotXAxis}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSBDotYAxis,
                 ADCSBDotZAxis,
@@ -30,6 +37,10 @@ void RequestParamADCSTask::execute() {
                 ADCSMagnetometerRawZ,
                 ADCSMagnetometerFrequency}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerCycleCountX,
             ADCSMagnetometerCycleCountY,
@@ -41,6 +52,11 @@ void RequestParamADCSTask::execute() {
             ADCSMagnetometerISISFilteredXAxis,
             ADCSMagnetometerISISFilteredYAxis,
             ADCSMagnetometerISISFilteredZAxis}, false);
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerISISRawXAxis,
@@ -54,6 +70,11 @@ void RequestParamADCSTask::execute() {
             ADCSFineSunSensorFilteredTopRight,
             ADCSFineSunSensorFilteredBottomLeft}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
+
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFineSunSensorFilteredBottomRight,
             ADCSFineSunSensorAngularAlphaAngle,
@@ -65,6 +86,11 @@ void RequestParamADCSTask::execute() {
             ADCSGyroscopeRateY,
             ADCSGyroscopeRateZ,
             ADCSGyroXLOCS1TRegister}, false);
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroXLOCS0TRegister,
@@ -78,6 +104,11 @@ void RequestParamADCSTask::execute() {
             ADCSGyroYLOCS0TRegister,
             ADCSGyroYHICST1Register}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
+
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroYHICST0Register,
             ADCSGyroYQUAD1Register,
@@ -89,6 +120,11 @@ void RequestParamADCSTask::execute() {
             ADCSGyroZHICST1Register,
             ADCSGyroZHICST0Register,
             ADCSGyroZQUAD1Register}, false);
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroZQUAD0Register,
@@ -102,6 +138,11 @@ void RequestParamADCSTask::execute() {
             ADCSMagnetorquerOnZAxisOnOff,
             ADCSGainBdotXAxis}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
+
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGainBdotYAxis,
             ADCSGainBdotZAxis,
@@ -113,6 +154,11 @@ void RequestParamADCSTask::execute() {
             ADCSGainDerivativePDZAxis,
             ADCSiMQTBoardCoilXTemperatureSensor,
             ADCSiMQTBoardCoilYTemperatureSensor}, false);
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSiMQTBoardCoilZTemperatureSensor,
@@ -126,6 +172,11 @@ void RequestParamADCSTask::execute() {
             ADCSTLE,
             ADCSInitialKalmanQuaternionECIFrameToBodyScalar}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
+
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem1,
             ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem2,
@@ -137,6 +188,11 @@ void RequestParamADCSTask::execute() {
             ADCSTLEOrbitalElementsMeanAnomaly,
             ADCSSGP4OrbitalElementsArgumentPerigee,
             ADCSSGP4OrbitalElementsRAAN}, false);
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSGP4OrbitalElementsInclination,
@@ -150,6 +206,11 @@ void RequestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesQ6,
             ADCSDeterminationInitialMatricesQ7}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
+
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesQ8,
             ADCSDeterminationInitialMatricesQ9,
@@ -161,6 +222,11 @@ void RequestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesR5,
             ADCSDeterminationInitialMatricesR6,
             ADCSDeterminationInitialMatricesR7}, false);
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesR8,
@@ -174,6 +240,11 @@ void RequestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesPInitial7,
             ADCSDeterminationInitialMatricesPInitial8}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
+
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesPInitial9,
             ADCSDeterminationInitialMatricesPInitial10,
@@ -185,6 +256,11 @@ void RequestParamADCSTask::execute() {
             ADCSTransformationAxisYAssignment,
             ADCSTransformationAxisZAssignment,
             ADCSMagnetometerAxisAssignment}, false);
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSunSensorAxisAssignment,
@@ -198,6 +274,11 @@ void RequestParamADCSTask::execute() {
             ADCSFrameAxisSignNEDToECEF_X,
             ADCSFrameAxisSignNEDToECEF_Y}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
+
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFrameAxisSignNEDToECEF_Z,
             ADCSMagnetometerSignX,
@@ -209,6 +290,11 @@ void RequestParamADCSTask::execute() {
             ADCSGyroSignX,
             ADCSGyroSignY,
             ADCSGyroSignZ}, false);
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDetumblingNominalThresholds,
@@ -222,6 +308,11 @@ void RequestParamADCSTask::execute() {
             ADCSMagnetorquerDutyCycle,
             ADCSMagnetorquerCurrentX}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
+
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerCurrentY,
             ADCSMagnetorquerCurrentZ,
@@ -233,6 +324,11 @@ void RequestParamADCSTask::execute() {
             ADCSDesiredQuaternionVectorElem2,
             ADCSDesiredQuaternionVectorElem3,
             ADCSAngularVelocityDesiredX}, false);
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSAngularVelocityDesiredY,
@@ -246,6 +342,11 @@ void RequestParamADCSTask::execute() {
             ADCSSatellitePositionECIX,
             ADCSSatellitePositionECIY}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
+
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSatellitePositionECIZ,
             ADCSSatelliteLinearVelocityECIX,
@@ -258,6 +359,11 @@ void RequestParamADCSTask::execute() {
             ADCSMagneticFieldECIY,
             ADCSMagneticFieldECIZ}, false);
 
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
+
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSunPositionECIX,
             ADCSSunPositionECIY,
@@ -269,6 +375,11 @@ void RequestParamADCSTask::execute() {
             ADCSDutyCycleDetermination,
             ADCSDutyCycleControl,
             ADCSDutyCycleOther}, false);
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDesatInitialAngularVelocityParam,
@@ -284,6 +395,12 @@ void RequestParamADCSTask::execute() {
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSRAMInt}, false);
+
+
+        HardFault_Handler();
+        MemoryManagement_Handler();
+        BusFault_Handler();
+        UsageFault_Handler();
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
