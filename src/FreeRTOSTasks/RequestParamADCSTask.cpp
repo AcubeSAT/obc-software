@@ -14,300 +14,278 @@ void RequestParamADCSTask::execute() {
             ADCSUseUART,
             ADCSUseCAN,
             ADCSXBodyFrameRegardingOrbitFrame,
-            ADCSYBodyFrameRegardingOrbitFrame,
-            ADCSZBodyFrameRegardingOrbitFrame,
+            ADCSYBodyFrameRegardingOrbitFrame}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSZBodyFrameRegardingOrbitFrame,
             ADCSAngularVelocityOnX,
             ADCSAngularVelocityOnY,
             ADCSAngularVelocityOnZ,
             ADCSBDotXAxis}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSBDotYAxis,
-                ADCSBDotZAxis,
-                ADCSQuaternionOrbitFrameToBodyScalar,
-                ADCSQuaternionOrbitFrameToBodyVectorElem1,
-                ADCSQuaternionOrbitFrameToBodyVectorElem2,
-                ADCSQuaternionOrbitFrameToBodyVectorElem3,
-                ADCSMagnetometerRawX,
-                ADCSMagnetometerRawY,
-                ADCSMagnetometerRawZ,
-                ADCSMagnetometerFrequency}, false);
+            ADCSBDotZAxis,
+            ADCSQuaternionOrbitFrameToBodyScalar,
+            ADCSQuaternionOrbitFrameToBodyVectorElem1,
+            ADCSQuaternionOrbitFrameToBodyVectorElem2}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSQuaternionOrbitFrameToBodyVectorElem3,
+            ADCSMagnetometerRawX,
+            ADCSMagnetometerRawY,
+            ADCSMagnetometerRawZ,
+            ADCSMagnetometerFrequency}, false);
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerCycleCountX,
             ADCSMagnetometerCycleCountY,
             ADCSMagnetometerCycleCountZ,
             ADCSMagnetometerSelfTest,
-            ADCSMagnetometerISISCalibratedXAxis,
-            ADCSMagnetometerISISCalibratedYAxis,
+            ADCSMagnetometerISISCalibratedXAxis}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerISISCalibratedYAxis,
             ADCSMagnetometerISISCalibratedZAxis,
             ADCSMagnetometerISISFilteredXAxis,
             ADCSMagnetometerISISFilteredYAxis,
             ADCSMagnetometerISISFilteredZAxis}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerISISRawXAxis,
             ADCSMagnetometerISISRawYAxis,
             ADCSMagnetometerISISRawZAxis,
             ADCSFineSunSensorRawTopLeft,
-            ADCSFineSunSensorRawTopRight,
-            ADCSFineSunSensorRawBottomLeft,
+            ADCSFineSunSensorRawTopRight},false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFineSunSensorRawBottomLeft,
             ADCSFineSunSensorRawBottomRight,
             ADCSFineSunSensorFilteredTopLeft,
             ADCSFineSunSensorFilteredTopRight,
             ADCSFineSunSensorFilteredBottomLeft}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFineSunSensorFilteredBottomRight,
             ADCSFineSunSensorAngularAlphaAngle,
             ADCSFineSunSensorAngularBetaAngle,
             ADCSFineSunSensorCalculatedX,
-            ADCSFineSunSensorCalculatedY,
-            ADCSFineSunSensorCalculatedZ,
+            ADCSFineSunSensorCalculatedY}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFineSunSensorCalculatedZ,
             ADCSGyroscopeRateX,
             ADCSGyroscopeRateY,
             ADCSGyroscopeRateZ,
             ADCSGyroXLOCS1TRegister}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroXLOCS0TRegister,
             ADCSGyroXHICST1Register,
             ADCSGyroXHICST0Register,
             ADCSGyroXQUAD1Register,
-            ADCSGyroXQUAD0Register,
-            ADCSGyroXFAULT1Register,
+            ADCSGyroXQUAD0Register}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroXFAULT1Register,
             ADCSGyroXFAULT0Register,
             ADCSGyroYLOCS1TRegister,
             ADCSGyroYLOCS0TRegister,
             ADCSGyroYHICST1Register}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroYHICST0Register,
             ADCSGyroYQUAD1Register,
             ADCSGyroYQUAD0Register,
             ADCSGyroYFAULT1Register,
-            ADCSGyroYFAULT0Register,
-            ADCSGyroZLOCS1TRegister,
+            ADCSGyroYFAULT0Register}, false);
+
+            CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroZLOCS1TRegister,
             ADCSGyroZLOCS0TRegister,
             ADCSGyroZHICST1Register,
             ADCSGyroZHICST0Register,
             ADCSGyroZQUAD1Register}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroZQUAD0Register,
             ADCSGyroZFAULT1Register,
             ADCSGyroZFAULT0Register,
             ADCSMagnetorquerOnXAxisHBridgePolarity,
-            ADCSMagnetorquerOnYAxisHBridgePolarity,
-            ADCSMagnetorquerOnZAxisHBridgePolarity,
+            ADCSMagnetorquerOnYAxisHBridgePolarity}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerOnZAxisHBridgePolarity,
             ADCSMagnetorquerOnXAxisOnOff,
             ADCSMagnetorquerOnYAxisOnOff,
             ADCSMagnetorquerOnZAxisOnOff,
             ADCSGainBdotXAxis}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGainBdotYAxis,
             ADCSGainBdotZAxis,
             ADCSGainProportionalPDXAxis,
             ADCSGainProportionalPDYAxis,
-            ADCSGainProportionalPDZAxis,
-            ADCSGainDerivativePDXAxis,
+            ADCSGainProportionalPDZAxis},false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGainDerivativePDXAxis,
             ADCSGainDerivativePDYAxis,
             ADCSGainDerivativePDZAxis,
             ADCSiMQTBoardCoilXTemperatureSensor,
             ADCSiMQTBoardCoilYTemperatureSensor}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSiMQTBoardCoilZTemperatureSensor,
             ADCSiMQTBoardExtraTemperatureSensor,
             ADCSGyroscopeXTemperature,
             ADCSGyroscopeYTemperature,
-            ADCSGyroscopeZTemperature,
-            ADCSBoardTemperature1,
+            ADCSGyroscopeZTemperature}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSBoardTemperature1,
             ADCSBoardTemperature2,
             ADCSMode,
             ADCSTLE,
             ADCSInitialKalmanQuaternionECIFrameToBodyScalar}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem1,
             ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem2,
             ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem3,
             ADCSTLEOrbitalElementsArgumentPerigee,
-            ADCSTLEOrbitalElementsRAAN,
-            ADCSTLEOrbitalElementsInclination,
+            ADCSTLEOrbitalElementsRAAN}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSTLEOrbitalElementsInclination,
             ADCSTLEOrbitalElementsEccentricity,
             ADCSTLEOrbitalElementsMeanAnomaly,
             ADCSSGP4OrbitalElementsArgumentPerigee,
             ADCSSGP4OrbitalElementsRAAN}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSGP4OrbitalElementsInclination,
             ADCSSGP4OrbitalElementsMeanAnomaly,
             ADCSTimeGST_JD,
             ADCSDeterminationInitialMatricesQ1,
-            ADCSDeterminationInitialMatricesQ2,
-            ADCSDeterminationInitialMatricesQ3,
+            ADCSDeterminationInitialMatricesQ2}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesQ3,
             ADCSDeterminationInitialMatricesQ4,
             ADCSDeterminationInitialMatricesQ5,
             ADCSDeterminationInitialMatricesQ6,
             ADCSDeterminationInitialMatricesQ7}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesQ8,
             ADCSDeterminationInitialMatricesQ9,
             ADCSDeterminationInitialMatricesQ10,
             ADCSDeterminationInitialMatricesR1,
-            ADCSDeterminationInitialMatricesR2,
-            ADCSDeterminationInitialMatricesR3,
+            ADCSDeterminationInitialMatricesR2}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesR3,
             ADCSDeterminationInitialMatricesR4,
             ADCSDeterminationInitialMatricesR5,
             ADCSDeterminationInitialMatricesR6,
             ADCSDeterminationInitialMatricesR7}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesR8,
             ADCSDeterminationInitialMatricesR9,
             ADCSDeterminationInitialMatricesPInitial1,
             ADCSDeterminationInitialMatricesPInitial2,
-            ADCSDeterminationInitialMatricesPInitial3,
-            ADCSDeterminationInitialMatricesPInitial4,
+            ADCSDeterminationInitialMatricesPInitial3}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesPInitial4,
             ADCSDeterminationInitialMatricesPInitial5,
             ADCSDeterminationInitialMatricesPInitial6,
             ADCSDeterminationInitialMatricesPInitial7,
             ADCSDeterminationInitialMatricesPInitial8}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesPInitial9,
             ADCSDeterminationInitialMatricesPInitial10,
             ADCSReactionWheelOn,
             ADCSReactionWheelAngularVelocity,
-            ADCSMagnetorquerAxisAssignment,
-            ADCSControlProfileSwitching,
+            ADCSMagnetorquerAxisAssignment}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSControlProfileSwitching,
             ADCSTransformationAxisXAssignment,
             ADCSTransformationAxisYAssignment,
             ADCSTransformationAxisZAssignment,
             ADCSMagnetometerAxisAssignment}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSunSensorAxisAssignment,
             ADCSGyroscopeAxisAssignment,
             ADCSFrameAxisSignECIToECEF_X,
             ADCSFrameAxisSignECIToECEF_Y,
-            ADCSFrameAxisSignECIToECEF_Z,
-            ADCSFrameAxisSignECIToOrbit_X,
+            ADCSFrameAxisSignECIToECEF_Z}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFrameAxisSignECIToOrbit_X,
             ADCSFrameAxisSignECIToOrbit_Y,
             ADCSFrameAxisSignECIToOrbit_Z,
             ADCSFrameAxisSignNEDToECEF_X,
             ADCSFrameAxisSignNEDToECEF_Y}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFrameAxisSignNEDToECEF_Z,
             ADCSMagnetometerSignX,
             ADCSMagnetometerSignY,
             ADCSMagnetometerSignZ,
-            ADCSSunSensorXAxisSign,
-            ADCSSunSensorYAxisSign,
+            ADCSSunSensorXAxisSign}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSunSensorYAxisSign,
             ADCSSunSensorZAxisSign,
             ADCSGyroSignX,
             ADCSGyroSignY,
             ADCSGyroSignZ}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDetumblingNominalThresholds,
             ADCSNominalDetumblingThresholds,
             ADCSStandByDetumblingThresholds,
             ADCSDetumblingStandByThresholds,
-            ADCSNominalStandByThresholds,
-            ADCSMagnetorquerMagneticDipoleX,
+            ADCSNominalStandByThresholds}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerMagneticDipoleX,
             ADCSMagnetorquerMagneticDipoleY,
             ADCSMagnetorquerMagneticDipoleZ ,
             ADCSMagnetorquerDutyCycle,
             ADCSMagnetorquerCurrentX}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerCurrentY,
             ADCSMagnetorquerCurrentZ,
             ADCSMagnetorquerBDot,
             ADCSReactionWheelTorque,
-            ADCSReactionWheelAngularAcceleration,
-            ADCSDesiredQuaternionOrbitToBodyScalar,
+            ADCSReactionWheelAngularAcceleration}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDesiredQuaternionOrbitToBodyScalar,
             ADCSDesiredQuaternionVectorElem1,
             ADCSDesiredQuaternionVectorElem2,
             ADCSDesiredQuaternionVectorElem3,
             ADCSAngularVelocityDesiredX}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSAngularVelocityDesiredY,
             ADCSAngularVelocityDesiredZ,
             ADCSGyroBiasX,
             ADCSGyroBiasY,
-            ADCSGyroBiasZ,
-            ADCSSatellitePositionLatitude,
+            ADCSGyroBiasZ}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSatellitePositionLatitude,
             ADCSSatellitePositionLongitude,
             ADCSSatellitePositionHeight,
             ADCSSatellitePositionECIX,
             ADCSSatellitePositionECIY}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSatellitePositionECIZ,
             ADCSSatelliteLinearVelocityECIX,
             ADCSSatelliteLinearVelocityECIY,
             ADCSSatelliteLinearVelocityECIZ,
-            ADCSMagneticFieldNEDX,
-            ADCSMagneticFieldNEDY,
+            ADCSMagneticFieldNEDX}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagneticFieldNEDY,
             ADCSMagneticFieldNEDZ,
             ADCSMagneticFieldECIX,
             ADCSMagneticFieldECIY,
             ADCSMagneticFieldECIZ}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSunPositionECIX,
             ADCSSunPositionECIY,
             ADCSSunPositionECIZ,
             ADCSEclipse,
-            ADCSDesaturationPecentageParameter,
-            ADCSISISMTQModes,
+            ADCSDesaturationPecentageParameter}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSISISMTQModes,
             ADCSMagnetorquerActuationMethod,
             ADCSDutyCycleDetermination,
             ADCSDutyCycleControl,
             ADCSDutyCycleOther}, false);
 
-        vTaskDelay(pdMS_TO_TICKS(200));
-
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDesatInitialAngularVelocityParam,
             ADCSMCUTemperature,
             ADCSMCUInputVoltage,
             ADCSBootCounter,
-            ADCSMemoryPartition,
-            ADCSLastFailedEvent,
+            ADCSMemoryPartition}, false);
+
+        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSLastFailedEvent,
             ADCSSystick,
             ADCSRAMScrubbingFrequency,
             ADCSProgramFlashScrubbingFrequency,
-            ADCSFLASHInt}, false);
-
-        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSRAMInt}, false);
+            ADCSFLASHInt,
+            ADCSSRAMInt}, false);
 
         vTaskDelay(pdMS_TO_TICKS(DelayMs));
     }
