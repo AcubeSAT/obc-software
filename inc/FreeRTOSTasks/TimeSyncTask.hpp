@@ -19,6 +19,7 @@
  * to the timeSyncTask and unsets itself.
  */
 class TimeSyncTask : public Task {
+
 private:
     bool timeRequested = false;
 
