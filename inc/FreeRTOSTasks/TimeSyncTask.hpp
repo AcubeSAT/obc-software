@@ -15,7 +15,8 @@
  * from the other subsystems so they will sync with the OBC.
  *
  *  adcsOnBoardTime Notifier: When adcsOnBoardTime gets updated, OBC sets the onboard time through RTC, gives a notify
- *  to the timeSyncTask and unsets itself.
+ * adcsOnBoardTime Notifier: When adcsOnBoardTime gets updated, OBC sets the onboard time through RTC, gives a notify
+ * to the timeSyncTask and unsets itself.
  */
 class TimeSyncTask : public Task {
 private:
