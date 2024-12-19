@@ -8,7 +8,6 @@
 #include "Task.hpp"
 #include "AFEC0HandlingTask.hpp"
 #include "TimeSyncTask.hpp"
-#include "RequestParamADCSTask.hpp"
 
 class InitializationTask: public Task {
 public:
