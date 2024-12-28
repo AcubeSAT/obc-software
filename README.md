@@ -199,7 +199,8 @@ You can install the dev-containers extension from the marketplace. It should aut
 ### Cursor
 Cursor doesn't support dev-containers extension yet. To use the dev-container, you can need to:
 1. Install the dev-container CLI by running `npm install -g devcontainer`
-2. Run `devcontainer build --workspace-folder .` in the terminal in the project root directory.
-3. To get into the container's shell, run `devcontainer exec --workspace-folder . /bin/bash`.
+1. Run `devcontainer build --workspace-folder .` in the terminal in the project root directory.
+1. Run `devcontainer up --workspace-folder .` in the terminal in the project root directory.
+1. To get into the container's shell, run `devcontainer exec --workspace-folder . /bin/bash`.
 
 Everything should be ready to go from there.
