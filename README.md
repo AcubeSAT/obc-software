@@ -7,7 +7,7 @@ More information regarding OBC can be found [here](https://gitlab.com/groups/acu
 
 ## Build
 The `obc-software` repository can be built without any access to specialised hardware. We provide build
-instructions for Linux (or WSL) command-line, and the CLion IDE.
+instructions for Linux (or WSL) command-line, and the CLion IDE. To run it on MacOS, follow the instructions in .devcontainer/README.md after you run `conan source .`. 
 
 The dependencies of this repository are managed through the [conan](https://conan.io/) package manager, with repositories
 from [ConanCenter](https://conan.io/center/) and [SpaceDot's packages](https://artifactory.spacedot.gr).
@@ -37,13 +37,13 @@ For more detailed installation instructions, including how to integrate with a m
    ```shell
    conan remote add spacedot https://artifactory.spacedot.gr/artifactory/api/conan/conan
    ```
-5. Download all dependencies and build the project through conan:
-   ```shell
-   conan install . --output-folder=cmake-build-debug --build="*" -u -pr conan-arm-profile
-   ```
-6. Download all submodules:
+5. Download all submodules:
    ```shell
    conan source .
+   ```
+6. Download all dependencies and build the project through conan:
+   ```shell
+   conan install . --output-folder=cmake-build-debug --build="*" -u -pr conan-arm-profile
    ```
 7. Add CMake flags:
    ```shell
