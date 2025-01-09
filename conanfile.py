@@ -48,6 +48,18 @@ class OBCSoftwareRecipe(ConanFile):
                 git.run("pull")
             git = Git(self, "lib/"+repo_path)
             git.run("submodule update --init --recursive")
+        
+        devops_git = Git(self)
+        devops_git.clone("git@gitlab.com:acubesat/obc/devops.git", "devops-temp")
+        
+        if not os.path.exists(".devcontainer"):
+            mkdir(self, ".devcontainer")
+        
+        copy(self, "*.json", src=os.path.join("devops-temp", "dev-container"), dst=".devcontainer")
+        copy(self, "Dockerfile", src=os.path.join("devops-temp", "dev-container"), dst=".devcontainer")
+        
+        self.run("rm -rf devops-temp")
+
     def layout(self):
         cmake_layout(self)
 
