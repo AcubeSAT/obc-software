@@ -189,3 +189,12 @@ To integrate Harmony3 with CLion, follow the steps below:
 2. Open Harmony3.
 3. Navigate to File -> Preferences -> Diff.
 4. In the 'Diff Tool Command' section, enter `/usr/bin/meld {0} {1}`
+
+## Dev Containers
+To avoid the hussle of building the correct development environment, we've added Dev Containers. 
+It will be cloned in the `.devcontainer` folder, after `conan source .` is run in the Build section of this README. 
+
+Requirements:
+- Docker Engine
+
+Instructions for how to start & use can be found in the README.md in the `.devcontainer` folder.
