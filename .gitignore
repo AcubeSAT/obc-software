@@ -101,3 +101,6 @@ CMakeUserPresets.json
 # These folders are cloned by conan, so there isn't a need to track them.
 lib/atsam-component-drivers
 lib/cross-platform-software
+
+# Devops container
+.devcontainer
