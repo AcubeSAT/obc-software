@@ -1,3 +1,4 @@
+#pragma once
 #include "RequestParamADCSTask.hpp"
 
 #include <interrupts.h>
@@ -20,7 +21,7 @@ void RequestParamADCSTask::execute() {
             ADCSAngularVelocityOnY,
             ADCSAngularVelocityOnZ,
             ADCSBDotXAxis}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSBDotYAxis,
@@ -33,7 +34,7 @@ void RequestParamADCSTask::execute() {
             ADCSMagnetometerRawY,
             ADCSMagnetometerRawZ,
             ADCSMagnetometerFrequency}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerCycleCountX,
@@ -46,7 +47,7 @@ void RequestParamADCSTask::execute() {
             ADCSMagnetometerISISFilteredXAxis,
             ADCSMagnetometerISISFilteredYAxis,
             ADCSMagnetometerISISFilteredZAxis}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetometerISISRawXAxis,
@@ -59,7 +60,7 @@ void RequestParamADCSTask::execute() {
             ADCSFineSunSensorFilteredTopLeft,
             ADCSFineSunSensorFilteredTopRight,
             ADCSFineSunSensorFilteredBottomLeft}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFineSunSensorFilteredBottomRight,
@@ -72,7 +73,7 @@ void RequestParamADCSTask::execute() {
             ADCSGyroscopeRateY,
             ADCSGyroscopeRateZ,
             ADCSGyroXLOCS1TRegister}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroXLOCS0TRegister,
@@ -85,7 +86,7 @@ void RequestParamADCSTask::execute() {
             ADCSGyroYLOCS1TRegister,
             ADCSGyroYLOCS0TRegister,
             ADCSGyroYHICST1Register}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroYHICST0Register,
@@ -98,7 +99,7 @@ void RequestParamADCSTask::execute() {
             ADCSGyroZHICST1Register,
             ADCSGyroZHICST0Register,
             ADCSGyroZQUAD1Register}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGyroZQUAD0Register,
@@ -111,7 +112,7 @@ void RequestParamADCSTask::execute() {
             ADCSMagnetorquerOnYAxisOnOff,
             ADCSMagnetorquerOnZAxisOnOff,
             ADCSGainBdotXAxis}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSGainBdotYAxis,
@@ -124,7 +125,7 @@ void RequestParamADCSTask::execute() {
             ADCSGainDerivativePDZAxis,
             ADCSiMQTBoardCoilXTemperatureSensor,
             ADCSiMQTBoardCoilYTemperatureSensor}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSiMQTBoardCoilZTemperatureSensor,
@@ -137,7 +138,7 @@ void RequestParamADCSTask::execute() {
             ADCSMode,
             ADCSTLE,
             ADCSInitialKalmanQuaternionECIFrameToBodyScalar}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSInitialKalmanQuaternionECIFrameToBodyVectorElem1,
@@ -150,7 +151,7 @@ void RequestParamADCSTask::execute() {
             ADCSTLEOrbitalElementsMeanAnomaly,
             ADCSSGP4OrbitalElementsArgumentPerigee,
             ADCSSGP4OrbitalElementsRAAN}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSGP4OrbitalElementsInclination,
@@ -163,7 +164,7 @@ void RequestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesQ5,
             ADCSDeterminationInitialMatricesQ6,
             ADCSDeterminationInitialMatricesQ7}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesQ8,
@@ -176,7 +177,7 @@ void RequestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesR5,
             ADCSDeterminationInitialMatricesR6,
             ADCSDeterminationInitialMatricesR7}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesR8,
@@ -189,7 +190,7 @@ void RequestParamADCSTask::execute() {
             ADCSDeterminationInitialMatricesPInitial6,
             ADCSDeterminationInitialMatricesPInitial7,
             ADCSDeterminationInitialMatricesPInitial8}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDeterminationInitialMatricesPInitial9,
@@ -202,7 +203,7 @@ void RequestParamADCSTask::execute() {
             ADCSTransformationAxisYAssignment,
             ADCSTransformationAxisZAssignment,
             ADCSMagnetometerAxisAssignment}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSunSensorAxisAssignment,
@@ -215,7 +216,7 @@ void RequestParamADCSTask::execute() {
             ADCSFrameAxisSignECIToOrbit_Z,
             ADCSFrameAxisSignNEDToECEF_X,
             ADCSFrameAxisSignNEDToECEF_Y}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSFrameAxisSignNEDToECEF_Z,
@@ -228,7 +229,7 @@ void RequestParamADCSTask::execute() {
             ADCSGyroSignX,
             ADCSGyroSignY,
             ADCSGyroSignZ}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDetumblingNominalThresholds,
@@ -241,7 +242,7 @@ void RequestParamADCSTask::execute() {
             ADCSMagnetorquerMagneticDipoleZ ,
             ADCSMagnetorquerDutyCycle,
             ADCSMagnetorquerCurrentX}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSMagnetorquerCurrentY,
@@ -254,7 +255,7 @@ void RequestParamADCSTask::execute() {
             ADCSDesiredQuaternionVectorElem2,
             ADCSDesiredQuaternionVectorElem3,
             ADCSAngularVelocityDesiredX}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSAngularVelocityDesiredY,
@@ -267,7 +268,7 @@ void RequestParamADCSTask::execute() {
             ADCSSatellitePositionHeight,
             ADCSSatellitePositionECIX,
             ADCSSatellitePositionECIY}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSatellitePositionECIZ,
@@ -280,7 +281,7 @@ void RequestParamADCSTask::execute() {
             ADCSMagneticFieldECIX,
             ADCSMagneticFieldECIY,
             ADCSMagneticFieldECIZ}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSSunPositionECIX,
@@ -293,7 +294,7 @@ void RequestParamADCSTask::execute() {
             ADCSDutyCycleDetermination,
             ADCSDutyCycleControl,
             ADCSDutyCycleOther}, false);
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(200));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{ADCSDesatInitialAngularVelocityParam,
             ADCSMCUTemperature,
