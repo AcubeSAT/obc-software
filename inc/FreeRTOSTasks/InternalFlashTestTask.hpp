@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Task.hpp"
-#include "lib/atsam-component-drivers/InternalFlash/inc/InternalFlash.hpp"
+#include "InternalFlash.hpp"
 #include <etl/expected.h>
 
 /**

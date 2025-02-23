@@ -60,6 +60,7 @@ include_directories(/opt/microchip/mplabx/v5.45/packs/arm/CMSIS/5.4.0/CMSIS/Core
 include_directories(lib/SEGGER/RTT)
 include_directories(lib/SEGGER/Config)
 include_directories(lib/atsam-component-drivers/MCP9808/inc)
+include_directories(lib/atsam-component-drivers/InternalFlash/inc)
 include_directories(lib/cross-platform-software)
 add_subdirectory(lib/cross-platform-software)
 
