@@ -5,6 +5,7 @@
 #include "task.h"
 #include "definitions.h"
 #include "InitializationTask.hpp"
+#include "InternalFlashTestTask.hpp"
 #include "FreeRTOSHandlers.hpp"
 
 #define IDLE_TASK_SIZE 100
@@ -26,8 +27,10 @@ extern "C" void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffe
 extern "C" void main_cpp() {
     SYS_Initialize(NULL);
     initializationTask.emplace();
+    internalFlashTestTask.emplace();
     
     initializationTask->createTask();
+    internalFlashTestTask->createTask();
 
     vTaskStartScheduler();
 
