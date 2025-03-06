@@ -11,7 +11,7 @@ class RequestParamADCSTask : public Task {
 private:
     const uint16_t DelayMs = 60000;
 public:
-    const static inline uint16_t TaskStackDepth = 25fi00;
+    const static inline uint16_t TaskStackDepth = 2500;
 
     StackType_t taskStack[TaskStackDepth];
 
