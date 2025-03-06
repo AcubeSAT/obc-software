@@ -15,7 +15,7 @@ void RequestParamADCSTask::execute() {
             1004,
             1005,
             1006}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1007,
@@ -28,7 +28,7 @@ void RequestParamADCSTask::execute() {
             1014,
             1015,
             1016}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1017,
@@ -41,7 +41,7 @@ void RequestParamADCSTask::execute() {
             1024,
             1025,
             1026}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1027,
@@ -54,7 +54,7 @@ void RequestParamADCSTask::execute() {
             1034,
             1035,
             1036}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1037,
@@ -67,7 +67,7 @@ void RequestParamADCSTask::execute() {
             1044,
             1045,
             1046}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1048,
@@ -75,18 +75,15 @@ void RequestParamADCSTask::execute() {
             1052,
             1052,
             1054,
-            1056}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
-
-        CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
+            1056,
             1058,
             1060,
             1062,
-            1064,
-            1066}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+            1064}, false);
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
+            1066,
             1068,
             1070,
             1071,
@@ -95,7 +92,7 @@ void RequestParamADCSTask::execute() {
             1074,
             1075,
             1076}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1077,
@@ -108,7 +105,7 @@ void RequestParamADCSTask::execute() {
             1084,
             1085,
             1086}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1087,
@@ -121,7 +118,7 @@ void RequestParamADCSTask::execute() {
             1094,
             1095,
             1096}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1097,
@@ -134,7 +131,7 @@ void RequestParamADCSTask::execute() {
             1104,
             1105,
             1106}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1107,
@@ -147,7 +144,7 @@ void RequestParamADCSTask::execute() {
             1114,
             1115,
             1116}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1117,
@@ -160,7 +157,7 @@ void RequestParamADCSTask::execute() {
             1124,
             1125,
             1126}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1127,
@@ -173,7 +170,7 @@ void RequestParamADCSTask::execute() {
             1134,
             1135,
             1136}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1137,
@@ -186,7 +183,7 @@ void RequestParamADCSTask::execute() {
             1144,
             1145,
             1146}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1147,
@@ -199,7 +196,7 @@ void RequestParamADCSTask::execute() {
             1154,
             1155,
             1156}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1157,
@@ -212,7 +209,7 @@ void RequestParamADCSTask::execute() {
             1164,
             1165,
             1166}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1167,
@@ -225,7 +222,7 @@ void RequestParamADCSTask::execute() {
             1174 ,
             1175,
             1176}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1177,
@@ -238,7 +235,7 @@ void RequestParamADCSTask::execute() {
             1184,
             1185,
             1186}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1187,
@@ -251,7 +248,7 @@ void RequestParamADCSTask::execute() {
             1194,
             1195,
             1196}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1197,
@@ -264,7 +261,7 @@ void RequestParamADCSTask::execute() {
             1204,
             1205,
             1206}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{1207,
             1208,
@@ -276,7 +273,7 @@ void RequestParamADCSTask::execute() {
             1214,
             1215,
             1216}, false);
-        vTaskDelay(pdMS_TO_TICKS(20));
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
             1217,
@@ -289,6 +286,7 @@ void RequestParamADCSTask::execute() {
             1224,
             1225,
             1226}, false);
+        vTaskDelay(pdMS_TO_TICKS(1000));
 
         CAN::Application::createRequestParametersMessage(CAN::NodeIDs::ADCS, false,{
         1227,

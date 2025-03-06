@@ -1,5 +1,9 @@
 #include "CAN/Driver.hpp"
 #include "Task.hpp"
+#include <interrupts.h>
+#include "CANGatekeeperTask.hpp"
+#include "TimeKeepingTask.hpp"
+#include "AcubeSATParameters.hpp"
 
 using namespace AcubeSATParameters;
 
@@ -7,7 +11,7 @@ class RequestParamADCSTask : public Task {
 private:
     const uint16_t DelayMs = 60000;
 public:
-    const static inline uint16_t TaskStackDepth = 5000;
+    const static inline uint16_t TaskStackDepth = 25fi00;
 
     StackType_t taskStack[TaskStackDepth];
 
