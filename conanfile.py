@@ -1,0 +1,78 @@
+import os
+from os.path import join
+
+from conan import ConanFile
+from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
+from conan.tools.files import copy
+from conan.tools.scm import Git
+from conan.tools.files import get, chdir, mkdir
+
+
+class OBCSoftware(ConanFile):
+    name = "obc-sw"
+    version = "1.0"
+    revision_mode = "scm"
+
+    # Optional metadata
+    license = "MIT"
+    author = "SpaceDot - AcubeSAT, acubesat.obc@spacedot.gr"
+    url = "gitlab.com/acubesat/obc/obc-software"
+    description = "Software for the OBC subsystem of the AcubeSAT nanosatellite."
+    topics = ("satellite", "acubesat", "obc", "obc-software", "embedded")
+
+    # Binary configuration
+    settings = "os", "compiler", "build_type", "arch"
+    options = {"shared": [True, False], "fPIC": [True, False], "project": ["obc-dev", "obc-eqm"]}
+    default_options = {"shared": False, "fPIC": False, "project": "obc-dev", "ecss-services/*:platform_definitions_path": ""}
+
+    generators = "CMakeDeps"
+
+    def configure(self):
+       platform_path = os.path.abspath(f"{self.options.project}/inc/Platform/")
+       self.options["ecss-services"].platform_definitions_path = platform_path
+
+    def config_options(self):
+        if self.settings.os == "Windows":
+            del self.options.fPIC
+
+    def source(self):
+        repos = [
+            {"url": "git@gitlab.com:acubesat/obc/cross-platform-software.git", "path": "cross-platform-software"},
+            {"url": "git@gitlab.com:acubesat/obc/atsam-component-drivers.git", "path": "atsam-component-drivers"}
+        ]
+
+        for repo in repos:
+            repo_path = os.path.join(repo["path"])
+            git = Git(self, "common/lib")
+            if not repo_path in os.listdir("common/lib"):
+                git.clone(repo["url"])
+            else:
+                git = Git(self, "common/lib/"+repo_path)
+                git.run("pull")
+            git = Git(self, "common/lib/"+repo_path)
+            git.run("submodule update --init --recursive")
+
+        devops_git = Git(self)
+        devops_git.clone("git@gitlab.com:acubesat/obc/devops.git", "devops-temp")
+
+        if not os.path.exists(".devcontainer"):
+            mkdir(self, ".devcontainer")
+
+        copy(self, "*.json", src=os.path.join("devops-temp", "dev-container"), dst=".devcontainer")
+        copy(self, "Dockerfile", src=os.path.join("devops-temp", "dev-container"), dst=".devcontainer")
+
+        self.run("rm -rf devops-temp")
+
+    def layout(self):
+        cmake_layout(self)
+
+    def generate(self):
+        tc = CMakeToolchain(self)
+        tc.variables["NO_SYSTEM_INCLUDE"] = True
+        tc.variables["OBC_BUILD"] = self.options.project
+        tc.generate()
+
+    def requirements(self):
+        self.requires("etl/20.37.2")
+        self.requires("logger/1.0")
+        self.requires("ecss-services/1.2")

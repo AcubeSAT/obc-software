@@ -1,0 +1,391 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: mcan0}
+children:
+- type: Symbols
+  children:
+  - type: Boolean
+    attributes: {id: AUTO_DATA_BIT_TIMING_CALCULATION}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Integer
+    attributes: {id: CALCULATED_DATA_BITRATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '500'}
+  - type: String
+    attributes: {id: CALCULATED_DATA_ERRORRATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '0.000'}
+  - type: Integer
+    attributes: {id: CALCULATED_NOMINAL_BITRATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '500'}
+  - type: String
+    attributes: {id: CALCULATED_NOMINAL_ERRORRATE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '0.000'}
+  - type: Menu
+    attributes: {id: DATA_BIT_TIMING_CALCULATION}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Float
+    attributes: {id: DATA_SAMPLE_POINT}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '96.0'}
+  - type: String
+    attributes: {id: DATA_TIME_QUANTA_PERIOD}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '80.000'}
+  - type: Integer
+    attributes: {id: DBTP_DBRP}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '3'}
+  - type: Integer
+    attributes: {id: DBTP_DSJW}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '1'}
+      - type: User
+        attributes: {value: '1'}
+  - type: Integer
+    attributes: {id: DBTP_DTSEG1}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '23'}
+  - type: Integer
+    attributes: {id: DBTP_DTSEG2}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '1'}
+  - type: Integer
+    attributes: {id: DBTP_TOTAL_TIME_QUANTA}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '25'}
+  - type: Integer
+    attributes: {id: FILTERS_STD}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
+  - type: KeyValueSet
+    attributes: {id: FILTERS_STD_NOMATCH}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
+  - type: Boolean
+    attributes: {id: INTERRUPT_MODE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Menu
+    attributes: {id: MCAN0_STD_FILTER1}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: enabled}
+        children:
+        - {type: Value, value: 'true'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: MCAN0_STD_FILTER1_CONFIG}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
+  - type: Hex
+    attributes: {id: MCAN0_STD_FILTER1_SFID1}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '896'}
+  - type: Hex
+    attributes: {id: MCAN0_STD_FILTER1_SFID2}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1023'}
+  - type: Integer
+    attributes: {id: MCAN_CORE_CLOCK_FREQ}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '50000000'}
+  - type: Comment
+    attributes: {id: MCAN_CORE_CLOCK_INVALID_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: Warning!!! MCAN0 Clock Frequency is too high for required
+            Data Bit Timing}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
+  - type: Comment
+    attributes: {id: MCAN_DATA_ERRORRATE_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: Warning!!! Error 104.082%}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
+  - type: Boolean
+    attributes: {id: MCAN_MATRIX_CAN_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: 'true'}
+  - type: Comment
+    attributes: {id: MCAN_NOMINAL_ERRORRATE_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
+  - type: Combo
+    attributes: {id: MCAN_OPMODE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: CAN FD}
+  - type: Comment
+    attributes: {id: MCAN_TIME_QUANTA_INVALID_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: Warning!!! Number of Time Quanta is too high for required
+            Data Bit Timing}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
+  - type: Integer
+    attributes: {id: NBTP_NBRP}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '4'}
+  - type: Integer
+    attributes: {id: NBTP_NSJW}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '5'}
+  - type: Integer
+    attributes: {id: NBTP_NTSEG1}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '14'}
+  - type: Integer
+    attributes: {id: NBTP_NTSEG2}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '5'}
+  - type: Integer
+    attributes: {id: NBTP_TOTAL_TIME_QUANTA}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '20'}
+  - type: String
+    attributes: {id: NOMINAL_TIME_QUANTA_PERIOD}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '100.000'}
+  - type: KeyValueSet
+    attributes: {id: RXF0_BYTES_CFG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7'}
+  - type: Integer
+    attributes: {id: RXF0_ELEMENTS}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '20'}
+  - type: Integer
+    attributes: {id: RXF0_WATERMARK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: RXF1_BYTES_CFG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7'}
+  - type: Integer
+    attributes: {id: RXF1_ELEMENTS}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '10'}
+  - type: Integer
+    attributes: {id: RXF1_WATERMARK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: RX_BUFFER_BYTES_CFG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: readOnly}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: TX_FIFO_BYTES_CFG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7'}
+  - type: Integer
+    attributes: {id: TX_FIFO_ELEMENTS}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '10'}
+  - type: Integer
+    attributes: {id: TX_FIFO_WATERMARK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: mcan0, value: '0'}
+  - type: File
+    attributes: {id: instHeaderFile}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: ../peripheral/mcan_11273/templates/plib_mcan_interrupt.h.ftl}
+  - type: File
+    attributes: {id: sourceFile}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: source}
+        children:
+        - {type: Value, value: ../peripheral/mcan_11273/templates/plib_mcan_interrupt.c.ftl}
+- type: ElementPosition
+  attributes: {x: '228', y: '271', id: mcan0}

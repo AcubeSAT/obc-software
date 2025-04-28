@@ -1,0 +1,318 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: smc}
+children:
+- type: Symbols
+  children:
+  - type: KeyValueSet
+    attributes: {id: SMC_BAT_CS0}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: SMC_BAT_CS1}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: SMC_BAT_CS2}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: SMC_BAT_CS3}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'false'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: Boolean
+    attributes: {id: SMC_CHIP_SELECT0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: SMC_CHIP_SELECT3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: SMC_DATA_BUS_CS0}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '1'}
+      - type: User
+        attributes: {value: '0'}
+  - type: KeyValueSet
+    attributes: {id: SMC_DATA_BUS_CS1}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '1'}
+  - type: KeyValueSet
+    attributes: {id: SMC_DATA_BUS_CS2}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '1'}
+  - type: KeyValueSet
+    attributes: {id: SMC_DATA_BUS_CS3}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '1'}
+      - type: User
+        attributes: {value: '0'}
+  - type: Integer
+    attributes: {id: SMC_NCS_RD_PULSE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '6'}
+  - type: Integer
+    attributes: {id: SMC_NCS_RD_PULSE_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '9'}
+  - type: Integer
+    attributes: {id: SMC_NCS_RD_SETUP_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
+  - type: Integer
+    attributes: {id: SMC_NCS_RD_SETUP_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '2'}
+  - type: Integer
+    attributes: {id: SMC_NCS_WR_PULSE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '8'}
+  - type: Integer
+    attributes: {id: SMC_NCS_WR_PULSE_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '9'}
+  - type: Integer
+    attributes: {id: SMC_NCS_WR_SETUP_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
+  - type: Integer
+    attributes: {id: SMC_NCS_WR_SETUP_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '2'}
+  - type: Integer
+    attributes: {id: SMC_NRD_CYCLE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '8'}
+  - type: Integer
+    attributes: {id: SMC_NRD_CYCLE_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '17'}
+  - type: Integer
+    attributes: {id: SMC_NRD_PULSE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '3'}
+  - type: Integer
+    attributes: {id: SMC_NRD_PULSE_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '9'}
+  - type: Integer
+    attributes: {id: SMC_NRD_SETUP_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '3'}
+  - type: Integer
+    attributes: {id: SMC_NRD_SETUP_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '2'}
+  - type: KeyValueSet
+    attributes: {id: SMC_NWAIT_MODE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: SMC_NWAIT_MODE_CS1}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: SMC_NWAIT_MODE_CS2}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: SMC_NWAIT_MODE_CS3}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: Integer
+    attributes: {id: SMC_NWE_CYCLE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '10'}
+  - type: Integer
+    attributes: {id: SMC_NWE_CYCLE_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '17'}
+  - type: Integer
+    attributes: {id: SMC_NWE_PULSE_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '6'}
+  - type: Integer
+    attributes: {id: SMC_NWE_PULSE_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '9'}
+  - type: Integer
+    attributes: {id: SMC_NWE_SETUP_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '2'}
+  - type: Integer
+    attributes: {id: SMC_NWE_SETUP_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '2'}
+  - type: Boolean
+    attributes: {id: SMC_PMEN_CS0}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: SMC_PMEN_CS3}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: SMC_PS_CS0}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: SMC_PS_CS1}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: SMC_PS_CS2}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+  - type: KeyValueSet
+    attributes: {id: SMC_PS_CS3}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: smc, value: '0'}
+      - type: User
+        attributes: {value: '3'}
+- type: ElementPosition
+  attributes: {x: '920', y: '20', id: smc}

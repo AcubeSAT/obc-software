@@ -1,0 +1,14 @@
+stages:
+  - trigger
+
+trigger_obcdev:
+  stage: trigger
+  trigger:
+    include: obc-dev/.gitlab-ci.yml
+    strategy: depend
+
+trigger_obceqm:
+  stage: trigger
+  trigger:
+    include: obc-eqm/.gitlab-ci.yml
+    strategy: depend

@@ -1,0 +1,623 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: pwm0}
+children:
+- type: Symbols
+  children:
+  - type: String
+    attributes: {id: INTR_PWM_FAULT}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_IRQn}
+  - type: String
+    attributes: {id: PWM_CALLBACK_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_CallbackRegister}
+  - type: Integer
+    attributes: {id: PWM_CH_0_CDTY}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7500'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_0_CMR_CALG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_0_CMR_CPOL}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_0_CMR_CPRE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_0_CMR_DTE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: PWM_CH_0_CPRD}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '15000'}
+  - type: Boolean
+    attributes: {id: PWM_CH_0_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_0_FAULT_ENABLE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Comment
+    attributes: {id: PWM_CH_0_FREQ_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: '**** PWM Frequency is 5000.0 Hz ****'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_0_IER1_CHID}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: PWM_CH_1_CDTY}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7500'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_1_CMR_CALG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_1_CMR_CPOL}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_1_CMR_CPRE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_1_CMR_DTE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: PWM_CH_1_CPRD}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '15000'}
+  - type: Boolean
+    attributes: {id: PWM_CH_1_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_1_FAULT_ENABLE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Comment
+    attributes: {id: PWM_CH_1_FREQ_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: '**** PWM Frequency is 5000.0 Hz ****'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_1_IER1_CHID}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_1_SYNCENABLE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: PWM_CH_2_CDTY}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7500'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_2_CMR_CALG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_2_CMR_CPOL}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_2_CMR_CPRE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_2_CMR_DTE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: PWM_CH_2_CPRD}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '15000'}
+  - type: Boolean
+    attributes: {id: PWM_CH_2_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_2_FAULT_ENABLE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Comment
+    attributes: {id: PWM_CH_2_FREQ_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: '**** PWM Frequency is 5000.0 Hz ****'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_2_IER1_CHID}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_2_SYNCENABLE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: PWM_CH_3_CDTY}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '7500'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_3_CMR_CALG}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_3_CMR_CPOL}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: KeyValueSet
+    attributes: {id: PWM_CH_3_CMR_CPRE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_3_CMR_DTE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: PWM_CH_3_CPRD}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '15000'}
+  - type: Boolean
+    attributes: {id: PWM_CH_3_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_3_FAULT_ENABLE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Comment
+    attributes: {id: PWM_CH_3_FREQ_COMMENT}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: '**** PWM Frequency is 5000.0 Hz ****'}
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_3_IER1_CHID}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Boolean
+    attributes: {id: PWM_CH_3_SYNCENABLE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Menu
+    attributes: {id: PWM_COMPARE}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: Integer
+    attributes: {id: PWM_COMP_0_CMPV_CV}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+  - type: Integer
+    attributes: {id: PWM_COMP_1_CMPV_CV}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+  - type: Integer
+    attributes: {id: PWM_COMP_2_CMPV_CV}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+  - type: Integer
+    attributes: {id: PWM_COMP_3_CMPV_CV}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+  - type: Integer
+    attributes: {id: PWM_COMP_4_CMPV_CV}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+  - type: Integer
+    attributes: {id: PWM_COMP_5_CMPV_CV}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+  - type: Integer
+    attributes: {id: PWM_COMP_6_CMPV_CV}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+  - type: Integer
+    attributes: {id: PWM_COMP_7_CMPV_CV}
+    children:
+    - type: Attributes
+      children:
+      - type: Integer
+        attributes: {id: max}
+        children:
+        - {type: Value, value: '15000'}
+  - type: String
+    attributes: {id: PWM_GET_PERIOD_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_ChannelPeriodGet}
+  - type: Hex
+    attributes: {id: PWM_IER1_REG}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: '0'}
+  - type: String
+    attributes: {id: PWM_OUTPUT_DISABLE_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_ChannelOverrideDisable}
+  - type: String
+    attributes: {id: PWM_OUTPUT_ENABLE_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_ChannelOverrideEnable}
+  - type: Hex
+    attributes: {id: PWM_PH_MASK}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: '7'}
+  - type: String
+    attributes: {id: PWM_PH_U}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM_CHANNEL_0}
+  - type: String
+    attributes: {id: PWM_PH_V}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM_CHANNEL_1}
+  - type: String
+    attributes: {id: PWM_PH_W}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM_CHANNEL_2}
+  - type: String
+    attributes: {id: PWM_SET_DUTY_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_ChannelDutySet}
+  - type: String
+    attributes: {id: PWM_START_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_ChannelsStart}
+  - type: String
+    attributes: {id: PWM_STOP_API}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: pwm0, value: PWM0_ChannelsStop}
+- type: ElementPosition
+  attributes: {x: '398', y: '257', id: pwm0}

@@ -1,0 +1,43 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: twihs1}
+children:
+- type: Symbols
+  children:
+  - type: Integer
+    attributes: {id: TWIHS_CLK_SRC_FREQ}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: twihs1, value: '150000000'}
+  - type: Integer
+    attributes: {id: TWIHS_CWGR_CHDIV}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: twihs1, value: '177'}
+  - type: Integer
+    attributes: {id: TWIHS_CWGR_CKDIV}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: twihs1, value: '0'}
+  - type: Integer
+    attributes: {id: TWIHS_CWGR_CLDIV}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: twihs1, value: '192'}
+  - type: Integer
+    attributes: {id: TWIHS_TIMEOUT_COUNT_VAL}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: twihs1, value: '60000'}
+- type: ElementPosition
+  attributes: {x: '780', y: '20', id: twihs1}

@@ -1,0 +1,48 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: rstc}
+children:
+- type: Symbols
+  children:
+  - type: Comment
+    attributes: {id: EXT_RESET_LENGTH_MESSAGE}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: text}
+        children:
+        - {type: Value, value: 'External Reset Assertion Time is: 0.122 ms ( 4 SLCK
+            Cycles )'}
+  - type: Integer
+    attributes: {id: RSTC_MR_ERSTL}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: '1'}
+  - type: KeyValueSet
+    attributes: {id: RSTC_MR_URSTEN}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: rstc, value: '0'}
+  - type: String
+    attributes: {id: RSTC_RSTTYP_DESC}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: rstc, value: '["First power-up reset","Return from Backup
+            Mode","Watchdog fault occurred","Processor reset required by the software","NRST
+            pin detected low"]'}
+  - type: String
+    attributes: {id: RSTC_RSTTYP_ENUM}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: rstc, value: '["RSTC_GENERAL_RESET  RSTC_SR_RSTTYP_GENERAL_RST","RSTC_BACKUP_RESET  RSTC_SR_RSTTYP_BACKUP_RST","RSTC_WATCHDOG_RESET  RSTC_SR_RSTTYP_WDT_RST","RSTC_SOFTWARE_RESET  RSTC_SR_RSTTYP_SOFT_RST","RSTC_USER_RESET  RSTC_SR_RSTTYP_USER_RST"]'}
+- type: ElementPosition
+  attributes: {x: '600', y: '172', id: rstc}
