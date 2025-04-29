@@ -79,7 +79,7 @@ Inc/version.h
 # CMake
 cmake-build-*/
 /build*/
-
+CMakeFiles/
 # File-based project format
 *.iws
 
