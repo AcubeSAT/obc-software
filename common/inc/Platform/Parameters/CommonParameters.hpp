@@ -6,6 +6,11 @@
 
 namespace CommonParameters {
     inline auto &boardTemperature1 = AcubeSATParameters::obcPCBTemperature1;
+
+	#ifdef OBC_EQM
+        inline auto &boardTemperature2 = AcubeSATParameters::obcPCBTemperature2;
+	#endif
+
     inline auto &mcuTemperature = AcubeSATParameters::obcMCUTemperature;
     inline auto &time = AcubeSATParameters::obcOnBoardTime;
     inline auto &useRTT = AcubeSATParameters::obcUseRTT;

@@ -47,7 +47,7 @@ target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DI
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/inc/Platform)
 target_include_directories(${PROJECT_NAME}.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-file(GLOB_RECURSE TAR_INCLUDES LIST_DIRECTORIES true "${CMAKE_CURRENT_SOURCE_DIR}")
+file(GLOB_RECURSE TAR_INCLUDES LIST_DIRECTORIES true "${CMAKE_CURRENT_SOURCE_DIR}/*")
 
 set(DIRS_ONLY2 "")
 foreach(item ${TAR_INCLUDES})
@@ -65,4 +65,5 @@ set(CMAKE_EXE_LINKER_FLAGS
 
 add_compile_definitions(LOGLEVEL_TRACE)
 target_compile_options(${PROJECT_NAME}.elf PRIVATE -Wno-psabi)
+target_compile_definitions(common_cross PRIVATE OBC_DEV)
 target_compile_definitions(${PROJECT_NAME}.elf PRIVATE OBC_DEV)

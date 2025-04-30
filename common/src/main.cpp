@@ -7,6 +7,13 @@
 #include "FreeRTOSHandlers.hpp"
 #include "TaskHandler.hpp"
 
+
+#ifndef OBC_DEV
+    #ifndef OBC_EQM
+        #error "Flag OBC_DEV or OBC_EQM must be passed"
+    #endif
+#endif
+
 #define IDLE_TASK_SIZE 100
 
 #if configSUPPORT_STATIC_ALLOCATION

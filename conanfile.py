@@ -23,13 +23,9 @@ class OBCSoftware(ConanFile):
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False], "project": ["obc-dev", "obc-eqm"]}
-    default_options = {"shared": False, "fPIC": False, "project": "obc-dev", "ecss-services/*:platform_definitions_path": ""}
+    default_options = {"shared": False, "fPIC": False, "project": "obc-dev", "ecss-services/*:platform_definitions_path": os.path.abspath("common/inc/Platform")}
 
     generators = "CMakeDeps"
-
-    def configure(self):
-       platform_path = os.path.abspath(f"{self.options.project}/inc/Platform/")
-       self.options["ecss-services"].platform_definitions_path = platform_path
 
     def config_options(self):
         if self.settings.os == "Windows":

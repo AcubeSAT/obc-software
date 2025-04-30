@@ -8,7 +8,6 @@ find_package(etl CONFIG REQUIRED)
 find_package(logger CONFIG REQUIRED COMPONENTS log_common)
 find_package(ecss-services CONFIG REQUIRED COMPONENTS common)
 
-include_directories(.)
 include_directories(common)
 file(GLOB_RECURSE INCLUDE_DIRS LIST_DIRECTORIES true "${CMAKE_CURRENT_SOURCE_DIR}/common/*")
 

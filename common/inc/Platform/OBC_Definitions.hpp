@@ -45,7 +45,11 @@ inline const float TemperatureSensitivity = 2.33;
 /**
  * The reference temperature of the internal temperature sensor for the voltage-to-temperature conversion
  */
-inline const uint8_t ReferenceTemperature = 25;
+#ifdef OBC_DEV
+	 constexpr uint8_t ReferenceTemperature = 25;
+#elif OBC_EQM
+	 constexpr uint8_t ReferenceTemperature = 41;
+#endif
 
 /**
  * The size of the queue used to communicate with the UART Gatekeeper task
