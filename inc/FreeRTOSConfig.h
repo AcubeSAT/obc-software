@@ -122,8 +122,7 @@
 #define INCLUDE_uxTaskGetStackHighWaterMark2    0
 #define INCLUDE_xTaskResumeFromISR              0
 
-//#define configASSERT(x)     if( ( x ) == 0 ) { taskDISABLE_INTERRUPTS(); for( ;; ); }
-#define configASSERT(x) if((x)==0) taskDISABLE_INTERRUPTS()
+#define configASSERT(x)     if( ( x ) == 0 ) { taskDISABLE_INTERRUPTS(); for( ;; ); }
 
 /* Definitions that map the FreeRTOS port interrupt handlers to their CMSIS
 standard names. */
