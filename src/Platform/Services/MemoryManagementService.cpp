@@ -1,3 +1,3 @@
-//
-// Created by kyriakum on 23/5/2025.
-//
+#include "Services/MemoryManagementService.hpp"
+
+void MemoryManagementService::initializeMemoryVector() {}
