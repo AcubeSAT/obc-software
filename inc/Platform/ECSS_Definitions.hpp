@@ -259,4 +259,9 @@ inline constexpr std::chrono::seconds ECSSMonitoringFrequency(60);
  */
 inline constexpr uint16_t ApplicationId = 1;
 
+/**
+ * Maximum number of entries in Valid Memory IDs set
+ */
+inline constexpr uint32_t MaxValidMemoryIds = 8;
+
 /** @} */
