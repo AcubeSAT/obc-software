@@ -16,17 +16,17 @@ private:
     StackType_t taskStack[TaskStackDepth]{};
 
 public:
-    static FlashDriver::EFCError testQuadWordWriteRead(FlashDriver& flash);
+    static FlashDriver::EFCError testQuadWordWriteRead();
 
-    static FlashDriver::EFCError testPageWriteRead(FlashDriver& flash);
+    static FlashDriver::EFCError testPageWriteRead();
 
-    static FlashDriver::EFCError testBoundaryConditions(FlashDriver& flash);
+    static FlashDriver::EFCError testBoundaryConditions();
 
-    static void testFlashModule(FlashDriver& flash) {
+    static void testFlashModule() {
         constexpr uint8_t NumTests = 3;
         uint8_t correctResults = 0;
 
-        if (auto result = testBoundaryConditions(flash); result == FlashDriver::EFCError::NONE) {
+        if (auto result = testBoundaryConditions(); result == FlashDriver::EFCError::NONE) {
             LOG_DEBUG << "FLASH BOUNDARY CONDITIONS TEST SUCCEEDED";
             correctResults++;
         } else {
@@ -34,7 +34,7 @@ public:
             printFlashError(result);
         }
 
-        if (auto result = testQuadWordWriteRead(flash); result == FlashDriver::EFCError::NONE) {
+        if (auto result = testQuadWordWriteRead(); result == FlashDriver::EFCError::NONE) {
             LOG_DEBUG << "FLASH QUAD WORD RW TEST SUCCEEDED";
             correctResults++;
         } else {
@@ -42,7 +42,7 @@ public:
             printFlashError(result);
         }
 
-        if (auto result = testPageWriteRead(flash); result == FlashDriver::EFCError::NONE) {
+        if (auto result = testPageWriteRead(); result == FlashDriver::EFCError::NONE) {
             LOG_DEBUG << "FLASH PAGE RW TEST SUCCEEDED";
             correctResults++;
         } else {
