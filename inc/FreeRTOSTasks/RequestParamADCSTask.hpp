@@ -10,11 +10,12 @@ using namespace AcubeSATParameters;
 class RequestParamADCSTask : public Task {
 private:
     const uint16_t DelayMs = 60000;
+
+    static constexpr uint16_t TaskStackDepth = 2500;
+
+    StackType_t taskStack[TaskStackDepth]{};
+
 public:
-    const static inline uint16_t TaskStackDepth = 2500;
-
-    StackType_t taskStack[TaskStackDepth];
-
     void execute();
 
     RequestParamADCSTask() : Task("OBC Request Parameters from ADCS through CAN") {}
@@ -24,8 +25,8 @@ public:
      */
 
      void createTask() {
-        xTaskCreateStatic(vClassTask < RequestParamADCSTask > , this->TaskName, RequestParamADCSTask::TaskStackDepth, this,
-                        tskIDLE_PRIORITY  +  2, this->taskStack, &(this->taskBuffer));
+        xTaskCreateStatic(vClassTask<RequestParamADCSTask> , this->TaskName, TaskStackDepth, this,
+                        tskIDLE_PRIORITY + 2, this->taskStack, &(this->taskBuffer));
     }
 };
 
