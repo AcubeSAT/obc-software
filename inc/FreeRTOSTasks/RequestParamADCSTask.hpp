@@ -11,6 +11,10 @@ class RequestParamADCSTask : public Task {
 private:
     const uint16_t DelayMs = 60000;
 
+    static constexpr size_t BATCH_SIZE = 10;
+
+    static constexpr uint16_t parametersCount = 220;
+
     static constexpr uint16_t TaskStackDepth = 2500;
 
     StackType_t taskStack[TaskStackDepth]{};
