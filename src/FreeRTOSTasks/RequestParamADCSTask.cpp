@@ -23,7 +23,7 @@ void RequestParamADCSTask::execute() {
     while (true) {
 
         for (size_t i = 0; i < paramIDs.size(); i += BatchSize) {
-            etl::array<uint16_t, 10> arguments{};
+            etl::array<uint16_t, BatchSize> arguments{};
 
             size_t count = etl::min(BatchSize, paramIDs.size() - i);
             for (size_t j = 0; j < count; j++) {
