@@ -9,20 +9,23 @@ using namespace AcubeSATParameters;
 
 class RequestParamADCSTask : public Task {
 private:
-    const uint16_t DelayMs = 60000;
+    static constexpr uint32_t DelayMs = 60000;
 
-    static constexpr size_t BATCH_SIZE = 10;
+    static constexpr size_t BatchSize = 10;
 
-    static constexpr uint16_t parametersCount = 220;
+    static constexpr uint16_t ParametersCount = 220;
 
     static constexpr uint16_t TaskStackDepth = 2500;
 
     StackType_t taskStack[TaskStackDepth]{};
 
 public:
+    /**
+     * OBC request parameters from ADCS periodically
+     */
     void execute();
 
-    RequestParamADCSTask() : Task("OBC Request Parameters from ADCS through CAN") {}
+    RequestParamADCSTask() : Task("RequestParamADCSTask") {}
 
     /**
      * Create freeRTOS Task
